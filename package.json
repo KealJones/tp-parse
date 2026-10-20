@@ -1,0 +1,28 @@
+{
+  "name": "tp-parse",
+  "version": "0.1.0",
+  "description": "A forgiving parser and validator for toki pona. Returns a parse tree plus every problem it finds, instead of crashing.",
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "bin": {
+    "tp-parse": "./src/cli.ts"
+  },
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --no-warnings --test test/parse.test.ts",
+    "check": "tsc --noEmit",
+    "corpus": "node --experimental-strip-types --no-warnings scripts/corpus-report.ts",
+    "cli": "node --experimental-strip-types --no-warnings src/cli.ts"
+  },
+  "license": "MIT",
+  "author": "Keal Jones",
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3"
+  }
+}

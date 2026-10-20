@@ -1,0 +1,261 @@
+<title>tp-parse</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one working column — input on top, a card per sentence below, each sentence drawn as role-coloured words. */
+:root {
+  --paper: #f3f5f1;
+  --sheet: #ffffff;
+  --ink: #1d2626;
+  --muted: #5d6a66;
+  --rule: #d7ddd6;
+  --accent: #1f6f63;
+  --subject: #2a5fb0;
+  --verb: #237a43;
+  --object: #b5531b;
+  --prep: #7a43a8;
+  --context: #4f6b6b;
+  --particle: #8a8f8c;
+  --name: #a02a6b;
+  --error: #c4312b;
+  --error-bg: #fbe9e7;
+  --warn: #9a6b00;
+  --warn-bg: #fdf3d8;
+  --ok: #237a43;
+  --ok-bg: #e5f3e8;
+  --font-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #141a19; --sheet: #1c2422; --ink: #e4ebe7; --muted: #9aa8a3; --rule: #2f3a37; --accent: #5cc1ae;
+    --subject: #7fa9ec; --verb: #6cc98c; --object: #f0965c; --prep: #c495ee; --context: #9bb8b6; --particle: #78807c; --name: #ee86bd;
+    --error: #ff7b72; --error-bg: #3a1d1b; --warn: #e8b84a; --warn-bg: #352b12; --ok: #6cc98c; --ok-bg: #18301f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #141a19; --sheet: #1c2422; --ink: #e4ebe7; --muted: #9aa8a3; --rule: #2f3a37; --accent: #5cc1ae;
+  --subject: #7fa9ec; --verb: #6cc98c; --object: #f0965c; --prep: #c495ee; --context: #9bb8b6; --particle: #78807c; --name: #ee86bd;
+  --error: #ff7b72; --error-bg: #3a1d1b; --warn: #e8b84a; --warn-bg: #352b12; --ok: #6cc98c; --ok-bg: #18301f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 56px;
+}
+.wrap { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+header { display: flex; flex-direction: column; gap: 6px; }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 6vw, 44px); line-height: 1; margin: 0; letter-spacing: -0.02em; }
+h1 span { color: var(--accent); }
+.lede { margin: 0; color: var(--muted); max-width: 62ch; }
+label.field-label { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+textarea {
+  width: 100%; min-height: 150px; resize: vertical; padding: 14px 16px; border-radius: 10px;
+  border: 1px solid var(--rule); background: var(--sheet); color: var(--ink);
+  font-family: var(--font-mono); font-size: 15px; line-height: 1.6;
+}
+textarea:focus-visible, button:focus-visible, input:focus-visible + .switch { outline: 2px solid var(--accent); outline-offset: 2px; }
+.input-block { display: flex; flex-direction: column; gap: 8px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; justify-content: space-between; }
+.toggle { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+.toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.switch { width: 38px; height: 22px; border-radius: 999px; background: var(--rule); position: relative; transition: background .15s; flex: none; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--sheet); transition: transform .15s; }
+.toggle input:checked + .switch { background: var(--accent); }
+.toggle input:checked + .switch::after { transform: translateX(16px); }
+.toggle small { color: var(--muted); display: block; font-size: 13px; line-height: 1.3; }
+.summary { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--font-mono); font-size: 13px; padding: 4px 10px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+.chip.ok { background: var(--ok-bg); color: var(--ok); }
+.chip.err { background: var(--error-bg); color: var(--error); }
+.chip.warn { background: var(--warn-bg); color: var(--warn); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; background: currentColor; vertical-align: -1px; }
+.legend .r-subject { color: var(--subject); } .legend .r-verb { color: var(--verb); } .legend .r-object { color: var(--object); }
+.legend .r-prep { color: var(--prep); } .legend .r-context { color: var(--context); } .legend .r-particle { color: var(--particle); } .legend .r-name { color: var(--name); }
+.results { display: flex; flex-direction: column; gap: 12px; }
+.sent {
+  background: var(--sheet); border: 1px solid var(--rule); border-left: 4px solid var(--ok); border-radius: 10px;
+  padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0;
+}
+.sent.has-warn { border-left-color: var(--warn); }
+.sent.has-err { border-left-color: var(--error); }
+.sent-head { display: flex; gap: 10px; align-items: baseline; justify-content: space-between; flex-wrap: wrap; }
+.kind { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.line { font-family: var(--font-mono); font-size: 17px; line-height: 2; display: flex; flex-wrap: wrap; gap: 0 9px; min-width: 0; }
+.w { position: relative; font-weight: 500; overflow-wrap: anywhere; }
+.w.subject { color: var(--subject); } .w.verb { color: var(--verb); } .w.object { color: var(--object); } .w.prep { color: var(--prep); }
+.w.context { color: var(--context); } .w.particle { color: var(--particle); font-weight: 400; } .w.name { color: var(--name); }
+.w.quote { color: var(--muted); font-style: italic; }
+.w.bad-err { text-decoration: underline wavy var(--error); text-underline-offset: 5px; }
+.w.bad-warn { text-decoration: underline wavy var(--warn); text-underline-offset: 5px; }
+.issues { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.issues li { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: baseline; font-size: 14.5px; }
+.sev { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 5px; }
+.sev.error { background: var(--error-bg); color: var(--error); }
+.sev.warning { background: var(--warn-bg); color: var(--warn); }
+.issues code { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-left: 6px; }
+details summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+details pre { margin: 8px 0 0; padding: 12px; border-radius: 8px; background: var(--paper); font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; overflow-x: auto; max-height: 360px; }
+.empty { color: var(--muted); font-style: italic; }
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 14px; }
+footer a { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>tp-<span>parse</span></h1>
+    <p class="lede">Paste toki pona to check it. Each sentence gets parsed into subject, verb, objects and context, and anything broken gets flagged with a reason. It runs entirely in this page.</p>
+  </header>
+
+  <div class="input-block">
+    <label class="field-label" for="input">toki pona text</label>
+    <textarea id="input" spellcheck="false">tenpo pini la jan pona mi li wile pali e tomo pi kiwen mute lon ma kasi.
+jan Keli o, sina pona!
+mi lukin e ona li pilin e ni: ona li suwi.
+jan moku e kili.
+mi wile ala wile moku?
+Sonja li pona.
+mi moku e blorp.
+tomo pi telo li suli.</textarea>
+  </div>
+
+  <div class="controls">
+    <label class="toggle" for="strict">
+      <input type="checkbox" id="strict">
+      <span class="switch" aria-hidden="true"></span>
+      <span>Strict mode<small>For training data: style warnings and uncommon words count as errors.</small></span>
+    </label>
+    <div class="summary" id="summary" aria-live="polite"></div>
+  </div>
+
+  <div class="legend" aria-label="Colour key">
+    <span class="r-context">context (… la)</span>
+    <span class="r-subject">subject</span>
+    <span class="r-verb">verb</span>
+    <span class="r-object">object</span>
+    <span class="r-prep">preposition</span>
+    <span class="r-name">name</span>
+    <span class="r-particle">particle</span>
+  </div>
+
+  <div class="results" id="results"></div>
+
+  <footer>Word list and usage categories from <a href="https://linku.la/" target="_blank" rel="noopener">lipu Linku</a> (CC BY-SA 4.0). Grammar follows pu, with common community usage accepted as warnings.</footer>
+</div>
+
+<script>"use strict";var TP=(()=>{var j=Object.defineProperty;var q=Object.getOwnPropertyDescriptor;var z=Object.getOwnPropertyNames;var W=Object.prototype.hasOwnProperty;var X=(a,r,o)=>r in a?j(a,r,{enumerable:!0,configurable:!0,writable:!0,value:o}):a[r]=o;var _=(a,r)=>{for(var o in r)j(a,o,{get:r[o],enumerable:!0})},F=(a,r,o,s)=>{if(r&&typeof r=="object"||typeof r=="function")for(let t of z(r))!W.call(a,t)&&t!==o&&j(a,t,{get:()=>r[t],enumerable:!(s=q(r,t))||s.enumerable});return a};var Z=a=>F(j({},"__esModule",{value:!0}),a);var I=(a,r,o)=>X(a,typeof r!="symbol"?r+"":r,o);var ae={};_(ae,{PARTICLES:()=>f,PREPOSITIONS:()=>x,PREVERBS:()=>P,STRICT:()=>N,WORDS:()=>k,isValid:()=>V,isValidPhonotactics:()=>S,parse:()=>E,splitSentences:()=>T,tokenize:()=>w});var k={a:{category:"core",deprecated:!1},akesi:{category:"core",deprecated:!1},ala:{category:"core",deprecated:!1},alasa:{category:"core",deprecated:!1},ale:{category:"core",deprecated:!1},ali:{category:"uncommon",deprecated:!1},anpa:{category:"core",deprecated:!1},ante:{category:"core",deprecated:!1},anu:{category:"core",deprecated:!1},apeja:{category:"obscure",deprecated:!1},awen:{category:"core",deprecated:!1},e:{category:"core",deprecated:!1},en:{category:"core",deprecated:!1},epiku:{category:"uncommon",deprecated:!1},esun:{category:"core",deprecated:!1},ijo:{category:"core",deprecated:!1},ike:{category:"core",deprecated:!1},ilo:{category:"core",deprecated:!1},insa:{category:"core",deprecated:!1},isipin:{category:"obscure",deprecated:!1},jaki:{category:"core",deprecated:!1},jami:{category:"obscure",deprecated:!1},jan:{category:"core",deprecated:!1},jasima:{category:"uncommon",deprecated:!1},jelo:{category:"core",deprecated:!1},jo:{category:"core",deprecated:!1},kala:{category:"core",deprecated:!1},kalama:{category:"core",deprecated:!1},kama:{category:"core",deprecated:!1},kamalawala:{category:"obscure",deprecated:!1},kapesi:{category:"obscure",deprecated:!1},kasi:{category:"core",deprecated:!1},ken:{category:"core",deprecated:!1},kepeken:{category:"core",deprecated:!1},kijetesantakalu:{category:"common",deprecated:!1},kiki:{category:"obscure",deprecated:!1},kili:{category:"core",deprecated:!1},kin:{category:"common",deprecated:!1},kipisi:{category:"common",deprecated:!1},kiwen:{category:"core",deprecated:!1},ko:{category:"core",deprecated:!1},kokosila:{category:"obscure",deprecated:!1},kon:{category:"core",deprecated:!1},konwe:{category:"obscure",deprecated:!0},ku:{category:"common",deprecated:!1},kule:{category:"core",deprecated:!1},kulijo:{category:"obscure",deprecated:!1},kulupu:{category:"core",deprecated:!1},kute:{category:"core",deprecated:!1},la:{category:"core",deprecated:!1},lanpan:{category:"uncommon",deprecated:!1},lape:{category:"core",deprecated:!1},laso:{category:"core",deprecated:!1},lawa:{category:"core",deprecated:!1},leko:{category:"common",deprecated:!1},len:{category:"core",deprecated:!1},lete:{category:"core",deprecated:!1},li:{category:"core",deprecated:!1},lili:{category:"core",deprecated:!1},linja:{category:"core",deprecated:!1},linluwi:{category:"uncommon",deprecated:!1},lipu:{category:"core",deprecated:!1},loje:{category:"core",deprecated:!1},lon:{category:"core",deprecated:!1},luka:{category:"core",deprecated:!1},lukin:{category:"core",deprecated:!1},lupa:{category:"core",deprecated:!1},ma:{category:"core",deprecated:!1},majuna:{category:"uncommon",deprecated:!1},mama:{category:"core",deprecated:!1},mani:{category:"core",deprecated:!1},meli:{category:"common",deprecated:!1},melome:{category:"obscure",deprecated:!1},meso:{category:"uncommon",deprecated:!1},mi:{category:"core",deprecated:!1},mije:{category:"common",deprecated:!1},mijomi:{category:"obscure",deprecated:!1},misa:{category:"obscure",deprecated:!1},misikeke:{category:"common",deprecated:!1},moku:{category:"core",deprecated:!1},moli:{category:"core",deprecated:!1},monsi:{category:"core",deprecated:!1},monsuta:{category:"common",deprecated:!1},mu:{category:"core",deprecated:!1},mun:{category:"core",deprecated:!1},musi:{category:"core",deprecated:!1},mute:{category:"core",deprecated:!1},n:{category:"common",deprecated:!1},namako:{category:"common",deprecated:!1},nanpa:{category:"core",deprecated:!1},nasa:{category:"core",deprecated:!1},nasin:{category:"core",deprecated:!1},nena:{category:"core",deprecated:!1},ni:{category:"core",deprecated:!1},nimi:{category:"core",deprecated:!1},nimisin:{category:"uncommon",deprecated:!1},nja:{category:"obscure",deprecated:!1},noka:{category:"core",deprecated:!1},o:{category:"core",deprecated:!1},ojuta:{category:"obscure",deprecated:!1},oke:{category:"obscure",deprecated:!1},oko:{category:"uncommon",deprecated:!1},olin:{category:"core",deprecated:!1},omekapo:{category:"obscure",deprecated:!1},ona:{category:"core",deprecated:!1},open:{category:"core",deprecated:!1},owe:{category:"obscure",deprecated:!1},pakala:{category:"core",deprecated:!1},pake:{category:"obscure",deprecated:!1},pali:{category:"core",deprecated:!1},palisa:{category:"core",deprecated:!1},pan:{category:"core",deprecated:!1},pana:{category:"core",deprecated:!1},penpo:{category:"obscure",deprecated:!1},pi:{category:"core",deprecated:!1},pika:{category:"obscure",deprecated:!1},pilin:{category:"core",deprecated:!1},pimeja:{category:"core",deprecated:!1},pini:{category:"core",deprecated:!1},pipi:{category:"core",deprecated:!1},po:{category:"obscure",deprecated:!0},poka:{category:"core",deprecated:!1},poki:{category:"core",deprecated:!1},pona:{category:"core",deprecated:!1},powe:{category:"obscure",deprecated:!1},pu:{category:"core",deprecated:!1},puwa:{category:"obscure",deprecated:!1},sama:{category:"core",deprecated:!1},san:{category:"obscure",deprecated:!1},seli:{category:"core",deprecated:!1},selo:{category:"core",deprecated:!1},seme:{category:"core",deprecated:!1},sewi:{category:"core",deprecated:!1},sijelo:{category:"core",deprecated:!1},sike:{category:"core",deprecated:!1},sin:{category:"core",deprecated:!1},sina:{category:"core",deprecated:!1},sinpin:{category:"core",deprecated:!1},sitelen:{category:"core",deprecated:!1},soko:{category:"common",deprecated:!1},sona:{category:"core",deprecated:!1},soto:{category:"obscure",deprecated:!1},soweli:{category:"core",deprecated:!1},su:{category:"uncommon",deprecated:!1},suli:{category:"core",deprecated:!1},suno:{category:"core",deprecated:!1},supa:{category:"core",deprecated:!1},sutopatikuna:{category:"obscure",deprecated:!1},suwi:{category:"core",deprecated:!1},taki:{category:"obscure",deprecated:!1},tan:{category:"core",deprecated:!1},taso:{category:"core",deprecated:!1},tawa:{category:"core",deprecated:!1},te:{category:"obscure",deprecated:!1},teje:{category:"obscure",deprecated:!1},telo:{category:"core",deprecated:!1},tenpo:{category:"core",deprecated:!1},to:{category:"obscure",deprecated:!1},toki:{category:"core",deprecated:!1},tomo:{category:"core",deprecated:!1},tonsi:{category:"common",deprecated:!1},tu:{category:"core",deprecated:!1},unpa:{category:"core",deprecated:!1},unu:{category:"obscure",deprecated:!1},usawi:{category:"obscure",deprecated:!1},uta:{category:"core",deprecated:!1},utala:{category:"core",deprecated:!1},wa:{category:"obscure",deprecated:!1},walo:{category:"core",deprecated:!1},wan:{category:"core",deprecated:!1},waso:{category:"core",deprecated:!1},wasoweli:{category:"obscure",deprecated:!1},wawa:{category:"core",deprecated:!1},weka:{category:"core",deprecated:!1},wekama:{category:"obscure",deprecated:!1},wile:{category:"core",deprecated:!1},wuwojiti:{category:"obscure",deprecated:!1},yupekosi:{category:"obscure",deprecated:!1}};var f=new Set(["li","e","la","pi","o","en","anu"]),x=new Set(["lon","tawa","tan","sama","kepeken"]),P=new Set(["wile","sona","awen","kama","ken","lukin","alasa","open","pini"]),h=new Set(["mi","sina"]);function O(a){return k[a]}function G(a){return a in k}var J=/^(?:[aeiou]|[jklmnpstw][aeiou])(?:n(?![nm]))?(?:[jklmnpstw][aeiou](?:n(?![nm]))?)*$/,Y=/ji|ti|wo|wu/;function S(a){let r=a.toLowerCase();return J.test(r)&&!Y.test(r)}var A=/("[^"\n]*"|“[^”\n]*”|«[^»\n]*»)|([A-Za-z]+(?:-[A-Za-z]+)*)|(\d+(?:[.,]\d+)*)|([.!?:;]+)|(,)|(\S)/g;function w(a){let r=[];A.lastIndex=0;let o;for(;o=A.exec(a);){let s=o.index,t=s+o[0].length;if(o[1])r.push({kind:"quote",text:o[1],norm:o[1],start:s,end:t});else if(o[2]){let e=o[2].split("-"),n=s;for(let i of e)r.push({kind:"word",text:i,norm:i.toLowerCase(),start:n,end:n+i.length,fromHyphen:e.length>1||void 0}),n+=i.length+1}else o[3]?r.push({kind:"number",text:o[3],norm:o[3],start:s,end:t}):o[4]?r.push({kind:"punct",text:o[4],norm:o[4],start:s,end:t}):o[5]?r.push({kind:"comma",text:",",norm:",",start:s,end:t}):r.push({kind:"symbol",text:o[6],norm:o[6],start:s,end:t})}return r}function T(a,r=w(a)){let o=[],s=[],t=r[0]?.start??0,e=(n,i)=>{let c=s.filter(d=>d.kind!=="punct");if(c.some(d=>d.kind!=="comma"&&d.kind!=="symbol")){let d=c.find(p=>p.kind==="word");d&&(d.sentenceInitial=!0),o.push({tokens:c,terminator:n,start:t,end:i})}s=[]};for(let n=0;n<r.length;n++){let i=r[n];s.length===0&&(t=i.start);let c=r[n-1];c&&s.length>0&&/\n\s*\n/.test(a.slice(c.end,i.start))&&(e(null,c.end),t=i.start),i.kind==="punct"?(s.push(i),e(i.text[0],i.end)):s.push(i)}return s.length&&e(null,s[s.length-1].end),o}var M={"unknown-word":"error","uncommon-word":"warning","deprecated-word":"warning","name-phonotactics":"warning","bare-name":"warning",hyphenated:"warning","stray-symbol":"warning","particle-at-end":"error","particle-at-start":"error","double-particle":"error","empty-predicate":"error","empty-object":"error","empty-context":"error","empty-pi":"error","pi-single-word":"warning","pi-without-head":"warning","object-without-verb":"error","li-after-mi-sina":"warning","en-outside-subject":"warning"};function E(a,r={}){let o=w(a),s=T(a,o).map(n=>Q(a,n,r)),t=s.flatMap(n=>n.issues),e=t.filter(n=>n.severity==="error").length;return{ok:e===0,sentences:s,issues:t,errorCount:e,warningCount:t.length-e}}function V(a,r={}){return E(a,r).ok}var R=class{constructor(r){I(this,"issues",[]);I(this,"options");this.options=r}report(r,o,s,t){let e=this.options.severityOverrides?.[r]??M[r];this.issues.some(n=>n.code===r&&n.start===s)||this.issues.push({code:r,severity:e,message:o,start:s,end:t})}get allowed(){return new Set(this.options.allowedCategories??["core","common"])}};function Q(a,r,o){let s=new R(o),t=oe(r.tokens,s),e={text:a.slice(r.start,r.end),start:r.start,end:r.end,terminator:r.terminator,kind:"fragment",conjunction:null,contexts:[],vocative:null,clause:null,fragment:null,tag:null,interjection:null,issues:s.issues};if(t.length===0)return e.kind="interjection",e;let n=t;if(n.every(l=>l.norm==="a"||l.norm==="mu"||l.norm==="n"))return e.kind="interjection",e;n[0].norm==="taso"&&n.length>1&&!f.has(n[1].norm)&&(e.conjunction="taso",n=n.slice(1));let i=n.findIndex((l,u)=>l.norm==="a"&&u>0&&u<n.length-1);if(i>0){let l=n.slice(0,i),u=n.slice(i+1),D=l.every(y=>!(y.kind==="word"&&f.has(y.norm))),H=h.has(u[0].norm)&&u.length>1||u.some(y=>y.norm==="li"||y.norm==="o"||y.norm==="la");D&&H&&(e.interjection=g(l,s,"subject"),n=u)}n.length>=3&&n[n.length-2].norm==="anu"&&n[n.length-1].norm==="seme"&&(e.tag="anu seme",n=n.slice(0,-2)),ee(n,s);let c=b(n,l=>l.norm==="la");for(let l=0;l<c.length-1;l++){let u=c[l];if(u.items.length===0){s.report("empty-context",'"la" needs something before it to set the context.',u.splitter.start,u.splitter.end);continue}e.contexts.push(B(u.items,s))}let d=c[c.length-1];if(d.items.length===0){let l=c[c.length-2]?.splitter;return l&&s.report("particle-at-end",'Sentence ends with "la" \u2014 the main clause is missing.',l.start,l.end),e}let p=d.items;if(p.length===1&&p[0].norm==="o")return e.kind="interjection",e;for(let l=$(p);l>=0;l=$(p)){let u=g(p.slice(0,l),s,"subject");if(e.vocative?e.vocative.items.push(...u.items):e.vocative=u,p=p.slice(l+1),p.length===0)return e.kind="vocative",e}let m=B(p,s);return m.type==="clause"?(e.kind="clause",e.clause=m):(e.kind="fragment",e.fragment=m),e}function $(a){let r=a.findIndex((t,e)=>t.norm==="o"&&e>0);if(r<0||a.slice(0,r).some(t=>t.norm==="li"))return-1;let o=a.slice(r+1);if(o.length===0||o[0].norm==="o"||h.has(o[0].norm)&&o.length>1&&!["en","pi","anu"].includes(o[1].norm))return r;let s=o.findIndex(t=>t.norm==="li");return s>0&&!o.slice(0,s).some(t=>t.norm==="e"||t.norm==="o")?r:-1}function ee(a,r){for(let o=1;o<a.length;o++){let s=a[o-1],t=a[o];if(s.kind!=="word"||t.kind!=="word")continue;let e=f.has(s.norm),n=f.has(t.norm),i=s.norm==="la"&&t.norm==="o"||s.norm==="o"&&t.norm==="o"||t.norm==="pi"&&(s.norm==="li"||s.norm==="en"||s.norm==="anu");e&&n&&!i&&r.report("double-particle",`"${s.norm} ${t.norm}" \u2014 two grammar particles in a row.`,s.start,t.end)}}function B(a,r){let o=a.findIndex(t=>t.norm==="li"||t.norm==="o");if(o===0&&a[0].norm==="o")return{type:"clause",mood:"imperative",subject:null,predicates:v(a,r)};if(o===0)return r.report("particle-at-start",'"li" needs a subject before it.',a[0].start,a[0].end),{type:"clause",mood:"statement",subject:null,predicates:v(a,r)};if(o>1&&h.has(a[0].norm)&&!["en","pi","anu"].includes(a[1].norm)){let t=a.slice(1,o);if(t.some(e=>e.norm==="e")){let e=g([a[0]],r,"subject"),n=C(t,null,r,a[0]);return{type:"clause",mood:a[o].norm==="o"?"imperative":"statement",subject:e,predicates:[n,...v(a.slice(o),r)]}}}if(o>0){let t=a.slice(0,o),e=a[o];t.length===1&&h.has(t[0].norm)&&e.norm==="li"&&r.report("li-after-mi-sina",`"${t[0].norm} li" \u2014 after a lone mi or sina, li is normally dropped.`,t[0].start,e.end);let n=g(t,r,"subject");return te(n,r),{type:"clause",mood:e.norm==="o"?"imperative":"statement",subject:n,predicates:v(a.slice(o),r)}}if(h.has(a[0].norm)&&a.length>1&&!["en","pi","anu"].includes(a[1].norm)){let t=g([a[0]],r,"subject"),e=C(a.slice(1),null,r,a[0]);return{type:"clause",mood:"statement",subject:t,predicates:[e]}}let s=a.find(t=>t.norm==="e");return s?(r.report("object-without-verb",'"e" marks an object, but there is no li, o, mi or sina before it to introduce a verb.',s.start,s.end),{type:"clause",mood:"statement",subject:null,predicates:[C(a,null,r,a[0])]}):g(a,r,"subject")}function v(a,r){let o=b(a,t=>t.norm==="li"||t.norm==="o"),s=[];for(let t=1;t<o.length;t++){let e=o[t-1].splitter;o[t].items.length===0&&t<o.length-1||s.push(C(o[t].items,e.norm,r,e))}return s}function C(a,r,o,s){let t={type:"predicate",marker:r,preverbs:[],verb:K(),xAlaX:!1,objects:[],preps:[]};if(a.length===0)return o.report(r?"particle-at-end":"empty-predicate",`"${s.norm}" needs a verb or description after it.`,s.start,s.end),t;let e=b(a,d=>d.norm==="e"),n=e[0].items;if(n.length===0){let d=e[0].splitter;o.report("empty-predicate",'"e" comes straight after the predicate marker \u2014 the verb is missing.',d.start,d.end)}for(;n.length>1&&P.has(n[0].norm)&&L(n[1])&&!(n[1].norm==="ala"&&n.length===2);)t.preverbs.push(n[0]),n=n.slice(1),n[0]?.norm==="ala"&&n[1]?.norm===t.preverbs[t.preverbs.length-1].norm&&(t.xAlaX=!0,n=n.slice(2));n.length>=3&&n[1].norm==="ala"&&n[0].norm===n[2].norm&&(t.xAlaX=!0,n=[n[0],...n.slice(3)]);let{main:i,preps:c}=U(n,o);t.verb=i.length?g(i,o,"predicate"):t.verb,t.preps.push(...c);for(let d=1;d<e.length;d++){let p=e[d-1].splitter,m=e[d].items;if(m.length===0){o.report(d===e.length-1?"particle-at-end":"empty-object",'"e" needs an object after it.',p.start,p.end);continue}let l=U(m,o);l.main.length&&t.objects.push(g(l.main,o,"object")),t.preps.push(...l.preps)}return t}function U(a,r){let o=[],s=(i,c)=>x.has(i[c].norm)&&!["pi","en","anu"].includes(i[c-1].norm)&&c+1<i.length&&L(i[c+1]),t=-1;for(let i=1;i<a.length;i++)if(s(a,i)){t=i;break}if(t<0)return{main:a,preps:o};let e=a.slice(0,t),n=a.slice(t);for(;n.length;){let i=-1;for(let d=1;d<n.length;d++)if(s(n,d)){i=d;break}let c=i<0?n:n.slice(0,i);o.push({type:"prep",prep:c[0],object:g(c.slice(1),r,"object")}),n=i<0?[]:n.slice(i)}return{main:e,preps:o}}function g(a,r,o){if(a.length===0)return K();let s=a.some(c=>c.norm==="en"),t=a.some(c=>c.norm==="anu"),e=s?"en":t?"anu":null;if(s&&o!=="subject"){let c=a.find(d=>d.norm==="en");r.report("en-outside-subject",'"en" only joins subjects. For several objects repeat "e"; for several predicates repeat "li".',c.start,c.end)}let n=b(a,c=>c.norm==="en"||c.norm==="anu"),i=[];return n.forEach((c,d)=>{if(c.items[0]?.norm==="pi"&&i.length>0&&c.items.length>1){let m=i[i.length-1];for(let l of b(c.items.slice(1),u=>u.norm==="pi"))l.items.length&&m.pi.push(l.items);return}if(c.items.length===0){let m=d===0?c.splitter:n[d-1].splitter;if(m){let l=d===n.length-1;r.report(l?"particle-at-end":"particle-at-start",`"${m.norm}" needs a phrase on both sides.`,m.start,m.end)}return}let p=re(c.items,r,o);p&&i.push(p)}),{type:"group",joiner:e,items:i}}function re(a,r,o){let s=a,t=!1;for(;s.length>1&&s[s.length-1].norm==="a";)t=!0,s=s.slice(0,-1);for(let c of s)c.kind==="word"&&f.has(c.norm)&&c.norm!=="pi"&&r.report("particle-at-start",`"${c.norm}" is a grammar particle and can't sit inside a phrase here.`,c.start,c.end);let e=b(s,c=>c.norm==="pi"),n=e[0].items;if(n.length===0){let c=e[0].splitter,d=e[1]?.items??[];return o==="predicate"&&d.length>0?(r.report("pi-without-head",'"li pi ..." (meaning "belongs to") is older colloquial style; modern text usually writes "li ijo pi ..." or rephrases.',c.start,c.end),{type:"phrase",head:d[0],modifiers:d.slice(1),pi:e.slice(2).map(p=>p.items),emphasis:t}):(r.report("particle-at-start",'"pi" needs a word before it to modify.',c.start,c.end),null)}let i=[];for(let c=1;c<e.length;c++){let d=e[c-1].splitter,p=e[c].items;if(p.length===0){r.report(c===e.length-1?"particle-at-end":"empty-pi",'"pi" needs words after it.',d.start,d.end);continue}p.length===1&&r.report("pi-single-word",`"pi ${p[0].text}" \u2014 pi is normally followed by two or more words; with one, just drop pi.`,d.start,p[0].end),i.push(p)}return{type:"phrase",head:n[0],modifiers:n.slice(1),pi:i,emphasis:t}}function te(a,r){for(let o of a.items)o.head.kind==="name"&&r.report("bare-name",`"${o.head.text}" is used on its own; names usually follow a head word, like "jan ${o.head.text}" or "ma ${o.head.text}".`,o.head.start,o.head.end)}function oe(a,r){let o=[],s=r.allowed,t;for(let e of a){let n=!!(e.fromHyphen&&t?.fromHyphen&&t.end+1===e.start);if(t=e,e.kind==="comma")continue;if(e.kind==="symbol"){r.report("stray-symbol",`Unexpected character "${e.text}".`,e.start,e.end);continue}if(e.kind==="quote"||e.kind==="number"){o.push({kind:e.kind,text:e.text,norm:e.norm,start:e.start,end:e.end});continue}e.fromHyphen&&!n&&r.report("hyphenated","Hyphenated compounds (like toki-pona) are old style; modern text writes the words separately.",e.start,e.end);let i=e.norm,c=/^[A-Z]/.test(e.text),d=c&&!e.sentenceInitial&&(f.has(i)||i==="a");if(G(i)&&!d){let p=O(i);s.has(p.category)||r.report("uncommon-word",`"${i}" is a ${p.category} word.`,e.start,e.end),p.deprecated&&r.report("deprecated-word",`"${i}" is deprecated.`,e.start,e.end),o.push({kind:"word",text:e.text,norm:i,start:e.start,end:e.end})}else c?(S(e.text)||r.report("name-phonotactics",`The name "${e.text}" doesn't follow toki pona sound rules.`,e.start,e.end),o.push({kind:"name",text:e.text,norm:i,start:e.start,end:e.end})):(r.report("unknown-word",`"${e.text}" isn't a toki pona word. Names must be capitalised.`,e.start,e.end),o.push({kind:"word",text:e.text,norm:i,start:e.start,end:e.end}))}return o}function L(a){return!!a&&!(a.kind==="word"&&f.has(a.norm))}function K(){return{type:"group",joiner:null,items:[]}}function b(a,r){let o=[],s=[];for(let t of a)t.kind==="word"&&r(t)?(o.push({items:s,splitter:t}),s=[]):s.push(t);return o.push({items:s}),o}var N={allowedCategories:["core","common"],severityOverrides:{"uncommon-word":"error","deprecated-word":"error",hyphenated:"error","stray-symbol":"error","bare-name":"error","pi-single-word":"error","pi-without-head":"error","li-after-mi-sina":"error","en-outside-subject":"error","name-phonotactics":"error"}};return Z(ae);})();
+</script>
+<script>
+(function () {
+  const $input = document.getElementById('input');
+  const $strict = document.getElementById('strict');
+  const $results = document.getElementById('results');
+  const $summary = document.getElementById('summary');
+  const PARTICLES = new Set(['li', 'e', 'la', 'pi', 'o', 'en', 'anu', 'a']);
+
+  try {
+    const saved = localStorage.getItem('tp-parse:draft');
+    if (saved) $input.value = saved;
+    $strict.checked = localStorage.getItem('tp-parse:strict') === '1';
+  } catch (e) {}
+
+  // Walk the tree and record a role for every term's start offset.
+  function roles(sentence) {
+    const map = new Map();
+    const mark = (t, role) => { if (t && !map.has(t.start)) map.set(t.start, t.kind === 'name' ? 'name' : t.kind === 'quote' ? 'quote' : role); };
+    const phrase = (p, role) => { if (!p) return; mark(p.head, role); p.modifiers.forEach((m) => mark(m, role)); p.pi.forEach((g) => g.forEach((m) => mark(m, role))); };
+    const group = (g, role) => g && g.items.forEach((p) => phrase(p, role));
+    const clause = (c, role) => {
+      if (!c) return;
+      if (c.type === 'group') return group(c, role || 'subject');
+      group(c.subject, role || 'subject');
+      c.predicates.forEach((pr) => {
+        pr.preverbs.forEach((t) => mark(t, role || 'verb'));
+        group(pr.verb, role || 'verb');
+        pr.objects.forEach((o) => group(o, role || 'object'));
+        pr.preps.forEach((pp) => { mark(pp.prep, role || 'prep'); group(pp.object, role || 'prep'); });
+      });
+    };
+    sentence.contexts.forEach((c) => clause(c, 'context'));
+    group(sentence.interjection, 'context');
+    group(sentence.vocative, 'name');
+    clause(sentence.clause);
+    group(sentence.fragment, 'subject');
+    return map;
+  }
+
+  function el(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+
+  function render() {
+    const text = $input.value;
+    try { localStorage.setItem('tp-parse:draft', text); localStorage.setItem('tp-parse:strict', $strict.checked ? '1' : '0'); } catch (e) {}
+    const result = TP.parse(text, $strict.checked ? TP.STRICT : {});
+    const words = TP.tokenize(text).filter((t) => t.kind !== 'punct' && t.kind !== 'comma');
+
+    $summary.replaceChildren();
+    const bad = result.sentences.filter((s) => s.issues.some((i) => i.severity === 'error')).length;
+    const good = result.sentences.length - bad;
+    $summary.append(el('span', 'chip ok', good + ' valid'));
+    if (bad) $summary.append(el('span', 'chip err', bad + ' with errors'));
+    if (result.warningCount) $summary.append(el('span', 'chip warn', result.warningCount + ' warning' + (result.warningCount === 1 ? '' : 's')));
+
+    $results.replaceChildren();
+    if (!result.sentences.length) { $results.append(el('p', 'empty', 'Type or paste some toki pona above.')); return; }
+
+    for (const s of result.sentences) {
+      const errs = s.issues.filter((i) => i.severity === 'error');
+      const card = el('article', 'sent' + (errs.length ? ' has-err' : s.issues.length ? ' has-warn' : ''));
+      const head = el('div', 'sent-head');
+      head.append(el('span', 'kind', s.kind + (s.tag ? ' · question' : s.clause && s.clause.predicates.some((p) => p.xAlaX) ? ' · yes/no question' : '')));
+      card.append(head);
+
+      const map = roles(s);
+      const line = el('div', 'line');
+      for (const t of words) {
+        if (t.start < s.start || t.end > s.end) continue;
+        let role = map.get(t.start);
+        if (!role) role = t.kind === 'quote' ? 'quote' : PARTICLES.has(t.norm) ? 'particle' : 'particle';
+        const span = el('span', 'w ' + role, t.text);
+        const hit = s.issues.filter((i) => i.start < t.end && i.end > t.start);
+        if (hit.some((i) => i.severity === 'error')) span.classList.add('bad-err');
+        else if (hit.length) span.classList.add('bad-warn');
+        if (hit.length) span.title = hit.map((i) => i.message).join('\n');
+        line.append(span);
+      }
+      card.append(line);
+
+      if (s.issues.length) {
+        const ul = el('ul', 'issues');
+        for (const i of s.issues) {
+          const li = el('li');
+          li.append(el('span', 'sev ' + i.severity, i.severity === 'error' ? 'error' : 'warn'));
+          const msg = el('span', null, i.message);
+          msg.append(el('code', null, i.code));
+          li.append(msg);
+          ul.append(li);
+        }
+        card.append(ul);
+      }
+
+      const d = el('details');
+      d.append(el('summary', null, 'Parse tree'));
+      const strip = (k, v) => (k === 'start' || k === 'end' || k === 'issues' || k === 'text' && typeof v === 'string' && v.length > 40 ? undefined : v);
+      d.append(el('pre', null, JSON.stringify({ kind: s.kind, contexts: s.contexts, vocative: s.vocative, clause: s.clause, fragment: s.fragment }, strip, 2)));
+      card.append(d);
+      $results.append(card);
+    }
+  }
+
+  let timer;
+  $input.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(render, 120); });
+  $strict.addEventListener('change', render);
+  render();
+})();
+</script>
