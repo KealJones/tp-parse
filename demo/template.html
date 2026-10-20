@@ -1,0 +1,260 @@
+<title>tp-parse</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one working column — input on top, a card per sentence below, each sentence drawn as role-coloured words. */
+:root {
+  --paper: #f3f5f1;
+  --sheet: #ffffff;
+  --ink: #1d2626;
+  --muted: #5d6a66;
+  --rule: #d7ddd6;
+  --accent: #1f6f63;
+  --subject: #2a5fb0;
+  --verb: #237a43;
+  --object: #b5531b;
+  --prep: #7a43a8;
+  --context: #4f6b6b;
+  --particle: #8a8f8c;
+  --name: #a02a6b;
+  --error: #c4312b;
+  --error-bg: #fbe9e7;
+  --warn: #9a6b00;
+  --warn-bg: #fdf3d8;
+  --ok: #237a43;
+  --ok-bg: #e5f3e8;
+  --font-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #141a19; --sheet: #1c2422; --ink: #e4ebe7; --muted: #9aa8a3; --rule: #2f3a37; --accent: #5cc1ae;
+    --subject: #7fa9ec; --verb: #6cc98c; --object: #f0965c; --prep: #c495ee; --context: #9bb8b6; --particle: #78807c; --name: #ee86bd;
+    --error: #ff7b72; --error-bg: #3a1d1b; --warn: #e8b84a; --warn-bg: #352b12; --ok: #6cc98c; --ok-bg: #18301f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #141a19; --sheet: #1c2422; --ink: #e4ebe7; --muted: #9aa8a3; --rule: #2f3a37; --accent: #5cc1ae;
+  --subject: #7fa9ec; --verb: #6cc98c; --object: #f0965c; --prep: #c495ee; --context: #9bb8b6; --particle: #78807c; --name: #ee86bd;
+  --error: #ff7b72; --error-bg: #3a1d1b; --warn: #e8b84a; --warn-bg: #352b12; --ok: #6cc98c; --ok-bg: #18301f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 56px;
+}
+.wrap { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+header { display: flex; flex-direction: column; gap: 6px; }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 6vw, 44px); line-height: 1; margin: 0; letter-spacing: -0.02em; }
+h1 span { color: var(--accent); }
+.lede { margin: 0; color: var(--muted); max-width: 62ch; }
+label.field-label { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+textarea {
+  width: 100%; min-height: 150px; resize: vertical; padding: 14px 16px; border-radius: 10px;
+  border: 1px solid var(--rule); background: var(--sheet); color: var(--ink);
+  font-family: var(--font-mono); font-size: 15px; line-height: 1.6;
+}
+textarea:focus-visible, button:focus-visible, input:focus-visible + .switch { outline: 2px solid var(--accent); outline-offset: 2px; }
+.input-block { display: flex; flex-direction: column; gap: 8px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; justify-content: space-between; }
+.toggle { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+.toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.switch { width: 38px; height: 22px; border-radius: 999px; background: var(--rule); position: relative; transition: background .15s; flex: none; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--sheet); transition: transform .15s; }
+.toggle input:checked + .switch { background: var(--accent); }
+.toggle input:checked + .switch::after { transform: translateX(16px); }
+.toggle small { color: var(--muted); display: block; font-size: 13px; line-height: 1.3; }
+.summary { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--font-mono); font-size: 13px; padding: 4px 10px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+.chip.ok { background: var(--ok-bg); color: var(--ok); }
+.chip.err { background: var(--error-bg); color: var(--error); }
+.chip.warn { background: var(--warn-bg); color: var(--warn); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; background: currentColor; vertical-align: -1px; }
+.legend .r-subject { color: var(--subject); } .legend .r-verb { color: var(--verb); } .legend .r-object { color: var(--object); }
+.legend .r-prep { color: var(--prep); } .legend .r-context { color: var(--context); } .legend .r-particle { color: var(--particle); } .legend .r-name { color: var(--name); }
+.results { display: flex; flex-direction: column; gap: 12px; }
+.sent {
+  background: var(--sheet); border: 1px solid var(--rule); border-left: 4px solid var(--ok); border-radius: 10px;
+  padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0;
+}
+.sent.has-warn { border-left-color: var(--warn); }
+.sent.has-err { border-left-color: var(--error); }
+.sent-head { display: flex; gap: 10px; align-items: baseline; justify-content: space-between; flex-wrap: wrap; }
+.kind { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.line { font-family: var(--font-mono); font-size: 17px; line-height: 2; display: flex; flex-wrap: wrap; gap: 0 9px; min-width: 0; }
+.w { position: relative; font-weight: 500; overflow-wrap: anywhere; }
+.w.subject { color: var(--subject); } .w.verb { color: var(--verb); } .w.object { color: var(--object); } .w.prep { color: var(--prep); }
+.w.context { color: var(--context); } .w.particle { color: var(--particle); font-weight: 400; } .w.name { color: var(--name); }
+.w.quote { color: var(--muted); font-style: italic; }
+.w.bad-err { text-decoration: underline wavy var(--error); text-underline-offset: 5px; }
+.w.bad-warn { text-decoration: underline wavy var(--warn); text-underline-offset: 5px; }
+.issues { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.issues li { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: baseline; font-size: 14.5px; }
+.sev { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 5px; }
+.sev.error { background: var(--error-bg); color: var(--error); }
+.sev.warning { background: var(--warn-bg); color: var(--warn); }
+.issues code { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-left: 6px; }
+details summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+details pre { margin: 8px 0 0; padding: 12px; border-radius: 8px; background: var(--paper); font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; overflow-x: auto; max-height: 360px; }
+.empty { color: var(--muted); font-style: italic; }
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 14px; }
+footer a { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>tp-<span>parse</span></h1>
+    <p class="lede">Paste toki pona to check it. Each sentence gets parsed into subject, verb, objects and context, and anything broken gets flagged with a reason. It runs entirely in this page.</p>
+  </header>
+
+  <div class="input-block">
+    <label class="field-label" for="input">toki pona text</label>
+    <textarea id="input" spellcheck="false">tenpo pini la jan pona mi li wile pali e tomo pi kiwen mute lon ma kasi.
+jan Keli o, sina pona!
+mi lukin e ona li pilin e ni: ona li suwi.
+jan moku e kili.
+mi wile ala wile moku?
+Sonja li pona.
+mi moku e blorp.
+tomo pi telo li suli.</textarea>
+  </div>
+
+  <div class="controls">
+    <label class="toggle" for="strict">
+      <input type="checkbox" id="strict">
+      <span class="switch" aria-hidden="true"></span>
+      <span>Strict mode<small>For training data: style warnings and uncommon words count as errors.</small></span>
+    </label>
+    <div class="summary" id="summary" aria-live="polite"></div>
+  </div>
+
+  <div class="legend" aria-label="Colour key">
+    <span class="r-context">context (… la)</span>
+    <span class="r-subject">subject</span>
+    <span class="r-verb">verb</span>
+    <span class="r-object">object</span>
+    <span class="r-prep">preposition</span>
+    <span class="r-name">name</span>
+    <span class="r-particle">particle</span>
+  </div>
+
+  <div class="results" id="results"></div>
+
+  <footer>Word list and usage categories from <a href="https://linku.la/" target="_blank" rel="noopener">lipu Linku</a> (CC BY-SA 4.0). Grammar follows pu, with common community usage accepted as warnings.</footer>
+</div>
+
+<script>/*BUNDLE*/</script>
+<script>
+(function () {
+  const $input = document.getElementById('input');
+  const $strict = document.getElementById('strict');
+  const $results = document.getElementById('results');
+  const $summary = document.getElementById('summary');
+  const PARTICLES = new Set(['li', 'e', 'la', 'pi', 'o', 'en', 'anu', 'a']);
+
+  try {
+    const saved = localStorage.getItem('tp-parse:draft');
+    if (saved) $input.value = saved;
+    $strict.checked = localStorage.getItem('tp-parse:strict') === '1';
+  } catch (e) {}
+
+  // Walk the tree and record a role for every term's start offset.
+  function roles(sentence) {
+    const map = new Map();
+    const mark = (t, role) => { if (t && !map.has(t.start)) map.set(t.start, t.kind === 'name' ? 'name' : t.kind === 'quote' ? 'quote' : role); };
+    const phrase = (p, role) => { if (!p) return; mark(p.head, role); p.modifiers.forEach((m) => mark(m, role)); p.pi.forEach((g) => g.forEach((m) => mark(m, role))); };
+    const group = (g, role) => g && g.items.forEach((p) => phrase(p, role));
+    const clause = (c, role) => {
+      if (!c) return;
+      if (c.type === 'group') return group(c, role || 'subject');
+      group(c.subject, role || 'subject');
+      c.predicates.forEach((pr) => {
+        pr.preverbs.forEach((t) => mark(t, role || 'verb'));
+        group(pr.verb, role || 'verb');
+        pr.objects.forEach((o) => group(o, role || 'object'));
+        pr.preps.forEach((pp) => { mark(pp.prep, role || 'prep'); group(pp.object, role || 'prep'); });
+      });
+    };
+    sentence.contexts.forEach((c) => clause(c, 'context'));
+    group(sentence.interjection, 'context');
+    group(sentence.vocative, 'name');
+    clause(sentence.clause);
+    group(sentence.fragment, 'subject');
+    return map;
+  }
+
+  function el(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+
+  function render() {
+    const text = $input.value;
+    try { localStorage.setItem('tp-parse:draft', text); localStorage.setItem('tp-parse:strict', $strict.checked ? '1' : '0'); } catch (e) {}
+    const result = TP.parse(text, $strict.checked ? TP.STRICT : {});
+    const words = TP.tokenize(text).filter((t) => t.kind !== 'punct' && t.kind !== 'comma');
+
+    $summary.replaceChildren();
+    const bad = result.sentences.filter((s) => s.issues.some((i) => i.severity === 'error')).length;
+    const good = result.sentences.length - bad;
+    $summary.append(el('span', 'chip ok', good + ' valid'));
+    if (bad) $summary.append(el('span', 'chip err', bad + ' with errors'));
+    if (result.warningCount) $summary.append(el('span', 'chip warn', result.warningCount + ' warning' + (result.warningCount === 1 ? '' : 's')));
+
+    $results.replaceChildren();
+    if (!result.sentences.length) { $results.append(el('p', 'empty', 'Type or paste some toki pona above.')); return; }
+
+    for (const s of result.sentences) {
+      const errs = s.issues.filter((i) => i.severity === 'error');
+      const card = el('article', 'sent' + (errs.length ? ' has-err' : s.issues.length ? ' has-warn' : ''));
+      const head = el('div', 'sent-head');
+      head.append(el('span', 'kind', s.kind + (s.tag ? ' · question' : s.clause && s.clause.predicates.some((p) => p.xAlaX) ? ' · yes/no question' : '')));
+      card.append(head);
+
+      const map = roles(s);
+      const line = el('div', 'line');
+      for (const t of words) {
+        if (t.start < s.start || t.end > s.end) continue;
+        let role = map.get(t.start);
+        if (!role) role = t.kind === 'quote' ? 'quote' : PARTICLES.has(t.norm) ? 'particle' : 'particle';
+        const span = el('span', 'w ' + role, t.text);
+        const hit = s.issues.filter((i) => i.start < t.end && i.end > t.start);
+        if (hit.some((i) => i.severity === 'error')) span.classList.add('bad-err');
+        else if (hit.length) span.classList.add('bad-warn');
+        if (hit.length) span.title = hit.map((i) => i.message).join('\n');
+        line.append(span);
+      }
+      card.append(line);
+
+      if (s.issues.length) {
+        const ul = el('ul', 'issues');
+        for (const i of s.issues) {
+          const li = el('li');
+          li.append(el('span', 'sev ' + i.severity, i.severity === 'error' ? 'error' : 'warn'));
+          const msg = el('span', null, i.message);
+          msg.append(el('code', null, i.code));
+          li.append(msg);
+          ul.append(li);
+        }
+        card.append(ul);
+      }
+
+      const d = el('details');
+      d.append(el('summary', null, 'Parse tree'));
+      const strip = (k, v) => (k === 'start' || k === 'end' || k === 'issues' || k === 'text' && typeof v === 'string' && v.length > 40 ? undefined : v);
+      d.append(el('pre', null, JSON.stringify({ kind: s.kind, contexts: s.contexts, vocative: s.vocative, clause: s.clause, fragment: s.fragment }, strip, 2)));
+      card.append(d);
+      $results.append(card);
+    }
+  }
+
+  let timer;
+  $input.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(render, 120); });
+  $strict.addEventListener('change', render);
+  render();
+})();
+</script>
