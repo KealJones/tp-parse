@@ -1,0 +1,42 @@
+
+===== 1 layer =====
+English test loss after training on N English sentences (lower = learned more from less)
+N            planted+ewc           planted     unplanted+ewc           english
+50          1.135 ±0.045      1.108 ±0.055      1.219 ±0.036      1.518 ±0.065
+100         1.057 ±0.017      1.037 ±0.033      1.069 ±0.015      1.293 ±0.017
+200         1.025 ±0.019      1.006 ±0.027      1.005 ±0.012      1.089 ±0.020
+400         0.985 ±0.017      0.969 ±0.008      0.974 ±0.005      1.015 ±0.008
+
+Hub score (knockout: own-concept damage minus other-concept damage; ~0 = no hubs)
+N            planted+ewc           planted     unplanted+ewc           english
+50           +1.78 ±0.53       +1.53 ±0.46       -0.02 ±0.09       +0.01 ±0.02
+100          +1.84 ±0.47       +1.66 ±0.36       -0.02 ±0.08       -0.00 ±0.02
+200          +1.66 ±0.37       +1.57 ±0.38       -0.03 ±0.08       +0.01 ±0.01
+400          +1.37 ±0.37       +1.01 ±0.43       -0.02 ±0.08       -0.00 ±0.01
+
+Planted vs unplanted (same data, same protection): planted+ewc minus unplanted+ewc, per seed
+  N=50   mean -0.085   planted better in 6/6 seeds
+  N=100  mean -0.012   planted better in 4/6 seeds
+  N=200  mean +0.020   planted better in 0/6 seeds
+  N=400  mean +0.011   planted better in 1/6 seeds
+
+===== 2 layers =====
+English test loss after training on N English sentences (lower = learned more from less)
+N            planted+ewc           planted     unplanted+ewc           english
+50          1.131 ±0.036      1.126 ±0.021      1.254 ±0.021      1.508 ±0.077
+100         1.050 ±0.029      1.044 ±0.031      1.057 ±0.021      1.284 ±0.029
+200         1.015 ±0.025      1.009 ±0.021      1.004 ±0.012      1.087 ±0.015
+400         0.978 ±0.007      0.976 ±0.007      0.965 ±0.008      1.013 ±0.010
+
+Hub score (knockout: own-concept damage minus other-concept damage; ~0 = no hubs)
+N            planted+ewc           planted     unplanted+ewc           english
+50           +1.93 ±0.85       +1.49 ±0.54       -0.03 ±0.09       +0.00 ±0.02
+100          +1.89 ±0.72       +1.45 ±0.57       -0.01 ±0.08       -0.01 ±0.03
+200          +1.80 ±0.65       +1.27 ±0.54       -0.02 ±0.08       +0.01 ±0.02
+400          +1.19 ±0.46       +0.66 ±0.38       -0.02 ±0.07       -0.00 ±0.02
+
+Planted vs unplanted (same data, same protection): planted+ewc minus unplanted+ewc, per seed
+  N=50   mean -0.123   planted better in 6/6 seeds
+  N=100  mean -0.007   planted better in 4/6 seeds
+  N=200  mean +0.011   planted better in 2/6 seeds
+  N=400  mean +0.013   planted better in 1/6 seeds
