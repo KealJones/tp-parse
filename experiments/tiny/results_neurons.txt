@@ -1,0 +1,52 @@
+
+== MLP neurons (96)
+English word after the sweep vs toki pona word BEFORE the sweep (old spot)
+condition                picks own concept    corr own   corr others
+full                                    7%       +0.10         -0.00
+no-dict                                 7%       +0.07         +0.00
+full-replay                            10%       +0.12         -0.00
+control-other-seed                      6%       +0.01         -0.00
+(chance for 'picks own concept' ≈ 6%)
+English vs toki pona both AFTER the sweep (shared spot at the end?)
+full                                    6%       +0.00         +0.00
+no-dict                                 9%       +0.01         +0.00
+full-replay                            10%       +0.18         -0.00
+
+== hidden state after the layer (48 numbers)
+English word after the sweep vs toki pona word BEFORE the sweep (old spot)
+condition                picks own concept    corr own   corr others
+full                                   12%       +0.25         +0.00
+no-dict                                 5%       +0.22         +0.01
+full-replay                            16%       +0.27         +0.01
+control-other-seed                      9%       -0.00         +0.00
+(chance for 'picks own concept' ≈ 6%)
+English vs toki pona both AFTER the sweep (shared spot at the end?)
+full                                    7%       +0.00         +0.01
+no-dict                                 6%       -0.03         +0.02
+full-replay                            15%       +0.26         +0.01
+
+Per word, 'full', MLP neurons, old toki pona spot: average correlation with its own concept, and how often it was the best match
+  fruit    -> kili    corr +0.25   best match 1/6
+  munches  -> moku    corr +0.22   best match 1/6   (synonym, never in dictionary)
+  eats     -> moku    corr +0.21   best match 1/6
+  loves    -> olin    corr +0.20   best match 1/6
+  drinks   -> moku    corr +0.18   best match 0/6
+  bird     -> waso    corr +0.18   best match 1/6
+  sees     -> lukin   corr +0.17   best match 0/6
+  sweet    -> suwi    corr +0.15   best match 1/6
+  bread    -> pan     corr +0.15   best match 1/6
+  large    -> suli    corr +0.15   best match 0/6   (synonym, never in dictionary)
+  fish     -> kala    corr +0.14   best match 1/6
+  big      -> suli    corr +0.14   best match 0/6
+  house    -> tomo    corr +0.14   best match 0/6
+  goes     -> tawa    corr +0.12   best match 0/6
+  home     -> tomo    corr +0.11   best match 0/6   (synonym, never in dictionary)
+  good     -> pona    corr +0.09   best match 0/6
+  nice     -> pona    corr +0.08   best match 0/6   (synonym, never in dictionary)
+  liquid   -> telo    corr +0.07   best match 1/6   (synonym, never in dictionary)
+  water    -> telo    corr +0.07   best match 0/6
+  sleeps   -> lape    corr +0.03   best match 1/6
+  bad      -> ike     corr -0.01   best match 0/6
+  dog      -> soweli  corr -0.14   best match 0/6
+  person   -> jan     corr -0.15   best match 0/6
+  small    -> lili    corr -0.16   best match 0/6
