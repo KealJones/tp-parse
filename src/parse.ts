@@ -446,6 +446,8 @@ function parsePredicate(terms: Term[], marker: 'li' | 'o' | null, ctx: Ctx, anch
       verbTerms = verbTerms.slice(2);
     }
   }
+  // "sina sona ala sona e ni?" — if every word was taken as a preverb, the last one is the verb.
+  if (verbTerms.length === 0 && pred.preverbs.length > 0) verbTerms = [pred.preverbs.pop()!];
 
   // "X ala X" yes/no question on the verb.
   if (verbTerms.length >= 3 && verbTerms[1].norm === 'ala' && verbTerms[0].norm === verbTerms[2].norm) {
@@ -622,10 +624,10 @@ function toTerms(tokens: Token[], ctx: Ctx): Term[] {
     }
     const lower = tok.norm;
     const capitalised = /^[A-Z]/.test(tok.text);
-    // A capitalised grammar particle mid-sentence is a name, never the particle:
-    // "jan Li", "nimi A", "nanpa Pi".
-    const particleAsName = capitalised && !tok.sentenceInitial && (PARTICLES.has(lower) || lower === 'a');
-    if (isKnown(lower) && !particleAsName) {
+    // A capitalised word mid-sentence is a name, even when it matches a dictionary
+    // word: "jan Li", "mije San" (san is an obscure word), "meli Lili".
+    const capitalisedName = capitalised && !tok.sentenceInitial;
+    if (isKnown(lower) && !capitalisedName) {
       const info = lookup(lower)!;
       if (!allowed.has(info.category)) {
         ctx.report('uncommon-word', `"${lower}" is a ${info.category} word.`, tok.start, tok.end);

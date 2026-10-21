@@ -18,3 +18,5 @@ export { tokenize, splitSentences } from './tokenize.ts';
 export { isValidPhonotactics, PARTICLES, PREPOSITIONS, PREVERBS } from './lexicon.ts';
 export { WORDS } from './words.ts';
 export { STRICT } from './presets.ts';
+export { checkMeaning, compareEnglish, gloss, lemma } from './meaning.ts';
+export type { MeaningCheck, EnglishComparison } from './meaning.ts';

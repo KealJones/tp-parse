@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parse, isValid } from '../src/parse.ts';
+import { STRICT } from '../src/presets.ts';
 import { isValidPhonotactics } from '../src/lexicon.ts';
 
 const codes = (text: string) => parse(text).issues.map((i) => i.code);
@@ -106,6 +107,22 @@ test('splits text into sentences, keeping quotes intact', () => {
   assert.equal(r.sentences.length, 2);
   assert.ok(r.sentences[1].text.startsWith('"a. b. c."'));
   assert.ok(r.ok);
+});
+
+test('capitalised dictionary words mid-sentence are names', () => {
+  // san and su are real (uncommon) words, but here they're names.
+  assert.ok(isValid('mije San en meli Su li pona.', STRICT));
+  const s = parse('jan Lili li pona.').sentences[0];
+  assert.equal(s.clause!.subject!.items[0].modifiers[0].kind, 'name');
+  // Sentence-initial capitals are still words.
+  assert.equal(parse('Mi moku.').sentences[0].clause!.subject!.items[0].head.kind, 'word');
+});
+
+test('x ala x with an object keeps a verb', () => {
+  const p = parse('sina sona ala sona e jan ni?').sentences[0].clause!.predicates[0];
+  assert.equal(p.xAlaX, true);
+  assert.equal(p.verb.items[0].head.norm, 'sona');
+  assert.equal(p.objects[0].items[0].head.norm, 'jan');
 });
 
 test('phonotactics', () => {
