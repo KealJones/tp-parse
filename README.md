@@ -1,5 +1,7 @@
 # tp-parse
 
+**Try it in your browser: https://kealjones.github.io/tp-parse/**
+
 A forgiving parser and validator for toki pona, written in TypeScript with no dependencies. Give it text, and it returns a parse tree for every sentence plus a list of problems, each with a code, a severity, a plain-English message, and the exact character range. It never throws on bad input.
 
 It was built as the grammar-check step for a training-data pipeline (translate English into toki pona with an LLM, then keep only the translations that hold up), but it works anywhere: Node, a browser, or the command line.
@@ -107,7 +109,7 @@ npm run corpus -- path/to/nltk-tp/Corpus --samples object-without-verb
 
 ## Browser
 
-`scripts/build-demo.sh` bundles the parser (about 20 KB) into `demo/index.html`, a single self-contained page that runs entirely in the browser. The bundle exposes a global `TP` with the same API.
+`scripts/build-demo.sh` bundles the parser (about 20 KB) into a single self-contained page that runs entirely in the browser: `docs/index.html` is the full page served by GitHub Pages, and `demo/index.html` is the same page without its document wrapper. The bundle exposes a global `TP` with the same API.
 
 ## Project layout
 
@@ -121,7 +123,8 @@ src/
   cli.ts        command line
 test/           unit tests (npm test)
 scripts/        corpus report, word-list and demo builders
-demo/           browser page
+demo/           browser page source (template.html)
+docs/           built page served by GitHub Pages
 ```
 
 To refresh the word list from Linku: clone https://github.com/lipu-linku/sona and run `python3 scripts/build-words.py path/to/sona`.
