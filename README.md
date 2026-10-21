@@ -107,6 +107,19 @@ npm run corpus -- path/to/nltk-tp/Corpus --samples object-without-verb
 - toki pona is ambiguous by design. Where a sentence has two valid readings, the tree picks one (for example, *mi moku li lape* is read as subject *mi moku*). Validity doesn't depend on which.
 - It accepts some looser community usage as warnings rather than errors. Use `STRICT` or `severityOverrides` to tighten it.
 
+## Meaning check
+
+`checkMeaning(english, tokiPona)` estimates how much of an English source a translation carries over, using Linku's English glosses for each word plus common compounds (*pilin pona* = happy, *jan pona* = friend). `compareEnglish(original, backTranslation)` scores a back-translation the same way, and `gloss(tokiPona)` gives a word-by-word English reading. These are rough signals for ranking and flagging, not judges of translation quality.
+
+```ts
+checkMeaning('The dog ate the bread.', 'soweli li moku e pan.').coverage; // 1
+gloss('soweli li moku e pan.'); // "fuzzy creature li eat e grains."
+```
+
+## Translation pipeline
+
+`pipeline/` turns English TinyStories into checked toki pona training data: translate with an LLM (with self-repair from the checker's errors), check grammar and meaning, back-translate, and keep what survives. See [pipeline/README.md](pipeline/README.md), including results from a 50-story pilot.
+
 ## Browser
 
 `scripts/build-demo.sh` bundles the parser (about 20 KB) into a single self-contained page that runs entirely in the browser: `docs/index.html` is the full page served by GitHub Pages, and `demo/index.html` is the same page without its document wrapper. The bundle exposes a global `TP` with the same API.
@@ -122,7 +135,10 @@ src/
   presets.ts    STRICT options
   cli.ts        command line
 test/           unit tests (npm test)
-scripts/        corpus report, word-list and demo builders
+src/meaning.ts  meaning coverage, back-translation comparison, glossing
+src/glosses.ts  generated English glosses (from lipu Linku)
+pipeline/       LLM translation pipeline and pilot data
+scripts/        corpus report, word-list, gloss and demo builders
 demo/           browser page source (template.html)
 docs/           built page served by GitHub Pages
 ```
@@ -133,6 +149,6 @@ To refresh the word list from Linku: clone https://github.com/lipu-linku/sona an
 
 Code: MIT, © 2026 Keal Jones.
 
-The word list in `src/words.ts` comes from [lipu Linku](https://linku.la/) (the `sona` repository) and is licensed CC BY-SA 4.0.
+The word list in `src/words.ts` and the glosses in `src/glosses.ts` come from [lipu Linku](https://linku.la/) (the `sona` repository) and is licensed CC BY-SA 4.0.
 
 This is a fresh implementation written from the toki pona grammar. It doesn't include code from matthewdeanmartin/tokipona.parser, which has no licence.
