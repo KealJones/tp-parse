@@ -1,0 +1,7441 @@
+{
+ "results": [
+  {
+   "seed": 0,
+   "cond": "fresh",
+   "n": 25,
+   "loss": 1.4460800886154175,
+   "content_loss": 2.479372978210449,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.156
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.015
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.228
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.074
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.094
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "fresh",
+   "n": 50,
+   "loss": 1.1954643726348877,
+   "content_loss": 2.2151331901550293,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.321
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.105
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.232
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.015
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.093
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "fresh",
+   "n": 100,
+   "loss": 1.0060666799545288,
+   "content_loss": 1.9186657667160034,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.228
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.093
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.269
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.062
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.097
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "fresh",
+   "n": 200,
+   "loss": 0.9839951395988464,
+   "content_loss": 1.8520625829696655,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.197
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.014
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.241
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.056
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.132
+    }
+   ],
+   "steps_to_1_0": 250
+  },
+  {
+   "seed": 0,
+   "cond": "fresh",
+   "n": 400,
+   "loss": 0.896635890007019,
+   "content_loss": 1.7838585376739502,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.221
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.028
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.197
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.107
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.08
+    }
+   ],
+   "steps_to_1_0": 175
+  },
+  {
+   "seed": 0,
+   "cond": "tp",
+   "n": 25,
+   "loss": 1.4788533449172974,
+   "content_loss": 2.702284336090088,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.028
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.054
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.007
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.257
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.168
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "tp",
+   "n": 50,
+   "loss": 1.148490071296692,
+   "content_loss": 2.0958306789398193,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.01
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.153
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.026
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.205
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.058
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "tp",
+   "n": 100,
+   "loss": 0.9876849055290222,
+   "content_loss": 1.8944282531738281,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.115
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.137
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.008
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.204
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.119
+    }
+   ],
+   "steps_to_1_0": 150
+  },
+  {
+   "seed": 0,
+   "cond": "tp",
+   "n": 200,
+   "loss": 0.9436860680580139,
+   "content_loss": 1.8511662483215332,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.138
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.226
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.028
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.205
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.25
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 0,
+   "cond": "tp",
+   "n": 400,
+   "loss": 0.8893759846687317,
+   "content_loss": 1.7762161493301392,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.144
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.173
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.209
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.257
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.115
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 0,
+   "cond": "tp-frozen",
+   "n": 25,
+   "loss": 1.4393072128295898,
+   "content_loss": 2.5155415534973145,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.073
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.325
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.069
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.079
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.139
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "tp-frozen",
+   "n": 50,
+   "loss": 1.1888198852539062,
+   "content_loss": 2.142256736755371,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.031
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.394
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.057
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.091
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.202
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "tp-frozen",
+   "n": 100,
+   "loss": 1.0385793447494507,
+   "content_loss": 1.9806731939315796,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.154
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.34
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.185
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.121
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.174
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "tp-frozen",
+   "n": 200,
+   "loss": 0.9714723229408264,
+   "content_loss": 1.8995940685272217,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.049
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.162
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.163
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.126
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.263
+    }
+   ],
+   "steps_to_1_0": 350
+  },
+  {
+   "seed": 0,
+   "cond": "tp-frozen",
+   "n": 400,
+   "loss": 0.9249650239944458,
+   "content_loss": 1.8274285793304443,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.014
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.319
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.13
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.105
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.279
+    }
+   ],
+   "steps_to_1_0": 275
+  },
+  {
+   "seed": 0,
+   "cond": "tp-nonsense",
+   "n": 25,
+   "loss": 1.6181304454803467,
+   "content_loss": 2.6928436756134033,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.012
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.197
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.011
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.113
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.1
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "tp-nonsense",
+   "n": 50,
+   "loss": 1.1168444156646729,
+   "content_loss": 2.120725393295288,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.049
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.172
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.045
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.13
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.056
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "tp-nonsense",
+   "n": 100,
+   "loss": 0.9632146954536438,
+   "content_loss": 1.8747481107711792,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.054
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.19
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.084
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.039
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.049
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 0,
+   "cond": "tp-nonsense",
+   "n": 200,
+   "loss": 0.9419636130332947,
+   "content_loss": 1.8865028619766235,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.091
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.126
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.056
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.051
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.148
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 0,
+   "cond": "tp-nonsense",
+   "n": 400,
+   "loss": 0.8830591440200806,
+   "content_loss": 1.7462490797042847,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.031
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.098
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.132
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.044
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.019
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 0,
+   "cond": "tp-random",
+   "n": 25,
+   "loss": 1.2515459060668945,
+   "content_loss": 2.3838326930999756,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.123
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.193
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.119
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.039
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.044
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "tp-random",
+   "n": 50,
+   "loss": 1.092642903327942,
+   "content_loss": 2.0312812328338623,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.088
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.261
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.104
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.056
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.05
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "tp-random",
+   "n": 100,
+   "loss": 0.96620112657547,
+   "content_loss": 1.8899650573730469,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.123
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.219
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.08
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.014
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.076
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 0,
+   "cond": "tp-random",
+   "n": 200,
+   "loss": 0.9362503886222839,
+   "content_loss": 1.8552786111831665,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.049
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.153
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.031
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.056
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.046
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 0,
+   "cond": "tp-random",
+   "n": 400,
+   "loss": 0.8982065320014954,
+   "content_loss": 1.787553310394287,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.095
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.199
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.038
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.116
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.107
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 0,
+   "cond": "tp+dict",
+   "n": 25,
+   "loss": 1.5305753946304321,
+   "content_loss": 2.781285285949707,
+   "align": 0.06666666666666667,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.089
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.017
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.069
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.288
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.173
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "tp+dict",
+   "n": 50,
+   "loss": 1.2012709379196167,
+   "content_loss": 2.2312471866607666,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.115
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.099
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.272
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.339
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.05
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 0,
+   "cond": "tp+dict",
+   "n": 100,
+   "loss": 0.9981433153152466,
+   "content_loss": 1.900864601135254,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.077
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.095
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.311
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.339
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.083
+    }
+   ],
+   "steps_to_1_0": 150
+  },
+  {
+   "seed": 0,
+   "cond": "tp+dict",
+   "n": 200,
+   "loss": 0.9362855553627014,
+   "content_loss": 1.8590449094772339,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.046
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.16
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.347
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.374
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.195
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 0,
+   "cond": "tp+dict",
+   "n": 400,
+   "loss": 0.9001551866531372,
+   "content_loss": 1.7729029655456543,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.029
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.143
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.257
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.39
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.038
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 1,
+   "cond": "fresh",
+   "n": 25,
+   "loss": 1.5873634815216064,
+   "content_loss": 2.617846727371216,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.013
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.09
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.339
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.194
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.156
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "fresh",
+   "n": 50,
+   "loss": 1.19651198387146,
+   "content_loss": 2.1681041717529297,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.018
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.082
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.35
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.194
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.035
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "fresh",
+   "n": 100,
+   "loss": 1.0710924863815308,
+   "content_loss": 2.052488327026367,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.075
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.031
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.32
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.189
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.054
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "fresh",
+   "n": 200,
+   "loss": 0.9715690612792969,
+   "content_loss": 1.8648841381072998,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.152
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.023
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.366
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.199
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.013
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 1,
+   "cond": "fresh",
+   "n": 400,
+   "loss": 0.9080186486244202,
+   "content_loss": 1.7783708572387695,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.103
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.044
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.414
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.176
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.015
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 1,
+   "cond": "tp",
+   "n": 25,
+   "loss": 1.5147696733474731,
+   "content_loss": 2.4756531715393066,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.17
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.1
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.026
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.206
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.156
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "tp",
+   "n": 50,
+   "loss": 1.1559265851974487,
+   "content_loss": 2.1728267669677734,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.202
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.115
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.052
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.218
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.017
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "tp",
+   "n": 100,
+   "loss": 0.975433886051178,
+   "content_loss": 1.93123459815979,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.211
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.175
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.092
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.08
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.058
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 1,
+   "cond": "tp",
+   "n": 200,
+   "loss": 0.9206017255783081,
+   "content_loss": 1.8103300333023071,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.282
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.105
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.028
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.1
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.02
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 1,
+   "cond": "tp",
+   "n": 400,
+   "loss": 0.8861094117164612,
+   "content_loss": 1.7335048913955688,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.254
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.114
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.036
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.068
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.017
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 1,
+   "cond": "tp-frozen",
+   "n": 25,
+   "loss": 1.5784891843795776,
+   "content_loss": 2.532193660736084,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.12
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.016
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.127
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.017
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.189
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "tp-frozen",
+   "n": 50,
+   "loss": 1.189414143562317,
+   "content_loss": 2.202798843383789,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.014
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.172
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.079
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.019
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.256
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "tp-frozen",
+   "n": 100,
+   "loss": 1.0383201837539673,
+   "content_loss": 1.9193013906478882,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.141
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.017
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.099
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.057
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.009
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "tp-frozen",
+   "n": 200,
+   "loss": 0.9534774422645569,
+   "content_loss": 1.8363821506500244,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.223
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.049
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.052
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.024
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.022
+    }
+   ],
+   "steps_to_1_0": 300
+  },
+  {
+   "seed": 1,
+   "cond": "tp-frozen",
+   "n": 400,
+   "loss": 0.9135776162147522,
+   "content_loss": 1.7928040027618408,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.18
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.16
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.093
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.04
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.099
+    }
+   ],
+   "steps_to_1_0": 250
+  },
+  {
+   "seed": 1,
+   "cond": "tp-nonsense",
+   "n": 25,
+   "loss": 1.4557160139083862,
+   "content_loss": 2.483518123626709,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.153
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.004
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.054
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.206
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.282
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "tp-nonsense",
+   "n": 50,
+   "loss": 1.1465777158737183,
+   "content_loss": 2.1662163734436035,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.128
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.09
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.043
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.113
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.306
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "tp-nonsense",
+   "n": 100,
+   "loss": 0.9924764633178711,
+   "content_loss": 1.966916561126709,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.11
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.15
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.054
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.076
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.248
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 1,
+   "cond": "tp-nonsense",
+   "n": 200,
+   "loss": 0.932533323764801,
+   "content_loss": 1.8364286422729492,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.036
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.186
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.046
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.073
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.286
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 1,
+   "cond": "tp-nonsense",
+   "n": 400,
+   "loss": 0.8855019807815552,
+   "content_loss": 1.7328897714614868,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.014
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.154
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.004
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.047
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.231
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 1,
+   "cond": "tp-random",
+   "n": 25,
+   "loss": 1.347014307975769,
+   "content_loss": 2.4636194705963135,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.062
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.065
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.115
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.153
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.037
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "tp-random",
+   "n": 50,
+   "loss": 1.1515390872955322,
+   "content_loss": 2.1772005558013916,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.14
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.173
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.289
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.186
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.027
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "tp-random",
+   "n": 100,
+   "loss": 0.9919998049736023,
+   "content_loss": 1.9741610288619995,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.072
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.113
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.143
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.063
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.006
+    }
+   ],
+   "steps_to_1_0": 175
+  },
+  {
+   "seed": 1,
+   "cond": "tp-random",
+   "n": 200,
+   "loss": 0.9285951256752014,
+   "content_loss": 1.8457850217819214,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.06
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.129
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.046
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.069
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.073
+    }
+   ],
+   "steps_to_1_0": 175
+  },
+  {
+   "seed": 1,
+   "cond": "tp-random",
+   "n": 400,
+   "loss": 0.8985680937767029,
+   "content_loss": 1.7644755840301514,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.058
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.015
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.012
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.016
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.068
+    }
+   ],
+   "steps_to_1_0": 175
+  },
+  {
+   "seed": 1,
+   "cond": "tp+dict",
+   "n": 25,
+   "loss": 1.5206377506256104,
+   "content_loss": 2.555440902709961,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.082
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.074
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.016
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.242
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.151
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "tp+dict",
+   "n": 50,
+   "loss": 1.1651952266693115,
+   "content_loss": 2.1888158321380615,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.094
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.159
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.078
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.309
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.068
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 1,
+   "cond": "tp+dict",
+   "n": 100,
+   "loss": 0.9778691530227661,
+   "content_loss": 1.9398188591003418,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.125
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.234
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.176
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.148
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.11
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 1,
+   "cond": "tp+dict",
+   "n": 200,
+   "loss": 0.9271107912063599,
+   "content_loss": 1.8163303136825562,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.083
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.169
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.179
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.162
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.061
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 1,
+   "cond": "tp+dict",
+   "n": 400,
+   "loss": 0.8888493180274963,
+   "content_loss": 1.7493934631347656,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.045
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.228
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.15
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.1
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.102
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 2,
+   "cond": "fresh",
+   "n": 25,
+   "loss": 1.4486738443374634,
+   "content_loss": 2.448847770690918,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.136
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.107
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.186
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.215
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.116
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "fresh",
+   "n": 50,
+   "loss": 1.1123327016830444,
+   "content_loss": 2.111131429672241,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.105
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.038
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.33
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.28
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.229
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "fresh",
+   "n": 100,
+   "loss": 0.9960447549819946,
+   "content_loss": 1.9361331462860107,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.142
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.015
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.454
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.358
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.271
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 2,
+   "cond": "fresh",
+   "n": 200,
+   "loss": 0.9482455849647522,
+   "content_loss": 1.8788058757781982,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.102
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.052
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.476
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.412
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.179
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 2,
+   "cond": "fresh",
+   "n": 400,
+   "loss": 0.9023546576499939,
+   "content_loss": 1.7591451406478882,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.097
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.094
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.425
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.267
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.193
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 2,
+   "cond": "tp",
+   "n": 25,
+   "loss": 1.4000829458236694,
+   "content_loss": 2.4849095344543457,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.179
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.31
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.14
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.124
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.024
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp",
+   "n": 50,
+   "loss": 1.1055575609207153,
+   "content_loss": 2.0588088035583496,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.203
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.203
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.178
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.028
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.165
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp",
+   "n": 100,
+   "loss": 0.9992994070053101,
+   "content_loss": 1.9951117038726807,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.154
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.084
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.253
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.001
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.057
+    }
+   ],
+   "steps_to_1_0": 150
+  },
+  {
+   "seed": 2,
+   "cond": "tp",
+   "n": 200,
+   "loss": 0.9368381500244141,
+   "content_loss": 1.8822715282440186,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.294
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.133
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.191
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.065
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.057
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 2,
+   "cond": "tp",
+   "n": 400,
+   "loss": 0.8913437724113464,
+   "content_loss": 1.765176773071289,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.222
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.203
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.065
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.085
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.051
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 2,
+   "cond": "tp-frozen",
+   "n": 25,
+   "loss": 1.4421958923339844,
+   "content_loss": 2.480698347091675,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.278
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.441
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.06
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.075
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.147
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp-frozen",
+   "n": 50,
+   "loss": 1.1727523803710938,
+   "content_loss": 2.1867408752441406,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.249
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.351
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.22
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.203
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.291
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp-frozen",
+   "n": 100,
+   "loss": 1.021132469177246,
+   "content_loss": 1.9933472871780396,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.332
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.418
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.3
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.221
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.374
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp-frozen",
+   "n": 200,
+   "loss": 0.9477823376655579,
+   "content_loss": 1.863556981086731,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.273
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.423
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.211
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.191
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.352
+    }
+   ],
+   "steps_to_1_0": 300
+  },
+  {
+   "seed": 2,
+   "cond": "tp-frozen",
+   "n": 400,
+   "loss": 0.9245575666427612,
+   "content_loss": 1.8325722217559814,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.269
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.449
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.016
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.085
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.374
+    }
+   ],
+   "steps_to_1_0": 275
+  },
+  {
+   "seed": 2,
+   "cond": "tp-nonsense",
+   "n": 25,
+   "loss": 1.3987873792648315,
+   "content_loss": 2.4489905834198,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.2
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.116
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.071
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.27
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.002
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp-nonsense",
+   "n": 50,
+   "loss": 1.086915373802185,
+   "content_loss": 2.1237521171569824,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.175
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.107
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.136
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.237
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.071
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp-nonsense",
+   "n": 100,
+   "loss": 0.97541344165802,
+   "content_loss": 1.9225858449935913,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.155
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.029
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.051
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.205
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.018
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 2,
+   "cond": "tp-nonsense",
+   "n": 200,
+   "loss": 0.9290329217910767,
+   "content_loss": 1.865762710571289,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.156
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.027
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.127
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.243
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.035
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 2,
+   "cond": "tp-nonsense",
+   "n": 400,
+   "loss": 0.8896345496177673,
+   "content_loss": 1.7431076765060425,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.174
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.009
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.007
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.29
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.015
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 2,
+   "cond": "tp-random",
+   "n": 25,
+   "loss": 1.3202297687530518,
+   "content_loss": 2.3653676509857178,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.202
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.342
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.417
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.486
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.19
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp-random",
+   "n": 50,
+   "loss": 1.0123738050460815,
+   "content_loss": 2.005861282348633,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.262
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.278
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.369
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.464
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.104
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp-random",
+   "n": 100,
+   "loss": 0.9679237008094788,
+   "content_loss": 1.9442247152328491,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.154
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.32
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.477
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.482
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.265
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 2,
+   "cond": "tp-random",
+   "n": 200,
+   "loss": 0.9165924191474915,
+   "content_loss": 1.8352835178375244,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.143
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.206
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.495
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.406
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.115
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 2,
+   "cond": "tp-random",
+   "n": 400,
+   "loss": 0.8713237643241882,
+   "content_loss": 1.7028073072433472,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.157
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.179
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.389
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.253
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.191
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 2,
+   "cond": "tp+dict",
+   "n": 25,
+   "loss": 1.4522756338119507,
+   "content_loss": 2.5864627361297607,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.141
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.333
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.092
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.165
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.013
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp+dict",
+   "n": 50,
+   "loss": 1.1307892799377441,
+   "content_loss": 2.1518239974975586,
+   "align": 0.06666666666666667,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.146
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.241
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.022
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.203
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.176
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp+dict",
+   "n": 100,
+   "loss": 1.0136996507644653,
+   "content_loss": 2.00766921043396,
+   "align": 0.13333333333333333,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.059
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.137
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.152
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.245
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.059
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 2,
+   "cond": "tp+dict",
+   "n": 200,
+   "loss": 0.9413822889328003,
+   "content_loss": 1.8925433158874512,
+   "align": 0.13333333333333333,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.085
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.167
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.131
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.301
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.118
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 2,
+   "cond": "tp+dict",
+   "n": 400,
+   "loss": 0.8855511546134949,
+   "content_loss": 1.7362098693847656,
+   "align": 0.06666666666666667,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.095
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.226
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.37
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.297
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.053
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 3,
+   "cond": "fresh",
+   "n": 25,
+   "loss": 1.537589430809021,
+   "content_loss": 2.591449022293091,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.073
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.02
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.078
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.138
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.148
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "fresh",
+   "n": 50,
+   "loss": 1.1414587497711182,
+   "content_loss": 2.095928192138672,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.011
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.151
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.086
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.133
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.145
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "fresh",
+   "n": 100,
+   "loss": 1.0166988372802734,
+   "content_loss": 1.9715925455093384,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.062
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.176
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.047
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.171
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.141
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "fresh",
+   "n": 200,
+   "loss": 0.9646011590957642,
+   "content_loss": 1.8542753458023071,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.045
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.232
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.038
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.107
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.09
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 3,
+   "cond": "fresh",
+   "n": 400,
+   "loss": 0.9072924852371216,
+   "content_loss": 1.777437448501587,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.003
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.232
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.033
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.109
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.114
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 3,
+   "cond": "tp",
+   "n": 25,
+   "loss": 1.4583274126052856,
+   "content_loss": 2.588944673538208,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.057
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.245
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.279
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.027
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.33
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "tp",
+   "n": 50,
+   "loss": 1.091962456703186,
+   "content_loss": 2.1173806190490723,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.009
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.325
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.213
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.04
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.267
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "tp",
+   "n": 100,
+   "loss": 0.9795328378677368,
+   "content_loss": 1.9155184030532837,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.015
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.242
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.289
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.009
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.184
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 3,
+   "cond": "tp",
+   "n": 200,
+   "loss": 0.9245402216911316,
+   "content_loss": 1.8187741041183472,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.015
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.186
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.243
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.008
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.168
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 3,
+   "cond": "tp",
+   "n": 400,
+   "loss": 0.8734286427497864,
+   "content_loss": 1.7242568731307983,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.096
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.205
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.367
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.027
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.164
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 3,
+   "cond": "tp-frozen",
+   "n": 25,
+   "loss": 1.7652207612991333,
+   "content_loss": 2.7405269145965576,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.048
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.131
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.207
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.244
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.249
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "tp-frozen",
+   "n": 50,
+   "loss": 1.2198410034179688,
+   "content_loss": 2.276526927947998,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.009
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.041
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.34
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.257
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.261
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "tp-frozen",
+   "n": 100,
+   "loss": 1.02074134349823,
+   "content_loss": 1.9757490158081055,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.038
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.19
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.366
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.172
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.28
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "tp-frozen",
+   "n": 200,
+   "loss": 0.949437141418457,
+   "content_loss": 1.877684473991394,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.067
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.089
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.172
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.116
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.117
+    }
+   ],
+   "steps_to_1_0": 250
+  },
+  {
+   "seed": 3,
+   "cond": "tp-frozen",
+   "n": 400,
+   "loss": 0.9323877096176147,
+   "content_loss": 1.8563601970672607,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.11
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.212
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.288
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.135
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.229
+    }
+   ],
+   "steps_to_1_0": 275
+  },
+  {
+   "seed": 3,
+   "cond": "tp-nonsense",
+   "n": 25,
+   "loss": 1.4854469299316406,
+   "content_loss": 2.59104585647583,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.246
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.346
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.414
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.021
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.197
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "tp-nonsense",
+   "n": 50,
+   "loss": 1.1763592958450317,
+   "content_loss": 2.1060595512390137,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.313
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.376
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.285
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.044
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.154
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "tp-nonsense",
+   "n": 100,
+   "loss": 0.9903462529182434,
+   "content_loss": 1.9848307371139526,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.269
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.353
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.313
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.032
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.106
+    }
+   ],
+   "steps_to_1_0": 150
+  },
+  {
+   "seed": 3,
+   "cond": "tp-nonsense",
+   "n": 200,
+   "loss": 0.9370490908622742,
+   "content_loss": 1.8735984563827515,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.441
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.358
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.283
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.014
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.133
+    }
+   ],
+   "steps_to_1_0": 225
+  },
+  {
+   "seed": 3,
+   "cond": "tp-nonsense",
+   "n": 400,
+   "loss": 0.8723626136779785,
+   "content_loss": 1.72452712059021,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.42
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.308
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.261
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.02
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.096
+    }
+   ],
+   "steps_to_1_0": 175
+  },
+  {
+   "seed": 3,
+   "cond": "tp-random",
+   "n": 25,
+   "loss": 1.5385786294937134,
+   "content_loss": 2.586682081222534,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.034
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.086
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.075
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.08
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.336
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "tp-random",
+   "n": 50,
+   "loss": 1.1657015085220337,
+   "content_loss": 2.2644238471984863,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.038
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.091
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.015
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.172
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.372
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "tp-random",
+   "n": 100,
+   "loss": 0.988804817199707,
+   "content_loss": 1.9835293292999268,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.227
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.03
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.052
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.17
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.417
+    }
+   ],
+   "steps_to_1_0": 225
+  },
+  {
+   "seed": 3,
+   "cond": "tp-random",
+   "n": 200,
+   "loss": 0.9281010627746582,
+   "content_loss": 1.8525828123092651,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.143
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.016
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.121
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.045
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.459
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 3,
+   "cond": "tp-random",
+   "n": 400,
+   "loss": 0.8705247640609741,
+   "content_loss": 1.7117955684661865,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.151
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.109
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.056
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.106
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.461
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 3,
+   "cond": "tp+dict",
+   "n": 25,
+   "loss": 1.4880412817001343,
+   "content_loss": 2.5683863162994385,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.034
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.262
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.258
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.03
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.284
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "tp+dict",
+   "n": 50,
+   "loss": 1.1167011260986328,
+   "content_loss": 2.1430554389953613,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.001
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.383
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.195
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.001
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.185
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 3,
+   "cond": "tp+dict",
+   "n": 100,
+   "loss": 0.9884001612663269,
+   "content_loss": 1.9684087038040161,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.005
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.338
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.197
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.004
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.105
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 3,
+   "cond": "tp+dict",
+   "n": 200,
+   "loss": 0.9351020455360413,
+   "content_loss": 1.815281867980957,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.024
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.28
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.034
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.01
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.032
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 3,
+   "cond": "tp+dict",
+   "n": 400,
+   "loss": 0.894167959690094,
+   "content_loss": 1.787429690361023,
+   "align": 0.06666666666666667,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.005
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.288
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.122
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.064
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.052
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 4,
+   "cond": "fresh",
+   "n": 25,
+   "loss": 1.4543116092681885,
+   "content_loss": 2.451385974884033,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.055
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.072
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.048
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.059
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.032
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "fresh",
+   "n": 50,
+   "loss": 1.1557085514068604,
+   "content_loss": 2.117696762084961,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.129
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.115
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.237
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.002
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.069
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "fresh",
+   "n": 100,
+   "loss": 1.015013575553894,
+   "content_loss": 1.9733306169509888,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.052
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.098
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.233
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.025
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.073
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "fresh",
+   "n": 200,
+   "loss": 0.9692444801330566,
+   "content_loss": 1.916029453277588,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.021
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.194
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.165
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.017
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.045
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 4,
+   "cond": "fresh",
+   "n": 400,
+   "loss": 0.9157308340072632,
+   "content_loss": 1.8238040208816528,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.076
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.115
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.014
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.054
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.111
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 4,
+   "cond": "tp",
+   "n": 25,
+   "loss": 1.566359519958496,
+   "content_loss": 2.8470499515533447,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.141
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.165
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.005
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.009
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.065
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "tp",
+   "n": 50,
+   "loss": 1.150497317314148,
+   "content_loss": 2.083772897720337,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.208
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.146
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.286
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.092
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.065
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "tp",
+   "n": 100,
+   "loss": 0.9914273619651794,
+   "content_loss": 1.9527405500411987,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.226
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.167
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.319
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.176
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.019
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 4,
+   "cond": "tp",
+   "n": 200,
+   "loss": 0.9419370293617249,
+   "content_loss": 1.847047209739685,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.324
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.022
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.163
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.107
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.191
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 4,
+   "cond": "tp",
+   "n": 400,
+   "loss": 0.8952049612998962,
+   "content_loss": 1.7560157775878906,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.273
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.169
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.19
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.111
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.03
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 4,
+   "cond": "tp-frozen",
+   "n": 25,
+   "loss": 1.5710166692733765,
+   "content_loss": 2.5333573818206787,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.066
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.04
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.094
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.045
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.072
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "tp-frozen",
+   "n": 50,
+   "loss": 1.1844285726547241,
+   "content_loss": 2.099119186401367,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.097
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.028
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.163
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.207
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.143
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "tp-frozen",
+   "n": 100,
+   "loss": 1.0351159572601318,
+   "content_loss": 1.9289289712905884,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.0
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.103
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.064
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.068
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.046
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "tp-frozen",
+   "n": 200,
+   "loss": 0.9549069404602051,
+   "content_loss": 1.8548896312713623,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.051
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.037
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.077
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.053
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.005
+    }
+   ],
+   "steps_to_1_0": 325
+  },
+  {
+   "seed": 4,
+   "cond": "tp-frozen",
+   "n": 400,
+   "loss": 0.912811279296875,
+   "content_loss": 1.791356086730957,
+   "align": 0.15789473684210525,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.079
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.004
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.031
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.033
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.04
+    }
+   ],
+   "steps_to_1_0": 250
+  },
+  {
+   "seed": 4,
+   "cond": "tp-nonsense",
+   "n": 25,
+   "loss": 1.390072226524353,
+   "content_loss": 2.4296982288360596,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.073
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.069
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.15
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.18
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.139
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "tp-nonsense",
+   "n": 50,
+   "loss": 1.1324560642242432,
+   "content_loss": 2.0882954597473145,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.035
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.201
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.139
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.051
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.278
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "tp-nonsense",
+   "n": 100,
+   "loss": 0.9688712954521179,
+   "content_loss": 1.9021153450012207,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.108
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.305
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.101
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.109
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.305
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 4,
+   "cond": "tp-nonsense",
+   "n": 200,
+   "loss": 0.9280163049697876,
+   "content_loss": 1.833296298980713,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.102
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.21
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.153
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.139
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.336
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 4,
+   "cond": "tp-nonsense",
+   "n": 400,
+   "loss": 0.899872899055481,
+   "content_loss": 1.7901932001113892,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.031
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.215
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.173
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.139
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.304
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 4,
+   "cond": "tp-random",
+   "n": 25,
+   "loss": 1.4134091138839722,
+   "content_loss": 2.549877405166626,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.006
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.236
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": true,
+     "parts_in_top2": 2,
+     "cos_to_sum": 0.415
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.282
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.081
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "tp-random",
+   "n": 50,
+   "loss": 1.112324595451355,
+   "content_loss": 2.0853238105773926,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.105
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.195
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.273
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.274
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.108
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "tp-random",
+   "n": 100,
+   "loss": 0.9760907292366028,
+   "content_loss": 1.9087932109832764,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.239
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.244
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.081
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.056
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.03
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 4,
+   "cond": "tp-random",
+   "n": 200,
+   "loss": 0.9421353936195374,
+   "content_loss": 1.8682931661605835,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.188
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.198
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.333
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.222
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.053
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 4,
+   "cond": "tp-random",
+   "n": 400,
+   "loss": 0.8871841430664062,
+   "content_loss": 1.7347335815429688,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.081
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.136
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.491
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.372
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.031
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 4,
+   "cond": "tp+dict",
+   "n": 25,
+   "loss": 1.6233726739883423,
+   "content_loss": 2.914078712463379,
+   "align": 0.06666666666666667,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.125
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.158
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.002
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.038
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.186
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "tp+dict",
+   "n": 50,
+   "loss": 1.1410325765609741,
+   "content_loss": 2.0594966411590576,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.037
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.106
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.315
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.093
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.059
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 4,
+   "cond": "tp+dict",
+   "n": 100,
+   "loss": 0.9900180697441101,
+   "content_loss": 1.9665440320968628,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.036
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.07
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.265
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.349
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.086
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 4,
+   "cond": "tp+dict",
+   "n": 200,
+   "loss": 0.9357572793960571,
+   "content_loss": 1.831174612045288,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.084
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.008
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.266
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.437
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.227
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 4,
+   "cond": "tp+dict",
+   "n": 400,
+   "loss": 0.9051313996315002,
+   "content_loss": 1.7925397157669067,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.009
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.099
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.277
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.296
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.208
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 5,
+   "cond": "fresh",
+   "n": 25,
+   "loss": 1.7103599309921265,
+   "content_loss": 2.976003408432007,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.197
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.076
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.241
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.349
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.262
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "fresh",
+   "n": 50,
+   "loss": 1.3561447858810425,
+   "content_loss": 2.4555788040161133,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.192
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.012
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.232
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.295
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.276
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "fresh",
+   "n": 100,
+   "loss": 1.0624078512191772,
+   "content_loss": 1.9869866371154785,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.186
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.013
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.171
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.157
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.228
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "fresh",
+   "n": 200,
+   "loss": 0.9651797413825989,
+   "content_loss": 1.9015443325042725,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.18
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.01
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.195
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.105
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.169
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 5,
+   "cond": "fresh",
+   "n": 400,
+   "loss": 0.9053901433944702,
+   "content_loss": 1.8178077936172485,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.197
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.012
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.196
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.255
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.222
+    }
+   ],
+   "steps_to_1_0": 125
+  },
+  {
+   "seed": 5,
+   "cond": "tp",
+   "n": 25,
+   "loss": 1.5874890089035034,
+   "content_loss": 2.781764268875122,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.206
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.3
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.193
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.086
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.288
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp",
+   "n": 50,
+   "loss": 1.2551765441894531,
+   "content_loss": 2.309413194656372,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.221
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.34
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.053
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.091
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.305
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp",
+   "n": 100,
+   "loss": 0.9968464970588684,
+   "content_loss": 1.946864128112793,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.147
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.326
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.057
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.316
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.252
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 5,
+   "cond": "tp",
+   "n": 200,
+   "loss": 0.9281672835350037,
+   "content_loss": 1.8439722061157227,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.12
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.436
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.095
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.359
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.233
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 5,
+   "cond": "tp",
+   "n": 400,
+   "loss": 0.8775171637535095,
+   "content_loss": 1.7375274896621704,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.131
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.372
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.069
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.299
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.192
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 5,
+   "cond": "tp-frozen",
+   "n": 25,
+   "loss": 1.8938920497894287,
+   "content_loss": 3.122626543045044,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.078
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.178
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.029
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.241
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.121
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp-frozen",
+   "n": 50,
+   "loss": 1.3804242610931396,
+   "content_loss": 2.532721757888794,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.198
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.175
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.127
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.023
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.057
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp-frozen",
+   "n": 100,
+   "loss": 1.0389281511306763,
+   "content_loss": 1.9641027450561523,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.088
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.109
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.047
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.082
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.074
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp-frozen",
+   "n": 200,
+   "loss": 0.9427630305290222,
+   "content_loss": 1.857466459274292,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.103
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.157
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.031
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.096
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.017
+    }
+   ],
+   "steps_to_1_0": 225
+  },
+  {
+   "seed": 5,
+   "cond": "tp-frozen",
+   "n": 400,
+   "loss": 0.8994794487953186,
+   "content_loss": 1.7739421129226685,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.32
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.071
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.061
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.06
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.011
+    }
+   ],
+   "steps_to_1_0": 225
+  },
+  {
+   "seed": 5,
+   "cond": "tp-nonsense",
+   "n": 25,
+   "loss": 1.6393823623657227,
+   "content_loss": 2.847728729248047,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.154
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.209
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.032
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.084
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.278
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp-nonsense",
+   "n": 50,
+   "loss": 1.3044005632400513,
+   "content_loss": 2.5104055404663086,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.105
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.177
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.066
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.137
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.202
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp-nonsense",
+   "n": 100,
+   "loss": 1.0332800149917603,
+   "content_loss": 2.0297272205352783,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.184
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.19
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.143
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.213
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.329
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp-nonsense",
+   "n": 200,
+   "loss": 0.9338461756706238,
+   "content_loss": 1.8772073984146118,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.155
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.2
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.199
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.247
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.268
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 5,
+   "cond": "tp-nonsense",
+   "n": 400,
+   "loss": 0.8861125707626343,
+   "content_loss": 1.7175960540771484,
+   "align": 0.10526315789473684,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.1
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.265
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.101
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.146
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.276
+    }
+   ],
+   "steps_to_1_0": 100
+  },
+  {
+   "seed": 5,
+   "cond": "tp-random",
+   "n": 25,
+   "loss": 1.532859444618225,
+   "content_loss": 2.9613091945648193,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.201
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.218
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.03
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.108
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.045
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp-random",
+   "n": 50,
+   "loss": 1.176452875137329,
+   "content_loss": 2.36137318611145,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.236
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.086
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.024
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.177
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.265
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp-random",
+   "n": 100,
+   "loss": 0.9902059435844421,
+   "content_loss": 1.9506168365478516,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.137
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.238
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.005
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.141
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.022
+    }
+   ],
+   "steps_to_1_0": 200
+  },
+  {
+   "seed": 5,
+   "cond": "tp-random",
+   "n": 200,
+   "loss": 0.9342346787452698,
+   "content_loss": 1.8311585187911987,
+   "align": 0.05263157894736842,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.209
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.14
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.165
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.267
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.128
+    }
+   ],
+   "steps_to_1_0": 250
+  },
+  {
+   "seed": 5,
+   "cond": "tp-random",
+   "n": 400,
+   "loss": 0.8866541981697083,
+   "content_loss": 1.7447339296340942,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.13
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.012
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.002
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.165
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.354
+    }
+   ],
+   "steps_to_1_0": 150
+  },
+  {
+   "seed": 5,
+   "cond": "tp+dict",
+   "n": 25,
+   "loss": 1.614214539527893,
+   "content_loss": 2.7123279571533203,
+   "align": 0.06666666666666667,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.207
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.294
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.196
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.089
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.283
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp+dict",
+   "n": 50,
+   "loss": 1.2181203365325928,
+   "content_loss": 2.2245609760284424,
+   "align": 0.06666666666666667,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.242
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.297
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.143
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.031
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.26
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp+dict",
+   "n": 100,
+   "loss": 1.0126925706863403,
+   "content_loss": 1.9462363719940186,
+   "align": 0.06666666666666667,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.225
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.232
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.052
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.023
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.176
+    }
+   ],
+   "steps_to_1_0": null
+  },
+  {
+   "seed": 5,
+   "cond": "tp+dict",
+   "n": 200,
+   "loss": 0.949766993522644,
+   "content_loss": 1.894839882850647,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.341
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.311
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.069
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.001
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.138
+    }
+   ],
+   "steps_to_1_0": 75
+  },
+  {
+   "seed": 5,
+   "cond": "tp+dict",
+   "n": 400,
+   "loss": 0.8829154968261719,
+   "content_loss": 1.7382969856262207,
+   "align": 0.0,
+   "compounds": [
+    {
+     "word": "cake",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": 0.387
+    },
+    {
+     "word": "cat",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": -0.229
+    },
+    {
+     "word": "tree",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.143
+    },
+    {
+     "word": "lake",
+     "top2_is_parts": false,
+     "parts_in_top2": 0,
+     "cos_to_sum": 0.104
+    },
+    {
+     "word": "child",
+     "top2_is_parts": false,
+     "parts_in_top2": 1,
+     "cos_to_sum": -0.035
+    }
+   ],
+   "steps_to_1_0": 75
+  }
+ ],
+ "chance_align": 0.043478260869565216,
+ "tp_vocab": [
+  ".",
+  "e",
+  "ike",
+  "jan",
+  "kala",
+  "kasi",
+  "kili",
+  "lape",
+  "li",
+  "lili",
+  "lon",
+  "lukin",
+  "moku",
+  "olin",
+  "pan",
+  "pona",
+  "soweli",
+  "suli",
+  "suwi",
+  "tawa",
+  "telo",
+  "tomo",
+  "waso"
+ ],
+ "en_vocab": [
+  ".",
+  "bad",
+  "big",
+  "bird",
+  "bread",
+  "cake",
+  "cat",
+  "child",
+  "dog",
+  "drinks",
+  "eats",
+  "fish",
+  "fruit",
+  "goes",
+  "good",
+  "house",
+  "in",
+  "is",
+  "lake",
+  "loves",
+  "person",
+  "sees",
+  "sleeps",
+  "small",
+  "sweet",
+  "the",
+  "to",
+  "tree",
+  "water"
+ ]
+}

@@ -1,0 +1,34 @@
+6 seeds. Values are means.
+                                                       full        no-tp      no-dict      english  full-frozen  full-replay
+
+AFTER STAGE 3 (the big English sweep)
+English test loss (lower = better)                     0.92         0.92         0.92         0.93         0.94         0.94
+toki pona test loss (lower = remembers more)           9.44         8.88         6.99         9.97        11.51         1.28
+toki pona prob leaking into English                      0%           0%           0%           0%           0%           2%
+English prob leaking into toki pona                     59%          37%          56%          64%          82%          15%
+'X means ?' right, words IN dictionary                   9%          10%           7%           1%           4%          16%
+'X means ?' right, words NOT in dictionary               8%           4%           4%          12%           0%           0%
+'X means ?' right, synonyms (liquid, home…)              7%           0%          10%           3%           3%          17%
+nearest tp word right, in dictionary                     1%           7%           2%           6%           3%           4%
+nearest tp word right, not in dictionary                17%          21%           4%           0%           4%          12%
+nearest tp word right, synonyms                          0%           0%           3%          10%           0%           7%
+compound: a part among 2 nearest                        28%          22%          28%          28%          28%           6%
+
+AFTER STAGE 2 (dictionary), before any English sweep
+'X means ?' right, words IN dictionary                 100%         100%            —            —         100%         100%
+nearest tp word right, in dictionary                     1%           3%            —            —           1%           1%
+toki pona test loss                                    6.51         8.63            —            —         6.51         6.51
+
+AFTER STAGE 1 (toki pona only)
+toki pona test loss                                    0.82            —         0.82            —         0.82         0.82
+
+What 'X means' answered after stage 3, condition 'full' (counts over seeds):
+  bird     -> suwi×2, pona×2, telo×1, kasi×1
+  fruit    -> telo×1, kili×1, moku×1, lili×1
+  sleeps   -> suwi×2, pona×2, telo×1, lape×1
+  drinks   -> suwi×3, telo×2, kala×1
+  liquid   -> telo×1, kili×1, moku×1, lili×1
+  home     -> suwi×3, telo×1, moku×1, pona×1
+  large    -> suwi×3, telo×1, moku×1, pona×1
+  nice     -> suwi×3, telo×1, olin×1, pona×1
+  munches  -> pona×2, telo×1, suli×1, kala×1
