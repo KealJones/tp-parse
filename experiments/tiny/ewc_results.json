@@ -1,0 +1,5372 @@
+[
+ {
+  "seed": 0,
+  "strength": 0,
+  "en_loss": 0.9300379753112793,
+  "tp_loss": 10.899314880371094,
+  "hub_accuracy": 0.08333333333333333,
+  "hub_corr_same": 0.08902088657487184,
+  "hub_corr_other": -0.0020486128058680563,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "kala",
+    "corr_own": 0.187,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "telo",
+    "corr_own": 0.242,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "ike",
+    "corr_own": 0.114,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "ike",
+    "corr_own": 0.133,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "pan",
+    "corr_own": 0.123,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "pan",
+    "corr_own": 0.113,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "pan",
+    "corr_own": 0.014,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "pan",
+    "corr_own": -0.021,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "waso",
+    "corr_own": 0.202,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "waso",
+    "corr_own": 0.172,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.178,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "ike",
+    "corr_own": -0.011,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "kala",
+    "corr_own": 0.2,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "telo",
+    "corr_own": -0.093,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "ike",
+    "corr_own": -0.195,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "kala",
+    "corr_own": 0.337,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "ike",
+    "corr_own": 0.08,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "ike",
+    "corr_own": 0.017,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "pan",
+    "corr_own": 0.076,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "pan",
+    "corr_own": -0.031,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "pan",
+    "corr_own": 0.167,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "telo",
+    "corr_own": 0.069,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "waso",
+    "corr_own": 0.034,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "waso",
+    "corr_own": 0.028,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 0,
+  "strength": 10,
+  "en_loss": 0.9527201652526855,
+  "tp_loss": 1.0460560321807861,
+  "hub_accuracy": 0.125,
+  "hub_corr_same": 0.36457187837610644,
+  "hub_corr_other": -0.012588314949086863,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "pan",
+    "corr_own": -0.076,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "pan",
+    "corr_own": -0.115,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "kala",
+    "corr_own": 0.442,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "kala",
+    "corr_own": 0.351,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.609,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.641,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.306,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.482,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "moku",
+    "corr_own": 0.528,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "moku",
+    "corr_own": 0.546,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "moku",
+    "corr_own": 0.455,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lili",
+    "corr_own": 0.277,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "pona",
+    "corr_own": 0.504,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "tawa",
+    "corr_own": 0.277,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "suli",
+    "corr_own": 0.192,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "suli",
+    "corr_own": 0.559,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lili",
+    "corr_own": 0.154,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lili",
+    "corr_own": 0.123,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "tomo",
+    "corr_own": 0.513,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "ike",
+    "corr_own": -0.134,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "tomo",
+    "corr_own": 0.491,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "moku",
+    "corr_own": 0.406,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "moku",
+    "corr_own": 0.594,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "moku",
+    "corr_own": 0.627,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 0,
+  "strength": 100,
+  "en_loss": 0.9830361604690552,
+  "tp_loss": 1.0164824724197388,
+  "hub_accuracy": 0.20833333333333334,
+  "hub_corr_same": 0.34472493363621953,
+  "hub_corr_other": -0.01146204696887449,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "suli",
+    "corr_own": -0.159,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "pona",
+    "corr_own": -0.194,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "kala",
+    "corr_own": 0.481,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "kala",
+    "corr_own": 0.391,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "kala",
+    "corr_own": 0.531,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "kala",
+    "corr_own": 0.489,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "tomo",
+    "corr_own": 0.531,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "tomo",
+    "corr_own": 0.603,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "moku",
+    "corr_own": 0.605,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "moku",
+    "corr_own": 0.624,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "moku",
+    "corr_own": 0.664,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "olin",
+    "corr_own": 0.025,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "suwi",
+    "corr_own": 0.37,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "lape",
+    "corr_own": 0.364,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "suwi",
+    "corr_own": 0.026,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "suwi",
+    "corr_own": 0.508,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "olin",
+    "corr_own": 0.085,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "olin",
+    "corr_own": 0.111,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "kala",
+    "corr_own": 0.166,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "tomo",
+    "corr_own": -0.006,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "tomo",
+    "corr_own": 0.559,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "tawa",
+    "corr_own": 0.458,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "moku",
+    "corr_own": 0.515,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "moku",
+    "corr_own": 0.524,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 0,
+  "strength": 1000,
+  "en_loss": 0.9609501361846924,
+  "tp_loss": 2.211618423461914,
+  "hub_accuracy": 0.125,
+  "hub_corr_same": 0.2545410537859425,
+  "hub_corr_other": -0.004517042829926747,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "lili",
+    "corr_own": -0.069,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "lili",
+    "corr_own": 0.004,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "kili",
+    "corr_own": 0.221,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "kili",
+    "corr_own": 0.207,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.521,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "pona",
+    "corr_own": 0.589,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "kala",
+    "corr_own": 0.637,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "kala",
+    "corr_own": 0.587,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.253,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.214,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.389,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lukin",
+    "corr_own": -0.095,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "kili",
+    "corr_own": 0.501,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "olin",
+    "corr_own": 0.294,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "kili",
+    "corr_own": -0.288,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "suwi",
+    "corr_own": 0.099,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "olin",
+    "corr_own": 0.141,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lukin",
+    "corr_own": 0.174,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "pona",
+    "corr_own": 0.599,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "ike",
+    "corr_own": -0.082,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "suwi",
+    "corr_own": 0.614,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "lape",
+    "corr_own": -0.028,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": 0.224,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "olin",
+    "corr_own": 0.402,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 0,
+  "strength": 10000,
+  "en_loss": 0.9753372073173523,
+  "tp_loss": 2.232225179672241,
+  "hub_accuracy": 0.08333333333333333,
+  "hub_corr_same": 0.16880655156758925,
+  "hub_corr_other": 0.002165653653541014,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "pona",
+    "corr_own": -0.19,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kili",
+    "corr_own": -0.249,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "pan",
+    "corr_own": -0.134,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "pan",
+    "corr_own": -0.04,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "pan",
+    "corr_own": 0.195,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "pan",
+    "corr_own": 0.293,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "kala",
+    "corr_own": 0.568,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "kala",
+    "corr_own": 0.515,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.355,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.348,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.325,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lili",
+    "corr_own": 0.443,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "suwi",
+    "corr_own": 0.269,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "olin",
+    "corr_own": 0.326,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "suli",
+    "corr_own": 0.021,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "ike",
+    "corr_own": 0.217,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lili",
+    "corr_own": -0.207,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lili",
+    "corr_own": -0.193,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "ike",
+    "corr_own": 0.378,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "ike",
+    "corr_own": -0.403,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "suwi",
+    "corr_own": 0.54,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "olin",
+    "corr_own": 0.122,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": 0.252,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "tawa",
+    "corr_own": 0.302,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 1,
+  "strength": 0,
+  "en_loss": 0.9256949424743652,
+  "tp_loss": 11.697979927062988,
+  "hub_accuracy": 0.08333333333333333,
+  "hub_corr_same": 0.02844562071065108,
+  "hub_corr_other": 0.001678388705591251,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "kili",
+    "corr_own": -0.152,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kili",
+    "corr_own": -0.067,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "kili",
+    "corr_own": 0.099,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "kili",
+    "corr_own": 0.15,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.078,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.121,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "tomo",
+    "corr_own": 0.063,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "kili",
+    "corr_own": 0.019,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.14,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.152,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.174,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "pan",
+    "corr_own": 0.018,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "kili",
+    "corr_own": 0.236,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "tawa",
+    "corr_own": 0.067,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "kili",
+    "corr_own": -0.096,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "kili",
+    "corr_own": 0.05,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "suwi",
+    "corr_own": -0.307,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "telo",
+    "corr_own": -0.343,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "tomo",
+    "corr_own": -0.044,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "soweli",
+    "corr_own": -0.018,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "tomo",
+    "corr_own": 0.045,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "tawa",
+    "corr_own": 0.231,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "lape",
+    "corr_own": -0.008,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "lape",
+    "corr_own": 0.075,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 1,
+  "strength": 10,
+  "en_loss": 0.9457845091819763,
+  "tp_loss": 1.1627540588378906,
+  "hub_accuracy": 0.0,
+  "hub_corr_same": 0.04504503693897277,
+  "hub_corr_other": 0.006118718957355561,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "ike",
+    "corr_own": -0.194,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kili",
+    "corr_own": -0.102,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "ike",
+    "corr_own": 0.005,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "ike",
+    "corr_own": -0.014,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "suwi",
+    "corr_own": 0.278,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "suwi",
+    "corr_own": 0.285,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "kili",
+    "corr_own": 0.153,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "kili",
+    "corr_own": 0.129,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "jan",
+    "corr_own": 0.075,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "jan",
+    "corr_own": 0.09,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "jan",
+    "corr_own": 0.1,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lape",
+    "corr_own": -0.328,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "ike",
+    "corr_own": 0.339,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "tawa",
+    "corr_own": -0.096,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "pona",
+    "corr_own": -0.045,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "suli",
+    "corr_own": 0.404,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lape",
+    "corr_own": -0.241,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lape",
+    "corr_own": -0.283,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "tomo",
+    "corr_own": 0.197,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "tomo",
+    "corr_own": -0.083,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "telo",
+    "corr_own": -0.018,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "lili",
+    "corr_own": 0.295,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "jan",
+    "corr_own": 0.059,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "jan",
+    "corr_own": 0.074,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 1,
+  "strength": 100,
+  "en_loss": 0.9617253541946411,
+  "tp_loss": 2.065206527709961,
+  "hub_accuracy": 0.041666666666666664,
+  "hub_corr_same": 0.0960786968935281,
+  "hub_corr_other": 0.0026306022899042743,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "kili",
+    "corr_own": -0.319,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "ike",
+    "corr_own": -0.331,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "ike",
+    "corr_own": -0.151,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "ike",
+    "corr_own": 0.087,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.322,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.372,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.26,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.199,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.118,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.192,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "soweli",
+    "corr_own": 0.172,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "pona",
+    "corr_own": -0.04,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "ike",
+    "corr_own": 0.348,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "jan",
+    "corr_own": 0.093,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "kala",
+    "corr_own": -0.102,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "kala",
+    "corr_own": 0.421,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "pona",
+    "corr_own": -0.017,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "pona",
+    "corr_own": -0.059,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "tomo",
+    "corr_own": 0.207,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "tomo",
+    "corr_own": -0.273,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "kili",
+    "corr_own": 0.445,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "jan",
+    "corr_own": 0.327,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": 0.057,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "tawa",
+    "corr_own": -0.022,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 1,
+  "strength": 1000,
+  "en_loss": 0.9733119010925293,
+  "tp_loss": 2.3813023567199707,
+  "hub_accuracy": 0.125,
+  "hub_corr_same": 0.13233012011429915,
+  "hub_corr_other": -0.0047009030205634765,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "tomo",
+    "corr_own": -0.225,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "tomo",
+    "corr_own": -0.315,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "jan",
+    "corr_own": -0.154,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "waso",
+    "corr_own": -0.031,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.443,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.458,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "pan",
+    "corr_own": 0.096,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.499,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.009,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.021,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.088,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "jan",
+    "corr_own": 0.262,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "kili",
+    "corr_own": 0.458,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "lape",
+    "corr_own": 0.643,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "kili",
+    "corr_own": 0.083,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "kili",
+    "corr_own": 0.053,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lili",
+    "corr_own": 0.309,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lili",
+    "corr_own": 0.328,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "ike",
+    "corr_own": 0.459,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "ike",
+    "corr_own": -0.293,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "ike",
+    "corr_own": 0.309,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "lape",
+    "corr_own": -0.025,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": -0.135,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "tawa",
+    "corr_own": -0.164,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 1,
+  "strength": 10000,
+  "en_loss": 0.9858199954032898,
+  "tp_loss": 2.026585340499878,
+  "hub_accuracy": 0.08333333333333333,
+  "hub_corr_same": 0.20160666649462655,
+  "hub_corr_other": -0.007310779390607814,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "suli",
+    "corr_own": -0.024,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "tomo",
+    "corr_own": 0.013,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "suwi",
+    "corr_own": 0.367,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "ike",
+    "corr_own": 0.437,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "kili",
+    "corr_own": 0.446,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.429,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "tomo",
+    "corr_own": 0.118,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "tomo",
+    "corr_own": 0.538,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.18,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.188,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.153,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "waso",
+    "corr_own": 0.403,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "kili",
+    "corr_own": 0.336,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "tawa",
+    "corr_own": 0.228,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "kili",
+    "corr_own": 0.268,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "pan",
+    "corr_own": 0.03,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "waso",
+    "corr_own": -0.012,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "moku",
+    "corr_own": -0.005,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "telo",
+    "corr_own": 0.103,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "ike",
+    "corr_own": -0.046,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "tomo",
+    "corr_own": 0.123,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "lape",
+    "corr_own": 0.113,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": 0.198,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "tawa",
+    "corr_own": 0.257,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 2,
+  "strength": 0,
+  "en_loss": 0.9216360449790955,
+  "tp_loss": 9.561124801635742,
+  "hub_accuracy": 0.20833333333333334,
+  "hub_corr_same": 0.20791880283892775,
+  "hub_corr_other": -0.0021299684063955746,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "pona",
+    "corr_own": 0.135,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kala",
+    "corr_own": 0.172,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "pona",
+    "corr_own": 0.166,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "pona",
+    "corr_own": 0.195,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "suwi",
+    "corr_own": 0.216,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "pona",
+    "corr_own": 0.28,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "pan",
+    "corr_own": 0.34,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "pona",
+    "corr_own": 0.399,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "jan",
+    "corr_own": 0.171,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "jan",
+    "corr_own": 0.158,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "olin",
+    "corr_own": 0.212,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "waso",
+    "corr_own": 0.277,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "pona",
+    "corr_own": 0.288,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "lili",
+    "corr_own": 0.149,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "pona",
+    "corr_own": 0.17,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "kala",
+    "corr_own": 0.313,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "waso",
+    "corr_own": 0.004,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "waso",
+    "corr_own": 0.047,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "pona",
+    "corr_own": 0.212,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "suwi",
+    "corr_own": -0.258,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "pan",
+    "corr_own": 0.286,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "tawa",
+    "corr_own": 0.357,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "olin",
+    "corr_own": 0.38,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "olin",
+    "corr_own": 0.323,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 2,
+  "strength": 10,
+  "en_loss": 0.9417556524276733,
+  "tp_loss": 2.0206525325775146,
+  "hub_accuracy": 0.16666666666666666,
+  "hub_corr_same": 0.3425928245609005,
+  "hub_corr_other": -0.009251008314130754,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "suwi",
+    "corr_own": -0.093,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "suwi",
+    "corr_own": -0.083,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "pona",
+    "corr_own": 0.402,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "pona",
+    "corr_own": 0.185,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "pona",
+    "corr_own": 0.505,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "pona",
+    "corr_own": 0.487,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "pona",
+    "corr_own": 0.699,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "pona",
+    "corr_own": 0.62,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "olin",
+    "corr_own": 0.434,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "olin",
+    "corr_own": 0.435,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "jan",
+    "corr_own": 0.213,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "jan",
+    "corr_own": -0.051,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "tomo",
+    "corr_own": 0.586,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "waso",
+    "corr_own": 0.108,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "tomo",
+    "corr_own": -0.083,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "kili",
+    "corr_own": 0.527,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "soweli",
+    "corr_own": 0.572,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "jan",
+    "corr_own": 0.567,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "ike",
+    "corr_own": 0.585,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "pona",
+    "corr_own": -0.094,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "pona",
+    "corr_own": 0.372,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "tawa",
+    "corr_own": 0.339,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "olin",
+    "corr_own": 0.504,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "jan",
+    "corr_own": 0.486,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 2,
+  "strength": 100,
+  "en_loss": 0.9631849527359009,
+  "tp_loss": 1.9752628803253174,
+  "hub_accuracy": 0.08333333333333333,
+  "hub_corr_same": 0.22774062032112852,
+  "hub_corr_other": -0.005705474697249741,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "ike",
+    "corr_own": -0.173,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "ike",
+    "corr_own": -0.145,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "pona",
+    "corr_own": 0.265,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "suwi",
+    "corr_own": 0.285,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "pona",
+    "corr_own": 0.458,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "pona",
+    "corr_own": 0.363,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "pona",
+    "corr_own": 0.684,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "pona",
+    "corr_own": 0.591,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "jan",
+    "corr_own": 0.144,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "jan",
+    "corr_own": 0.146,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "jan",
+    "corr_own": 0.107,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "soweli",
+    "corr_own": 0.176,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "suli",
+    "corr_own": 0.223,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "waso",
+    "corr_own": -0.003,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "tomo",
+    "corr_own": 0.147,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "kili",
+    "corr_own": 0.277,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "waso",
+    "corr_own": -0.082,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "waso",
+    "corr_own": 0.029,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "pona",
+    "corr_own": 0.736,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "pona",
+    "corr_own": -0.238,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "pona",
+    "corr_own": 0.279,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "olin",
+    "corr_own": 0.45,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "jan",
+    "corr_own": 0.365,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "jan",
+    "corr_own": 0.381,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 2,
+  "strength": 1000,
+  "en_loss": 0.9449190497398376,
+  "tp_loss": 2.4000093936920166,
+  "hub_accuracy": 0.041666666666666664,
+  "hub_corr_same": 0.21727234420056143,
+  "hub_corr_other": -0.0009928752020356363,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "kala",
+    "corr_own": 0.201,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kala",
+    "corr_own": 0.235,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "kala",
+    "corr_own": 0.1,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "pona",
+    "corr_own": 0.092,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "pona",
+    "corr_own": 0.354,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "pona",
+    "corr_own": 0.253,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "kala",
+    "corr_own": 0.573,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "kala",
+    "corr_own": 0.589,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.449,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.363,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.24,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "waso",
+    "corr_own": 0.313,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "tomo",
+    "corr_own": 0.4,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "lukin",
+    "corr_own": 0.046,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "kala",
+    "corr_own": 0.148,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "pan",
+    "corr_own": 0.228,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "suwi",
+    "corr_own": -0.292,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "waso",
+    "corr_own": -0.297,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "pona",
+    "corr_own": 0.458,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "pona",
+    "corr_own": -0.379,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "suli",
+    "corr_own": 0.475,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "lukin",
+    "corr_own": 0.08,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": 0.274,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "tawa",
+    "corr_own": 0.312,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 2,
+  "strength": 10000,
+  "en_loss": 0.9748358726501465,
+  "tp_loss": 1.929951548576355,
+  "hub_accuracy": 0.08333333333333333,
+  "hub_corr_same": 0.1591074990768296,
+  "hub_corr_other": 0.0030377211238445333,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "kala",
+    "corr_own": -0.007,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kala",
+    "corr_own": 0.019,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "kala",
+    "corr_own": 0.521,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "kala",
+    "corr_own": 0.499,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "ike",
+    "corr_own": 0.039,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "ike",
+    "corr_own": -0.002,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "pona",
+    "corr_own": 0.375,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "suwi",
+    "corr_own": 0.519,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.209,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.201,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.204,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "ike",
+    "corr_own": 0.202,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "kala",
+    "corr_own": 0.541,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "lukin",
+    "corr_own": 0.116,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "kala",
+    "corr_own": -0.041,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "kala",
+    "corr_own": 0.611,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "ike",
+    "corr_own": -0.4,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "ike",
+    "corr_own": -0.429,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "suwi",
+    "corr_own": 0.246,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "pona",
+    "corr_own": -0.246,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "kala",
+    "corr_own": 0.056,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "lukin",
+    "corr_own": 0.025,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": 0.244,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "tawa",
+    "corr_own": 0.316,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 3,
+  "strength": 0,
+  "en_loss": 0.9233832955360413,
+  "tp_loss": 9.88988208770752,
+  "hub_accuracy": 0.125,
+  "hub_corr_same": 0.13151484607563665,
+  "hub_corr_other": 0.0021600772329649913,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "kala",
+    "corr_own": -0.215,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kala",
+    "corr_own": -0.226,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "jan",
+    "corr_own": 0.135,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "jan",
+    "corr_own": 0.146,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.183,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.27,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "tomo",
+    "corr_own": 0.256,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "tomo",
+    "corr_own": 0.237,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "moku",
+    "corr_own": 0.383,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "moku",
+    "corr_own": 0.36,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "lukin",
+    "corr_own": 0.379,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "telo",
+    "corr_own": 0.187,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "kili",
+    "corr_own": 0.456,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "lili",
+    "corr_own": -0.166,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "tomo",
+    "corr_own": -0.063,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "tomo",
+    "corr_own": 0.288,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "telo",
+    "corr_own": -0.073,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "telo",
+    "corr_own": -0.022,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "tomo",
+    "corr_own": 0.111,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "tomo",
+    "corr_own": -0.15,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "pona",
+    "corr_own": -0.01,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "pan",
+    "corr_own": 0.061,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "moku",
+    "corr_own": 0.329,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "moku",
+    "corr_own": 0.302,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 3,
+  "strength": 10,
+  "en_loss": 0.9435195922851562,
+  "tp_loss": 1.7619119882583618,
+  "hub_accuracy": 0.125,
+  "hub_corr_same": 0.299263349113365,
+  "hub_corr_other": 0.00320182955773121,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "suwi",
+    "corr_own": -0.115,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "suwi",
+    "corr_own": -0.136,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "ike",
+    "corr_own": 0.491,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "ike",
+    "corr_own": 0.479,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "ike",
+    "corr_own": 0.389,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "ike",
+    "corr_own": 0.444,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "kala",
+    "corr_own": 0.549,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "kala",
+    "corr_own": 0.601,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.377,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.386,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.341,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "waso",
+    "corr_own": 0.38,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "suwi",
+    "corr_own": 0.205,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "waso",
+    "corr_own": -0.069,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "suwi",
+    "corr_own": -0.434,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "suwi",
+    "corr_own": 0.188,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "soweli",
+    "corr_own": 0.405,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "soweli",
+    "corr_own": 0.425,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "ike",
+    "corr_own": 0.625,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "ike",
+    "corr_own": -0.121,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "kala",
+    "corr_own": 0.486,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "pan",
+    "corr_own": 0.264,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "moku",
+    "corr_own": 0.491,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "lukin",
+    "corr_own": 0.531,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 3,
+  "strength": 100,
+  "en_loss": 0.9540503621101379,
+  "tp_loss": 2.234391450881958,
+  "hub_accuracy": 0.041666666666666664,
+  "hub_corr_same": 0.26847012808563403,
+  "hub_corr_other": -0.008550813415044389,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "tomo",
+    "corr_own": 0.079,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kili",
+    "corr_own": 0.009,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "suwi",
+    "corr_own": 0.287,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "suwi",
+    "corr_own": 0.307,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "kala",
+    "corr_own": 0.496,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "kala",
+    "corr_own": 0.456,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.651,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.679,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.406,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.462,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.338,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lili",
+    "corr_own": 0.431,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "telo",
+    "corr_own": 0.0,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "tawa",
+    "corr_own": 0.255,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "tomo",
+    "corr_own": -0.208,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "pona",
+    "corr_own": 0.217,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lili",
+    "corr_own": -0.119,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lili",
+    "corr_own": -0.116,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "ike",
+    "corr_own": 0.649,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "kala",
+    "corr_own": -0.094,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "ike",
+    "corr_own": 0.616,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "pan",
+    "corr_own": 0.109,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "pan",
+    "corr_own": 0.285,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "pan",
+    "corr_own": 0.246,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 3,
+  "strength": 1000,
+  "en_loss": 0.9682382345199585,
+  "tp_loss": 2.444499969482422,
+  "hub_accuracy": 0.041666666666666664,
+  "hub_corr_same": 0.20251294986034432,
+  "hub_corr_other": -0.00605811150700331,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "moku",
+    "corr_own": -0.047,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "suwi",
+    "corr_own": -0.051,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "telo",
+    "corr_own": 0.176,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "telo",
+    "corr_own": 0.148,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "ike",
+    "corr_own": 0.35,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "kala",
+    "corr_own": 0.406,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.508,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.564,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.121,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.115,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "lukin",
+    "corr_own": 0.421,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lili",
+    "corr_own": 0.531,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "telo",
+    "corr_own": 0.242,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "pan",
+    "corr_own": 0.412,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "telo",
+    "corr_own": -0.132,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "telo",
+    "corr_own": 0.07,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lili",
+    "corr_own": -0.173,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lili",
+    "corr_own": -0.173,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "ike",
+    "corr_own": 0.609,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "ike",
+    "corr_own": -0.045,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "kala",
+    "corr_own": 0.384,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "lape",
+    "corr_own": -0.116,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "moku",
+    "corr_own": 0.322,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "pan",
+    "corr_own": 0.219,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 3,
+  "strength": 10000,
+  "en_loss": 0.9715412855148315,
+  "tp_loss": 2.196119785308838,
+  "hub_accuracy": 0.125,
+  "hub_corr_same": 0.23732178681651325,
+  "hub_corr_other": 0.000338199913933161,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "suwi",
+    "corr_own": -0.022,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "suwi",
+    "corr_own": -0.107,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "tomo",
+    "corr_own": 0.548,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "tomo",
+    "corr_own": 0.541,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "ike",
+    "corr_own": 0.573,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "kala",
+    "corr_own": 0.543,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.503,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.531,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.174,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.168,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "pan",
+    "corr_own": 0.251,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lili",
+    "corr_own": 0.334,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "tomo",
+    "corr_own": 0.354,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "lape",
+    "corr_own": 0.641,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "tomo",
+    "corr_own": -0.332,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "tomo",
+    "corr_own": 0.204,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lili",
+    "corr_own": -0.214,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lili",
+    "corr_own": -0.186,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "kala",
+    "corr_own": 0.494,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "ike",
+    "corr_own": -0.024,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "kala",
+    "corr_own": 0.27,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "pan",
+    "corr_own": -0.0,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": 0.234,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "tawa",
+    "corr_own": 0.219,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 4,
+  "strength": 0,
+  "en_loss": 0.9256333112716675,
+  "tp_loss": 9.964442253112793,
+  "hub_accuracy": 0.08333333333333333,
+  "hub_corr_same": 0.056144672678783536,
+  "hub_corr_other": 0.0005021355631398881,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "tomo",
+    "corr_own": -0.021,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kili",
+    "corr_own": -0.09,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "kili",
+    "corr_own": 0.201,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "kili",
+    "corr_own": 0.152,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "telo",
+    "corr_own": -0.137,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "telo",
+    "corr_own": -0.143,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "pan",
+    "corr_own": -0.005,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "pan",
+    "corr_own": 0.076,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.071,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "ike",
+    "corr_own": 0.02,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.064,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lili",
+    "corr_own": 0.2,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "kili",
+    "corr_own": 0.329,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "lape",
+    "corr_own": 0.264,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "kili",
+    "corr_own": 0.156,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "tomo",
+    "corr_own": 0.233,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lili",
+    "corr_own": 0.172,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lili",
+    "corr_own": 0.13,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "olin",
+    "corr_own": -0.273,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "lape",
+    "corr_own": -0.189,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "pan",
+    "corr_own": -0.057,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "moku",
+    "corr_own": 0.033,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "lape",
+    "corr_own": 0.033,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "lape",
+    "corr_own": 0.128,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 4,
+  "strength": 10,
+  "en_loss": 0.941367506980896,
+  "tp_loss": 1.725571632385254,
+  "hub_accuracy": 0.375,
+  "hub_corr_same": 0.43124480464030057,
+  "hub_corr_other": -0.003124127843857779,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "kili",
+    "corr_own": 0.165,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kili",
+    "corr_own": -0.01,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "pan",
+    "corr_own": 0.367,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "kili",
+    "corr_own": 0.487,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "suli",
+    "corr_own": 0.573,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "suli",
+    "corr_own": 0.623,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.492,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "suli",
+    "corr_own": 0.566,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "lukin",
+    "corr_own": 0.628,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "moku",
+    "corr_own": 0.684,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "olin",
+    "corr_own": 0.627,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "jan",
+    "corr_own": 0.251,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "kili",
+    "corr_own": 0.649,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "lape",
+    "corr_own": 0.465,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "kili",
+    "corr_own": 0.324,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "kili",
+    "corr_own": 0.444,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "jan",
+    "corr_own": 0.56,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "jan",
+    "corr_own": 0.575,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "ike",
+    "corr_own": 0.445,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "pona",
+    "corr_own": -0.168,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "kala",
+    "corr_own": 0.328,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "tawa",
+    "corr_own": 0.136,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "olin",
+    "corr_own": 0.548,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "olin",
+    "corr_own": 0.592,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 4,
+  "strength": 100,
+  "en_loss": 0.9574156999588013,
+  "tp_loss": 1.5712212324142456,
+  "hub_accuracy": 0.125,
+  "hub_corr_same": 0.39692853996530175,
+  "hub_corr_other": -0.008408716952687302,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "pan",
+    "corr_own": 0.284,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "pan",
+    "corr_own": 0.227,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "pan",
+    "corr_own": 0.322,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "kili",
+    "corr_own": 0.412,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "kala",
+    "corr_own": 0.625,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "kala",
+    "corr_own": 0.645,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "kala",
+    "corr_own": 0.648,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "suli",
+    "corr_own": 0.705,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.38,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.389,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "lukin",
+    "corr_own": 0.504,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "soweli",
+    "corr_own": 0.292,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "pan",
+    "corr_own": -0.041,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "moku",
+    "corr_own": 0.295,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "pan",
+    "corr_own": 0.514,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "pan",
+    "corr_own": -0.089,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "soweli",
+    "corr_own": 0.594,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "soweli",
+    "corr_own": 0.633,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "ike",
+    "corr_own": 0.602,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "pona",
+    "corr_own": -0.252,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "kili",
+    "corr_own": 0.667,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "lukin",
+    "corr_own": 0.05,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "moku",
+    "corr_own": 0.591,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "lukin",
+    "corr_own": 0.53,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 4,
+  "strength": 1000,
+  "en_loss": 0.9556909203529358,
+  "tp_loss": 2.522291421890259,
+  "hub_accuracy": 0.125,
+  "hub_corr_same": 0.22630974390388778,
+  "hub_corr_other": -0.004045599988517899,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "telo",
+    "corr_own": 0.558,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "telo",
+    "corr_own": 0.519,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "suwi",
+    "corr_own": 0.181,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "telo",
+    "corr_own": 0.156,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "ike",
+    "corr_own": 0.211,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "ike",
+    "corr_own": 0.406,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.3,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.211,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.265,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.262,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.269,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lili",
+    "corr_own": 0.586,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "telo",
+    "corr_own": 0.075,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "olin",
+    "corr_own": -0.029,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "telo",
+    "corr_own": 0.106,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "telo",
+    "corr_own": 0.381,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lili",
+    "corr_own": -0.04,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lili",
+    "corr_own": -0.082,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "ike",
+    "corr_own": 0.617,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "ike",
+    "corr_own": -0.191,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "ike",
+    "corr_own": 0.322,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "moku",
+    "corr_own": -0.013,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": 0.192,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "lape",
+    "corr_own": 0.169,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 4,
+  "strength": 10000,
+  "en_loss": 0.9659101963043213,
+  "tp_loss": 2.224177837371826,
+  "hub_accuracy": 0.16666666666666666,
+  "hub_corr_same": 0.26957526252954267,
+  "hub_corr_other": 0.0009347779930834019,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "telo",
+    "corr_own": 0.401,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "suli",
+    "corr_own": 0.317,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "pan",
+    "corr_own": 0.332,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "pan",
+    "corr_own": 0.247,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "ike",
+    "corr_own": 0.448,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "pona",
+    "corr_own": 0.405,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "pona",
+    "corr_own": 0.479,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "pona",
+    "corr_own": 0.546,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.219,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.253,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.215,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lili",
+    "corr_own": 0.641,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "telo",
+    "corr_own": 0.193,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "olin",
+    "corr_own": -0.113,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "telo",
+    "corr_own": 0.194,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "telo",
+    "corr_own": 0.275,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lili",
+    "corr_own": 0.004,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lili",
+    "corr_own": -0.059,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "ike",
+    "corr_own": 0.483,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "pona",
+    "corr_own": -0.104,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "ike",
+    "corr_own": 0.609,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "moku",
+    "corr_own": -0.009,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": 0.254,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "tawa",
+    "corr_own": 0.242,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 5,
+  "strength": 0,
+  "en_loss": 0.9262038469314575,
+  "tp_loss": 10.766385078430176,
+  "hub_accuracy": 0.041666666666666664,
+  "hub_corr_same": 0.09685615752823651,
+  "hub_corr_other": -0.004436385230898547,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "pan",
+    "corr_own": 0.096,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "pan",
+    "corr_own": 0.199,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "telo",
+    "corr_own": 0.204,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "telo",
+    "corr_own": 0.175,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "telo",
+    "corr_own": 0.23,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "telo",
+    "corr_own": 0.176,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "pan",
+    "corr_own": 0.199,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "pan",
+    "corr_own": 0.191,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.094,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.092,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.109,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lili",
+    "corr_own": 0.298,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "pan",
+    "corr_own": 0.028,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "soweli",
+    "corr_own": 0.104,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "pan",
+    "corr_own": 0.335,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "telo",
+    "corr_own": 0.202,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lili",
+    "corr_own": -0.439,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lili",
+    "corr_own": -0.402,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "kili",
+    "corr_own": 0.149,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "pan",
+    "corr_own": -0.12,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "kili",
+    "corr_own": 0.077,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "soweli",
+    "corr_own": 0.159,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": 0.074,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "tawa",
+    "corr_own": 0.093,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 5,
+  "strength": 10,
+  "en_loss": 0.9508283734321594,
+  "tp_loss": 2.1762948036193848,
+  "hub_accuracy": 0.08333333333333333,
+  "hub_corr_same": 0.2454876434057951,
+  "hub_corr_other": -0.003330024387276567,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "ike",
+    "corr_own": -0.212,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "ike",
+    "corr_own": -0.239,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "suli",
+    "corr_own": 0.597,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "suli",
+    "corr_own": 0.557,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.515,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.498,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "kili",
+    "corr_own": 0.438,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "kili",
+    "corr_own": 0.385,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "moku",
+    "corr_own": 0.496,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "jan",
+    "corr_own": 0.467,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "waso",
+    "corr_own": 0.36,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lili",
+    "corr_own": 0.298,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "ike",
+    "corr_own": 0.329,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "jan",
+    "corr_own": 0.135,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "suli",
+    "corr_own": -0.195,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "pona",
+    "corr_own": 0.32,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lili",
+    "corr_own": -0.203,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "lili",
+    "corr_own": -0.22,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "kili",
+    "corr_own": 0.175,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "pona",
+    "corr_own": -0.409,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "kili",
+    "corr_own": 0.318,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "tawa",
+    "corr_own": 0.471,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "moku",
+    "corr_own": 0.475,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "moku",
+    "corr_own": 0.536,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 5,
+  "strength": 100,
+  "en_loss": 0.9500514268875122,
+  "tp_loss": 1.8269952535629272,
+  "hub_accuracy": 0.20833333333333334,
+  "hub_corr_same": 0.2982267347785334,
+  "hub_corr_other": -0.014067196039974863,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "pan",
+    "corr_own": -0.303,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "pan",
+    "corr_own": -0.315,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "pan",
+    "corr_own": 0.13,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "kili",
+    "corr_own": 0.22,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "suli",
+    "corr_own": 0.68,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "suli",
+    "corr_own": 0.708,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.284,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "ike",
+    "corr_own": 0.16,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "olin",
+    "corr_own": 0.705,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "olin",
+    "corr_own": 0.653,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "lukin",
+    "corr_own": 0.416,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "waso",
+    "corr_own": 0.526,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "pan",
+    "corr_own": 0.13,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "lape",
+    "corr_own": 0.437,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "pan",
+    "corr_own": 0.425,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "pan",
+    "corr_own": 0.325,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "waso",
+    "corr_own": 0.044,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "waso",
+    "corr_own": 0.039,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "kili",
+    "corr_own": 0.36,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "pona",
+    "corr_own": -0.125,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "ike",
+    "corr_own": 0.414,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "lape",
+    "corr_own": 0.23,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "moku",
+    "corr_own": 0.495,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "moku",
+    "corr_own": 0.519,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 5,
+  "strength": 1000,
+  "en_loss": 0.957571268081665,
+  "tp_loss": 2.243363380432129,
+  "hub_accuracy": 0.08333333333333333,
+  "hub_corr_same": 0.24201390810776502,
+  "hub_corr_other": -0.007557007352600112,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "kili",
+    "corr_own": 0.137,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kili",
+    "corr_own": 0.251,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "suwi",
+    "corr_own": 0.341,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "suwi",
+    "corr_own": 0.296,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.49,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.433,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "suwi",
+    "corr_own": 0.611,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "kili",
+    "corr_own": 0.552,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.072,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.053,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.248,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "waso",
+    "corr_own": 0.42,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "telo",
+    "corr_own": 0.112,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "moku",
+    "corr_own": 0.116,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "telo",
+    "corr_own": 0.158,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "telo",
+    "corr_own": 0.23,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "waso",
+    "corr_own": -0.008,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "waso",
+    "corr_own": 0.048,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "ike",
+    "corr_own": 0.4,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "suli",
+    "corr_own": -0.056,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "kili",
+    "corr_own": 0.619,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "olin",
+    "corr_own": 0.104,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "lape",
+    "corr_own": 0.076,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "lape",
+    "corr_own": 0.104,
+    "synonym": false
+   }
+  ]
+ },
+ {
+  "seed": 5,
+  "strength": 10000,
+  "en_loss": 0.974401593208313,
+  "tp_loss": 2.196945905685425,
+  "hub_accuracy": 0.08333333333333333,
+  "hub_corr_same": 0.2868353445859005,
+  "hub_corr_other": -0.011151383813828979,
+  "rows": [
+   {
+    "en": "water",
+    "tp": "telo",
+    "best": "ike",
+    "corr_own": 0.171,
+    "synonym": false
+   },
+   {
+    "en": "liquid",
+    "tp": "telo",
+    "best": "kala",
+    "corr_own": 0.226,
+    "synonym": true
+   },
+   {
+    "en": "house",
+    "tp": "tomo",
+    "best": "ike",
+    "corr_own": 0.321,
+    "synonym": false
+   },
+   {
+    "en": "home",
+    "tp": "tomo",
+    "best": "kili",
+    "corr_own": 0.251,
+    "synonym": true
+   },
+   {
+    "en": "big",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.517,
+    "synonym": false
+   },
+   {
+    "en": "large",
+    "tp": "suli",
+    "best": "tomo",
+    "corr_own": 0.617,
+    "synonym": true
+   },
+   {
+    "en": "good",
+    "tp": "pona",
+    "best": "pona",
+    "corr_own": 0.703,
+    "synonym": false
+   },
+   {
+    "en": "nice",
+    "tp": "pona",
+    "best": "suli",
+    "corr_own": 0.627,
+    "synonym": true
+   },
+   {
+    "en": "eats",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.257,
+    "synonym": false
+   },
+   {
+    "en": "munches",
+    "tp": "moku",
+    "best": "lape",
+    "corr_own": 0.232,
+    "synonym": true
+   },
+   {
+    "en": "drinks",
+    "tp": "moku",
+    "best": "tawa",
+    "corr_own": 0.303,
+    "synonym": false
+   },
+   {
+    "en": "bird",
+    "tp": "waso",
+    "best": "lili",
+    "corr_own": 0.433,
+    "synonym": false
+   },
+   {
+    "en": "fruit",
+    "tp": "kili",
+    "best": "ike",
+    "corr_own": 0.26,
+    "synonym": false
+   },
+   {
+    "en": "sleeps",
+    "tp": "lape",
+    "best": "lukin",
+    "corr_own": 0.277,
+    "synonym": false
+   },
+   {
+    "en": "bread",
+    "tp": "pan",
+    "best": "kala",
+    "corr_own": -0.03,
+    "synonym": false
+   },
+   {
+    "en": "fish",
+    "tp": "kala",
+    "best": "kala",
+    "corr_own": 0.414,
+    "synonym": false
+   },
+   {
+    "en": "person",
+    "tp": "jan",
+    "best": "lape",
+    "corr_own": -0.117,
+    "synonym": false
+   },
+   {
+    "en": "dog",
+    "tp": "soweli",
+    "best": "waso",
+    "corr_own": -0.115,
+    "synonym": false
+   },
+   {
+    "en": "bad",
+    "tp": "ike",
+    "best": "pona",
+    "corr_own": 0.362,
+    "synonym": false
+   },
+   {
+    "en": "small",
+    "tp": "lili",
+    "best": "suli",
+    "corr_own": -0.217,
+    "synonym": false
+   },
+   {
+    "en": "sweet",
+    "tp": "suwi",
+    "best": "pona",
+    "corr_own": 0.567,
+    "synonym": false
+   },
+   {
+    "en": "goes",
+    "tp": "tawa",
+    "best": "pan",
+    "corr_own": 0.184,
+    "synonym": false
+   },
+   {
+    "en": "sees",
+    "tp": "lukin",
+    "best": "tawa",
+    "corr_own": 0.288,
+    "synonym": false
+   },
+   {
+    "en": "loves",
+    "tp": "olin",
+    "best": "tawa",
+    "corr_own": 0.355,
+    "synonym": false
+   }
+  ]
+ }
+]

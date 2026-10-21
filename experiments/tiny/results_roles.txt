@@ -1,0 +1,60 @@
+
+== MLP neurons: English word vs toki pona words of the SAME kind (old stage-1 spots)
+group         chance     no protection    light EWC (10)           control
+verbs            20%       17% (-0.04)       31% (+0.17)       12% (-0.02)
+nouns            12%       15% (+0.01)       13% (+0.18)       13% (+0.01)
+adjectives       20%       12% (+0.02)       33% (+0.06)       10% (-0.00)
+  each cell: how often the right toki pona word is the best match (average correlation with it)
+
+== MLP neurons: synonyms inside English (same spot?)
+pair                    English only       toki pona first toki pona + light EWC
+big/large                      +0.99                 +0.82                 +1.01
+good/nice                      +0.87                 +0.58                 +0.80
+house/home                     +0.82                 +0.86                 +0.97
+water/liquid                   +0.82                 +0.85                 +1.01
+eats/munches                   +0.81                 +0.97                 +1.05
+average                        +0.86                 +0.81                 +0.97
+  each cell: (synonym-to-synonym correlation) minus (correlation with other same-kind words); higher = shares a spot
+
+== hidden state: English word vs toki pona words of the SAME kind (old stage-1 spots)
+group         chance     no protection    light EWC (10)           control
+verbs            20%       24% (+0.02)       38% (+0.22)        7% (-0.08)
+nouns            12%       13% (+0.08)       15% (+0.26)       13% (-0.01)
+adjectives       20%       26% (+0.09)       21% (+0.04)       14% (-0.01)
+  each cell: how often the right toki pona word is the best match (average correlation with it)
+
+== hidden state: synonyms inside English (same spot?)
+pair                    English only       toki pona first toki pona + light EWC
+big/large                      +1.08                 +0.78                 +0.98
+good/nice                      +0.85                 +0.75                 +0.63
+house/home                     +0.81                 +0.84                 +0.91
+water/liquid                   +0.85                 +0.85                 +0.97
+eats/munches                   +0.76                 +0.84                 +0.90
+average                        +0.87                 +0.81                 +0.88
+  each cell: (synonym-to-synonym correlation) minus (correlation with other same-kind words); higher = shares a spot
+
+Per word, MLP, light EWC: best toki pona match within its own kind (counts over seeds)
+  adjectives bad      should be ike    : right 2/6
+  adjectives big      should be suli   : right 3/6
+  adjectives good     should be pona   : right 2/6
+  adjectives large    should be suli   : right 4/6
+  adjectives nice     should be pona   : right 1/6
+  adjectives small    should be lili   : right 1/6
+  adjectives sweet    should be suwi   : right 1/6
+  nouns      bird     should be waso   : right 2/6
+  nouns      bread    should be pan    : right 0/6
+  nouns      dog      should be soweli : right 1/6
+  nouns      fish     should be kala   : right 1/6
+  nouns      fruit    should be kili   : right 1/6
+  nouns      home     should be tomo   : right 0/6
+  nouns      house    should be tomo   : right 1/6
+  nouns      liquid   should be telo   : right 0/6
+  nouns      person   should be jan    : right 2/6
+  nouns      water    should be telo   : right 0/6
+  verbs      drinks   should be moku   : right 0/6
+  verbs      eats     should be moku   : right 1/6
+  verbs      goes     should be tawa   : right 5/6
+  verbs      loves    should be olin   : right 1/6
+  verbs      munches  should be moku   : right 1/6
+  verbs      sees     should be lukin  : right 2/6
+  verbs      sleeps   should be lape   : right 3/6

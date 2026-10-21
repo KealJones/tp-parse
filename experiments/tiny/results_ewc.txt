@@ -1,0 +1,36 @@
+6 seeds. Strength 0 = no protection.
+
+strength    English loss  toki pona loss  hub: picks own  corr own  corr other  synonyms corr
+0                  0.925           10.46             10%     +0.10       -0.00          +0.13
+10                 0.946            1.65             15%     +0.29       -0.00          +0.32
+100                0.962            1.78             12%     +0.27       -0.01          +0.31
+1000               0.960            2.37              9%     +0.21       -0.00          +0.27
+10000              0.975            2.13             10%     +0.22       -0.00          +0.30
+
+(chance for 'picks own' ≈ 6%; toki pona loss right after stage 1 was about 0.8)
+
+Per word at strength 10: correlation with own toki pona word's old neurons, best-match count
+  large    -> suli    corr +0.50   best 1/6   (synonym)
+  big      -> suli    corr +0.48   best 1/6
+  loves    -> olin    corr +0.47   best 1/6
+  nice     -> pona    corr +0.46   best 1/6   (synonym)
+  sees     -> lukin   corr +0.45   best 0/6
+  good     -> pona    corr +0.44   best 1/6
+  fruit    -> kili    corr +0.44   best 1/6
+  munches  -> moku    corr +0.43   best 2/6   (synonym)
+  bad      -> ike     corr +0.42   best 3/6
+  eats     -> moku    corr +0.42   best 2/6
+  fish     -> kala    corr +0.41   best 0/6
+  house    -> tomo    corr +0.38   best 0/6
+  drinks   -> moku    corr +0.35   best 1/6
+  home     -> tomo    corr +0.34   best 0/6   (synonym)
+  sweet    -> suwi    corr +0.33   best 0/6
+  goes     -> tawa    corr +0.32   best 3/6
+  person   -> jan     corr +0.21   best 1/6
+  dog      -> soweli  corr +0.20   best 1/6
+  bird     -> waso    corr +0.14   best 1/6
+  sleeps   -> lape    corr +0.14   best 1/6
+  bread    -> pan     corr -0.04   best 0/6
+  water    -> telo    corr -0.09   best 0/6
+  liquid   -> telo    corr -0.11   best 0/6   (synonym)
+  small    -> lili    corr -0.17   best 0/6
