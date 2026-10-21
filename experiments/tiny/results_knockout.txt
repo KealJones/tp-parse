@@ -1,0 +1,25 @@
+== Right after toki pona (stage 1): knock out a block, predict toki pona words
+condition        own concept  other concepts  random block  own wins
+routed                +4.287          +1.132        +1.206       56%
+routed+ewc            +4.287          +1.132        +0.969       56%
+unrouted              -0.004          +0.007        +0.006       11%
+  values: how much worse the model gets (loss increase) at predicting each concept's words; 'own wins' chance = 11%
+
+== After the English sweep: knock out a block, predict English words
+condition        own concept  other concepts  random block  own wins
+routed                -0.025          +0.047        -0.002        2%
+routed+ewc            +0.036          +0.161        +0.100        4%
+unrouted              +0.000          +0.014        -0.007        4%
+english               +0.007          +0.005        -0.002       13%
+  values: how much worse the model gets (loss increase) at predicting each concept's words; 'own wins' chance = 11%
+
+Per concept, 'routed+ewc', English: loss increase on own words vs average on others
+  telo    (water/liquid): own -0.027  others +0.043
+  moku    (eats/munches/drinks): own +0.023  others +0.648
+  tomo    (house/home): own -0.106  others +0.315
+  waso    (bird): own +0.059  others +0.096
+  kili    (fruit): own -0.034  others +0.134
+  pan     (bread): own +0.169  others +0.074
+  kala    (fish): own -0.088  others +0.042
+  soweli  (dog/cat): own +0.178  others +0.001
+  jan     (person/child): own +0.148  others +0.093
