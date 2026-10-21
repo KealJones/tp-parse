@@ -16,9 +16,15 @@ Three small experiments on one question: if a model learns toki pona first, do E
 
 | v8 | `knockout.py --dict` | v7 with Keal's full three-stage plan: planted toki pona blocks, then the text dictionary ("water means telo ."), then the English sweep. waso and kili are left out of the dictionary. | On average, still no concept-specific routing after the English sweep (own-block damage about equal to other-block damage, chance-level "own wins"). But in one of six seeds with dictionary + light EWC, English clearly went through the planted spots: knocking out telo's block hurt water/liquid by +2.74 vs +0.22 for other words, and soweli's block hurt dog/cat by +2.43 vs +0.48. So it can happen at this scale, but not reliably. |
 
+| v9 | `bridge.py` | v8 with stronger bridges, all with light EWC: a 3x longer dictionary, Spanglish-style mixed sentences ("the soweli eats the pan ."), or both. bird and fruit never appear in any bridge. Controls: mixed bridge with nothing planted; English only. | **Mixed sentences made the planted blocks into hubs English actually uses.** Knocking out a concept's block hurt its own English words more than other words in 6 of 6 seeds (mixed and dict+mixed), and the own block was the worst-hitting block 24–36% of the time vs 11% chance. Controls stayed near zero (mixed with nothing planted: 1/6 seeds; English only: 0/6). Strongest: moku (eat, +1.3 to +1.5), soweli (animal, +0.8 to +1.1), kala (fish, +1.2 with dict+mixed). A longer dictionary alone did nothing (0/6). Surprise: bird and fruit, never in any bridge, also routed through their blocks (+0.28 to +0.38), so mixing seems to link the languages in general rather than word by word. |
+
 Corpus samples for every version are in `CORPUS.md`. Full tables: `results_v2.txt`, `results_v3.txt`.
 
 ## What this says (at this tiny scale)
+
+Updated after v9: planting concepts in chosen neurons works, and English will use those planted spots if the languages are mixed together during a bridge stage and the planted weights are lightly protected. Either ingredient alone isn't enough: no planting, no hubs; no mixing (dictionary only), no routing; no protection, the spots get paved over. Toy scale, one layer, nine concepts, so a promising signal rather than proof.
+
+Before v9:
 
 Updated after v4–v6: learned one after another, English overwrites toki pona's behaviour, but not entirely its spots. Protecting the toki pona weights with light EWC keeps toki pona alive and makes English route through toki pona's neurons about three times more, and for verbs this holds even against other verbs, so it's meaning rather than sentence position. The effect is real but modest. The toy world is too simple to show whether these hubs make a model more efficient; that needs rarer synonyms and a richer world.
 

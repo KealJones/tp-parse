@@ -1,0 +1,42 @@
+Knock out a planted block after the English sweep. Positive = it hurts its own concept more than others.
+
+condition          bridged  unbridged  own wins  seeds > +0.2
+long-dict           -0.059     -0.139       10%           0/6
+mixed               +0.438     +0.379       36%           6/6
+dict+mixed          +0.584     +0.275       24%           6/6
+mixed-unrouted      +0.053     -0.089       10%           1/6
+english             -0.004     +0.024       14%           0/6
+  bridged = concepts in the bridge; unbridged = bird, fruit; 'own wins' chance = 11%
+
+Per concept, 'long-dict' (mean over seeds, own minus others; seeds where own block hurt its words most):
+  telo    (water/liquid): -0.208   own block worst for own words 0/6
+  moku    (eats/munches/drinks): -0.192   own block worst for own words 0/6
+  tomo    (house/home): -0.339   own block worst for own words 0/6
+  waso    (bird): +0.002   own block worst for own words 0/6   (not bridged)
+  kili    (fruit): -0.280   own block worst for own words 1/6   (not bridged)
+  pan     (bread): +0.015   own block worst for own words 2/6
+  kala    (fish): -0.091   own block worst for own words 0/6
+  soweli  (dog/cat): +0.179   own block worst for own words 1/6
+  jan     (person/child): +0.225   own block worst for own words 1/6
+
+Per concept, 'mixed' (mean over seeds, own minus others; seeds where own block hurt its words most):
+  telo    (water/liquid): +0.183   own block worst for own words 1/6
+  moku    (eats/munches/drinks): +1.284   own block worst for own words 4/6
+  tomo    (house/home): +0.309   own block worst for own words 3/6
+  waso    (bird): +0.312   own block worst for own words 1/6   (not bridged)
+  kili    (fruit): +0.446   own block worst for own words 3/6   (not bridged)
+  pan     (bread): +0.123   own block worst for own words 2/6
+  kala    (fish): +0.172   own block worst for own words 0/6
+  soweli  (dog/cat): +1.085   own block worst for own words 4/6
+  jan     (person/child): -0.089   own block worst for own words 1/6
+
+Per concept, 'dict+mixed' (mean over seeds, own minus others; seeds where own block hurt its words most):
+  telo    (water/liquid): +0.181   own block worst for own words 1/6
+  moku    (eats/munches/drinks): +1.515   own block worst for own words 4/6
+  tomo    (house/home): +0.081   own block worst for own words 1/6
+  waso    (bird): +0.233   own block worst for own words 2/6   (not bridged)
+  kili    (fruit): +0.316   own block worst for own words 0/6   (not bridged)
+  pan     (bread): +0.277   own block worst for own words 0/6
+  kala    (fish): +1.231   own block worst for own words 3/6
+  soweli  (dog/cat): +0.773   own block worst for own words 1/6
+  jan     (person/child): +0.029   own block worst for own words 0/6
