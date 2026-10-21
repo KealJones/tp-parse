@@ -14,6 +14,8 @@ Three small experiments on one question: if a model learns toki pona first, do E
 
 | v7 | `knockout.py` | Keal's grid idea: gradient routing plants each toki pona concept in its own block of 8 MLP neurons (routing by the word being predicted), then an unrestricted English sweep, then knock out each block. | Planting works: right after toki pona, knocking out a block hurts its own word by +4.3 vs +1.1 for others (own block is the worst hit 56% of the time; chance 11%). After the English sweep, English does not run through the planted blocks: own-concept damage is no bigger than other-concept damage (2–4% own wins, below chance), with or without EWC. With EWC the blocks still matter for English, but as general machinery rather than per concept. Likely reason: routing by predicted word ties each block to the toki pona *word*, and nothing links "water" to that block. |
 
+| v8 | `knockout.py --dict` | v7 with Keal's full three-stage plan: planted toki pona blocks, then the text dictionary ("water means telo ."), then the English sweep. waso and kili are left out of the dictionary. | On average, still no concept-specific routing after the English sweep (own-block damage about equal to other-block damage, chance-level "own wins"). But in one of six seeds with dictionary + light EWC, English clearly went through the planted spots: knocking out telo's block hurt water/liquid by +2.74 vs +0.22 for other words, and soweli's block hurt dog/cat by +2.43 vs +0.48. So it can happen at this scale, but not reliably. |
+
 Corpus samples for every version are in `CORPUS.md`. Full tables: `results_v2.txt`, `results_v3.txt`.
 
 ## What this says (at this tiny scale)

@@ -1,0 +1,43 @@
+== Right after toki pona (stage 1): knock out a block, predict toki pona words
+condition        own concept  other concepts  random block  own wins
+routed+dict           +4.287          +1.132        +1.206       56%
+routed+dict+ewc        +4.287          +1.132        +1.013       56%
+unrouted+dict         -0.004          +0.007        +0.013       11%
+  values: how much worse the model gets (loss increase) at predicting each concept's words; 'own wins' chance = 11%
+
+== After the dictionary, before the English sweep: knock out a block, predict English words
+condition        own concept  other concepts  random block  own wins
+routed+dict           -0.850          -0.886        -0.993       11%
+routed+dict+ewc        -1.696          -1.777        -2.478       20%
+unrouted+dict         -0.161          -0.150        -0.248       17%
+  values: how much worse the model gets (loss increase) at predicting each concept's words; 'own wins' chance = 11%
+
+== After the English sweep: knock out a block, predict English words
+condition        own concept  other concepts  random block  own wins
+routed+dict           +0.023          +0.017        +0.009        7%
+routed+dict+ewc        +0.157          +0.137        +0.172        9%
+unrouted+dict         +0.013          +0.010        +0.002       17%
+english               +0.007          +0.005        +0.009       13%
+  values: how much worse the model gets (loss increase) at predicting each concept's words; 'own wins' chance = 11%
+
+Per concept, 'routed+dict', after English: loss increase on own words vs average on others
+  telo    (water/liquid): own +0.014  others +0.008  (in dictionary)
+  moku    (eats/munches/drinks): own -0.041  others +0.007  (in dictionary)
+  tomo    (house/home): own +0.077  others +0.049  (in dictionary)
+  waso    (bird): own +0.038  others +0.011  (NOT in dictionary)
+  kili    (fruit): own +0.104  others +0.029  (NOT in dictionary)
+  pan     (bread): own -0.024  others +0.021  (in dictionary)
+  kala    (fish): own -0.004  others +0.006  (in dictionary)
+  soweli  (dog/cat): own +0.049  others -0.001  (in dictionary)
+  jan     (person/child): own -0.006  others +0.018  (in dictionary)
+
+Per concept, 'routed+dict+ewc', after English: loss increase on own words vs average on others
+  telo    (water/liquid): own +0.495  others +0.067  (in dictionary)
+  moku    (eats/munches/drinks): own +0.017  others +0.246  (in dictionary)
+  tomo    (house/home): own +0.216  others +0.146  (in dictionary)
+  waso    (bird): own +0.084  others +0.070  (NOT in dictionary)
+  kili    (fruit): own -0.077  others +0.151  (NOT in dictionary)
+  pan     (bread): own -0.054  others +0.040  (in dictionary)
+  kala    (fish): own +0.173  others +0.254  (in dictionary)
+  soweli  (dog/cat): own +0.484  others +0.162  (in dictionary)
+  jan     (person/child): own +0.080  others +0.099  (in dictionary)

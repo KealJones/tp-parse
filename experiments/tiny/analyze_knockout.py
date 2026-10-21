@@ -2,8 +2,11 @@
 import json, statistics as st
 from knockout import CONCEPTS, ENGLISH
 
-R = json.load(open("knockout_results.json"))
-conds = ["routed", "routed+ewc", "unrouted", "english"]
+import sys
+DICT_RUN = "--dict" in sys.argv
+R = json.load(open("knockout_dict_results.json" if DICT_RUN else "knockout_results.json"))
+conds = ["routed+dict", "routed+dict+ewc", "unrouted+dict", "english"] if DICT_RUN else ["routed", "routed+ewc", "unrouted", "english"]
+IN_DICT = {"telo", "moku", "tomo", "kala", "pan", "soweli", "jan"}  # waso (bird) and kili (fruit) are not in the dictionary
 
 
 def summary(key):
@@ -23,11 +26,16 @@ def summary(key):
 
 print("== Right after toki pona (stage 1): knock out a block, predict toki pona words")
 summary("tp_after_stage1")
+if DICT_RUN:
+    print("\n== After the dictionary, before the English sweep: knock out a block, predict English words")
+    summary("en_after_dict")
 print("\n== After the English sweep: knock out a block, predict English words")
 summary("en_knockout")
 
-print("\nPer concept, 'routed+ewc', English: loss increase on own words vs average on others")
-for k in CONCEPTS:
-    own = st.mean(r["en_knockout"][k][k] for r in R if r["cond"] == "routed+ewc")
-    oth = st.mean(r["en_knockout"][k][t] for r in R if r["cond"] == "routed+ewc" for t in CONCEPTS if t != k)
-    print(f"  {k:7s} ({'/'.join(ENGLISH[k])}): own {own:+.3f}  others {oth:+.3f}")
+for cond in conds[:2]:
+    print(f"\nPer concept, '{cond}', after English: loss increase on own words vs average on others")
+    for k in CONCEPTS:
+        own = st.mean(r["en_knockout"][k][k] for r in R if r["cond"] == cond)
+        oth = st.mean(r["en_knockout"][k][t] for r in R if r["cond"] == cond for t in CONCEPTS if t != k)
+        tag = "" if not DICT_RUN else ("  (in dictionary)" if k in IN_DICT else "  (NOT in dictionary)")
+        print(f"  {k:7s} ({'/'.join(ENGLISH[k])}): own {own:+.3f}  others {oth:+.3f}{tag}")

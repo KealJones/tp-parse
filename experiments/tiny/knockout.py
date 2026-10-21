@@ -29,10 +29,15 @@ Run: python3 knockout.py [seeds]
 import copy, json, random, sys, time
 import torch
 import torch.nn.functional as F
-from stages import Model, tp_corpus, en_corpus, to_ids, CTX, MLP, S1_STEPS, S3_STEPS
+from stages import Model, tp_corpus, en_corpus, to_ids, dict_lines, DICT, CTX, MLP, S1_STEPS, S2_STEPS, S3_STEPS
 from ewc import fisher
 
 SEEDS = list(range(int(sys.argv[1]) if len(sys.argv) > 1 else 6))
+# Pass --dict to run Keal's full three-stage plan: toki pona -> dictionary -> English.
+WITH_DICT = "--dict" in sys.argv
+CONDITIONS = (["routed+dict", "routed+dict+ewc", "unrouted+dict", "english"] if WITH_DICT
+              else ["routed", "routed+ewc", "unrouted", "english"])
+OUT_FILE = "knockout_dict_results.json" if WITH_DICT else "knockout_results.json"
 BLOCK = 8
 CONCEPTS = ["telo", "moku", "tomo", "waso", "kili", "pan", "kala", "soweli", "jan"]
 ENGLISH = {"telo": ["water", "liquid"], "moku": ["eats", "munches", "drinks"], "tomo": ["house", "home"],
@@ -114,7 +119,7 @@ def knockout_matrix(model, toks, stoi, targets, rng):
 
 def main():
     t0 = time.time()
-    vocab = sorted({w for s in tp_corpus(3000, 0) + en_corpus(3000, 0) for w in s.split()} | {"means"})
+    vocab = sorted({w for s in tp_corpus(3000, 0) + en_corpus(3000, 0) + dict_lines() for w in s.split()})
     stoi = {w: i for i, w in enumerate(vocab)}
     itos = {i: w for w, i in stoi.items()}
     en_test = to_ids(en_corpus(800, 78), stoi)
@@ -122,7 +127,7 @@ def main():
     out = []
     for seed in SEEDS:
         rng = random.Random(seed)
-        for cond in ["routed", "routed+ewc", "unrouted", "english"]:
+        for cond in CONDITIONS:
             torch.manual_seed(seed)
             r = random.Random(seed)
             model = RoutedModel(len(vocab))
@@ -132,16 +137,22 @@ def main():
                 train(model, lambda: tp_corpus(4000, 1000 + seed), S1_STEPS, stoi, itos, r, routed=cond.startswith("routed"))
                 # Sanity check: does knocking a block hurt its own toki pona word after stage 1?
                 _, log["tp_after_stage1"] = knockout_matrix(model, tp_test, stoi, {c: [c] for c in CONCEPTS}, rng)
-                if cond == "routed+ewc":
+                ewc = cond.endswith("ewc")
+                if ewc:
                     old = {n: p.detach().clone() for n, p in model.named_parameters()}
                     imp = fisher(model, tp_corpus(1000, 4000 + seed), stoi, random.Random(seed))
+                if "dict" in cond:
+                    # Stage 2: the dictionary as plain text ("water means telo ."). Same routing rule.
+                    train(model, lambda: dict_lines() * 20, S2_STEPS, stoi, itos, r, routed=cond.startswith("routed"),
+                          old=old, imp=imp, strength=10 if ewc else 0)
+                    log["en_base_after_dict"], log["en_after_dict"] = knockout_matrix(model, en_test, stoi, ENGLISH, rng)
             train(model, lambda: en_corpus(2000, 2000 + seed), S3_STEPS, stoi, itos, r,
-                  old=old, imp=imp, strength=10 if cond == "routed+ewc" else 0)
+                  old=old, imp=imp, strength=10 if cond.endswith("ewc") else 0)
             log["en_base"], log["en_knockout"] = knockout_matrix(model, en_test, stoi, ENGLISH, rng)
             out.append(log)
         print(f"seed {seed} done ({time.time() - t0:.0f}s)", flush=True)
-    json.dump(out, open("knockout_results.json", "w"), indent=1)
-    print(f"saved knockout_results.json ({time.time() - t0:.0f}s)")
+    json.dump(out, open(OUT_FILE, "w"), indent=1)
+    print(f"saved {OUT_FILE} ({time.time() - t0:.0f}s)")
 
 
 if __name__ == "__main__":
