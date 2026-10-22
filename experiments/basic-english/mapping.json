@@ -1,0 +1,7448 @@
+{
+ "I": {
+  "category": "operation",
+  "hub": "mi",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "mi"
+  ]
+ },
+ "a": {
+  "category": "operation",
+  "hub": null,
+  "via": "hand: none",
+  "score": 0,
+  "candidates": [],
+  "note": "toki pona has no articles"
+ },
+ "about": {
+  "category": "operation",
+  "hub": "sona",
+  "via": "definition",
+  "score": 0,
+  "candidates": [
+   "pi"
+  ]
+ },
+ "across": {
+  "category": "operation",
+  "hub": "tawa",
+  "via": "hand: tawa poka ante",
+  "score": 0,
+  "candidates": [],
+  "note": "to the other side"
+ },
+ "after": {
+  "category": "operation",
+  "hub": "tenpo",
+  "via": "hand: tenpo kama",
+  "score": 0,
+  "candidates": [],
+  "note": "later"
+ },
+ "again": {
+  "category": "operation",
+  "hub": "sin",
+  "via": "word",
+  "score": 40,
+  "candidates": [
+   "sin"
+  ]
+ },
+ "against": {
+  "category": "operation",
+  "hub": "utala",
+  "via": "word",
+  "score": 29,
+  "candidates": [
+   "utala"
+  ]
+ },
+ "all": {
+  "category": "operation",
+  "hub": "ale",
+  "via": "word",
+  "score": 68,
+  "candidates": [
+   "ale",
+   "ali"
+  ]
+ },
+ "almost": {
+  "category": "operation",
+  "hub": "lili",
+  "via": "hand: lili la",
+  "score": 0,
+  "candidates": [],
+  "note": "nearly"
+ },
+ "among": {
+  "category": "operation",
+  "hub": "insa",
+  "via": "hand: insa",
+  "score": 0,
+  "candidates": [],
+  "note": "in the middle of"
+ },
+ "and": {
+  "category": "operation",
+  "hub": "en",
+  "via": "word",
+  "score": 50,
+  "candidates": [
+   "en"
+  ]
+ },
+ "any": {
+  "category": "operation",
+  "hub": "ale",
+  "via": "word",
+  "score": 30,
+  "candidates": [
+   "ale"
+  ]
+ },
+ "as": {
+  "category": "operation",
+  "hub": "sama",
+  "via": "word",
+  "score": 80,
+  "candidates": [
+   "sama"
+  ]
+ },
+ "at": {
+  "category": "operation",
+  "hub": "lon",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "lon"
+  ]
+ },
+ "be": {
+  "category": "operation",
+  "hub": "sona",
+  "via": "definition (also ken)",
+  "score": 0,
+  "candidates": []
+ },
+ "because": {
+  "category": "operation",
+  "hub": "tan",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "before": {
+  "category": "operation",
+  "hub": "tenpo",
+  "via": "hand: tenpo pini",
+  "score": 0,
+  "candidates": [],
+  "note": "earlier"
+ },
+ "between": {
+  "category": "operation",
+  "hub": "insa",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "insa"
+  ]
+ },
+ "but": {
+  "category": "operation",
+  "hub": "taso",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "taso"
+  ]
+ },
+ "by": {
+  "category": "operation",
+  "hub": "tan",
+  "via": "word",
+  "score": 70,
+  "candidates": [
+   "tan"
+  ]
+ },
+ "come": {
+  "category": "operation",
+  "hub": "kama",
+  "via": "word",
+  "score": 91,
+  "candidates": [
+   "kama"
+  ]
+ },
+ "do": {
+  "category": "operation",
+  "hub": "pali",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "pali"
+  ]
+ },
+ "down": {
+  "category": "operation",
+  "hub": "anpa",
+  "via": "word",
+  "score": 96,
+  "candidates": [
+   "anpa"
+  ]
+ },
+ "east": {
+  "category": "operation",
+  "hub": "nasin",
+  "via": "hand: nasin suno",
+  "score": 0,
+  "candidates": [],
+  "note": "where the sun rises"
+ },
+ "enough": {
+  "category": "operation",
+  "hub": "mute",
+  "via": "hand: mute pona",
+  "score": 0,
+  "candidates": [],
+  "note": "good amount"
+ },
+ "even": {
+  "category": "operation",
+  "hub": "sama",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "sama"
+  ]
+ },
+ "ever": {
+  "category": "operation",
+  "hub": "tenpo",
+  "via": "hand: tenpo ale",
+  "score": 0,
+  "candidates": [],
+  "note": "always / at any time"
+ },
+ "every": {
+  "category": "operation",
+  "hub": "ale",
+  "via": "word",
+  "score": 80,
+  "candidates": [
+   "ale"
+  ]
+ },
+ "far": {
+  "category": "operation",
+  "hub": "weka",
+  "via": "word",
+  "score": 60,
+  "candidates": [
+   "weka"
+  ]
+ },
+ "for": {
+  "category": "operation",
+  "hub": "tawa",
+  "via": "word",
+  "score": 81,
+  "candidates": [
+   "tawa"
+  ]
+ },
+ "forward": {
+  "category": "operation",
+  "hub": "tawa",
+  "via": "word",
+  "score": 26,
+  "candidates": [
+   "tawa sinpin",
+   "tawa"
+  ]
+ },
+ "from": {
+  "category": "operation",
+  "hub": "tan",
+  "via": "word",
+  "score": 93,
+  "candidates": [
+   "tan"
+  ]
+ },
+ "get": {
+  "category": "operation",
+  "hub": "kama",
+  "via": "compound: kama jo",
+  "score": 74,
+  "candidates": [
+   "kama jo"
+  ]
+ },
+ "give": {
+  "category": "operation",
+  "hub": "pana",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "pana"
+  ]
+ },
+ "go": {
+  "category": "operation",
+  "hub": "tawa",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "tawa"
+  ]
+ },
+ "have": {
+  "category": "operation",
+  "hub": "jo",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "jo"
+  ]
+ },
+ "he": {
+  "category": "operation",
+  "hub": "ona",
+  "via": "word",
+  "score": 80,
+  "candidates": [
+   "ona"
+  ]
+ },
+ "here": {
+  "category": "operation",
+  "hub": "lon",
+  "via": "compound: lon ni",
+  "score": 58,
+  "candidates": [
+   "lon ni"
+  ]
+ },
+ "how": {
+  "category": "operation",
+  "hub": "sona",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "if": {
+  "category": "operation",
+  "hub": "la",
+  "via": "word",
+  "score": 88,
+  "candidates": [
+   "la"
+  ]
+ },
+ "in": {
+  "category": "operation",
+  "hub": "lon",
+  "via": "word",
+  "score": 57,
+  "candidates": [
+   "lon"
+  ]
+ },
+ "keep": {
+  "category": "operation",
+  "hub": "awen",
+  "via": "word",
+  "score": 61,
+  "candidates": [
+   "awen"
+  ]
+ },
+ "let": {
+  "category": "operation",
+  "hub": "o",
+  "via": "weak: o",
+  "score": 10,
+  "candidates": [
+   "o"
+  ]
+ },
+ "little": {
+  "category": "operation",
+  "hub": "lili",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "lili"
+  ]
+ },
+ "make": {
+  "category": "operation",
+  "hub": "pali",
+  "via": "word",
+  "score": 93,
+  "candidates": [
+   "pali"
+  ]
+ },
+ "may": {
+  "category": "operation",
+  "hub": "ken",
+  "via": "word",
+  "score": 88,
+  "candidates": [
+   "ken"
+  ]
+ },
+ "much": {
+  "category": "operation",
+  "hub": "mute",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "mute"
+  ]
+ },
+ "near": {
+  "category": "operation",
+  "hub": "lon",
+  "via": "compound: lon poka",
+  "score": 65,
+  "candidates": [
+   "lon poka"
+  ]
+ },
+ "no": {
+  "category": "operation",
+  "hub": "ala",
+  "via": "word",
+  "score": 94,
+  "candidates": [
+   "ala"
+  ]
+ },
+ "north": {
+  "category": "operation",
+  "hub": "nasin",
+  "via": "hand: nasin",
+  "score": 0,
+  "candidates": [],
+  "note": "a direction"
+ },
+ "not": {
+  "category": "operation",
+  "hub": "ala",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "ala"
+  ]
+ },
+ "now": {
+  "category": "operation",
+  "hub": "tenpo",
+  "via": "compound: tenpo ni",
+  "score": 60,
+  "candidates": [
+   "tenpo ni"
+  ]
+ },
+ "of": {
+  "category": "operation",
+  "hub": "tan",
+  "via": "definition (also kepeken, mani, noka)",
+  "score": 0,
+  "candidates": []
+ },
+ "off": {
+  "category": "operation",
+  "hub": "pini",
+  "via": "word",
+  "score": 44,
+  "candidates": [
+   "pini"
+  ]
+ },
+ "on": {
+  "category": "operation",
+  "hub": "lon",
+  "via": "word",
+  "score": 83,
+  "candidates": [
+   "lon"
+  ]
+ },
+ "only": {
+  "category": "operation",
+  "hub": "taso",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "taso"
+  ]
+ },
+ "or": {
+  "category": "operation",
+  "hub": "anu",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "anu"
+  ]
+ },
+ "other": {
+  "category": "operation",
+  "hub": "ante",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "ante"
+  ]
+ },
+ "out": {
+  "category": "operation",
+  "hub": "weka",
+  "via": "word",
+  "score": 45,
+  "candidates": [
+   "weka"
+  ]
+ },
+ "over": {
+  "category": "operation",
+  "hub": "pini",
+  "via": "word",
+  "score": 29,
+  "candidates": [
+   "lon sewi",
+   "pini"
+  ]
+ },
+ "please": {
+  "category": "operation",
+  "hub": "pona",
+  "via": "word",
+  "score": 28,
+  "candidates": [
+   "pilin pona",
+   "pona",
+   "o"
+  ]
+ },
+ "put": {
+  "category": "operation",
+  "hub": "pana",
+  "via": "word",
+  "score": 93,
+  "candidates": [
+   "pana"
+  ]
+ },
+ "quite": {
+  "category": "operation",
+  "hub": "a",
+  "via": "word",
+  "score": 29,
+  "candidates": [
+   "a",
+   "mute"
+  ]
+ },
+ "say": {
+  "category": "operation",
+  "hub": "toki",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "toki"
+  ]
+ },
+ "see": {
+  "category": "operation",
+  "hub": "lukin",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "lukin"
+  ]
+ },
+ "seem": {
+  "category": "operation",
+  "hub": "sama",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "sama"
+  ]
+ },
+ "send": {
+  "category": "operation",
+  "hub": "pana",
+  "via": "word",
+  "score": 80,
+  "candidates": [
+   "pana"
+  ]
+ },
+ "so": {
+  "category": "operation",
+  "hub": "la",
+  "via": "hand: la",
+  "score": 0,
+  "candidates": [],
+  "note": "ni la (therefore)"
+ },
+ "some": {
+  "category": "operation",
+  "hub": "mute",
+  "via": "hand: mute",
+  "score": 0,
+  "candidates": [],
+  "note": "mute lili"
+ },
+ "south": {
+  "category": "operation",
+  "hub": "nasin",
+  "via": "hand: nasin",
+  "score": 0,
+  "candidates": [],
+  "note": "a direction"
+ },
+ "still": {
+  "category": "operation",
+  "hub": "awen",
+  "via": "word",
+  "score": 60,
+  "candidates": [
+   "awen"
+  ]
+ },
+ "such": {
+  "category": "operation",
+  "hub": "sama",
+  "via": "hand: sama",
+  "score": 0,
+  "candidates": [],
+  "note": "like this: sama ni"
+ },
+ "take": {
+  "category": "operation",
+  "hub": "kama",
+  "via": "compound: kama jo",
+  "score": 73,
+  "candidates": [
+   "kama jo"
+  ]
+ },
+ "than": {
+  "category": "operation",
+  "hub": "la",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "la"
+  ]
+ },
+ "that": {
+  "category": "operation",
+  "hub": "ni",
+  "via": "word",
+  "score": 86,
+  "candidates": [
+   "ni"
+  ]
+ },
+ "the": {
+  "category": "operation",
+  "hub": "ku",
+  "via": "definition (also pu, lon, tawa)",
+  "score": 0,
+  "candidates": []
+ },
+ "then": {
+  "category": "operation",
+  "hub": "la",
+  "via": "hand: la",
+  "score": 0,
+  "candidates": [],
+  "note": "tenpo ni la"
+ },
+ "there": {
+  "category": "operation",
+  "hub": "ni",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "lon ni",
+   "ni"
+  ]
+ },
+ "this": {
+  "category": "operation",
+  "hub": "ni",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "ni"
+  ]
+ },
+ "though": {
+  "category": "operation",
+  "hub": "taso",
+  "via": "word",
+  "score": 79,
+  "candidates": [
+   "taso"
+  ]
+ },
+ "through": {
+  "category": "operation",
+  "hub": "insa",
+  "via": "hand: insa",
+  "score": 0,
+  "candidates": [],
+  "note": "tawa insa"
+ },
+ "till": {
+  "category": "operation",
+  "hub": "tawa",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "tawa"
+  ]
+ },
+ "to": {
+  "category": "operation",
+  "hub": "tawa",
+  "via": "word",
+  "score": 93,
+  "candidates": [
+   "tawa"
+  ]
+ },
+ "together": {
+  "category": "operation",
+  "hub": "wan",
+  "via": "word",
+  "score": 26,
+  "candidates": [
+   "wan"
+  ]
+ },
+ "tomorrow": {
+  "category": "operation",
+  "hub": "tenpo",
+  "via": "compound: tenpo suno kama",
+  "score": 65,
+  "candidates": [
+   "tenpo suno kama"
+  ]
+ },
+ "under": {
+  "category": "operation",
+  "hub": "anpa",
+  "via": "word",
+  "score": 35,
+  "candidates": [
+   "lon anpa",
+   "anpa"
+  ]
+ },
+ "up": {
+  "category": "operation",
+  "hub": "sewi",
+  "via": "definition (also pakala)",
+  "score": 0,
+  "candidates": []
+ },
+ "very": {
+  "category": "operation",
+  "hub": "mute",
+  "via": "word",
+  "score": 93,
+  "candidates": [
+   "mute"
+  ]
+ },
+ "well": {
+  "category": "operation",
+  "hub": "pona",
+  "via": "word",
+  "score": 70,
+  "candidates": [
+   "pona"
+  ]
+ },
+ "west": {
+  "category": "operation",
+  "hub": "nasin",
+  "via": "hand: nasin",
+  "score": 0,
+  "candidates": [],
+  "note": "where the sun sets"
+ },
+ "when": {
+  "category": "operation",
+  "hub": "tenpo",
+  "via": "compound: tenpo seme",
+  "score": 45,
+  "candidates": [
+   "tenpo seme"
+  ]
+ },
+ "where": {
+  "category": "operation",
+  "hub": "lon",
+  "via": "compound: lon seme",
+  "score": 70,
+  "candidates": [
+   "lon seme"
+  ]
+ },
+ "while": {
+  "category": "operation",
+  "hub": "la",
+  "via": "word",
+  "score": 48,
+  "candidates": [
+   "la"
+  ]
+ },
+ "who": {
+  "category": "operation",
+  "hub": "jan",
+  "via": "compound: jan seme",
+  "score": 91,
+  "candidates": [
+   "jan seme"
+  ]
+ },
+ "why": {
+  "category": "operation",
+  "hub": "tan",
+  "via": "compound: tan seme",
+  "score": 80,
+  "candidates": [
+   "tan seme"
+  ]
+ },
+ "will": {
+  "category": "operation",
+  "hub": "wile",
+  "via": "word",
+  "score": 81,
+  "candidates": [
+   "wile"
+  ]
+ },
+ "with": {
+  "category": "operation",
+  "hub": "ku",
+  "via": "definition (also pu, unpa, olin)",
+  "score": 0,
+  "candidates": []
+ },
+ "yes": {
+  "category": "operation",
+  "hub": "lon",
+  "via": "word",
+  "score": 71,
+  "candidates": [
+   "lon"
+  ]
+ },
+ "yesterday": {
+  "category": "operation",
+  "hub": "tenpo",
+  "via": "compound: tenpo suno pini",
+  "score": 47,
+  "candidates": [
+   "tenpo suno pini"
+  ]
+ },
+ "you": {
+  "category": "operation",
+  "hub": "sina",
+  "via": "word",
+  "score": 94,
+  "candidates": [
+   "sina"
+  ]
+ },
+ "account": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "hand: toki pi ijo pini",
+  "score": 0,
+  "candidates": [],
+  "note": "story of what happened; money sense: lipu mani"
+ },
+ "act": {
+  "category": "thing-general",
+  "hub": "pali",
+  "via": "word",
+  "score": 57,
+  "candidates": [
+   "pali"
+  ]
+ },
+ "addition": {
+  "category": "thing-general",
+  "hub": "namako",
+  "via": "hand: namako",
+  "score": 0,
+  "candidates": [],
+  "note": "extra"
+ },
+ "adjustment": {
+  "category": "thing-general",
+  "hub": "ante",
+  "via": "word",
+  "score": 42,
+  "candidates": [
+   "ante"
+  ]
+ },
+ "advertisement": {
+  "category": "thing-general",
+  "hub": "sitelen",
+  "via": "compound: sitelen esun",
+  "score": 55,
+  "candidates": [
+   "sitelen esun"
+  ]
+ },
+ "agreement": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "hand: pilin sama",
+  "score": 0,
+  "candidates": [],
+  "note": "same feeling"
+ },
+ "air": {
+  "category": "thing-general",
+  "hub": "kon",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "kon"
+  ]
+ },
+ "amount": {
+  "category": "thing-general",
+  "hub": "mute",
+  "via": "word",
+  "score": 40,
+  "candidates": [
+   "mute"
+  ]
+ },
+ "amusement": {
+  "category": "thing-general",
+  "hub": "musi",
+  "via": "hand: musi",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "animal": {
+  "category": "thing-general",
+  "hub": "soweli",
+  "via": "word",
+  "score": 95,
+  "candidates": [
+   "soweli"
+  ]
+ },
+ "answer": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "word",
+  "score": 43,
+  "candidates": [
+   "toki"
+  ]
+ },
+ "apparatus": {
+  "category": "thing-general",
+  "hub": "ilo",
+  "via": "hand: ilo",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "approval": {
+  "category": "thing-general",
+  "hub": "pona",
+  "via": "word",
+  "score": 41,
+  "candidates": [
+   "pona"
+  ]
+ },
+ "argument": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "compound: toki utala",
+  "score": 53,
+  "candidates": [
+   "toki utala"
+  ]
+ },
+ "art": {
+  "category": "thing-general",
+  "hub": "musi",
+  "via": "word",
+  "score": 58,
+  "candidates": [
+   "musi"
+  ]
+ },
+ "attack": {
+  "category": "thing-general",
+  "hub": "utala",
+  "via": "word",
+  "score": 82,
+  "candidates": [
+   "utala"
+  ]
+ },
+ "attempt": {
+  "category": "thing-general",
+  "hub": "alasa",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "attention": {
+  "category": "thing-general",
+  "hub": "lukin",
+  "via": "word",
+  "score": 50,
+  "candidates": [
+   "lukin"
+  ]
+ },
+ "attraction": {
+  "category": "thing-general",
+  "hub": "olin",
+  "via": "word",
+  "score": 40,
+  "candidates": [
+   "olin"
+  ]
+ },
+ "authority": {
+  "category": "thing-general",
+  "hub": "lawa",
+  "via": "word",
+  "score": 79,
+  "candidates": [
+   "lawa"
+  ]
+ },
+ "back": {
+  "category": "thing-general",
+  "hub": "monsi",
+  "via": "word",
+  "score": 73,
+  "candidates": [
+   "monsi",
+   "sin"
+  ]
+ },
+ "balance": {
+  "category": "thing-general",
+  "hub": "sama",
+  "via": "hand: sama",
+  "score": 0,
+  "candidates": [],
+  "note": "equal on both sides"
+ },
+ "base": {
+  "category": "thing-general",
+  "hub": "noka",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "noka"
+  ]
+ },
+ "behavior": {
+  "category": "thing-general",
+  "hub": "nasin",
+  "via": "hand: nasin",
+  "score": 0,
+  "candidates": [],
+  "note": "way of acting"
+ },
+ "belief": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "word",
+  "score": 29,
+  "candidates": [
+   "pilin"
+  ]
+ },
+ "birth": {
+  "category": "thing-general",
+  "hub": "kama",
+  "via": "hand: kama",
+  "score": 0,
+  "candidates": [],
+  "note": "coming into being"
+ },
+ "bit": {
+  "category": "thing-general",
+  "hub": "lili",
+  "via": "word",
+  "score": 69,
+  "candidates": [
+   "lili"
+  ]
+ },
+ "bite": {
+  "category": "thing-general",
+  "hub": "uta",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "uta"
+  ]
+ },
+ "blood": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "compound: telo loje",
+  "score": 43,
+  "candidates": [
+   "telo loje"
+  ]
+ },
+ "blow": {
+  "category": "thing-general",
+  "hub": "utala",
+  "via": "hand: utala",
+  "score": 0,
+  "candidates": [],
+  "note": "hit; wind sense: kon tawa"
+ },
+ "body": {
+  "category": "thing-general",
+  "hub": "sijelo",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "sijelo"
+  ]
+ },
+ "brass": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "hand: kiwen",
+  "score": 0,
+  "candidates": [],
+  "note": "metal"
+ },
+ "bread": {
+  "category": "thing-general",
+  "hub": "pan",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "pan"
+  ]
+ },
+ "breath": {
+  "category": "thing-general",
+  "hub": "kon",
+  "via": "word",
+  "score": 57,
+  "candidates": [
+   "kon"
+  ]
+ },
+ "brother": {
+  "category": "thing-general",
+  "hub": "jan",
+  "via": "compound: jan sama",
+  "score": 54,
+  "candidates": [
+   "jan sama"
+  ]
+ },
+ "building": {
+  "category": "thing-general",
+  "hub": "tomo",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "tomo"
+  ]
+ },
+ "burn": {
+  "category": "thing-general",
+  "hub": "seli",
+  "via": "word",
+  "score": 70,
+  "candidates": [
+   "seli"
+  ]
+ },
+ "burst": {
+  "category": "thing-general",
+  "hub": "pakala",
+  "via": "word",
+  "score": 75,
+  "candidates": [
+   "pakala"
+  ]
+ },
+ "business": {
+  "category": "thing-general",
+  "hub": "esun",
+  "via": "word",
+  "score": 48,
+  "candidates": [
+   "esun"
+  ]
+ },
+ "butter": {
+  "category": "thing-general",
+  "hub": "ko",
+  "via": "hand: ko",
+  "score": 0,
+  "candidates": [],
+  "note": "ko jelo"
+ },
+ "canvas": {
+  "category": "thing-general",
+  "hub": "len",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "len"
+  ]
+ },
+ "care": {
+  "category": "thing-general",
+  "hub": "olin",
+  "via": "weak: olin",
+  "score": 14,
+  "candidates": [
+   "olin"
+  ]
+ },
+ "cause": {
+  "category": "thing-general",
+  "hub": "tan",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "tan"
+  ]
+ },
+ "chalk": {
+  "category": "thing-general",
+  "hub": "ilo",
+  "via": "hand: ilo sitelen",
+  "score": 0,
+  "candidates": [],
+  "note": "drawing tool"
+ },
+ "chance": {
+  "category": "thing-general",
+  "hub": "ken",
+  "via": "word",
+  "score": 57,
+  "candidates": [
+   "ken"
+  ]
+ },
+ "change": {
+  "category": "thing-general",
+  "hub": "ante",
+  "via": "word",
+  "score": 80,
+  "candidates": [
+   "ante"
+  ]
+ },
+ "cloth": {
+  "category": "thing-general",
+  "hub": "len",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "len"
+  ]
+ },
+ "coal": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "hand: kiwen",
+  "score": 0,
+  "candidates": [],
+  "note": "kiwen seli pimeja"
+ },
+ "color": {
+  "category": "thing-general",
+  "hub": "kule",
+  "via": "definition (also pimeja)",
+  "score": 0,
+  "candidates": []
+ },
+ "comfort": {
+  "category": "thing-general",
+  "hub": "pona",
+  "via": "hand: pona",
+  "score": 0,
+  "candidates": [],
+  "note": "pilin pona"
+ },
+ "committee": {
+  "category": "thing-general",
+  "hub": "kulupu",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "kulupu"
+  ]
+ },
+ "company": {
+  "category": "thing-general",
+  "hub": "kulupu",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "kulupu"
+  ]
+ },
+ "comparison": {
+  "category": "thing-general",
+  "hub": "sama",
+  "via": "hand: sama",
+  "score": 0,
+  "candidates": [],
+  "note": "sama ala sama"
+ },
+ "competition": {
+  "category": "thing-general",
+  "hub": "utala",
+  "via": "word",
+  "score": 38,
+  "candidates": [
+   "utala"
+  ]
+ },
+ "condition": {
+  "category": "thing-general",
+  "hub": "lon",
+  "via": "hand: lon",
+  "score": 0,
+  "candidates": [],
+  "note": "how it is"
+ },
+ "connection": {
+  "category": "thing-general",
+  "hub": "linja",
+  "via": "word",
+  "score": 38,
+  "candidates": [
+   "linja",
+   "linluwi"
+  ]
+ },
+ "control": {
+  "category": "thing-general",
+  "hub": "lawa",
+  "via": "word",
+  "score": 77,
+  "candidates": [
+   "lawa"
+  ]
+ },
+ "cook": {
+  "category": "thing-general",
+  "hub": "seli",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "seli"
+  ]
+ },
+ "copper": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "hand: kiwen",
+  "score": 0,
+  "candidates": [],
+  "note": "metal"
+ },
+ "copy": {
+  "category": "thing-general",
+  "hub": "sama",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "sama"
+  ]
+ },
+ "cork": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "hand: kiwen",
+  "score": 0,
+  "candidates": [],
+  "note": "stopper"
+ },
+ "cotton": {
+  "category": "thing-general",
+  "hub": "len",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "len"
+  ]
+ },
+ "cough": {
+  "category": "thing-general",
+  "hub": "kalama",
+  "via": "hand: kalama",
+  "score": 0,
+  "candidates": [],
+  "note": "throat noise"
+ },
+ "country": {
+  "category": "thing-general",
+  "hub": "ma",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "ma"
+  ]
+ },
+ "cover": {
+  "category": "thing-general",
+  "hub": "len",
+  "via": "word",
+  "score": 64,
+  "candidates": [
+   "len",
+   "selo"
+  ]
+ },
+ "crack": {
+  "category": "thing-general",
+  "hub": "pakala",
+  "via": "word",
+  "score": 52,
+  "candidates": [
+   "pakala"
+  ]
+ },
+ "credit": {
+  "category": "thing-general",
+  "hub": "mani",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "mani"
+  ]
+ },
+ "crime": {
+  "category": "thing-general",
+  "hub": "pali",
+  "via": "compound: pali ike",
+  "score": 55,
+  "candidates": [
+   "pali ike"
+  ]
+ },
+ "crush": {
+  "category": "thing-general",
+  "hub": "pakala",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "pakala",
+   "olin"
+  ]
+ },
+ "cry": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "hand: telo oko",
+  "score": 0,
+  "candidates": [],
+  "note": "eye water; shout sense: kalama"
+ },
+ "current": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo ni la",
+  "score": 66,
+  "candidates": [
+   "tenpo ni la",
+   "tenpo ni"
+  ]
+ },
+ "curve": {
+  "category": "thing-general",
+  "hub": "sike",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "sike"
+  ]
+ },
+ "damage": {
+  "category": "thing-general",
+  "hub": "pakala",
+  "via": "word",
+  "score": 81,
+  "candidates": [
+   "pakala"
+  ]
+ },
+ "danger": {
+  "category": "thing-general",
+  "hub": "ike",
+  "via": "word",
+  "score": 29,
+  "candidates": [
+   "ike"
+  ]
+ },
+ "daughter": {
+  "category": "thing-general",
+  "hub": "meli",
+  "via": "hand: meli",
+  "score": 0,
+  "candidates": [],
+  "note": "meli lili pi mama"
+ },
+ "day": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo suno",
+  "score": 80,
+  "candidates": [
+   "tenpo suno"
+  ]
+ },
+ "death": {
+  "category": "thing-general",
+  "hub": "moli",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "moli"
+  ]
+ },
+ "debt": {
+  "category": "thing-general",
+  "hub": "mani",
+  "via": "hand: mani",
+  "score": 0,
+  "candidates": [],
+  "note": "mani pi pana ala"
+ },
+ "decision": {
+  "category": "thing-general",
+  "hub": "wile",
+  "via": "word",
+  "score": 54,
+  "candidates": [
+   "wile"
+  ]
+ },
+ "degree": {
+  "category": "thing-general",
+  "hub": "nanpa",
+  "via": "hand: nanpa",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "design": {
+  "category": "thing-general",
+  "hub": "pali",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "desire": {
+  "category": "thing-general",
+  "hub": "wile",
+  "via": "word",
+  "score": 87,
+  "candidates": [
+   "wile"
+  ]
+ },
+ "destruction": {
+  "category": "thing-general",
+  "hub": "pakala",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "pakala"
+  ]
+ },
+ "detail": {
+  "category": "thing-general",
+  "hub": "lili",
+  "via": "hand: lili",
+  "score": 0,
+  "candidates": [],
+  "note": "small part"
+ },
+ "development": {
+  "category": "thing-general",
+  "hub": "pali",
+  "via": "word",
+  "score": 38,
+  "candidates": [
+   "pali"
+  ]
+ },
+ "digestion": {
+  "category": "thing-general",
+  "hub": "moku",
+  "via": "hand: moku",
+  "score": 0,
+  "candidates": [],
+  "note": "body using food"
+ },
+ "direction": {
+  "category": "thing-general",
+  "hub": "nasin",
+  "via": "word",
+  "score": 73,
+  "candidates": [
+   "nasin"
+  ]
+ },
+ "discovery": {
+  "category": "thing-general",
+  "hub": "sona",
+  "via": "hand: sona sin",
+  "score": 0,
+  "candidates": [],
+  "note": "new knowledge"
+ },
+ "discussion": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "word",
+  "score": 82,
+  "candidates": [
+   "toki"
+  ]
+ },
+ "disease": {
+  "category": "thing-general",
+  "hub": "jaki",
+  "via": "word",
+  "score": 37,
+  "candidates": [
+   "jaki"
+  ]
+ },
+ "disgust": {
+  "category": "thing-general",
+  "hub": "jaki",
+  "via": "word",
+  "score": 63,
+  "candidates": [
+   "jaki"
+  ]
+ },
+ "distance": {
+  "category": "thing-general",
+  "hub": "weka",
+  "via": "word",
+  "score": 42,
+  "candidates": [
+   "weka"
+  ]
+ },
+ "distribution": {
+  "category": "thing-general",
+  "hub": "pana",
+  "via": "word",
+  "score": 58,
+  "candidates": [
+   "pana"
+  ]
+ },
+ "division": {
+  "category": "thing-general",
+  "hub": "kipisi",
+  "via": "word",
+  "score": 65,
+  "candidates": [
+   "kipisi"
+  ]
+ },
+ "doubt": {
+  "category": "thing-general",
+  "hub": "sona",
+  "via": "hand: sona ala",
+  "score": 0,
+  "candidates": [],
+  "note": "uncertainty"
+ },
+ "drink": {
+  "category": "thing-general",
+  "hub": "moku",
+  "via": "word",
+  "score": 38,
+  "candidates": [
+   "moku",
+   "telo"
+  ]
+ },
+ "driving": {
+  "category": "thing-general",
+  "hub": "lawa",
+  "via": "hand: lawa",
+  "score": 0,
+  "candidates": [],
+  "note": "steering a vehicle"
+ },
+ "dust": {
+  "category": "thing-general",
+  "hub": "ko",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "ko"
+  ]
+ },
+ "earth": {
+  "category": "thing-general",
+  "hub": "ma",
+  "via": "word",
+  "score": 71,
+  "candidates": [
+   "ma"
+  ]
+ },
+ "edge": {
+  "category": "thing-general",
+  "hub": "selo",
+  "via": "word",
+  "score": 40,
+  "candidates": [
+   "selo"
+  ]
+ },
+ "education": {
+  "category": "thing-general",
+  "hub": "pana",
+  "via": "hand: pana sona",
+  "score": 0,
+  "candidates": [],
+  "note": "giving knowledge"
+ },
+ "effect": {
+  "category": "thing-general",
+  "hub": "tan",
+  "via": "hand: tan",
+  "score": 0,
+  "candidates": [],
+  "note": "what comes from a cause"
+ },
+ "end": {
+  "category": "thing-general",
+  "hub": "pini",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "pini"
+  ]
+ },
+ "error": {
+  "category": "thing-general",
+  "hub": "pakala",
+  "via": "word",
+  "score": 67,
+  "candidates": [
+   "pakala"
+  ]
+ },
+ "event": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "word",
+  "score": 40,
+  "candidates": [
+   "tenpo",
+   "kama"
+  ]
+ },
+ "example": {
+  "category": "thing-general",
+  "hub": "ijo",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "ijo"
+  ]
+ },
+ "exchange": {
+  "category": "thing-general",
+  "hub": "esun",
+  "via": "word",
+  "score": 58,
+  "candidates": [
+   "esun"
+  ]
+ },
+ "existence": {
+  "category": "thing-general",
+  "hub": "lon",
+  "via": "word",
+  "score": 87,
+  "candidates": [
+   "lon"
+  ]
+ },
+ "expansion": {
+  "category": "thing-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "kama suli",
+   "suli"
+  ]
+ },
+ "experience": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "word",
+  "score": 35,
+  "candidates": [
+   "pilin",
+   "sona"
+  ]
+ },
+ "expert": {
+  "category": "thing-general",
+  "hub": "jan",
+  "via": "compound: jan sona",
+  "score": 50,
+  "candidates": [
+   "jan sona"
+  ]
+ },
+ "fact": {
+  "category": "thing-general",
+  "hub": "lon",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "lon"
+  ]
+ },
+ "fall": {
+  "category": "thing-general",
+  "hub": "anpa",
+  "via": "hand: anpa",
+  "score": 0,
+  "candidates": [],
+  "note": "tawa anpa"
+ },
+ "family": {
+  "category": "thing-general",
+  "hub": "kulupu",
+  "via": "compound: kulupu mama",
+  "score": 57,
+  "candidates": [
+   "kulupu mama"
+  ]
+ },
+ "father": {
+  "category": "thing-general",
+  "hub": "mama",
+  "via": "word",
+  "score": 40,
+  "candidates": [
+   "mama mije",
+   "mama"
+  ]
+ },
+ "fear": {
+  "category": "thing-general",
+  "hub": "monsuta",
+  "via": "word",
+  "score": 59,
+  "candidates": [
+   "monsuta"
+  ]
+ },
+ "feeling": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "pilin"
+  ]
+ },
+ "fiction": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "hand: toki musi",
+  "score": 0,
+  "candidates": [],
+  "note": "story for fun"
+ },
+ "field": {
+  "category": "thing-general",
+  "hub": "ma",
+  "via": "word",
+  "score": 80,
+  "candidates": [
+   "ma"
+  ]
+ },
+ "fight": {
+  "category": "thing-general",
+  "hub": "utala",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "utala"
+  ]
+ },
+ "fire": {
+  "category": "thing-general",
+  "hub": "seli",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "seli"
+  ]
+ },
+ "flame": {
+  "category": "thing-general",
+  "hub": "seli",
+  "via": "word",
+  "score": 83,
+  "candidates": [
+   "seli"
+  ]
+ },
+ "flight": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "compound: tawa waso",
+  "score": 50,
+  "candidates": [
+   "tawa waso"
+  ]
+ },
+ "flower": {
+  "category": "thing-general",
+  "hub": "kasi",
+  "via": "compound: kasi kule",
+  "score": 42,
+  "candidates": [
+   "kasi kule"
+  ]
+ },
+ "fold": {
+  "category": "thing-general",
+  "hub": "nena",
+  "via": "weak: nena",
+  "score": 13,
+  "candidates": [
+   "nena"
+  ]
+ },
+ "food": {
+  "category": "thing-general",
+  "hub": "moku",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "moku"
+  ]
+ },
+ "force": {
+  "category": "thing-general",
+  "hub": "wawa",
+  "via": "word",
+  "score": 73,
+  "candidates": [
+   "wawa"
+  ]
+ },
+ "form": {
+  "category": "thing-general",
+  "hub": "sijelo",
+  "via": "word",
+  "score": 35,
+  "candidates": [
+   "sijelo",
+   "lipu"
+  ]
+ },
+ "friend": {
+  "category": "thing-general",
+  "hub": "pona",
+  "via": "word",
+  "score": 58,
+  "candidates": [
+   "jan pona",
+   "pona"
+  ]
+ },
+ "front": {
+  "category": "thing-general",
+  "hub": "sinpin",
+  "via": "word",
+  "score": 92,
+  "candidates": [
+   "sinpin"
+  ]
+ },
+ "fruit": {
+  "category": "thing-general",
+  "hub": "kili",
+  "via": "word",
+  "score": 95,
+  "candidates": [
+   "kili"
+  ]
+ },
+ "glass": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "hand: kiwen",
+  "score": 0,
+  "candidates": [],
+  "note": "kiwen lukin (see-through stone)"
+ },
+ "gold": {
+  "category": "thing-general",
+  "hub": "mani",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "government": {
+  "category": "thing-general",
+  "hub": "lawa",
+  "via": "word",
+  "score": 30,
+  "candidates": [
+   "lawa"
+  ]
+ },
+ "grain": {
+  "category": "thing-general",
+  "hub": "pan",
+  "via": "word",
+  "score": 81,
+  "candidates": [
+   "pan"
+  ]
+ },
+ "grass": {
+  "category": "thing-general",
+  "hub": "kasi",
+  "via": "hand: kasi",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "grip": {
+  "category": "thing-general",
+  "hub": "jo",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "jo"
+  ]
+ },
+ "group": {
+  "category": "thing-general",
+  "hub": "kulupu",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "kulupu"
+  ]
+ },
+ "growth": {
+  "category": "thing-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "kama suli",
+   "suli"
+  ]
+ },
+ "guide": {
+  "category": "thing-general",
+  "hub": "lawa",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "lawa"
+  ]
+ },
+ "harbor": {
+  "category": "thing-general",
+  "hub": "ma",
+  "via": "hand: ma",
+  "score": 0,
+  "candidates": [],
+  "note": "ma pi tomo tawa telo (boat place)"
+ },
+ "harmony": {
+  "category": "thing-general",
+  "hub": "sama",
+  "via": "hand: sama",
+  "score": 0,
+  "candidates": [],
+  "note": "together in a pleasing way"
+ },
+ "hate": {
+  "category": "thing-general",
+  "hub": "olin",
+  "via": "hand: olin ala",
+  "score": 0,
+  "candidates": [],
+  "note": "or pilin ike"
+ },
+ "hearing": {
+  "category": "thing-general",
+  "hub": "kute",
+  "via": "word",
+  "score": 89,
+  "candidates": [
+   "kute"
+  ]
+ },
+ "heat": {
+  "category": "thing-general",
+  "hub": "seli",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "seli"
+  ]
+ },
+ "help": {
+  "category": "thing-general",
+  "hub": "pana",
+  "via": "hand: pana",
+  "score": 0,
+  "candidates": [],
+  "note": "pana e pona"
+ },
+ "history": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo pini",
+  "score": 43,
+  "candidates": [
+   "tenpo pini"
+  ]
+ },
+ "hole": {
+  "category": "thing-general",
+  "hub": "lupa",
+  "via": "word",
+  "score": 94,
+  "candidates": [
+   "lupa"
+  ]
+ },
+ "hope": {
+  "category": "thing-general",
+  "hub": "wile",
+  "via": "word",
+  "score": 67,
+  "candidates": [
+   "wile"
+  ]
+ },
+ "hour": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "tenpo"
+  ]
+ },
+ "humor": {
+  "category": "thing-general",
+  "hub": "musi",
+  "via": "hand: musi",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "ice": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "hand: telo",
+  "score": 0,
+  "candidates": [],
+  "note": "telo lete kiwen"
+ },
+ "idea": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "pilin"
+  ]
+ },
+ "impulse": {
+  "category": "thing-general",
+  "hub": "wile",
+  "via": "hand: wile",
+  "score": 0,
+  "candidates": [],
+  "note": "sudden want"
+ },
+ "increase": {
+  "category": "thing-general",
+  "hub": "kama",
+  "via": "compound: kama suli",
+  "score": 64,
+  "candidates": [
+   "kama suli"
+  ]
+ },
+ "industry": {
+  "category": "thing-general",
+  "hub": "pali",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "pali"
+  ]
+ },
+ "ink": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "insect": {
+  "category": "thing-general",
+  "hub": "pipi",
+  "via": "word",
+  "score": 92,
+  "candidates": [
+   "pipi"
+  ]
+ },
+ "instrument": {
+  "category": "thing-general",
+  "hub": "ilo",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "ilo"
+  ]
+ },
+ "insurance": {
+  "category": "thing-general",
+  "hub": "mani",
+  "via": "hand: mani",
+  "score": 0,
+  "candidates": [],
+  "note": "mani awen"
+ },
+ "interest": {
+  "category": "thing-general",
+  "hub": "wile",
+  "via": "word",
+  "score": 29,
+  "candidates": [
+   "wile",
+   "musi"
+  ]
+ },
+ "invention": {
+  "category": "thing-general",
+  "hub": "pali",
+  "via": "hand: pali",
+  "score": 0,
+  "candidates": [],
+  "note": "pali sin"
+ },
+ "iron": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "word",
+  "score": 50,
+  "candidates": [
+   "kiwen"
+  ]
+ },
+ "jelly": {
+  "category": "thing-general",
+  "hub": "ko",
+  "via": "hand: ko",
+  "score": 0,
+  "candidates": [],
+  "note": "ko suwi"
+ },
+ "join": {
+  "category": "thing-general",
+  "hub": "wan",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "journey": {
+  "category": "thing-general",
+  "hub": "nasin",
+  "via": "word",
+  "score": 44,
+  "candidates": [
+   "nasin"
+  ]
+ },
+ "judge": {
+  "category": "thing-general",
+  "hub": "jan",
+  "via": "hand: jan",
+  "score": 0,
+  "candidates": [],
+  "note": "jan lawa"
+ },
+ "jump": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "compound: tawa sewi",
+  "score": 50,
+  "candidates": [
+   "tawa sewi"
+  ]
+ },
+ "kick": {
+  "category": "thing-general",
+  "hub": "noka",
+  "via": "word",
+  "score": 43,
+  "candidates": [
+   "noka"
+  ]
+ },
+ "kiss": {
+  "category": "thing-general",
+  "hub": "uta",
+  "via": "word",
+  "score": 44,
+  "candidates": [
+   "uta"
+  ]
+ },
+ "knowledge": {
+  "category": "thing-general",
+  "hub": "sona",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "sona"
+  ]
+ },
+ "land": {
+  "category": "thing-general",
+  "hub": "ma",
+  "via": "word",
+  "score": 93,
+  "candidates": [
+   "ma"
+  ]
+ },
+ "language": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "word",
+  "score": 94,
+  "candidates": [
+   "toki"
+  ]
+ },
+ "laugh": {
+  "category": "thing-general",
+  "hub": "kalama",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "law": {
+  "category": "thing-general",
+  "hub": "lawa",
+  "via": "word",
+  "score": 60,
+  "candidates": [
+   "lawa"
+  ]
+ },
+ "lead": {
+  "category": "thing-general",
+  "hub": "lawa",
+  "via": "word",
+  "score": 57,
+  "candidates": [
+   "lawa"
+  ]
+ },
+ "learning": {
+  "category": "thing-general",
+  "hub": "kama",
+  "via": "compound: kama sona",
+  "score": 100,
+  "candidates": [
+   "kama sona"
+  ]
+ },
+ "leather": {
+  "category": "thing-general",
+  "hub": "selo",
+  "via": "compound: selo soweli",
+  "score": 56,
+  "candidates": [
+   "selo soweli"
+  ]
+ },
+ "letter": {
+  "category": "thing-general",
+  "hub": "lipu",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "lipu",
+   "sitelen"
+  ]
+ },
+ "level": {
+  "category": "thing-general",
+  "hub": "supa",
+  "via": "word",
+  "score": 44,
+  "candidates": [
+   "supa"
+  ]
+ },
+ "lift": {
+  "category": "thing-general",
+  "hub": "sewi",
+  "via": "hand: sewi",
+  "score": 0,
+  "candidates": [],
+  "note": "tawa sewi"
+ },
+ "light": {
+  "category": "thing-general",
+  "hub": "suno",
+  "via": "word",
+  "score": 77,
+  "candidates": [
+   "suno",
+   "lili"
+  ]
+ },
+ "limit": {
+  "category": "thing-general",
+  "hub": "selo",
+  "via": "hand: selo",
+  "score": 0,
+  "candidates": [],
+  "note": "edge"
+ },
+ "linen": {
+  "category": "thing-general",
+  "hub": "len",
+  "via": "hand: len",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "liquid": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "hand: telo",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "list": {
+  "category": "thing-general",
+  "hub": "lipu",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "lipu"
+  ]
+ },
+ "look": {
+  "category": "thing-general",
+  "hub": "lukin",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "loss": {
+  "category": "thing-general",
+  "hub": "weka",
+  "via": "word",
+  "score": 69,
+  "candidates": [
+   "weka"
+  ]
+ },
+ "love": {
+  "category": "thing-general",
+  "hub": "olin",
+  "via": "word",
+  "score": 96,
+  "candidates": [
+   "olin",
+   "pona"
+  ]
+ },
+ "machine": {
+  "category": "thing-general",
+  "hub": "ilo",
+  "via": "word",
+  "score": 84,
+  "candidates": [
+   "ilo"
+  ]
+ },
+ "man": {
+  "category": "thing-general",
+  "hub": "mije",
+  "via": "word",
+  "score": 90,
+  "candidates": [
+   "mije"
+  ]
+ },
+ "manager": {
+  "category": "thing-general",
+  "hub": "jan",
+  "via": "compound: jan lawa",
+  "score": 86,
+  "candidates": [
+   "jan lawa"
+  ]
+ },
+ "mark": {
+  "category": "thing-general",
+  "hub": "sitelen",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "sitelen"
+  ]
+ },
+ "market": {
+  "category": "thing-general",
+  "hub": "esun",
+  "via": "word",
+  "score": 62,
+  "candidates": [
+   "esun"
+  ]
+ },
+ "mass": {
+  "category": "thing-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 42,
+  "candidates": [
+   "suli"
+  ]
+ },
+ "meal": {
+  "category": "thing-general",
+  "hub": "moku",
+  "via": "word",
+  "score": 83,
+  "candidates": [
+   "moku"
+  ]
+ },
+ "measure": {
+  "category": "thing-general",
+  "hub": "nanpa",
+  "via": "hand: nanpa",
+  "score": 0,
+  "candidates": [],
+  "note": "count"
+ },
+ "meat": {
+  "category": "thing-general",
+  "hub": "moku",
+  "via": "hand: moku",
+  "score": 0,
+  "candidates": [],
+  "note": "moku soweli"
+ },
+ "meeting": {
+  "category": "thing-general",
+  "hub": "kulupu",
+  "via": "word",
+  "score": 45,
+  "candidates": [
+   "kulupu"
+  ]
+ },
+ "memory": {
+  "category": "thing-general",
+  "hub": "sona",
+  "via": "hand: sona",
+  "score": 0,
+  "candidates": [],
+  "note": "awen sona"
+ },
+ "metal": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "word",
+  "score": 57,
+  "candidates": [
+   "kiwen"
+  ]
+ },
+ "middle": {
+  "category": "thing-general",
+  "hub": "insa",
+  "via": "word",
+  "score": 56,
+  "candidates": [
+   "insa"
+  ]
+ },
+ "milk": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "hand: telo",
+  "score": 0,
+  "candidates": [],
+  "note": "telo walo"
+ },
+ "mind": {
+  "category": "thing-general",
+  "hub": "lawa",
+  "via": "word",
+  "score": 50,
+  "candidates": [
+   "lawa"
+  ]
+ },
+ "mine": {
+  "category": "thing-general",
+  "hub": "mi",
+  "via": "word",
+  "score": 63,
+  "candidates": [
+   "mi"
+  ]
+ },
+ "minute": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo lili",
+  "score": 60,
+  "candidates": [
+   "tenpo lili"
+  ]
+ },
+ "mist": {
+  "category": "thing-general",
+  "hub": "kon",
+  "via": "hand: kon",
+  "score": 0,
+  "candidates": [],
+  "note": "kon telo"
+ },
+ "money": {
+  "category": "thing-general",
+  "hub": "mani",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "mani"
+  ]
+ },
+ "month": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo mun",
+  "score": 75,
+  "candidates": [
+   "tenpo mun"
+  ]
+ },
+ "morning": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "hand: tenpo",
+  "score": 0,
+  "candidates": [],
+  "note": "tenpo suno open"
+ },
+ "mother": {
+  "category": "thing-general",
+  "hub": "mama",
+  "via": "word",
+  "score": 50,
+  "candidates": [
+   "mama",
+   "mama meli"
+  ]
+ },
+ "motion": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "tawa"
+  ]
+ },
+ "mountain": {
+  "category": "thing-general",
+  "hub": "nena",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "nena suli",
+   "nena"
+  ]
+ },
+ "move": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "tawa"
+  ]
+ },
+ "music": {
+  "category": "thing-general",
+  "hub": "kalama",
+  "via": "compound: kalama musi",
+  "score": 64,
+  "candidates": [
+   "kalama musi"
+  ]
+ },
+ "name": {
+  "category": "thing-general",
+  "hub": "nimi",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "nimi"
+  ]
+ },
+ "nation": {
+  "category": "thing-general",
+  "hub": "ma",
+  "via": "word",
+  "score": 62,
+  "candidates": [
+   "ma"
+  ]
+ },
+ "need": {
+  "category": "thing-general",
+  "hub": "wile",
+  "via": "word",
+  "score": 88,
+  "candidates": [
+   "wile"
+  ]
+ },
+ "news": {
+  "category": "thing-general",
+  "hub": "sona",
+  "via": "hand: sona",
+  "score": 0,
+  "candidates": [],
+  "note": "sona sin"
+ },
+ "night": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo pimeja",
+  "score": 70,
+  "candidates": [
+   "tenpo pimeja"
+  ]
+ },
+ "noise": {
+  "category": "thing-general",
+  "hub": "kalama",
+  "via": "word",
+  "score": 79,
+  "candidates": [
+   "kalama"
+  ]
+ },
+ "note": {
+  "category": "thing-general",
+  "hub": "sitelen",
+  "via": "word",
+  "score": 30,
+  "candidates": [
+   "sitelen"
+  ]
+ },
+ "number": {
+  "category": "thing-general",
+  "hub": "nanpa",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "nanpa"
+  ]
+ },
+ "observation": {
+  "category": "thing-general",
+  "hub": "lukin",
+  "via": "word",
+  "score": 83,
+  "candidates": [
+   "lukin"
+  ]
+ },
+ "offer": {
+  "category": "thing-general",
+  "hub": "pana",
+  "via": "word",
+  "score": 40,
+  "candidates": [
+   "pana"
+  ]
+ },
+ "oil": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "operation": {
+  "category": "thing-general",
+  "hub": "pali",
+  "via": "word",
+  "score": 50,
+  "candidates": [
+   "pali"
+  ]
+ },
+ "opinion": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "word",
+  "score": 55,
+  "candidates": [
+   "pilin"
+  ]
+ },
+ "order": {
+  "category": "thing-general",
+  "hub": "nasin",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "nasin"
+  ]
+ },
+ "organization": {
+  "category": "thing-general",
+  "hub": "kulupu",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "kulupu"
+  ]
+ },
+ "ornament": {
+  "category": "thing-general",
+  "hub": "namako",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "owner": {
+  "category": "thing-general",
+  "hub": "jan",
+  "via": "compound: jan jo",
+  "score": 53,
+  "candidates": [
+   "jan jo"
+  ]
+ },
+ "page": {
+  "category": "thing-general",
+  "hub": "lipu",
+  "via": "word",
+  "score": 82,
+  "candidates": [
+   "lipu"
+  ]
+ },
+ "pain": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "hand: pilin",
+  "score": 0,
+  "candidates": [],
+  "note": "pilin ike"
+ },
+ "paint": {
+  "category": "thing-general",
+  "hub": "sitelen",
+  "via": "word",
+  "score": 60,
+  "candidates": [
+   "sitelen",
+   "kule"
+  ]
+ },
+ "paper": {
+  "category": "thing-general",
+  "hub": "lipu",
+  "via": "word",
+  "score": 93,
+  "candidates": [
+   "lipu"
+  ]
+ },
+ "part": {
+  "category": "thing-general",
+  "hub": "lili",
+  "via": "word",
+  "score": 54,
+  "candidates": [
+   "lili",
+   "kipisi",
+   "wan"
+  ]
+ },
+ "paste": {
+  "category": "thing-general",
+  "hub": "ko",
+  "via": "word",
+  "score": 73,
+  "candidates": [
+   "ko"
+  ]
+ },
+ "payment": {
+  "category": "thing-general",
+  "hub": "mani",
+  "via": "word",
+  "score": 29,
+  "candidates": [
+   "pana mani",
+   "mani"
+  ]
+ },
+ "peace": {
+  "category": "thing-general",
+  "hub": "pona",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "utala ala",
+   "pona"
+  ]
+ },
+ "person": {
+  "category": "thing-general",
+  "hub": "jan",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "jan"
+  ]
+ },
+ "place": {
+  "category": "thing-general",
+  "hub": "ma",
+  "via": "word",
+  "score": 73,
+  "candidates": [
+   "ma"
+  ]
+ },
+ "plant": {
+  "category": "thing-general",
+  "hub": "kasi",
+  "via": "word",
+  "score": 95,
+  "candidates": [
+   "kasi"
+  ]
+ },
+ "play": {
+  "category": "thing-general",
+  "hub": "musi",
+  "via": "word",
+  "score": 87,
+  "candidates": [
+   "musi"
+  ]
+ },
+ "pleasure": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "compound: pilin pona",
+  "score": 70,
+  "candidates": [
+   "pilin pona"
+  ]
+ },
+ "point": {
+  "category": "thing-general",
+  "hub": "lili",
+  "via": "hand: lili",
+  "score": 0,
+  "candidates": [
+   "kiki"
+  ],
+  "note": "small spot; or luka (point with hand)"
+ },
+ "poison": {
+  "category": "thing-general",
+  "hub": "jaki",
+  "via": "hand: jaki",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "polish": {
+  "category": "thing-general",
+  "hub": "pona",
+  "via": "hand: pona",
+  "score": 0,
+  "candidates": [],
+  "note": "make shine: suno"
+ },
+ "porter": {
+  "category": "thing-general",
+  "hub": "jan",
+  "via": "hand: jan",
+  "score": 0,
+  "candidates": [],
+  "note": "jan pi tawa ijo"
+ },
+ "position": {
+  "category": "thing-general",
+  "hub": "lon",
+  "via": "word",
+  "score": 55,
+  "candidates": [
+   "lon"
+  ]
+ },
+ "powder": {
+  "category": "thing-general",
+  "hub": "ko",
+  "via": "word",
+  "score": 73,
+  "candidates": [
+   "ko"
+  ]
+ },
+ "power": {
+  "category": "thing-general",
+  "hub": "wawa",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "wawa"
+  ]
+ },
+ "price": {
+  "category": "thing-general",
+  "hub": "mani",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "mani"
+  ]
+ },
+ "print": {
+  "category": "thing-general",
+  "hub": "sitelen",
+  "via": "hand: sitelen",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "process": {
+  "category": "thing-general",
+  "hub": "nasin",
+  "via": "word",
+  "score": 54,
+  "candidates": [
+   "nasin",
+   "pali"
+  ]
+ },
+ "produce": {
+  "category": "thing-general",
+  "hub": "pali",
+  "via": "word",
+  "score": 93,
+  "candidates": [
+   "pali"
+  ]
+ },
+ "profit": {
+  "category": "thing-general",
+  "hub": "mani",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "mani"
+  ]
+ },
+ "property": {
+  "category": "thing-general",
+  "hub": "jo",
+  "via": "hand: jo",
+  "score": 0,
+  "candidates": [],
+  "note": "what someone has"
+ },
+ "prose": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "hand: toki",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "protest": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "hand: toki",
+  "score": 0,
+  "candidates": [],
+  "note": "toki utala"
+ },
+ "pull": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "hand: tawa",
+  "score": 0,
+  "candidates": [],
+  "note": "tawa e ijo tawa mi"
+ },
+ "punishment": {
+  "category": "thing-general",
+  "hub": "ike",
+  "via": "hand: ike",
+  "score": 0,
+  "candidates": [],
+  "note": "ike pana"
+ },
+ "purpose": {
+  "category": "thing-general",
+  "hub": "tan",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "tan"
+  ]
+ },
+ "push": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "word",
+  "score": 43,
+  "candidates": [
+   "tawa"
+  ]
+ },
+ "quality": {
+  "category": "thing-general",
+  "hub": "pona",
+  "via": "word",
+  "score": 79,
+  "candidates": [
+   "pona"
+  ]
+ },
+ "question": {
+  "category": "thing-general",
+  "hub": "wile",
+  "via": "compound: wile sona",
+  "score": 50,
+  "candidates": [
+   "wile sona"
+  ]
+ },
+ "rain": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "compound: telo sewi",
+  "score": 41,
+  "candidates": [
+   "telo sewi"
+  ]
+ },
+ "range": {
+  "category": "thing-general",
+  "hub": "suli",
+  "via": "hand: suli",
+  "score": 0,
+  "candidates": [],
+  "note": "how far something reaches"
+ },
+ "rate": {
+  "category": "thing-general",
+  "hub": "nanpa",
+  "via": "word",
+  "score": 37,
+  "candidates": [
+   "nanpa"
+  ]
+ },
+ "ray": {
+  "category": "thing-general",
+  "hub": "linja",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "linja"
+  ]
+ },
+ "reaction": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "word",
+  "score": 30,
+  "candidates": [
+   "pilin"
+  ]
+ },
+ "reading": {
+  "category": "thing-general",
+  "hub": "lukin",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "lukin"
+  ]
+ },
+ "reason": {
+  "category": "thing-general",
+  "hub": "tan",
+  "via": "word",
+  "score": 86,
+  "candidates": [
+   "tan"
+  ]
+ },
+ "record": {
+  "category": "thing-general",
+  "hub": "sitelen",
+  "via": "word",
+  "score": 40,
+  "candidates": [
+   "sitelen"
+  ]
+ },
+ "regret": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "hand: pilin",
+  "score": 0,
+  "candidates": [],
+  "note": "pilin ike tan pali"
+ },
+ "relation": {
+  "category": "thing-general",
+  "hub": "sama",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "sama"
+  ]
+ },
+ "religion": {
+  "category": "thing-general",
+  "hub": "nasin",
+  "via": "compound: nasin sewi",
+  "score": 69,
+  "candidates": [
+   "nasin sewi"
+  ]
+ },
+ "representative": {
+  "category": "thing-general",
+  "hub": "jan",
+  "via": "hand: jan",
+  "score": 0,
+  "candidates": [],
+  "note": "jan toki"
+ },
+ "request": {
+  "category": "thing-general",
+  "hub": "wile",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "wile"
+  ]
+ },
+ "respect": {
+  "category": "thing-general",
+  "hub": "olin",
+  "via": "definition",
+  "score": 0,
+  "candidates": [
+   "olin"
+  ]
+ },
+ "rest": {
+  "category": "thing-general",
+  "hub": "lape",
+  "via": "word",
+  "score": 58,
+  "candidates": [
+   "lape"
+  ]
+ },
+ "reward": {
+  "category": "thing-general",
+  "hub": "pana",
+  "via": "hand: pana",
+  "score": 0,
+  "candidates": [],
+  "note": "pana pona"
+ },
+ "rhythm": {
+  "category": "thing-general",
+  "hub": "kalama",
+  "via": "hand: kalama",
+  "score": 0,
+  "candidates": [],
+  "note": "kalama musi"
+ },
+ "rice": {
+  "category": "thing-general",
+  "hub": "pan",
+  "via": "word",
+  "score": 53,
+  "candidates": [
+   "pan"
+  ]
+ },
+ "river": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "hand: telo",
+  "score": 0,
+  "candidates": [],
+  "note": "telo tawa"
+ },
+ "road": {
+  "category": "thing-general",
+  "hub": "nasin",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "nasin"
+  ]
+ },
+ "roll": {
+  "category": "thing-general",
+  "hub": "sike",
+  "via": "word",
+  "score": 20,
+  "candidates": [
+   "tawa sike",
+   "sike"
+  ]
+ },
+ "room": {
+  "category": "thing-general",
+  "hub": "tomo",
+  "via": "word",
+  "score": 81,
+  "candidates": [
+   "tomo"
+  ]
+ },
+ "rub": {
+  "category": "thing-general",
+  "hub": "luka",
+  "via": "hand: luka",
+  "score": 0,
+  "candidates": [],
+  "note": "touch over and over"
+ },
+ "rule": {
+  "category": "thing-general",
+  "hub": "lawa",
+  "via": "word",
+  "score": 60,
+  "candidates": [
+   "lawa"
+  ]
+ },
+ "run": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "compound: tawa wawa",
+  "score": 53,
+  "candidates": [
+   "tawa wawa"
+  ]
+ },
+ "salt": {
+  "category": "thing-general",
+  "hub": "namako",
+  "via": "word",
+  "score": 32,
+  "candidates": [
+   "namako"
+  ]
+ },
+ "sand": {
+  "category": "thing-general",
+  "hub": "ko",
+  "via": "word",
+  "score": 38,
+  "candidates": [
+   "ko"
+  ]
+ },
+ "scale": {
+  "category": "thing-general",
+  "hub": "nanpa",
+  "via": "hand: nanpa",
+  "score": 0,
+  "candidates": [],
+  "note": "measure; fish sense: selo"
+ },
+ "science": {
+  "category": "thing-general",
+  "hub": "sona",
+  "via": "hand: sona",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "sea": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "compound: telo suli",
+  "score": 65,
+  "candidates": [
+   "telo suli"
+  ]
+ },
+ "seat": {
+  "category": "thing-general",
+  "hub": "supa",
+  "via": "word",
+  "score": 38,
+  "candidates": [
+   "supa monsi",
+   "supa"
+  ]
+ },
+ "secretary": {
+  "category": "thing-general",
+  "hub": "jan",
+  "via": "hand: jan",
+  "score": 0,
+  "candidates": [],
+  "note": "jan pali lipu"
+ },
+ "selection": {
+  "category": "thing-general",
+  "hub": "anu",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "anu",
+   "wile"
+  ]
+ },
+ "self": {
+  "category": "thing-general",
+  "hub": "mi",
+  "via": "word",
+  "score": 38,
+  "candidates": [
+   "mi",
+   "sijelo"
+  ]
+ },
+ "sense": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "word",
+  "score": 69,
+  "candidates": [
+   "pilin"
+  ]
+ },
+ "servant": {
+  "category": "thing-general",
+  "hub": "jan",
+  "via": "hand: jan",
+  "score": 0,
+  "candidates": [],
+  "note": "jan pali"
+ },
+ "sex": {
+  "category": "thing-general",
+  "hub": "unpa",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "unpa"
+  ]
+ },
+ "shade": {
+  "category": "thing-general",
+  "hub": "pimeja",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "pimeja"
+  ]
+ },
+ "shake": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "hand: tawa",
+  "score": 0,
+  "candidates": [],
+  "note": "tawa wawa"
+ },
+ "shame": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "hand: pilin",
+  "score": 0,
+  "candidates": [
+   "apeja"
+  ],
+  "note": "pilin ike"
+ },
+ "shock": {
+  "category": "thing-general",
+  "hub": "nasa",
+  "via": "hand: nasa",
+  "score": 0,
+  "candidates": [],
+  "note": "sudden surprise; electric: wawa"
+ },
+ "side": {
+  "category": "thing-general",
+  "hub": "poka",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "poka"
+  ]
+ },
+ "sign": {
+  "category": "thing-general",
+  "hub": "lipu",
+  "via": "word",
+  "score": 43,
+  "candidates": [
+   "lipu",
+   "sitelen"
+  ]
+ },
+ "silk": {
+  "category": "thing-general",
+  "hub": "len",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "len"
+  ]
+ },
+ "silver": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "kiwen"
+  ]
+ },
+ "sister": {
+  "category": "thing-general",
+  "hub": "jan",
+  "via": "hand: jan",
+  "score": 0,
+  "candidates": [],
+  "note": "jan sama"
+ },
+ "size": {
+  "category": "thing-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 67,
+  "candidates": [
+   "suli"
+  ]
+ },
+ "sky": {
+  "category": "thing-general",
+  "hub": "sewi",
+  "via": "word",
+  "score": 71,
+  "candidates": [
+   "sewi"
+  ]
+ },
+ "sleep": {
+  "category": "thing-general",
+  "hub": "lape",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "lape"
+  ]
+ },
+ "slip": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "hand: tawa",
+  "score": 0,
+  "candidates": [],
+  "note": "tawa anpa"
+ },
+ "slope": {
+  "category": "thing-general",
+  "hub": "nena",
+  "via": "hand: nena",
+  "score": 0,
+  "candidates": [],
+  "note": "nena lili"
+ },
+ "smash": {
+  "category": "thing-general",
+  "hub": "pakala",
+  "via": "hand: pakala",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "smell": {
+  "category": "thing-general",
+  "hub": "kon",
+  "via": "word",
+  "score": 29,
+  "candidates": [
+   "kon"
+  ]
+ },
+ "smile": {
+  "category": "thing-general",
+  "hub": "uta",
+  "via": "hand: uta",
+  "score": 0,
+  "candidates": [],
+  "note": "uta pona"
+ },
+ "smoke": {
+  "category": "thing-general",
+  "hub": "kon",
+  "via": "hand: kon",
+  "score": 0,
+  "candidates": [],
+  "note": "kon seli"
+ },
+ "sneeze": {
+  "category": "thing-general",
+  "hub": "kalama",
+  "via": "hand: kalama",
+  "score": 0,
+  "candidates": [],
+  "note": "nose noise"
+ },
+ "snow": {
+  "category": "thing-general",
+  "hub": "ko",
+  "via": "hand: ko",
+  "score": 0,
+  "candidates": [],
+  "note": "ko lete"
+ },
+ "soap": {
+  "category": "thing-general",
+  "hub": "ko",
+  "via": "hand: ko",
+  "score": 0,
+  "candidates": [],
+  "note": "ko pi weka jaki"
+ },
+ "society": {
+  "category": "thing-general",
+  "hub": "kulupu",
+  "via": "word",
+  "score": 67,
+  "candidates": [
+   "kulupu"
+  ]
+ },
+ "son": {
+  "category": "thing-general",
+  "hub": "mije",
+  "via": "hand: mije",
+  "score": 0,
+  "candidates": [],
+  "note": "mije lili pi mama"
+ },
+ "song": {
+  "category": "thing-general",
+  "hub": "kalama",
+  "via": "compound: kalama musi",
+  "score": 55,
+  "candidates": [
+   "kalama musi"
+  ]
+ },
+ "sort": {
+  "category": "thing-general",
+  "hub": "kule",
+  "via": "hand: kule",
+  "score": 0,
+  "candidates": [],
+  "note": "kind, category"
+ },
+ "sound": {
+  "category": "thing-general",
+  "hub": "kalama",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "kalama"
+  ]
+ },
+ "soup": {
+  "category": "thing-general",
+  "hub": "moku",
+  "via": "compound: moku telo",
+  "score": 42,
+  "candidates": [
+   "moku telo"
+  ]
+ },
+ "space": {
+  "category": "thing-general",
+  "hub": "tomo",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "stage": {
+  "category": "thing-general",
+  "hub": "supa",
+  "via": "word",
+  "score": 38,
+  "candidates": [
+   "supa"
+  ]
+ },
+ "start": {
+  "category": "thing-general",
+  "hub": "open",
+  "via": "word",
+  "score": 91,
+  "candidates": [
+   "open"
+  ]
+ },
+ "statement": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "word",
+  "score": 92,
+  "candidates": [
+   "toki"
+  ]
+ },
+ "steam": {
+  "category": "thing-general",
+  "hub": "kon",
+  "via": "hand: kon",
+  "score": 0,
+  "candidates": [],
+  "note": "kon telo seli"
+ },
+ "steel": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "word",
+  "score": 56,
+  "candidates": [
+   "kiwen"
+  ]
+ },
+ "step": {
+  "category": "thing-general",
+  "hub": "noka",
+  "via": "hand: noka",
+  "score": 0,
+  "candidates": [],
+  "note": "one foot move; stage sense: nanpa"
+ },
+ "stitch": {
+  "category": "thing-general",
+  "hub": "linja",
+  "via": "hand: linja",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "stone": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "word",
+  "score": 84,
+  "candidates": [
+   "kiwen"
+  ]
+ },
+ "stop": {
+  "category": "thing-general",
+  "hub": "pini",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "pini",
+   "pake"
+  ]
+ },
+ "story": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "word",
+  "score": 44,
+  "candidates": [
+   "toki"
+  ]
+ },
+ "stretch": {
+  "category": "thing-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 37,
+  "candidates": [
+   "suli"
+  ]
+ },
+ "structure": {
+  "category": "thing-general",
+  "hub": "tomo",
+  "via": "word",
+  "score": 53,
+  "candidates": [
+   "tomo"
+  ]
+ },
+ "substance": {
+  "category": "thing-general",
+  "hub": "ijo",
+  "via": "word",
+  "score": 53,
+  "candidates": [
+   "ijo",
+   "ko"
+  ]
+ },
+ "sugar": {
+  "category": "thing-general",
+  "hub": "suwi",
+  "via": "word",
+  "score": 58,
+  "candidates": [
+   "suwi"
+  ]
+ },
+ "suggestion": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "toki"
+  ]
+ },
+ "summer": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo seli",
+  "score": 73,
+  "candidates": [
+   "tenpo seli"
+  ]
+ },
+ "support": {
+  "category": "thing-general",
+  "hub": "awen",
+  "via": "hand: awen",
+  "score": 0,
+  "candidates": [],
+  "note": "keep up"
+ },
+ "surprise": {
+  "category": "thing-general",
+  "hub": "nasa",
+  "via": "hand: nasa",
+  "score": 0,
+  "candidates": [],
+  "note": "pilin nasa"
+ },
+ "swim": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "compound: tawa telo",
+  "score": 60,
+  "candidates": [
+   "tawa telo"
+  ]
+ },
+ "system": {
+  "category": "thing-general",
+  "hub": "nasin",
+  "via": "word",
+  "score": 56,
+  "candidates": [
+   "nasin"
+  ]
+ },
+ "talk": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "toki"
+  ]
+ },
+ "taste": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "compound: pilin uta",
+  "score": 54,
+  "candidates": [
+   "pilin uta"
+  ]
+ },
+ "tax": {
+  "category": "thing-general",
+  "hub": "mani",
+  "via": "hand: mani",
+  "score": 0,
+  "candidates": [],
+  "note": "mani pi jan lawa"
+ },
+ "teaching": {
+  "category": "thing-general",
+  "hub": "pana",
+  "via": "compound: pana sona",
+  "score": 54,
+  "candidates": [
+   "pana sona"
+  ]
+ },
+ "tendency": {
+  "category": "thing-general",
+  "hub": "nasin",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "nasin"
+  ]
+ },
+ "test": {
+  "category": "thing-general",
+  "hub": "lukin",
+  "via": "hand: lukin",
+  "score": 0,
+  "candidates": [],
+  "note": "alasa sona"
+ },
+ "theory": {
+  "category": "thing-general",
+  "hub": "sona",
+  "via": "hand: sona",
+  "score": 0,
+  "candidates": [
+   "isipin"
+  ],
+  "note": "idea about why"
+ },
+ "thing": {
+  "category": "thing-general",
+  "hub": "ijo",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "ijo"
+  ]
+ },
+ "thought": {
+  "category": "thing-general",
+  "hub": "pilin",
+  "via": "word",
+  "score": 39,
+  "candidates": [
+   "pilin"
+  ]
+ },
+ "thunder": {
+  "category": "thing-general",
+  "hub": "kalama",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "time": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "tenpo"
+  ]
+ },
+ "tin": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "hand: kiwen",
+  "score": 0,
+  "candidates": [],
+  "note": "metal"
+ },
+ "top": {
+  "category": "thing-general",
+  "hub": "sewi",
+  "via": "word",
+  "score": 76,
+  "candidates": [
+   "sewi"
+  ]
+ },
+ "touch": {
+  "category": "thing-general",
+  "hub": "luka",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "luka",
+   "pilin"
+  ]
+ },
+ "trade": {
+  "category": "thing-general",
+  "hub": "esun",
+  "via": "word",
+  "score": 88,
+  "candidates": [
+   "esun"
+  ]
+ },
+ "transport": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "word",
+  "score": 50,
+  "candidates": [
+   "tawa"
+  ]
+ },
+ "trick": {
+  "category": "thing-general",
+  "hub": "musi",
+  "via": "hand: musi",
+  "score": 0,
+  "candidates": [
+   "powe"
+  ],
+  "note": "or powe (uncommon word)"
+ },
+ "trouble": {
+  "category": "thing-general",
+  "hub": "ike",
+  "via": "word",
+  "score": 53,
+  "candidates": [
+   "ike",
+   "pakala"
+  ]
+ },
+ "turn": {
+  "category": "thing-general",
+  "hub": "open",
+  "via": "definition (also pini)",
+  "score": 0,
+  "candidates": []
+ },
+ "twist": {
+  "category": "thing-general",
+  "hub": "sike",
+  "via": "word",
+  "score": 21,
+  "candidates": [
+   "sike"
+  ]
+ },
+ "unit": {
+  "category": "thing-general",
+  "hub": "wan",
+  "via": "word",
+  "score": 74,
+  "candidates": [
+   "wan"
+  ]
+ },
+ "use": {
+  "category": "thing-general",
+  "hub": "kepeken",
+  "via": "word",
+  "score": 93,
+  "candidates": [
+   "kepeken"
+  ]
+ },
+ "value": {
+  "category": "thing-general",
+  "hub": "mani",
+  "via": "word",
+  "score": 32,
+  "candidates": [
+   "mani"
+  ]
+ },
+ "verse": {
+  "category": "thing-general",
+  "hub": "toki",
+  "via": "hand: toki",
+  "score": 0,
+  "candidates": [],
+  "note": "toki musi"
+ },
+ "vessel": {
+  "category": "thing-general",
+  "hub": "poki",
+  "via": "hand: poki",
+  "score": 0,
+  "candidates": [],
+  "note": "container; boat sense: tomo tawa telo"
+ },
+ "view": {
+  "category": "thing-general",
+  "hub": "lukin",
+  "via": "word",
+  "score": 74,
+  "candidates": [
+   "lukin"
+  ]
+ },
+ "voice": {
+  "category": "thing-general",
+  "hub": "kalama",
+  "via": "hand: kalama",
+  "score": 0,
+  "candidates": [],
+  "note": "kalama uta"
+ },
+ "walk": {
+  "category": "thing-general",
+  "hub": "tawa",
+  "via": "word",
+  "score": 58,
+  "candidates": [
+   "tawa"
+  ]
+ },
+ "war": {
+  "category": "thing-general",
+  "hub": "utala",
+  "via": "word",
+  "score": 58,
+  "candidates": [
+   "utala"
+  ]
+ },
+ "wash": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "word",
+  "score": 52,
+  "candidates": [
+   "telo"
+  ]
+ },
+ "waste": {
+  "category": "thing-general",
+  "hub": "jaki",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "jaki"
+  ]
+ },
+ "water": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "word",
+  "score": 94,
+  "candidates": [
+   "telo"
+  ]
+ },
+ "wave": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "hand: telo",
+  "score": 0,
+  "candidates": [],
+  "note": "telo tawa; hand sense: luka"
+ },
+ "wax": {
+  "category": "thing-general",
+  "hub": "ko",
+  "via": "hand: ko",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "way": {
+  "category": "thing-general",
+  "hub": "nasin",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "nasin"
+  ]
+ },
+ "weather": {
+  "category": "thing-general",
+  "hub": "sewi",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "sewi"
+  ]
+ },
+ "week": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo esun",
+  "score": 80,
+  "candidates": [
+   "tenpo esun"
+  ]
+ },
+ "weight": {
+  "category": "thing-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 77,
+  "candidates": [
+   "suli"
+  ]
+ },
+ "wind": {
+  "category": "thing-general",
+  "hub": "kon",
+  "via": "compound: kon tawa",
+  "score": 73,
+  "candidates": [
+   "kon tawa"
+  ]
+ },
+ "wine": {
+  "category": "thing-general",
+  "hub": "telo",
+  "via": "hand: telo",
+  "score": 0,
+  "candidates": [],
+  "note": "telo nasa"
+ },
+ "winter": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo lete",
+  "score": 100,
+  "candidates": [
+   "tenpo lete"
+  ]
+ },
+ "woman": {
+  "category": "thing-general",
+  "hub": "meli",
+  "via": "word",
+  "score": 77,
+  "candidates": [
+   "meli"
+  ]
+ },
+ "wood": {
+  "category": "thing-general",
+  "hub": "kiwen",
+  "via": "compound: kiwen kasi",
+  "score": 53,
+  "candidates": [
+   "kiwen kasi"
+  ]
+ },
+ "wool": {
+  "category": "thing-general",
+  "hub": "linja",
+  "via": "hand: linja",
+  "score": 0,
+  "candidates": [],
+  "note": "linja soweli"
+ },
+ "word": {
+  "category": "thing-general",
+  "hub": "nimi",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "nimi"
+  ]
+ },
+ "work": {
+  "category": "thing-general",
+  "hub": "pali",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "pali"
+  ]
+ },
+ "wound": {
+  "category": "thing-general",
+  "hub": "pakala",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "pakala"
+  ]
+ },
+ "writing": {
+  "category": "thing-general",
+  "hub": "sitelen",
+  "via": "word",
+  "score": 75,
+  "candidates": [
+   "sitelen"
+  ]
+ },
+ "year": {
+  "category": "thing-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo sike",
+  "score": 56,
+  "candidates": [
+   "tenpo sike"
+  ]
+ },
+ "angle": {
+  "category": "thing-picturable",
+  "hub": "nasin",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "nasin",
+   "kiki"
+  ]
+ },
+ "ant": {
+  "category": "thing-picturable",
+  "hub": "pipi",
+  "via": "hand: pipi",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "apple": {
+  "category": "thing-picturable",
+  "hub": "kili",
+  "via": "word",
+  "score": 82,
+  "candidates": [
+   "kili"
+  ]
+ },
+ "arch": {
+  "category": "thing-picturable",
+  "hub": "nena",
+  "via": "hand: nena",
+  "score": 0,
+  "candidates": [],
+  "note": "curved rise"
+ },
+ "arm": {
+  "category": "thing-picturable",
+  "hub": "luka",
+  "via": "word",
+  "score": 68,
+  "candidates": [
+   "luka"
+  ]
+ },
+ "army": {
+  "category": "thing-picturable",
+  "hub": "kulupu",
+  "via": "compound: kulupu utala",
+  "score": 76,
+  "candidates": [
+   "kulupu utala"
+  ]
+ },
+ "baby": {
+  "category": "thing-picturable",
+  "hub": "jan",
+  "via": "compound: jan lili",
+  "score": 45,
+  "candidates": [
+   "jan lili"
+  ]
+ },
+ "bag": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "word",
+  "score": 87,
+  "candidates": [
+   "poki"
+  ]
+ },
+ "ball": {
+  "category": "thing-picturable",
+  "hub": "sike",
+  "via": "word",
+  "score": 77,
+  "candidates": [
+   "sike"
+  ]
+ },
+ "band": {
+  "category": "thing-picturable",
+  "hub": "kulupu",
+  "via": "compound: kulupu pi kalama musi",
+  "score": 47,
+  "candidates": [
+   "kulupu pi kalama musi"
+  ]
+ },
+ "basin": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "hand: poki telo",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "basket": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "word",
+  "score": 71,
+  "candidates": [
+   "poki"
+  ]
+ },
+ "bath": {
+  "category": "thing-picturable",
+  "hub": "telo",
+  "via": "hand: telo",
+  "score": 0,
+  "candidates": [],
+  "note": "washing water"
+ },
+ "bed": {
+  "category": "thing-picturable",
+  "hub": "supa",
+  "via": "compound: supa lape",
+  "score": 86,
+  "candidates": [
+   "supa lape"
+  ]
+ },
+ "bee": {
+  "category": "thing-picturable",
+  "hub": "pipi",
+  "via": "hand: pipi",
+  "score": 0,
+  "candidates": [],
+  "note": "pipi pi telo suwi"
+ },
+ "bell": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "compound: ilo kalama",
+  "score": 42,
+  "candidates": [
+   "ilo kalama"
+  ]
+ },
+ "berry": {
+  "category": "thing-picturable",
+  "hub": "kili",
+  "via": "hand: kili",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "bird": {
+  "category": "thing-picturable",
+  "hub": "waso",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "waso"
+  ]
+ },
+ "blade": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo kipisi",
+  "score": 0,
+  "candidates": [],
+  "note": "cutting tool"
+ },
+ "board": {
+  "category": "thing-picturable",
+  "hub": "supa",
+  "via": "word",
+  "score": 67,
+  "candidates": [
+   "supa"
+  ]
+ },
+ "boat": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "compound: tomo tawa telo",
+  "score": 76,
+  "candidates": [
+   "tomo tawa telo"
+  ]
+ },
+ "bone": {
+  "category": "thing-picturable",
+  "hub": "kiwen",
+  "via": "hand: kiwen",
+  "score": 0,
+  "candidates": [],
+  "note": "kiwen insa (inner hard thing)"
+ },
+ "book": {
+  "category": "thing-picturable",
+  "hub": "lipu",
+  "via": "word",
+  "score": 92,
+  "candidates": [
+   "lipu"
+  ]
+ },
+ "boot": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "compound: len noka",
+  "score": 75,
+  "candidates": [
+   "len noka"
+  ]
+ },
+ "bottle": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "word",
+  "score": 65,
+  "candidates": [
+   "poki"
+  ]
+ },
+ "box": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "word",
+  "score": 90,
+  "candidates": [
+   "poki"
+  ]
+ },
+ "boy": {
+  "category": "thing-picturable",
+  "hub": "mije",
+  "via": "hand: mije",
+  "score": 0,
+  "candidates": [],
+  "note": "mije lili"
+ },
+ "brain": {
+  "category": "thing-picturable",
+  "hub": "lawa",
+  "via": "word",
+  "score": 45,
+  "candidates": [
+   "lawa"
+  ]
+ },
+ "brake": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo",
+  "score": 0,
+  "candidates": [],
+  "note": "ilo pi pini tawa (stop-moving tool)"
+ },
+ "branch": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "word",
+  "score": 60,
+  "candidates": [
+   "palisa"
+  ]
+ },
+ "brick": {
+  "category": "thing-picturable",
+  "hub": "leko",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "leko"
+  ]
+ },
+ "bridge": {
+  "category": "thing-picturable",
+  "hub": "nasin",
+  "via": "hand: nasin",
+  "score": 0,
+  "candidates": [],
+  "note": "nasin sewi telo (road over water)"
+ },
+ "brush": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo",
+  "score": 0,
+  "candidates": [],
+  "note": "ilo linja"
+ },
+ "bucket": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "word",
+  "score": 67,
+  "candidates": [
+   "poki"
+  ]
+ },
+ "bulb": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo suno",
+  "score": 0,
+  "candidates": [],
+  "note": "light tool; plant sense: kili"
+ },
+ "button": {
+  "category": "thing-picturable",
+  "hub": "nena",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "nena"
+  ]
+ },
+ "cake": {
+  "category": "thing-picturable",
+  "hub": "pan",
+  "via": "compound: pan suwi",
+  "score": 69,
+  "candidates": [
+   "pan suwi"
+  ]
+ },
+ "camera": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "compound: ilo sitelen",
+  "score": 59,
+  "candidates": [
+   "ilo sitelen"
+  ]
+ },
+ "card": {
+  "category": "thing-picturable",
+  "hub": "lipu",
+  "via": "word",
+  "score": 85,
+  "candidates": [
+   "lipu"
+  ]
+ },
+ "carriage": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "hand: tomo tawa",
+  "score": 0,
+  "candidates": [],
+  "note": "vehicle"
+ },
+ "cart": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "compound: poki tawa",
+  "score": 60,
+  "candidates": [
+   "poki tawa"
+  ]
+ },
+ "cat": {
+  "category": "thing-picturable",
+  "hub": "soweli",
+  "via": "word",
+  "score": 61,
+  "candidates": [
+   "soweli"
+  ]
+ },
+ "chain": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "linja kiwen",
+   "linja"
+  ]
+ },
+ "cheese": {
+  "category": "thing-picturable",
+  "hub": "ko",
+  "via": "hand: ko",
+  "score": 0,
+  "candidates": [],
+  "note": "ko moku"
+ },
+ "chest": {
+  "category": "thing-picturable",
+  "hub": "sinpin",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "sinpin"
+  ]
+ },
+ "chin": {
+  "category": "thing-picturable",
+  "hub": "uta",
+  "via": "hand: uta",
+  "score": 0,
+  "candidates": [],
+  "note": "lower face, near the mouth"
+ },
+ "church": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "compound: tomo sewi",
+  "score": 67,
+  "candidates": [
+   "tomo sewi"
+  ]
+ },
+ "circle": {
+  "category": "thing-picturable",
+  "hub": "sike",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "sike"
+  ]
+ },
+ "clock": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "compound: ilo tenpo",
+  "score": 92,
+  "candidates": [
+   "ilo tenpo"
+  ]
+ },
+ "cloud": {
+  "category": "thing-picturable",
+  "hub": "kon",
+  "via": "hand: kon",
+  "score": 0,
+  "candidates": [],
+  "note": "kon walo"
+ },
+ "coat": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "hand: len",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "collar": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "hand: len",
+  "score": 0,
+  "candidates": [],
+  "note": "len pi anpa lawa"
+ },
+ "comb": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo",
+  "score": 0,
+  "candidates": [],
+  "note": "ilo linja lawa"
+ },
+ "cord": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "linja"
+  ]
+ },
+ "cow": {
+  "category": "thing-picturable",
+  "hub": "mani",
+  "via": "word",
+  "score": 30,
+  "candidates": [
+   "mani"
+  ]
+ },
+ "cup": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "poki telo",
+   "poki"
+  ]
+ },
+ "curtain": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "hand: len",
+  "score": 0,
+  "candidates": [],
+  "note": "len lupa"
+ },
+ "cushion": {
+  "category": "thing-picturable",
+  "hub": "supa",
+  "via": "hand: supa",
+  "score": 0,
+  "candidates": [],
+  "note": "soft seat"
+ },
+ "dog": {
+  "category": "thing-picturable",
+  "hub": "soweli",
+  "via": "word",
+  "score": 67,
+  "candidates": [
+   "soweli"
+  ]
+ },
+ "door": {
+  "category": "thing-picturable",
+  "hub": "lupa",
+  "via": "word",
+  "score": 87,
+  "candidates": [
+   "lupa"
+  ]
+ },
+ "drain": {
+  "category": "thing-picturable",
+  "hub": "weka",
+  "via": "word",
+  "score": 40,
+  "candidates": [
+   "weka"
+  ]
+ },
+ "drawer": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "word",
+  "score": 50,
+  "candidates": [
+   "poki"
+  ]
+ },
+ "dress": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "word",
+  "score": 58,
+  "candidates": [
+   "len"
+  ]
+ },
+ "drop": {
+  "category": "thing-picturable",
+  "hub": "anpa",
+  "via": "hand: anpa",
+  "score": 0,
+  "candidates": [],
+  "note": "fall; liquid sense: telo lili"
+ },
+ "ear": {
+  "category": "thing-picturable",
+  "hub": "kute",
+  "via": "word",
+  "score": 90,
+  "candidates": [
+   "kute"
+  ]
+ },
+ "egg": {
+  "category": "thing-picturable",
+  "hub": "sike",
+  "via": "compound: sike mama",
+  "score": 67,
+  "candidates": [
+   "sike mama"
+  ]
+ },
+ "engine": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo tawa",
+  "score": 0,
+  "candidates": [],
+  "note": "motion machine"
+ },
+ "eye": {
+  "category": "thing-picturable",
+  "hub": "lukin",
+  "via": "word",
+  "score": 26,
+  "candidates": [
+   "oko",
+   "lukin"
+  ]
+ },
+ "face": {
+  "category": "thing-picturable",
+  "hub": "sinpin",
+  "via": "word",
+  "score": 62,
+  "candidates": [
+   "sinpin"
+  ]
+ },
+ "farm": {
+  "category": "thing-picturable",
+  "hub": "ma",
+  "via": "hand: ma pan",
+  "score": 0,
+  "candidates": [],
+  "note": "grain land"
+ },
+ "feather": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "hand: linja",
+  "score": 0,
+  "candidates": [],
+  "note": "linja waso"
+ },
+ "finger": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "compound: palisa luka",
+  "score": 41,
+  "candidates": [
+   "palisa luka"
+  ]
+ },
+ "fish": {
+  "category": "thing-picturable",
+  "hub": "kala",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "kala",
+   "alasa kala"
+  ]
+ },
+ "flag": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "len"
+  ]
+ },
+ "floor": {
+  "category": "thing-picturable",
+  "hub": "supa",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "fly": {
+  "category": "thing-picturable",
+  "hub": "tawa",
+  "via": "hand: tawa",
+  "score": 0,
+  "candidates": [],
+  "note": "move through air; insect sense: pipi"
+ },
+ "foot": {
+  "category": "thing-picturable",
+  "hub": "noka",
+  "via": "word",
+  "score": 67,
+  "candidates": [
+   "noka"
+  ]
+ },
+ "fork": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "compound: ilo moku",
+  "score": 87,
+  "candidates": [
+   "ilo moku"
+  ]
+ },
+ "fowl": {
+  "category": "thing-picturable",
+  "hub": "waso",
+  "via": "hand: waso",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "frame": {
+  "category": "thing-picturable",
+  "hub": "selo",
+  "via": "word",
+  "score": 30,
+  "candidates": [
+   "selo"
+  ]
+ },
+ "garden": {
+  "category": "thing-picturable",
+  "hub": "ma",
+  "via": "compound: ma kasi",
+  "score": 73,
+  "candidates": [
+   "ma kasi"
+  ]
+ },
+ "girl": {
+  "category": "thing-picturable",
+  "hub": "meli",
+  "via": "word",
+  "score": 50,
+  "candidates": [
+   "meli"
+  ]
+ },
+ "glove": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "compound: len luka",
+  "score": 88,
+  "candidates": [
+   "len luka"
+  ]
+ },
+ "goat": {
+  "category": "thing-picturable",
+  "hub": "soweli",
+  "via": "word",
+  "score": 56,
+  "candidates": [
+   "soweli"
+  ]
+ },
+ "gun": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo utala",
+  "score": 0,
+  "candidates": [],
+  "note": "weapon"
+ },
+ "hair": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "word",
+  "score": 30,
+  "candidates": [
+   "linja lawa",
+   "linja"
+  ]
+ },
+ "hammer": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "hand": {
+  "category": "thing-picturable",
+  "hub": "luka",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "luka"
+  ]
+ },
+ "hat": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "compound: len lawa",
+  "score": 100,
+  "candidates": [
+   "len lawa"
+  ]
+ },
+ "head": {
+  "category": "thing-picturable",
+  "hub": "lawa",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "lawa"
+  ]
+ },
+ "heart": {
+  "category": "thing-picturable",
+  "hub": "pilin",
+  "via": "word",
+  "score": 70,
+  "candidates": [
+   "pilin"
+  ]
+ },
+ "hook": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "horn": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "hand: palisa",
+  "score": 0,
+  "candidates": [],
+  "note": "palisa lawa (head spike)"
+ },
+ "horse": {
+  "category": "thing-picturable",
+  "hub": "soweli",
+  "via": "word",
+  "score": 32,
+  "candidates": [
+   "soweli tawa",
+   "soweli"
+  ]
+ },
+ "hospital": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "compound: tomo pi pona sijelo",
+  "score": 41,
+  "candidates": [
+   "tomo pi pona sijelo"
+  ]
+ },
+ "house": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "word",
+  "score": 94,
+  "candidates": [
+   "tomo"
+  ]
+ },
+ "island": {
+  "category": "thing-picturable",
+  "hub": "ma",
+  "via": "hand: ma",
+  "score": 0,
+  "candidates": [],
+  "note": "ma lon telo"
+ },
+ "jewel": {
+  "category": "thing-picturable",
+  "hub": "kiwen",
+  "via": "hand: kiwen",
+  "score": 0,
+  "candidates": [],
+  "note": "kiwen mani"
+ },
+ "kettle": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "hand: poki",
+  "score": 0,
+  "candidates": [],
+  "note": "poki seli telo"
+ },
+ "key": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "compound: ilo open",
+  "score": 80,
+  "candidates": [
+   "ilo open"
+  ]
+ },
+ "knee": {
+  "category": "thing-picturable",
+  "hub": "noka",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "noka"
+  ]
+ },
+ "knife": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "compound: ilo kipisi",
+  "score": 63,
+  "candidates": [
+   "ilo kipisi"
+  ]
+ },
+ "knot": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "hand: linja",
+  "score": 0,
+  "candidates": [],
+  "note": "linja wan"
+ },
+ "leaf": {
+  "category": "thing-picturable",
+  "hub": "lipu",
+  "via": "compound: lipu kasi",
+  "score": 50,
+  "candidates": [
+   "lipu kasi"
+  ]
+ },
+ "leg": {
+  "category": "thing-picturable",
+  "hub": "noka",
+  "via": "word",
+  "score": 93,
+  "candidates": [
+   "noka"
+  ]
+ },
+ "library": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "compound: tomo lipu",
+  "score": 91,
+  "candidates": [
+   "tomo lipu"
+  ]
+ },
+ "line": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "linja"
+  ]
+ },
+ "lip": {
+  "category": "thing-picturable",
+  "hub": "uta",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "uta"
+  ]
+ },
+ "lock": {
+  "category": "thing-picturable",
+  "hub": "pini",
+  "via": "word",
+  "score": 30,
+  "candidates": [
+   "pini",
+   "pake"
+  ]
+ },
+ "map": {
+  "category": "thing-picturable",
+  "hub": "sitelen",
+  "via": "hand: sitelen",
+  "score": 0,
+  "candidates": [],
+  "note": "sitelen ma"
+ },
+ "match": {
+  "category": "thing-picturable",
+  "hub": "sama",
+  "via": "hand: sama",
+  "score": 0,
+  "candidates": [],
+  "note": "same; fire sense: ilo seli"
+ },
+ "monkey": {
+  "category": "thing-picturable",
+  "hub": "soweli",
+  "via": "word",
+  "score": 26,
+  "candidates": [
+   "soweli"
+  ]
+ },
+ "moon": {
+  "category": "thing-picturable",
+  "hub": "mun",
+  "via": "word",
+  "score": 95,
+  "candidates": [
+   "mun"
+  ]
+ },
+ "mouth": {
+  "category": "thing-picturable",
+  "hub": "uta",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "uta"
+  ]
+ },
+ "muscle": {
+  "category": "thing-picturable",
+  "hub": "wawa",
+  "via": "hand: wawa",
+  "score": 0,
+  "candidates": [],
+  "note": "wawa sijelo"
+ },
+ "nail": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "hand: palisa",
+  "score": 0,
+  "candidates": [],
+  "note": "small metal spike"
+ },
+ "neck": {
+  "category": "thing-picturable",
+  "hub": "sijelo",
+  "via": "hand: sijelo",
+  "score": 0,
+  "candidates": [],
+  "note": "sijelo lawa (between head and body)"
+ },
+ "needle": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "hand: palisa",
+  "score": 0,
+  "candidates": [],
+  "note": "palisa lili"
+ },
+ "nerve": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "hand: linja",
+  "score": 0,
+  "candidates": [],
+  "note": "linja pilin"
+ },
+ "net": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "hand: linja",
+  "score": 0,
+  "candidates": [
+   "linluwi"
+  ],
+  "note": "linja mute"
+ },
+ "nose": {
+  "category": "thing-picturable",
+  "hub": "nena",
+  "via": "word",
+  "score": 50,
+  "candidates": [
+   "nena"
+  ]
+ },
+ "nut": {
+  "category": "thing-picturable",
+  "hub": "kili",
+  "via": "word",
+  "score": 29,
+  "candidates": [
+   "kili"
+  ]
+ },
+ "office": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "compound: tomo pali",
+  "score": 56,
+  "candidates": [
+   "tomo pali"
+  ]
+ },
+ "orange": {
+  "category": "thing-picturable",
+  "hub": "jelo",
+  "via": "definition (also loje)",
+  "score": 0,
+  "candidates": []
+ },
+ "oven": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "compound: poki seli",
+  "score": 50,
+  "candidates": [
+   "poki seli"
+  ]
+ },
+ "parcel": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "hand: poki",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "pen": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "compound: ilo sitelen",
+  "score": 62,
+  "candidates": [
+   "ilo sitelen"
+  ]
+ },
+ "pencil": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo sitelen",
+  "score": 0,
+  "candidates": [],
+  "note": "writing tool"
+ },
+ "picture": {
+  "category": "thing-picturable",
+  "hub": "sitelen",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "sitelen"
+  ]
+ },
+ "pig": {
+  "category": "thing-picturable",
+  "hub": "soweli",
+  "via": "word",
+  "score": 40,
+  "candidates": [
+   "soweli"
+  ]
+ },
+ "pin": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "hand: palisa",
+  "score": 0,
+  "candidates": [],
+  "note": "palisa lili"
+ },
+ "pipe": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "hand: linja",
+  "score": 0,
+  "candidates": [],
+  "note": "linja telo"
+ },
+ "plane": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "compound: tomo tawa kon",
+  "score": 50,
+  "candidates": [
+   "tomo tawa kon"
+  ]
+ },
+ "plate": {
+  "category": "thing-picturable",
+  "hub": "supa",
+  "via": "compound: supa moku",
+  "score": 46,
+  "candidates": [
+   "supa moku"
+  ]
+ },
+ "plow": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo",
+  "score": 0,
+  "candidates": [],
+  "note": "ilo ma"
+ },
+ "pocket": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "hand: poki",
+  "score": 0,
+  "candidates": [],
+  "note": "poki len"
+ },
+ "pot": {
+  "category": "thing-picturable",
+  "hub": "poki",
+  "via": "word",
+  "score": 64,
+  "candidates": [
+   "poki"
+  ]
+ },
+ "potato": {
+  "category": "thing-picturable",
+  "hub": "kili",
+  "via": "hand: kili",
+  "score": 0,
+  "candidates": [],
+  "note": "kili ma"
+ },
+ "prison": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "hand: tomo",
+  "score": 0,
+  "candidates": [],
+  "note": "tomo pi awen ike"
+ },
+ "pump": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo",
+  "score": 0,
+  "candidates": [],
+  "note": "ilo telo"
+ },
+ "rail": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "hand: palisa",
+  "score": 0,
+  "candidates": [],
+  "note": "palisa kiwen"
+ },
+ "rat": {
+  "category": "thing-picturable",
+  "hub": "soweli",
+  "via": "hand: soweli",
+  "score": 0,
+  "candidates": [],
+  "note": "soweli lili"
+ },
+ "receipt": {
+  "category": "thing-picturable",
+  "hub": "lipu",
+  "via": "hand: lipu",
+  "score": 0,
+  "candidates": [],
+  "note": "lipu esun"
+ },
+ "ring": {
+  "category": "thing-picturable",
+  "hub": "sike",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "sike"
+  ]
+ },
+ "rod": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "word",
+  "score": 94,
+  "candidates": [
+   "palisa"
+  ]
+ },
+ "roof": {
+  "category": "thing-picturable",
+  "hub": "sewi",
+  "via": "hand: sewi",
+  "score": 0,
+  "candidates": [],
+  "note": "sewi tomo"
+ },
+ "root": {
+  "category": "thing-picturable",
+  "hub": "noka",
+  "via": "hand: noka",
+  "score": 0,
+  "candidates": [],
+  "note": "noka kasi"
+ },
+ "sail": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "hand: len",
+  "score": 0,
+  "candidates": [],
+  "note": "len pi tomo tawa telo"
+ },
+ "school": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "compound: tomo sona",
+  "score": 56,
+  "candidates": [
+   "tomo sona"
+  ]
+ },
+ "scissors": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo kipisi",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "screw": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "hand: palisa",
+  "score": 0,
+  "candidates": [],
+  "note": "palisa sike"
+ },
+ "seed": {
+  "category": "thing-picturable",
+  "hub": "kili",
+  "via": "hand: kili",
+  "score": 0,
+  "candidates": [],
+  "note": "kili lili pi kasi sin"
+ },
+ "sheep": {
+  "category": "thing-picturable",
+  "hub": "soweli",
+  "via": "compound: soweli len",
+  "score": 50,
+  "candidates": [
+   "soweli len"
+  ]
+ },
+ "shelf": {
+  "category": "thing-picturable",
+  "hub": "supa",
+  "via": "word",
+  "score": 80,
+  "candidates": [
+   "supa"
+  ]
+ },
+ "ship": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "compound: tomo tawa telo",
+  "score": 56,
+  "candidates": [
+   "tomo tawa telo"
+  ]
+ },
+ "shirt": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "word",
+  "score": 42,
+  "candidates": [
+   "len"
+  ]
+ },
+ "shoe": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "compound: len noka",
+  "score": 71,
+  "candidates": [
+   "len noka"
+  ]
+ },
+ "skin": {
+  "category": "thing-picturable",
+  "hub": "selo",
+  "via": "word",
+  "score": 83,
+  "candidates": [
+   "selo"
+  ]
+ },
+ "skirt": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "hand: len",
+  "score": 0,
+  "candidates": [],
+  "note": "len noka"
+ },
+ "snake": {
+  "category": "thing-picturable",
+  "hub": "akesi",
+  "via": "compound: akesi linja",
+  "score": 75,
+  "candidates": [
+   "akesi linja"
+  ]
+ },
+ "sock": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "compound: len noka",
+  "score": 67,
+  "candidates": [
+   "len noka"
+  ]
+ },
+ "spade": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo",
+  "score": 0,
+  "candidates": [],
+  "note": "ilo ma"
+ },
+ "sponge": {
+  "category": "thing-picturable",
+  "hub": "ijo",
+  "via": "hand: ijo",
+  "score": 0,
+  "candidates": [],
+  "note": "ijo pi jo telo"
+ },
+ "spoon": {
+  "category": "thing-picturable",
+  "hub": "ilo",
+  "via": "hand: ilo",
+  "score": 0,
+  "candidates": [],
+  "note": "ilo moku"
+ },
+ "spring": {
+  "category": "thing-picturable",
+  "hub": "tenpo",
+  "via": "hand: tenpo",
+  "score": 0,
+  "candidates": [],
+  "note": "season sense: tenpo kasi; water: telo"
+ },
+ "square": {
+  "category": "thing-picturable",
+  "hub": "leko",
+  "via": "word",
+  "score": 64,
+  "candidates": [
+   "leko"
+  ]
+ },
+ "stamp": {
+  "category": "thing-picturable",
+  "hub": "sitelen",
+  "via": "hand: sitelen",
+  "score": 0,
+  "candidates": [],
+  "note": "lipu lili"
+ },
+ "star": {
+  "category": "thing-picturable",
+  "hub": "mun",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "mun"
+  ]
+ },
+ "station": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "word",
+  "score": 39,
+  "candidates": [
+   "tomo"
+  ]
+ },
+ "stem": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "weak: palisa",
+  "score": 18,
+  "candidates": [
+   "palisa"
+  ]
+ },
+ "stick": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "palisa"
+  ]
+ },
+ "stocking": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "hand: len",
+  "score": 0,
+  "candidates": [],
+  "note": "len noka"
+ },
+ "stomach": {
+  "category": "thing-picturable",
+  "hub": "insa",
+  "via": "word",
+  "score": 41,
+  "candidates": [
+   "insa"
+  ]
+ },
+ "store": {
+  "category": "thing-picturable",
+  "hub": "esun",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "tomo esun",
+   "esun"
+  ]
+ },
+ "street": {
+  "category": "thing-picturable",
+  "hub": "nasin",
+  "via": "word",
+  "score": 71,
+  "candidates": [
+   "nasin"
+  ]
+ },
+ "sun": {
+  "category": "thing-picturable",
+  "hub": "suno",
+  "via": "word",
+  "score": 94,
+  "candidates": [
+   "suno"
+  ]
+ },
+ "table": {
+  "category": "thing-picturable",
+  "hub": "supa",
+  "via": "word",
+  "score": 83,
+  "candidates": [
+   "supa"
+  ]
+ },
+ "tail": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "compound: linja monsi",
+  "score": 54,
+  "candidates": [
+   "linja monsi"
+  ]
+ },
+ "thread": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "word",
+  "score": 65,
+  "candidates": [
+   "linja"
+  ]
+ },
+ "throat": {
+  "category": "thing-picturable",
+  "hub": "uta",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "thumb": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "hand: palisa",
+  "score": 0,
+  "candidates": [],
+  "note": "palisa luka suli"
+ },
+ "ticket": {
+  "category": "thing-picturable",
+  "hub": "lipu",
+  "via": "word",
+  "score": 90,
+  "candidates": [
+   "lipu"
+  ]
+ },
+ "toe": {
+  "category": "thing-picturable",
+  "hub": "palisa",
+  "via": "hand: palisa",
+  "score": 0,
+  "candidates": [],
+  "note": "palisa noka"
+ },
+ "tongue": {
+  "category": "thing-picturable",
+  "hub": "uta",
+  "via": "hand: uta",
+  "score": 0,
+  "candidates": [],
+  "note": "part of the mouth"
+ },
+ "tooth": {
+  "category": "thing-picturable",
+  "hub": "kiwen",
+  "via": "compound: kiwen uta",
+  "score": 88,
+  "candidates": [
+   "kiwen uta"
+  ]
+ },
+ "town": {
+  "category": "thing-picturable",
+  "hub": "ma",
+  "via": "compound: ma tomo",
+  "score": 60,
+  "candidates": [
+   "ma tomo"
+  ]
+ },
+ "train": {
+  "category": "thing-picturable",
+  "hub": "tomo",
+  "via": "hand: tomo tawa",
+  "score": 0,
+  "candidates": [],
+  "note": "tomo tawa linja"
+ },
+ "tray": {
+  "category": "thing-picturable",
+  "hub": "supa",
+  "via": "hand: supa",
+  "score": 0,
+  "candidates": [],
+  "note": "supa lili"
+ },
+ "tree": {
+  "category": "thing-picturable",
+  "hub": "kasi",
+  "via": "word",
+  "score": 32,
+  "candidates": [
+   "kasi suli",
+   "kasi"
+  ]
+ },
+ "trousers": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "hand: len",
+  "score": 0,
+  "candidates": [],
+  "note": "len noka"
+ },
+ "umbrella": {
+  "category": "thing-picturable",
+  "hub": "len",
+  "via": "hand: len",
+  "score": 0,
+  "candidates": [],
+  "note": "len pi telo sewi"
+ },
+ "wall": {
+  "category": "thing-picturable",
+  "hub": "sinpin",
+  "via": "word",
+  "score": 50,
+  "candidates": [
+   "sinpin",
+   "pake"
+  ]
+ },
+ "watch": {
+  "category": "thing-picturable",
+  "hub": "lukin",
+  "via": "word",
+  "score": 65,
+  "candidates": [
+   "lukin"
+  ]
+ },
+ "wheel": {
+  "category": "thing-picturable",
+  "hub": "sike",
+  "via": "word",
+  "score": 64,
+  "candidates": [
+   "sike"
+  ]
+ },
+ "whip": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "hand: linja",
+  "score": 0,
+  "candidates": [],
+  "note": "linja utala"
+ },
+ "whistle": {
+  "category": "thing-picturable",
+  "hub": "kalama",
+  "via": "hand: kalama",
+  "score": 0,
+  "candidates": [],
+  "note": "kalama uta"
+ },
+ "window": {
+  "category": "thing-picturable",
+  "hub": "lupa",
+  "via": "word",
+  "score": 57,
+  "candidates": [
+   "lupa"
+  ]
+ },
+ "wing": {
+  "category": "thing-picturable",
+  "hub": "luka",
+  "via": "compound: luka waso",
+  "score": 77,
+  "candidates": [
+   "luka waso"
+  ]
+ },
+ "wire": {
+  "category": "thing-picturable",
+  "hub": "linja",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "linja"
+  ]
+ },
+ "worm": {
+  "category": "thing-picturable",
+  "hub": "pipi",
+  "via": "hand: pipi",
+  "score": 0,
+  "candidates": [],
+  "note": "pipi linja"
+ },
+ "able": {
+  "category": "quality-general",
+  "hub": "ken",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "ken"
+  ]
+ },
+ "acid": {
+  "category": "quality-general",
+  "hub": "telo",
+  "via": "hand: telo jaki",
+  "score": 0,
+  "candidates": [],
+  "note": "harmful liquid"
+ },
+ "angry": {
+  "category": "quality-general",
+  "hub": "pilin",
+  "via": "compound: pilin utala",
+  "score": 60,
+  "candidates": [
+   "pilin utala"
+  ]
+ },
+ "automatic": {
+  "category": "quality-general",
+  "hub": "ilo",
+  "via": "hand: ilo",
+  "score": 0,
+  "candidates": [],
+  "note": "does itself, machine-like"
+ },
+ "beautiful": {
+  "category": "quality-general",
+  "hub": "pona",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "pona"
+  ]
+ },
+ "black": {
+  "category": "quality-general",
+  "hub": "pimeja",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "pimeja"
+  ]
+ },
+ "boiling": {
+  "category": "quality-general",
+  "hub": "seli",
+  "via": "hand: seli",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "bright": {
+  "category": "quality-general",
+  "hub": "suno",
+  "via": "word",
+  "score": 64,
+  "candidates": [
+   "suno"
+  ]
+ },
+ "broken": {
+  "category": "quality-general",
+  "hub": "pakala",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "pakala"
+  ]
+ },
+ "brown": {
+  "category": "quality-general",
+  "hub": "pimeja",
+  "via": "definition",
+  "score": 0,
+  "candidates": [
+   "kapesi"
+  ]
+ },
+ "cheap": {
+  "category": "quality-general",
+  "hub": "mani",
+  "via": "hand: mani lili",
+  "score": 0,
+  "candidates": [],
+  "note": "little money"
+ },
+ "chemical": {
+  "category": "quality-general",
+  "hub": "ijo",
+  "via": "word",
+  "score": 32,
+  "candidates": [
+   "ijo"
+  ]
+ },
+ "chief": {
+  "category": "quality-general",
+  "hub": "jan",
+  "via": "compound: jan lawa",
+  "score": 86,
+  "candidates": [
+   "jan lawa"
+  ]
+ },
+ "clean": {
+  "category": "quality-general",
+  "hub": "jaki",
+  "via": "compound: jaki ala",
+  "score": 80,
+  "candidates": [
+   "jaki ala"
+  ]
+ },
+ "clear": {
+  "category": "quality-general",
+  "hub": "walo",
+  "via": "hand: walo",
+  "score": 0,
+  "candidates": [],
+  "note": "clear, easy to see; or pona"
+ },
+ "common": {
+  "category": "quality-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo mute la",
+  "score": 33,
+  "candidates": [
+   "tenpo mute la"
+  ]
+ },
+ "complex": {
+  "category": "quality-general",
+  "hub": "ike",
+  "via": "word",
+  "score": 29,
+  "candidates": [
+   "ike"
+  ]
+ },
+ "conscious": {
+  "category": "quality-general",
+  "hub": "sona",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "sona",
+   "isipin"
+  ]
+ },
+ "cut": {
+  "category": "quality-general",
+  "hub": "kipisi",
+  "via": "word",
+  "score": 56,
+  "candidates": [
+   "kipisi",
+   "tu"
+  ]
+ },
+ "deep": {
+  "category": "quality-general",
+  "hub": "mute",
+  "via": "word",
+  "score": 23,
+  "candidates": [
+   "mute",
+   "suli"
+  ]
+ },
+ "dependent": {
+  "category": "quality-general",
+  "hub": "wile",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "wile"
+  ]
+ },
+ "early": {
+  "category": "quality-general",
+  "hub": "tenpo",
+  "via": "hand: tenpo open",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "elastic": {
+  "category": "quality-general",
+  "hub": "linja",
+  "via": "hand: linja",
+  "score": 0,
+  "candidates": [],
+  "note": "stretchy line"
+ },
+ "electric": {
+  "category": "quality-general",
+  "hub": "wawa",
+  "via": "hand: wawa",
+  "score": 0,
+  "candidates": [],
+  "note": "power"
+ },
+ "equal": {
+  "category": "quality-general",
+  "hub": "sama",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "sama"
+  ]
+ },
+ "fat": {
+  "category": "quality-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 70,
+  "candidates": [
+   "suli"
+  ]
+ },
+ "fertile": {
+  "category": "quality-general",
+  "hub": "mama",
+  "via": "hand: mama",
+  "score": 0,
+  "candidates": [],
+  "note": "able to create life"
+ },
+ "first": {
+  "category": "quality-general",
+  "hub": "nanpa",
+  "via": "compound: nanpa wan",
+  "score": 63,
+  "candidates": [
+   "nanpa wan"
+  ]
+ },
+ "fixed": {
+  "category": "quality-general",
+  "hub": "pona",
+  "via": "word",
+  "score": 54,
+  "candidates": [
+   "pona"
+  ]
+ },
+ "flat": {
+  "category": "quality-general",
+  "hub": "supa",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "supa",
+   "lipu"
+  ]
+ },
+ "free": {
+  "category": "quality-general",
+  "hub": "pona",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "pona"
+  ]
+ },
+ "frequent": {
+  "category": "quality-general",
+  "hub": "mute",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "mute"
+  ]
+ },
+ "full": {
+  "category": "quality-general",
+  "hub": "ale",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "ale"
+  ]
+ },
+ "general": {
+  "category": "quality-general",
+  "hub": "ale",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "ale"
+  ]
+ },
+ "good": {
+  "category": "quality-general",
+  "hub": "pona",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "pona"
+  ]
+ },
+ "gray": {
+  "category": "quality-general",
+  "hub": "walo",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "great": {
+  "category": "quality-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 53,
+  "candidates": [
+   "suli",
+   "mute"
+  ]
+ },
+ "hanging": {
+  "category": "quality-general",
+  "hub": "awen",
+  "via": "hand: awen",
+  "score": 0,
+  "candidates": [],
+  "note": "staying up"
+ },
+ "happy": {
+  "category": "quality-general",
+  "hub": "pilin",
+  "via": "compound: pilin pona",
+  "score": 92,
+  "candidates": [
+   "pilin pona"
+  ]
+ },
+ "hard": {
+  "category": "quality-general",
+  "hub": "lili",
+  "via": "word",
+  "score": 31,
+  "candidates": [
+   "lili",
+   "ike",
+   "ala"
+  ]
+ },
+ "healthy": {
+  "category": "quality-general",
+  "hub": "sijelo",
+  "via": "compound: sijelo pona",
+  "score": 54,
+  "candidates": [
+   "sijelo pona"
+  ]
+ },
+ "high": {
+  "category": "quality-general",
+  "hub": "sewi",
+  "via": "word",
+  "score": 60,
+  "candidates": [
+   "sewi",
+   "mute"
+  ]
+ },
+ "hollow": {
+  "category": "quality-general",
+  "hub": "insa",
+  "via": "hand: insa",
+  "score": 0,
+  "candidates": [],
+  "note": "empty inside: insa ala"
+ },
+ "important": {
+  "category": "quality-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 92,
+  "candidates": [
+   "suli"
+  ]
+ },
+ "kind": {
+  "category": "quality-general",
+  "hub": "pona",
+  "via": "word",
+  "score": 53,
+  "candidates": [
+   "pona"
+  ]
+ },
+ "like": {
+  "category": "quality-general",
+  "hub": "sama",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "sama",
+   "ken"
+  ]
+ },
+ "living": {
+  "category": "quality-general",
+  "hub": "lon",
+  "via": "word",
+  "score": 73,
+  "candidates": [
+   "lon"
+  ]
+ },
+ "long": {
+  "category": "quality-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 69,
+  "candidates": [
+   "suli"
+  ]
+ },
+ "male": {
+  "category": "quality-general",
+  "hub": "mije",
+  "via": "word",
+  "score": 94,
+  "candidates": [
+   "mije"
+  ]
+ },
+ "married": {
+  "category": "quality-general",
+  "hub": "olin",
+  "via": "hand: olin",
+  "score": 0,
+  "candidates": [],
+  "note": "jan olin"
+ },
+ "material": {
+  "category": "quality-general",
+  "hub": "ijo",
+  "via": "word",
+  "score": 63,
+  "candidates": [
+   "ijo"
+  ]
+ },
+ "medical": {
+  "category": "quality-general",
+  "hub": "misikeke",
+  "via": "word",
+  "score": 30,
+  "candidates": [
+   "misikeke"
+  ]
+ },
+ "military": {
+  "category": "quality-general",
+  "hub": "kulupu",
+  "via": "compound: kulupu utala",
+  "score": 55,
+  "candidates": [
+   "kulupu utala"
+  ]
+ },
+ "natural": {
+  "category": "quality-general",
+  "hub": "pona",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "pona"
+  ]
+ },
+ "necessary": {
+  "category": "quality-general",
+  "hub": "wile",
+  "via": "word",
+  "score": 70,
+  "candidates": [
+   "wile"
+  ]
+ },
+ "new": {
+  "category": "quality-general",
+  "hub": "sin",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "sin"
+  ]
+ },
+ "normal": {
+  "category": "quality-general",
+  "hub": "sama",
+  "via": "hand: sama",
+  "score": 0,
+  "candidates": [],
+  "note": "same as usual"
+ },
+ "open": {
+  "category": "quality-general",
+  "hub": "open",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "open",
+   "lupa"
+  ]
+ },
+ "parallel": {
+  "category": "quality-general",
+  "hub": "sama",
+  "via": "hand: sama",
+  "score": 0,
+  "candidates": [],
+  "note": "linja sama"
+ },
+ "past": {
+  "category": "quality-general",
+  "hub": "tenpo",
+  "via": "compound: tenpo pini",
+  "score": 92,
+  "candidates": [
+   "tenpo pini"
+  ]
+ },
+ "physical": {
+  "category": "quality-general",
+  "hub": "lon",
+  "via": "word",
+  "score": 62,
+  "candidates": [
+   "lon",
+   "sijelo"
+  ]
+ },
+ "political": {
+  "category": "quality-general",
+  "hub": "lawa",
+  "via": "hand: lawa",
+  "score": 0,
+  "candidates": [],
+  "note": "about government"
+ },
+ "poor": {
+  "category": "quality-general",
+  "hub": "ike",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "ike"
+  ]
+ },
+ "possible": {
+  "category": "quality-general",
+  "hub": "ken",
+  "via": "word",
+  "score": 86,
+  "candidates": [
+   "ken"
+  ]
+ },
+ "present": {
+  "category": "quality-general",
+  "hub": "pana",
+  "via": "word",
+  "score": 29,
+  "candidates": [
+   "pana"
+  ]
+ },
+ "private": {
+  "category": "quality-general",
+  "hub": "len",
+  "via": "word",
+  "score": 32,
+  "candidates": [
+   "len"
+  ]
+ },
+ "probable": {
+  "category": "quality-general",
+  "hub": "ken",
+  "via": "hand: ken",
+  "score": 0,
+  "candidates": [],
+  "note": "ken mute"
+ },
+ "quick": {
+  "category": "quality-general",
+  "hub": "wawa",
+  "via": "word",
+  "score": 22,
+  "candidates": [
+   "kepeken tenpo lili",
+   "wawa"
+  ]
+ },
+ "quiet": {
+  "category": "quality-general",
+  "hub": "kalama",
+  "via": "compound: kalama ala",
+  "score": 64,
+  "candidates": [
+   "kalama ala"
+  ]
+ },
+ "ready": {
+  "category": "quality-general",
+  "hub": "pona",
+  "via": "hand: pona",
+  "score": 0,
+  "candidates": [],
+  "note": "pona tawa open"
+ },
+ "red": {
+  "category": "quality-general",
+  "hub": "loje",
+  "via": "word",
+  "score": 95,
+  "candidates": [
+   "loje"
+  ]
+ },
+ "regular": {
+  "category": "quality-general",
+  "hub": "nasin",
+  "via": "word",
+  "score": 38,
+  "candidates": [
+   "nasin"
+  ]
+ },
+ "responsible": {
+  "category": "quality-general",
+  "hub": "lawa",
+  "via": "hand: lawa",
+  "score": 0,
+  "candidates": [],
+  "note": "in charge"
+ },
+ "right": {
+  "category": "quality-general",
+  "hub": "pona",
+  "via": "word",
+  "score": 55,
+  "candidates": [
+   "pona",
+   "lon",
+   "teje"
+  ]
+ },
+ "round": {
+  "category": "quality-general",
+  "hub": "sike",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "sike"
+  ]
+ },
+ "same": {
+  "category": "quality-general",
+  "hub": "sama",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "second": {
+  "category": "quality-general",
+  "hub": "nanpa",
+  "via": "compound: nanpa tu",
+  "score": 83,
+  "candidates": [
+   "nanpa tu",
+   "tenpo lili"
+  ]
+ },
+ "separate": {
+  "category": "quality-general",
+  "hub": "ante",
+  "via": "word",
+  "score": 30,
+  "candidates": [
+   "ante",
+   "kipisi",
+   "weka"
+  ]
+ },
+ "serious": {
+  "category": "quality-general",
+  "hub": "musi",
+  "via": "compound: musi ala",
+  "score": 35,
+  "candidates": [
+   "musi ala"
+  ]
+ },
+ "sharp": {
+  "category": "quality-general",
+  "hub": "kipisi",
+  "via": "definition",
+  "score": 0,
+  "candidates": [
+   "kiki"
+  ]
+ },
+ "smooth": {
+  "category": "quality-general",
+  "hub": "pona",
+  "via": "hand: pona",
+  "score": 0,
+  "candidates": [],
+  "note": "pona tawa luka"
+ },
+ "sticky": {
+  "category": "quality-general",
+  "hub": "ko",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "stiff": {
+  "category": "quality-general",
+  "hub": "kiwen",
+  "via": "word",
+  "score": 44,
+  "candidates": [
+   "kiwen"
+  ]
+ },
+ "straight": {
+  "category": "quality-general",
+  "hub": "linja",
+  "via": "word",
+  "score": 25,
+  "candidates": [
+   "linja",
+   "palisa"
+  ]
+ },
+ "strong": {
+  "category": "quality-general",
+  "hub": "wawa",
+  "via": "word",
+  "score": 88,
+  "candidates": [
+   "wawa"
+  ]
+ },
+ "sudden": {
+  "category": "quality-general",
+  "hub": "tenpo",
+  "via": "hand: tenpo lili",
+  "score": 0,
+  "candidates": [],
+  "note": "very quickly"
+ },
+ "sweet": {
+  "category": "quality-general",
+  "hub": "suwi",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "suwi"
+  ]
+ },
+ "tall": {
+  "category": "quality-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 77,
+  "candidates": [
+   "suli"
+  ]
+ },
+ "thick": {
+  "category": "quality-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 62,
+  "candidates": [
+   "suli"
+  ]
+ },
+ "tight": {
+  "category": "quality-general",
+  "hub": "lili",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "lili"
+  ]
+ },
+ "tired": {
+  "category": "quality-general",
+  "hub": "lape",
+  "via": "hand: lape",
+  "score": 0,
+  "candidates": [],
+  "note": "wile lape"
+ },
+ "true": {
+  "category": "quality-general",
+  "hub": "lon",
+  "via": "word",
+  "score": 81,
+  "candidates": [
+   "lon"
+  ]
+ },
+ "violent": {
+  "category": "quality-general",
+  "hub": "utala",
+  "via": "word",
+  "score": 67,
+  "candidates": [
+   "utala"
+  ]
+ },
+ "waiting": {
+  "category": "quality-general",
+  "hub": "awen",
+  "via": "hand: awen",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "warm": {
+  "category": "quality-general",
+  "hub": "seli",
+  "via": "word",
+  "score": 65,
+  "candidates": [
+   "seli"
+  ]
+ },
+ "wet": {
+  "category": "quality-general",
+  "hub": "telo",
+  "via": "word",
+  "score": 73,
+  "candidates": [
+   "telo"
+  ]
+ },
+ "wide": {
+  "category": "quality-general",
+  "hub": "suli",
+  "via": "word",
+  "score": 64,
+  "candidates": [
+   "suli"
+  ]
+ },
+ "wise": {
+  "category": "quality-general",
+  "hub": "sona",
+  "via": "word",
+  "score": 58,
+  "candidates": [
+   "sona"
+  ]
+ },
+ "yellow": {
+  "category": "quality-general",
+  "hub": "jelo",
+  "via": "word",
+  "score": 94,
+  "candidates": [
+   "jelo"
+  ]
+ },
+ "young": {
+  "category": "quality-general",
+  "hub": "lili",
+  "via": "word",
+  "score": 62,
+  "candidates": [
+   "lili",
+   "sin"
+  ]
+ },
+ "awake": {
+  "category": "quality-opposite",
+  "hub": "lape",
+  "via": "compound: lape ala",
+  "score": 64,
+  "candidates": [
+   "lape ala"
+  ]
+ },
+ "bad": {
+  "category": "quality-opposite",
+  "hub": "ike",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "ike"
+  ]
+ },
+ "bent": {
+  "category": "quality-opposite",
+  "hub": "sike",
+  "via": "hand: sike",
+  "score": 0,
+  "candidates": [],
+  "note": "curved; not straight"
+ },
+ "bitter": {
+  "category": "quality-opposite",
+  "hub": "ike",
+  "via": "hand: ike",
+  "score": 0,
+  "candidates": [],
+  "note": "ike tawa uta (bad taste)"
+ },
+ "blue": {
+  "category": "quality-opposite",
+  "hub": "laso",
+  "via": "word",
+  "score": 81,
+  "candidates": [
+   "laso"
+  ]
+ },
+ "certain": {
+  "category": "quality-opposite",
+  "hub": "lon",
+  "via": "word",
+  "score": 36,
+  "candidates": [
+   "lon"
+  ]
+ },
+ "cold": {
+  "category": "quality-opposite",
+  "hub": "lete",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "lete"
+  ]
+ },
+ "complete": {
+  "category": "quality-opposite",
+  "hub": "pini",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "pini",
+   "ale"
+  ]
+ },
+ "cruel": {
+  "category": "quality-opposite",
+  "hub": "ike",
+  "via": "word",
+  "score": 46,
+  "candidates": [
+   "ike"
+  ]
+ },
+ "dark": {
+  "category": "quality-opposite",
+  "hub": "pimeja",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "pimeja"
+  ]
+ },
+ "dead": {
+  "category": "quality-opposite",
+  "hub": "moli",
+  "via": "word",
+  "score": 94,
+  "candidates": [
+   "moli"
+  ]
+ },
+ "dear": {
+  "category": "quality-opposite",
+  "hub": "olin",
+  "via": "weak: olin",
+  "score": 17,
+  "candidates": [
+   "olin",
+   "o"
+  ]
+ },
+ "delicate": {
+  "category": "quality-opposite",
+  "hub": "wawa",
+  "via": "hand: wawa ala",
+  "score": 0,
+  "candidates": [],
+  "note": "fragile"
+ },
+ "different": {
+  "category": "quality-opposite",
+  "hub": "ante",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "ante"
+  ]
+ },
+ "dirty": {
+  "category": "quality-opposite",
+  "hub": "jaki",
+  "via": "word",
+  "score": 93,
+  "candidates": [
+   "jaki"
+  ]
+ },
+ "dry": {
+  "category": "quality-opposite",
+  "hub": "telo",
+  "via": "compound: telo ala",
+  "score": 62,
+  "candidates": [
+   "telo ala"
+  ]
+ },
+ "false": {
+  "category": "quality-opposite",
+  "hub": "lon",
+  "via": "compound: lon ala",
+  "score": 50,
+  "candidates": [
+   "lon ala",
+   "powe"
+  ]
+ },
+ "feeble": {
+  "category": "quality-opposite",
+  "hub": "wawa",
+  "via": "hand: wawa ala",
+  "score": 0,
+  "candidates": [],
+  "note": "weak"
+ },
+ "female": {
+  "category": "quality-opposite",
+  "hub": "meli",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "meli"
+  ]
+ },
+ "foolish": {
+  "category": "quality-opposite",
+  "hub": "nasa",
+  "via": "hand: nasa",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "future": {
+  "category": "quality-opposite",
+  "hub": "tenpo",
+  "via": "compound: tenpo kama",
+  "score": 93,
+  "candidates": [
+   "tenpo kama"
+  ]
+ },
+ "green": {
+  "category": "quality-opposite",
+  "hub": "laso",
+  "via": "word",
+  "score": 47,
+  "candidates": [
+   "laso",
+   "laso kasi"
+  ]
+ },
+ "ill": {
+  "category": "quality-opposite",
+  "hub": "pakala",
+  "via": "hand: pakala",
+  "score": 0,
+  "candidates": [],
+  "note": "sijelo pakala"
+ },
+ "last": {
+  "category": "quality-opposite",
+  "hub": "nanpa",
+  "via": "compound: nanpa pini",
+  "score": 70,
+  "candidates": [
+   "nanpa pini"
+  ]
+ },
+ "late": {
+  "category": "quality-opposite",
+  "hub": "tenpo",
+  "via": "hand: tenpo",
+  "score": 0,
+  "candidates": [],
+  "note": "tenpo pini (after the time)"
+ },
+ "left": {
+  "category": "quality-opposite",
+  "hub": "awen",
+  "via": "word",
+  "score": 42,
+  "candidates": [
+   "awen",
+   "poka",
+   "soto"
+  ]
+ },
+ "loose": {
+  "category": "quality-opposite",
+  "hub": "awen",
+  "via": "hand: awen ala",
+  "score": 0,
+  "candidates": [],
+  "note": "not held fast"
+ },
+ "loud": {
+  "category": "quality-opposite",
+  "hub": "kalama",
+  "via": "hand: kalama",
+  "score": 0,
+  "candidates": [],
+  "note": "kalama suli"
+ },
+ "low": {
+  "category": "quality-opposite",
+  "hub": "anpa",
+  "via": "hand: anpa",
+  "score": 0,
+  "candidates": [],
+  "note": ""
+ },
+ "mixed": {
+  "category": "quality-opposite",
+  "hub": "wan",
+  "via": "hand: wan",
+  "score": 0,
+  "candidates": [],
+  "note": "made one"
+ },
+ "narrow": {
+  "category": "quality-opposite",
+  "hub": "lili",
+  "via": "word",
+  "score": 71,
+  "candidates": [
+   "lili"
+  ]
+ },
+ "old": {
+  "category": "quality-opposite",
+  "hub": "sin",
+  "via": "hand: sin ala",
+  "score": 0,
+  "candidates": [
+   "majuna"
+  ],
+  "note": "majuna is an uncommon word"
+ },
+ "opposite": {
+  "category": "quality-opposite",
+  "hub": "ante",
+  "via": "hand: ante",
+  "score": 0,
+  "candidates": [
+   "jasima"
+  ],
+  "note": ""
+ },
+ "public": {
+  "category": "quality-opposite",
+  "hub": "kulupu",
+  "via": "word",
+  "score": 33,
+  "candidates": [
+   "kulupu"
+  ]
+ },
+ "rough": {
+  "category": "quality-opposite",
+  "hub": "ike",
+  "via": "hand: ike",
+  "score": 0,
+  "candidates": [],
+  "note": "not smooth"
+ },
+ "sad": {
+  "category": "quality-opposite",
+  "hub": "pilin",
+  "via": "compound: pilin ike",
+  "score": 80,
+  "candidates": [
+   "pilin ike"
+  ]
+ },
+ "safe": {
+  "category": "quality-opposite",
+  "hub": "awen",
+  "via": "word",
+  "score": 53,
+  "candidates": [
+   "awen"
+  ]
+ },
+ "secret": {
+  "category": "quality-opposite",
+  "hub": "len",
+  "via": "definition",
+  "score": 0,
+  "candidates": []
+ },
+ "short": {
+  "category": "quality-opposite",
+  "hub": "lili",
+  "via": "word",
+  "score": 91,
+  "candidates": [
+   "lili"
+  ]
+ },
+ "shut": {
+  "category": "quality-opposite",
+  "hub": "pini",
+  "via": "word",
+  "score": 87,
+  "candidates": [
+   "pini"
+  ]
+ },
+ "simple": {
+  "category": "quality-opposite",
+  "hub": "pona",
+  "via": "word",
+  "score": 69,
+  "candidates": [
+   "pona"
+  ]
+ },
+ "slow": {
+  "category": "quality-opposite",
+  "hub": "tawa",
+  "via": "hand: tawa",
+  "score": 0,
+  "candidates": [],
+  "note": "tawa lili"
+ },
+ "small": {
+  "category": "quality-opposite",
+  "hub": "lili",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "lili"
+  ]
+ },
+ "soft": {
+  "category": "quality-opposite",
+  "hub": "suwi",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "suwi"
+  ]
+ },
+ "solid": {
+  "category": "quality-opposite",
+  "hub": "kiwen",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "kiwen"
+  ]
+ },
+ "special": {
+  "category": "quality-opposite",
+  "hub": "namako",
+  "via": "word",
+  "score": 27,
+  "candidates": [
+   "namako"
+  ]
+ },
+ "strange": {
+  "category": "quality-opposite",
+  "hub": "nasa",
+  "via": "word",
+  "score": 88,
+  "candidates": [
+   "nasa"
+  ]
+ },
+ "thin": {
+  "category": "quality-opposite",
+  "hub": "lili",
+  "via": "word",
+  "score": 45,
+  "candidates": [
+   "lili"
+  ]
+ },
+ "white": {
+  "category": "quality-opposite",
+  "hub": "walo",
+  "via": "word",
+  "score": 100,
+  "candidates": [
+   "walo"
+  ]
+ },
+ "wrong": {
+  "category": "quality-opposite",
+  "hub": "ike",
+  "via": "word",
+  "score": 43,
+  "candidates": [
+   "ike"
+  ]
+ }
+}
