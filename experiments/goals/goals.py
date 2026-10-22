@@ -7,7 +7,7 @@
 # lookup tool (`search : where is the bread ?`); the harness answers.
 #
 # **Conditions** (same model, same number of training steps):
-# - `tp`: goal episodes in toki pona → mixed English/toki pona scenes (no goals) → a few English goal episodes
+# - `tp`: goal episodes in toki pona → mixed plans (toki pona grammar, English words swapped in) → a few English goal episodes
 # - `english`: plain English scenes (no goals) → the same few English goal episodes
 # - `reference`: English goal episodes all along (an upper bound, not a fair rival)
 #
@@ -15,6 +15,10 @@
 # - `iid`: new episodes like the English training ones
 # - `combo`: a hidden fact *and* a locked door together, never seen in English training
 # - `long`: 4–5 obstacles, longer than anything in any training data
+#
+# Run 2: the bridge now mixes whole plans, not just loose sentences, so toki pona's plan skeleton
+# (la, tan ni, alasa) is used with English words before the model meets English plans.
+# Also checks that the tp model really plans in toki pona.
 #
 # On Kaggle: Settings → Accelerator → GPU (T4), then Run All. Takes roughly an hour on a T4.
 # At the end it prints a report; paste that back to Claude.
@@ -35,7 +39,7 @@ if QUICK:
     S1, S2, S3, SEEDS, NS, NTEST, BATCH = 60, 30, 30, [0], [16], 20, 16
 else:
     D, LAYERS, HEADS, CTX = 192, 8, 6, 256   # about 3.6M parameters: deep and thin
-    S1, S2, S3, SEEDS, NS, NTEST, BATCH = 3000, 1500, 1500, [0, 1, 2], [16, 64, 256], 200, 64
+    S1, S2, S3, SEEDS, NS, NTEST, BATCH = 3000, 1500, 1500, [0, 1, 2], [64, 256, 1024], 200, 64
 LR = 6e-4
 AMP = dict(device_type=DEV, dtype=torch.float16 if DEV == "cuda" else torch.bfloat16, enabled=DEV == "cuda")
 COND = ["tp", "english", "reference"]
@@ -50,6 +54,14 @@ PLACES = [("house", "tomo", True), ("shop", "tomo esun", True), ("school", "tomo
 ITEMS = [("bread", "pan"), ("fruit", "kili"), ("water", "telo"), ("fish", "kala"), ("book", "lipu")]
 PROPS = [("sweet", "suwi"), ("hot", "seli"), ("cold", "lete"), ("big", "suli")]
 TP = {e: t for e, t in AGENTS + [(p[0], p[1]) for p in PLACES] + ITEMS + PROPS + [("key", "ilo open")]}
+TPW = {**TP, "door": "lupa", "goes": "tawa", "opens": "open", "takes": "kama jo", "has": "jo", "wants": "wile",
+       "closed": "pini", "locked": "pini wawa", "open": "open", "thing": "ijo"}
+_MIX = None   # a random.Random while rendering mixed plans
+
+
+def T(x):
+    """toki pona for x, or (when mixing) the English word half the time."""
+    return x if _MIX is not None and _MIX.random() < 0.5 else TPW[x]
 HAS_DOOR = {p[0]: p[2] for p in PLACES}
 PLACE_N = [p[0] for p in PLACES]
 ITEM_N = [i[0] for i in ITEMS]
@@ -75,8 +87,8 @@ def split_of(obs):
 
 
 def tp_door(p):
-    t = TP[p]
-    return f"lupa {t}" if " " not in t else f"lupa pi {t}"
+    d, t = T("door"), T(p)
+    return f"{d} {t}" if " " not in t else f"{d} pi {t}"
 
 
 def make_episode(r, obs):
@@ -176,11 +188,11 @@ def en_fact(f):
 
 def tp_fact(f):
     k = f[0]
-    if k in ("at", "loc"): return f"{TP[f[1]]} li lon {TP[f[2]]} ."
-    if k == "door": return f"{tp_door(f[1])} li " + {"open": "open", "closed": "pini", "locked": "pini wawa"}[f[2]] + " ."
-    if k == "prop": return f"{TP[f[1]]} li {TP[f[2]]}" + ("" if f[3] else " ala") + " ."
-    if k == "want": return f"{TP[f[1]]} li wile e {TP[f[2]]} ."
-    if k == "wantprop": return f"{TP[f[1]]} li wile e ijo {TP[f[2]]} ."
+    if k in ("at", "loc"): return f"{T(f[1])} li lon {T(f[2])} ."
+    if k == "door": return f"{tp_door(f[1])} li " + T(f[2]) + " ."
+    if k == "prop": return f"{T(f[1])} li {T(f[2])}" + ("" if f[3] else " ala") + " ."
+    if k == "want": return f"{T(f[1])} li {T('wants')} e {T(f[2])} ."
+    if k == "wantprop": return f"{T(f[1])} li {T('wants')} e {T('thing')} {T(f[2])} ."
     raise ValueError(f)
 
 
@@ -200,14 +212,14 @@ def en_step(s):
 
 def tp_step(s):
     k = s[0]
-    if k == "search": return [(f"alasa : {TP[s[1]]} li lon seme ?", True), (f"sona : {TP[s[1]]} li lon {TP[s[2]]} .", False)]
-    if k == "choose": return [(f"{TP[s[1]]} li wile e {TP[s[2]]} tan ni : {TP[s[2]]} li {TP[s[3]]} .", True)]
-    if k == "needkey": return [(f"{tp_door(s[2])} li pini wawa la {TP[s[1]]} li wile e ilo open .", True)]
-    if k == "go": return [(f"{TP[s[1]]} li lon ala {TP[s[2]]} la {TP[s[1]]} li tawa {TP[s[2]]} .", True)]
-    if k == "open": return [(f"{tp_door(s[2])} li pini la {TP[s[1]]} li open e {tp_door(s[2])} .", True)]
-    if k == "unlock": return [(f"{tp_door(s[2])} li pini wawa la {TP[s[1]]} li open e {tp_door(s[2])} kepeken ilo open .", True)]
-    if k == "take": return [(f"{TP[s[1]]} li kama jo e {TP[s[2]]} .", True)]
-    if k == "check": return [(f"{TP[s[1]]} li jo e {TP[s[2]]} la wile li pini .", True)]
+    if k == "search": return [(f"alasa : {T(s[1])} li lon seme ?", True), (f"sona : {T(s[1])} li lon {T(s[2])} .", False)]
+    if k == "choose": return [(f"{T(s[1])} li {T('wants')} e {T(s[2])} tan ni : {T(s[2])} li {T(s[3])} .", True)]
+    if k == "needkey": return [(f"{tp_door(s[2])} li {T('locked')} la {T(s[1])} li {T('wants')} e {T('key')} .", True)]
+    if k == "go": return [(f"{T(s[1])} li lon ala {T(s[2])} la {T(s[1])} li {T('goes')} {T(s[2])} .", True)]
+    if k == "open": return [(f"{tp_door(s[2])} li {T('closed')} la {T(s[1])} li {T('opens')} e {tp_door(s[2])} .", True)]
+    if k == "unlock": return [(f"{tp_door(s[2])} li {T('locked')} la {T(s[1])} li {T('opens')} e {tp_door(s[2])} kepeken {T('key')} .", True)]
+    if k == "take": return [(f"{T(s[1])} li {T('takes')} e {T(s[2])} .", True)]
+    if k == "check": return [(f"{T(s[1])} li {T('has')} e {T(s[2])} la wile li pini .", True)]
     if k == "done": return [("ale li pini .", True)]
     raise ValueError(s)
 
@@ -217,7 +229,15 @@ def prompt_text(ep, lang="en"):
     return " ".join(fact(f) for f in ep["facts"] + [ep["goal"]]) + (" plan :" if lang == "en" else " nasin :")
 
 
-def render(ep, lang):
+def render(ep, lang, r=None):
+    """lang: en, tp, or mix (toki pona grammar, content words English half the time; needs r)."""
+    global _MIX
+    if lang == "mix":
+        _MIX = r
+        try:
+            return render(ep, "tp")
+        finally:
+            _MIX = None
     step = en_step if lang == "en" else tp_step
     segs = [(prompt_text(ep, lang), True)]
     for s in ep["plan"]:
@@ -307,8 +327,8 @@ def build_vocab():
     for c in COMBOS:
         for _ in range(30):
             ep = make_episode(r, c)
-            for lang in ("en", "tp"):
-                for t, _ in render(ep, lang):
+            for lang in ("en", "tp", "mix"):
+                for t, _ in render(ep, lang, r):
                     words |= set(t.split())
     for _ in range(500):
         words |= set(mix(scene(r), r).split()) | set(scene(r).split())
@@ -438,11 +458,33 @@ class Sim:
         return None
 
 
+class TpSim:
+    """Checks a toki pona plan against the gold one, sentence by sentence; answers alasa with sona."""
+    def __init__(self, ep):
+        self.gold = [t for st_ in ep["plan"] for t in tp_step(st_)]
+        self.k, self.status, self.why, self.searched, self.ep = 0, None, "", set(), ep
+
+    def step(self, sent):
+        text, _ = self.gold[self.k]
+        if sent != text:
+            self.status, self.why = "fail", "off plan"
+            return None
+        self.k += 1
+        if self.k == len(self.gold):
+            self.status = "ok"
+            return None
+        nxt, trained = self.gold[self.k]
+        if not trained:          # tool result
+            self.k += 1
+            return nxt
+        return None
+
+
 @torch.no_grad()
-def run_plans(model, eps, max_new=200):
+def run_plans(model, eps, max_new=200, lang="en"):
     model.eval()
-    seqs = [[STOI[w] for w in prompt_text(ep).split()] for ep in eps]
-    sims = [Sim(ep) for ep in eps]
+    seqs = [[STOI[w] for w in prompt_text(ep, lang).split()] for ep in eps]
+    sims = [(Sim if lang == "en" else TpSim)(ep) for ep in eps]
     sent = [[] for _ in eps]
     active = list(range(len(eps)))
     for _ in range(max_new):
@@ -511,6 +553,7 @@ def run():
         en_goals_all = [encode(render(e, "en")) for e in episodes(dr, 20000, TRAIN_COMBOS)]
         en_scene = [encode([(scene(dr), True)]) for _ in range(20000)]
         mixed_scene = [encode([(mix(scene(dr), dr), True)]) for _ in range(20000)]
+        mixed_goals = [encode(render(e, "mix", dr)) for e in episodes(dr, 20000, TRAIN_COMBOS)]
         pick = lambda pool: (lambda r: r.choice(pool))
         for cond in COND:
             torch.manual_seed(seed)
@@ -518,8 +561,12 @@ def run():
             r = random.Random(seed)
             if cond == "tp":
                 train(base, pick(tp_goals), S1, r)
-                train(base, lambda r: r.choice(tp_goals) if r.random() < 0.2 else r.choice(mixed_scene), S2, r)
-                replay = tp_goals
+                train(base, lambda r: r.choice(mixed_goals) if r.random() < 0.6 else
+                      (r.choice(tp_goals) if r.random() < 0.5 else r.choice(mixed_scene)), S2, r)
+                replay = tp_goals + mixed_goals
+                tp_ok = {sp: st.mean(x.status == "ok" for x in run_plans(base, eps, lang="tp")) for sp, eps in tests.items() if sp != "long"}
+                results.append({"seed": seed, "cond": "tp-in-toki-pona", "res": tp_ok})
+                print(f"seed {seed} toki pona plans (exact): " + "  ".join(f"{k} {v*100:.0f}%" for k, v in tp_ok.items()), flush=True)
             elif cond == "english":
                 train(base, pick(en_scene), S1 + S2, r)
                 replay = en_scene
@@ -548,6 +595,11 @@ def report(R):
     L = ["# Goals + lookup: results", "",
          f"{len({r['seed'] for r in R})} seeds, {NTEST} test episodes per split. N = English goal episodes in the last stage.",
          "Success = the model's own plan, run in the world, gets the goal.", ""]
+    tpr = [r["res"] for r in R if r["cond"] == "tp-in-toki-pona"]
+    if tpr:
+        L += ["## Sanity check: the tp model planning in toki pona (exact match with the gold plan, before English)", ""]
+        L += ["- " + ", ".join(f"{sp} {st.mean(x[sp] for x in tpr)*100:.0f}%" for sp in tpr[0]), ""]
+    R = [r for r in R if r["cond"] != "tp-in-toki-pona"]
     for n in NS:
         L += [f"## N = {n}", "", "| condition | iid | combo (hidden + locked) | long (4–5 obstacles) | looked up when needed | looked up when not needed |",
               "|---|---|---|---|---|---|"]

@@ -6,7 +6,7 @@ Each episode is a small goal problem: someone wants something, and there may be 
 
 | condition | stage 1 | stage 2 | stage 3 |
 |---|---|---|---|
-| `tp` | toki pona goal episodes | mixed English/toki pona scenes, no goals (+20% toki pona replay) | N English goal episodes + scenes + replay |
+| `tp` | toki pona goal episodes | mixed plans: toki pona grammar with English words swapped in half the time (60%), plus toki pona plans and mixed scenes | N English goal episodes + scenes + replay |
 | `english` | plain English scenes, no goals (same number of steps) | | same as tp |
 | `reference` | English goal episodes | English scenes (+20% replay) | same as tp (upper bound, not a fair rival) |
 
@@ -32,9 +32,13 @@ Local smoke test (CPU, tiny): `python3 goals.py --quick`. To see sample episodes
 
 ## Results, run 1 (Kaggle T4, 3 seeds)
 
-Full tables in `GOALS_RESULTS.md`.
+Full tables in `run1/GOALS_RESULTS.md`. Run 1's bridge was mixed scenes only, with no plans.
 
 - **The setup works.** The reference model (English goals all along) solves about 80% of new episodes and 67–72% of the longer chains it never trained on. It looks things up 87–91% of the time when a fact is missing and never when it isn't.
 - **Few-shot English planning failed for both rivals.** With 16–256 English plans, tp and english stay near 0%. tp is ahead at N=256 in 3/3 seeds (10% vs 4% iid), but that's a small edge on a floor.
 - **tp did learn plan *structure*.** Its plans are far less often garbled (1,098 vs 2,727), but it fails on grounding instead: wrong choice, false claims, wrong agent.
 - Likely cause: the bridge only mixed loose scenes, so nothing linked toki pona's plan skeleton (`la`, `tan ni`, `alasa`, `nasin`) to English's (`, so`, `because`, `search`, `plan`). The earlier reasoning test had short patterns. Here a plan is about 150 tokens of new English syntax to pick up from a handful of examples.
+
+## Run 2 (current notebook)
+
+The bridge now mixes whole plans, so toki pona's plan skeleton is used with English words before the model meets English plans, for example *lupa shop li pini wawa la child li opens e door shop kepeken key*. N is now 64 / 256 / 1024, and the notebook first checks that the tp model can plan in toki pona at all.
