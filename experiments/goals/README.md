@@ -67,3 +67,16 @@ https://www.kaggle.com/kernels/welcome?src=https://github.com/KealJones/tp-parse
 - After 1,024 English plans, a GRPO-style RL stage: 16 problems × 8 sampled attempts per step. Reward is 1 for reaching the goal, −0.5 for skipping a needed search, and −0.2 for a needless one. RL never sees hidden + locked combos or 4+ obstacles, so those stay honest tests.
 - The model is a standard Hugging Face Llama (about 3.7M parameters). The notebook writes `goals_export.zip` with `goals.gguf`, a `Modelfile`, `chat.py` (the harness that answers searches), the HF weights and test problems.
 - The GGUF writer was checked against llama.cpp here. With random weights, llama.cpp's tokenisation and greedy output match a reference implementation token for token. The notebook also compares the exported weights with the trained model before writing.
+
+### Run 3 results (full tables in `run3/GOALS_RESULTS.md`)
+
+| model | iid | combo | long | looked up when needed (iid / combo / long) |
+|---|---|---|---|---|
+| tp | 75% | 60% | 71% | 99% / 15% / 22% |
+| tp + RL | 78% | 64% | 72% | 98% / 19% / 22% |
+| reference | 91% | 98% | 93% | 100% / 100% / 96% |
+
+- The lookup fix worked where it was trained: tp searches 99% of the time on iid problems, up from about 40% in run 2.
+- On unseen combos it mostly skips the search, yet still succeeds 60% of the time. This is a flaw in the world: in a hidden + locked problem, the hidden item is always behind the locked door, so "go to the locked place" is a free shortcut. Future worlds should put the locked door and the target in different places some of the time.
+- RL gave little: +3 points on average, and the seeds disagreed (68→62, 59→71, 78→80). Reward was already about 0.75 at the start, and 150 steps at a small learning rate barely moved it.
+- The export works. `goals.gguf` runs in llama.cpp, writes correct plans and handles a search round trip. The HF vs GGUF logit check was 2e-5.
