@@ -58,3 +58,12 @@ tp beat english in every seed at every N. At 1,024 it nearly matches the model t
 The weak spot is lookups: tp searches for a missing fact only 39% of the time (reference 90%), so it often guesses. The search words (`alasa`, `sona`) were never swapped in the bridge, so that link had to come from the English examples alone.
 
 Open question: is it *toki pona* that helps, or just learning to plan in any language first? The next control is the same pipeline with a made-up language in toki pona's place.
+
+## Run 3: lookups, RL, Ollama export (`goals_rl.ipynb`)
+
+https://www.kaggle.com/kernels/welcome?src=https://github.com/KealJones/tp-parse/blob/main/experiments/goals/goals_rl.ipynb
+
+- The bridge also swaps plan-structure words (`alasa`↔`search`, `la`↔`, so`, `tan ni`↔`because`, `nasin`↔`plan`).
+- After 1,024 English plans, a GRPO-style RL stage: 16 problems × 8 sampled attempts per step. Reward is 1 for reaching the goal, −0.5 for skipping a needed search, and −0.2 for a needless one. RL never sees hidden + locked combos or 4+ obstacles, so those stay honest tests.
+- The model is a standard Hugging Face Llama (about 3.7M parameters). The notebook writes `goals_export.zip` with `goals.gguf`, a `Modelfile`, `chat.py` (the harness that answers searches), the HF weights and test problems.
+- The GGUF writer was checked against llama.cpp here. With random weights, llama.cpp's tokenisation and greedy output match a reference implementation token for token. The notebook also compares the exported weights with the trained model before writing.
