@@ -42,3 +42,19 @@ Full tables in `run1/GOALS_RESULTS.md`. Run 1's bridge was mixed scenes only, wi
 ## Run 2 (current notebook)
 
 The bridge now mixes whole plans, so toki pona's plan skeleton is used with English words before the model meets English plans, for example *lupa shop li pini wawa la child li opens e door shop kepeken key*. N is now 64 / 256 / 1024, and the notebook first checks that the tp model can plan in toki pona at all.
+
+### Run 2 results (Kaggle T4, 3 seeds; full tables in `run2/GOALS_RESULTS.md`)
+
+The tp model plans in toki pona first (exact match with the gold plan: iid 80%, combo 87%), then:
+
+| N English plans | tp (iid / combo / long) | english | reference |
+|---|---|---|---|
+| 64 | 18% / 6% / 2% | 0% / 0% / 0% | 76% / 78% / 64% |
+| 256 | 45% / 42% / 25% | 4% / 1% / 0% | 74% / 75% / 66% |
+| 1024 | **71% / 68% / 64%** | 7% / 1% / 1% | 75% / 74% / 62% |
+
+tp beat english in every seed at every N. At 1,024 it nearly matches the model trained on English plans all along, including the hidden + locked combos it never saw in English and chains longer than any training data.
+
+The weak spot is lookups: tp searches for a missing fact only 39% of the time (reference 90%), so it often guesses. The search words (`alasa`, `sona`) were never swapped in the bridge, so that link had to come from the English examples alone.
+
+Open question: is it *toki pona* that helps, or just learning to plan in any language first? The next control is the same pipeline with a made-up language in toki pona's place.
