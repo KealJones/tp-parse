@@ -29,3 +29,12 @@ It also measures whether the model looks things up when a fact is missing, and w
 Local smoke test (CPU, tiny): `python3 goals.py --quick`. To see sample episodes: `python3 goals.py --show`.
 
 `goals.ipynb` is generated from `goals.py` by `make_notebook.py`, so edit the .py file and regenerate.
+
+## Results, run 1 (Kaggle T4, 3 seeds)
+
+Full tables in `GOALS_RESULTS.md`.
+
+- **The setup works.** The reference model (English goals all along) solves about 80% of new episodes and 67–72% of the longer chains it never trained on. It looks things up 87–91% of the time when a fact is missing and never when it isn't.
+- **Few-shot English planning failed for both rivals.** With 16–256 English plans, tp and english stay near 0%. tp is ahead at N=256 in 3/3 seeds (10% vs 4% iid), but that's a small edge on a floor.
+- **tp did learn plan *structure*.** Its plans are far less often garbled (1,098 vs 2,727), but it fails on grounding instead: wrong choice, false claims, wrong agent.
+- Likely cause: the bridge only mixed loose scenes, so nothing linked toki pona's plan skeleton (`la`, `tan ni`, `alasa`, `nasin`) to English's (`, so`, `because`, `search`, `plan`). The earlier reasoning test had short patterns. Here a plan is about 150 tokens of new English syntax to pick up from a handful of examples.
