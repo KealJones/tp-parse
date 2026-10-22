@@ -1,0 +1,1297 @@
+[
+ {
+  "seed": 0,
+  "cond": "tp-in-toki-pona",
+  "res": {
+   "iid": 0.745,
+   "combo": 0.78
+  }
+ },
+ {
+  "seed": 0,
+  "cond": "tp",
+  "n": 64,
+  "res": {
+   "iid": {
+    "success": 0.15,
+    "looked_when_needed": 0.37777777777777777,
+    "looked_when_not": 0.075,
+    "fails": {
+     "false claim": 25,
+     "bad go": 21,
+     "done without goal": 2,
+     "wrong choice": 68,
+     "bad take": 25,
+     "garbled": 11,
+     "bad open": 10,
+     "bad unlock": 7,
+     "bad search": 1
+    }
+   },
+   "combo": {
+    "success": 0.065,
+    "looked_when_needed": 0.005,
+    "looked_when_not": 0.055,
+    "fails": {
+     "wrong choice": 39,
+     "false claim": 68,
+     "bad open": 17,
+     "garbled": 23,
+     "bad take": 17,
+     "bad go": 19,
+     "bad unlock": 3,
+     "done without goal": 1
+    }
+   },
+   "long": {
+    "success": 0.035,
+    "looked_when_needed": 0.015,
+    "looked_when_not": 0.01,
+    "fails": {
+     "wrong choice": 117,
+     "garbled": 13,
+     "false claim": 24,
+     "bad go": 12,
+     "bad unlock": 3,
+     "bad open": 6,
+     "bad take": 17,
+     "done without goal": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 0,
+  "cond": "tp",
+  "n": 256,
+  "res": {
+   "iid": {
+    "success": 0.51,
+    "looked_when_needed": 0.7333333333333333,
+    "looked_when_not": 0.07,
+    "fails": {
+     "false claim": 2,
+     "bad go": 29,
+     "bad open": 12,
+     "wrong choice": 35,
+     "bad take": 19,
+     "wrong agent": 1
+    }
+   },
+   "combo": {
+    "success": 0.525,
+    "looked_when_needed": 0,
+    "looked_when_not": 0.005,
+    "fails": {
+     "bad take": 19,
+     "wrong choice": 20,
+     "false claim": 6,
+     "bad go": 41,
+     "bad open": 8,
+     "garbled": 1
+    }
+   },
+   "long": {
+    "success": 0.34,
+    "looked_when_needed": 0.095,
+    "looked_when_not": 0,
+    "fails": {
+     "wrong choice": 77,
+     "bad take": 6,
+     "bad go": 28,
+     "garbled": 8,
+     "bad open": 9,
+     "wrong agent": 3,
+     "done without goal": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 0,
+  "cond": "tp",
+  "n": 1024,
+  "res": {
+   "iid": {
+    "success": 0.605,
+    "looked_when_needed": 0.9888888888888889,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 38,
+     "bad take": 20,
+     "bad open": 15,
+     "wrong choice": 5,
+     "garbled": 1
+    }
+   },
+   "combo": {
+    "success": 0.67,
+    "looked_when_needed": 0.015,
+    "looked_when_not": 0.135,
+    "fails": {
+     "garbled": 8,
+     "bad go": 30,
+     "bad take": 11,
+     "wrong choice": 4,
+     "bad open": 9,
+     "false claim": 4
+    }
+   },
+   "long": {
+    "success": 0.595,
+    "looked_when_needed": 0.19,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 30,
+     "bad take": 10,
+     "wrong choice": 10,
+     "bad open": 18,
+     "garbled": 12,
+     "false claim": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 0,
+  "cond": "english",
+  "n": 64,
+  "res": {
+   "iid": {
+    "success": 0.01,
+    "looked_when_needed": 0.1111111111111111,
+    "looked_when_not": 0.035,
+    "fails": {
+     "false claim": 25,
+     "garbled": 81,
+     "bad take": 22,
+     "wrong agent": 12,
+     "wrong choice": 39,
+     "bad open": 8,
+     "bad unlock": 1,
+     "bad search": 4,
+     "bad go": 4,
+     "done without goal": 2
+    }
+   },
+   "combo": {
+    "success": 0.005,
+    "looked_when_needed": 0.015,
+    "looked_when_not": 0.035,
+    "fails": {
+     "garbled": 77,
+     "false claim": 32,
+     "wrong choice": 17,
+     "wrong agent": 13,
+     "bad search": 10,
+     "bad take": 35,
+     "bad open": 8,
+     "bad go": 7
+    }
+   },
+   "long": {
+    "success": 0,
+    "looked_when_needed": 0,
+    "looked_when_not": 0.005,
+    "fails": {
+     "garbled": 108,
+     "wrong choice": 57,
+     "wrong agent": 9,
+     "false claim": 6,
+     "bad take": 10,
+     "bad search": 5,
+     "bad go": 4,
+     "bad open": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 0,
+  "cond": "english",
+  "n": 256,
+  "res": {
+   "iid": {
+    "success": 0.025,
+    "looked_when_needed": 0.17777777777777778,
+    "looked_when_not": 0.075,
+    "fails": {
+     "false claim": 35,
+     "garbled": 46,
+     "bad search": 11,
+     "wrong choice": 58,
+     "bad take": 22,
+     "bad go": 8,
+     "bad open": 13,
+     "done without goal": 2
+    }
+   },
+   "combo": {
+    "success": 0.015,
+    "looked_when_needed": 0.02,
+    "looked_when_not": 0.035,
+    "fails": {
+     "wrong choice": 28,
+     "false claim": 73,
+     "garbled": 44,
+     "bad go": 10,
+     "bad take": 26,
+     "bad unlock": 1,
+     "bad search": 6,
+     "bad open": 8,
+     "wrong agent": 1
+    }
+   },
+   "long": {
+    "success": 0.005,
+    "looked_when_needed": 0.01,
+    "looked_when_not": 0.005,
+    "fails": {
+     "wrong choice": 92,
+     "false claim": 25,
+     "garbled": 61,
+     "bad take": 6,
+     "wrong agent": 2,
+     "bad open": 6,
+     "bad go": 2,
+     "bad search": 3,
+     "bad unlock": 2
+    }
+   }
+  }
+ },
+ {
+  "seed": 0,
+  "cond": "english",
+  "n": 1024,
+  "res": {
+   "iid": {
+    "success": 0.06,
+    "looked_when_needed": 0.3,
+    "looked_when_not": 0.04,
+    "fails": {
+     "false claim": 38,
+     "bad take": 23,
+     "bad search": 3,
+     "wrong choice": 72,
+     "garbled": 20,
+     "bad go": 14,
+     "bad open": 17,
+     "done without goal": 1
+    }
+   },
+   "combo": {
+    "success": 0.01,
+    "looked_when_needed": 0.005,
+    "looked_when_not": 0.025,
+    "fails": {
+     "wrong choice": 42,
+     "false claim": 82,
+     "bad unlock": 9,
+     "bad search": 11,
+     "garbled": 13,
+     "bad take": 19,
+     "bad go": 13,
+     "bad open": 9
+    }
+   },
+   "long": {
+    "success": 0.01,
+    "looked_when_needed": 0,
+    "looked_when_not": 0,
+    "fails": {
+     "wrong choice": 139,
+     "false claim": 21,
+     "garbled": 24,
+     "bad go": 4,
+     "bad open": 3,
+     "bad search": 3,
+     "bad take": 2,
+     "wrong agent": 2
+    }
+   }
+  }
+ },
+ {
+  "seed": 0,
+  "cond": "reference",
+  "n": 64,
+  "res": {
+   "iid": {
+    "success": 0.73,
+    "looked_when_needed": 0.9888888888888889,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 41,
+     "bad open": 7,
+     "bad take": 5,
+     "wrong choice": 1
+    }
+   },
+   "combo": {
+    "success": 0.79,
+    "looked_when_needed": 1,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 41,
+     "bad open": 1
+    }
+   },
+   "long": {
+    "success": 0.63,
+    "looked_when_needed": 0.89,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 40,
+     "bad take": 1,
+     "garbled": 24,
+     "bad open": 6,
+     "wrong choice": 2,
+     "false claim": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 0,
+  "cond": "reference",
+  "n": 256,
+  "res": {
+   "iid": {
+    "success": 0.715,
+    "looked_when_needed": 1,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 40,
+     "false claim": 1,
+     "bad open": 5,
+     "bad take": 11
+    }
+   },
+   "combo": {
+    "success": 0.81,
+    "looked_when_needed": 1,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 37,
+     "bad take": 1
+    }
+   },
+   "long": {
+    "success": 0.615,
+    "looked_when_needed": 0.7,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 42,
+     "garbled": 33,
+     "wrong choice": 2
+    }
+   }
+  }
+ },
+ {
+  "seed": 0,
+  "cond": "reference",
+  "n": 1024,
+  "res": {
+   "iid": {
+    "success": 0.735,
+    "looked_when_needed": 0.9888888888888889,
+    "looked_when_not": 0.005,
+    "fails": {
+     "bad go": 35,
+     "bad open": 5,
+     "bad take": 11,
+     "wrong choice": 2
+    }
+   },
+   "combo": {
+    "success": 0.79,
+    "looked_when_needed": 1,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 37,
+     "bad take": 4,
+     "bad open": 1
+    }
+   },
+   "long": {
+    "success": 0.52,
+    "looked_when_needed": 0.73,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 38,
+     "garbled": 48,
+     "wrong agent": 1,
+     "bad open": 3,
+     "bad take": 3,
+     "wrong choice": 2,
+     "false claim": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 1,
+  "cond": "tp-in-toki-pona",
+  "res": {
+   "iid": 0.72,
+   "combo": 0.82
+  }
+ },
+ {
+  "seed": 1,
+  "cond": "tp",
+  "n": 64,
+  "res": {
+   "iid": {
+    "success": 0.265,
+    "looked_when_needed": 0.3888888888888889,
+    "looked_when_not": 0.13,
+    "fails": {
+     "false claim": 35,
+     "bad take": 19,
+     "wrong choice": 52,
+     "bad go": 22,
+     "garbled": 3,
+     "bad open": 11,
+     "done without goal": 1,
+     "bad unlock": 4
+    }
+   },
+   "combo": {
+    "success": 0.05,
+    "looked_when_needed": 0.115,
+    "looked_when_not": 0.105,
+    "fails": {
+     "false claim": 73,
+     "wrong choice": 35,
+     "bad take": 29,
+     "bad open": 20,
+     "bad unlock": 6,
+     "bad go": 21,
+     "garbled": 5,
+     "wrong agent": 1
+    }
+   },
+   "long": {
+    "success": 0.01,
+    "looked_when_needed": 0.06,
+    "looked_when_not": 0.05,
+    "fails": {
+     "wrong choice": 101,
+     "bad open": 31,
+     "bad go": 14,
+     "bad take": 24,
+     "false claim": 19,
+     "garbled": 7,
+     "bad search": 2
+    }
+   }
+  }
+ },
+ {
+  "seed": 1,
+  "cond": "tp",
+  "n": 256,
+  "res": {
+   "iid": {
+    "success": 0.45,
+    "looked_when_needed": 0.6333333333333333,
+    "looked_when_not": 0.05,
+    "fails": {
+     "bad open": 19,
+     "bad go": 31,
+     "wrong choice": 28,
+     "false claim": 22,
+     "bad take": 10
+    }
+   },
+   "combo": {
+    "success": 0.2,
+    "looked_when_needed": 0.05,
+    "looked_when_not": 0.02,
+    "fails": {
+     "wrong choice": 14,
+     "false claim": 98,
+     "bad go": 11,
+     "bad take": 28,
+     "bad open": 8,
+     "bad unlock": 1
+    }
+   },
+   "long": {
+    "success": 0.17,
+    "looked_when_needed": 0.12,
+    "looked_when_not": 0.005,
+    "fails": {
+     "wrong choice": 45,
+     "false claim": 70,
+     "bad take": 18,
+     "garbled": 2,
+     "bad go": 15,
+     "bad open": 15,
+     "bad unlock": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 1,
+  "cond": "tp",
+  "n": 1024,
+  "res": {
+   "iid": {
+    "success": 0.685,
+    "looked_when_needed": 0.9777777777777777,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 33,
+     "garbled": 2,
+     "bad take": 13,
+     "false claim": 2,
+     "bad open": 12,
+     "wrong choice": 1
+    }
+   },
+   "combo": {
+    "success": 0.52,
+    "looked_when_needed": 0.08,
+    "looked_when_not": 0.145,
+    "fails": {
+     "bad open": 18,
+     "bad take": 47,
+     "bad go": 25,
+     "false claim": 3,
+     "wrong choice": 1,
+     "bad search": 1,
+     "bad unlock": 1
+    }
+   },
+   "long": {
+    "success": 0.56,
+    "looked_when_needed": 0.195,
+    "looked_when_not": 0.01,
+    "fails": {
+     "bad go": 26,
+     "bad open": 15,
+     "bad take": 25,
+     "false claim": 7,
+     "wrong choice": 7,
+     "garbled": 7,
+     "bad unlock": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 1,
+  "cond": "english",
+  "n": 64,
+  "res": {
+   "iid": {
+    "success": 0,
+    "looked_when_needed": 0.07777777777777778,
+    "looked_when_not": 0.075,
+    "fails": {
+     "bad search": 12,
+     "false claim": 21,
+     "bad take": 15,
+     "garbled": 78,
+     "bad open": 9,
+     "bad go": 7,
+     "wrong choice": 28,
+     "wrong agent": 29,
+     "done without goal": 1
+    }
+   },
+   "combo": {
+    "success": 0,
+    "looked_when_needed": 0.045,
+    "looked_when_not": 0.11,
+    "fails": {
+     "wrong choice": 22,
+     "bad search": 33,
+     "bad take": 26,
+     "false claim": 23,
+     "garbled": 54,
+     "bad open": 8,
+     "wrong agent": 26,
+     "bad go": 5,
+     "done without goal": 3
+    }
+   },
+   "long": {
+    "success": 0,
+    "looked_when_needed": 0,
+    "looked_when_not": 0.025,
+    "fails": {
+     "wrong choice": 73,
+     "false claim": 4,
+     "garbled": 76,
+     "wrong agent": 28,
+     "bad take": 3,
+     "bad search": 7,
+     "bad open": 7,
+     "bad go": 1,
+     "done without goal": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 1,
+  "cond": "english",
+  "n": 256,
+  "res": {
+   "iid": {
+    "success": 0.045,
+    "looked_when_needed": 0.13333333333333333,
+    "looked_when_not": 0.045,
+    "fails": {
+     "bad open": 12,
+     "false claim": 33,
+     "bad go": 7,
+     "bad search": 24,
+     "wrong choice": 67,
+     "bad take": 14,
+     "garbled": 24,
+     "wrong agent": 9,
+     "bad unlock": 1
+    }
+   },
+   "combo": {
+    "success": 0.005,
+    "looked_when_needed": 0.045,
+    "looked_when_not": 0.105,
+    "fails": {
+     "bad take": 30,
+     "wrong choice": 42,
+     "false claim": 53,
+     "bad open": 11,
+     "bad search": 25,
+     "wrong agent": 4,
+     "garbled": 21,
+     "bad go": 11,
+     "done without goal": 1,
+     "bad unlock": 1
+    }
+   },
+   "long": {
+    "success": 0,
+    "looked_when_needed": 0,
+    "looked_when_not": 0.01,
+    "fails": {
+     "wrong choice": 108,
+     "garbled": 43,
+     "bad take": 6,
+     "wrong agent": 11,
+     "bad open": 6,
+     "bad search": 9,
+     "false claim": 15,
+     "done without goal": 1,
+     "bad go": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 1,
+  "cond": "english",
+  "n": 1024,
+  "res": {
+   "iid": {
+    "success": 0.08,
+    "looked_when_needed": 0.34444444444444444,
+    "looked_when_not": 0.04,
+    "fails": {
+     "bad go": 18,
+     "wrong agent": 1,
+     "wrong choice": 74,
+     "garbled": 14,
+     "bad take": 30,
+     "false claim": 28,
+     "bad open": 10,
+     "bad unlock": 2,
+     "bad search": 6,
+     "done without goal": 1
+    }
+   },
+   "combo": {
+    "success": 0.015,
+    "looked_when_needed": 0.01,
+    "looked_when_not": 0.035,
+    "fails": {
+     "wrong choice": 45,
+     "false claim": 96,
+     "bad take": 24,
+     "done without goal": 1,
+     "bad open": 14,
+     "bad search": 7,
+     "bad unlock": 2,
+     "garbled": 3,
+     "bad go": 5
+    }
+   },
+   "long": {
+    "success": 0.015,
+    "looked_when_needed": 0.005,
+    "looked_when_not": 0.01,
+    "fails": {
+     "garbled": 53,
+     "wrong choice": 108,
+     "false claim": 20,
+     "bad take": 5,
+     "bad go": 4,
+     "bad open": 3,
+     "wrong agent": 1,
+     "bad search": 2,
+     "done without goal": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 1,
+  "cond": "reference",
+  "n": 64,
+  "res": {
+   "iid": {
+    "success": 0.71,
+    "looked_when_needed": 0.9888888888888889,
+    "looked_when_not": 0.005,
+    "fails": {
+     "bad go": 38,
+     "bad open": 3,
+     "bad take": 16,
+     "wrong choice": 1
+    }
+   },
+   "combo": {
+    "success": 0.635,
+    "looked_when_needed": 0.99,
+    "looked_when_not": 0,
+    "fails": {
+     "bad take": 20,
+     "bad go": 52,
+     "bad open": 1
+    }
+   },
+   "long": {
+    "success": 0.58,
+    "looked_when_needed": 0.605,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 34,
+     "garbled": 37,
+     "bad open": 13
+    }
+   }
+  }
+ },
+ {
+  "seed": 1,
+  "cond": "reference",
+  "n": 256,
+  "res": {
+   "iid": {
+    "success": 0.675,
+    "looked_when_needed": 1,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 35,
+     "bad open": 4,
+     "bad take": 26
+    }
+   },
+   "combo": {
+    "success": 0.59,
+    "looked_when_needed": 0.985,
+    "looked_when_not": 0,
+    "fails": {
+     "bad take": 33,
+     "false claim": 1,
+     "bad open": 4,
+     "bad go": 44
+    }
+   },
+   "long": {
+    "success": 0.64,
+    "looked_when_needed": 0.625,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 34,
+     "bad take": 9,
+     "garbled": 11,
+     "bad open": 16,
+     "wrong choice": 1,
+     "false claim": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 1,
+  "cond": "reference",
+  "n": 1024,
+  "res": {
+   "iid": {
+    "success": 0.7,
+    "looked_when_needed": 1,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 29,
+     "bad open": 1,
+     "bad take": 30
+    }
+   },
+   "combo": {
+    "success": 0.615,
+    "looked_when_needed": 1,
+    "looked_when_not": 0,
+    "fails": {
+     "bad take": 27,
+     "bad open": 2,
+     "bad go": 48
+    }
+   },
+   "long": {
+    "success": 0.6,
+    "looked_when_needed": 0.725,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 23,
+     "garbled": 41,
+     "bad take": 4,
+     "bad open": 11,
+     "false claim": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 2,
+  "cond": "tp-in-toki-pona",
+  "res": {
+   "iid": 0.935,
+   "combo": 1
+  }
+ },
+ {
+  "seed": 2,
+  "cond": "tp",
+  "n": 64,
+  "res": {
+   "iid": {
+    "success": 0.12,
+    "looked_when_needed": 0.2,
+    "looked_when_not": 0.055,
+    "fails": {
+     "bad take": 18,
+     "false claim": 39,
+     "bad go": 20,
+     "wrong choice": 66,
+     "garbled": 13,
+     "bad open": 19,
+     "bad search": 1
+    }
+   },
+   "combo": {
+    "success": 0.065,
+    "looked_when_needed": 0,
+    "looked_when_not": 0.055,
+    "fails": {
+     "wrong choice": 44,
+     "false claim": 82,
+     "garbled": 8,
+     "bad take": 21,
+     "bad open": 15,
+     "bad go": 14,
+     "bad unlock": 3
+    }
+   },
+   "long": {
+    "success": 0.005,
+    "looked_when_needed": 0.005,
+    "looked_when_not": 0,
+    "fails": {
+     "false claim": 46,
+     "wrong choice": 126,
+     "bad take": 7,
+     "bad go": 12,
+     "garbled": 5,
+     "bad open": 3
+    }
+   }
+  }
+ },
+ {
+  "seed": 2,
+  "cond": "tp",
+  "n": 256,
+  "res": {
+   "iid": {
+    "success": 0.39,
+    "looked_when_needed": 0.5111111111111111,
+    "looked_when_not": 0.03,
+    "fails": {
+     "bad take": 21,
+     "garbled": 3,
+     "wrong choice": 58,
+     "bad go": 19,
+     "bad open": 13,
+     "false claim": 6,
+     "done without goal": 1,
+     "bad unlock": 1
+    }
+   },
+   "combo": {
+    "success": 0.54,
+    "looked_when_needed": 0,
+    "looked_when_not": 0.005,
+    "fails": {
+     "wrong choice": 34,
+     "garbled": 7,
+     "bad take": 16,
+     "bad go": 19,
+     "false claim": 11,
+     "bad open": 5
+    }
+   },
+   "long": {
+    "success": 0.235,
+    "looked_when_needed": 0.115,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 11,
+     "wrong choice": 114,
+     "wrong agent": 1,
+     "false claim": 8,
+     "bad take": 10,
+     "garbled": 7,
+     "bad open": 2
+    }
+   }
+  }
+ },
+ {
+  "seed": 2,
+  "cond": "tp",
+  "n": 1024,
+  "res": {
+   "iid": {
+    "success": 0.835,
+    "looked_when_needed": 0.8777777777777778,
+    "looked_when_not": 0.045,
+    "fails": {
+     "bad go": 9,
+     "bad take": 8,
+     "wrong choice": 12,
+     "bad open": 3,
+     "garbled": 1
+    }
+   },
+   "combo": {
+    "success": 0.845,
+    "looked_when_needed": 0.03,
+    "looked_when_not": 0,
+    "fails": {
+     "bad take": 16,
+     "wrong choice": 8,
+     "bad go": 5,
+     "bad unlock": 1,
+     "bad open": 1
+    }
+   },
+   "long": {
+    "success": 0.755,
+    "looked_when_needed": 0.185,
+    "looked_when_not": 0,
+    "fails": {
+     "done without goal": 2,
+     "bad go": 6,
+     "wrong choice": 26,
+     "bad take": 4,
+     "garbled": 7,
+     "wrong agent": 3,
+     "false claim": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 2,
+  "cond": "english",
+  "n": 64,
+  "res": {
+   "iid": {
+    "success": 0,
+    "looked_when_needed": 0.07777777777777778,
+    "looked_when_not": 0.025,
+    "fails": {
+     "garbled": 90,
+     "wrong agent": 15,
+     "false claim": 26,
+     "wrong choice": 45,
+     "bad search": 5,
+     "bad take": 10,
+     "bad go": 5,
+     "bad open": 4
+    }
+   },
+   "combo": {
+    "success": 0,
+    "looked_when_needed": 0,
+    "looked_when_not": 0.1,
+    "fails": {
+     "garbled": 81,
+     "wrong choice": 25,
+     "false claim": 29,
+     "bad search": 11,
+     "wrong agent": 29,
+     "bad take": 12,
+     "bad open": 8,
+     "bad unlock": 1,
+     "bad go": 3,
+     "done without goal": 1
+    }
+   },
+   "long": {
+    "success": 0,
+    "looked_when_needed": 0,
+    "looked_when_not": 0.005,
+    "fails": {
+     "wrong choice": 83,
+     "garbled": 89,
+     "bad open": 3,
+     "wrong agent": 17,
+     "done without goal": 1,
+     "bad go": 1,
+     "bad take": 4,
+     "bad search": 1,
+     "false claim": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 2,
+  "cond": "english",
+  "n": 256,
+  "res": {
+   "iid": {
+    "success": 0.045,
+    "looked_when_needed": 0.16666666666666666,
+    "looked_when_not": 0.055,
+    "fails": {
+     "bad go": 12,
+     "bad take": 25,
+     "garbled": 45,
+     "wrong choice": 54,
+     "bad search": 6,
+     "bad open": 13,
+     "false claim": 30,
+     "done without goal": 3,
+     "wrong agent": 3
+    }
+   },
+   "combo": {
+    "success": 0.005,
+    "looked_when_needed": 0.015,
+    "looked_when_not": 0.045,
+    "fails": {
+     "wrong choice": 35,
+     "bad take": 17,
+     "garbled": 33,
+     "false claim": 77,
+     "bad search": 14,
+     "bad open": 9,
+     "wrong agent": 5,
+     "bad go": 9
+    }
+   },
+   "long": {
+    "success": 0,
+    "looked_when_needed": 0.005,
+    "looked_when_not": 0.01,
+    "fails": {
+     "wrong choice": 108,
+     "garbled": 48,
+     "bad open": 6,
+     "false claim": 25,
+     "bad take": 7,
+     "bad go": 2,
+     "bad search": 2,
+     "wrong agent": 1,
+     "bad unlock": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 2,
+  "cond": "english",
+  "n": 1024,
+  "res": {
+   "iid": {
+    "success": 0.07,
+    "looked_when_needed": 0.28888888888888886,
+    "looked_when_not": 0.025,
+    "fails": {
+     "false claim": 43,
+     "bad go": 9,
+     "bad take": 24,
+     "wrong choice": 63,
+     "garbled": 26,
+     "bad search": 6,
+     "bad open": 13,
+     "bad unlock": 2
+    }
+   },
+   "combo": {
+    "success": 0.005,
+    "looked_when_needed": 0.105,
+    "looked_when_not": 0.06,
+    "fails": {
+     "garbled": 17,
+     "bad open": 24,
+     "wrong choice": 35,
+     "bad search": 19,
+     "false claim": 70,
+     "bad take": 22,
+     "bad go": 8,
+     "done without goal": 2,
+     "bad unlock": 2
+    }
+   },
+   "long": {
+    "success": 0.01,
+    "looked_when_needed": 0.01,
+    "looked_when_not": 0.02,
+    "fails": {
+     "false claim": 14,
+     "wrong choice": 92,
+     "garbled": 65,
+     "bad search": 8,
+     "bad open": 11,
+     "bad take": 5,
+     "bad go": 2,
+     "bad unlock": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 2,
+  "cond": "reference",
+  "n": 64,
+  "res": {
+   "iid": {
+    "success": 0.85,
+    "looked_when_needed": 0.9888888888888889,
+    "looked_when_not": 0.005,
+    "fails": {
+     "bad go": 21,
+     "bad take": 8,
+     "wrong choice": 1
+    }
+   },
+   "combo": {
+    "success": 0.925,
+    "looked_when_needed": 0.995,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 11,
+     "bad take": 3,
+     "wrong choice": 1
+    }
+   },
+   "long": {
+    "success": 0.71,
+    "looked_when_needed": 0.88,
+    "looked_when_not": 0,
+    "fails": {
+     "garbled": 41,
+     "bad go": 12,
+     "false claim": 1,
+     "bad take": 3,
+     "bad unlock": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 2,
+  "cond": "reference",
+  "n": 256,
+  "res": {
+   "iid": {
+    "success": 0.815,
+    "looked_when_needed": 0.9888888888888889,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 27,
+     "bad take": 9,
+     "bad open": 1
+    }
+   },
+   "combo": {
+    "success": 0.85,
+    "looked_when_needed": 1,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 30
+    }
+   },
+   "long": {
+    "success": 0.74,
+    "looked_when_needed": 0.67,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 17,
+     "garbled": 33,
+     "bad open": 1,
+     "bad take": 1
+    }
+   }
+  }
+ },
+ {
+  "seed": 2,
+  "cond": "reference",
+  "n": 1024,
+  "res": {
+   "iid": {
+    "success": 0.82,
+    "looked_when_needed": 1,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 28,
+     "bad take": 8
+    }
+   },
+   "combo": {
+    "success": 0.82,
+    "looked_when_needed": 0.99,
+    "looked_when_not": 0,
+    "fails": {
+     "bad go": 29,
+     "bad open": 3,
+     "bad take": 4
+    }
+   },
+   "long": {
+    "success": 0.725,
+    "looked_when_needed": 0.64,
+    "looked_when_not": 0,
+    "fails": {
+     "bad take": 4,
+     "bad go": 17,
+     "bad open": 2,
+     "garbled": 31,
+     "wrong agent": 1
+    }
+   }
+  }
+ }
+]
