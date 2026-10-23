@@ -22,13 +22,15 @@
 
 # %%
 import json, math, os, random, re, statistics as st, sys, time, subprocess
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 QUICK = "--quick" in sys.argv or os.environ.get("FINDOUT_QUICK") == "1"
+# Kaggle ships an old torchao that makes peft refuse to add LoRA layers; we don't use it, so remove it first.
+subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y", "-q", "torchao"], check=False, capture_output=True)
 try:
     import peft  # noqa
 except ImportError:
     subprocess.run([sys.executable, "-m", "pip", "install", "-q", "peft"], check=False)
-# Kaggle ships an old torchao that makes peft refuse to add LoRA layers; we don't use torchao, so tell peft it's absent.
-try:
+try:                                   # belt and braces, in case the uninstall didn't take
     import peft.import_utils as _piu
     _piu.is_torchao_available = lambda: False
     import peft.tuners.lora.torchao as _plt
@@ -95,10 +97,10 @@ log(f"{len(train_enc)} training episodes, mean {st.mean(lens):.0f} tokens, max {
 
 TESTS = {}
 for i, f in enumerate(TRAIN_TASKS + TEST_ONLY):
-    TESTS[f.__name__] = make_split(100 + i, N_TEST, "test", [f])
+    TESTS[f.__name__] = make_split(100 + i, N_TEST * (3 if f is t_stale else 1), "test", [f])   # more stale cases for the on/off comparison
 
 SHOTS = []
-for f in (t_lookup, t_stale):                    # two worked examples for the untrained baseline
+for f in TRAIN_TASKS:                            # one worked example per trained task type, for the untrained baseline
     t, W = make_split(7, 1, "train", [f])[0]
     SHOTS.append((t["request"], "".join(p for p, _ in render_gold(t, W))))
 
@@ -110,7 +112,7 @@ def load(kind):
     m = AutoModelForCausalLM.from_pretrained(MODEL, torch_dtype=torch.float32).to(DEV)
     if kind == "lora":
         from peft import LoraConfig, get_peft_model
-        m = get_peft_model(m, LoraConfig(r=32, lora_alpha=64, lora_dropout=0.05, task_type="CAUSAL_LM",
+        m = get_peft_model(m, LoraConfig(r=32, lora_alpha=64, lora_dropout=0.0, task_type="CAUSAL_LM",
                                          target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]))
     return m
 
@@ -135,28 +137,32 @@ def train_model(kind):
         scaler = torch.amp.GradScaler("cuda", enabled=DEV == "cuda")
     except (AttributeError, TypeError):
         scaler = torch.cuda.amp.GradScaler(enabled=DEV == "cuda")
-    data = sorted(train_enc, key=lambda x: len(x[0]))           # length-bucketed batches, shuffled order
-    batches = [data[i:i + BATCH] for i in range(0, len(data), BATCH)]
-    total = EPOCHS * len(batches)
-    step = 0
+    nb = math.ceil(len(train_enc) / BATCH)
+    total = EPOCHS * nb
+    step, t_start = 0, time.time()
+    inner = m.get_base_model() if hasattr(m, "get_base_model") else m
     m.train()
     for ep in range(EPOCHS):
-        random.Random(ep).shuffle(batches)
-        for b in batches:
+        data = train_enc[:]
+        random.Random(ep).shuffle(data)                          # mixed task types in every batch
+        for b in (data[i:i + BATCH] for i in range(0, len(data), BATCH)):
             frac = step / total
             for g in opt.param_groups:
                 g["lr"] = lr * min(1, (step + 1) / 50) * 0.5 * (1 + math.cos(math.pi * frac))
             ids, lab, att = collate(b)
             with torch.autocast(DEV, dtype=torch.float16, enabled=DEV == "cuda"):
-                out = m(input_ids=ids, attention_mask=att)
-            loss = F.cross_entropy(out.logits[:, :-1].float().reshape(-1, out.logits.shape[-1]), lab[:, 1:].reshape(-1), ignore_index=-100)
+                h = inner.model(input_ids=ids, attention_mask=att).last_hidden_state   # LoRA layers live inside inner.model
+                sel = lab[:, 1:] != -100
+                logits = inner.lm_head(h[:, :-1][sel])                                  # only where there's a label: saves GBs
+            loss = F.cross_entropy(logits.float(), lab[:, 1:][sel])
             opt.zero_grad(set_to_none=True)
             scaler.scale(loss).backward(); scaler.unscale_(opt)
             torch.nn.utils.clip_grad_norm_(params, 1.0)
             scaler.step(opt); scaler.update()
             step += 1
             if step % 200 == 0 or step == total:
-                log(f"  {kind} step {step}/{total} loss {loss.item():.3f}")
+                per = (time.time() - t_start) / step
+                log(f"  {kind} step {step}/{total} loss {loss.item():.3f}  ({per:.2f} s/step, ~{per * (total - step) / 60:.0f} min left)")
     m.eval()
     return m
 
@@ -166,6 +172,7 @@ def train_model(kind):
 
 # %%
 CLOSE = re.compile(r"</(think|search|calc|ask|fact|assume|check|answer)>")
+STOPS = [f"</{t}>" for t in ("think", "search", "calc", "ask", "fact", "assume", "check", "answer")]
 
 
 @torch.no_grad()
@@ -181,11 +188,19 @@ def run_batch(m, items, shots=(), harness_on=True, max_steps=14, new_tokens=72):
             chunk = live[i:i + 32]
             enc = tok([s["prompt"] + s["text"] for s in chunk], return_tensors="pt", padding=True, add_special_tokens=False).to(DEV)
             with torch.autocast(DEV, dtype=torch.float16, enabled=DEV == "cuda"):
-                out = m.generate(**enc, max_new_tokens=new_tokens, do_sample=False, pad_token_id=tok.pad_token_id)
+                try:
+                    out = m.generate(**enc, max_new_tokens=new_tokens, do_sample=False, pad_token_id=tok.pad_token_id,
+                                     stop_strings=STOPS, tokenizer=tok)
+                except TypeError:
+                    out = m.generate(**enc, max_new_tokens=new_tokens, do_sample=False, pad_token_id=tok.pad_token_id)
             for s, seq in zip(chunk, out[:, enc["input_ids"].shape[1]:]):
                 gen = tok.decode(seq, skip_special_tokens=True)
                 c = CLOSE.search(gen)
-                if not c:
+                if not c:                # no closing tag: take an unclosed <answer>, or plain untagged text, as the answer
+                    if "<answer>" in gen:
+                        s["ans"] = gen.split("<answer>", 1)[1].strip()
+                    elif "<" not in gen and gen.strip():
+                        s["ans"] = gen.strip()
                     s["done"] = True; continue
                 piece = gen[:c.end()]
                 s["text"] += piece
@@ -256,8 +271,9 @@ def summarise(R):
     rows = ["| task | " + " | ".join(R) + " |", "|---" * (len(R) + 1) + "|"]
     names = [n for n in next(iter(R.values()))["eval"] if not n.endswith("_example")]
     for n in names:
-        rows.append(f"| {n.replace('t_', '').replace('u_', 'unfamiliar: ')} | " + " | ".join(pct(st.mean(x['ok'] for x in R[c]['eval'][n])) for c in R) + " |")
-    L = ["# Finding out: results", "", f"SmolLM2-135M-Instruct, {N_TRAIN} training episodes, {N_TEST} test episodes per task.", "",
+        rows.append(f"| {n.removeprefix('t_').replace('u_', 'unfamiliar: ', 1)} | " + " | ".join(pct(st.mean(x['ok'] for x in R[c]['eval'][n])) for c in R) + " |")
+    L = ["# Finding out: results", "", f"SmolLM2-135M-Instruct, {N_TRAIN} training episodes, {N_TEST} test episodes per task ({3*N_TEST} for stale; ±12 points at 95% with 60).",
+         "Chance: ask and stale about 1 in 6 (six regions), compare 50%, cost-compare 50%, three-way 33%, lookups near 0%.", "",
          "## Success by task", ""] + rows + ["", "## The loop itself", "",
          "| measure | " + " | ".join(R) + " |", "|---" * (len(R) + 1) + "|"]
 
@@ -266,7 +282,9 @@ def summarise(R):
         return st.mean(val(x) for x in xs) if xs else None
     need = [n for n in names if n != "t_given"]
     L.append("| looked up when it needed to | " + " | ".join(pct(frac(c, need, lambda x: x["needs_search"], lambda x: x["searched"])) for c in R) + " |")
-    L.append("| looked up when the answer was given (lower is better) | " + " | ".join(pct(frac(c, ["t_given"], lambda x: True, lambda x: x["searched"])) for c in R) + " |")
+    L.append("| looked up when the answer was given (lower is better) | " + " | ".join(pct(frac(c, ["t_given", "t_calc"], lambda x: not x["needs_search"], lambda x: x["searched"])) for c in R) + " |")
+    L.append("| asked when it didn't need to (lower is better) | " + " | ".join(pct(frac(c, names, lambda x: not x["needs_ask"], lambda x: x["asked"])) for c in R) + " |")
+    L.append("| no usable answer (format failures) | " + " | ".join(pct(frac(c, names, lambda x: True, lambda x: x["format_fail"])) for c in R) + " |")
     L.append("| used the calculator for arithmetic | " + " | ".join(pct(frac(c, names, lambda x: x["needs_calc"], lambda x: x["calc"])) for c in R) + " |")
     L.append("| asked when information was missing | " + " | ".join(pct(frac(c, ["t_ask"], lambda x: True, lambda x: x["asked"])) for c in R) + " |")
     L.append("| English perplexity (lower is better) | " + " | ".join("–" if R[c]["ppl"] is None else f"{R[c]['ppl']:.1f}" for c in R) + " |")
