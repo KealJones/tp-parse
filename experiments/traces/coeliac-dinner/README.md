@@ -38,3 +38,9 @@ Missed, in roughly the order a coeliac guest would care:
 - **Caveats are researched, not just added.** He followed up the fructan worry before deciding how to word it.
 - **Source trust is checked explicitly**, which matches open question 3 in the paper.
 - **Blind spots come from the framing.** He checked "what is in it", not "what touches it". A model needs the habit of asking what the real failure mode is for this person.
+
+## Keal's own takeaway (afterwards)
+
+> "I wouldn't have considered that... and probably should have looked up 'how to safely cook for a coeliac person' or something before starting."
+
+That's a missing step in the loop: **orient before solving.** Before task-specific lookups ("is butter gluten-free?"), do one lookup on how people who do this for real approach it and what usually goes wrong. You can't notice a gap you don't know exists, but a field's own guidance names the gaps for you.
