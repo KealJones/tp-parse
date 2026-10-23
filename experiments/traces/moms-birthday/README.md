@@ -43,3 +43,13 @@ The questions and the insight took about 10 minutes in total. Most of the rest w
 - **Final check against the notes**, item by item: location, budget, timeline.
 - **Listen to wording** (tense changes, "she says she's fine"); that's where the real questions come from.
 - **Check memory before asking** what you might already know about the person.
+
+## The notes themselves (`notes.md`)
+
+Keal used one notes file as his memory, so every edit was effectively a tool call. How it's organised:
+- **By entity:** Mom and Son each get their facts (lives in Ohio, knees, retired). This is the knowledge graph idea in miniature.
+- **Claims with their evidence underneath:** "potentially depressed", with the signs (lost interest, retired, "claims she's fine") as children. The claim is hedged, and its support is visible.
+- **Sources attached to claims** (the helpguide and ruok links).
+- **By topic** for the task itself: budget, timeline, gift ideas.
+
+**Why Ohio still slipped:** the fact (`Mom → lives in Ohio`) and the idea (`Gift Ideas → azgardenclubs.com`) sat in different sections with nothing connecting them. The Phoenix assumption was hidden inside a URL. In a graph, that idea would have an edge to the fact it depends on (the mom's location), and the edit "lives in Ohio" would have flagged it. The notes had the facts; what they lacked were links.
