@@ -1,0 +1,53 @@
+name: relay-deploy
+# Deploys relay/ to Cloudflare Workers and checks it, then commits relay/DEPLOY_STATUS.md.
+on:
+  push:
+    branches: [main]
+    paths: ["relay/src/**", "relay/wrangler.toml", ".github/workflows/relay-deploy.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: CLOUDFLARE
+    env:
+      HAS_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+      RELAY_KEY: ${{ secrets.RELAY_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Secrets present?
+        run: |
+          if [ "$HAS_TOKEN" != "true" ] || [ -z "$RELAY_KEY" ]; then
+            printf '# Relay deploy\n\nNot deployed: add CLOUDFLARE_API_TOKEN and RELAY_KEY to the CLOUDFLARE environment.\n' > relay/DEPLOY_STATUS.md
+            echo "skip=1" >> "$GITHUB_ENV"
+          fi
+      - if: env.skip != '1'
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: relay
+          secrets: RELAY_KEY
+      - if: env.skip != '1'
+        name: Check the live relay
+        env:
+          URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          sleep 10
+          denied=$(curl -s -o /dev/null -w '%{http_code}' "$URL/?url=https://example.com")
+          code=$(curl -s -o page.html -w '%{http_code}' -H "x-relay-key: $RELAY_KEY" "$URL/?url=https://example.com")
+          cors=$(curl -s -D - -o /dev/null -H "x-relay-key: $RELAY_KEY" "$URL/?url=https://example.com" | grep -i '^access-control-allow-origin' | tr -d '\r')
+          grep -q "Example Domain" page.html && ok=yes || ok=no
+          printf '# Relay deploy\n\nURL: %s\n\n- without key: HTTP %s (should be 403)\n- with key: HTTP %s, page fetched: %s\n- %s\n- checked: %s\n' \
+            "$URL" "$denied" "$code" "$ok" "$cors" "$(date -u +%FT%TZ)" > relay/DEPLOY_STATUS.md
+          cat relay/DEPLOY_STATUS.md
+      - name: Commit status
+        run: |
+          git config user.name "relay-deploy"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add relay/DEPLOY_STATUS.md
+          git diff --cached --quiet && exit 0
+          git commit -q -m "relay: deploy status"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 10; done
