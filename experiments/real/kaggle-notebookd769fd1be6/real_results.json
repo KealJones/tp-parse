@@ -1,0 +1,270 @@
+{
+ "simple-first": {
+  "val_loss": 2.6735444366931915,
+  "curve": [
+   [
+    500,
+    9.005228281021118
+   ],
+   [
+    1000,
+    9.581398010253906
+   ],
+   [
+    1500,
+    10.278452515602112
+   ],
+   [
+    2000,
+    3.5074968338012695
+   ],
+   [
+    2500,
+    3.244166225194931
+   ],
+   [
+    3000,
+    3.1557922959327698
+   ],
+   [
+    3500,
+    2.6735444366931915
+   ],
+   [
+    4000,
+    2.69035941362381
+   ],
+   [
+    4500,
+    2.771063268184662
+   ],
+   [
+    5000,
+    2.889024168252945
+   ],
+   [
+    5500,
+    3.007878541946411
+   ],
+   [
+    6000,
+    3.1335271298885345
+   ]
+  ],
+  "tp_val_loss": 2.486586630344391,
+  "blimp": {
+   "overall": 0.5822835820895522,
+   "syntax": 0.5405384615384615,
+   "morphology": 0.6402777777777777,
+   "syntax_semantics": 0.583,
+   "semantics": 0.5891111111111111,
+   "syntax/semantics": 0.553
+  },
+  "babi": {
+   "mean": 0.59275,
+   "task1": 0.5,
+   "task2": 0.415,
+   "task3": 0.325,
+   "task4": 0.63,
+   "task5": 0.74,
+   "task6": 0.655,
+   "task7": 0.76,
+   "task8": 0.685,
+   "task9": 0.595,
+   "task10": 0.525,
+   "task11": 0.69,
+   "task12": 0.585,
+   "task13": 0.905,
+   "task14": 0.415,
+   "task15": 0.445,
+   "task16": 0.465,
+   "task17": 0.515,
+   "task18": 0.94,
+   "task19": 0.085,
+   "task20": 0.98
+  },
+  "samples": [
+   "Once upon a time, in a land far away, a girl named Mia danced with the clouds. She felt free and happy, just like her. One day, while running, she saw a shooting star. \"Here it will go!\" she shouted, feeling joy in her heart. With a flick of her hand, she opened a door made of sparkles. Inside, the star was in her hand. She could see",
+   "The little dog is sitting on my friend's arm.",
+   "Mia wanted to see the sky."
+  ]
+ },
+ "english": {
+  "val_loss": 2.632563054561615,
+  "curve": [
+   [
+    500,
+    2.8685582876205444
+   ],
+   [
+    1000,
+    2.632563054561615
+   ],
+   [
+    1500,
+    2.6614359617233276
+   ],
+   [
+    2000,
+    2.7995817959308624
+   ],
+   [
+    2500,
+    2.9782153367996216
+   ],
+   [
+    3000,
+    3.1971155405044556
+   ],
+   [
+    3500,
+    3.4565326273441315
+   ],
+   [
+    4000,
+    3.7217307686805725
+   ],
+   [
+    4500,
+    3.985216408967972
+   ],
+   [
+    5000,
+    4.1911768317222595
+   ],
+   [
+    5500,
+    4.369769096374512
+   ],
+   [
+    6000,
+    4.494735658168793
+   ]
+  ],
+  "blimp": {
+   "overall": 0.6034328358208956,
+   "syntax": 0.5674230769230769,
+   "morphology": 0.6663333333333333,
+   "syntax_semantics": 0.6018461538461538,
+   "semantics": 0.585,
+   "syntax/semantics": 0.594
+  },
+  "babi": {
+   "mean": 0.56325,
+   "task1": 0.465,
+   "task2": 0.375,
+   "task3": 0.315,
+   "task4": 0.645,
+   "task5": 0.51,
+   "task6": 0.605,
+   "task7": 0.76,
+   "task8": 0.705,
+   "task9": 0.615,
+   "task10": 0.46,
+   "task11": 0.675,
+   "task12": 0.515,
+   "task13": 0.87,
+   "task14": 0.355,
+   "task15": 0.48,
+   "task16": 0.505,
+   "task17": 0.48,
+   "task18": 0.935,
+   "task19": 0.09,
+   "task20": 0.905
+  },
+  "samples": [
+   "Once upon a time, in a land far away, a girl named Mia found a shiny key. It sparkled like the stars in the night sky. She was curious and wanted to know what it could open. Mia climbed in and found a world of candy! She met a talking rabbit named Leo. \"Hello, little cat! I am here to help me find my home!\" Mia thought for a moment. \"What",
+   "The little dog is crying.",
+   "Mia wanted to be poor."
+  ]
+ },
+ "ceiling": {
+  "val_loss": 1.925492212176323,
+  "curve": [
+   [
+    500,
+    2.8039066791534424
+   ],
+   [
+    1000,
+    2.451690196990967
+   ],
+   [
+    1500,
+    2.3071594834327698
+   ],
+   [
+    2000,
+    2.215138018131256
+   ],
+   [
+    2500,
+    2.151225507259369
+   ],
+   [
+    3000,
+    2.0945139825344086
+   ],
+   [
+    3500,
+    2.049809694290161
+   ],
+   [
+    4000,
+    2.0104677081108093
+   ],
+   [
+    4500,
+    1.978592962026596
+   ],
+   [
+    5000,
+    1.9553467333316803
+   ],
+   [
+    5500,
+    1.9361447244882584
+   ],
+   [
+    6000,
+    1.925492212176323
+   ]
+  ],
+  "blimp": {
+   "overall": 0.5941194029850746,
+   "syntax": 0.5699615384615384,
+   "morphology": 0.6836111111111111,
+   "syntax_semantics": 0.5545384615384615,
+   "semantics": 0.5303333333333333,
+   "syntax/semantics": 0.7
+  },
+  "babi": {
+   "mean": 0.607,
+   "task1": 0.495,
+   "task2": 0.39,
+   "task3": 0.39,
+   "task4": 0.705,
+   "task5": 0.695,
+   "task6": 0.71,
+   "task7": 0.775,
+   "task8": 0.72,
+   "task9": 0.65,
+   "task10": 0.575,
+   "task11": 0.675,
+   "task12": 0.645,
+   "task13": 0.88,
+   "task14": 0.365,
+   "task15": 0.46,
+   "task16": 0.49,
+   "task17": 0.58,
+   "task18": 0.935,
+   "task19": 0.105,
+   "task20": 0.9
+  },
+  "samples": [
+   "Once upon a time, in a land far away, a girl named Mia found a shiny stone. It sparkled in the light, and she felt a pull to it. She picked it up and ran to her friend, Kim, who was playing near the river. \"Look what I found!\" she said, holding the stone high. Kim's eyes widened, and she asked, \"What is this?\" Mia showed",
+   "The little dog stood at the edge of the park. It had bright eyes and a big smile. \"I can do this!\" it thought. With a strong push, the dog pushed the button. To its surprise, the dog was free! It barked happily. But then it saw the dog looking sad. \"What's wrong?\" the dog asked. The dog said, \"I can't remember anything",
+   "Mia wanted to be a pirate. Every night, she looked at her map. \"It says to go to the sea!\" she said to her brother. \"What's the worst thing?\" He replied, \"I think it's a pirate ship!\" So, they set sail on a small boat. The water was warm and the sun shined. As they sailed, Mia noticed something strange. \"Look!"
+  ]
+ }
+}

@@ -1,0 +1,151 @@
+[{"stream_name":"stderr","time":6.711041868,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.711138814,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.71114502,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.711148338,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":7.315871335,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.315915095,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.315921394,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.315925722,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":17.511080524,"data":"[  0.0 min] loading toki pona\n"}
+,{"stream_name":"stderr","time":17.670049576,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":17.67007544,"data":"\n"}
+,{"stream_name":"stderr","time":17.670080413,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":41.69849028,"data":"[  0.4 min] loading SimpleStories\n"}
+,{"stream_name":"stdout","time":247.53252193,"data":"[  3.8 min] toki pona 102567 texts, pairs 74668, budget 10000 stories, ceiling pool 400000\n"}
+,{"stream_name":"stdout","time":247.533543706,"data":"mixed example: Mysterious sounds echoed in the quiet forest. A mije nimi Alex was camping with ona pona. They were telling monsuta stories by the fire tenpo they kute a loud crash. Curious, Alex decided to lukin it out. ona walked away from the camp, pilin both wawa and scared. As he tawa deeper into the forest, h\n"}
+,{"stream_name":"stdout","time":254.284050145,"data":"[  3.9 min] tokenising\n"}
+,{"stream_name":"stdout","time":320.697149944,"data":"  tp        2.33M tokens\n"}
+,{"stream_name":"stdout","time":320.697192986,"data":"  tp_val    0.01M tokens\n"}
+,{"stream_name":"stdout","time":320.697199677,"data":"  bridge    1.98M tokens\n"}
+,{"stream_name":"stdout","time":320.697204079,"data":"  mixed     2.79M tokens\n"}
+,{"stream_name":"stdout","time":320.697208708,"data":"  en        3.51M tokens\n"}
+,{"stream_name":"stdout","time":320.69721339,"data":"  val       0.56M tokens\n"}
+,{"stream_name":"stdout","time":320.697217358,"data":"  ceil    111.51M tokens\n"}
+,{"stream_name":"stdout","time":320.829256747,"data":"[  5.1 min] loading BLiMP and bAbI\n"}
+,{"stream_name":"stderr","time":368.276549391,"data":"Repo card metadata block was not found. Setting CardData to empty.\n"}
+,{"stream_name":"stderr","time":368.276595307,"data":"\n"}
+,{"stream_name":"stderr","time":368.276600088,"data":"Repo card metadata block was not found. Setting CardData to empty.\n"}
+,{"stream_name":"stderr","time":368.79768111,"data":"Repo card metadata block was not found. Setting CardData to empty.\n"}
+,{"stream_name":"stderr","time":368.797718371,"data":"\n"}
+,{"stream_name":"stderr","time":368.79772434,"data":"Repo card metadata block was not found. Setting CardData to empty.\n"}
+,{"stream_name":"stdout","time":391.565651369,"data":"[  6.2 min] device cuda, vocab 8192, params 17.3M\n"}
+,{"stream_name":"stdout","time":391.566506411,"data":"[  6.2 min] === simple-first ===\n"}
+,{"stream_name":"stdout","time":525.649584629,"data":"[  8.5 min]   simple-first step 500/6000  train 2.469  english val 9.005  best inf  (stage eta 4 min)\n"}
+,{"stream_name":"stdout","time":661.896599115,"data":"[ 10.7 min]   simple-first step 1000/6000  train 1.830  english val 9.581  best inf  (stage eta 2 min)\n"}
+,{"stream_name":"stdout","time":798.324853,"data":"[ 13.0 min]   simple-first step 1500/6000  train 1.455  english val 10.278  best inf  (stage eta 0 min)\n"}
+,{"stream_name":"stdout","time":934.792553844,"data":"[ 15.3 min]   simple-first step 2000/6000  train 2.351  english val 3.507  best inf  (stage eta 5 min)\n"}
+,{"stream_name":"stdout","time":1071.435705012,"data":"[ 17.6 min]   simple-first step 2500/6000  train 2.138  english val 3.244  best inf  (stage eta 2 min)\n"}
+,{"stream_name":"stdout","time":1208.039645245,"data":"[ 19.8 min]   simple-first step 3000/6000  train 2.115  english val 3.156  best inf  (stage eta 0 min)\n"}
+,{"stream_name":"stdout","time":1344.942537875,"data":"[ 22.1 min]   simple-first step 3500/6000  train 2.232  english val 2.674  best 2.674  (stage eta 11 min)\n"}
+,{"stream_name":"stdout","time":1481.714544,"data":"[ 24.4 min]   simple-first step 4000/6000  train 2.002  english val 2.690  best 2.674  (stage eta 9 min)\n"}
+,{"stream_name":"stdout","time":1618.776757555,"data":"[ 26.7 min]   simple-first step 4500/6000  train 1.773  english val 2.771  best 2.674  (stage eta 7 min)\n"}
+,{"stream_name":"stdout","time":1755.58036187,"data":"[ 29.0 min]   simple-first step 5000/6000  train 1.605  english val 2.889  best 2.674  (stage eta 5 min)\n"}
+,{"stream_name":"stdout","time":1892.26177739,"data":"[ 31.2 min]   simple-first step 5500/6000  train 1.506  english val 3.008  best 2.674  (stage eta 2 min)\n"}
+,{"stream_name":"stdout","time":2029.096466391,"data":"[ 33.5 min]   simple-first step 6000/6000  train 1.392  english val 3.134  best 2.674  (stage eta 0 min)\n"}
+,{"stream_name":"stdout","time":2029.664522629,"data":"[ 33.5 min]   BLiMP\n"}
+,{"stream_name":"stdout","time":2052.694243826,"data":"[ 33.9 min]   bAbI\n"}
+,{"stream_name":"stdout","time":2262.104636469,"data":"[ 37.4 min]   simple-first: val 2.674  BLiMP 58.2%  bAbI 59.3%\n"}
+,{"stream_name":"stdout","time":2262.287791851,"data":"   \u003e Once upon a time, in a land far away, a girl named Mia danced with the clouds. She felt free and happy, just like her. One day, while running, she saw a shooting star. \"Here it will go!\" she shouted, feeling joy in her heart. With a flick of her hand, she opened a door made of sparkles. Inside, the \n"}
+,{"stream_name":"stdout","time":2262.287840406,"data":"   \u003e The little dog is sitting on my friend's arm.\n"}
+,{"stream_name":"stdout","time":2262.287846776,"data":"   \u003e Mia wanted to see the sky.\n"}
+,{"stream_name":"stdout","time":2262.360251483,"data":"[ 37.4 min] === english ===\n"}
+,{"stream_name":"stdout","time":2399.544924196,"data":"[ 39.7 min]   english step 500/6000  train 2.866  english val 2.869  best 2.869  (stage eta 25 min)\n"}
+,{"stream_name":"stdout","time":2536.438505887,"data":"[ 42.0 min]   english step 1000/6000  train 2.375  english val 2.633  best 2.633  (stage eta 23 min)\n"}
+,{"stream_name":"stdout","time":2673.152698659,"data":"[ 44.3 min]   english step 1500/6000  train 1.906  english val 2.661  best 2.633  (stage eta 21 min)\n"}
+,{"stream_name":"stdout","time":2809.915278809,"data":"[ 46.5 min]   english step 2000/6000  train 1.730  english val 2.800  best 2.633  (stage eta 18 min)\n"}
+,{"stream_name":"stdout","time":2946.904934112,"data":"[ 48.8 min]   english step 2500/6000  train 1.506  english val 2.978  best 2.633  (stage eta 16 min)\n"}
+,{"stream_name":"stdout","time":3083.629446483,"data":"[ 51.1 min]   english step 3000/6000  train 1.121  english val 3.197  best 2.633  (stage eta 14 min)\n"}
+,{"stream_name":"stdout","time":3220.198343825,"data":"[ 53.4 min]   english step 3500/6000  train 0.817  english val 3.457  best 2.633  (stage eta 11 min)\n"}
+,{"stream_name":"stdout","time":3356.90691387,"data":"[ 55.7 min]   english step 4000/6000  train 0.741  english val 3.722  best 2.633  (stage eta 9 min)\n"}
+,{"stream_name":"stdout","time":3493.524613882,"data":"[ 57.9 min]   english step 4500/6000  train 0.551  english val 3.985  best 2.633  (stage eta 7 min)\n"}
+,{"stream_name":"stdout","time":3630.107947573,"data":"[ 60.2 min]   english step 5000/6000  train 0.444  english val 4.191  best 2.633  (stage eta 5 min)\n"}
+,{"stream_name":"stdout","time":3766.762698283,"data":"[ 62.5 min]   english step 5500/6000  train 0.397  english val 4.370  best 2.633  (stage eta 2 min)\n"}
+,{"stream_name":"stdout","time":3903.286343718,"data":"[ 64.8 min]   english step 6000/6000  train 0.380  english val 4.495  best 2.633  (stage eta 0 min)\n"}
+,{"stream_name":"stdout","time":3903.667487975,"data":"[ 64.8 min]   BLiMP\n"}
+,{"stream_name":"stdout","time":3926.455694803,"data":"[ 65.1 min]   bAbI\n"}
+,{"stream_name":"stdout","time":4135.378453591,"data":"[ 68.6 min]   english: val 2.633  BLiMP 60.3%  bAbI 56.3%\n"}
+,{"stream_name":"stdout","time":4135.562534468,"data":"   \u003e Once upon a time, in a land far away, a girl named Mia found a shiny key. It sparkled like the stars in the night sky. She was curious and wanted to know what it could open. Mia climbed in and found a world of candy! She met a talking rabbit named Leo. \"Hello, little cat! I am here to help me find m\n"}
+,{"stream_name":"stdout","time":4135.562574522,"data":"   \u003e The little dog is crying.\n"}
+,{"stream_name":"stdout","time":4135.562580524,"data":"   \u003e Mia wanted to be poor.\n"}
+,{"stream_name":"stdout","time":4135.615433433,"data":"[ 68.6 min] === ceiling ===\n"}
+,{"stream_name":"stdout","time":4272.708730591,"data":"[ 70.9 min]   ceiling step 500/6000  train 2.835  english val 2.804  best 2.804  (stage eta 25 min)\n"}
+,{"stream_name":"stdout","time":4409.440349064,"data":"[ 73.2 min]   ceiling step 1000/6000  train 2.434  english val 2.452  best 2.452  (stage eta 23 min)\n"}
+,{"stream_name":"stdout","time":4546.365216611,"data":"[ 75.5 min]   ceiling step 1500/6000  train 2.345  english val 2.307  best 2.307  (stage eta 21 min)\n"}
+,{"stream_name":"stdout","time":4683.158715693,"data":"[ 77.8 min]   ceiling step 2000/6000  train 2.221  english val 2.215  best 2.215  (stage eta 18 min)\n"}
+,{"stream_name":"stdout","time":4819.987357298,"data":"[ 80.0 min]   ceiling step 2500/6000  train 2.144  english val 2.151  best 2.151  (stage eta 16 min)\n"}
+,{"stream_name":"stdout","time":4956.724020279,"data":"[ 82.3 min]   ceiling step 3000/6000  train 2.116  english val 2.095  best 2.095  (stage eta 14 min)\n"}
+,{"stream_name":"stdout","time":5093.44156283,"data":"[ 84.6 min]   ceiling step 3500/6000  train 2.049  english val 2.050  best 2.050  (stage eta 11 min)\n"}
+,{"stream_name":"stdout","time":5230.252782551,"data":"[ 86.9 min]   ceiling step 4000/6000  train 1.998  english val 2.010  best 2.010  (stage eta 9 min)\n"}
+,{"stream_name":"stdout","time":5367.194152707,"data":"[ 89.2 min]   ceiling step 4500/6000  train 1.983  english val 1.979  best 1.979  (stage eta 7 min)\n"}
+,{"stream_name":"stdout","time":5504.21924466,"data":"[ 91.4 min]   ceiling step 5000/6000  train 1.973  english val 1.955  best 1.955  (stage eta 5 min)\n"}
+,{"stream_name":"stdout","time":5640.910514857,"data":"[ 93.7 min]   ceiling step 5500/6000  train 1.971  english val 1.936  best 1.936  (stage eta 2 min)\n"}
+,{"stream_name":"stdout","time":5777.690325919,"data":"[ 96.0 min]   ceiling step 6000/6000  train 1.935  english val 1.925  best 1.925  (stage eta 0 min)\n"}
+,{"stream_name":"stdout","time":5778.058648934,"data":"[ 96.0 min]   BLiMP\n"}
+,{"stream_name":"stdout","time":5800.367762159,"data":"[ 96.4 min]   bAbI\n"}
+,{"stream_name":"stdout","time":6010.839960941,"data":"[ 99.9 min]   ceiling: val 1.925  BLiMP 59.4%  bAbI 60.7%\n"}
+,{"stream_name":"stdout","time":6011.023007831,"data":"   \u003e Once upon a time, in a land far away, a girl named Mia found a shiny stone. It sparkled in the light, and she felt a pull to it. She picked it up and ran to her friend, Kim, who was playing near the river. \"Look what I found!\" she said, holding the stone high. Kim's eyes widened, and she asked, \"Wha\n"}
+,{"stream_name":"stdout","time":6011.023036692,"data":"   \u003e The little dog stood at the edge of the park. It had bright eyes and a big smile. \"I can do this!\" it thought. With a strong push, the dog pushed the button. To its surprise, the dog was free! It barked happily. But then it saw the dog looking sad. \"What's wrong?\" the dog asked. The dog said, \"I can\n"}
+,{"stream_name":"stdout","time":6011.02304405,"data":"   \u003e Mia wanted to be a pirate. Every night, she looked at her map. \"It says to go to the sea!\" she said to her brother. \"What's the worst thing?\" He replied, \"I think it's a pirate ship!\" So, they set sail on a small boat. The water was warm and the sun shined. As they sailed, Mia noticed something stra\n"}
+,{"stream_name":"stdout","time":6025.727571292,"data":"[100.1 min] export check (max logit diff, HF vs llama.cpp-style): {'simple-first': 1.3709068298339844e-05, 'english': 1.71661376953125e-05, 'ceiling': 1.71661376953125e-05}; wrote real_export.zip (289 MB)\n"}
+,{"stream_name":"stdout","time":6025.731747331,"data":"# Simple language first, real data: results\n"}
+,{"stream_name":"stdout","time":6025.731768202,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731774199,"data":"One seed. English budget: 10,000 SimpleStories + 74,668 Tatoeba English sentences (3.5M tokens). Ceiling: 112M tokens of fresh English. 6,000 training steps each, 64×256 tokens per step.\n"}
+,{"stream_name":"stdout","time":6025.731780147,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731784456,"data":"| model | English val loss (lower is better) | BLiMP | bAbI (mean of 20 tasks) |\n"}
+,{"stream_name":"stdout","time":6025.731788997,"data":"|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":6025.731793462,"data":"| simple-first | 2.674 | 58.2% | 59.3% |\n"}
+,{"stream_name":"stdout","time":6025.731799706,"data":"| english | 2.633 | 60.3% | 56.3% |\n"}
+,{"stream_name":"stdout","time":6025.731804112,"data":"| ceiling | 1.925 | 59.4% | 60.7% |\n"}
+,{"stream_name":"stdout","time":6025.731828108,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731833564,"data":"## BLiMP by area\n"}
+,{"stream_name":"stdout","time":6025.731838586,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731843097,"data":"| model | syntax | morphology | syntax_semantics | semantics | syntax/semantics |\n"}
+,{"stream_name":"stdout","time":6025.731847645,"data":"|---|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":6025.731852724,"data":"| simple-first | 54.1% | 64.0% | 58.3% | 58.9% | 55.3% |\n"}
+,{"stream_name":"stdout","time":6025.731857808,"data":"| english | 56.7% | 66.6% | 60.2% | 58.5% | 59.4% |\n"}
+,{"stream_name":"stdout","time":6025.731862249,"data":"| ceiling | 57.0% | 68.4% | 55.5% | 53.0% | 70.0% |\n"}
+,{"stream_name":"stdout","time":6025.731866551,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731870748,"data":"## bAbI by task (chance is roughly 1 in the number of possible answers)\n"}
+,{"stream_name":"stdout","time":6025.731875131,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731879589,"data":"| model | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 |\n"}
+,{"stream_name":"stdout","time":6025.731898328,"data":"|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":6025.731901203,"data":"| simple-first | 50 | 42 | 32 | 63 | 74 | 66 | 76 | 68 | 60 | 52 | 69 | 58 | 90 | 42 | 44 | 46 | 52 | 94 | 8 | 98 |\n"}
+,{"stream_name":"stdout","time":6025.731903688,"data":"| english | 46 | 38 | 32 | 64 | 51 | 60 | 76 | 70 | 62 | 46 | 68 | 52 | 87 | 36 | 48 | 50 | 48 | 94 | 9 | 90 |\n"}
+,{"stream_name":"stdout","time":6025.731906078,"data":"| ceiling | 50 | 39 | 39 | 70 | 70 | 71 | 78 | 72 | 65 | 57 | 68 | 64 | 88 | 36 | 46 | 49 | 58 | 94 | 10 | 90 |\n"}
+,{"stream_name":"stdout","time":6025.731908471,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731910705,"data":"simple-first's toki pona val loss at the end: 2.487\n"}
+,{"stream_name":"stdout","time":6025.731913034,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731915193,"data":"## English val loss over training\n"}
+,{"stream_name":"stdout","time":6025.73191761,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731921183,"data":"- simple-first: 500:9.01, 1000:9.58, 1500:10.28, 2000:3.51, 2500:3.24, 3000:3.16, 3500:2.67, 4000:2.69, 4500:2.77, 5000:2.89, 5500:3.01, 6000:3.13\n"}
+,{"stream_name":"stdout","time":6025.731939335,"data":"- english: 500:2.87, 1000:2.63, 1500:2.66, 2000:2.80, 2500:2.98, 3000:3.20, 3500:3.46, 4000:3.72, 4500:3.99, 5000:4.19, 5500:4.37, 6000:4.49\n"}
+,{"stream_name":"stdout","time":6025.731943765,"data":"- ceiling: 500:2.80, 1000:2.45, 1500:2.31, 2000:2.22, 2500:2.15, 3000:2.09, 3500:2.05, 4000:2.01, 4500:1.98, 5000:1.96, 5500:1.94, 6000:1.93\n"}
+,{"stream_name":"stdout","time":6025.731948371,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731952564,"data":"## Samples (prompt: Once upon a time / The little dog / Mia wanted to)\n"}
+,{"stream_name":"stdout","time":6025.731956891,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731960359,"data":"**simple-first**\n"}
+,{"stream_name":"stdout","time":6025.731965476,"data":"\u003e Once upon a time, in a land far away, a girl named Mia danced with the clouds. She felt free and happy, just like her. One day, while running, she saw a shooting star. \"Here it will go!\" she shouted, feeling joy in her heart. With a flick of her hand, she opened a door made of sparkles. Inside, the star was in her hand. She could see\n"}
+,{"stream_name":"stdout","time":6025.731970489,"data":"\u003e The little dog is sitting on my friend's arm.\n"}
+,{"stream_name":"stdout","time":6025.731974041,"data":"\u003e Mia wanted to see the sky.\n"}
+,{"stream_name":"stdout","time":6025.731977475,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731980754,"data":"**english**\n"}
+,{"stream_name":"stdout","time":6025.731984261,"data":"\u003e Once upon a time, in a land far away, a girl named Mia found a shiny key. It sparkled like the stars in the night sky. She was curious and wanted to know what it could open. Mia climbed in and found a world of candy! She met a talking rabbit named Leo. \"Hello, little cat! I am here to help me find my home!\" Mia thought for a moment. \"What\n"}
+,{"stream_name":"stdout","time":6025.731988971,"data":"\u003e The little dog is crying.\n"}
+,{"stream_name":"stdout","time":6025.731992333,"data":"\u003e Mia wanted to be poor.\n"}
+,{"stream_name":"stdout","time":6025.731995755,"data":"\n"}
+,{"stream_name":"stdout","time":6025.731999038,"data":"**ceiling**\n"}
+,{"stream_name":"stdout","time":6025.732004289,"data":"\u003e Once upon a time, in a land far away, a girl named Mia found a shiny stone. It sparkled in the light, and she felt a pull to it. She picked it up and ran to her friend, Kim, who was playing near the river. \"Look what I found!\" she said, holding the stone high. Kim's eyes widened, and she asked, \"What is this?\" Mia showed\n"}
+,{"stream_name":"stdout","time":6025.732015109,"data":"\u003e The little dog stood at the edge of the park. It had bright eyes and a big smile. \"I can do this!\" it thought. With a strong push, the dog pushed the button. To its surprise, the dog was free! It barked happily. But then it saw the dog looking sad. \"What's wrong?\" the dog asked. The dog said, \"I can't remember anything\n"}
+,{"stream_name":"stdout","time":6025.732018226,"data":"\u003e Mia wanted to be a pirate. Every night, she looked at her map. \"It says to go to the sea!\" she said to her brother. \"What's the worst thing?\" He replied, \"I think it's a pirate ship!\" So, they set sail on a small boat. The water was warm and the sun shined. As they sailed, Mia noticed something strange. \"Look!\n"}
+,{"stream_name":"stdout","time":6025.732021955,"data":"\n"}
+,{"stream_name":"stdout","time":6025.732036795,"data":"Export check (max logit difference HF vs GGUF-style forward): simple-first 1.4e-05, english 1.7e-05, ceiling 1.7e-05\n"}
+,{"stream_name":"stdout","time":6025.732042081,"data":"\n"}
+,{"stream_name":"stderr","time":6031.619844563,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":6031.619879576,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":6031.773980019,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":6031.774009475,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":6032.512971011,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":6032.993209181,"data":"[NbConvertApp] Writing 3642059 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":6035.489659424,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":6036.56986982,"data":"[NbConvertApp] Writing 3314224 bytes to __results__.html\n"}
+]

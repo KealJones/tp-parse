@@ -1,0 +1,6 @@
+FROM ./simple-first.gguf
+TEMPLATE """{{ .Prompt }}"""
+PARAMETER temperature 0.7
+PARAMETER top_k 40
+PARAMETER num_ctx 256
+PARAMETER num_predict 200
