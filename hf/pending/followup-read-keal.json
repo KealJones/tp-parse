@@ -1,0 +1,22 @@
+{
+ "slug": "followup-read-keal",
+ "flavor": "a10g-small",
+ "timeout": "75m",
+ "files": [
+  "experiments/finetune/ft.py",
+  "experiments/finetune/followup.py",
+  "experiments/finetune/messages.json"
+ ],
+ "cmd": "python followup.py --pilot && rm -rf out && python followup.py",
+ "pip": [
+  "transformers>=4.51",
+  "datasets",
+  "huggingface_hub"
+ ],
+ "outdir": "out",
+ "out": "experiments/finetune/hf-out-followup",
+ "job_id": "6adbde4d046eb82b1ecd7ad9",
+ "url": "https://huggingface.co/jobs/kealjones/6adbde4d046eb82b1ecd7ad9",
+ "started": "2026-10-23T22:23:09+00:00",
+ "sha": "43ed54b04115063b3ea940c6e076d63f22bc390b"
+}
