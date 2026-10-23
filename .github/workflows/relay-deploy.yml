@@ -23,15 +23,26 @@ jobs:
           fi
       - if: env.skip != '1'
         id: deploy
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: relay
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          cd relay
+          set +e
+          npx -y wrangler@4 deploy 2>&1 | tee ../deploy.log
+          code=${PIPESTATUS[0]}
+          url=$(grep -oE 'https://[a-zA-Z0-9.-]+\.workers\.dev' ../deploy.log | head -1)
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          if [ "$code" != "0" ]; then
+            { printf '# Relay deploy\n\nDeploy failed (exit %s). Last lines of the wrangler output:\n\n```\n' "$code"
+              tail -40 ../deploy.log | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+/<email>/g'
+              printf '```\n'; } > DEPLOY_STATUS.md
+            echo "skip=1" >> "$GITHUB_ENV"
+          fi
       - if: env.skip != '1'
         name: Check the live relay
         env:
-          URL: ${{ steps.deploy.outputs.deployment-url }}
+          URL: ${{ steps.deploy.outputs.url }}
         run: |
           sleep 10
           code=$(curl -s -o page.html -w '%{http_code}' "$URL/?url=https://example.com")
@@ -41,6 +52,7 @@ jobs:
             "$URL" "$code" "$ok" "$cors" "$(date -u +%FT%TZ)" > relay/DEPLOY_STATUS.md
           cat relay/DEPLOY_STATUS.md
       - name: Commit status
+        if: always()
         run: |
           git config user.name "relay-deploy"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
