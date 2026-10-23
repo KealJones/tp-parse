@@ -27,6 +27,14 @@ try:
     import peft  # noqa
 except ImportError:
     subprocess.run([sys.executable, "-m", "pip", "install", "-q", "peft"], check=False)
+# Kaggle ships an old torchao that makes peft refuse to add LoRA layers; we don't use torchao, so tell peft it's absent.
+try:
+    import peft.import_utils as _piu
+    _piu.is_torchao_available = lambda: False
+    import peft.tuners.lora.torchao as _plt
+    _plt.is_torchao_available = lambda: False
+except Exception:
+    pass
 import torch
 import torch.nn.functional as F
 from transformers import AutoModelForCausalLM, AutoTokenizer
