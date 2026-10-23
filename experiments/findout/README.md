@@ -24,7 +24,7 @@ Requests come tidy or messy ("uhh is dravor bigger than ralvorum lol"). Two fill
 
 ## Conditions and measures
 
-- `base`: untrained, with two worked examples in the prompt. `lora`: LoRA adapters, core frozen. `full`: the whole model fine-tuned.
+- `base`: untrained, with one worked example per trained task type in the prompt (answers without tags still count). `lora`: LoRA adapters, core frozen. `full`: the whole model fine-tuned.
 - Measures: success per task; looked up when needed; looked up when the answer was given (lower is better); calculator use; asking; stale with the harness note on and off; and English kept, measured as perplexity on held-out SimpleStories.
 
 ## Run
