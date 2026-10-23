@@ -1,0 +1,13 @@
+worker gpu0 (cuda, Tesla T4): 1 jobs, 1500 steps, 15 test problems per split per skin
+== taught-every seed 0: 3.760M params
+    step 150/1500  lm 2.216  teach 0.50  slots 26% 66% 59% 20%  (30s)
+    step 300/1500  lm 0.679  teach 0.50  slots 48% 99% 83% 51%  (58s)
+    step 450/1500  lm 0.465  teach 0.50  slots 93% 100% 92% 96%  (86s)
+    step 600/1500  lm 0.405  teach 0.50  slots 100% 100% 94% 99%  (114s)
+    step 750/1500  lm 0.368  teach 0.50  slots 100% 100% 94% 100%  (142s)
+    step 900/1500  lm 0.358  teach 0.33  slots 100% 100% 94% 100%  (169s)
+    step 1050/1500  lm 0.350  teach 0.17  slots 100% 100% 94% 100%  (196s)
+    step 1200/1500  lm 0.341  teach 0.00  slots 100% 100% 94% 100%  (224s)
+    step 1350/1500  lm 0.338  teach 0.00  slots 100% 100% 95% 100%  (251s)
+    step 1500/1500  lm 0.334  teach 0.00  slots 100% 100% 94% 100%  (278s)
+== taught-every seed 0 done: seen short 42% long 20% | messy short 8% long 5% | lm 0.335 | train 284s eval 14s

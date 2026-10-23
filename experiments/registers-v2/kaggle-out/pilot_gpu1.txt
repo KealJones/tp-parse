@@ -1,0 +1,13 @@
+worker gpu1 (cuda, Tesla T4): 1 jobs, 1500 steps, 15 test problems per split per skin
+== base seed 0: 3.641M params
+    step 150/1500  lm 2.126  (13s)
+    step 300/1500  lm 0.574  (25s)
+    step 450/1500  lm 0.451  (36s)
+    step 600/1500  lm 0.427  (48s)
+    step 750/1500  lm 0.414  (60s)
+    step 900/1500  lm 0.411  (72s)
+    step 1050/1500  lm 0.407  (84s)
+    step 1200/1500  lm 0.399  (96s)
+    step 1350/1500  lm 0.396  (108s)
+    step 1500/1500  lm 0.391  (119s)
+== base seed 0 done: seen short 5% long 0% | messy short 0% long 0% | lm 0.392 | train 125s eval 3s

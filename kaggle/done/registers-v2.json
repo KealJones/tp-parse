@@ -6,5 +6,8 @@
  "internet": false,
  "push_output": "Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/kealinit/registers-v2",
  "ref": "kealinit/registers-v2",
- "started": "2026-10-23T02:49:36+00:00"
+ "started": "2026-10-23T02:49:36+00:00",
+ "finished": "2026-10-23T07:03:04+00:00",
+ "result": "complete",
+ "hours": 4.22
 }

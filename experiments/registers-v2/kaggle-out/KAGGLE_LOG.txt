@@ -1,0 +1,329 @@
+[{"stream_name":"stderr","time":5.700128652,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":5.700176296,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":6.50509095,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.505138072,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.505143556,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.505147966,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":7.087099256,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.087135158,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.087140515,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.087144612,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":8.133272195,"data":"wrote rv2.py\n"}
+,{"stream_name":"stdout","time":13.528775055,"data":"GPUs: 2 ['Tesla T4', 'Tesla T4']\n"}
+,{"stream_name":"stdout","time":133.546401977,"data":"[  2.0 min gpu0]     step 450/1500  lm 0.465  teach 0.50  slots 93% 100% 92% 96%  (86s)\n"}
+,{"stream_name":"stdout","time":133.547776728,"data":"[  2.0 min gpu1]     step 1350/1500  lm 0.396  (108s)\n"}
+,{"stream_name":"stdout","time":253.549917278,"data":"[  4.0 min gpu0]     step 1200/1500  lm 0.341  teach 0.00  slots 100% 100% 94% 100%  (224s)\n"}
+,{"stream_name":"stdout","time":253.550922247,"data":"[  4.0 min gpu1] == base seed 0 done: seen short 5% long 0% | messy short 0% long 0% | lm 0.392 | train 125s eval 3s\n"}
+,{"stream_name":"stdout","time":373.552381301,"data":"[  6.0 min gpu0] == taught-every seed 0 done: seen short 42% long 20% | messy short 8% long 5% | lm 0.335 | train 284s eval 14s\n"}
+,{"stream_name":"stdout","time":373.553465405,"data":"[  6.0 min gpu1] == base seed 0 done: seen short 5% long 0% | messy short 0% long 0% | lm 0.392 | train 125s eval 3s\n"}
+,{"stream_name":"stdout","time":373.554326965,"data":"[gpu0] exit code 0\n"}
+,{"stream_name":"stdout","time":373.554345423,"data":"[gpu1] exit code 0\n"}
+,{"stream_name":"stdout","time":373.554350762,"data":"## Pilot (1,500 steps, seed 0)\n"}
+,{"stream_name":"stdout","time":373.554355463,"data":"\n"}
+,{"stream_name":"stdout","time":373.554360001,"data":"- base: loss 0.392, seen short 5%, long 0%, 125s training\n"}
+,{"stream_name":"stdout","time":373.554365299,"data":"- taught-every: loss 0.335, seen short 42%, long 20%, 284s training\n"}
+,{"stream_name":"stdout","time":373.554370043,"data":"\n"}
+,{"stream_name":"stdout","time":373.554374219,"data":"Pilot passed; full run started.\n"}
+,{"stream_name":"stdout","time":373.751462956,"data":"{0: 10, 1: 10}\n"}
+,{"stream_name":"stdout","time":493.571349109,"data":"[  2.0 min gpu0]     step 800/8000  lm 0.775  (64s)\n"}
+,{"stream_name":"stdout","time":493.572370574,"data":"[  2.0 min gpu1] == taught-ends seed 0: 3.760M params\n"}
+,{"stream_name":"stdout","time":613.575567446,"data":"[  4.0 min gpu0]     step 2400/8000  lm 0.358  (191s)\n"}
+,{"stream_name":"stdout","time":613.576532981,"data":"[  4.0 min gpu1]     step 800/8000  lm 0.820  teach 0.50  slots 33% 92% 79% 21%  (154s)\n"}
+,{"stream_name":"stdout","time":733.577979358,"data":"[  6.0 min gpu0]     step 4000/8000  lm 0.347  (319s)\n"}
+,{"stream_name":"stdout","time":733.579006046,"data":"[  6.0 min gpu1]     step 1600/8000  lm 0.393  teach 0.50  slots 83% 100% 93% 40%  (307s)\n"}
+,{"stream_name":"stdout","time":853.581066317,"data":"[  8.0 min gpu0]     step 5600/8000  lm 0.315  (447s)\n"}
+,{"stream_name":"stdout","time":853.582380443,"data":"[  8.0 min gpu1]     step 2400/8000  lm 0.338  teach 0.50  slots 100% 100% 94% 96%  (460s)\n"}
+,{"stream_name":"stdout","time":973.585923155,"data":"[ 10.0 min gpu0]     step 7200/8000  lm 0.307  (574s)\n"}
+,{"stream_name":"stdout","time":973.587206167,"data":"[ 10.0 min gpu1]     step 2400/8000  lm 0.338  teach 0.50  slots 100% 100% 94% 96%  (460s)\n"}
+,{"stream_name":"stdout","time":1093.586840603,"data":"[ 12.0 min gpu0] == self-every seed 0: 3.760M params\n"}
+,{"stream_name":"stdout","time":1093.587119138,"data":"[ 12.0 min gpu1]     step 3200/8000  lm 0.322  teach 0.50  slots 100% 100% 94% 100%  (613s)\n"}
+,{"stream_name":"stdout","time":1213.588413665,"data":"[ 14.0 min gpu0]     step 800/8000  lm 0.767  next-words 0.271  (148s)\n"}
+,{"stream_name":"stdout","time":1213.58964327,"data":"[ 14.0 min gpu1]     step 4000/8000  lm 0.317  teach 0.50  slots 100% 100% 94% 100%  (766s)\n"}
+,{"stream_name":"stdout","time":1333.595140191,"data":"[ 16.0 min gpu0]     step 1600/8000  lm 0.359  next-words 0.209  (295s)\n"}
+,{"stream_name":"stdout","time":1333.595204428,"data":"[ 16.0 min gpu1]     step 4800/8000  lm 0.314  teach 0.33  slots 100% 100% 94% 100%  (918s)\n"}
+,{"stream_name":"stdout","time":1453.596700207,"data":"[ 18.0 min gpu0]     step 1600/8000  lm 0.359  next-words 0.209  (295s)\n"}
+,{"stream_name":"stdout","time":1453.596740858,"data":"[ 18.0 min gpu1]     step 5600/8000  lm 0.309  teach 0.17  slots 100% 100% 94% 100%  (1070s)\n"}
+,{"stream_name":"stdout","time":1573.599039495,"data":"[ 20.0 min gpu0]     step 2400/8000  lm 0.326  next-words 0.202  (442s)\n"}
+,{"stream_name":"stdout","time":1573.599980399,"data":"[ 20.0 min gpu1]     step 5600/8000  lm 0.309  teach 0.17  slots 100% 100% 94% 100%  (1070s)\n"}
+,{"stream_name":"stdout","time":1693.602769875,"data":"[ 22.0 min gpu0]     step 3200/8000  lm 0.315  next-words 0.181  (589s)\n"}
+,{"stream_name":"stdout","time":1693.602805564,"data":"[ 22.0 min gpu1]     step 6400/8000  lm 0.304  teach 0.00  slots 100% 100% 94% 100%  (1222s)\n"}
+,{"stream_name":"stdout","time":1813.605061255,"data":"[ 24.0 min gpu0]     step 4000/8000  lm 0.312  next-words 0.172  (736s)\n"}
+,{"stream_name":"stdout","time":1813.605973217,"data":"[ 24.0 min gpu1]     step 7200/8000  lm 0.303  teach 0.00  slots 100% 100% 94% 100%  (1372s)\n"}
+,{"stream_name":"stdout","time":1933.608422398,"data":"[ 26.0 min gpu0]     step 4800/8000  lm 0.312  next-words 0.166  (883s)\n"}
+,{"stream_name":"stdout","time":1933.609637068,"data":"[ 26.0 min gpu1] == taught-every seed 0: 3.760M params\n"}
+,{"stream_name":"stdout","time":2053.610221855,"data":"[ 28.0 min gpu0]     step 4800/8000  lm 0.312  next-words 0.166  (883s)\n"}
+,{"stream_name":"stdout","time":2053.611329604,"data":"[ 28.0 min gpu1] == taught-every seed 0: 3.760M params\n"}
+,{"stream_name":"stdout","time":2173.615282386,"data":"[ 30.0 min gpu0]     step 5600/8000  lm 0.310  next-words 0.164  (1029s)\n"}
+,{"stream_name":"stdout","time":2173.616357969,"data":"[ 30.0 min gpu1]     step 800/8000  lm 0.801  teach 0.50  slots 75% 93% 85% 75%  (150s)\n"}
+,{"stream_name":"stdout","time":2293.617121536,"data":"[ 32.0 min gpu0]     step 6400/8000  lm 0.305  next-words 0.161  (1177s)\n"}
+,{"stream_name":"stdout","time":2293.618189936,"data":"[ 32.0 min gpu1]     step 1600/8000  lm 0.346  teach 0.50  slots 100% 100% 94% 100%  (299s)\n"}
+,{"stream_name":"stdout","time":2413.621430955,"data":"[ 34.0 min gpu0]     step 7200/8000  lm 0.303  next-words 0.159  (1324s)\n"}
+,{"stream_name":"stdout","time":2413.621466368,"data":"[ 34.0 min gpu1]     step 2400/8000  lm 0.329  teach 0.50  slots 100% 100% 94% 100%  (448s)\n"}
+,{"stream_name":"stdout","time":2533.622868126,"data":"[ 36.0 min gpu0] == base seed 1: 3.641M params\n"}
+,{"stream_name":"stdout","time":2533.623889909,"data":"[ 36.0 min gpu1]     step 3200/8000  lm 0.315  teach 0.50  slots 100% 100% 94% 100%  (598s)\n"}
+,{"stream_name":"stdout","time":2653.625824466,"data":"[ 38.0 min gpu0]     step 800/8000  lm 0.783  (64s)\n"}
+,{"stream_name":"stdout","time":2653.626452507,"data":"[ 38.0 min gpu1]     step 3200/8000  lm 0.315  teach 0.50  slots 100% 100% 94% 100%  (598s)\n"}
+,{"stream_name":"stdout","time":2773.630513601,"data":"[ 40.0 min gpu0]     step 2400/8000  lm 0.358  (193s)\n"}
+,{"stream_name":"stdout","time":2773.631657638,"data":"[ 40.0 min gpu1]     step 4000/8000  lm 0.312  teach 0.50  slots 100% 100% 94% 100%  (748s)\n"}
+,{"stream_name":"stdout","time":2893.632845771,"data":"[ 42.0 min gpu0]     step 4000/8000  lm 0.330  (322s)\n"}
+,{"stream_name":"stdout","time":2893.633760814,"data":"[ 42.0 min gpu1]     step 4800/8000  lm 0.310  teach 0.33  slots 100% 100% 96% 100%  (898s)\n"}
+,{"stream_name":"stdout","time":3013.639015065,"data":"[ 44.0 min gpu0]     step 5600/8000  lm 0.311  (450s)\n"}
+,{"stream_name":"stdout","time":3013.639245849,"data":"[ 44.0 min gpu1]     step 5600/8000  lm 0.309  teach 0.17  slots 100% 100% 98% 100%  (1047s)\n"}
+,{"stream_name":"stdout","time":3133.639134621,"data":"[ 46.0 min gpu0]     step 7200/8000  lm 0.303  (579s)\n"}
+,{"stream_name":"stdout","time":3133.640156404,"data":"[ 46.0 min gpu1]     step 6400/8000  lm 0.305  teach 0.00  slots 100% 100% 99% 100%  (1197s)\n"}
+,{"stream_name":"stdout","time":3253.642817658,"data":"[ 48.0 min gpu0] == taught-ends seed 1: 3.760M params\n"}
+,{"stream_name":"stdout","time":3253.643600689,"data":"[ 48.0 min gpu1]     step 6400/8000  lm 0.305  teach 0.00  slots 100% 100% 99% 100%  (1197s)\n"}
+,{"stream_name":"stdout","time":3373.644216778,"data":"[ 50.0 min gpu0]     step 800/8000  lm 0.824  teach 0.50  slots 34% 91% 80% 35%  (155s)\n"}
+,{"stream_name":"stdout","time":3373.645402419,"data":"[ 50.0 min gpu1]     step 7200/8000  lm 0.303  teach 0.00  slots 100% 100% 99% 100%  (1345s)\n"}
+,{"stream_name":"stdout","time":3493.648643662,"data":"[ 52.0 min gpu0]     step 1600/8000  lm 0.372  teach 0.50  slots 79% 100% 93% 96%  (310s)\n"}
+,{"stream_name":"stdout","time":3493.64973699,"data":"[ 52.0 min gpu1] == self-every seed 1: 3.760M params\n"}
+,{"stream_name":"stdout","time":3613.654985376,"data":"[ 54.0 min gpu0]     step 1600/8000  lm 0.372  teach 0.50  slots 79% 100% 93% 96%  (310s)\n"}
+,{"stream_name":"stdout","time":3613.655023158,"data":"[ 54.0 min gpu1]     step 800/8000  lm 0.779  next-words 0.271  (149s)\n"}
+,{"stream_name":"stdout","time":3733.656221464,"data":"[ 56.0 min gpu0]     step 2400/8000  lm 0.341  teach 0.50  slots 99% 100% 94% 100%  (465s)\n"}
+,{"stream_name":"stdout","time":3733.657523879,"data":"[ 56.0 min gpu1]     step 800/8000  lm 0.779  next-words 0.271  (149s)\n"}
+,{"stream_name":"stdout","time":3853.657761733,"data":"[ 58.0 min gpu0]     step 3200/8000  lm 0.321  teach 0.50  slots 100% 100% 94% 100%  (621s)\n"}
+,{"stream_name":"stdout","time":3853.65869384,"data":"[ 58.0 min gpu1]     step 1600/8000  lm 0.365  next-words 0.209  (297s)\n"}
+,{"stream_name":"stdout","time":3973.66479765,"data":"[ 60.0 min gpu0]     step 4000/8000  lm 0.316  teach 0.50  slots 100% 100% 94% 100%  (776s)\n"}
+,{"stream_name":"stdout","time":3973.666018143,"data":"[ 60.0 min gpu1]     step 2400/8000  lm 0.336  next-words 0.199  (445s)\n"}
+,{"stream_name":"stdout","time":4093.668858457,"data":"[ 62.0 min gpu0]     step 4000/8000  lm 0.316  teach 0.50  slots 100% 100% 94% 100%  (776s)\n"}
+,{"stream_name":"stdout","time":4093.669103494,"data":"[ 62.0 min gpu1]     step 3200/8000  lm 0.315  next-words 0.182  (595s)\n"}
+,{"stream_name":"stdout","time":4213.669876638,"data":"[ 64.0 min gpu0]     step 4800/8000  lm 0.309  teach 0.33  slots 100% 100% 94% 100%  (931s)\n"}
+,{"stream_name":"stdout","time":4213.670820419,"data":"[ 64.0 min gpu1]     step 4000/8000  lm 0.313  next-words 0.170  (742s)\n"}
+,{"stream_name":"stdout","time":4333.670798581,"data":"[ 66.0 min gpu0]     step 5600/8000  lm 0.305  teach 0.17  slots 100% 100% 98% 100%  (1087s)\n"}
+,{"stream_name":"stdout","time":4333.671800924,"data":"[ 66.0 min gpu1]     step 4000/8000  lm 0.313  next-words 0.170  (742s)\n"}
+,{"stream_name":"stdout","time":4453.67564218,"data":"[ 68.0 min gpu0]     step 6400/8000  lm 0.302  teach 0.00  slots 100% 100% 100% 100%  (1242s)\n"}
+,{"stream_name":"stdout","time":4453.675705333,"data":"[ 68.0 min gpu1]     step 4800/8000  lm 0.310  next-words 0.166  (891s)\n"}
+,{"stream_name":"stdout","time":4573.67832291,"data":"[ 70.0 min gpu0]     step 6400/8000  lm 0.302  teach 0.00  slots 100% 100% 100% 100%  (1242s)\n"}
+,{"stream_name":"stdout","time":4573.679358032,"data":"[ 70.0 min gpu1]     step 5600/8000  lm 0.305  next-words 0.160  (1038s)\n"}
+,{"stream_name":"stdout","time":4693.681831367,"data":"[ 72.0 min gpu0]     step 7200/8000  lm 0.298  teach 0.00  slots 100% 100% 100% 100%  (1394s)\n"}
+,{"stream_name":"stdout","time":4693.683084781,"data":"[ 72.0 min gpu1]     step 6400/8000  lm 0.302  next-words 0.157  (1187s)\n"}
+,{"stream_name":"stdout","time":4813.685426348,"data":"[ 74.0 min gpu0] == self-every seed 2: 3.760M params\n"}
+,{"stream_name":"stdout","time":4813.685462662,"data":"[ 74.0 min gpu1]     step 7200/8000  lm 0.299  next-words 0.155  (1334s)\n"}
+,{"stream_name":"stdout","time":4933.689742429,"data":"[ 76.0 min gpu0]     step 800/8000  lm 0.769  next-words 0.269  (147s)\n"}
+,{"stream_name":"stdout","time":4933.689810455,"data":"[ 76.0 min gpu1]     step 8000/8000  lm 0.298  next-words 0.154  (1482s)\n"}
+,{"stream_name":"stdout","time":5053.692502995,"data":"[ 78.0 min gpu0]     step 800/8000  lm 0.769  next-words 0.269  (147s)\n"}
+,{"stream_name":"stdout","time":5053.692554344,"data":"[ 78.0 min gpu1] == taught-every seed 1: 3.760M params\n"}
+,{"stream_name":"stdout","time":5173.692231427,"data":"[ 80.0 min gpu0]     step 1600/8000  lm 0.374  next-words 0.209  (294s)\n"}
+,{"stream_name":"stdout","time":5173.693189074,"data":"[ 80.0 min gpu1]     step 800/8000  lm 0.799  teach 0.50  slots 75% 93% 85% 77%  (150s)\n"}
+,{"stream_name":"stdout","time":5293.695825423,"data":"[ 82.0 min gpu0]     step 2400/8000  lm 0.351  next-words 0.203  (441s)\n"}
+,{"stream_name":"stdout","time":5293.696784027,"data":"[ 82.0 min gpu1]     step 1600/8000  lm 0.350  teach 0.50  slots 100% 100% 94% 100%  (300s)\n"}
+,{"stream_name":"stdout","time":5413.700847979,"data":"[ 84.0 min gpu0]     step 3200/8000  lm 0.318  next-words 0.191  (589s)\n"}
+,{"stream_name":"stdout","time":5413.701974645,"data":"[ 84.0 min gpu1]     step 2400/8000  lm 0.325  teach 0.50  slots 100% 100% 94% 100%  (450s)\n"}
+,{"stream_name":"stdout","time":5533.706631334,"data":"[ 86.0 min gpu0]     step 4000/8000  lm 0.313  next-words 0.177  (737s)\n"}
+,{"stream_name":"stdout","time":5533.70752782,"data":"[ 86.0 min gpu1]     step 2400/8000  lm 0.325  teach 0.50  slots 100% 100% 94% 100%  (450s)\n"}
+,{"stream_name":"stdout","time":5653.709308027,"data":"[ 88.0 min gpu0]     step 4800/8000  lm 0.312  next-words 0.168  (884s)\n"}
+,{"stream_name":"stdout","time":5653.710487724,"data":"[ 88.0 min gpu1]     step 3200/8000  lm 0.314  teach 0.50  slots 100% 100% 94% 100%  (601s)\n"}
+,{"stream_name":"stdout","time":5773.712746648,"data":"[ 90.0 min gpu0]     step 4800/8000  lm 0.312  next-words 0.168  (884s)\n"}
+,{"stream_name":"stdout","time":5773.713736191,"data":"[ 90.0 min gpu1]     step 4000/8000  lm 0.311  teach 0.50  slots 100% 100% 94% 100%  (751s)\n"}
+,{"stream_name":"stdout","time":5893.715160111,"data":"[ 92.0 min gpu0]     step 5600/8000  lm 0.307  next-words 0.165  (1032s)\n"}
+,{"stream_name":"stdout","time":5893.716200931,"data":"[ 92.0 min gpu1]     step 4800/8000  lm 0.307  teach 0.33  slots 100% 100% 94% 100%  (900s)\n"}
+,{"stream_name":"stdout","time":6013.719811768,"data":"[ 94.0 min gpu0]     step 6400/8000  lm 0.305  next-words 0.163  (1180s)\n"}
+,{"stream_name":"stdout","time":6013.720852541,"data":"[ 94.0 min gpu1]     step 5600/8000  lm 0.304  teach 0.17  slots 100% 100% 96% 100%  (1050s)\n"}
+,{"stream_name":"stdout","time":6133.72345814,"data":"[ 96.0 min gpu0]     step 7200/8000  lm 0.303  next-words 0.162  (1328s)\n"}
+,{"stream_name":"stdout","time":6133.724598578,"data":"[ 96.0 min gpu1]     step 5600/8000  lm 0.304  teach 0.17  slots 100% 100% 96% 100%  (1050s)\n"}
+,{"stream_name":"stdout","time":6253.724559649,"data":"[ 98.0 min gpu0]     step 8000/8000  lm 0.304  next-words 0.162  (1475s)\n"}
+,{"stream_name":"stdout","time":6253.725639746,"data":"[ 98.0 min gpu1]     step 6400/8000  lm 0.301  teach 0.00  slots 100% 100% 98% 100%  (1200s)\n"}
+,{"stream_name":"stdout","time":6373.730807095,"data":"[100.0 min gpu0] == taught-ends seed 2: 3.760M params\n"}
+,{"stream_name":"stdout","time":6373.730845388,"data":"[100.0 min gpu1]     step 7200/8000  lm 0.298  teach 0.00  slots 100% 100% 98% 100%  (1348s)\n"}
+,{"stream_name":"stdout","time":6493.735883903,"data":"[102.0 min gpu0]     step 800/8000  lm 0.815  teach 0.50  slots 33% 91% 79% 20%  (153s)\n"}
+,{"stream_name":"stdout","time":6493.736777632,"data":"[102.0 min gpu1] == base seed 2: 3.641M params\n"}
+,{"stream_name":"stdout","time":6613.736749992,"data":"[104.0 min gpu0]     step 1600/8000  lm 0.408  teach 0.50  slots 58% 100% 94% 28%  (306s)\n"}
+,{"stream_name":"stdout","time":6613.73681079,"data":"[104.0 min gpu1]     step 1600/8000  lm 0.403  (126s)\n"}
+,{"stream_name":"stdout","time":6733.734342746,"data":"[106.0 min gpu0]     step 2400/8000  lm 0.347  teach 0.50  slots 98% 100% 94% 92%  (461s)\n"}
+,{"stream_name":"stdout","time":6733.735307115,"data":"[106.0 min gpu1]     step 3200/8000  lm 0.376  (252s)\n"}
+,{"stream_name":"stdout","time":6853.743928857,"data":"[108.0 min gpu0]     step 2400/8000  lm 0.347  teach 0.50  slots 98% 100% 94% 92%  (461s)\n"}
+,{"stream_name":"stdout","time":6853.743985033,"data":"[108.0 min gpu1]     step 4000/8000  lm 0.348  (315s)\n"}
+,{"stream_name":"stdout","time":6973.744855601,"data":"[110.0 min gpu0]     step 3200/8000  lm 0.323  teach 0.50  slots 100% 100% 94% 100%  (616s)\n"}
+,{"stream_name":"stdout","time":6973.745521996,"data":"[110.0 min gpu1]     step 5600/8000  lm 0.312  (441s)\n"}
+,{"stream_name":"stdout","time":7093.754862355,"data":"[112.0 min gpu0]     step 4000/8000  lm 0.317  teach 0.50  slots 100% 100% 94% 100%  (770s)\n"}
+,{"stream_name":"stdout","time":7093.754897608,"data":"[112.0 min gpu1]     step 7200/8000  lm 0.306  (567s)\n"}
+,{"stream_name":"stdout","time":7213.750480545,"data":"[114.0 min gpu0]     step 4800/8000  lm 0.315  teach 0.33  slots 100% 100% 94% 100%  (923s)\n"}
+,{"stream_name":"stdout","time":7213.750514337,"data":"[114.0 min gpu1] == taught-every seed 2: 3.760M params\n"}
+,{"stream_name":"stdout","time":7333.757498249,"data":"[116.0 min gpu0]     step 4800/8000  lm 0.315  teach 0.33  slots 100% 100% 94% 100%  (923s)\n"}
+,{"stream_name":"stdout","time":7333.758831942,"data":"[116.0 min gpu1]     step 800/8000  lm 0.797  teach 0.50  slots 74% 93% 85% 75%  (149s)\n"}
+,{"stream_name":"stdout","time":7453.761235167,"data":"[118.0 min gpu0]     step 5600/8000  lm 0.309  teach 0.17  slots 100% 100% 95% 100%  (1078s)\n"}
+,{"stream_name":"stdout","time":7453.762159351,"data":"[118.0 min gpu1]     step 1600/8000  lm 0.347  teach 0.50  slots 100% 100% 94% 100%  (298s)\n"}
+,{"stream_name":"stdout","time":7573.766838148,"data":"[120.0 min gpu0]     step 6400/8000  lm 0.306  teach 0.00  slots 100% 100% 97% 100%  (1232s)\n"}
+,{"stream_name":"stdout","time":7573.767489063,"data":"[120.0 min gpu1]     step 2400/8000  lm 0.325  teach 0.50  slots 100% 100% 94% 100%  (448s)\n"}
+,{"stream_name":"stdout","time":7693.772056945,"data":"[122.0 min gpu0]     step 7200/8000  lm 0.302  teach 0.00  slots 100% 100% 97% 100%  (1384s)\n"}
+,{"stream_name":"stdout","time":7693.773268768,"data":"[122.0 min gpu1]     step 2400/8000  lm 0.325  teach 0.50  slots 100% 100% 94% 100%  (448s)\n"}
+,{"stream_name":"stdout","time":7813.776384718,"data":"[124.0 min gpu0]     step 8000/8000  lm 0.303  teach 0.00  slots 100% 100% 97% 100%  (1536s)\n"}
+,{"stream_name":"stdout","time":7813.776459514,"data":"[124.0 min gpu1]     step 3200/8000  lm 0.315  teach 0.50  slots 100% 100% 94% 100%  (599s)\n"}
+,{"stream_name":"stdout","time":7933.77718851,"data":"[126.0 min gpu0]     step 800/8000  lm 0.782  (64s)\n"}
+,{"stream_name":"stdout","time":7933.778282234,"data":"[126.0 min gpu1]     step 4000/8000  lm 0.312  teach 0.50  slots 100% 100% 94% 100%  (748s)\n"}
+,{"stream_name":"stdout","time":8053.781127473,"data":"[128.0 min gpu0]     step 2400/8000  lm 0.383  (192s)\n"}
+,{"stream_name":"stdout","time":8053.782187518,"data":"[128.0 min gpu1]     step 4800/8000  lm 0.311  teach 0.33  slots 100% 100% 94% 100%  (898s)\n"}
+,{"stream_name":"stdout","time":8173.785983253,"data":"[130.0 min gpu0]     step 4000/8000  lm 0.349  (320s)\n"}
+,{"stream_name":"stdout","time":8173.787351005,"data":"[130.0 min gpu1]     step 5600/8000  lm 0.307  teach 0.17  slots 100% 100% 95% 100%  (1048s)\n"}
+,{"stream_name":"stdout","time":8293.794295066,"data":"[132.0 min gpu0]     step 5600/8000  lm 0.317  (447s)\n"}
+,{"stream_name":"stdout","time":8293.794330393,"data":"[132.0 min gpu1]     step 5600/8000  lm 0.307  teach 0.17  slots 100% 100% 95% 100%  (1048s)\n"}
+,{"stream_name":"stdout","time":8413.795092859,"data":"[134.0 min gpu0]     step 7200/8000  lm 0.309  (575s)\n"}
+,{"stream_name":"stdout","time":8413.796218489,"data":"[134.0 min gpu1]     step 6400/8000  lm 0.306  teach 0.00  slots 100% 100% 95% 100%  (1199s)\n"}
+,{"stream_name":"stdout","time":8533.798524285,"data":"[136.0 min gpu0] == taught-ends seed 3: 3.760M params\n"}
+,{"stream_name":"stdout","time":8533.799376881,"data":"[136.0 min gpu1]     step 7200/8000  lm 0.303  teach 0.00  slots 100% 100% 95% 100%  (1347s)\n"}
+,{"stream_name":"stdout","time":8653.803723259,"data":"[138.0 min gpu0]     step 800/8000  lm 0.809  teach 0.50  slots 34% 92% 79% 23%  (154s)\n"}
+,{"stream_name":"stdout","time":8653.803765669,"data":"[138.0 min gpu1] == self-every seed 3: 3.760M params\n"}
+,{"stream_name":"stdout","time":8773.804340399,"data":"[140.0 min gpu0]     step 800/8000  lm 0.809  teach 0.50  slots 34% 92% 79% 23%  (154s)\n"}
+,{"stream_name":"stdout","time":8773.805333302,"data":"[140.0 min gpu1] == self-every seed 3: 3.760M params\n"}
+,{"stream_name":"stdout","time":8893.808818087,"data":"[142.0 min gpu0]     step 1600/8000  lm 0.381  teach 0.50  slots 57% 100% 93% 89%  (309s)\n"}
+,{"stream_name":"stdout","time":8893.809146281,"data":"[142.0 min gpu1]     step 800/8000  lm 0.765  next-words 0.272  (147s)\n"}
+,{"stream_name":"stdout","time":9013.810775158,"data":"[144.0 min gpu0]     step 2400/8000  lm 0.339  teach 0.50  slots 97% 100% 94% 99%  (463s)\n"}
+,{"stream_name":"stdout","time":9013.811886026,"data":"[144.0 min gpu1]     step 1600/8000  lm 0.395  next-words 0.208  (295s)\n"}
+,{"stream_name":"stdout","time":9133.818590817,"data":"[146.0 min gpu0]     step 3200/8000  lm 0.323  teach 0.50  slots 100% 100% 94% 100%  (616s)\n"}
+,{"stream_name":"stdout","time":9133.818626463,"data":"[146.0 min gpu1]     step 2400/8000  lm 0.376  next-words 0.200  (441s)\n"}
+,{"stream_name":"stdout","time":9253.819377858,"data":"[148.0 min gpu0]     step 4000/8000  lm 0.319  teach 0.50  slots 100% 100% 94% 100%  (770s)\n"}
+,{"stream_name":"stdout","time":9253.820595465,"data":"[148.0 min gpu1]     step 3200/8000  lm 0.353  next-words 0.185  (588s)\n"}
+,{"stream_name":"stdout","time":9373.822406602,"data":"[150.0 min gpu0]     step 4000/8000  lm 0.319  teach 0.50  slots 100% 100% 94% 100%  (770s)\n"}
+,{"stream_name":"stdout","time":9373.823422676,"data":"[150.0 min gpu1]     step 3200/8000  lm 0.353  next-words 0.185  (588s)\n"}
+,{"stream_name":"stdout","time":9493.825298425,"data":"[152.0 min gpu0]     step 4800/8000  lm 0.315  teach 0.33  slots 100% 100% 95% 100%  (924s)\n"}
+,{"stream_name":"stdout","time":9493.8264694,"data":"[152.0 min gpu1]     step 4000/8000  lm 0.332  next-words 0.177  (735s)\n"}
+,{"stream_name":"stdout","time":9613.826776647,"data":"[154.0 min gpu0]     step 5600/8000  lm 0.313  teach 0.17  slots 100% 100% 98% 100%  (1078s)\n"}
+,{"stream_name":"stdout","time":9613.826899167,"data":"[154.0 min gpu1]     step 4800/8000  lm 0.311  next-words 0.171  (883s)\n"}
+,{"stream_name":"stdout","time":9733.8287985,"data":"[156.0 min gpu0]     step 6400/8000  lm 0.307  teach 0.00  slots 100% 100% 100% 100%  (1231s)\n"}
+,{"stream_name":"stdout","time":9733.82921227,"data":"[156.0 min gpu1]     step 5600/8000  lm 0.307  next-words 0.167  (1030s)\n"}
+,{"stream_name":"stdout","time":9853.833794543,"data":"[158.0 min gpu0]     step 7200/8000  lm 0.305  teach 0.00  slots 100% 100% 100% 100%  (1383s)\n"}
+,{"stream_name":"stdout","time":9853.833832129,"data":"[158.0 min gpu1]     step 6400/8000  lm 0.302  next-words 0.162  (1176s)\n"}
+,{"stream_name":"stdout","time":9973.835720279,"data":"[160.0 min gpu0]     step 7200/8000  lm 0.305  teach 0.00  slots 100% 100% 100% 100%  (1383s)\n"}
+,{"stream_name":"stdout","time":9973.83677618,"data":"[160.0 min gpu1]     step 7200/8000  lm 0.301  next-words 0.160  (1324s)\n"}
+,{"stream_name":"stdout","time":10093.832712344,"data":"[162.0 min gpu0] == self-every seed 4: 3.760M params\n"}
+,{"stream_name":"stdout","time":10093.833626404,"data":"[162.0 min gpu1]     step 7200/8000  lm 0.301  next-words 0.160  (1324s)\n"}
+,{"stream_name":"stdout","time":10213.839826098,"data":"[164.0 min gpu0]     step 800/8000  lm 0.771  next-words 0.267  (148s)\n"}
+,{"stream_name":"stdout","time":10213.840895284,"data":"[164.0 min gpu1] == taught-every seed 3: 3.760M params\n"}
+,{"stream_name":"stdout","time":10333.847862112,"data":"[166.0 min gpu0]     step 1600/8000  lm 0.395  next-words 0.209  (295s)\n"}
+,{"stream_name":"stdout","time":10333.847902021,"data":"[166.0 min gpu1]     step 800/8000  lm 0.778  teach 0.50  slots 70% 94% 85% 77%  (149s)\n"}
+,{"stream_name":"stdout","time":10453.851834232,"data":"[168.0 min gpu0]     step 1600/8000  lm 0.395  next-words 0.209  (295s)\n"}
+,{"stream_name":"stdout","time":10453.853168634,"data":"[168.0 min gpu1]     step 1600/8000  lm 0.341  teach 0.50  slots 100% 100% 94% 100%  (299s)\n"}
+,{"stream_name":"stdout","time":10573.852960272,"data":"[170.0 min gpu0]     step 2400/8000  lm 0.356  next-words 0.202  (442s)\n"}
+,{"stream_name":"stdout","time":10573.854225545,"data":"[170.0 min gpu1]     step 1600/8000  lm 0.341  teach 0.50  slots 100% 100% 94% 100%  (299s)\n"}
+,{"stream_name":"stdout","time":10693.853544846,"data":"[172.0 min gpu0]     step 3200/8000  lm 0.352  next-words 0.193  (590s)\n"}
+,{"stream_name":"stdout","time":10693.854373786,"data":"[172.0 min gpu1]     step 2400/8000  lm 0.323  teach 0.50  slots 100% 100% 94% 100%  (449s)\n"}
+,{"stream_name":"stdout","time":10813.862119781,"data":"[174.0 min gpu0]     step 4000/8000  lm 0.340  next-words 0.186  (737s)\n"}
+,{"stream_name":"stdout","time":10813.862914407,"data":"[174.0 min gpu1]     step 3200/8000  lm 0.317  teach 0.50  slots 100% 100% 94% 100%  (599s)\n"}
+,{"stream_name":"stdout","time":10933.867121048,"data":"[176.0 min gpu0]     step 4800/8000  lm 0.317  next-words 0.173  (885s)\n"}
+,{"stream_name":"stdout","time":10933.868195446,"data":"[176.0 min gpu1]     step 4000/8000  lm 0.315  teach 0.50  slots 100% 100% 94% 100%  (748s)\n"}
+,{"stream_name":"stdout","time":11053.873778699,"data":"[178.0 min gpu0]     step 4800/8000  lm 0.317  next-words 0.173  (885s)\n"}
+,{"stream_name":"stdout","time":11053.873813342,"data":"[178.0 min gpu1]     step 4800/8000  lm 0.311  teach 0.33  slots 100% 100% 94% 100%  (897s)\n"}
+,{"stream_name":"stdout","time":11173.872747964,"data":"[180.0 min gpu0]     step 5600/8000  lm 0.312  next-words 0.166  (1032s)\n"}
+,{"stream_name":"stdout","time":11173.87282307,"data":"[180.0 min gpu1]     step 4800/8000  lm 0.311  teach 0.33  slots 100% 100% 94% 100%  (897s)\n"}
+,{"stream_name":"stdout","time":11293.879834186,"data":"[182.0 min gpu0]     step 6400/8000  lm 0.310  next-words 0.163  (1179s)\n"}
+,{"stream_name":"stdout","time":11293.880695628,"data":"[182.0 min gpu1]     step 5600/8000  lm 0.310  teach 0.17  slots 100% 100% 95% 100%  (1047s)\n"}
+,{"stream_name":"stdout","time":11413.877646364,"data":"[184.0 min gpu0]     step 7200/8000  lm 0.305  next-words 0.161  (1326s)\n"}
+,{"stream_name":"stdout","time":11413.878658107,"data":"[184.0 min gpu1]     step 6400/8000  lm 0.304  teach 0.00  slots 100% 100% 97% 100%  (1196s)\n"}
+,{"stream_name":"stdout","time":11533.883503952,"data":"[186.0 min gpu0] == taught-ends seed 4: 3.760M params\n"}
+,{"stream_name":"stdout","time":11533.88456268,"data":"[186.0 min gpu1]     step 7200/8000  lm 0.303  teach 0.00  slots 100% 100% 97% 100%  (1344s)\n"}
+,{"stream_name":"stdout","time":11653.88816852,"data":"[188.0 min gpu0] == taught-ends seed 4: 3.760M params\n"}
+,{"stream_name":"stdout","time":11653.889816753,"data":"[188.0 min gpu1] == base seed 4: 3.641M params\n"}
+,{"stream_name":"stdout","time":11773.90675351,"data":"[190.0 min gpu0]     step 800/8000  lm 0.813  teach 0.50  slots 38% 91% 80% 20%  (154s)\n"}
+,{"stream_name":"stdout","time":11773.906804666,"data":"[190.0 min gpu1]     step 800/8000  lm 0.775  (63s)\n"}
+,{"stream_name":"stdout","time":11893.898476279,"data":"[192.0 min gpu0]     step 1600/8000  lm 0.378  teach 0.50  slots 99% 100% 94% 57%  (307s)\n"}
+,{"stream_name":"stdout","time":11893.899258668,"data":"[192.0 min gpu1]     step 2400/8000  lm 0.366  (188s)\n"}
+,{"stream_name":"stdout","time":12013.903698078,"data":"[194.0 min gpu0]     step 2400/8000  lm 0.336  teach 0.50  slots 100% 100% 94% 96%  (461s)\n"}
+,{"stream_name":"stdout","time":12013.903744642,"data":"[194.0 min gpu1]     step 4000/8000  lm 0.348  (314s)\n"}
+,{"stream_name":"stdout","time":12133.906797365,"data":"[196.0 min gpu0]     step 2400/8000  lm 0.336  teach 0.50  slots 100% 100% 94% 96%  (461s)\n"}
+,{"stream_name":"stdout","time":12133.906848813,"data":"[196.0 min gpu1]     step 5600/8000  lm 0.325  (439s)\n"}
+,{"stream_name":"stdout","time":12253.906775204,"data":"[198.0 min gpu0]     step 3200/8000  lm 0.327  teach 0.50  slots 100% 100% 94% 99%  (615s)\n"}
+,{"stream_name":"stdout","time":12253.906846792,"data":"[198.0 min gpu1]     step 7200/8000  lm 0.310  (565s)\n"}
+,{"stream_name":"stdout","time":12373.913161045,"data":"[200.0 min gpu0]     step 4000/8000  lm 0.318  teach 0.50  slots 100% 100% 94% 100%  (768s)\n"}
+,{"stream_name":"stdout","time":12373.914191523,"data":"[200.0 min gpu1] == taught-every seed 4: 3.760M params\n"}
+,{"stream_name":"stdout","time":12493.916948422,"data":"[202.0 min gpu0]     step 4800/8000  lm 0.315  teach 0.33  slots 100% 100% 94% 100%  (922s)\n"}
+,{"stream_name":"stdout","time":12493.918111931,"data":"[202.0 min gpu1]     step 800/8000  lm 0.782  teach 0.50  slots 78% 92% 85% 74%  (150s)\n"}
+,{"stream_name":"stdout","time":12613.924872636,"data":"[204.0 min gpu0]     step 5600/8000  lm 0.311  teach 0.17  slots 100% 100% 94% 100%  (1075s)\n"}
+,{"stream_name":"stdout","time":12613.926106942,"data":"[204.0 min gpu1]     step 1600/8000  lm 0.345  teach 0.50  slots 100% 100% 94% 100%  (299s)\n"}
+,{"stream_name":"stdout","time":12733.927750019,"data":"[206.0 min gpu0]     step 5600/8000  lm 0.311  teach 0.17  slots 100% 100% 94% 100%  (1075s)\n"}
+,{"stream_name":"stdout","time":12733.928442567,"data":"[206.0 min gpu1]     step 1600/8000  lm 0.345  teach 0.50  slots 100% 100% 94% 100%  (299s)\n"}
+,{"stream_name":"stdout","time":12853.934380963,"data":"[208.0 min gpu0]     step 6400/8000  lm 0.309  teach 0.00  slots 100% 100% 96% 100%  (1229s)\n"}
+,{"stream_name":"stdout","time":12853.934416269,"data":"[208.0 min gpu1]     step 2400/8000  lm 0.321  teach 0.50  slots 100% 100% 94% 100%  (449s)\n"}
+,{"stream_name":"stdout","time":12973.93981885,"data":"[210.0 min gpu0]     step 7200/8000  lm 0.304  teach 0.00  slots 100% 100% 96% 100%  (1381s)\n"}
+,{"stream_name":"stdout","time":12973.940185919,"data":"[210.0 min gpu1]     step 3200/8000  lm 0.317  teach 0.50  slots 100% 100% 95% 100%  (599s)\n"}
+,{"stream_name":"stdout","time":13093.936301852,"data":"[212.0 min gpu0] == taught-ends seed 4 done: seen short 82% long 64% | messy short 20% long 8% | lm 0.303 | train 1531s eval 24s\n"}
+,{"stream_name":"stdout","time":13093.937164361,"data":"[212.0 min gpu1]     step 4000/8000  lm 0.312  teach 0.50  slots 100% 100% 98% 100%  (748s)\n"}
+,{"stream_name":"stdout","time":13213.943915247,"data":"[214.0 min gpu0] == taught-ends seed 4 done: seen short 82% long 64% | messy short 20% long 8% | lm 0.303 | train 1531s eval 24s\n"}
+,{"stream_name":"stdout","time":13213.944769193,"data":"[214.0 min gpu1]     step 4800/8000  lm 0.309  teach 0.33  slots 100% 100% 99% 100%  (895s)\n"}
+,{"stream_name":"stdout","time":13333.940727927,"data":"[216.0 min gpu0] == taught-ends seed 4 done: seen short 82% long 64% | messy short 20% long 8% | lm 0.303 | train 1531s eval 24s\n"}
+,{"stream_name":"stdout","time":13333.941595274,"data":"[216.0 min gpu1]     step 5600/8000  lm 0.306  teach 0.17  slots 100% 100% 99% 100%  (1041s)\n"}
+,{"stream_name":"stdout","time":13453.951358935,"data":"[218.0 min gpu0] == taught-ends seed 4 done: seen short 82% long 64% | messy short 20% long 8% | lm 0.303 | train 1531s eval 24s\n"}
+,{"stream_name":"stdout","time":13453.952364497,"data":"[218.0 min gpu1]     step 5600/8000  lm 0.306  teach 0.17  slots 100% 100% 99% 100%  (1041s)\n"}
+,{"stream_name":"stdout","time":13573.953477225,"data":"[220.0 min gpu0] == taught-ends seed 4 done: seen short 82% long 64% | messy short 20% long 8% | lm 0.303 | train 1531s eval 24s\n"}
+,{"stream_name":"stdout","time":13573.954328261,"data":"[220.0 min gpu1]     step 6400/8000  lm 0.305  teach 0.00  slots 100% 100% 100% 100%  (1187s)\n"}
+,{"stream_name":"stdout","time":13693.948499826,"data":"[222.0 min gpu0] == taught-ends seed 4 done: seen short 82% long 64% | messy short 20% long 8% | lm 0.303 | train 1531s eval 24s\n"}
+,{"stream_name":"stdout","time":13693.94935104,"data":"[222.0 min gpu1]     step 7200/8000  lm 0.302  teach 0.00  slots 100% 100% 100% 100%  (1331s)\n"}
+,{"stream_name":"stdout","time":13813.951517016,"data":"[224.0 min gpu0] == taught-ends seed 4 done: seen short 82% long 64% | messy short 20% long 8% | lm 0.303 | train 1531s eval 24s\n"}
+,{"stream_name":"stdout","time":13813.952455049,"data":"[224.0 min gpu1] == taught-every seed 4 done: seen short 89% long 97% | messy short 78% long 87% | lm 0.302 | train 1475s eval 24s\n"}
+,{"stream_name":"stdout","time":13813.953655748,"data":"[gpu0] exit code 0\n"}
+,{"stream_name":"stdout","time":13813.953690607,"data":"[gpu1] exit code 0\n"}
+,{"stream_name":"stdout","time":13816.108997145,"data":"# Registers v2: results\n"}
+,{"stream_name":"stdout","time":13816.109032186,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109037514,"data":"## Pilot (1,500 steps, seed 0)\n"}
+,{"stream_name":"stdout","time":13816.109041921,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109046485,"data":"- base: loss 0.392, seen short 5%, long 0%, 125s training\n"}
+,{"stream_name":"stdout","time":13816.109051741,"data":"- taught-every: loss 0.335, seen short 42%, long 20%, 284s training\n"}
+,{"stream_name":"stdout","time":13816.109056234,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109060596,"data":"Pilot passed; full run started.\n"}
+,{"stream_name":"stdout","time":13816.109064638,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109068727,"data":"5 seeds, 8000 training steps per model. Seen skins only (home, computer, ship, kitchen).\n"}
+,{"stream_name":"stdout","time":13816.109073136,"data":"Success = the model's own plan, run in the world, gets the goal. Messy = the same problems with every period\n"}
+,{"stream_name":"stdout","time":13816.109078266,"data":"removed from the facts (one run-on line), never seen in training.\n"}
+,{"stream_name":"stdout","time":13816.109083587,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109088132,"data":"| model | short | long | messy short | messy long | bookkeeping fails | wrong choice | final train loss |\n"}
+,{"stream_name":"stdout","time":13816.109092887,"data":"|---|---|---|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":13816.109097377,"data":"| base | 87% | 76% | 0% | 0% | 289 | 3 | 0.305 |\n"}
+,{"stream_name":"stdout","time":13816.109101405,"data":"| taught-ends | 89% | 79% | 21% | 15% | 220 | 0 | 0.301 |\n"}
+,{"stream_name":"stdout","time":13816.109110085,"data":"| taught-every | 95% | 97% | 80% | 72% | 80 | 0 | 0.300 |\n"}
+,{"stream_name":"stdout","time":13816.109113883,"data":"| self-every | 97% | 94% | 74% | 64% | 61 | 4 | 0.301 |\n"}
+,{"stream_name":"stdout","time":13816.109116872,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109119639,"data":"## Per seed (seen long / messy long)\n"}
+,{"stream_name":"stdout","time":13816.109136542,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109141236,"data":"- seed 0: base 92% / 0%, taught-ends 70% / 18%, taught-every 94% / 81%, self-every 96% / 82%\n"}
+,{"stream_name":"stdout","time":13816.10914591,"data":"- seed 1: base 55% / 0%, taught-ends 90% / 35%, taught-every 98% / 89%, self-every 94% / 56%\n"}
+,{"stream_name":"stdout","time":13816.109150446,"data":"- seed 2: base 89% / 0%, taught-ends 88% / 4%, taught-every 98% / 51%, self-every 96% / 68%\n"}
+,{"stream_name":"stdout","time":13816.109155415,"data":"- seed 3: base 70% / 0%, taught-ends 83% / 6%, taught-every 98% / 50%, self-every 89% / 61%\n"}
+,{"stream_name":"stdout","time":13816.109160547,"data":"- seed 4: base 74% / 0%, taught-ends 64% / 8%, taught-every 97% / 87%, self-every 94% / 54%\n"}
+,{"stream_name":"stdout","time":13816.109164819,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109168807,"data":"## Failures (seen, all seeds)\n"}
+,{"stream_name":"stdout","time":13816.109199166,"data":"\n"}
+,{"stream_name":"stdout","time":13816.10920311,"data":"- base: bad go 223, garbled 76, bad open 39, bad take 26, wrong choice 3, false claim 1, too long 1\n"}
+,{"stream_name":"stdout","time":13816.109207372,"data":"- taught-ends: bad go 159, garbled 96, bad take 36, bad open 25\n"}
+,{"stream_name":"stdout","time":13816.109210777,"data":"- taught-every: bad go 39, bad take 22, bad open 19, garbled 2\n"}
+,{"stream_name":"stdout","time":13816.10921411,"data":"- self-every: garbled 27, bad take 23, bad go 22, bad open 15, wrong choice 4, another skin's word 2, false claim 1\n"}
+,{"stream_name":"stdout","time":13816.109217571,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109220731,"data":"## Do the taught slots still hold the true state? (gold plans, after teaching stopped)\n"}
+,{"stream_name":"stdout","time":13816.10922501,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109228387,"data":"| model, skins | where | holding | door here | goal item |\n"}
+,{"stream_name":"stdout","time":13816.109232629,"data":"|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":13816.109236235,"data":"| taught-ends, plan skins | 100% | 100% | 94% | 100% |\n"}
+,{"stream_name":"stdout","time":13816.10924032,"data":"| taught-ends, unseen skins | 29% | 66% | 65% | 18% |\n"}
+,{"stream_name":"stdout","time":13816.109247355,"data":"| taught-every, plan skins | 100% | 100% | 96% | 100% |\n"}
+,{"stream_name":"stdout","time":13816.109250749,"data":"| taught-every, unseen skins | 31% | 65% | 66% | 17% |\n"}
+,{"stream_name":"stdout","time":13816.109254057,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109257156,"data":"Chance is about 20% / 25% / 25% / 20%.\n"}
+,{"stream_name":"stdout","time":13816.109260374,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109264083,"data":"## Time per model (seconds)\n"}
+,{"stream_name":"stdout","time":13816.10926788,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109271659,"data":"- base: train 636, eval 10\n"}
+,{"stream_name":"stdout","time":13816.109275479,"data":"- taught-ends: train 1535, eval 25\n"}
+,{"stream_name":"stdout","time":13816.109278697,"data":"- taught-every: train 1490, eval 25\n"}
+,{"stream_name":"stdout","time":13816.1092819,"data":"- self-every: train 1474, eval 24\n"}
+,{"stream_name":"stdout","time":13816.109285094,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109288165,"data":"## One long problem, seed 0 (home skin)\n"}
+,{"stream_name":"stdout","time":13816.109291409,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109295816,"data":"Problem: the door of the house is closed . the water is at the house . the fish is not cold . the person is at the school . the book is cold . the bread is at the school . the door of the shop is open . the fish is at the school . the water is not cold . the fruit is at the shop . the key is at the house . the door of the school is locked . the person wants a cold thing . plan :\n"}
+,{"stream_name":"stdout","time":13816.109304552,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109326945,"data":"- base, clean: `the person wants the book because the book is cold . the door of the school is locked , so the person needs the key . the person is not at the house , so the person goes to the house . the door of the house is closed , so the person opens the door of the house . the person takes the key . the person is not at the school , so the person goes to the school . the door of the school is locked , so the person opens the door of the school with the key . the person takes the book . the person has the book , so the goal is done . done .`\n"}
+,{"stream_name":"stdout","time":13816.109333085,"data":"- base, messy: `the person wants the fruit because the water cold .`\n"}
+,{"stream_name":"stdout","time":13816.109341203,"data":"- taught-ends, clean: `the person wants the book because the book is cold . the door of the school is locked , so the person needs the key . the person is not at the house , so the person goes to the house . the door of the house is closed , so the person opens the door of the house . the person takes the key . the person is not at the school , so the person goes to the school . the door of the school is locked , so the person opens the door of the school with the key . the person takes the book . the person has the book , so the goal is done . done .`\n"}
+,{"stream_name":"stdout","time":13816.109345892,"data":"- taught-ends, messy: `the person wants the water because the water is cold .`\n"}
+,{"stream_name":"stdout","time":13816.109350224,"data":"- taught-every, clean: `the person wants the book because the book is cold . the door of the school is locked , so the person needs the key . the person is not at the house , so the person goes to the house . the door of the house is closed , so the person opens the door of the house . the person takes the key . the person is not at the school , so the person goes to the school . the door of the school is locked , so the person opens the door of the school with the key . the person takes the book . the person has the book , so the goal is done . done .`\n"}
+,{"stream_name":"stdout","time":13816.109355332,"data":"- taught-every, messy: `the person wants the fruit because the fruit is cold .`\n"}
+,{"stream_name":"stdout","time":13816.109359351,"data":"- self-every, clean: `the person wants the book because the book is cold . the door of the school is locked , so the person needs the key . the person is not at the house , so the person goes to the house . the door of the house is closed , so the person opens the door of the house . the person takes the key . the person is not at the school , so the person goes to the school . the door of the school is locked , so the person opens the door of the school with the key . the person takes the book . the person has the book , so the goal is done . done .`\n"}
+,{"stream_name":"stdout","time":13816.109364053,"data":"- self-every, messy: `the person wants the bread because the bread is cold .`\n"}
+,{"stream_name":"stdout","time":13816.109367741,"data":"\n"}
+,{"stream_name":"stdout","time":13816.109371733,"data":" \n"}
+,{"stream_name":"stderr","time":13819.095474667,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":13819.095505091,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":13819.253993916,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":13819.254018265,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":13819.994464252,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":13820.095296331,"data":"[NbConvertApp] Writing 85855 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":13822.646047067,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":13823.152707214,"data":"[NbConvertApp] Writing 371703 bytes to __results__.html\n"}
+]
