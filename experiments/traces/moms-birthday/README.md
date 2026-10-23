@@ -6,17 +6,19 @@ The third recorded trace (2026-10-23, about 35 minutes). Claude played a person 
 
 ## Where the Ohio slip actually came from
 
-It was not a failure to ask, and not a failure to write it down. The sequence:
+*(Corrected after an independent review. An earlier version of this section said the Arizona clubs were found under a Phoenix placeholder before Ohio was known. The timestamps say otherwise.)*
 
-1. **12:50** He searched for gardening season and got a Phoenix result: "Peak start of the main gardening and planting season in Phoenix. Hell yeah."
-2. **13:00** He caught the assumption ("that's assuming they're in Phoenix, right?") and asked where the mom lives.
-3. **13:00–18:20** While waiting for the answer, he kept researching, and **23:45** "I'm gonna just say Phoenix, cuz even though I don't know" led him to find the Arizona garden clubs and their April 2027 convention.
-4. **18:20** The answer came back as Ohio, and he wrote "lives in Ohio" in his notes.
-5. **33:05** Writing the reply, he reached for the garden club he'd found ("I should have wrote that one down. I did") and pasted the Arizona one.
+1. **12:50** He searched gardening season and got a Phoenix result (the search was localised to him).
+2. **13:00** He caught it ("that's assuming they're in Phoenix, right?") and asked where the mom lives.
+3. **18:20** The answer came back as Ohio, and he wrote "lives in ohio" under Mom in his notes.
+4. **23:45**, five minutes *after* that: "Arizona, I'm gonna just say Phoenix" led him to search for Arizona garden clubs. He mixed up whose location mattered. The person asking lives in Arizona; the mom lives in Ohio.
+5. **33:05** The reply used the Arizona club.
 
-So it's **a stale result built on a placeholder.** Work done under an assumption was never re-checked when the real fact arrived. Writing the fact down didn't help, because nothing linked it to the results that depended on it. The same placeholder also hid a second problem: October is the start of the season in Phoenix, but the end of it in Ohio.
+So there are two different failures:
+- **A true stale placeholder:** the Phoenix gardening-season result (step 1) was never revisited once Ohio was known. Dependency tracking catches this: the result depends on `mom_location`, and that changed.
+- **The club mix-up isn't staleness.** The idea was created after the fact was known, built on the wrong person's location. Dependency tracking would not catch it, because nothing changed after the idea was made. What catches it is a **final check of the answer against the notes**: every place named in the answer has to match the location of the person it's for.
 
-**For the design:** this is the problem build systems and spreadsheets solve. Every derived result records what it depends on, and changing an input marks those results stale. A working picture needs the same thing: a result found "assuming Phoenix" carries that assumption with it, and when the location comes back as Ohio, it gets flagged. Keeping notes isn't enough; the notes need dependencies.
+Both are needed: links between facts and ideas for things that change, and a final check for things that were wrong from the start.
 
 ## The rest of the loop
 
@@ -39,7 +41,8 @@ The questions and the insight took about 10 minutes in total. Most of the rest w
 
 ## What it suggests for training data
 
-- **Results carry their assumptions.** A placeholder ("say Phoenix") is fine while waiting, but everything built on it is marked and re-checked when the real answer arrives.
+- **Results carry their assumptions.** A placeholder is fine while waiting, but everything built on it is marked and re-checked when the real answer arrives.
+- **Keep track of whose fact it is.** Two people, two locations: the answer must use the one it's for.
 - **Final check against the notes**, item by item: location, budget, timeline.
 - **Listen to wording** (tense changes, "she says she's fine"); that's where the real questions come from.
 - **Check memory before asking** what you might already know about the person.
