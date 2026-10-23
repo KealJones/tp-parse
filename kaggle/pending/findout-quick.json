@@ -1,0 +1,10 @@
+{
+ "slug": "findout-quick",
+ "notebook": "experiments/findout/findout_quick.ipynb",
+ "out": "experiments/findout/kaggle-quick",
+ "gpu": true,
+ "internet": true,
+ "push_output": "Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/kealinit/findout-quick",
+ "ref": "kealinit/findout-quick",
+ "started": "2026-10-23T21:35:31+00:00"
+}
