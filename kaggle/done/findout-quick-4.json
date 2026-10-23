@@ -1,0 +1,11 @@
+{
+ "slug": "findout-quick-4",
+ "notebook": "experiments/findout/findout_quick.ipynb",
+ "out": "experiments/findout/kaggle-quick",
+ "gpu": true,
+ "internet": true,
+ "push_output": "Kernel push error: Maximum batch GPU session count of 2 reached.",
+ "ref": "kealjones@gmail.com/findout-quick-4",
+ "finished": "2026-10-23T22:12:38+00:00",
+ "result": "push failed"
+}
