@@ -19,5 +19,7 @@ Cloudflare collects anonymous telemetry about your usage of Wrangler. Learn more
   If you think this is a bug, please open an issue at: [4mhttps://github.com/cloudflare/workers-sdk/issues/new/choose[0m
 
 
-🪵  Logs were written to "/home/runner/.config/.wrangler/logs/wrangler-2026-10-23_02-09-01_497.log"
+🪵  Logs were written to "/home/runner/.config/.wrangler/logs/wrangler-2026-10-23_02-09-51_040.log"
 ```
+
+Token shape (no value shown): length 32 raw / 32 cleaned; whitespace removed: no; only hex: yes
