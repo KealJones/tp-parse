@@ -1,0 +1,40 @@
+name: hf-collect
+# Every 15 minutes, or on a push to hf/collect.txt: pulls finished Hugging Face Job results into the repo.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  push:
+    branches: [main]
+    paths: ["hf/collect.txt"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: hf-bridge
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    environment: HUGGINGFACE
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Anything running?
+        id: check
+        run: if ls hf/pending/*.json >/dev/null 2>&1; then echo "go=1" >> "$GITHUB_OUTPUT"; else echo "nothing pending"; fi
+      - if: steps.check.outputs.go == '1'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - if: steps.check.outputs.go == '1'
+        run: pip install -q -U huggingface_hub && python hf/bridge.py collect
+      - if: steps.check.outputs.go == '1'
+        name: Commit results
+        run: |
+          git config user.name "hf-bridge"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A hf experiments
+          git diff --cached --quiet && exit 0
+          git commit -q -m "hf: collect results"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 10; done
