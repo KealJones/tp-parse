@@ -2,6 +2,7 @@
 
   python kaggle/bridge.py start [queue files...]   push queued notebooks to Kaggle (all of kaggle/queue/ if none given)
   python kaggle/bridge.py collect                  check running jobs; download results of finished ones
+  python kaggle/bridge.py list                     write kaggle/MINE.md: the account's recent notebooks and their status
 
 A job is a JSON file in kaggle/queue/:
   {"slug": "registers-v2", "notebook": "experiments/registers/registers.ipynb",
@@ -119,6 +120,19 @@ def collect():
         f.unlink()
 
 
+def list_mine():
+    """So Claude can find notebooks started by hand on the Kaggle site, then adopt one by writing
+    {"slug": ..., "ref": "owner/slug", "out": ..., "started": ...} into kaggle/pending/."""
+    code, out = kaggle("kernels", "list", "--mine", "--sort-by", "dateRun", "--page-size", "20", "--csv")
+    lines = [f"# My Kaggle notebooks (checked {now().isoformat()})", "", "```", out, "```", ""]
+    refs = [l.split(",")[0] for l in out.splitlines()[1:] if "/" in l.split(",")[0]][:8]
+    for ref in refs:
+        c, st_ = kaggle("kernels", "status", ref)
+        lines.append(f"- {ref}: {st_.splitlines()[-1] if st_ else '?'}")
+    (ROOT / "kaggle" / "MINE.md").write_text("\n".join(lines) + "\n")
+    print("\n".join(lines))
+
+
 def setup_auth():
     """The key secret may be a new-style API token or a legacy kaggle.json key: try the token first, then the file."""
     key = os.environ.pop("KAGGLE_KEY", "").strip()
@@ -141,4 +155,4 @@ if __name__ == "__main__":
     if not USER:
         sys.exit("KAGGLE_USERNAME is not set")
     setup_auth()
-    {"start": lambda: start(sys.argv[2:]), "collect": collect}[sys.argv[1]]()
+    {"start": lambda: start(sys.argv[2:]), "collect": collect, "list": list_mine}[sys.argv[1]]()
