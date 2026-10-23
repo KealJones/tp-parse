@@ -3,7 +3,7 @@ name: kaggle-run
 on:
   push:
     branches: [main]
-    paths: ["kaggle/queue/**"]
+    paths: ["kaggle/queue/**", ".github/workflows/kaggle-run.yml"]
   workflow_dispatch:
 permissions:
   contents: write
@@ -13,6 +13,7 @@ concurrency:
 jobs:
   start:
     runs-on: ubuntu-latest
+    environment: KAGGLE
     env:
       KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
       KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
