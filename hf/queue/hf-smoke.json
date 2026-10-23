@@ -1,2 +1,0 @@
-{"slug": "hf-smoke", "flavor": "a10g-small", "timeout": "10m", "files": ["hf/smoke.py"], "cmd": "python smoke.py",
- "pip": ["transformers"], "outdir": "out", "out": "hf/smoke-out"}
