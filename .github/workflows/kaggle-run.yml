@@ -1,0 +1,33 @@
+name: kaggle-run
+# Pushes queued notebooks (kaggle/queue/*.json) to Kaggle. See kaggle/README.md.
+on:
+  push:
+    branches: [main]
+    paths: ["kaggle/queue/**"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kaggle-bridge
+  cancel-in-progress: false
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    env:
+      KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+      KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q kaggle && kaggle --version
+      - run: python kaggle/bridge.py start
+      - name: Commit job state
+        run: |
+          git config user.name "kaggle-bridge"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A kaggle experiments
+          git diff --cached --quiet && exit 0
+          git commit -q -m "kaggle: start queued runs"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 10; done

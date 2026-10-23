@@ -1,0 +1,41 @@
+name: kaggle-collect
+# Every 15 minutes: checks running Kaggle jobs (kaggle/pending/) and commits the results of finished ones.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  push:
+    branches: [main]
+    paths: ["kaggle/collect.txt"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kaggle-bridge
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    env:
+      KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+      KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Anything running?
+        id: check
+        run: |
+          if ls kaggle/pending/*.json >/dev/null 2>&1; then echo "go=1" >> "$GITHUB_OUTPUT"; else echo "nothing pending"; fi
+      - if: steps.check.outputs.go == '1'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - if: steps.check.outputs.go == '1'
+        run: pip install -q kaggle && python kaggle/bridge.py collect
+      - if: steps.check.outputs.go == '1'
+        name: Commit results
+        run: |
+          git config user.name "kaggle-bridge"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A kaggle experiments
+          git diff --cached --quiet && exit 0
+          git commit -q -m "kaggle: collect results"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 10; done
