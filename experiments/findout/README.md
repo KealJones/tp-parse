@@ -20,7 +20,7 @@ The "Finding Out" paper's thesis, tested directly. We take a small pretrained mo
 | stale: an assumption overturned halfway through | |
 | whose: two people, two towns, answer about the right one | |
 
-Requests come tidy or messy ("uhh is dravor bigger than ralvorum lol"). Some messy phrasings are only used in testing.
+Requests come tidy or messy ("uhh is dravor bigger than ralvorum lol"). Two filler prefixes ("quick q", "random but") appear only in testing; the templates themselves are shared.
 
 ## Conditions and measures
 

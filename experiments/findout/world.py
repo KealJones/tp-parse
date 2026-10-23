@@ -10,7 +10,7 @@
 # When a fact replaces an assumption, the harness says which earlier searches rested on the old value.
 
 # %%
-import json, random, re
+import json, random, re, zlib
 
 SYL = ["ba", "lo", "rin", "ta", "vor", "zel", "mi", "qua", "dun", "pel", "sor", "ky", "neth", "ul", "gra",
        "fen", "osh", "tir", "wex", "ja", "bri", "mok", "sel", "um", "dra", "vin", "ko", "ral", "esh", "thu"]
@@ -67,31 +67,33 @@ def fact_sentence(kind, ent, attr, val):
 
 def search(W, query):
     """Return facts about every entity named in the query (requested attribute first), else no results."""
-    q = query.lower()
+    q = query.lower().replace("_", " ")
     hits = []
     for kind, ents in W.items():
         for ent, attrs in ents.items():
             if re.search(r"\b" + re.escape(ent.lower()) + r"s?\b", q):
-                order = sorted(attrs, key=lambda a: (a not in q and not any(s in q for s in SYN.get(a, ())), a))
+                named = [a for a in attrs if a in q or any(s in q for s in SYN.get(a, ()))]
+                rest = sorted((a for a in attrs if a not in named), key=lambda a: zlib.crc32(f"{ent}|{a}|{len(q)}".encode()))
+                order = named + rest      # the asked-for attribute first; if none named, two arbitrary ones
                 hits += [fact_sentence(kind, ent, a, attrs[a]) for a in order[:2]]
     return " ".join(hits) if hits else "no results"
 
 
-SYN = {"diet": ("eat", "food"), "legs": ("leg",), "habitat": ("live", "where"), "population": ("people", "big", "size"),
+SYN = {"color": ("colour",), "diet": ("eat", "food"), "legs": ("leg",), "habitat": ("live", "where"), "population": ("people", "big", "size"),
        "region": ("where", "area"), "founded": ("old", "when"), "price": ("cost", "much"), "weight": ("heavy", "weigh"),
        "material": ("made",), "age": ("old",), "job": ("work", "do")}
 
 
 def calc(expr):
-    if not re.fullmatch(r"[\d\s+\-*/().<>=]+", expr):
-        return "error: only numbers and + - * / ( ) < > allowed"
+    if len(expr) > 80 or "**" in expr or not re.fullmatch(r"[\d\s+\-*/().<>=]+", expr):
+        return "error: only short expressions with numbers and + - * / ( ) < > are allowed"
     try:
         v = eval(expr, {"__builtins__": {}})
+        if isinstance(v, bool):
+            return "true" if v else "false"
+        return str(int(v)) if float(v).is_integer() else f"{v:.2f}"
     except Exception as e:
         return f"error: {type(e).__name__}"
-    if isinstance(v, bool):
-        return "true" if v else "false"
-    return str(int(v)) if float(v).is_integer() else f"{v:.2f}"
 
 
 # %% [markdown]
@@ -105,6 +107,21 @@ def calc(expr):
 # %%
 MESSY_PRE = ["uhh ", "ok so ", "hey ", "so like ", "quick q ", "random but ", ""]
 MESSY_POST = [" lol", " idk", "?", " thx", "", " if u know"]
+
+
+def nums(ans):
+    return set(re.findall(r"\d+", ans))
+
+
+def has(ans, phrase):
+    return phrase.lower() in ans.lower()
+
+
+def first_named(ans, names):
+    """The name (from names) that appears earliest in the answer, case-insensitive."""
+    pos = {n: ans.lower().find(n.lower()) for n in names}
+    pos = {n: p for n, p in pos.items() if p >= 0}
+    return min(pos, key=pos.get) if pos else None
 
 
 def style(r, tidy, messy, split):
@@ -134,7 +151,7 @@ def t_lookup(r, W, split):
             S("search", text=f"{c} {attr}"),
             S("fact", key=f"{c}_{attr}", text=str(val)),
             S("answer", text=fact_sentence("creature", c, attr, val))]
-    return dict(type="lookup", request=req, gold=gold, person={}, check=lambda ans, tr: str(val) in ans, needs_search=True)
+    return dict(type="lookup", request=req, gold=gold, person={}, check=lambda ans, tr: (str(val) in nums(ans)) if isinstance(val, int) else has(ans, val), needs_search=True)
 
 
 def t_given(r, W, split):
@@ -145,7 +162,7 @@ def t_given(r, W, split):
                 f"{s.lower()} so what does a {c} eat" if attr == "diet" else f"{s.lower()} how many legs does a {c} have", split)
     gold = [S("think", text="The answer is already in the message. No lookup needed."),
             S("answer", text=s)]
-    return dict(type="given", request=req, gold=gold, person={}, check=lambda ans, tr: str(a[attr]) in ans, needs_search=False)
+    return dict(type="given", request=req, gold=gold, person={}, check=lambda ans, tr: (str(a[attr]) in nums(ans)) if isinstance(a[attr], int) else has(ans, a[attr]), needs_search=False)
 
 
 def t_calc(r, W, split):
@@ -162,7 +179,7 @@ def t_calc(r, W, split):
     tot = a["price"] * k
     gold += [S("calc", text=f"{a['price']} * {k}"), S("answer", text=f"{k} {i}s cost {tot} coins.")]
     return dict(type="calc" if known else "lookup+calc", request=req, gold=gold, person={},
-                check=lambda ans, tr: str(tot) in ans, needs_search=not known, needs_calc=True)
+                check=lambda ans, tr: str(tot) in nums(ans), needs_search=not known, needs_calc=True)
 
 
 def t_compare(r, W, split):
@@ -174,7 +191,7 @@ def t_compare(r, W, split):
             S("search", text=f"{t2} population"), S("fact", key=f"{t2}_population", text=str(a2["population"])),
             S("calc", text=f"{a1['population']} > {a2['population']}"),
             S("answer", text=f"{big} is bigger: {t1} has {a1['population']} people and {t2} has {a2['population']}.")]
-    return dict(type="compare", request=req, gold=gold, person={}, check=lambda ans, tr: ans.strip().startswith(big) or f"{big} is bigger" in ans, needs_search=True)
+    return dict(type="compare", request=req, gold=gold, person={}, check=lambda ans, tr: first_named(ans, [t1, t2]) == big, needs_search=True)
 
 
 def t_ask(r, W, split):
@@ -185,7 +202,7 @@ def t_ask(r, W, split):
             S("fact", key="hometown", text=t),
             S("search", text=f"{t} region"), S("fact", key=f"{t}_region", text=a["region"]),
             S("answer", text=f"{t} is in {a['region']}.")]
-    return dict(type="ask", request=req, gold=gold, person={"town": t}, check=lambda ans, tr: a["region"] in ans,
+    return dict(type="ask", request=req, gold=gold, person={"town": t}, check=lambda ans, tr: has(ans, a["region"]),
                 needs_search=True, needs_ask=True)
 
 
@@ -207,7 +224,7 @@ def t_stale(r, W, split):
             S("search", text=f"{tb} region"), S("fact", key=f"{tb}_region", text=ab["region"]),
             S("answer", text=f"She's in {tb}, which is in {ab['region']}.")]
     return dict(type="stale", request=req, gold=gold, person={"interrupt": f"oh wait she moved to {tb} last year"},
-                check=lambda ans, tr: ab["region"] in ans and aa["region"] not in ans, needs_search=True)
+                check=lambda ans, tr: has(ans, ab["region"]) and not has(ans, aa["region"]), needs_search=True)
 
 
 def t_whose(r, W, split):
@@ -219,7 +236,7 @@ def t_whose(r, W, split):
             S("check", text=f"The question is about the brother's town, {ta}, not {tb}."),
             S("answer", text=f"{ta}, your brother's town, has {aa['population']} people.")]
     return dict(type="whose", request=req, gold=gold, person={},
-                check=lambda ans, tr: str(aa["population"]) in ans and str(ab["population"]) not in ans, needs_search=True)
+                check=lambda ans, tr: str(aa["population"]) in nums(ans) and str(ab["population"]) not in nums(ans), needs_search=True)
 
 
 # --- held-out task types (never trained on)
@@ -229,23 +246,23 @@ def u_cost_compare(r, W, split):
     c1, c2 = a1["price"] * k1, a2["price"] * k2
     while c1 == c2:
         k2 += 1; c2 = a2["price"] * k2
-    more = f"{k1} {i1}s" if c1 > c2 else f"{k2} {i2}s"
     req = style(r, f"Do {k1} {i1}s cost more than {k2} {i2}s?", f"would {k1} {i1}s cost more than {k2} {i2}s", split)
     return dict(type="U:cost-compare", request=req, gold=[], person={},
-                check=lambda ans, tr: (("yes" in ans.lower()[:12]) == (c1 > c2)) or more in ans, needs_search=True, needs_calc=True)
+                check=lambda ans, tr: (lambda m: bool(m) and (m.group(1) == "yes") == (c1 > c2))(re.match(r"\W*(yes|no)\b", ans.lower())),
+                needs_search=True, needs_calc=True)
 
 
 def u_three(r, W, split):
     ts = r.sample(sorted(W["town"]), 3)
     big = max(ts, key=lambda t: W["town"][t]["population"])
     req = style(r, f"Which is the biggest: {ts[0]}, {ts[1]} or {ts[2]}?", f"which is biggest out of {ts[0].lower()}, {ts[1].lower()} and {ts[2].lower()}", split)
-    return dict(type="U:three-way", request=req, gold=[], person={}, check=lambda ans, tr: big in ans.split(".")[0], needs_search=True)
+    return dict(type="U:three-way", request=req, gold=[], person={}, check=lambda ans, tr: first_named(ans, ts) == big, needs_search=True)
 
 
 def u_person(r, W, split):
     p, a = pick(r, W, "person")
     req = style(r, f"How old is {p}?", f"how old is {p.lower()}", split)
-    return dict(type="U:new-kind", request=req, gold=[], person={}, check=lambda ans, tr: str(a["age"]) in ans, needs_search=True)
+    return dict(type="U:new-kind", request=req, gold=[], person={}, check=lambda ans, tr: str(a["age"]) in nums(ans), needs_search=True)
 
 
 TRAIN_TASKS = [t_lookup, t_given, t_calc, t_compare, t_ask, t_stale, t_whose]
@@ -350,7 +367,7 @@ def score(task, answer, H):
     return {"type": task["type"], "ok": bool(answer) and bool(task["check"](answer, H)),
             "searched": "search" in used, "needs_search": task.get("needs_search", False),
             "calc": "calc" in used, "needs_calc": task.get("needs_calc", False),
-            "asked": "ask" in used, "needs_ask": task.get("needs_ask", False), "steps": len(H.log)}
+            "asked": "ask" in used, "needs_ask": task.get("needs_ask", False), "steps": len(H.log), "format_fail": not answer}
 
 
 def make_split(seed, n, split, tasks):
