@@ -1,0 +1,10 @@
+{
+ "slug": "ft-smollm2-360m",
+ "notebook": "experiments/finetune/ft_smollm2-360m.ipynb",
+ "out": "experiments/finetune/kaggle-out-smollm2-360m",
+ "gpu": true,
+ "internet": true,
+ "push_output": "Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/kealinit/ft-smollm2-360m",
+ "ref": "kealinit/ft-smollm2-360m",
+ "started": "2026-10-23T21:42:13+00:00"
+}
