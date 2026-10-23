@@ -1,7 +1,7 @@
-# Kaggle run: findout-quick
+# Kaggle run: findout-quick-2
 
 Status: **push failed**
 
 ```
-409 Client Error: Conflict for url: https://api.kaggle.com/v1/kernels.KernelsApiService/SaveKernel
+Kernel push error: Maximum batch GPU session count of 2 reached.
 ```
