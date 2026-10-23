@@ -1,0 +1,10 @@
+{
+ "slug": "registers-v2",
+ "notebook": "experiments/registers-v2/registers_v2.ipynb",
+ "out": "experiments/registers-v2/kaggle-out",
+ "gpu": true,
+ "internet": false,
+ "push_output": "Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/kealinit/registers-v2",
+ "ref": "kealinit/registers-v2",
+ "started": "2026-10-23T02:49:36+00:00"
+}
