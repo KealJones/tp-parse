@@ -1,3 +1,4 @@
+# Cloudflare Worker config for tp-relay (deployed by .github/workflows/relay-deploy.yml)
 name = "tp-relay"
 main = "src/index.ts"
 compatibility_date = "2026-10-01"
