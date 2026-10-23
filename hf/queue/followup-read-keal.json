@@ -1,4 +1,0 @@
-{"slug": "followup-read-keal", "flavor": "a10g-small", "timeout": "75m",
- "files": ["experiments/finetune/ft.py", "experiments/finetune/followup.py", "experiments/finetune/messages.json"],
- "cmd": "python followup.py --pilot && rm -rf out && python followup.py",
- "pip": ["transformers>=4.51", "datasets", "huggingface_hub"], "outdir": "out", "out": "experiments/finetune/hf-out-followup"}
