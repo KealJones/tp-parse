@@ -57,6 +57,8 @@ def start(files):
             code, out = kaggle("kernels", "push", "-p", d)
         print(f"[{slug}] push exit {code}:\n{out}")
         job["push_output"] = out[-2000:]
+        m = re.search(r"kaggle\.com/code/([^/\s]+)/([^/\s]+)", out)
+        job["ref"] = f"{m[1]}/{m[2]}" if m else f"{USER}/{slug}"     # the real owner name, even if the secret holds an email
         ok = code == 0 and "error" not in out.lower()
         if ok:
             job["started"] = now().isoformat()
@@ -74,7 +76,8 @@ def start(files):
 def collect():
     for f in sorted(PENDING.glob("*.json")) if PENDING.exists() else []:
         job = json.loads(f.read_text())
-        slug, ref = job["slug"], f"{USER}/{job['slug']}"
+        slug = job["slug"]
+        ref = job.get("ref") or f"{USER}/{slug}"
         code, out = kaggle("kernels", "status", ref)
         state = out.lower()
         print(f"[{slug}] status: {out}")
