@@ -1,7 +1,7 @@
 // tp-relay: fetches a web page server-side and returns it with CORS headers, so a browser-based harness can read it.
-// Only answers requests that carry the secret x-relay-key header. Set ALLOWED_ORIGIN to lock it to one page.
+// Open by default. Add a RELAY_KEY secret to require an x-relay-key header; set ALLOWED_ORIGIN to lock it to one page.
 interface Env {
-  RELAY_KEY: string;
+  RELAY_KEY?: string;
   ALLOWED_ORIGIN: string;
 }
 
@@ -14,7 +14,7 @@ export default {
     };
     if (req.method === "OPTIONS") return new Response(null, { headers: cors });
     if (req.method !== "GET") return new Response("GET only", { status: 405, headers: cors });
-    if (!env.RELAY_KEY || req.headers.get("x-relay-key") !== env.RELAY_KEY) {
+    if (env.RELAY_KEY && req.headers.get("x-relay-key") !== env.RELAY_KEY) {
       return new Response("forbidden", { status: 403, headers: cors });
     }
     const target = new URL(req.url).searchParams.get("url");
