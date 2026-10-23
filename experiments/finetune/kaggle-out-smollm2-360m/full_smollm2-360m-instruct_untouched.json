@@ -1,0 +1,86 @@
+{
+ "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+ "version": "untouched",
+ "tag": "full",
+ "plans": {
+  "clean/short": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 10,
+    "wrong choice": 12,
+    "false claim": 1,
+    "bad take": 1
+   }
+  },
+  "clean/long": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 15,
+    "wrong choice": 8,
+    "bad take": 1
+   }
+  },
+  "messy/short": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 12,
+    "wrong choice": 10,
+    "bad go": 1,
+    "false claim": 1
+   }
+  },
+  "messy/long": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 13,
+    "wrong choice": 9,
+    "bad take": 1,
+    "too long": 1
+   }
+  },
+  "filler/short": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 8,
+    "too long": 12,
+    "wrong choice": 4
+   }
+  },
+  "filler/long": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 6,
+    "too long": 14,
+    "wrong choice": 4
+   }
+  }
+ },
+ "sample": {
+  "problem": "the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :",
+  "plan": "the person wants the water because the water is at the forest .",
+  "result": "fail"
+ },
+ "messages": {
+  "typed": 0.20833333333333334,
+  "voice": 0.38095238095238093,
+  "all": 0.28888888888888886,
+  "n": 45
+ },
+ "english": {
+  "arc_easy": 0.49,
+  "wiki_ppl": 24.055722683210202
+ },
+ "total_s": 497
+}

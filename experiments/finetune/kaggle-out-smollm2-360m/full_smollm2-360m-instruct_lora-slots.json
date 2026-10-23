@@ -1,0 +1,166 @@
+{
+ "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+ "version": "lora-slots",
+ "tag": "full",
+ "final_plan_loss": 0.0037056890146868683,
+ "train_s": 1075,
+ "plans": {
+  "clean/short": {
+   "success": 0.9583333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 1
+   }
+  },
+  "clean/long": {
+   "success": 0.9583333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 1
+   }
+  },
+  "messy/short": {
+   "success": 0.9166666666666666,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 1,
+    "bad take": 1
+   }
+  },
+  "messy/long": {
+   "success": 0.9583333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 1
+   }
+  },
+  "filler/short": {
+   "success": 0.5833333333333334,
+   "looked_when_needed": 0.8571428571428571,
+   "searched_when_not": 0.041666666666666664,
+   "fails": {
+    "garbled": 7,
+    "bad go": 3
+   }
+  },
+  "filler/long": {
+   "success": 0.5833333333333334,
+   "looked_when_needed": 0.6666666666666666,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 2,
+    "garbled": 5,
+    "bad open": 1,
+    "bad take": 1,
+    "wrong choice": 1
+   }
+  }
+ },
+ "sample": {
+  "problem": "the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :",
+  "plan": "search : where is the water ? result : the water is at the shop . the door of the shop is locked , so the person needs the key . search : where is the key ? result : the key is at the school . the person is not at the school , so the person goes to the school . the door of the school is closed , so the person opens the door of the school . the person takes the key . the person is not at the shop , so the person goes to the shop . the door of the shop is locked , so the person opens the door of the shop with the key . the person takes the water . the person has the water , so the goal is done . done .",
+  "result": "ok"
+ },
+ "messages": {
+  "typed": 0.3333333333333333,
+  "voice": 0.5714285714285714,
+  "all": 0.4444444444444444,
+  "n": 45
+ },
+ "english": {
+  "arc_easy": 0.53,
+  "wiki_ppl": 28.002687901832232
+ },
+ "plans_4bit": {
+  "clean/short": {
+   "success": 0.4583333333333333,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 5,
+    "bad open": 3,
+    "bad go": 3,
+    "bad take": 1,
+    "too long": 1
+   }
+  },
+  "clean/long": {
+   "success": 0.2916666666666667,
+   "looked_when_needed": 0.9583333333333334,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 4,
+    "bad open": 5,
+    "garbled": 6,
+    "wrong choice": 1,
+    "bad take": 1
+   }
+  },
+  "messy/short": {
+   "success": 0.4583333333333333,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 3,
+    "bad open": 2,
+    "bad go": 4,
+    "another skin's word": 3,
+    "too long": 1
+   }
+  },
+  "messy/long": {
+   "success": 0.125,
+   "looked_when_needed": 0.9166666666666666,
+   "searched_when_not": 0,
+   "fails": {
+    "bad open": 5,
+    "bad go": 4,
+    "garbled": 9,
+    "wrong choice": 1,
+    "another skin's word": 2
+   }
+  },
+  "filler/short": {
+   "success": 0.125,
+   "looked_when_needed": 0.7142857142857143,
+   "searched_when_not": 0.20833333333333334,
+   "fails": {
+    "done without goal": 1,
+    "bad open": 2,
+    "garbled": 8,
+    "too long": 5,
+    "bad go": 2,
+    "wrong choice": 2,
+    "bad take": 1
+   }
+  },
+  "filler/long": {
+   "success": 0.041666666666666664,
+   "looked_when_needed": 0.3333333333333333,
+   "searched_when_not": 0.041666666666666664,
+   "fails": {
+    "bad open": 2,
+    "bad go": 5,
+    "garbled": 9,
+    "wrong choice": 4,
+    "too long": 2,
+    "bad unlock": 1
+   }
+  }
+ },
+ "messages_4bit": {
+  "typed": 0.3333333333333333,
+  "voice": 0.47619047619047616,
+  "all": 0.4,
+  "n": 45
+ },
+ "english_4bit": {
+  "arc_easy": 0.49333333333333335,
+  "wiki_ppl": 31.896827217887726
+ },
+ "total_s": 3180
+}

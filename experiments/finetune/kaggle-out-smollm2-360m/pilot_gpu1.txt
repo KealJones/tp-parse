@@ -1,0 +1,65 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+loaded HuggingFaceTB/SmolLM2-360M-Instruct: 362M params, vocab 49152, 4 sentence-end tokens
+Generating train split:   0%|          | 0/2251 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 2251/2251 [00:00<00:00, 28002.91 examples/s]
+Generating test split:   0%|          | 0/2376 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 2376/2376 [00:00<00:00, 390198.37 examples/s]
+Generating validation split:   0%|          | 0/570 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 570/570 [00:00<00:00, 171073.58 examples/s]
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 4358/4358 [00:00<00:00, 476904.01 examples/s]
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 36718/36718 [00:00<00:00, 757216.38 examples/s]
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3760/3760 [00:00<00:00, 543494.61 examples/s]
+slots attached before layer 16 of 32: 0.81M params
+training 314.6M base + 0.81M slot params
+fp16 check ok (loss 1.648)
+    step 2/20  plan loss 1.9238  next-sentence 10.365  (2s)
+    step 4/20  plan loss 1.8044  next-sentence 9.835  (4s)
+    step 6/20  plan loss 1.9162  next-sentence 8.924  (5s)
+    step 8/20  plan loss 1.8269  next-sentence 7.882  (7s)
+    step 10/20  plan loss 1.8752  next-sentence 7.205  (9s)
+    step 12/20  plan loss 1.8826  next-sentence 7.060  (10s)
+    step 14/20  plan loss 1.6565  next-sentence 6.948  (12s)
+    step 16/20  plan loss 1.7871  next-sentence 6.767  (14s)
+    step 18/20  plan loss 1.7667  next-sentence 6.643  (15s)
+    step 20/20  plan loss 1.7154  next-sentence 6.510  (17s)
+    clean/short: 0%  (1s)
+    clean/long: 0%  (1s)
+    messy/short: 0%  (4s)
+    messy/long: 0%  (5s)
+    filler/short: 0%  (36s)
+    filler/long: 0%  (65s)
+squashed 224 linear layers to 4 bits
+    clean/short: 0%  (1s)
+    clean/long: 0%  (1s)
+    messy/short: 0%  (31s)
+    messy/long: 0%  (47s)
+    filler/short: 0%  (76s)
+    filler/long: 0%  (106s)
+== ft-slots done in 218s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.3, 'wiki_ppl': 24.58200386624965}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+loaded HuggingFaceTB/SmolLM2-360M-Instruct: 362M params, vocab 49152, 4 sentence-end tokens
+slots attached before layer 16 of 32: 0.81M params
+LoRA rank 16 on 224 linear layers: 8.7M trainable params
+training 8.7M base (LoRA) + 0.81M slot params
+fp16 check ok (loss 1.648)
+    step 2/20  plan loss 1.9238  next-sentence 10.365  (2s)
+    step 4/20  plan loss 1.8032  next-sentence 9.835  (5s)
+    step 6/20  plan loss 1.9095  next-sentence 8.924  (7s)
+    step 8/20  plan loss 1.8145  next-sentence 7.879  (9s)
+    step 10/20  plan loss 1.8526  next-sentence 7.204  (11s)
+    step 12/20  plan loss 1.8786  next-sentence 7.025  (14s)
+    step 14/20  plan loss 1.6498  next-sentence 6.854  (16s)
+    step 16/20  plan loss 1.7742  next-sentence 6.651  (18s)
+    step 18/20  plan loss 1.7504  next-sentence 6.524  (20s)
+    step 20/20  plan loss 1.7307  next-sentence 6.395  (23s)
+    clean/short: 0%  (1s)
+    clean/long: 0%  (2s)
+    messy/short: 0%  (7s)
+    messy/long: 0%  (7s)
+    filler/short: 0%  (55s)
+    filler/long: 0%  (103s)
+squashed 224 linear layers to 4 bits
+    clean/short: 0%  (1s)
+    clean/long: 0%  (1s)
+    messy/short: 0%  (49s)
+    messy/long: 0%  (72s)
+    filler/short: 0%  (119s)
+    filler/long: 0%  (166s)
+== lora-slots done in 306s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.3, 'wiki_ppl': 24.56300754510018}

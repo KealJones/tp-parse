@@ -1,0 +1,163 @@
+{
+ "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+ "version": "ft-slots",
+ "tag": "full",
+ "final_plan_loss": 0.0020563576611493774,
+ "train_s": 815,
+ "plans": {
+  "clean/short": {
+   "success": 0.9583333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 1
+   }
+  },
+  "clean/long": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "messy/short": {
+   "success": 0.9166666666666666,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 2
+   }
+  },
+  "messy/long": {
+   "success": 0.9583333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad open": 1
+   }
+  },
+  "filler/short": {
+   "success": 0.4166666666666667,
+   "looked_when_needed": 0.8571428571428571,
+   "searched_when_not": 0.20833333333333334,
+   "fails": {
+    "garbled": 8,
+    "bad go": 3,
+    "wrong choice": 1,
+    "bad take": 1,
+    "bad unlock": 1
+   }
+  },
+  "filler/long": {
+   "success": 0.5416666666666666,
+   "looked_when_needed": 0.6666666666666666,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 6,
+    "bad open": 1,
+    "bad go": 1,
+    "too long": 1,
+    "bad take": 1,
+    "bad unlock": 1
+   }
+  }
+ },
+ "sample": {
+  "problem": "the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :",
+  "plan": "search : where is the water ? result : the water is at the shop . the door of the shop is locked , so the person needs the key . search : where is the key ? result : the key is at the school . the person is not at the school , so the person goes to the school . the door of the school is closed , so the person opens the door of the school . the person takes the key . the person is not at the shop , so the person goes to the shop . the door of the shop is locked , so the person opens the door of the shop with the key . the person takes the water . the person has the water , so the goal is done . done .",
+  "result": "ok"
+ },
+ "messages": {
+  "typed": 0.2916666666666667,
+  "voice": 0.47619047619047616,
+  "all": 0.37777777777777777,
+  "n": 45
+ },
+ "english": {
+  "arc_easy": 0.52,
+  "wiki_ppl": 24.917697643935593
+ },
+ "plans_4bit": {
+  "clean/short": {
+   "success": 0.4166666666666667,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "false claim": 2,
+    "garbled": 6,
+    "bad take": 2,
+    "bad go": 3,
+    "bad open": 1
+   }
+  },
+  "clean/long": {
+   "success": 0.08333333333333333,
+   "looked_when_needed": 0.75,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 18,
+    "bad take": 1,
+    "bad go": 1,
+    "bad open": 2
+   }
+  },
+  "messy/short": {
+   "success": 0.5,
+   "looked_when_needed": 0.8571428571428571,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 6,
+    "bad open": 1,
+    "bad go": 2,
+    "too long": 1,
+    "bad take": 2
+   }
+  },
+  "messy/long": {
+   "success": 0.041666666666666664,
+   "looked_when_needed": 0.4583333333333333,
+   "searched_when_not": 0,
+   "fails": {
+    "bad open": 4,
+    "garbled": 13,
+    "bad go": 1,
+    "bad take": 5
+   }
+  },
+  "filler/short": {
+   "success": 0.2916666666666667,
+   "looked_when_needed": 0.5714285714285714,
+   "searched_when_not": 0.16666666666666666,
+   "fails": {
+    "garbled": 8,
+    "too long": 5,
+    "bad go": 2,
+    "wrong choice": 1,
+    "bad take": 1
+   }
+  },
+  "filler/long": {
+   "success": 0,
+   "looked_when_needed": 0.125,
+   "searched_when_not": 0,
+   "fails": {
+    "bad open": 1,
+    "too long": 10,
+    "garbled": 10,
+    "another skin's word": 1,
+    "bad search": 1,
+    "wrong choice": 1
+   }
+  }
+ },
+ "messages_4bit": {
+  "typed": 0.2916666666666667,
+  "voice": 0.42857142857142855,
+  "all": 0.35555555555555557,
+  "n": 45
+ },
+ "english_4bit": {
+  "arc_easy": 0.49,
+  "wiki_ppl": 30.21166113461187
+ },
+ "total_s": 2085
+}
