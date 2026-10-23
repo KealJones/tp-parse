@@ -116,7 +116,26 @@ def collect():
         f.unlink()
 
 
+def setup_auth():
+    """The key secret may be a new-style API token or a legacy kaggle.json key: try the token first, then the file."""
+    key = os.environ.pop("KAGGLE_KEY", "").strip()
+    if not key:
+        sys.exit("KAGGLE_KEY is not set")
+    os.environ["KAGGLE_API_TOKEN"] = key
+    if kaggle("kernels", "list", "--mine", "--page-size", "1")[0] == 0:
+        print("auth: API token")
+        return
+    del os.environ["KAGGLE_API_TOKEN"]
+    cfg = Path.home() / ".kaggle"
+    cfg.mkdir(exist_ok=True)
+    (cfg / "kaggle.json").write_text(json.dumps({"username": USER, "key": key}))
+    (cfg / "kaggle.json").chmod(0o600)
+    code, out = kaggle("kernels", "list", "--mine", "--page-size", "1")
+    print("auth: kaggle.json" if code == 0 else f"auth failed both ways:\n{out[-1500:]}")
+
+
 if __name__ == "__main__":
     if not USER:
         sys.exit("KAGGLE_USERNAME is not set")
+    setup_auth()
     {"start": lambda: start(sys.argv[2:]), "collect": collect}[sys.argv[1]]()
