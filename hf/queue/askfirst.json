@@ -1,0 +1,17 @@
+{
+ "slug": "askfirst",
+ "flavor": "a10g-small",
+ "timeout": "120m",
+ "files": [
+  "experiments/askfirst/scenarios.py",
+  "experiments/askfirst/askfirst.py"
+ ],
+ "cmd": "python askfirst.py --pilot && rm -rf out && python askfirst.py",
+ "pip": [
+  "transformers>=4.51",
+  "datasets",
+  "huggingface_hub"
+ ],
+ "outdir": "out",
+ "out": "experiments/askfirst/hf-out"
+}
