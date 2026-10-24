@@ -1,0 +1,4 @@
+{"slug": "harness-v1", "flavor": "a10g-small", "timeout": "60m",
+ "files": ["experiments/harness/harness.py", "experiments/harness/tasks.json", "experiments/harness/cache.json"],
+ "cmd": "python harness.py --pilot && rm -rf out && python harness.py",
+ "pip": ["transformers>=4.51", "ddgs", "trafilatura", "requests"], "outdir": "out", "out": "experiments/harness/hf-out-v1"}
