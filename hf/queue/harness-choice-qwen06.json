@@ -1,0 +1,4 @@
+{"slug": "harness-choice-qwen06", "flavor": "a10g-small", "timeout": "40m",
+ "files": ["experiments/finetune/ft.py", "experiments/finetune/harness_choice.py"],
+ "cmd": "python harness_choice.py --pilot && rm -rf out && python harness_choice.py",
+ "pip": ["transformers>=4.51"], "outdir": "out", "out": "experiments/finetune/hf-out-harness-choice"}
