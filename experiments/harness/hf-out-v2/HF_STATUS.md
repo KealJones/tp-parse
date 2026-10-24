@@ -1,4 +1,11 @@
 # Hugging Face job: harness-v2
 
-Status: **running** (started 2026-10-24T16:41:51+00:00, last check 2026-10-24T16:47:29+00:00)
+Status: **complete** after 5.8 min of work on `a10g-small`, about $0.10 (plus a minute or two of startup)
 Job page: https://huggingface.co/jobs/kealjones/6adcdfcf1e112550ce7e1aca
+
+Files copied here:
+- AUTO.md
+- JOB_LOG.txt
+- cache.json
+- job_status.json
+- traces.json

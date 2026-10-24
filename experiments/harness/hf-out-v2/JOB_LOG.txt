@@ -1,0 +1,167 @@
+job 6adcdfcf1e112550ce7e1aca on gpu: harness-v2 at a126f4d
+fetched experiments/harness/harness.py
+fetched experiments/harness/harness_v2.py
+fetched experiments/harness/tasks.json
+fetched experiments/harness/cache.json
+
+
+config.json:   0%|          | 0.00/726 [00:00<?, ?B/s][A
+config.json: 100%|██████████| 726/726 [00:00<00:00, 3.98MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/9.73k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 9.73k/9.73k [00:00<00:00, 24.2MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 50.0MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 77.3MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 11.4MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  338kB/s  
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  338kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 11.4MB / 11.4MB, 1.13MB/s  
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 1.50GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: ██▌       |  379MB, 31.6MB/s  
+
+model.safetensors: reconstructing file:  21%|██        |  311MB / 1.50GB, 24.7MB/s  [A
+model.safetensors: downloading bytes: █████▏    |  772MB, 64.8MB/s  
+
+model.safetensors: reconstructing file:  58%|█████▊    |  874MB / 1.50GB, 72.8MB/s  [A
+model.safetensors: downloading bytes: ███████▉  | 1.19GB, 94.8MB/s  
+model.safetensors: downloading bytes: ██████████| 1.26GB,  105MB/s  
+model.safetensors: downloading bytes: ██████████| 1.26GB,  105MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 1.50GB / 1.50GB,  128MB/s  
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 4065.39it/s]
+
+
+generation_config.json:   0%|          | 0.00/239 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 239/239 [00:00<00:00, 1.26MB/s]
+Qwen/Qwen3-0.6B think=False: auto 0/2, tool calls 0 (8s)
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 3655.16it/s]
+Qwen/Qwen3-0.6B think=True: auto 0/2, tool calls 0 (17s)
+# Harness v2 (native tool calls): auto check (first pass; Claude grades by hand)
+
+- Qwen/Qwen3-0.6B, thinking off: 0/2; tool calls: none; malformed calls: 0
+- Qwen/Qwen3-0.6B, thinking on: 0/2; tool calls: none; malformed calls: 0
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 3821.76it/s]
+Qwen/Qwen3-0.6B think=False: auto 1/18, tool calls 0 (8s)
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 3593.96it/s]
+Qwen/Qwen3-0.6B think=True: auto 1/18, tool calls 6 (95s)
+
+
+config.json:   0%|          | 0.00/726 [00:00<?, ?B/s][A
+config.json: 100%|██████████| 726/726 [00:00<00:00, 4.81MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/9.73k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 9.73k/9.73k [00:00<00:00, 38.3MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 37.9MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 82.3MB/s]
+
+
+model.safetensors.index.json:   0%|          | 0.00/25.6k [00:00<?, ?B/s][A
+model.safetensors.index.json: 100%|██████████| 25.6k/25.6k [00:00<00:00, 93.2MB/s]
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s][A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 4.06GB            [A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 4.06GB            [A
+
+Downloading bytes: ▊         |  338MB,   ???B/s  [A
+
+Reconstructing (incomplete total...):   8%|▊         |  335MB / 4.06GB,   ???B/s  [A
+
+Fetching 2 files:  50%|█████     | 1/2 [00:01<00:01,  1.65s/it][A
+
+Downloading bytes: ██        |  852MB,  312MB/s  [A
+
+Reconstructing (incomplete total...):  24%|██▎       |  958MB / 4.06GB,  241MB/s  [A
+
+Downloading bytes: ███▍      | 1.39GB,  416MB/s  [A
+
+Reconstructing (incomplete total...):  41%|████      | 1.65GB / 4.06GB,  406MB/s  [A
+
+Downloading bytes: ████▌     | 1.87GB,  466MB/s  [A
+
+Reconstructing (incomplete total...):  55%|█████▌    | 2.25GB / 4.06GB,  462MB/s  [A
+
+Downloading bytes: █████▊    | 2.35GB,  453MB/s  [A
+
+Reconstructing (incomplete total...):  68%|██████▊   | 2.77GB / 4.06GB,  421MB/s  [A
+
+Downloading bytes: ██████▊   | 2.79GB,  415MB/s  [A
+
+Downloading bytes: ████████▏ | 3.33GB,  420MB/s  [A
+
+Reconstructing (incomplete total...):  87%|████████▋ | 3.53GB / 4.06GB,  432MB/s  [A
+
+Reconstructing (incomplete total...): 100%|██████████| 4.06GB / 4.06GB,  330MB/s  [A
+
+Fetching 2 files: 100%|██████████| 2/2 [00:12<00:00,  6.92s/it][A
+Fetching 2 files: 100%|██████████| 2/2 [00:12<00:00,  6.13s/it]
+
+
+Downloading bytes: ██████████| 3.53GB,  457MB/s  [A
+
+Download complete: ██████████| 3.53GB,  457MB/s  [A
+
+Reconstruction complete: 100%|██████████| 4.06GB / 4.06GB,  284MB/s               [A
+Download complete: ██████████| 3.53GB,  457MB/s  
+
+Reconstruction complete: 100%|██████████| 4.06GB / 4.06GB,  284MB/s  
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 2758.10it/s]
+
+
+generation_config.json:   0%|          | 0.00/239 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 239/239 [00:00<00:00, 1.59MB/s]
+Qwen/Qwen3-1.7B think=False: auto 1/18, tool calls 0 (130s)
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 3638.17it/s]
+Qwen/Qwen3-1.7B think=True: auto 11/18, tool calls 11 (306s)
+# Harness v2 (native tool calls): auto check (first pass; Claude grades by hand)
+
+- Qwen/Qwen3-0.6B, thinking off: 1/18; tool calls: none; malformed calls: 0
+- Qwen/Qwen3-0.6B, thinking on: 1/18; tool calls: {'search': 5, 'ask_user': 1}; malformed calls: 0
+- Qwen/Qwen3-1.7B, thinking off: 1/18; tool calls: none; malformed calls: 0
+- Qwen/Qwen3-1.7B, thinking on: 11/18; tool calls: {'search': 11}; malformed calls: 0
+exit code 0 after 5.8 min
