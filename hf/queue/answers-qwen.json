@@ -1,0 +1,4 @@
+{"slug": "answers-qwen", "flavor": "a10g-small", "timeout": "45m",
+ "files": ["experiments/answers/answer.py", "experiments/answers/tasks.json"],
+ "cmd": "python answer.py --pilot && rm -rf out && python answer.py",
+ "pip": ["transformers>=4.51"], "outdir": "out", "out": "experiments/answers/hf-out"}
