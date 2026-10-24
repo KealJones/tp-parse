@@ -1,0 +1,107 @@
+{
+ "model": "Qwen/Qwen3-0.6B",
+ "pilot": false,
+ "gpu": "NVIDIA A10G",
+ "before": {
+  "messages": {
+   "typed": 0.20833333333333334,
+   "voice": 0.3333333333333333,
+   "all": 0.26666666666666666,
+   "n": 45
+  },
+  "english": {
+   "arc_easy": 0.5666666666666667,
+   "wiki_ppl": 36.25143420443961
+  }
+ },
+ "train_examples": {
+  "planning": 6000,
+  "reading": 12000
+ },
+ "read_samples": [
+  {
+   "prompt": "Message: \"Okay so like categorize the like below names into, uh, into fishes and insects., insects. Hilsa, Catla, Maggot, Mite I don't know.\"\nWhat the person wants:",
+   "target": " Categorize  the below names into fishes and insects.\n Hilsa, Catla, Maggot, Mite"
+  },
+  {
+   "prompt": "Message: \"Yeah. I, I usually get it started for my wife I, she moves it around ever other day.\"\nWhat the person said, cleaned up:",
+   "target": " Yeah. I usually get it started for my wife she moves it around ever other day."
+  },
+  {
+   "prompt": "Message: \"I'm curious, um, why are like literally lot of uh the or whatever women more structured like and methodical in work, compared to men\"\nWhat the person wants:",
+   "target": " why are lot of the women more structured and methodical in work, compared to men"
+  },
+  {
+   "prompt": "Message: \"Well, we buy what, we just got through buying a twenty-five foot refrigerator, a new ceramic top stove, and a new dishwasher.\"\nWhat the person said, cleaned up:",
+   "target": " we buy what, we just got through buying a twenty-five foot refrigerator, a new ceramic top stove, and a new dishwasher."
+  },
+  {
+   "prompt": "Message: \"yo which rivers were the birthplaces of damn the first great civilizations?\"\nWhat the person wants:",
+   "target": " Which rivers were the birthplaces of the first great civilizations?"
+  },
+  {
+   "prompt": "Message: \"I try to, - I did switch to one, sponsored by the credit union, though. That seems to be a pretty low interest.\"\nWhat the person said, cleaned up:",
+   "target": " I try to, I did switch to one, sponsored by the credit union, though. That seems to be a pretty low interest."
+  }
+ ],
+ "final_loss": 0.010644867500959663,
+ "train_s": 501,
+ "after": {
+  "messages": {
+   "typed": 0.3333333333333333,
+   "voice": 0.47619047619047616,
+   "all": 0.4,
+   "n": 45
+  },
+  "english": {
+   "arc_easy": 0.5,
+   "wiki_ppl": 56.41510754317781
+  }
+ },
+ "plans": {
+  "clean/short": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "clean/long": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "messy/short": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "messy/long": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "filler/short": {
+   "success": 0.9583333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 1
+   }
+  },
+  "filler/long": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  }
+ },
+ "plan_sample": {
+  "problem": "the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :",
+  "plan": "search : where is the water ? result : the water is at the shop . the door of the shop is locked , so the person needs the key . search : where is the key ? result : the key is at the school . the person is not at the school , so the person goes to the school . the door of the school is closed , so the person opens the door of the school . the person takes the key . the person is not at the shop , so the person goes to the shop . the door of the shop is locked , so the person opens the door of the shop with the key . the person takes the water . the person has the water , so the goal is done . done .",
+  "result": "ok"
+ },
+ "total_s": 1687
+}
