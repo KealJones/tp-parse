@@ -1,0 +1,142 @@
+{
+ "model": "Qwen/Qwen3-0.6B",
+ "version": "lora-slots",
+ "tag": "full",
+ "final_plan_loss": 1.9951218413503113e-05,
+ "train_s": 1167,
+ "plans": {
+  "clean/short": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "clean/long": {
+   "success": 0.9583333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 1
+   }
+  },
+  "messy/short": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "messy/long": {
+   "success": 0.9583333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 1
+   }
+  },
+  "filler/short": {
+   "success": 0.8333333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 3,
+    "bad go": 1
+   }
+  },
+  "filler/long": {
+   "success": 0.6666666666666666,
+   "looked_when_needed": 0.8333333333333334,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 6,
+    "wrong choice": 1,
+    "bad go": 1
+   }
+  }
+ },
+ "sample": {
+  "problem": "the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :",
+  "plan": "search : where is the water ? result : the water is at the shop . the door of the shop is locked , so the person needs the key . search : where is the key ? result : the key is at the school . the person is not at the school , so the person goes to the school . the door of the school is closed , so the person opens the door of the school . the person takes the key . the person is not at the shop , so the person goes to the shop . the door of the shop is locked , so the person opens the door of the shop with the key . the person takes the water . the person has the water , so the goal is done . done .",
+  "result": "ok"
+ },
+ "messages": {
+  "typed": 0.375,
+  "voice": 0.42857142857142855,
+  "all": 0.4,
+  "n": 45
+ },
+ "english": {
+  "arc_easy": 0.5066666666666667,
+  "wiki_ppl": 126.6303558682861
+ },
+ "plans_4bit": {
+  "clean/short": {
+   "success": 0.9583333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 1
+   }
+  },
+  "clean/long": {
+   "success": 0.875,
+   "looked_when_needed": 0.9166666666666666,
+   "searched_when_not": 0,
+   "fails": {
+    "bad unlock": 1,
+    "wrong choice": 1,
+    "bad go": 1
+   }
+  },
+  "messy/short": {
+   "success": 0.9166666666666666,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad take": 1,
+    "bad go": 1
+   }
+  },
+  "messy/long": {
+   "success": 0.9166666666666666,
+   "looked_when_needed": 0.9583333333333334,
+   "searched_when_not": 0,
+   "fails": {
+    "wrong choice": 1,
+    "bad go": 1
+   }
+  },
+  "filler/short": {
+   "success": 0.7083333333333334,
+   "looked_when_needed": 0.9285714285714286,
+   "searched_when_not": 0.041666666666666664,
+   "fails": {
+    "garbled": 3,
+    "bad go": 2,
+    "bad take": 1,
+    "bad unlock": 1
+   }
+  },
+  "filler/long": {
+   "success": 0.625,
+   "looked_when_needed": 0.7083333333333334,
+   "searched_when_not": 0,
+   "fails": {
+    "bad unlock": 1,
+    "garbled": 4,
+    "wrong choice": 3,
+    "bad go": 1
+   }
+  }
+ },
+ "messages_4bit": {
+  "typed": 0.3333333333333333,
+  "voice": 0.2857142857142857,
+  "all": 0.3111111111111111,
+  "n": 45
+ },
+ "english_4bit": {
+  "arc_easy": 0.43666666666666665,
+  "wiki_ppl": 119.37182601331553
+ },
+ "total_s": 3490
+}

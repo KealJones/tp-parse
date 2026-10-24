@@ -1,0 +1,90 @@
+{
+ "model": "Qwen/Qwen3-0.6B",
+ "version": "untouched",
+ "tag": "full",
+ "plans": {
+  "clean/short": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0.125,
+   "fails": {
+    "garbled": 20,
+    "wrong choice": 2,
+    "another skin's word": 1,
+    "bad open": 1
+   }
+  },
+  "clean/long": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0.08333333333333333,
+   "fails": {
+    "garbled": 16,
+    "bad go": 1,
+    "bad take": 1,
+    "wrong agent": 1,
+    "wrong choice": 4,
+    "another skin's word": 1
+   }
+  },
+  "messy/short": {
+   "success": 0,
+   "looked_when_needed": 0.2857142857142857,
+   "searched_when_not": 0.4166666666666667,
+   "fails": {
+    "garbled": 19,
+    "another skin's word": 3,
+    "false claim": 1,
+    "bad open": 1
+   }
+  },
+  "messy/long": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0.08333333333333333,
+   "fails": {
+    "garbled": 19,
+    "wrong agent": 1,
+    "bad unlock": 2,
+    "another skin's word": 2
+   }
+  },
+  "filler/short": {
+   "success": 0,
+   "looked_when_needed": 0.14285714285714285,
+   "searched_when_not": 0.4166666666666667,
+   "fails": {
+    "garbled": 21,
+    "false claim": 1,
+    "another skin's word": 1,
+    "bad open": 1
+   }
+  },
+  "filler/long": {
+   "success": 0,
+   "looked_when_needed": 0.041666666666666664,
+   "searched_when_not": 0.25,
+   "fails": {
+    "garbled": 21,
+    "wrong agent": 1,
+    "wrong choice": 2
+   }
+  }
+ },
+ "sample": {
+  "problem": "the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :",
+  "plan": "search : where is the water ? result : the water is at the shop . the person goes to the shop .",
+  "result": "fail"
+ },
+ "messages": {
+  "typed": 0.20833333333333334,
+  "voice": 0.3333333333333333,
+  "all": 0.26666666666666666,
+  "n": 45
+ },
+ "english": {
+  "arc_easy": 0.5666666666666667,
+  "wiki_ppl": 36.20207084991279
+ },
+ "total_s": 166
+}

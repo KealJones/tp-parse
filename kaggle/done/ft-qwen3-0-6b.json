@@ -6,5 +6,8 @@
  "internet": true,
  "push_output": "Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/kealinit/ft-qwen3-0-6b",
  "ref": "kealinit/ft-qwen3-0-6b",
- "started": "2026-10-23T21:42:11+00:00"
+ "started": "2026-10-23T21:42:11+00:00",
+ "finished": "2026-10-24T01:35:44+00:00",
+ "result": "complete",
+ "hours": 3.89
 }

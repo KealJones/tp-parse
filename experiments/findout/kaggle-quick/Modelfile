@@ -1,0 +1,7 @@
+FROM ./findout.gguf
+PARAMETER temperature 0
+PARAMETER num_ctx 2048
+PARAMETER stop </search>
+PARAMETER stop </calc>
+PARAMETER stop </ask>
+PARAMETER stop </answer>

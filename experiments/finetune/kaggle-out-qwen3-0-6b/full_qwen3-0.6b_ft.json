@@ -1,0 +1,126 @@
+{
+ "model": "Qwen/Qwen3-0.6B",
+ "version": "ft",
+ "tag": "full",
+ "final_plan_loss": 0.00018115287908424094,
+ "train_s": 915,
+ "plans": {
+  "clean/short": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "clean/long": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "messy/short": {
+   "success": 0.9583333333333334,
+   "looked_when_needed": 0.9285714285714286,
+   "searched_when_not": 0,
+   "fails": {
+    "false claim": 1
+   }
+  },
+  "messy/long": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "filler/short": {
+   "success": 0.5833333333333334,
+   "looked_when_needed": 0.9285714285714286,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 8,
+    "bad go": 2
+   }
+  },
+  "filler/long": {
+   "success": 0.5833333333333334,
+   "looked_when_needed": 0.7083333333333334,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 1,
+    "garbled": 5,
+    "bad take": 1,
+    "wrong choice": 3
+   }
+  }
+ },
+ "sample": {
+  "problem": "the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :",
+  "plan": "search : where is the water ? result : the water is at the shop . the door of the shop is locked , so the person needs the key . search : where is the key ? result : the key is at the school . the person is not at the school , so the person goes to the school . the door of the school is closed , so the person opens the door of the school . the person takes the key . the person is not at the shop , so the person goes to the shop . the door of the shop is locked , so the person opens the door of the shop with the key . the person takes the water . the person has the water , so the goal is done . done .",
+  "result": "ok"
+ },
+ "messages": {
+  "typed": 0.375,
+  "voice": 0.42857142857142855,
+  "all": 0.4,
+  "n": 45
+ },
+ "english": {
+  "arc_easy": 0.44,
+  "wiki_ppl": 157.66652729846464
+ },
+ "plans_4bit": {
+  "clean/short": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "clean/long": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "messy/short": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "messy/long": {
+   "success": 1,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {}
+  },
+  "filler/short": {
+   "success": 0.5416666666666666,
+   "looked_when_needed": 0.9285714285714286,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 8,
+    "bad go": 3
+   }
+  },
+  "filler/long": {
+   "success": 0.625,
+   "looked_when_needed": 0.7083333333333334,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 1,
+    "garbled": 6,
+    "wrong choice": 2
+   }
+  }
+ },
+ "messages_4bit": {
+  "typed": 0.375,
+  "voice": 0.2857142857142857,
+  "all": 0.3333333333333333,
+  "n": 45
+ },
+ "english_4bit": {
+  "arc_easy": 0.43,
+  "wiki_ppl": 140.14904949368187
+ },
+ "total_s": 2517
+}

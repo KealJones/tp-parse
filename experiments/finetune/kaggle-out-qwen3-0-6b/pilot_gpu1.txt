@@ -1,0 +1,65 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+Generating train split:   0%|          | 0/2251 [00:00<?, ? examples/s]Generating train split:  44%|████▍     | 1000/2251 [00:00<00:00, 5478.65 examples/s]Generating train split: 100%|██████████| 2251/2251 [00:00<00:00, 12015.92 examples/s]
+Generating test split:   0%|          | 0/2376 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 2376/2376 [00:00<00:00, 365109.59 examples/s]
+Generating validation split:   0%|          | 0/570 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 570/570 [00:00<00:00, 178774.64 examples/s]
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 4358/4358 [00:00<00:00, 486759.08 examples/s]
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 36718/36718 [00:00<00:00, 707672.20 examples/s]
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3760/3760 [00:00<00:00, 573475.75 examples/s]
+slots attached before layer 14 of 28: 0.86M params
+training 440.5M base + 0.86M slot params
+fp16 check ok (loss 1.809)
+    step 2/20  plan loss 2.0754  next-sentence 11.940  (3s)
+    step 4/20  plan loss 1.8939  next-sentence 11.847  (5s)
+    step 6/20  plan loss 1.7896  next-sentence 11.674  (7s)
+    step 8/20  plan loss 1.3839  next-sentence 11.426  (9s)
+    step 10/20  plan loss 1.1477  next-sentence 11.131  (11s)
+    step 12/20  plan loss 0.8413  next-sentence 10.812  (13s)
+    step 14/20  plan loss 0.6620  next-sentence 10.452  (15s)
+    step 16/20  plan loss 0.5730  next-sentence 10.164  (17s)
+    step 18/20  plan loss 0.5046  next-sentence 9.921  (19s)
+    step 20/20  plan loss 0.4491  next-sentence 9.731  (22s)
+    clean/short: 0%  (2s)
+    clean/long: 0%  (6s)
+    messy/short: 0%  (11s)
+    messy/long: 0%  (13s)
+    filler/short: 0%  (32s)
+    filler/long: 0%  (66s)
+squashed 196 linear layers to 4 bits
+    clean/short: 0%  (19s)
+    clean/long: 0%  (37s)
+    messy/short: 0%  (55s)
+    messy/long: 0%  (73s)
+    filler/short: 0%  (107s)
+    filler/long: 0%  (142s)
+== ft-slots done in 277s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.6, 'wiki_ppl': 35.18119714492684}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+slots attached before layer 14 of 28: 0.86M params
+LoRA rank 16 on 196 linear layers: 10.1M trainable params
+training 10.1M base (LoRA) + 0.86M slot params
+fp16 check ok (loss 1.809)
+    step 2/20  plan loss 2.0724  next-sentence 11.940  (3s)
+    step 4/20  plan loss 1.8915  next-sentence 11.847  (5s)
+    step 6/20  plan loss 1.8594  next-sentence 11.674  (7s)
+    step 8/20  plan loss 1.6175  next-sentence 11.426  (10s)
+    step 10/20  plan loss 1.5220  next-sentence 11.135  (12s)
+    step 12/20  plan loss 1.3745  next-sentence 10.820  (15s)
+    step 14/20  plan loss 1.1182  next-sentence 10.458  (17s)
+    step 16/20  plan loss 1.0917  next-sentence 10.181  (20s)
+    step 18/20  plan loss 1.0206  next-sentence 9.946  (22s)
+    step 20/20  plan loss 0.9546  next-sentence 9.768  (24s)
+    clean/short: 0%  (1s)
+    clean/long: 0%  (3s)
+    messy/short: 0%  (56s)
+    messy/long: 0%  (87s)
+    filler/short: 0%  (140s)
+    filler/long: 0%  (194s)
+squashed 196 linear layers to 4 bits
+    clean/short: 0%  (2s)
+    clean/long: 0%  (3s)
+    messy/short: 0%  (58s)
+    messy/long: 0%  (112s)
+    filler/short: 0%  (166s)
+    filler/long: 0%  (218s)
+== lora-slots done in 454s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.5, 'wiki_ppl': 34.72116740271754}

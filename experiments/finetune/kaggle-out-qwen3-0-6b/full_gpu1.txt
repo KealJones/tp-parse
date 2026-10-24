@@ -1,0 +1,59 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+slots attached before layer 14 of 28: 0.86M params
+training 440.5M base + 0.86M slot params
+fp16 check ok (loss 1.809)
+    step 100/1000  plan loss 0.2195  next-sentence 5.389  (105s)
+    step 200/1000  plan loss 0.0115  next-sentence 2.814  (211s)
+    step 300/1000  plan loss 0.0036  next-sentence 2.538  (315s)
+    step 400/1000  plan loss 0.0009  next-sentence 2.436  (419s)
+    step 500/1000  plan loss 0.0012  next-sentence 2.387  (523s)
+    step 600/1000  plan loss 0.0007  next-sentence 2.355  (626s)
+    step 700/1000  plan loss 0.0011  next-sentence 2.345  (730s)
+    step 800/1000  plan loss 0.0002  next-sentence 2.322  (833s)
+    step 900/1000  plan loss 0.0000  next-sentence 2.313  (937s)
+    step 1000/1000  plan loss 0.0001  next-sentence 2.314  (1040s)
+    clean/short: 100%  (113s)
+    clean/long: 100%  (294s)
+    messy/short: 100%  (407s)
+    messy/long: 100%  (588s)
+    filler/short: 96%  (701s)
+    filler/long: 58%  (826s)
+squashed 196 linear layers to 4 bits
+    clean/short: 100%  (111s)
+    clean/long: 100%  (291s)
+    messy/short: 100%  (402s)
+    messy/long: 100%  (582s)
+    filler/short: 83%  (692s)
+    filler/long: 62%  (819s)
+== ft-slots done in 2758s: messages {'typed': 0.20833333333333334, 'voice': 0.3333333333333333, 'all': 0.26666666666666666, 'n': 45}, english {'arc_easy': 0.5133333333333333, 'wiki_ppl': 122.7332886527851}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+slots attached before layer 14 of 28: 0.86M params
+LoRA rank 16 on 196 linear layers: 10.1M trainable params
+training 10.1M base (LoRA) + 0.86M slot params
+fp16 check ok (loss 1.809)
+    step 100/1000  plan loss 0.2991  next-sentence 5.425  (115s)
+    step 200/1000  plan loss 0.0090  next-sentence 2.781  (231s)
+    step 300/1000  plan loss 0.0027  next-sentence 2.529  (345s)
+    step 400/1000  plan loss 0.0012  next-sentence 2.434  (460s)
+    step 500/1000  plan loss 0.0000  next-sentence 2.388  (575s)
+    step 600/1000  plan loss 0.0004  next-sentence 2.358  (690s)
+    step 700/1000  plan loss 0.0002  next-sentence 2.342  (805s)
+    step 800/1000  plan loss 0.0001  next-sentence 2.322  (919s)
+    step 900/1000  plan loss 0.0006  next-sentence 2.312  (1033s)
+    step 1000/1000  plan loss 0.0000  next-sentence 2.312  (1147s)
+    clean/short: 100%  (157s)
+    clean/long: 96%  (409s)
+    messy/short: 100%  (566s)
+    messy/long: 96%  (819s)
+    filler/short: 83%  (960s)
+    filler/long: 67%  (1159s)
+squashed 196 linear layers to 4 bits
+    clean/short: 96%  (154s)
+    clean/long: 88%  (390s)
+    messy/short: 92%  (542s)
+    messy/long: 92%  (784s)
+    filler/short: 71%  (909s)
+    filler/long: 62%  (1092s)
+== lora-slots done in 3490s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.5066666666666667, 'wiki_ppl': 126.6303558682861}
