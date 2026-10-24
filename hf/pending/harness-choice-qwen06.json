@@ -1,0 +1,19 @@
+{
+ "slug": "harness-choice-qwen06",
+ "flavor": "a10g-small",
+ "timeout": "40m",
+ "files": [
+  "experiments/finetune/ft.py",
+  "experiments/finetune/harness_choice.py"
+ ],
+ "cmd": "python harness_choice.py --pilot && rm -rf out && python harness_choice.py",
+ "pip": [
+  "transformers>=4.51"
+ ],
+ "outdir": "out",
+ "out": "experiments/finetune/hf-out-harness-choice",
+ "job_id": "6adc2daa046eb82b1ecda176",
+ "url": "https://huggingface.co/jobs/kealjones/6adc2daa046eb82b1ecda176",
+ "started": "2026-10-24T04:01:46+00:00",
+ "sha": "40c2276ba46f81f8de71170f05bb65c63f70c43f"
+}
