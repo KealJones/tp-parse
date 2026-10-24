@@ -1,4 +1,11 @@
 # Hugging Face job: followup2-lora
 
-Status: **running** (started 2026-10-24T02:03:47+00:00, last check 2026-10-24T02:17:46+00:00)
+Status: **complete** after 32.6 min of work on `a10g-small`, about $0.54 (plus a minute or two of startup)
 Job page: https://huggingface.co/jobs/kealjones/6adc1203046eb82b1ecd9779
+
+Files copied here:
+- JOB_LOG.txt
+- RESULTS.md
+- job_status.json
+- readings.json
+- results.json

@@ -1,0 +1,527 @@
+{
+ "model": "Qwen/Qwen3-0.6B",
+ "arm": "gentle",
+ "cfg": {
+  "rank": 8,
+  "where": "attn",
+  "slots": false,
+  "replay": 0.25,
+  "lr": 0.0001,
+  "early": true
+ },
+ "pilot": false,
+ "gpu": "NVIDIA A10G",
+ "before": {
+  "old_test": {
+   "typed": 0.20833333333333334,
+   "voice": 0.3333333333333333,
+   "all": 0.26666666666666666,
+   "n": 45
+  },
+  "mc": {
+   "all": {
+    "acc": 0.8444444444444444,
+    "n": 45,
+    "sure_share": 0.9111111111111111,
+    "acc_sure": 0.8780487804878049,
+    "acc_unsure": 0.5,
+    "mean_conf": 0.8541099364591194
+   },
+   "typed": {
+    "acc": 0.7083333333333334,
+    "n": 24,
+    "sure_share": 0.8333333333333334,
+    "acc_sure": 0.75,
+    "acc_unsure": 0.5,
+    "mean_conf": 0.7920090143319006
+   },
+   "voice": {
+    "acc": 1,
+    "n": 21,
+    "sure_share": 1.0,
+    "acc_sure": 1,
+    "acc_unsure": null,
+    "mean_conf": 0.9250824188902265
+   }
+  },
+  "english": {
+   "arc_easy": 0.5666666666666667,
+   "wiki_ppl": 36.25143420443961
+  }
+ },
+ "train_examples": {
+  "plan": 5900,
+  "read": 11800,
+  "replay": 1200,
+  "val": 300
+ },
+ "val_history": [
+  {
+   "step": 150,
+   "train": 0.5113627750674884,
+   "val": 0.15457442113639494
+  },
+  {
+   "step": 300,
+   "train": 0.15463575622687736,
+   "val": 0.11368266507787139
+  },
+  {
+   "step": 450,
+   "train": 0.1339885312629243,
+   "val": 0.09574254013990101
+  },
+  {
+   "step": 600,
+   "train": 0.121288840038081,
+   "val": 0.08413245527710962
+  },
+  {
+   "step": 750,
+   "train": 0.11790007535368204,
+   "val": 0.08288718117278461
+  },
+  {
+   "step": 900,
+   "train": 0.109548431870838,
+   "val": 0.07620092413057328
+  },
+  {
+   "step": 1050,
+   "train": 0.10577727297631402,
+   "val": 0.07589039291978177
+  },
+  {
+   "step": 1200,
+   "train": 0.08919085167348385,
+   "val": 0.07684656501576108
+  }
+ ],
+ "steps_run": 1200,
+ "final_loss": 0.08768966568944354,
+ "train_s": 509,
+ "patch_off": {
+  "old_test": {
+   "typed": 0.20833333333333334,
+   "voice": 0.3333333333333333,
+   "all": 0.26666666666666666,
+   "n": 45
+  },
+  "mc": {
+   "all": {
+    "acc": 0.8444444444444444,
+    "n": 45,
+    "sure_share": 0.9111111111111111,
+    "acc_sure": 0.8780487804878049,
+    "acc_unsure": 0.5,
+    "mean_conf": 0.8541099364591194
+   },
+   "typed": {
+    "acc": 0.7083333333333334,
+    "n": 24,
+    "sure_share": 0.8333333333333334,
+    "acc_sure": 0.75,
+    "acc_unsure": 0.5,
+    "mean_conf": 0.7920090143319006
+   },
+   "voice": {
+    "acc": 1,
+    "n": 21,
+    "sure_share": 1.0,
+    "acc_sure": 1,
+    "acc_unsure": null,
+    "mean_conf": 0.9250824188902265
+   }
+  },
+  "english": {
+   "arc_easy": 0.5666666666666667,
+   "wiki_ppl": 36.25143420443961
+  }
+ },
+ "patch_on": {
+  "old_test": {
+   "typed": 0.2916666666666667,
+   "voice": 0.6190476190476191,
+   "all": 0.4444444444444444,
+   "n": 45
+  },
+  "mc": {
+   "all": {
+    "acc": 0.7777777777777778,
+    "n": 45,
+    "sure_share": 0.9555555555555556,
+    "acc_sure": 0.813953488372093,
+    "acc_unsure": 0,
+    "mean_conf": 0.9060709050010094
+   },
+   "typed": {
+    "acc": 0.625,
+    "n": 24,
+    "sure_share": 0.9166666666666666,
+    "acc_sure": 0.6818181818181818,
+    "acc_unsure": 0,
+    "mean_conf": 0.8630379880064538
+   },
+   "voice": {
+    "acc": 0.9523809523809523,
+    "n": 21,
+    "sure_share": 1.0,
+    "acc_sure": 0.9523809523809523,
+    "acc_unsure": null,
+    "mean_conf": 0.9552513815662158
+   }
+  },
+  "english": {
+   "arc_easy": 0.58,
+   "wiki_ppl": 61.24963479854219
+  }
+ },
+ "mc_rows": [
+  {
+   "id": 0,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.7676295936107635
+  },
+  {
+   "id": 1,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9801112413406372
+  },
+  {
+   "id": 2,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.6873974483460188
+  },
+  {
+   "id": 3,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9999023377895355
+  },
+  {
+   "id": 4,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.34925356070743874
+  },
+  {
+   "id": 5,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9981981217861176
+  },
+  {
+   "id": 6,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9999956786632538
+  },
+  {
+   "id": 7,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9436182975769043
+  },
+  {
+   "id": 8,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9960083365440369
+  },
+  {
+   "id": 9,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9996501207351685
+  },
+  {
+   "id": 10,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9959308058023453
+  },
+  {
+   "id": 11,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.4434121864524059
+  },
+  {
+   "id": 12,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9998525530099869
+  },
+  {
+   "id": 13,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.998076930642128
+  },
+  {
+   "id": 14,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.722358912229538
+  },
+  {
+   "id": 15,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.999835804104805
+  },
+  {
+   "id": 16,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9999992251396179
+  },
+  {
+   "id": 17,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.998960331082344
+  },
+  {
+   "id": 18,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9998612552881241
+  },
+  {
+   "id": 19,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9999804794788361
+  },
+  {
+   "id": 20,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9969459772109985
+  },
+  {
+   "id": 21,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.7456325506282155
+  },
+  {
+   "id": 22,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.5679973214864731
+  },
+  {
+   "id": 23,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.5223026424991986
+  },
+  {
+   "id": 24,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999997317790985
+  },
+  {
+   "id": 25,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999586343765259
+  },
+  {
+   "id": 26,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999208003282547
+  },
+  {
+   "id": 27,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999951422214508
+  },
+  {
+   "id": 28,
+   "kind": "voice",
+   "ok": false,
+   "conf": 0.5470289487857372
+  },
+  {
+   "id": 29,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9985637217760086
+  },
+  {
+   "id": 30,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9983261376619339
+  },
+  {
+   "id": 31,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.5959688387811184
+  },
+  {
+   "id": 32,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999713897705078
+  },
+  {
+   "id": 33,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9925129860639572
+  },
+  {
+   "id": 34,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9998763501644135
+  },
+  {
+   "id": 35,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.93682961165905
+  },
+  {
+   "id": 36,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999947845935822
+  },
+  {
+   "id": 37,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9945190250873566
+  },
+  {
+   "id": 38,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999869465827942
+  },
+  {
+   "id": 39,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9974667429924011
+  },
+  {
+   "id": 40,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999967515468597
+  },
+  {
+   "id": 41,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999994933605194
+  },
+  {
+   "id": 42,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999419301748276
+  },
+  {
+   "id": 43,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.999618798494339
+  },
+  {
+   "id": 44,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9998022466897964
+  }
+ ],
+ "plans": {
+  "clean/short": {
+   "success": 0.7916666666666666,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 4,
+    "bad open": 1
+   }
+  },
+  "clean/long": {
+   "success": 0.7916666666666666,
+   "looked_when_needed": 0.7916666666666666,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 2,
+    "bad take": 3
+   }
+  },
+  "messy/short": {
+   "success": 0.6666666666666666,
+   "looked_when_needed": 0.8571428571428571,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 5,
+    "bad take": 1,
+    "bad open": 1,
+    "garbled": 1
+   }
+  },
+  "messy/long": {
+   "success": 0.75,
+   "looked_when_needed": 0.7083333333333334,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 3,
+    "bad unlock": 1,
+    "bad take": 2
+   }
+  },
+  "filler/short": {
+   "success": 0.4166666666666667,
+   "looked_when_needed": 0.7142857142857143,
+   "searched_when_not": 0.125,
+   "fails": {
+    "bad take": 2,
+    "bad go": 5,
+    "garbled": 5,
+    "bad open": 2
+   }
+  },
+  "filler/long": {
+   "success": 0.3333333333333333,
+   "looked_when_needed": 0.125,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 2,
+    "garbled": 4,
+    "bad open": 1,
+    "wrong choice": 3,
+    "another skin's word": 1,
+    "bad take": 3,
+    "bad unlock": 2
+   }
+  }
+ },
+ "plan_sample": {
+  "problem": "the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :",
+  "plan": "search : where is the water ? result : the water is at the shop . the door of the shop is locked , so the person needs the key . search : where is the key ? result : the key is at the school . the person is not at the school , so the person goes to the school . the door of the school is closed , so the person opens the door of the school . the person takes the key . the person is not at the shop , so the person goes to the shop . the door of the shop is locked , so the person opens the door of the shop with the key . the person takes the water . the person has the water , so the goal is done . done .",
+  "result": "ok"
+ },
+ "readings": {
+  "stopped": 0.7333333333333333,
+  "loops": 0
+ },
+ "total_s": 1291
+}
