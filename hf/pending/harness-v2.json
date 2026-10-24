@@ -1,0 +1,24 @@
+{
+ "slug": "harness-v2",
+ "flavor": "a10g-small",
+ "timeout": "45m",
+ "files": [
+  "experiments/harness/harness.py",
+  "experiments/harness/harness_v2.py",
+  "experiments/harness/tasks.json",
+  "experiments/harness/cache.json"
+ ],
+ "cmd": "python harness_v2.py --pilot && rm -rf out && python harness_v2.py",
+ "pip": [
+  "transformers>=4.51",
+  "ddgs",
+  "trafilatura",
+  "requests"
+ ],
+ "outdir": "out",
+ "out": "experiments/harness/hf-out-v2",
+ "job_id": "6adcdfcf1e112550ce7e1aca",
+ "url": "https://huggingface.co/jobs/kealjones/6adcdfcf1e112550ce7e1aca",
+ "started": "2026-10-24T16:41:51+00:00",
+ "sha": "a126f4d306db0456d0a6db2dc36a1ded6f861fee"
+}
