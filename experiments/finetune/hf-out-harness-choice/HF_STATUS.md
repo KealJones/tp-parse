@@ -1,4 +1,10 @@
 # Hugging Face job: harness-choice-qwen06
 
-Status: **running** on `a10g-small` (started 2026-10-24T04:01:46+00:00, time limit 40m, so at most about $0.67)
+Status: **complete** after 3.2 min of work on `a10g-small`, about $0.05 (plus a minute or two of startup)
 Job page: https://huggingface.co/jobs/kealjones/6adc2daa046eb82b1ecda176
+
+Files copied here:
+- JOB_LOG.txt
+- RESULTS.md
+- job_status.json
+- results.json
