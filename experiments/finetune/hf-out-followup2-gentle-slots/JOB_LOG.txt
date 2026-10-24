@@ -1,0 +1,306 @@
+job 6adc12031e112550ce7db9f3 on gpu: followup2-gentle-slots at ba93a90
+fetched experiments/finetune/ft.py
+fetched experiments/finetune/followup.py
+fetched experiments/finetune/followup2.py
+fetched experiments/finetune/messages.json
+arm gentle-slots {'rank': 8, 'where': 'attn', 'slots': True, 'replay': 0.25, 'lr': 0.0001, 'early': True} | GPU: NVIDIA A10G | bf16: True
+
+
+config.json:   0%|          | 0.00/726 [00:00<?, ?B/s][A
+config.json: 100%|██████████| 726/726 [00:00<00:00, 2.75MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/9.73k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 9.73k/9.73k [00:00<00:00, 30.7MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 22.8MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 43.8MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 11.4MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  339kB/s  
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  339kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 11.4MB / 11.4MB, 1.14MB/s  
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 1.50GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: █▌        |  231MB, 18.4MB/s  
+
+model.safetensors: reconstructing file:   9%|▉         |  134MB / 1.50GB, 6.50MB/s  [A
+model.safetensors: downloading bytes: ████▌     |  690MB, 60.0MB/s  
+
+model.safetensors: reconstructing file:  48%|████▊     |  717MB / 1.50GB, 40.9MB/s  [A
+model.safetensors: downloading bytes: ██████▉   | 1.05GB, 86.0MB/s  
+
+model.safetensors: reconstructing file:  85%|████████▌ | 1.28GB / 1.50GB,  102MB/s  [A
+model.safetensors: downloading bytes: ██████████| 1.26GB,  102MB/s  
+model.safetensors: downloading bytes: ██████████| 1.26GB,  102MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 1.50GB / 1.50GB,  126MB/s  
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 408.43it/s]
+
+
+generation_config.json:   0%|          | 0.00/239 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 239/239 [00:00<00:00, 1.75MB/s]
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+
+
+README.md:   0%|          | 0.00/9.00k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 9.00k/9.00k [00:00<00:00, 29.9MB/s]
+
+
+ARC-Easy/train-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  331kB            [A
+ARC-Easy/train-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+ARC-Easy/train-00000-of-00001.parquet: downloading bytes: ██████████|  329kB, 32.9kB/s  
+ARC-Easy/train-00000-of-00001.parquet: downloading bytes: ██████████|  329kB, 32.9kB/s  
+
+ARC-Easy/train-00000-of-00001.parquet: reconstructing file: 100%|██████████|  331kB /  331kB, 33.0kB/s  
+
+
+ARC-Easy/test-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  346kB            [A
+ARC-Easy/test-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+ARC-Easy/test-00000-of-00001.parquet: downloading bytes: ██████████|  344kB, 34.3kB/s  
+ARC-Easy/test-00000-of-00001.parquet: downloading bytes: ██████████|  344kB, 34.3kB/s  
+
+ARC-Easy/test-00000-of-00001.parquet: reconstructing file: 100%|██████████|  346kB /  346kB, 34.4kB/s  
+
+
+ARC-Easy/validation-00000-of-00001.parqu(…): reconstructing file:   0%|          |  0.00B / 86.1kB            [A
+ARC-Easy/validation-00000-of-00001.parqu(…): downloading bytes:           |  0.00B            
+ARC-Easy/validation-00000-of-00001.parqu(…): downloading bytes: ██████████| 84.0kB, 8.40kB/s  
+ARC-Easy/validation-00000-of-00001.parqu(…): downloading bytes: ██████████| 84.0kB, 8.40kB/s  
+
+ARC-Easy/validation-00000-of-00001.parqu(…): reconstructing file: 100%|██████████| 86.1kB / 86.1kB, 8.60kB/s  
+
+
+Generating train split:   0%|          | 0/2251 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 2251/2251 [00:00<00:00, 72061.69 examples/s]
+
+
+Generating test split:   0%|          | 0/2376 [00:00<?, ? examples/s][A
+Generating test split: 100%|██████████| 2376/2376 [00:00<00:00, 445273.50 examples/s]
+
+
+Generating validation split:   0%|          | 0/570 [00:00<?, ? examples/s][A
+Generating validation split: 100%|██████████| 570/570 [00:00<00:00, 211702.23 examples/s]
+
+
+README.md:   0%|          | 0.00/10.5k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 10.5k/10.5k [00:00<00:00, 48.8MB/s]
+
+
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): reconstructing file:   0%|          |  0.00B /  733kB            [A
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes: ██████████|  732kB, 73.0kB/s  
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes: ██████████|  732kB, 73.0kB/s  
+
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): reconstructing file: 100%|██████████|  733kB /  733kB, 73.1kB/s  
+
+
+wikitext-2-raw-v1/train-00000-of-00001.p(…): reconstructing file:   0%|          |  0.00B / 6.36MB            [A
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes: ██████████| 6.35MB,  632kB/s  
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes: ██████████| 6.35MB,  632kB/s  
+
+wikitext-2-raw-v1/train-00000-of-00001.p(…): reconstructing file: 100%|██████████| 6.36MB / 6.36MB,  633kB/s  
+
+
+wikitext-2-raw-v1/validation-00000-of-00(…): reconstructing file:   0%|          |  0.00B /  657kB            [A
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes: ██████████|  657kB, 65.6kB/s  
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes: ██████████|  657kB, 65.6kB/s  
+
+wikitext-2-raw-v1/validation-00000-of-00(…): reconstructing file: 100%|██████████|  657kB /  657kB, 65.6kB/s  
+
+
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s][A
+Generating test split: 100%|██████████| 4358/4358 [00:00<00:00, 499665.87 examples/s]
+
+
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 36718/36718 [00:00<00:00, 798515.31 examples/s]
+
+
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s][A
+Generating validation split: 100%|██████████| 3760/3760 [00:00<00:00, 339203.39 examples/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (283723 > 131072). Running this sequence through the model will result in indexing errors
+before: {'old_test': {'typed': 0.25, 'voice': 1, 'all': 0.625, 'n': 8}, 'mc': {'all': {'acc': 0.75, 'n': 8, 'sure_share': 1.0, 'acc_sure': 0.75, 'acc_unsure': None, 'mean_conf': 0.8790915813297033}, 'typed': {'acc': 0.5, 'n': 4, 'sure_share': 1.0, 'acc_sure': 0.5, 'acc_unsure': None, 'mean_conf': 0.7703526578843594}, 'voice': {'acc': 1, 'n': 4, 'sure_share': 1.0, 'acc_sure': 1, 'acc_unsure': None, 'mean_conf': 0.9878305047750473}}, 'english': {'arc_easy': 0.6, 'wiki_ppl': 36.71967777025118}}
+
+
+README.md:   0%|          | 0.00/8.20k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 8.20k/8.20k [00:00<00:00, 34.8MB/s]
+
+
+databricks-dolly-15k.jsonl: reconstructing file:   0%|          |  0.00B / 13.1MB            [A
+databricks-dolly-15k.jsonl: downloading bytes:           |  0.00B            
+databricks-dolly-15k.jsonl: downloading bytes: ██████████| 7.63MB,  759kB/s  
+databricks-dolly-15k.jsonl: downloading bytes: ██████████| 7.63MB,  759kB/s  
+
+databricks-dolly-15k.jsonl: reconstructing file: 100%|██████████| 13.1MB / 13.1MB, 1.30MB/s  
+
+
+Generating train split:   0%|          | 0/15011 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 15011/15011 [00:00<00:00, 231946.43 examples/s]
+
+
+README.md:   0%|          | 0.00/947 [00:00<?, ?B/s][A
+README.md: 100%|██████████| 947/947 [00:00<00:00, 5.84MB/s]
+
+
+data/train-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B / 3.08MB            [A
+data/train-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+data/train-00000-of-00001.parquet: downloading bytes: ██████████| 2.15MB,  214kB/s  
+data/train-00000-of-00001.parquet: downloading bytes: ██████████| 2.15MB,  214kB/s  
+
+data/train-00000-of-00001.parquet: reconstructing file: 100%|██████████| 3.08MB / 3.08MB,  307kB/s  
+
+
+data/validation-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  116kB            [A
+data/validation-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+data/validation-00000-of-00001.parquet: downloading bytes: ██████████|  110kB, 11.0kB/s  
+data/validation-00000-of-00001.parquet: downloading bytes: ██████████|  110kB, 11.0kB/s  
+
+data/validation-00000-of-00001.parquet: reconstructing file: 100%|██████████|  116kB /  116kB, 11.6kB/s  
+
+
+data/test-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  111kB            [A
+data/test-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+data/test-00000-of-00001.parquet: downloading bytes: ██████████|  106kB, 10.5kB/s  
+data/test-00000-of-00001.parquet: downloading bytes: ██████████|  106kB, 10.5kB/s  
+
+data/test-00000-of-00001.parquet: reconstructing file: 100%|██████████|  111kB /  111kB, 11.1kB/s  
+
+
+Generating train split:   0%|          | 0/16645 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 16645/16645 [00:00<00:00, 490840.38 examples/s]
+
+
+Generating validation split:   0%|          | 0/931 [00:00<?, ? examples/s][A
+Generating validation split: 100%|██████████| 931/931 [00:00<00:00, 205932.76 examples/s]
+
+
+Generating test split:   0%|          | 0/926 [00:00<?, ? examples/s][A
+Generating test split: 100%|██████████| 926/926 [00:00<00:00, 175878.53 examples/s]
+replay: 32 answers from the untouched model
+slots attached before layer 14 of 28: 0.86M params
+LoRA rank 8 on 112 linear layers (attn): 2.3M params
+training 3.2M params, 20 steps × 4, mix {'plan': 0.30000000000000004, 'read': 0.44999999999999996, 'replay': 0.25}
+    step 2/20  loss 1.490  val 1.960  next-sentence 11.944  (1s)
+    step 4/20  loss 1.202  val 1.959  next-sentence 11.914  (2s)
+    step 6/20  loss 0.921  val 1.955  next-sentence 11.749  (2s)
+    step 8/20  loss 1.242  val 1.950  next-sentence 11.671  (3s)
+    step 10/20  loss 1.192  val 1.939  next-sentence 11.454  (4s)
+    step 12/20  loss 1.113  val 1.931  next-sentence 11.315  (4s)
+    step 14/20  loss 1.094  val 1.919  next-sentence 11.001  (5s)
+    step 16/20  loss 1.081  val 1.915  next-sentence 11.193  (6s)
+    step 18/20  loss 1.253  val 1.908  next-sentence 10.707  (7s)
+    step 20/20  loss 1.618  val 1.905  next-sentence 5.196  (7s)
+patch off: {'old_test': {'typed': 0.25, 'voice': 1, 'all': 0.625, 'n': 8}, 'mc': {'all': {'acc': 0.75, 'n': 8, 'sure_share': 1.0, 'acc_sure': 0.75, 'acc_unsure': None, 'mean_conf': 0.8790915813297033}, 'typed': {'acc': 0.5, 'n': 4, 'sure_share': 1.0, 'acc_sure': 0.5, 'acc_unsure': None, 'mean_conf': 0.7703526578843594}, 'voice': {'acc': 1, 'n': 4, 'sure_share': 1.0, 'acc_sure': 1, 'acc_unsure': None, 'mean_conf': 0.9878305047750473}}, 'english': {'arc_easy': 0.6, 'wiki_ppl': 36.71967777025118}}
+patch on: {'old_test': {'typed': 0.25, 'voice': 1, 'all': 0.625, 'n': 8}, 'mc': {'all': {'acc': 0.75, 'n': 8, 'sure_share': 1.0, 'acc_sure': 0.75, 'acc_unsure': None, 'mean_conf': 0.8818958275951445}, 'typed': {'acc': 0.5, 'n': 4, 'sure_share': 1.0, 'acc_sure': 0.5, 'acc_unsure': None, 'mean_conf': 0.7761868396773934}, 'voice': {'acc': 1, 'n': 4, 'sure_share': 1.0, 'acc_sure': 1, 'acc_unsure': None, 'mean_conf': 0.9876048155128956}}, 'english': {'arc_easy': 0.6, 'wiki_ppl': 36.46251501999629}}
+    clean/short: 0%  (1s)
+    clean/long: 0%  (2s)
+    messy/short: 0%  (7s)
+    messy/long: 0%  (25s)
+    filler/short: 0%  (28s)
+    filler/long: 0%  (30s)
+# Follow-up 2, arm `gentle-slots`
+
+Qwen/Qwen3-0.6B on NVIDIA A10G, 2 min total. LoRA rank 8 on attn linear layers, slots on, replay 25%, learning rate 0.0001, early stopping on. Ran 20 of 20 steps. Training examples: {'plan': 192, 'read': 234, 'replay': 32, 'val': 24}. None of Keal's messages were in training.
+
+## Keal's real messages, four options (chance 25%)
+
+New test: all four shown as A/B/C/D, so it's a real choice. "Sure" means it gave its pick at least 50%.
+
+| | old test (all) | A/B/C/D typed | A/B/C/D voice | A/B/C/D all | share sure | right when sure | right when unsure |
+|---|---|---|---|---|---|---|---|
+| before (untouched) | 62% | 50% | 100% | 75% | 100% | 75% | – |
+| patch off | 62% | 50% | 100% | 75% | 100% | 75% | – |
+| patch on | 62% | 50% | 100% | 75% | 100% | 75% | – |
+
+## English kept
+
+| | ARC-Easy | WikiText-2 perplexity |
+|---|---|---|
+| before (untouched) | 60% | 36.7 |
+| patch off | 60% | 36.7 |
+| patch on | 60% | 36.5 |
+
+## Planning, patch on
+
+| clean short | clean long | messy short | messy long | filler short | filler long |
+|---|---|---|---|---|---|
+| 0% | 0% | 0% | 0% | 0% | 0% |
+
+## Training
+
+arm gentle-slots {'rank': 8, 'where': 'attn', 'slots': True, 'replay': 0.25, 'lr': 0.0001, 'early': True} | GPU: NVIDIA A10G | bf16: True
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 573.21it/s]
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (283723 > 131072). Running this sequence through the model will result in indexing errors
+before: {'old_test': {'typed': 0.20833333333333334, 'voice': 0.3333333333333333, 'all': 0.26666666666666666, 'n': 45}, 'mc': {'all': {'acc': 0.8444444444444444, 'n': 45, 'sure_share': 0.9111111111111111, 'acc_sure': 0.8780487804878049, 'acc_unsure': 0.5, 'mean_conf': 0.8541099364591194}, 'typed': {'acc': 0.7083333333333334, 'n': 24, 'sure_share': 0.8333333333333334, 'acc_sure': 0.75, 'acc_unsure': 0.5, 'mean_conf': 0.7920090143319006}, 'voice': {'acc': 1, 'n': 21, 'sure_share': 1.0, 'acc_sure': 1, 'acc_unsure': None, 'mean_conf': 0.9250824188902265}}, 'english': {'arc_easy': 0.5666666666666667, 'wiki_ppl': 36.25143420443961}}
+replay: 1200 answers from the untouched model
+slots attached before layer 14 of 28: 0.86M params
+LoRA rank 8 on 112 linear layers (attn): 2.3M params
+training 3.2M params, 1500 steps × 8, mix {'plan': 0.30000000000000004, 'read': 0.44999999999999996, 'replay': 0.25}
+    step 150/1500  loss 0.482  val 0.153  next-sentence 6.222  (45s)
+    step 300/1500  loss 0.154  val 0.104  next-sentence 4.391  (91s)
+    step 450/1500  loss 0.133  val 0.091  next-sentence 4.282  (135s)
+    step 600/1500  loss 0.120  val 0.083  next-sentence 4.075  (180s)
+    step 750/1500  loss 0.116  val 0.084  next-sentence 4.087  (225s)
+    step 900/1500  loss 0.107  val 0.075  next-sentence 4.118  (270s)
+    step 1050/1500  loss 0.101  val 0.074  next-sentence 4.126  (315s)
+    step 1200/1500  loss 0.086  val 0.075  next-sentence 3.938  (359s)
+    early stop at step 1200: held-out loss stopped improving
+patch off: {'old_test': {'typed': 0.20833333333333334, 'voice': 0.3333333333333333, 'all': 0.26666666666666666, 'n': 45}, 'mc': {'all': {'acc': 0.8444444444444444, 'n': 45, 'sure_share': 0.9111111111111111, 'acc_sure': 0.8780487804878049, 'acc_unsure': 0.5, 'mean_conf': 0.8541099364591194}, 'typed': {'acc': 0.7083333333333334, 'n': 24, 'sure_share': 0.8333333333333334, 'acc_sure': 0.75, 'acc_unsure': 0.5, 'mean_conf': 0.7920090143319006}, 'voice': {'acc': 1, 'n': 21, 'sure_share': 1.0, 'acc_sure': 1, 'acc_unsure': None, 'mean_conf': 0.9250824188902265}}, 'english': {'arc_easy': 0.5666666666666667, 'wiki_ppl': 36.25143420443961}}
+patch on: {'old_test': {'typed': 0.2916666666666667, 'voice': 0.5238095238095238, 'all': 0.4, 'n': 45}, 'mc': {'all': {'acc': 0.8, 'n': 45, 'sure_share': 0.9555555555555556, 'acc_sure': 0.813953488372093, 'acc_unsure': 0.5, 'mean_conf': 0.902473401330883}, 'typed': {'acc': 0.6666666666666666, 'n': 24, 'sure_share': 0.9166666666666666, 'acc_sure': 0.6818181818181818, 'acc_unsure': 0.5, 'mean_conf': 0.8687750177554227}, 'voice': {'acc': 0.9523809523809523, 'n': 21, 'sure_share': 1.0, 'acc_sure': 0.9523809523809523, 'acc_unsure': None, 'mean_conf': 0.9409858397028378}}, 'english': {'arc_easy': 0.5666666666666667, 'wiki_ppl': 57.54006480674844}}
+    clean/short: 75%  (97s)
+    clean/long: 83%  (259s)
+    messy/short: 83%  (358s)
+    messy/long: 71%  (504s)
+    filler/short: 46%  (575s)
+    filler/long: 21%  (649s)
+# Follow-up 2, arm `gentle-slots`
+
+Qwen/Qwen3-0.6B on NVIDIA A10G, 23 min total. LoRA rank 8 on attn linear layers, slots on, replay 25%, learning rate 0.0001, early stopping on. Ran 1200 of 1500 steps. Training examples: {'plan': 5900, 'read': 11800, 'replay': 1200, 'val': 300}. None of Keal's messages were in training.
+
+## Keal's real messages, four options (chance 25%)
+
+New test: all four shown as A/B/C/D, so it's a real choice. "Sure" means it gave its pick at least 50%.
+
+| | old test (all) | A/B/C/D typed | A/B/C/D voice | A/B/C/D all | share sure | right when sure | right when unsure |
+|---|---|---|---|---|---|---|---|
+| before (untouched) | 27% | 71% | 100% | 84% | 91% | 88% | 50% |
+| patch off | 27% | 71% | 100% | 84% | 91% | 88% | 50% |
+| patch on | 40% | 67% | 95% | 80% | 96% | 81% | 50% |
+
+## English kept
+
+| | ARC-Easy | WikiText-2 perplexity |
+|---|---|---|
+| before (untouched) | 57% | 36.3 |
+| patch off | 57% | 36.3 |
+| patch on | 57% | 57.5 |
+
+## Planning, patch on
+
+| clean short | clean long | messy short | messy long | filler short | filler long |
+|---|---|---|---|---|---|
+| 75% | 83% | 83% | 71% | 46% | 21% |
+
+## Training
+
+exit code 0 after 25.1 min

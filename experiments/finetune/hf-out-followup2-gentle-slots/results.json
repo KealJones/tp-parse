@@ -1,0 +1,525 @@
+{
+ "model": "Qwen/Qwen3-0.6B",
+ "arm": "gentle-slots",
+ "cfg": {
+  "rank": 8,
+  "where": "attn",
+  "slots": true,
+  "replay": 0.25,
+  "lr": 0.0001,
+  "early": true
+ },
+ "pilot": false,
+ "gpu": "NVIDIA A10G",
+ "before": {
+  "old_test": {
+   "typed": 0.20833333333333334,
+   "voice": 0.3333333333333333,
+   "all": 0.26666666666666666,
+   "n": 45
+  },
+  "mc": {
+   "all": {
+    "acc": 0.8444444444444444,
+    "n": 45,
+    "sure_share": 0.9111111111111111,
+    "acc_sure": 0.8780487804878049,
+    "acc_unsure": 0.5,
+    "mean_conf": 0.8541099364591194
+   },
+   "typed": {
+    "acc": 0.7083333333333334,
+    "n": 24,
+    "sure_share": 0.8333333333333334,
+    "acc_sure": 0.75,
+    "acc_unsure": 0.5,
+    "mean_conf": 0.7920090143319006
+   },
+   "voice": {
+    "acc": 1,
+    "n": 21,
+    "sure_share": 1.0,
+    "acc_sure": 1,
+    "acc_unsure": null,
+    "mean_conf": 0.9250824188902265
+   }
+  },
+  "english": {
+   "arc_easy": 0.5666666666666667,
+   "wiki_ppl": 36.25143420443961
+  }
+ },
+ "train_examples": {
+  "plan": 5900,
+  "read": 11800,
+  "replay": 1200,
+  "val": 300
+ },
+ "val_history": [
+  {
+   "step": 150,
+   "train": 0.48219124582906564,
+   "val": 0.15273312861590008
+  },
+  {
+   "step": 300,
+   "train": 0.15403749010215204,
+   "val": 0.10398564490146543
+  },
+  {
+   "step": 450,
+   "train": 0.13340454618136088,
+   "val": 0.09083000421033878
+  },
+  {
+   "step": 600,
+   "train": 0.12012188732624055,
+   "val": 0.08287674858921061
+  },
+  {
+   "step": 750,
+   "train": 0.11554191091408332,
+   "val": 0.08372437252393483
+  },
+  {
+   "step": 900,
+   "train": 0.10665296317388614,
+   "val": 0.07484534249555222
+  },
+  {
+   "step": 1050,
+   "train": 0.10144501061644405,
+   "val": 0.07385573864571358
+  },
+  {
+   "step": 1200,
+   "train": 0.08603094075651219,
+   "val": 0.07475400400213211
+  }
+ ],
+ "steps_run": 1200,
+ "final_loss": 0.08422191192900451,
+ "train_s": 558,
+ "patch_off": {
+  "old_test": {
+   "typed": 0.20833333333333334,
+   "voice": 0.3333333333333333,
+   "all": 0.26666666666666666,
+   "n": 45
+  },
+  "mc": {
+   "all": {
+    "acc": 0.8444444444444444,
+    "n": 45,
+    "sure_share": 0.9111111111111111,
+    "acc_sure": 0.8780487804878049,
+    "acc_unsure": 0.5,
+    "mean_conf": 0.8541099364591194
+   },
+   "typed": {
+    "acc": 0.7083333333333334,
+    "n": 24,
+    "sure_share": 0.8333333333333334,
+    "acc_sure": 0.75,
+    "acc_unsure": 0.5,
+    "mean_conf": 0.7920090143319006
+   },
+   "voice": {
+    "acc": 1,
+    "n": 21,
+    "sure_share": 1.0,
+    "acc_sure": 1,
+    "acc_unsure": null,
+    "mean_conf": 0.9250824188902265
+   }
+  },
+  "english": {
+   "arc_easy": 0.5666666666666667,
+   "wiki_ppl": 36.25143420443961
+  }
+ },
+ "patch_on": {
+  "old_test": {
+   "typed": 0.2916666666666667,
+   "voice": 0.5238095238095238,
+   "all": 0.4,
+   "n": 45
+  },
+  "mc": {
+   "all": {
+    "acc": 0.8,
+    "n": 45,
+    "sure_share": 0.9555555555555556,
+    "acc_sure": 0.813953488372093,
+    "acc_unsure": 0.5,
+    "mean_conf": 0.902473401330883
+   },
+   "typed": {
+    "acc": 0.6666666666666666,
+    "n": 24,
+    "sure_share": 0.9166666666666666,
+    "acc_sure": 0.6818181818181818,
+    "acc_unsure": 0.5,
+    "mean_conf": 0.8687750177554227
+   },
+   "voice": {
+    "acc": 0.9523809523809523,
+    "n": 21,
+    "sure_share": 1.0,
+    "acc_sure": 0.9523809523809523,
+    "acc_unsure": null,
+    "mean_conf": 0.9409858397028378
+   }
+  },
+  "english": {
+   "arc_easy": 0.5666666666666667,
+   "wiki_ppl": 57.54006480674844
+  }
+ },
+ "mc_rows": [
+  {
+   "id": 0,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.8253805786371231
+  },
+  {
+   "id": 1,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.997624471783638
+  },
+  {
+   "id": 2,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.7241951581090689
+  },
+  {
+   "id": 3,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9999068677425385
+  },
+  {
+   "id": 4,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.3266290523861244
+  },
+  {
+   "id": 5,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9996544569730759
+  },
+  {
+   "id": 6,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9999962747097015
+  },
+  {
+   "id": 7,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.7978227250277996
+  },
+  {
+   "id": 8,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9997979551553726
+  },
+  {
+   "id": 9,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9993575811386108
+  },
+  {
+   "id": 10,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.999334380030632
+  },
+  {
+   "id": 11,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.4801414740898622
+  },
+  {
+   "id": 12,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9970734119415283
+  },
+  {
+   "id": 13,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.9975501745939255
+  },
+  {
+   "id": 14,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.8868430405855179
+  },
+  {
+   "id": 15,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9999957382678986
+  },
+  {
+   "id": 16,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9999997317790985
+  },
+  {
+   "id": 17,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.999602198600769
+  },
+  {
+   "id": 18,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9997701644897461
+  },
+  {
+   "id": 19,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9999916851520538
+  },
+  {
+   "id": 20,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.9876584708690643
+  },
+  {
+   "id": 21,
+   "kind": "typed",
+   "ok": true,
+   "conf": 0.7429057206445577
+  },
+  {
+   "id": 22,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.5608578938990831
+  },
+  {
+   "id": 23,
+   "kind": "typed",
+   "ok": false,
+   "conf": 0.5285112195233523
+  },
+  {
+   "id": 24,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999997317790985
+  },
+  {
+   "id": 25,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999478906393051
+  },
+  {
+   "id": 26,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9998498409986496
+  },
+  {
+   "id": 27,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999950528144836
+  },
+  {
+   "id": 28,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.5336253114460305
+  },
+  {
+   "id": 29,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9952937066555023
+  },
+  {
+   "id": 30,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9981050044298172
+  },
+  {
+   "id": 31,
+   "kind": "voice",
+   "ok": false,
+   "conf": 0.509327711770311
+  },
+  {
+   "id": 32,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999729990959167
+  },
+  {
+   "id": 33,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9973330050706863
+  },
+  {
+   "id": 34,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999780356884003
+  },
+  {
+   "id": 35,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.8574317842721939
+  },
+  {
+   "id": 36,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999749958515167
+  },
+  {
+   "id": 37,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.8740966320037842
+  },
+  {
+   "id": 38,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.99999138712883
+  },
+  {
+   "id": 39,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9972228407859802
+  },
+  {
+   "id": 40,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999978840351105
+  },
+  {
+   "id": 41,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999994039535522
+  },
+  {
+   "id": 42,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9999755024909973
+  },
+  {
+   "id": 43,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9990938007831573
+  },
+  {
+   "id": 44,
+   "kind": "voice",
+   "ok": true,
+   "conf": 0.9994901120662689
+  }
+ ],
+ "plans": {
+  "clean/short": {
+   "success": 0.75,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 3,
+    "bad take": 3
+   }
+  },
+  "clean/long": {
+   "success": 0.8333333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 3,
+    "bad take": 1
+   }
+  },
+  "messy/short": {
+   "success": 0.8333333333333334,
+   "looked_when_needed": 1,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 3,
+    "bad unlock": 1
+   }
+  },
+  "messy/long": {
+   "success": 0.7083333333333334,
+   "looked_when_needed": 0.8333333333333334,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 2,
+    "bad take": 5
+   }
+  },
+  "filler/short": {
+   "success": 0.4583333333333333,
+   "looked_when_needed": 0.7142857142857143,
+   "searched_when_not": 0.041666666666666664,
+   "fails": {
+    "garbled": 8,
+    "bad go": 2,
+    "bad take": 1,
+    "bad open": 1,
+    "another skin's word": 1
+   }
+  },
+  "filler/long": {
+   "success": 0.20833333333333334,
+   "looked_when_needed": 0.2916666666666667,
+   "searched_when_not": 0,
+   "fails": {
+    "bad go": 4,
+    "garbled": 6,
+    "wrong choice": 2,
+    "another skin's word": 1,
+    "bad take": 3,
+    "bad unlock": 1,
+    "bad open": 2
+   }
+  }
+ },
+ "plan_sample": {
+  "problem": "the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :",
+  "plan": "search : where is the water ? result : the water is at the shop . the door of the shop is locked , so the person needs the key . search : where is the key ? result : the key is at the school . the person is not at the school , so the person goes to the school . the door of the school is closed , so the person opens the door of the school . the person takes the key . the person is not at the shop , so the person goes to the shop . the door of the shop is locked , so the person opens the door of the shop with the key . the person takes the water . the person has the water , so the goal is done . done .",
+  "result": "ok"
+ },
+ "readings": {
+  "stopped": 0.7111111111111111,
+  "loops": 0
+ },
+ "total_s": 1373
+}

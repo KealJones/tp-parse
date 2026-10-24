@@ -1,0 +1,407 @@
+[
+ {
+  "id": 0,
+  "kind": "typed",
+  "message": "Wait what the fuck how much training do frontier models do how do they not take a fucking year!?",
+  "meant": "How much compute frontier models use and how they finish training in months instead of years",
+  "reading": "How much training do frontier models do? How do they not take a fucking year?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 1,
+  "kind": "typed",
+  "message": "Chinchilla insight what!?",
+  "meant": "An explanation of what the Chinchilla finding was and why it mattered",
+  "reading": "Chinchilla insight what?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 2,
+  "kind": "typed",
+  "message": "What about a stupidly small model and train it on trillions?",
+  "meant": "Whether a tiny model trained on a huge amount of text keeps getting better",
+  "reading": "What about a stupidly small model and train it on trillions?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 3,
+  "kind": "typed",
+  "message": "Has anyone made a like multiple tiny very specific models like instead of layers keep a clean as shit divide?",
+  "meant": "Whether anyone has built systems of many small specialist models with clean boundaries between them",
+  "reading": "Has anyone made a like multiple tiny very specific models instead of layers keep a clean as shit divide?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 4,
+  "kind": "typed",
+  "message": "How can I give you access to kraggle",
+  "meant": "The steps to let the assistant start and read Kaggle runs on their behalf",
+  "reading": "How can I give you access to kraggle?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 5,
+  "kind": "typed",
+  "message": "Under the environmental KAGGLE if that matters",
+  "meant": "To mention the secrets are stored inside a GitHub environment named KAGGLE, which may need a config change",
+  "reading": "Under the environmental KAGGLE, if that matters",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 6,
+  "kind": "typed",
+  "message": "What the fuck are you talking about I use fetch all the damn time",
+  "meant": "To push back on the claim that browsers can't fetch, since they use fetch all the time",
+  "reading": "What the fuck are you talking about?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 7,
+  "kind": "typed",
+  "message": "I seeee ok and there's no fun hack silly tricky ways to use like web assembly or workers or some other shit to make it work?",
+  "meant": "Whether a trick like WebAssembly or workers can get around the browser's cross-site limits",
+  "reading": "I see ok and there's no fun hack silly tricky ways to use like web assembly or workers or some other shit to make it work?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 8,
+  "kind": "typed",
+  "message": "Cloudflare worker?",
+  "meant": "An explanation of what a Cloudflare Worker is and how it would act as the relay",
+  "reading": "Cloudflare worker is one way to relay web requests for the browser.",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 9,
+  "kind": "typed",
+  "message": "If this is gonna live in the browser what is to stop anyone who see that endpoint from just straight up seeing my key too?",
+  "meant": "Whether a key used by a public browser page can be hidden from people who inspect it",
+  "reading": "If this is gonna live in the browser, what is to stop anyone who see that endpoint from just straight up seeing my key?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 10,
+  "kind": "typed",
+  "message": "I want public GitHub pages is why I said simple",
+  "meant": "To explain they want it open because the page will be public on GitHub Pages",
+  "reading": "I want public GitHub pages is why I said simple",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 11,
+  "kind": "typed",
+  "message": "Why do you need that?",
+  "meant": "Why the assistant needs a Cloudflare token when the Cloudflare connector is already linked",
+  "reading": "Why do you need that?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 12,
+  "kind": "typed",
+  "message": "It's an account api key…",
+  "meant": "To explain the secret they added is an account-level API key rather than a token",
+  "reading": "It's an account api key, so the deploy failed because Cloudflare rejected the token's format.",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 13,
+  "kind": "typed",
+  "message": "I didn't add CLOUDFLARE_ACCOUNT_ID do you need that?",
+  "meant": "Whether the deploy also needs the account ID secret, which they skipped",
+  "reading": "I didn't add CLOUDFLARE_ACCOUNT_ID, do you need that?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 14,
+  "kind": "typed",
+  "message": "could you have tested this locally and seen that it was a catastrophic failure?",
+  "meant": "Whether the failure could have been caught by testing on the assistant's own machine first",
+  "reading": "could you have tested this locally and seen that it was a catastrophic failure?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 15,
+  "kind": "typed",
+  "message": "i meant like smaller scale test",
+  "meant": "To clarify they meant a scaled-down version of the experiment, not the full run",
+  "reading": "i mean smaller scale test, but i can't test locally because it has no PyTorch and only two CPU cores.",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 16,
+  "kind": "typed",
+  "message": "isnt REN what attention replaced? are we using attention and mlp?",
+  "meant": "Whether entity networks were replaced by attention, and whether their model uses attention plus MLPs",
+  "reading": "Is REN what attention replaced? are we using attention and mlp?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 17,
+  "kind": "typed",
+  "message": "do we need a teacher?",
+  "meant": "Whether the slots could work without a simulator telling them the true state",
+  "reading": "do we need a teacher?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 18,
+  "kind": "typed",
+  "message": "i have a gemini api key we could use to have gemini teach... if that would help?",
+  "meant": "Whether using Gemini as the teacher during training would help",
+  "reading": "I have a gemini api key we could use to have gemini teach...",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 19,
+  "kind": "typed",
+  "message": "the skins is running already we can run another while that one is going though",
+  "meant": "To start the registers experiment now, in parallel, instead of waiting",
+  "reading": "the skins is running already we can run another while that one is going though.",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 20,
+  "kind": "typed",
+  "message": "should you maybe rip out the lesson block or whatever? since it failed and see if the slots work better without lessons",
+  "meant": "To drop the failed lesson block and test the slots on their own",
+  "reading": "Should you rip out the lesson block or whatever? since it failed and see if the slots work better without lessons?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 21,
+  "kind": "typed",
+  "message": "Don't worry about cost tell me the services that can",
+  "meant": "A list of services that can actually run big training jobs, regardless of price",
+  "reading": "Don't worry about cost, tell me the services that can?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 22,
+  "kind": "typed",
+  "message": "Jesus fucking christ what are models like you opus 5.5 then?",
+  "meant": "How big the assistant's own model is and how much it took to train",
+  "reading": "What are models like you opus 5.5?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 23,
+  "kind": "typed",
+  "message": "How is it getting better every 8 months if you say there isn't anything different about the blocks changing?",
+  "meant": "How efficiency keeps improving if the transformer blocks supposedly haven't changed",
+  "reading": "How is it getting better every 8 months if you say there isn't anything different about the blocks changing?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 24,
+  "kind": "voice",
+  "message": "Uh, I'm curious if there are models that are already trained for this type of task. That are already really small. Um, and do a good job. Like maybe I think we'",
+  "meant": "To find existing small models and datasets on Hugging Face for cleaning up rambling speech",
+  "reading": "Is there a model that is already trained for this type of task? That are already really small. and do a good job. Maybe you could take a look at Hugging Face. Also, consider their data sets. Maybe there's some stuff there.",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 25,
+  "kind": "voice",
+  "message": "So, uh, I'm curious how this um, this real test thing, if uh, how if it can do those other things and maybe registers does bring it up even more, uh, how would ",
+  "meant": "How adding registers might change the results of the real-data experiment",
+  "reading": "How would registers potential right, any effect?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 26,
+  "kind": "voice",
+  "message": "I'm, I think I'm mostly wondering if we have done anything to consider how it problem solves. Better. Like we have the goals thing, we have the the stories thin",
+  "meant": "Whether anything tests solving new kinds of problems it wasn't shown, by taking steps to figure them out",
+  "reading": "I think I'm mostly wondering if we have done anything to consider how it problem solves. Better. Like we have the goals thing, we have the stories thing. But problem solving that's not provided to you. So you need to take steps to solve and to figure something out.",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 27,
+  "kind": "voice",
+  "message": "I guess I want to discuss kind of like like for sure I'll get out of this uh, voice chat right after this and you can write down that sketch or whatever but lik",
+  "meant": "To brainstorm what small models are good at, and how a harness built for that exact model should work",
+  "reading": "I guess I want to discuss for sure I'll get out of this voice chat right after this and you can write down that sketch or whatever but I also just I do think maybe we could brainstorm or think through more realistically what makes a transformer model itself, what is it really good and capable at a",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 28,
+  "kind": "voice",
+  "message": "Yeah, if you look at pretty much every previous project, and I'm pretty sure if you look at other chats that I've had with you, um, I always talk about it as li",
+  "meant": "To describe long-term memory as a store that learns their shorthand and keeps recent work close at hand",
+  "reading": "If you look at every previous project, and I'm pretty sure if you look at other chats that I've had with you, I always talk about it as there's a graph database behind it all. The harness would be responsible for pulling up relevant information that's needed and if the harness needs to",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 29,
+  "kind": "voice",
+  "message": "So actually, uh, I want to counter what you said. About not deleting memory. Um, the whole point of this project is for it to be uh, a relatively small size uh,",
+  "meant": "To argue that unused knowledge it can fetch again should be deleted rather than kept forever",
+  "reading": "I want to counter what you said. About not deleting memory. The whole point of this project is for it to be a relatively small size, but also very capable. And I don't want it to start retaining a ton amount of data that it's not fucking using and it's never going to",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 30,
+  "kind": "voice",
+  "message": "I'm kind of curious if you think that there is a uh, symbolic or like uh, deterministic NLP type way to take things that like um, that the way I talk and like, ",
+  "meant": "Whether rule-based language processing could clean up their messy messages before a small model sees them",
+  "reading": "Is there a symbolic or deterministic NLP way to take things that the way I talk and just take any real example of any prompts that I've given you and then making them clean so that they are good to give to a small model?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 31,
+  "kind": "voice",
+  "message": "So I'm a little bit curious though. Um, Are you able to tell when a message was sent with voice?",
+  "meant": "Whether the assistant can tell which of their messages were spoken rather than typed",
+  "reading": "Are you able to tell when a message was sent with voice?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 32,
+  "kind": "voice",
+  "message": "I've noticed, at least with ChatGPT, in their voice mode, it isn't the same Claude, or like it's not the same ChatGPT. Like, it's not the same model that I'm ta",
+  "meant": "Whether the voice assistant is the same model as the text one, or a different model passing messages along",
+  "reading": "At least with ChatGPT, in their voice mode, it isn't the same Claude, or it's not the same ChatGPT. When I'm talking to it, I'm curious if over here on in Anthropic's Claude AI, if the model that I'm talking to right now",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 33,
+  "kind": "voice",
+  "message": "from training a model because uh, training a model is going to be really fucking expensive, and I don't think I ever realized how fucking expensive it is, even ",
+  "meant": "To switch from training from scratch to fine-tuning an existing small model like SmolLM or Qwen",
+  "reading": "From training a model because training a model is going to be really fucking expensive, and I don't think I ever realized how fucking expensive it is, even for something that's not even a 1B, which I don't. I feel like I've tested 1B models, and I",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 34,
+  "kind": "voice",
+  "message": "Um, yeah, I had actually, hold on. Sorry. So, um, one, one caveat. That I was just thinking about. I don't care how long it takes to do whatever it needs to do.",
+  "meant": "For the system to say what it doesn't know and show its progress while it figures it out",
+  "reading": "I had actually, hold on. Sorry. One, one caveat. I don't care how long it takes to do whatever it needs to do. Especially if it's like showing you, when you do something with Claude and it's like doing a bunch of like research and looking up web pages and",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 35,
+  "kind": "voice",
+  "message": "also, something that I really, really, really, really, really don't want is for um, when you ask the user, it should not be something so stupid and straightforw",
+  "meant": "When the system asks them something, it should accept any kind of answer, like a ramble or a link",
+  "reading": "When you ask the user, it should not be something so stupid and straightforward as I don't understand what X is. Can you tell me in this specific structure? No, a user is never going to follow that structure. It's going to give you weird vagueness and the ums and",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 36,
+  "kind": "voice",
+  "message": "I do not I don't know if this is something maybe there's already a, an existing small model out there. You can feel free to like check Hugging Face or just sear",
+  "meant": "Whether anyone has built an AI that comes up with genuinely new ideas, not just remixes",
+  "reading": "I don't know if this is something maybe there's already a existing small model out there. You can feel free to check Hugging Face or just search the web or whatever, but is there anybody who has tried to create a creative AI that it doesn't just piece together old pieces or whatever,",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 37,
+  "kind": "voice",
+  "message": "And I know I do I do that referencing thing. That's why I keep saying like, oh, we need the harness to be able to pull shit from files from this and that and fr",
+  "meant": "To explain the harness must handle their messy, back-referencing way of talking, because that's how they talk",
+  "reading": "I know I do that referencing thing. That's why I keep saying like, we need the harness to be able to pull shit from files from this and that and from references from ages ago and have messy English parsing and all that stuff. I know that I'm not a good example of how you",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 38,
+  "kind": "voice",
+  "message": "But the point is, like, I think that all this, everything I've been trying to figure out or trying to accomplish with all of these projects across the board is ",
+  "meant": "To describe their goal: a system that finds out what it doesn't know through sources, search or smarter AIs",
+  "reading": "I think that all this everything I've been trying to figure out or trying to accomplish with all of these projects across the board is getting some type of base system in place. That can quote unquote figure shit out or figure it out. I want this system, whatever it is, if it doesn",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 39,
+  "kind": "voice",
+  "message": "Just look at our chat, like genuinely analyze my specific messages to you and consider what I'm asking of you and if I were to do the same thing to this like sm",
+  "meant": "How their small model would cope with their real messages, like a bare link, without a harness",
+  "reading": "Just look at our chat, like genuinely analyze my specific messages to you and consider what I'm asking of you and if I were to do the same thing to this small model, how would that actually translate in a real if we didn't have the harness, we didn't have all this crap,",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 40,
+  "kind": "voice",
+  "message": "Um, I'm open to having the model's base size be between like 200 and 500 megabytes. Is that even reasonable?",
+  "meant": "Whether a model file of 200 to 500 megabytes is a realistic target",
+  "reading": "I'm open to having the model's base size be between 200 and 500 megabytes. Is that even reasonable?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 41,
+  "kind": "voice",
+  "message": "Um, I do want to add it. And I really like the thing that you were talking about from Margaret Bowden. Like those three ideas are Those are genuinely like what ",
+  "meant": "To add creativity to the paper using Boden's three kinds, which match how they work",
+  "reading": "Add creativity to the paper.",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 42,
+  "kind": "voice",
+  "message": "So I'm not trying, I'm not trying to like get us to go back to Napkin because Napkin was just like it was a very different project than the one we're working on",
+  "meant": "To clarify that Napkin was a separate no-LLM project, not something to go back to",
+  "reading": "I'm not trying to get us to go back to Napkin because Napkin was just a very different project than the one we're working on. With, but Napkin, I was trying to not have an LLM at all. I didn't want an LLM. It looked up the",
+  "stopped": false,
+  "loops": false
+ },
+ {
+  "id": 43,
+  "kind": "voice",
+  "message": "And then the only other thing is like, I know that we tend to do these in one notebook, uh, do you think that we could run all of them as separate notebooks so ",
+  "meant": "To split the experiments into separate notebooks that run at the same time",
+  "reading": "And then the only other thing is like, I know that we tend to do these in one notebook, do you think that we could run all of them as separate notebooks so that they run in parallel instead of one after the other?",
+  "stopped": true,
+  "loops": false
+ },
+ {
+  "id": 44,
+  "kind": "voice",
+  "message": "Yeah, con I want you to instead of this time, actually, sorry, can we try to write up a paper for this? That is completely devoid of any type of like implementa",
+  "meant": "A write-up of the core idea as a paper, with no implementation details",
+  "reading": "I want you to instead of this time, can we try to write up a paper for this? That is completely devoid of any type of implementation details, and just really gets to the heart of what we're trying to achieve.",
+  "stopped": true,
+  "loops": false
+ }
+]
