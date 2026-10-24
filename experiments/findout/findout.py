@@ -301,37 +301,50 @@ def summarise(R):
     return "\n".join(L) + "\n"
 
 
+MERGED = "/tmp/findout_merged"
+PHASES = []
+
+
+def phase(name):
+    PHASES.append((name, time.time()))
+    log(f"--- {name}")
+
+
 def main():
     R = {}
     base = load("base"); base.eval()
-    log("evaluating base (2 worked examples in the prompt)")
+    phase("evaluate base")
     R["base"] = {"eval": evaluate(base, "base", shots=SHOTS), "ppl": perplexity(base)}
     del base; torch.cuda.empty_cache() if DEV == "cuda" else None
     for kind in ("lora", "full"):
+        phase(f"train {kind}")
         m = train_model(kind)
-        log(f"evaluating {kind}")
+        phase(f"evaluate {kind}")
         R[kind] = {"eval": evaluate(m, kind), "ppl": perplexity(m)}
         R[kind]["stale_off"] = evaluate(m, kind + " no-harness", harness_on=False, only=["t_stale"])
         if kind == "lora":
-            os.makedirs("findout_lora", exist_ok=True)
-            merged = m.merge_and_unload()
-            merged.save_pretrained("findout_lora/merged"); tok.save_pretrained("findout_lora/merged")
+            merged = m.merge_and_unload()                  # kept out of the output folder (it's big); the GGUF is the export
+            merged.save_pretrained(MERGED); tok.save_pretrained(MERGED)
             del merged
         del m; torch.cuda.empty_cache() if DEV == "cuda" else None
         json.dump({c: {k: v for k, v in R[c].items()} for c in R}, open("findout_results.json", "w"), indent=1, default=str)
-    text = summarise(R)
+    phase("export")
+    export_gguf()
+    phase("end")
+    timing = ", ".join(f"{a} {(PHASES[i + 1][1] - t) / 60:.1f} min" for i, (a, t) in enumerate(PHASES[:-1]))
+    text = summarise(R) + f"\nTiming: {timing}. Total {(time.time() - T0) / 60:.0f} min.\n"
     open("FINDOUT_RESULTS.md", "w").write(text)
     print(text)
-    export_gguf()
 
 
 def export_gguf():
     """Optional: convert the merged LoRA model to GGUF for Ollama with llama.cpp's converter."""
     try:
-        if not os.path.exists("llama.cpp"):
-            subprocess.run(["git", "clone", "-q", "--depth", "1", "https://github.com/ggml-org/llama.cpp"], check=True)
+        lc = "/tmp/llama.cpp"                        # outside the output folder, so its files aren't collected
+        if not os.path.exists(lc):
+            subprocess.run(["git", "clone", "-q", "--depth", "1", "https://github.com/ggml-org/llama.cpp", lc], check=True)
         subprocess.run([sys.executable, "-m", "pip", "install", "-q", "gguf"], check=False)
-        r = subprocess.run([sys.executable, "llama.cpp/convert_hf_to_gguf.py", "findout_lora/merged", "--outtype", "f16",
+        r = subprocess.run([sys.executable, f"{lc}/convert_hf_to_gguf.py", MERGED, "--outtype", "f16",
                             "--outfile", "findout.gguf"], capture_output=True, text=True)
         log("gguf:", "ok" if r.returncode == 0 else r.stderr[-800:])
         open("Modelfile", "w").write("FROM ./findout.gguf\nPARAMETER temperature 0\nPARAMETER num_ctx 2048\nPARAMETER stop </search>\nPARAMETER stop </calc>\nPARAMETER stop </ask>\nPARAMETER stop </answer>\n")
