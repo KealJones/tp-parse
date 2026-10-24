@@ -1,0 +1,258 @@
+{
+ "model": "Qwen/Qwen3-0.6B",
+ "pilot": false,
+ "untouched": {
+  "gift": {
+   "n": 30,
+   "success": 0,
+   "asked": 0,
+   "found_need": 0,
+   "checked": 0.1,
+   "no_answer": 0,
+   "questions": 0,
+   "parts": {
+    "found_need": 0,
+    "adapted": 0,
+    "connect": 0,
+    "no_wrong_place": 1,
+    "in_budget": 1
+   }
+  },
+  "dinner": {
+   "n": 30,
+   "success": 0,
+   "asked": 0,
+   "found_need": 0,
+   "checked": 0.1,
+   "no_answer": 0,
+   "questions": 0,
+   "parts": {
+    "found_need": 0,
+    "nothing_forbidden": 0.57,
+    "fits_kitchen": 0.9,
+    "safety_note": 0.23
+   }
+  },
+  "code": {
+   "n": 30,
+   "success": 0,
+   "asked": 0,
+   "found_need": 0,
+   "checked": 1,
+   "no_answer": 0,
+   "questions": 0,
+   "parts": {
+    "found_need": 0,
+    "fix": 0
+   }
+  },
+  "given": {
+   "n": 30,
+   "success": 0.13333333333333333,
+   "asked": 0,
+   "found_need": 0,
+   "checked": 0.9666666666666667,
+   "no_answer": 0,
+   "questions": 0,
+   "parts": {
+    "found_need": 1,
+    "adapted": 0.12,
+    "connect": 0,
+    "no_wrong_place": 0.81,
+    "in_budget": 1,
+    "nothing_forbidden": 0.64,
+    "fits_kitchen": 1,
+    "safety_note": 0.36
+   }
+  },
+  "trip (unseen)": {
+   "n": 30,
+   "success": 0,
+   "asked": 0,
+   "found_need": 0,
+   "checked": 0,
+   "no_answer": 0,
+   "questions": 0,
+   "parts": {
+    "found_who": 0,
+    "found_why": 0,
+    "fits_who": 0.17,
+    "fits_why": 0.6,
+    "in_budget": 1
+   }
+  },
+  "keal-mom": {
+   "n": 1,
+   "success": 0,
+   "asked": 0,
+   "found_need": 0,
+   "checked": 0,
+   "no_answer": 0,
+   "questions": 0,
+   "parts": {
+    "found_need": 0,
+    "adapted": 0,
+    "connect": 0,
+    "no_wrong_place": 1,
+    "in_budget": 1
+   }
+  },
+  "keal-coeliac": {
+   "n": 1,
+   "success": 1,
+   "asked": 0,
+   "found_need": 0,
+   "checked": 1,
+   "no_answer": 0,
+   "questions": 0,
+   "parts": {
+    "found_need": 1,
+    "nothing_forbidden": 1,
+    "fits_kitchen": 1,
+    "safety_note": 1
+   }
+  },
+  "keal-boustrophedon": {
+   "n": 1,
+   "success": 0,
+   "asked": 0,
+   "found_need": 0,
+   "checked": 0,
+   "no_answer": 0,
+   "questions": 0,
+   "parts": {
+    "has_code": 1,
+    "reverses": 0
+   }
+  }
+ },
+ "ppl_before": 36.25143420443961,
+ "patched": {
+  "gift": {
+   "n": 30,
+   "success": 1,
+   "asked": 1,
+   "found_need": 1,
+   "checked": 1,
+   "no_answer": 0,
+   "questions": 2,
+   "parts": {
+    "found_need": 1,
+    "adapted": 1,
+    "connect": 1,
+    "no_wrong_place": 1,
+    "in_budget": 1
+   }
+  },
+  "dinner": {
+   "n": 30,
+   "success": 1,
+   "asked": 1,
+   "found_need": 1,
+   "checked": 1,
+   "no_answer": 0,
+   "questions": 1,
+   "parts": {
+    "found_need": 1,
+    "nothing_forbidden": 1,
+    "fits_kitchen": 1,
+    "safety_note": 1
+   }
+  },
+  "code": {
+   "n": 30,
+   "success": 1,
+   "asked": 1,
+   "found_need": 1,
+   "checked": 1,
+   "no_answer": 0,
+   "questions": 1,
+   "parts": {
+    "found_need": 1,
+    "fix": 1
+   }
+  },
+  "given": {
+   "n": 30,
+   "success": 1,
+   "asked": 0,
+   "found_need": 0,
+   "checked": 1,
+   "no_answer": 0,
+   "questions": 0,
+   "parts": {
+    "found_need": 1,
+    "adapted": 1,
+    "connect": 1,
+    "no_wrong_place": 1,
+    "in_budget": 1,
+    "nothing_forbidden": 1,
+    "fits_kitchen": 1,
+    "safety_note": 1
+   }
+  },
+  "trip (unseen)": {
+   "n": 30,
+   "success": 0,
+   "asked": 1,
+   "found_need": 0,
+   "checked": 1,
+   "no_answer": 0,
+   "questions": 1,
+   "parts": {
+    "found_who": 0,
+    "found_why": 0,
+    "fits_who": 0,
+    "fits_why": 0,
+    "in_budget": 1
+   }
+  },
+  "keal-mom": {
+   "n": 1,
+   "success": 1,
+   "asked": 1,
+   "found_need": 1,
+   "checked": 1,
+   "no_answer": 0,
+   "questions": 2,
+   "parts": {
+    "found_need": 1,
+    "adapted": 1,
+    "connect": 1,
+    "no_wrong_place": 1,
+    "in_budget": 1
+   }
+  },
+  "keal-coeliac": {
+   "n": 1,
+   "success": 1,
+   "asked": 0,
+   "found_need": 0,
+   "checked": 1,
+   "no_answer": 0,
+   "questions": 0,
+   "parts": {
+    "found_need": 1,
+    "nothing_forbidden": 1,
+    "fits_kitchen": 1,
+    "safety_note": 1
+   }
+  },
+  "keal-boustrophedon": {
+   "n": 1,
+   "success": 0,
+   "asked": 0,
+   "found_need": 0,
+   "checked": 1,
+   "no_answer": 0,
+   "questions": 0,
+   "parts": {
+    "has_code": 0,
+    "reverses": 0
+   }
+  }
+ },
+ "ppl_patch_on": 195.1890002250256,
+ "ppl_patch_off": 36.25143420443961,
+ "minutes": 43.4
+}
