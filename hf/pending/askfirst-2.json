@@ -13,5 +13,9 @@
   "huggingface_hub"
  ],
  "outdir": "out",
- "out": "experiments/askfirst/hf-out"
+ "out": "experiments/askfirst/hf-out",
+ "job_id": "6adc402d1e112550ce7dd0dd",
+ "url": "https://huggingface.co/jobs/kealjones/6adc402d1e112550ce7dd0dd",
+ "started": "2026-10-24T05:20:46+00:00",
+ "sha": "ac813f94b1c7d108b605efc178b9bc580f66146b"
 }
