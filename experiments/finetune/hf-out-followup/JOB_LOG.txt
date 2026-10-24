@@ -1,0 +1,317 @@
+job 6adbde4d046eb82b1ecd7ad9 on gpu: followup-read-keal at 43ed54b
+fetched experiments/finetune/ft.py
+fetched experiments/finetune/followup.py
+fetched experiments/finetune/messages.json
+GPU: NVIDIA A10G | bf16: True
+
+
+config.json:   0%|          | 0.00/726 [00:00<?, ?B/s][A
+config.json: 100%|██████████| 726/726 [00:00<00:00, 4.37MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/9.73k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 9.73k/9.73k [00:00<00:00, 34.2MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 51.9MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 43.8MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 11.4MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  339kB/s  
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  339kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 11.4MB / 11.4MB, 1.14MB/s  
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 1.50GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: ██▋       |  409MB, 34.4MB/s  
+
+model.safetensors: reconstructing file:  21%|██        |  311MB / 1.50GB, 25.0MB/s  [A
+model.safetensors: downloading bytes: █████▎    |  802MB, 66.8MB/s  
+
+model.safetensors: reconstructing file:  68%|██████▊   | 1.03GB / 1.50GB, 79.7MB/s  [A
+model.safetensors: downloading bytes: ███████▊  | 1.18GB, 95.2MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 1.50GB / 1.50GB,  120MB/s  [A
+model.safetensors: downloading bytes: ██████████| 1.26GB,  104MB/s  
+model.safetensors: downloading bytes: ██████████| 1.26GB,  104MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 1.50GB / 1.50GB,  126MB/s  
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 468.19it/s]
+
+
+generation_config.json:   0%|          | 0.00/239 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 239/239 [00:00<00:00, 1.41MB/s]
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+
+
+README.md:   0%|          | 0.00/9.00k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 9.00k/9.00k [00:00<00:00, 36.1MB/s]
+
+
+ARC-Easy/train-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  331kB            [A
+ARC-Easy/train-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+ARC-Easy/train-00000-of-00001.parquet: downloading bytes: ██████████|  329kB, 32.9kB/s  
+ARC-Easy/train-00000-of-00001.parquet: downloading bytes: ██████████|  329kB, 32.9kB/s  
+
+ARC-Easy/train-00000-of-00001.parquet: reconstructing file: 100%|██████████|  331kB /  331kB, 33.0kB/s  
+
+
+ARC-Easy/test-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  346kB            [A
+ARC-Easy/test-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+ARC-Easy/test-00000-of-00001.parquet: downloading bytes: ██████████|  344kB,   ???B/s  
+ARC-Easy/test-00000-of-00001.parquet: downloading bytes: ██████████|  344kB,   ???B/s  
+
+ARC-Easy/test-00000-of-00001.parquet: reconstructing file: 100%|██████████|  346kB /  346kB, 34.6kB/s  
+
+
+ARC-Easy/validation-00000-of-00001.parqu(…): reconstructing file:   0%|          |  0.00B / 86.1kB            [A
+ARC-Easy/validation-00000-of-00001.parqu(…): downloading bytes:           |  0.00B            
+ARC-Easy/validation-00000-of-00001.parqu(…): downloading bytes: ██████████| 84.0kB, 8.40kB/s  
+ARC-Easy/validation-00000-of-00001.parqu(…): downloading bytes: ██████████| 84.0kB, 8.40kB/s  
+
+ARC-Easy/validation-00000-of-00001.parqu(…): reconstructing file: 100%|██████████| 86.1kB / 86.1kB, 8.61kB/s  
+
+
+Generating train split:   0%|          | 0/2251 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 2251/2251 [00:00<00:00, 244906.18 examples/s]
+
+
+Generating test split:   0%|          | 0/2376 [00:00<?, ? examples/s][A
+Generating test split: 100%|██████████| 2376/2376 [00:00<00:00, 462873.49 examples/s]
+
+
+Generating validation split:   0%|          | 0/570 [00:00<?, ? examples/s][A
+Generating validation split: 100%|██████████| 570/570 [00:00<00:00, 246545.66 examples/s]
+
+
+README.md:   0%|          | 0.00/10.5k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 10.5k/10.5k [00:00<00:00, 33.8MB/s]
+
+
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): reconstructing file:   0%|          |  0.00B /  733kB            [A
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes: ██████████|  732kB, 73.0kB/s  
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes: ██████████|  732kB, 73.0kB/s  
+
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): reconstructing file: 100%|██████████|  733kB /  733kB, 73.1kB/s  
+
+
+wikitext-2-raw-v1/train-00000-of-00001.p(…): reconstructing file:   0%|          |  0.00B / 6.36MB            [A
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes: ██████████| 6.35MB,  632kB/s  
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes: ██████████| 6.35MB,  632kB/s  
+
+wikitext-2-raw-v1/train-00000-of-00001.p(…): reconstructing file: 100%|██████████| 6.36MB / 6.36MB,  633kB/s  
+
+
+wikitext-2-raw-v1/validation-00000-of-00(…): reconstructing file:   0%|          |  0.00B /  657kB            [A
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes: ██████████|  657kB, 65.5kB/s  
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes: ██████████|  657kB, 65.5kB/s  
+
+wikitext-2-raw-v1/validation-00000-of-00(…): reconstructing file: 100%|██████████|  657kB /  657kB, 65.5kB/s  
+
+
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s][A
+Generating test split: 100%|██████████| 4358/4358 [00:00<00:00, 679331.65 examples/s]
+
+
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 36718/36718 [00:00<00:00, 895209.40 examples/s]
+
+
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s][A
+Generating validation split: 100%|██████████| 3760/3760 [00:00<00:00, 828460.97 examples/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (283723 > 131072). Running this sequence through the model will result in indexing errors
+before: {'messages': {'typed': 0.25, 'voice': 1, 'all': 0.625, 'n': 8}, 'english': {'arc_easy': 0.6, 'wiki_ppl': 36.71967777025118}}
+slots attached before layer 14 of 28: 0.86M params
+LoRA rank 16 on 196 linear layers: 10.1M trainable params
+
+
+README.md:   0%|          | 0.00/8.20k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 8.20k/8.20k [00:00<00:00, 40.2MB/s]
+
+
+databricks-dolly-15k.jsonl: reconstructing file:   0%|          |  0.00B / 13.1MB            [A
+databricks-dolly-15k.jsonl: downloading bytes:           |  0.00B            
+databricks-dolly-15k.jsonl: downloading bytes: ██████████| 7.63MB,  744kB/s  
+databricks-dolly-15k.jsonl: downloading bytes: ██████████| 7.63MB,  744kB/s  
+
+databricks-dolly-15k.jsonl: reconstructing file: 100%|██████████| 13.1MB / 13.1MB, 1.29MB/s  
+
+
+Generating train split:   0%|          | 0/15011 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 15011/15011 [00:00<00:00, 235000.76 examples/s]
+
+
+README.md:   0%|          | 0.00/947 [00:00<?, ?B/s][A
+README.md: 100%|██████████| 947/947 [00:00<00:00, 5.25MB/s]
+
+
+data/train-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B / 3.08MB            [A
+data/train-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+data/train-00000-of-00001.parquet: downloading bytes: ██████████| 2.15MB,  214kB/s  
+data/train-00000-of-00001.parquet: downloading bytes: ██████████| 2.15MB,  214kB/s  
+
+data/train-00000-of-00001.parquet: reconstructing file: 100%|██████████| 3.08MB / 3.08MB,  307kB/s  
+
+
+data/validation-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  116kB            [A
+data/validation-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+data/validation-00000-of-00001.parquet: downloading bytes: ██████████|  110kB, 11.0kB/s  
+data/validation-00000-of-00001.parquet: downloading bytes: ██████████|  110kB, 11.0kB/s  
+
+data/validation-00000-of-00001.parquet: reconstructing file: 100%|██████████|  116kB /  116kB, 11.6kB/s  
+
+
+data/test-00000-of-00001.parquet: reconstructing file:   0%|          |  0.00B /  111kB            [A
+data/test-00000-of-00001.parquet: downloading bytes:           |  0.00B            
+data/test-00000-of-00001.parquet: downloading bytes: ██████████|  106kB, 10.5kB/s  
+data/test-00000-of-00001.parquet: downloading bytes: ██████████|  106kB, 10.5kB/s  
+
+data/test-00000-of-00001.parquet: reconstructing file: 100%|██████████|  111kB /  111kB, 11.0kB/s  
+
+
+Generating train split:   0%|          | 0/16645 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 16645/16645 [00:00<00:00, 442935.66 examples/s]
+
+
+Generating validation split:   0%|          | 0/931 [00:00<?, ? examples/s][A
+Generating validation split: 100%|██████████| 931/931 [00:00<00:00, 170594.02 examples/s]
+
+
+Generating test split:   0%|          | 0/926 [00:00<?, ? examples/s][A
+Generating test split: 100%|██████████| 926/926 [00:00<00:00, 245678.13 examples/s]
+training 10.1M LoRA + 0.86M slot params, 20 steps × 4
+    step 1/20  loss 1.439  next-sentence 11.956  (1s)
+    step 2/20  loss 0.599  next-sentence 11.992  (1s)
+    step 3/20  loss 1.724  next-sentence 11.896  (1s)
+    step 4/20  loss 1.417  next-sentence 11.828  (1s)
+    step 5/20  loss 1.585  next-sentence 11.756  (2s)
+    step 6/20  loss 0.697  next-sentence 0.000  (2s)
+    step 7/20  loss 1.264  next-sentence 11.644  (2s)
+    step 8/20  loss 0.934  next-sentence 11.690  (2s)
+    step 9/20  loss 1.475  next-sentence 11.351  (3s)
+    step 10/20  loss 0.712  next-sentence 11.528  (3s)
+    step 11/20  loss 1.177  next-sentence 11.157  (3s)
+    step 12/20  loss 0.666  next-sentence 0.000  (3s)
+    step 13/20  loss 0.612  next-sentence 0.000  (4s)
+    step 14/20  loss 1.706  next-sentence 11.042  (4s)
+    step 15/20  loss 0.958  next-sentence 10.855  (4s)
+    step 16/20  loss 0.937  next-sentence 10.911  (5s)
+    step 17/20  loss 0.536  next-sentence 11.102  (5s)
+    step 18/20  loss 1.175  next-sentence 10.623  (5s)
+    step 19/20  loss 1.270  next-sentence 10.516  (5s)
+    step 20/20  loss 1.218  next-sentence 10.682  (6s)
+after: {'messages': {'typed': 0.25, 'voice': 1, 'all': 0.625, 'n': 8}, 'english': {'arc_easy': 0.6, 'wiki_ppl': 35.26908560347568}}
+    clean/short: 0%  (1s)
+    clean/long: 0%  (2s)
+    messy/short: 0%  (27s)
+    messy/long: 0%  (69s)
+    filler/short: 0%  (91s)
+    filler/long: 0%  (133s)
+# Follow-up: LoRA + slots learns to read Keal
+
+Qwen/Qwen3-0.6B on NVIDIA A10G, 3 min total. Trained on 200 planning and 250 reading examples; none of Keal's messages were in training.
+
+## Keal's real messages (8; pick what he meant out of four; chance 25%)
+
+| | typed | voice | all |
+|---|---|---|---|
+| before (untouched) | 25% | 100% | 62% |
+| after | 25% | 100% | 62% |
+
+## English kept
+
+| | ARC-Easy | WikiText-2 perplexity |
+|---|---|---|
+| before | 60% | 36.7 |
+| after | 60% | 35.3 |
+
+## Planning still works?
+
+| clean short | clean long | messy short | messy long | filler short | filler long |
+|---|---|---|---|---|---|
+| 0% | 0% | 0% | 0% | 0% | 0% |
+
+## Its own reading of each message
+
+- **[typed]** Wait what the fuck how much training do frontier models do how do they not take a fucking year!?
+  - meant: How much compute frontier models use and how they finish training in months instead of years
+  - read: to know how much training do frontier models do how do they not take a fucking year!?
+- **[typed]** Chinchilla insight what!?
+GPU: NVIDIA A10G | bf16: True
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 520.82it/s]
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (283723 > 131072). Running this sequence through the model will result in indexing errors
+before: {'messages': {'typed': 0.20833333333333334, 'voice': 0.3333333333333333, 'all': 0.26666666666666666, 'n': 45}, 'english': {'arc_easy': 0.5666666666666667, 'wiki_ppl': 36.25143420443961}}
+slots attached before layer 14 of 28: 0.86M params
+LoRA rank 16 on 196 linear layers: 10.1M trainable params
+training 10.1M LoRA + 0.86M slot params, 1500 steps × 8
+    step 100/1500  loss 0.326  next-sentence 5.940  (31s)
+    step 200/1500  loss 0.044  next-sentence 3.515  (63s)
+    step 300/1500  loss 0.028  next-sentence 3.177  (94s)
+    step 400/1500  loss 0.028  next-sentence 3.017  (125s)
+    step 500/1500  loss 0.023  next-sentence 2.996  (156s)
+    step 600/1500  loss 0.022  next-sentence 3.056  (187s)
+    step 700/1500  loss 0.018  next-sentence 2.927  (218s)
+    step 800/1500  loss 0.019  next-sentence 2.850  (250s)
+    step 900/1500  loss 0.015  next-sentence 2.804  (281s)
+    step 1000/1500  loss 0.022  next-sentence 2.793  (312s)
+    step 1100/1500  loss 0.017  next-sentence 2.992  (343s)
+    step 1200/1500  loss 0.014  next-sentence 2.813  (374s)
+    step 1300/1500  loss 0.021  next-sentence 2.921  (406s)
+    step 1400/1500  loss 0.011  next-sentence 2.792  (437s)
+    step 1500/1500  loss 0.010  next-sentence 2.916  (468s)
+after: {'messages': {'typed': 0.3333333333333333, 'voice': 0.47619047619047616, 'all': 0.4, 'n': 45}, 'english': {'arc_easy': 0.5, 'wiki_ppl': 56.41510754317781}}
+    clean/short: 100%  (130s)
+    clean/long: 100%  (342s)
+    messy/short: 100%  (473s)
+    messy/long: 100%  (683s)
+    filler/short: 96%  (810s)
+    filler/long: 100%  (1022s)
+# Follow-up: LoRA + slots learns to read Keal
+
+Qwen/Qwen3-0.6B on NVIDIA A10G, 28 min total. Trained on 6000 planning and 12000 reading examples; none of Keal's messages were in training.
+
+## Keal's real messages (45; pick what he meant out of four; chance 25%)
+
+| | typed | voice | all |
+|---|---|---|---|
+| before (untouched) | 21% | 33% | 27% |
+| after | 33% | 48% | 40% |
+
+## English kept
+
+| | ARC-Easy | WikiText-2 perplexity |
+|---|---|---|
+| before | 57% | 36.3 |
+| after | 50% | 56.4 |
+
+## Planning still works?
+
+| clean short | clean long | messy short | messy long | filler short | filler long |
+|---|---|---|---|---|---|
+| 100% | 100% | 100% | 100% | 96% | 100% |
+
+## Its own reading of each message
+
+- **[typed]** Wait what the fuck how much training do frontier models do how do they not take a fucking year!?
+  - meant: How much compute frontier models use and how they finish training in months instead of years
+  - read: What is the how much training do frontier models do? How do they not take a year? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?
+- **[typed]** Chinchilla insight what!?
+exit code 0 after 31.6 min
