@@ -1,0 +1,19 @@
+{
+ "slug": "answers-qwen",
+ "flavor": "a10g-small",
+ "timeout": "45m",
+ "files": [
+  "experiments/answers/answer.py",
+  "experiments/answers/tasks.json"
+ ],
+ "cmd": "python answer.py --pilot && rm -rf out && python answer.py",
+ "pip": [
+  "transformers>=4.51"
+ ],
+ "outdir": "out",
+ "out": "experiments/answers/hf-out",
+ "job_id": "6adc30701e112550ce7dc891",
+ "url": "https://huggingface.co/jobs/kealjones/6adc30701e112550ce7dc891",
+ "started": "2026-10-24T04:13:36+00:00",
+ "sha": "222ca9c9348809b668ce69dc65473a340f20b30b"
+}
