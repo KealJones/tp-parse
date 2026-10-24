@@ -18,6 +18,8 @@ Scored, untouched (with two worked examples) vs patched, in the same harness:
 """
 import json, math, os, random, re, statistics as st, sys, time
 
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -31,7 +33,7 @@ DEV = "cuda" if torch.cuda.is_available() else "cpu"
 BF16 = DEV == "cuda" and torch.cuda.is_bf16_supported()
 N_TRAIN = 64 if PILOT else 6000
 EPOCHS = 1 if PILOT else 2
-BATCH, MAXLEN = 8, 1024
+BATCH, MICRO, MAXLEN = 8, 2, 1024
 N_TEST = 2 if PILOT else 30
 OUT = "out"
 os.makedirs(OUT, exist_ok=True)
@@ -136,13 +138,16 @@ def train(model, params, data):
         for i in range(0, len(d), BATCH):
             for g in opt.param_groups:
                 g["lr"] = 2e-4 * min(1, (step + 1) / 50) * (0.1 + 0.9 * 0.5 * (1 + math.cos(math.pi * step / total)))
-            ids, lab, att = collate(d[i:i + BATCH])
-            with amp():
-                h = model.model(input_ids=ids, attention_mask=att).last_hidden_state
-                sel = lab[:, 1:] != -100
-                logits = model.lm_head(h[:, :-1][sel])
-            loss = F.cross_entropy(logits.float(), lab[:, 1:][sel])
-            opt.zero_grad(set_to_none=True); loss.backward()
+            opt.zero_grad(set_to_none=True)
+            for j in range(i, min(i + BATCH, len(d)), MICRO):       # micro-batches: a full batch of 8 runs out of memory
+                ids, lab, att = collate(d[j:j + MICRO])
+                with amp():
+                    h = model.model(input_ids=ids, attention_mask=att).last_hidden_state
+                    sel = lab[:, 1:] != -100
+                    logits = model.lm_head(h[:, :-1][sel])
+                loss = F.cross_entropy(logits.float(), lab[:, 1:][sel])
+                (loss * len(ids) / len(d[i:i + BATCH])).backward()
+                del h, logits
             nn.utils.clip_grad_norm_(params, 1.0); opt.step()
             step += 1
             if step % max(1, total // 15) == 0 or step == total:
