@@ -1,0 +1,10 @@
+{
+ "slug": "findout-full-1",
+ "notebook": "experiments/findout/findout.ipynb",
+ "out": "experiments/findout/kaggle-full",
+ "gpu": true,
+ "internet": true,
+ "push_output": "Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/kealinit/findout-full-1",
+ "ref": "kealinit/findout-full-1",
+ "started": "2026-10-24T15:47:15+00:00"
+}
