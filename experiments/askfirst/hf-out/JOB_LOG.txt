@@ -1,0 +1,121 @@
+job 6adc3293046eb82b1ecda2d9 on gpu: askfirst at 429212c
+fetched experiments/askfirst/scenarios.py
+fetched experiments/askfirst/askfirst.py
+
+
+config.json:   0%|          | 0.00/726 [00:00<?, ?B/s][A
+config.json: 100%|██████████| 726/726 [00:00<00:00, 4.07MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/9.73k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 9.73k/9.73k [00:00<00:00, 45.8MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 29.7MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 41.9MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 11.4MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  339kB/s  
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  339kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 11.4MB / 11.4MB, 1.14MB/s  
+[  0.0 min] GPU: NVIDIA A10G | bf16: True
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 1.50GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: ██▏       |  329MB, 27.8MB/s  
+
+model.safetensors: reconstructing file:  21%|██        |  311MB / 1.50GB, 24.7MB/s  [A
+model.safetensors: downloading bytes: █████▏    |  777MB, 67.2MB/s  
+
+model.safetensors: reconstructing file:  70%|██████▉   | 1.05GB / 1.50GB, 92.1MB/s  [A
+model.safetensors: downloading bytes: ███████▊  | 1.18GB, 96.0MB/s  
+model.safetensors: downloading bytes: ██████████| 1.26GB,  105MB/s  
+model.safetensors: downloading bytes: ██████████| 1.26GB,  105MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 1.50GB / 1.50GB,  127MB/s  
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 419.41it/s]
+
+
+generation_config.json:   0%|          | 0.00/239 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 239/239 [00:00<00:00, 1.53MB/s]
+[  0.1 min] 64 training episodes, mean 540 tokens, max 820
+[  0.1 min] untouched, two worked examples
+[  0.3 min]   untouched  gift                 success   0.0%  asked   0.0%
+[  0.6 min]   untouched  dinner               success   0.0%  asked   0.0%
+[  0.8 min]   untouched  code                 success   0.0%  asked   0.0%
+[  1.0 min]   untouched  given                success   0.0%  asked   0.0%
+[  1.1 min]   untouched  trip (unseen)        success   0.0%  asked   0.0%
+[  1.2 min]   untouched  keal-mom             success   0.0%  asked   0.0%
+[  1.3 min]   untouched  keal-coeliac         success 100.0%  asked   0.0%
+[  1.5 min]   untouched  keal-boustrophedon   success   0.0%  asked   0.0%
+
+
+README.md:   0%|          | 0.00/10.5k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 10.5k/10.5k [00:00<00:00, 51.5MB/s]
+
+
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): reconstructing file:   0%|          |  0.00B /  733kB            [A
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes: ██████████|  732kB, 72.4kB/s  
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes: ██████████|  732kB, 72.4kB/s  
+
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): reconstructing file: 100%|██████████|  733kB /  733kB, 72.8kB/s  
+
+
+wikitext-2-raw-v1/train-00000-of-00001.p(…): reconstructing file:   0%|          |  0.00B / 6.36MB            [A
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes: ██████████| 6.35MB,  632kB/s  
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes: ██████████| 6.35MB,  632kB/s  
+
+wikitext-2-raw-v1/train-00000-of-00001.p(…): reconstructing file: 100%|██████████| 6.36MB / 6.36MB,  633kB/s  
+
+
+wikitext-2-raw-v1/validation-00000-of-00(…): reconstructing file:   0%|          |  0.00B /  657kB            [A
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes: ██████████|  657kB, 65.3kB/s  
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes: ██████████|  657kB, 65.3kB/s  
+
+wikitext-2-raw-v1/validation-00000-of-00(…): reconstructing file: 100%|██████████|  657kB /  657kB, 65.3kB/s  
+
+
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s][A
+Generating test split: 100%|██████████| 4358/4358 [00:00<00:00, 441804.48 examples/s]
+
+
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 36718/36718 [00:00<00:00, 980689.22 examples/s]
+
+
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s][A
+Generating validation split: 100%|██████████| 3760/3760 [00:00<00:00, 764041.62 examples/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (283723 > 131072). Running this sequence through the model will result in indexing errors
+[  2.2 min] LoRA rank 16 on 196 linear layers: 10.1M params
+[  2.3 min]   step 1/8 loss 3.038 (1.54 s/step)
+Traceback (most recent call last):
+  File "/workspace/work/askfirst.py", line 321, in <module>
+    main()
+  File "/workspace/work/askfirst.py", line 270, in main
+    train(model, params, data)
+  File "/workspace/work/askfirst.py", line 145, in train
+    opt.zero_grad(set_to_none=True); loss.backward()
+                                     ^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/opt/conda/lib/python3.11/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/opt/conda/lib/python3.11/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.18 GiB. GPU 0 has a total capacity of 22.30 GiB of which 88.69 MiB is free. Process 11536 has 22.21 GiB memory in use. Of the allocated memory 18.91 GiB is allocated by PyTorch, and 2.99 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+exit code 1 after 2.8 min
