@@ -1,0 +1,19 @@
+{
+ "slug": "followup2-gentle",
+ "flavor": "a10g-small",
+ "timeout": "75m",
+ "files": [
+  "experiments/finetune/ft.py",
+  "experiments/finetune/followup.py",
+  "experiments/finetune/followup2.py",
+  "experiments/finetune/messages.json"
+ ],
+ "cmd": "python followup2.py --arm gentle --pilot && rm -rf out && python followup2.py --arm gentle",
+ "pip": [
+  "transformers>=4.51",
+  "datasets",
+  "huggingface_hub"
+ ],
+ "outdir": "out",
+ "out": "experiments/finetune/hf-out-followup2-gentle"
+}
