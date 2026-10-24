@@ -1,0 +1,253 @@
+[{"stream_name":"stderr","time":6.866803842,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":6.866851051,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":7.819187952,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.8192128400000005,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.819217965,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.819221465,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.434130207,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.434176717,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.434183172000001,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.43418707,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":45.670979413,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":45.671015223,"data":"\n"}
+,{"stream_name":"stderr","time":45.671021257,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":48.175808797,"data":"[  0.1 min] building data\n"}
+,{"stream_name":"stdout","time":81.922225409,"data":"[  0.6 min] 24000 training episodes, mean 304 tokens, max 448\n"}
+,{"stream_name":"stderr","time":93.171034574,"data":"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stderr","time":93.17105971,"data":"\n"}
+,{"stream_name":"stderr","time":93.171065679,"data":"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stdout","time":98.732546629,"data":"[  0.9 min] --- evaluate base\n"}
+,{"stream_name":"stdout","time":175.685529657,"data":"[  2.2 min]   base           t_lookup        success  13.3%\n"}
+,{"stream_name":"stdout","time":253.524199988,"data":"[  3.5 min]   base           t_given         success  78.3%\n"}
+,{"stream_name":"stdout","time":306.498733736,"data":"[  4.4 min]   base           t_calc          success   0.0%\n"}
+,{"stream_name":"stdout","time":383.896955219,"data":"[  5.6 min]   base           t_compare       success  40.0%\n"}
+,{"stream_name":"stdout","time":421.523602768,"data":"[  6.3 min]   base           t_ask           success   0.0%\n"}
+,{"stream_name":"stdout","time":591.163427629,"data":"[  9.1 min]   base           t_stale         success  11.7%\n"}
+,{"stream_name":"stdout","time":671.555606773,"data":"[ 10.4 min]   base           t_whose         success   0.0%\n"}
+,{"stream_name":"stdout","time":729.078322958,"data":"[ 11.4 min]   base           u_cost_compare  success  21.7%\n"}
+,{"stream_name":"stdout","time":813.697438795,"data":"[ 12.8 min]   base           u_three         success  25.0%\n"}
+,{"stream_name":"stdout","time":886.475044512,"data":"[ 14.0 min]   base           u_person        success  63.3%\n"}
+,{"stream_name":"stdout","time":889.626355062,"data":"[ 14.1 min] --- train lora\n"}
+,{"stream_name":"stdout","time":891.207026136,"data":"[ 14.1 min] lora: training 9.77M of 144.3M parameters\n"}
+,{"stream_name":"stdout","time":1057.600315237,"data":"[ 16.9 min]   lora step 200/3000 loss 0.012  (0.83 s/step, ~39 min left)\n"}
+,{"stream_name":"stdout","time":1223.284954986,"data":"[ 19.6 min]   lora step 400/3000 loss 0.003  (0.83 s/step, ~36 min left)\n"}
+,{"stream_name":"stdout","time":1390.094192817,"data":"[ 22.4 min]   lora step 600/3000 loss 0.004  (0.83 s/step, ~33 min left)\n"}
+,{"stream_name":"stdout","time":1556.419644109,"data":"[ 25.2 min]   lora step 800/3000 loss 0.016  (0.83 s/step, ~30 min left)\n"}
+,{"stream_name":"stdout","time":1720.970317519,"data":"[ 27.9 min]   lora step 1000/3000 loss 0.001  (0.83 s/step, ~28 min left)\n"}
+,{"stream_name":"stdout","time":1886.792068115,"data":"[ 30.7 min]   lora step 1200/3000 loss 0.001  (0.83 s/step, ~25 min left)\n"}
+,{"stream_name":"stdout","time":2052.542578927,"data":"[ 33.5 min]   lora step 1400/3000 loss 0.001  (0.83 s/step, ~22 min left)\n"}
+,{"stream_name":"stdout","time":2219.449419563,"data":"[ 36.2 min]   lora step 1600/3000 loss 0.001  (0.83 s/step, ~19 min left)\n"}
+,{"stream_name":"stdout","time":2385.377463635,"data":"[ 39.0 min]   lora step 1800/3000 loss 0.001  (0.83 s/step, ~17 min left)\n"}
+,{"stream_name":"stdout","time":2551.359913265,"data":"[ 41.8 min]   lora step 2000/3000 loss 0.000  (0.83 s/step, ~14 min left)\n"}
+,{"stream_name":"stdout","time":2716.556887915,"data":"[ 44.5 min]   lora step 2200/3000 loss 0.000  (0.83 s/step, ~11 min left)\n"}
+,{"stream_name":"stdout","time":2883.194057622,"data":"[ 47.3 min]   lora step 2400/3000 loss 0.001  (0.83 s/step, ~8 min left)\n"}
+,{"stream_name":"stdout","time":3049.247386726,"data":"[ 50.1 min]   lora step 2600/3000 loss 0.000  (0.83 s/step, ~6 min left)\n"}
+,{"stream_name":"stdout","time":3215.15032909,"data":"[ 52.8 min]   lora step 2800/3000 loss 0.000  (0.83 s/step, ~3 min left)\n"}
+,{"stream_name":"stdout","time":3380.516359303,"data":"[ 55.6 min]   lora step 3000/3000 loss 0.000  (0.83 s/step, ~0 min left)\n"}
+,{"stream_name":"stdout","time":3380.523783803,"data":"[ 55.6 min] --- evaluate lora\n"}
+,{"stream_name":"stdout","time":3403.382405791,"data":"[ 56.0 min]   lora           t_lookup        success 100.0%\n"}
+,{"stream_name":"stdout","time":3414.770866291,"data":"[ 56.2 min]   lora           t_given         success 100.0%\n"}
+,{"stream_name":"stdout","time":3438.645791152,"data":"[ 56.6 min]   lora           t_calc          success 100.0%\n"}
+,{"stream_name":"stdout","time":3482.295573141,"data":"[ 57.3 min]   lora           t_compare       success 100.0%\n"}
+,{"stream_name":"stdout","time":3514.293359454,"data":"[ 57.8 min]   lora           t_ask           success 100.0%\n"}
+,{"stream_name":"stdout","time":3641.176603122,"data":"[ 59.9 min]   lora           t_stale         success 100.0%\n"}
+,{"stream_name":"stdout","time":3678.116266315,"data":"[ 60.6 min]   lora           t_whose         success  98.3%\n"}
+,{"stream_name":"stdout","time":3715.220635394,"data":"[ 61.2 min]   lora           u_cost_compare  success   0.0%\n"}
+,{"stream_name":"stdout","time":3765.573989464,"data":"[ 62.0 min]   lora           u_three         success  63.3%\n"}
+,{"stream_name":"stdout","time":3794.605796591,"data":"[ 62.5 min]   lora           u_person        success  98.3%\n"}
+,{"stream_name":"stdout","time":3902.3004192,"data":"[ 64.3 min]   lora no-harness t_stale         success 100.0%\n"}
+,{"stream_name":"stdout","time":3903.431857067,"data":"[ 64.3 min] --- train full\n"}
+,{"stream_name":"stdout","time":3904.736467569,"data":"[ 64.3 min] full: training 134.52M of 134.5M parameters\n"}
+,{"stream_name":"stdout","time":4050.535127956,"data":"[ 66.8 min]   full step 200/3000 loss 0.009  (0.73 s/step, ~34 min left)\n"}
+,{"stream_name":"stdout","time":4196.670858432,"data":"[ 69.2 min]   full step 400/3000 loss 0.002  (0.73 s/step, ~32 min left)\n"}
+,{"stream_name":"stdout","time":4343.893068113,"data":"[ 71.6 min]   full step 600/3000 loss 0.002  (0.73 s/step, ~29 min left)\n"}
+,{"stream_name":"stdout","time":4490.420645796,"data":"[ 74.1 min]   full step 800/3000 loss 0.011  (0.73 s/step, ~27 min left)\n"}
+,{"stream_name":"stdout","time":4635.49820079,"data":"[ 76.5 min]   full step 1000/3000 loss 0.000  (0.73 s/step, ~24 min left)\n"}
+,{"stream_name":"stdout","time":4781.611560428,"data":"[ 78.9 min]   full step 1200/3000 loss 0.000  (0.73 s/step, ~22 min left)\n"}
+,{"stream_name":"stdout","time":4927.477375298,"data":"[ 81.4 min]   full step 1400/3000 loss 0.000  (0.73 s/step, ~19 min left)\n"}
+,{"stream_name":"stdout","time":5074.439890206,"data":"[ 83.8 min]   full step 1600/3000 loss 0.000  (0.73 s/step, ~17 min left)\n"}
+,{"stream_name":"stdout","time":5220.437583669,"data":"[ 86.3 min]   full step 1800/3000 loss 0.000  (0.73 s/step, ~15 min left)\n"}
+,{"stream_name":"stdout","time":5366.183721976,"data":"[ 88.7 min]   full step 2000/3000 loss 0.001  (0.73 s/step, ~12 min left)\n"}
+,{"stream_name":"stdout","time":5511.444944351,"data":"[ 91.1 min]   full step 2200/3000 loss 0.000  (0.73 s/step, ~10 min left)\n"}
+,{"stream_name":"stdout","time":5657.704954067,"data":"[ 93.5 min]   full step 2400/3000 loss 0.000  (0.73 s/step, ~7 min left)\n"}
+,{"stream_name":"stdout","time":5803.256398574,"data":"[ 96.0 min]   full step 2600/3000 loss 0.000  (0.73 s/step, ~5 min left)\n"}
+,{"stream_name":"stdout","time":5948.951764789,"data":"[ 98.4 min]   full step 2800/3000 loss 0.000  (0.73 s/step, ~2 min left)\n"}
+,{"stream_name":"stdout","time":6094.426048831,"data":"[100.8 min]   full step 3000/3000 loss 0.000  (0.73 s/step, ~0 min left)\n"}
+,{"stream_name":"stdout","time":6094.431544378,"data":"[100.8 min] --- evaluate full\n"}
+,{"stream_name":"stdout","time":6111.620806883,"data":"[101.1 min]   full           t_lookup        success 100.0%\n"}
+,{"stream_name":"stdout","time":6120.169132263,"data":"[101.3 min]   full           t_given         success 100.0%\n"}
+,{"stream_name":"stdout","time":6137.967966481,"data":"[101.5 min]   full           t_calc          success 100.0%\n"}
+,{"stream_name":"stdout","time":6169.860091039,"data":"[102.1 min]   full           t_compare       success 100.0%\n"}
+,{"stream_name":"stdout","time":6194.657335311,"data":"[102.5 min]   full           t_ask           success 100.0%\n"}
+,{"stream_name":"stdout","time":6291.196270241,"data":"[104.1 min]   full           t_stale         success 100.0%\n"}
+,{"stream_name":"stdout","time":6318.665602027,"data":"[104.6 min]   full           t_whose         success 100.0%\n"}
+,{"stream_name":"stdout","time":6352.909367014,"data":"[105.1 min]   full           u_cost_compare  success   0.0%\n"}
+,{"stream_name":"stdout","time":6390.861410314,"data":"[105.8 min]   full           u_three         success  60.0%\n"}
+,{"stream_name":"stdout","time":6412.488192593,"data":"[106.1 min]   full           u_person        success 100.0%\n"}
+,{"stream_name":"stdout","time":6494.162497288,"data":"[107.5 min]   full no-harness t_stale         success 100.0%\n"}
+,{"stream_name":"stdout","time":6494.488812241,"data":"[107.5 min] --- export\n"}
+,{"stream_name":"stdout","time":6514.115790914,"data":"[107.8 min] gguf: ok\n"}
+,{"stream_name":"stdout","time":6514.116716294,"data":"[107.8 min] --- end\n"}
+,{"stream_name":"stdout","time":6514.124882679,"data":"# Finding out: results\n"}
+,{"stream_name":"stdout","time":6514.124902108,"data":"\n"}
+,{"stream_name":"stdout","time":6514.12490622,"data":"SmolLM2-135M-Instruct, 24000 training episodes, 60 test episodes per task (180 for stale; ±12 points at 95% with 60).\n"}
+,{"stream_name":"stdout","time":6514.124920443,"data":"Chance: ask and stale about 1 in 6 (six regions), compare 50%, cost-compare 50%, three-way 33%, lookups near 0%.\n"}
+,{"stream_name":"stdout","time":6514.124923088,"data":"\n"}
+,{"stream_name":"stdout","time":6514.124925238,"data":"## Success by task\n"}
+,{"stream_name":"stdout","time":6514.124927636,"data":"\n"}
+,{"stream_name":"stdout","time":6514.124929783,"data":"| task | base | lora | full |\n"}
+,{"stream_name":"stdout","time":6514.124932011,"data":"|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":6514.124934697,"data":"| lookup | 13% | 100% | 100% |\n"}
+,{"stream_name":"stdout","time":6514.124954781,"data":"| given | 78% | 100% | 100% |\n"}
+,{"stream_name":"stdout","time":6514.124958645,"data":"| calc | 0% | 100% | 100% |\n"}
+,{"stream_name":"stdout","time":6514.124962525,"data":"| compare | 40% | 100% | 100% |\n"}
+,{"stream_name":"stdout","time":6514.124966184,"data":"| ask | 0% | 100% | 100% |\n"}
+,{"stream_name":"stdout","time":6514.124969845,"data":"| stale | 12% | 100% | 100% |\n"}
+,{"stream_name":"stdout","time":6514.124973282,"data":"| whose | 0% | 98% | 100% |\n"}
+,{"stream_name":"stdout","time":6514.124976559,"data":"| unfamiliar: cost_compare | 22% | 0% | 0% |\n"}
+,{"stream_name":"stdout","time":6514.124979846,"data":"| unfamiliar: three | 25% | 63% | 60% |\n"}
+,{"stream_name":"stdout","time":6514.124983054,"data":"| unfamiliar: person | 63% | 98% | 100% |\n"}
+,{"stream_name":"stdout","time":6514.12498631,"data":"\n"}
+,{"stream_name":"stdout","time":6514.124989413,"data":"## The loop itself\n"}
+,{"stream_name":"stdout","time":6514.124992657,"data":"\n"}
+,{"stream_name":"stdout","time":6514.124995888,"data":"| measure | base | lora | full |\n"}
+,{"stream_name":"stdout","time":6514.125000748,"data":"|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":6514.125007561,"data":"| looked up when it needed to | 95% | 100% | 100% |\n"}
+,{"stream_name":"stdout","time":6514.125010001,"data":"| looked up when the answer was given (lower is better) | 91% | 0% | 0% |\n"}
+,{"stream_name":"stdout","time":6514.125012271,"data":"| asked when it didn't need to (lower is better) | 0% | 4% | 1% |\n"}
+,{"stream_name":"stdout","time":6514.125014506,"data":"| no usable answer (format failures) | 17% | 0% | 0% |\n"}
+,{"stream_name":"stdout","time":6514.125016781,"data":"| used the calculator for arithmetic | 3% | 100% | 95% |\n"}
+,{"stream_name":"stdout","time":6514.125019,"data":"| asked when information was missing | 0% | 100% | 100% |\n"}
+,{"stream_name":"stdout","time":6514.125021193,"data":"| English perplexity (lower is better) | 12.4 | 19.0 | 13.9 |\n"}
+,{"stream_name":"stdout","time":6514.125023526,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125025689,"data":"## Stale assumptions with the harness note switched off\n"}
+,{"stream_name":"stdout","time":6514.125027905,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125029963,"data":"- lora: 100% with the note, 100% without\n"}
+,{"stream_name":"stdout","time":6514.125032141,"data":"- full: 100% with the note, 100% without\n"}
+,{"stream_name":"stdout","time":6514.125034498,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125036616,"data":"## One example per task (end of the trajectory, for the trained LoRA model)\n"}
+,{"stream_name":"stdout","time":6514.125039005,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125048462,"data":"**t_lookup**\n"}
+,{"stream_name":"stdout","time":6514.1250508,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125052871,"data":"\u003cthink\u003eI don't know what a pelko is. Look it up.\u003c/think\u003e\n"}
+,{"stream_name":"stdout","time":6514.125055521,"data":"\u003csearch\u003epelko diet\u003c/search\u003e\n"}
+,{"stream_name":"stdout","time":6514.12505775,"data":"\u003cresult\u003eThe pelko eats river fish. The pelko is blue.\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125060116,"data":"\u003cfact key=\"pelko_diet\"\u003eriver fish\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125062523,"data":"\u003canswer\u003eThe pelko eats river fish.\u003c/answer\u003e\n"}
+,{"stream_name":"stdout","time":6514.125064767,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125066873,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125069002,"data":"**t_given**\n"}
+,{"stream_name":"stdout","time":6514.125071131,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125073204,"data":"\u003cthink\u003eThe answer is already in the message. No lookup needed.\u003c/think\u003e\n"}
+,{"stream_name":"stdout","time":6514.125075884,"data":"\u003canswer\u003eThe zelrin eats beetles.\u003c/answer\u003e\n"}
+,{"stream_name":"stdout","time":6514.125078175,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125080231,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125082265,"data":"**t_calc**\n"}
+,{"stream_name":"stdout","time":6514.12508438,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125086494,"data":"\u003cthink\u003eMultiply exactly with the calculator.\u003c/think\u003e\n"}
+,{"stream_name":"stdout","time":6514.125088755,"data":"\u003ccalc\u003e18 * 26\u003c/calc\u003e\n"}
+,{"stream_name":"stdout","time":6514.125090996,"data":"\u003cresult\u003e468\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125093213,"data":"\u003canswer\u003e26 rindrarals cost 468 coins.\u003c/answer\u003e\n"}
+,{"stream_name":"stdout","time":6514.125095403,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125097475,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125099489,"data":"**t_compare**\n"}
+,{"stream_name":"stdout","time":6514.125101591,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125103636,"data":"\u003cthink\u003eI need both populations.\u003c/think\u003e\n"}
+,{"stream_name":"stdout","time":6514.125105893,"data":"\u003csearch\u003eOshmisel population\u003c/search\u003e\n"}
+,{"stream_name":"stdout","time":6514.125108718,"data":"\u003cresult\u003eOshmisel has a population of 37674. Oshmisel was founded in 1920.\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125111148,"data":"\u003cfact key=\"Oshmisel_population\"\u003e37674\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125113525,"data":"\u003csearch\u003eFenthu population\u003c/search\u003e\n"}
+,{"stream_name":"stdout","time":6514.125115733,"data":"\u003cresult\u003eFenthu has a population of 55868. Fenthu was founded in 1779.\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125118186,"data":"\u003cfact key=\"Fenthu_population\"\u003e55868\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125120531,"data":"\u003ccalc\u003e37674 \u003e 55868\u003c/calc\u003e\n"}
+,{"stream_name":"stdout","time":6514.125122806,"data":"\u003cresult\u003efalse\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125125013,"data":"\u003canswer\u003eFenthu is bigger: Oshmisel has 37674 people and Fenthu has 55868.\u003c/answer\u003e\n"}
+,{"stream_name":"stdout","time":6514.125127338,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125129391,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125131613,"data":"**t_ask**\n"}
+,{"stream_name":"stdout","time":6514.125135848,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125138023,"data":"\u003cthink\u003eI don't know their hometown. Ask.\u003c/think\u003e\n"}
+,{"stream_name":"stdout","time":6514.1251403,"data":"\u003cask\u003eWhich town is your hometown?\u003c/ask\u003e\n"}
+,{"stream_name":"stdout","time":6514.125142551,"data":"\u003creply\u003eTirulsor\u003c/reply\u003e\n"}
+,{"stream_name":"stdout","time":6514.125144777,"data":"\u003cfact key=\"hometown\"\u003eTirulsor\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125147083,"data":"\u003csearch\u003eTirulsor region\u003c/search\u003e\n"}
+,{"stream_name":"stdout","time":6514.125149336,"data":"\u003cresult\u003eTirulsor is in the north coast. Tirulsor was founded in 1733.\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125151606,"data":"\u003cfact key=\"Tirulsor_region\"\u003ethe north coast\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125153949,"data":"\u003canswer\u003eTirulsor is in the north coast.\u003c/answer\u003e\n"}
+,{"stream_name":"stdout","time":6514.125156165,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125158234,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125160306,"data":"**t_stale**\n"}
+,{"stream_name":"stdout","time":6514.125162398,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125164468,"data":"e\u003e\n"}
+,{"stream_name":"stdout","time":6514.125166592,"data":"\u003csearch\u003eKoko region\u003c/search\u003e\n"}
+,{"stream_name":"stdout","time":6514.125168825,"data":"\u003cresult\u003eKoko is in the north coast. Koko was founded in 1833.\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125173451,"data":"\u003creply\u003eoh wait she moved to Lothusor last year\u003c/reply\u003e\n"}
+,{"stream_name":"stdout","time":6514.125175773,"data":"\u003cfact key=\"sister_town\"\u003eLothusor\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125178171,"data":"\u003charness\u003esister_town changed: assumed Koko, now Lothusor. Rested on Koko: 'Koko region'.\u003c/harness\u003e\n"}
+,{"stream_name":"stdout","time":6514.125180588,"data":"\u003cthink\u003eThe search for Koko is stale now. Look up Lothusor.\u003c/think\u003e\n"}
+,{"stream_name":"stdout","time":6514.125182895,"data":"\u003csearch\u003eLothusor region\u003c/search\u003e\n"}
+,{"stream_name":"stdout","time":6514.125185171,"data":"\u003cresult\u003eLothusor is in the south valley. Lothusor has a population of 81018.\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125187526,"data":"\u003cfact key=\"Lothusor_region\"\u003ethe south valley\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125189952,"data":"\u003canswer\u003eShe's in Lothusor, which is in the south valley.\u003c/answer\u003e\n"}
+,{"stream_name":"stdout","time":6514.125192398,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125194571,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125196631,"data":"**t_whose**\n"}
+,{"stream_name":"stdout","time":6514.125198732,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.12520081,"data":"\u003cfact key=\"brother_town\"\u003eJadunfen\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125203083,"data":"\u003cfact key=\"my_town\"\u003eEshvor\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125205345,"data":"\u003csearch\u003eJadunfen population\u003c/search\u003e\n"}
+,{"stream_name":"stdout","time":6514.125207596,"data":"\u003cresult\u003eJadunfen has a population of 49750. Jadunfen was founded in 1933.\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125210094,"data":"\u003cfact key=\"Jadunfen_population\"\u003e49750\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125214906,"data":"\u003ccheck\u003eThe question is about the brother's town, Jadunfen, not Eshvor.\u003c/check\u003e\n"}
+,{"stream_name":"stdout","time":6514.125217348,"data":"\u003canswer\u003eJadunfen, your brother's town, has 49750 people.\u003c/answer\u003e\n"}
+,{"stream_name":"stdout","time":6514.125219631,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125221721,"data":"\n"}
+,{"stream_name":"stdout","time":6514.12522376,"data":"**u_cost_compare**\n"}
+,{"stream_name":"stdout","time":6514.125225898,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125227966,"data":"\u003cthink\u003eI don't know the price of a fenvinvin. Look it up, then multiply.\u003c/think\u003e\n"}
+,{"stream_name":"stdout","time":6514.125230296,"data":"\u003csearch\u003efenvinvin price\u003c/search\u003e\n"}
+,{"stream_name":"stdout","time":6514.125232471,"data":"\u003cresult\u003eA fenvinvin costs 83 coins. A fenvinvin weighs 19 grams.\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125235086,"data":"\u003cfact key=\"fenvinvin_price\"\u003e83\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125237386,"data":"\u003ccalc\u003e83 * 10\u003c/calc\u003e\n"}
+,{"stream_name":"stdout","time":6514.125239588,"data":"\u003cresult\u003e830\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125241788,"data":"\u003canswer\u003e10 fenvinvins cost 830 coins.\u003c/answer\u003e\n"}
+,{"stream_name":"stdout","time":6514.125244028,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125246093,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125248146,"data":"**u_three**\n"}
+,{"stream_name":"stdout","time":6514.125250206,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125252285,"data":"\u003cthink\u003eI need both populations.\u003c/think\u003e\n"}
+,{"stream_name":"stdout","time":6514.125254508,"data":"\u003csearch\u003eFenthu population\u003c/search\u003e\n"}
+,{"stream_name":"stdout","time":6514.125256769,"data":"\u003cresult\u003eFenthu has a population of 65016. Fenthu was founded in 1661.\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125259023,"data":"\u003cfact key=\"Fenthu_population\"\u003e65016\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125261289,"data":"\u003csearch\u003eQuaja population\u003c/search\u003e\n"}
+,{"stream_name":"stdout","time":6514.125263534,"data":"\u003cresult\u003eQuaja has a population of 91593. Quaja is in the western plains.\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.125265841,"data":"\u003cfact key=\"Quaja_population\"\u003e91593\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125268099,"data":"\u003ccalc\u003e65016 \u003e 91593\u003c/calc\u003e\n"}
+,{"stream_name":"stdout","time":6514.125270363,"data":"\u003cresult\u003efalse\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.12527262,"data":"\u003canswer\u003eQuaja is biggest out of Fenthu and Quaja.\u003c/answer\u003e\n"}
+,{"stream_name":"stdout","time":6514.125274898,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125276968,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125279017,"data":"**u_person**\n"}
+,{"stream_name":"stdout","time":6514.125281094,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.125283163,"data":"\u003cthink\u003eI don't know their ages. Ask.\u003c/think\u003e\n"}
+,{"stream_name":"stdout","time":6514.125285393,"data":"\u003cask\u003eWhich town is Rinwex?\u003c/ask\u003e\n"}
+,{"stream_name":"stdout","time":6514.125287611,"data":"\u003creply\u003enot sure, sorry\u003c/reply\u003e\n"}
+,{"stream_name":"stdout","time":6514.125290016,"data":"\u003cfact key=\"Rinwex_age\"\u003e100\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125292268,"data":"\u003csearch\u003eRinwex_age\u003c/search\u003e\n"}
+,{"stream_name":"stdout","time":6514.125296486,"data":"\u003cresult\u003eRinwex is 33 years old. Rinwex works as a farmer.\u003c/result\u003e\n"}
+,{"stream_name":"stdout","time":6514.12529891,"data":"\u003cfact key=\"Rinwex_age\"\u003e33\u003c/fact\u003e\n"}
+,{"stream_name":"stdout","time":6514.125301153,"data":"\u003canswer\u003eRinwex is 33 years old.\u003c/answer\u003e\n"}
+,{"stream_name":"stdout","time":6514.125303405,"data":"```\n"}
+,{"stream_name":"stdout","time":6514.12530545,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125307511,"data":"\n"}
+,{"stream_name":"stdout","time":6514.125309652,"data":"Timing: evaluate base 13.2 min, train lora 41.5 min, evaluate lora 8.7 min, train full 36.5 min, evaluate full 6.7 min, export 0.3 min. Total 108 min.\n"}
+,{"stream_name":"stdout","time":6514.125312081,"data":"\n"}
+,{"stream_name":"stderr","time":6519.53012407,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":6519.530153444,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":6519.693125428,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":6519.693148934,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":6520.45779271,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":6520.561323794,"data":"[NbConvertApp] Writing 229735 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":6523.029439044,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":6523.73711634,"data":"[NbConvertApp] Writing 643981 bytes to __results__.html\n"}
+]
