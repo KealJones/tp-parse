@@ -1,0 +1,93 @@
+{
+ "model": "Qwen/Qwen3-0.6B",
+ "n": 50,
+ "random": {
+  "clean/short": {
+   "success": 0.1,
+   "fails": {
+    "too many steps": 30,
+    "wrong choice": 15
+   }
+  },
+  "clean/long": {
+   "success": 0.02,
+   "fails": {
+    "wrong choice": 19,
+    "too many steps": 30
+   }
+  },
+  "messy/short": {
+   "success": 0.06,
+   "fails": {
+    "too many steps": 36,
+    "wrong choice": 11
+   }
+  },
+  "messy/long": {
+   "success": 0.02,
+   "fails": {
+    "wrong choice": 19,
+    "too many steps": 30
+   }
+  },
+  "filler/short": {
+   "success": 0.08,
+   "fails": {
+    "too many steps": 36,
+    "wrong choice": 10
+   }
+  },
+  "filler/long": {
+   "success": 0,
+   "fails": {
+    "too many steps": 33,
+    "wrong choice": 17
+   }
+  }
+ },
+ "qwen": {
+  "clean/short": {
+   "success": 0.22,
+   "fails": {
+    "too many steps": 32,
+    "wrong choice": 7
+   }
+  },
+  "clean/long": {
+   "success": 0,
+   "fails": {
+    "wrong choice": 10,
+    "too many steps": 40
+   }
+  },
+  "messy/short": {
+   "success": 0.24,
+   "fails": {
+    "too many steps": 31,
+    "wrong choice": 7
+   }
+  },
+  "messy/long": {
+   "success": 0,
+   "fails": {
+    "wrong choice": 10,
+    "too many steps": 40
+   }
+  },
+  "filler/short": {
+   "success": 0.22,
+   "fails": {
+    "wrong choice": 11,
+    "too many steps": 28
+   }
+  },
+  "filler/long": {
+   "success": 0.02,
+   "fails": {
+    "wrong choice": 12,
+    "too many steps": 37
+   }
+  }
+ },
+ "total_s": 159
+}
