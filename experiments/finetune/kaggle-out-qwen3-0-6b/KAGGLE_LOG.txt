@@ -1,0 +1,168 @@
+[{"stream_name":"stderr","time":11.364011496,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":11.364079481,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":12.972684638,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":12.972713222,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":12.972717699,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":12.972721541,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":13.774280324,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":13.774311981,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":13.774318989,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":13.774323908,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":45.409291115,"data":"transformers 5.16.1\n"}
+,{"stream_name":"stdout","time":60.560374375,"data":"GPUs: ['Tesla T4', 'Tesla T4']\n"}
+,{"stream_name":"stdout","time":120.577164204,"data":"[  1.0 min gpu0] == untouched done in 56s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.6, 'wiki_ppl': 36.66130004511006}\n"}
+,{"stream_name":"stdout","time":120.578235005,"data":"[  1.0 min gpu1]     step 12/20  plan loss 0.8413  next-sentence 10.812  (13s)\n"}
+,{"stream_name":"stdout","time":180.579975303,"data":"[  2.0 min gpu0]     messy/long: 0%  (13s)\n"}
+,{"stream_name":"stdout","time":180.581119411,"data":"[  2.0 min gpu1]     filler/short: 0%  (32s)\n"}
+,{"stream_name":"stdout","time":240.583386108,"data":"[  3.0 min gpu0] squashed 196 linear layers to 4 bits\n"}
+,{"stream_name":"stdout","time":240.584430215,"data":"[  3.0 min gpu1]     clean/long: 0%  (37s)\n"}
+,{"stream_name":"stdout","time":300.587793987,"data":"[  4.0 min gpu0]     messy/long: 0%  (44s)\n"}
+,{"stream_name":"stdout","time":300.58888029,"data":"[  4.0 min gpu1]     messy/long: 0%  (73s)\n"}
+,{"stream_name":"stdout","time":360.587954402,"data":"[  5.0 min gpu0] == ft done in 216s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.6, 'wiki_ppl': 35.05297144920511}\n"}
+,{"stream_name":"stdout","time":360.588926108,"data":"[  5.0 min gpu1]     step 2/20  plan loss 2.0724  next-sentence 11.940  (3s)\n"}
+,{"stream_name":"stdout","time":420.591484439,"data":"[  6.0 min gpu0] == ft done in 216s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.6, 'wiki_ppl': 35.05297144920511}\n"}
+,{"stream_name":"stdout","time":420.592432161,"data":"[  6.0 min gpu1]     clean/long: 0%  (3s)\n"}
+,{"stream_name":"stdout","time":480.592913321,"data":"[  7.0 min gpu0] == ft done in 216s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.6, 'wiki_ppl': 35.05297144920511}\n"}
+,{"stream_name":"stdout","time":480.593849067,"data":"[  7.0 min gpu1]     messy/long: 0%  (87s)\n"}
+,{"stream_name":"stdout","time":540.595461817,"data":"[  8.0 min gpu0] == ft done in 216s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.6, 'wiki_ppl': 35.05297144920511}\n"}
+,{"stream_name":"stdout","time":540.596283531,"data":"[  8.0 min gpu1]     filler/short: 0%  (140s)\n"}
+,{"stream_name":"stdout","time":600.597998241,"data":"[  9.0 min gpu0] == ft done in 216s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.6, 'wiki_ppl': 35.05297144920511}\n"}
+,{"stream_name":"stdout","time":600.59880749,"data":"[  9.0 min gpu1]     clean/long: 0%  (3s)\n"}
+,{"stream_name":"stdout","time":660.60037393,"data":"[ 10.0 min gpu0] == ft done in 216s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.6, 'wiki_ppl': 35.05297144920511}\n"}
+,{"stream_name":"stdout","time":660.601149298,"data":"[ 10.0 min gpu1]     messy/short: 0%  (58s)\n"}
+,{"stream_name":"stdout","time":720.602374274,"data":"[ 11.0 min gpu0] == ft done in 216s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.6, 'wiki_ppl': 35.05297144920511}\n"}
+,{"stream_name":"stdout","time":720.603201507,"data":"[ 11.0 min gpu1]     messy/long: 0%  (112s)\n"}
+,{"stream_name":"stdout","time":780.604636835,"data":"[ 12.0 min gpu0] == ft done in 216s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.6, 'wiki_ppl': 35.05297144920511}\n"}
+,{"stream_name":"stdout","time":780.605568855,"data":"[ 12.0 min gpu1]     filler/short: 0%  (166s)\n"}
+,{"stream_name":"stdout","time":840.60815175,"data":"[ 13.0 min gpu0] == ft done in 216s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.6, 'wiki_ppl': 35.05297144920511}\n"}
+,{"stream_name":"stdout","time":840.608992898,"data":"[ 13.0 min gpu1] == lora-slots done in 454s: messages {'typed': 0.16666666666666666, 'voice': None, 'all': 0.16666666666666666, 'n': 6}, english {'arc_easy': 0.5, 'wiki_ppl': 34.72116740271754}\n"}
+,{"stream_name":"stdout","time":840.609970238,"data":"## Pilot (20 training steps, 2 problems per cell: every code path once)\n"}
+,{"stream_name":"stdout","time":840.609988266,"data":"\n"}
+,{"stream_name":"stdout","time":840.609998942,"data":"- ft-slots: ran in 277s, clean short 0%\n"}
+,{"stream_name":"stdout","time":840.610002236,"data":"- ft: ran in 216s, clean short 0%\n"}
+,{"stream_name":"stdout","time":840.610005112,"data":"- lora-slots: ran in 454s, clean short 0%\n"}
+,{"stream_name":"stdout","time":840.610035015,"data":"- untouched: ran in 56s, clean short 0%\n"}
+,{"stream_name":"stdout","time":840.610042215,"data":"\n"}
+,{"stream_name":"stdout","time":840.61004729,"data":"Pilot passed; full run started.\n"}
+,{"stream_name":"stdout","time":1140.629226491,"data":"[  5.0 min gpu0]     step 100/1000  plan loss 0.2173  (90s)\n"}
+,{"stream_name":"stdout","time":1140.629815184,"data":"[  5.0 min gpu1]     step 200/1000  plan loss 0.0115  next-sentence 2.814  (211s)\n"}
+,{"stream_name":"stdout","time":1440.637221873,"data":"[ 10.0 min gpu0]     step 400/1000  plan loss 0.0037  (359s)\n"}
+,{"stream_name":"stdout","time":1440.637847582,"data":"[ 10.0 min gpu1]     step 500/1000  plan loss 0.0012  next-sentence 2.387  (523s)\n"}
+,{"stream_name":"stdout","time":1740.638434367,"data":"[ 15.0 min gpu0]     step 700/1000  plan loss 0.0004  (627s)\n"}
+,{"stream_name":"stdout","time":1740.639801755,"data":"[ 15.0 min gpu1]     step 800/1000  plan loss 0.0002  next-sentence 2.322  (833s)\n"}
+,{"stream_name":"stdout","time":2040.642287943,"data":"[ 20.0 min gpu0]     clean/short: 100%  (110s)\n"}
+,{"stream_name":"stdout","time":2040.642324197,"data":"[ 20.0 min gpu1]     clean/short: 100%  (113s)\n"}
+,{"stream_name":"stdout","time":2340.64366717,"data":"[ 25.0 min gpu0]     messy/short: 96%  (392s)\n"}
+,{"stream_name":"stdout","time":2340.644679547,"data":"[ 25.0 min gpu1]     messy/short: 100%  (407s)\n"}
+,{"stream_name":"stdout","time":2640.647349888,"data":"[ 30.0 min gpu0]     filler/short: 58%  (662s)\n"}
+,{"stream_name":"stdout","time":2640.647848206,"data":"[ 30.0 min gpu1]     filler/short: 96%  (701s)\n"}
+,{"stream_name":"stdout","time":2940.651171826,"data":"[ 35.0 min gpu0]     clean/short: 100%  (107s)\n"}
+,{"stream_name":"stdout","time":2940.651401723,"data":"[ 35.0 min gpu1]     clean/short: 100%  (111s)\n"}
+,{"stream_name":"stdout","time":3240.651493545,"data":"[ 40.0 min gpu0]     messy/short: 100%  (387s)\n"}
+,{"stream_name":"stdout","time":3240.65224073,"data":"[ 40.0 min gpu1]     messy/short: 100%  (402s)\n"}
+,{"stream_name":"stdout","time":3540.651720429,"data":"[ 45.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":3540.652565059,"data":"[ 45.0 min gpu1]     filler/short: 83%  (692s)\n"}
+,{"stream_name":"stdout","time":3840.65378688,"data":"[ 50.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":3840.654707708,"data":"[ 50.0 min gpu1]     step 100/1000  plan loss 0.2991  next-sentence 5.425  (115s)\n"}
+,{"stream_name":"stdout","time":4140.656262024,"data":"[ 55.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":4140.657111741,"data":"[ 55.0 min gpu1]     step 400/1000  plan loss 0.0012  next-sentence 2.434  (460s)\n"}
+,{"stream_name":"stdout","time":4440.658034592,"data":"[ 60.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":4440.658926773,"data":"[ 60.0 min gpu1]     step 700/1000  plan loss 0.0002  next-sentence 2.342  (805s)\n"}
+,{"stream_name":"stdout","time":4740.660069314,"data":"[ 65.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":4740.660914394,"data":"[ 65.0 min gpu1]     step 900/1000  plan loss 0.0006  next-sentence 2.312  (1033s)\n"}
+,{"stream_name":"stdout","time":5040.664460337,"data":"[ 70.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":5040.665433249,"data":"[ 70.0 min gpu1]     clean/short: 100%  (157s)\n"}
+,{"stream_name":"stdout","time":5340.666819477,"data":"[ 75.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":5340.667829704,"data":"[ 75.0 min gpu1]     messy/short: 100%  (566s)\n"}
+,{"stream_name":"stdout","time":5640.668710469,"data":"[ 80.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":5640.669590382,"data":"[ 80.0 min gpu1]     messy/long: 96%  (819s)\n"}
+,{"stream_name":"stdout","time":5940.670308944,"data":"[ 85.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":5940.671151087,"data":"[ 85.0 min gpu1]     filler/long: 67%  (1159s)\n"}
+,{"stream_name":"stdout","time":6240.674582717,"data":"[ 90.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":6240.675469103,"data":"[ 90.0 min gpu1]     clean/short: 96%  (154s)\n"}
+,{"stream_name":"stdout","time":6540.676942167,"data":"[ 95.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":6540.677839891,"data":"[ 95.0 min gpu1]     messy/short: 92%  (542s)\n"}
+,{"stream_name":"stdout","time":6840.679468405,"data":"[100.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":6840.680370589,"data":"[100.0 min gpu1]     messy/long: 92%  (784s)\n"}
+,{"stream_name":"stdout","time":7140.683027186,"data":"[105.0 min gpu0] == ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}\n"}
+,{"stream_name":"stdout","time":7140.683854259,"data":"[105.0 min gpu1] == lora-slots done in 3490s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.5066666666666667, 'wiki_ppl': 126.6303558682861}\n"}
+,{"stream_name":"stdout","time":7142.961653306,"data":"# Fine-tune test: Qwen/Qwen3-0.6B\n"}
+,{"stream_name":"stdout","time":7142.96168903,"data":"\n"}
+,{"stream_name":"stdout","time":7142.961694878,"data":"## Pilot (20 training steps, 2 problems per cell: every code path once)\n"}
+,{"stream_name":"stdout","time":7142.961705439,"data":"\n"}
+,{"stream_name":"stdout","time":7142.961710796,"data":"- ft-slots: ran in 277s, clean short 0%\n"}
+,{"stream_name":"stdout","time":7142.961715629,"data":"- ft: ran in 216s, clean short 0%\n"}
+,{"stream_name":"stdout","time":7142.961720237,"data":"- lora-slots: ran in 454s, clean short 0%\n"}
+,{"stream_name":"stdout","time":7142.961724801,"data":"- untouched: ran in 56s, clean short 0%\n"}
+,{"stream_name":"stdout","time":7142.96173031,"data":"\n"}
+,{"stream_name":"stdout","time":7142.96173501,"data":"Pilot passed; full run started.\n"}
+,{"stream_name":"stdout","time":7142.961740065,"data":"\n"}
+,{"stream_name":"stdout","time":7142.961744309,"data":"One seed. 24 problems per cell, spread over the four skins. Untouched is shown two worked examples;\n"}
+,{"stream_name":"stdout","time":7142.961748905,"data":"the fine-tunes see none. Clean = as trained; messy = periods removed (a quarter of training was like this);\n"}
+,{"stream_name":"stdout","time":7142.961753425,"data":"filler = periods removed plus speech filler (\"um\", \"like\", \"you know\"…), never seen in training.\n"}
+,{"stream_name":"stdout","time":7142.961759099,"data":"\n"}
+,{"stream_name":"stdout","time":7142.961763394,"data":"## Planning in the world\n"}
+,{"stream_name":"stdout","time":7142.961767688,"data":"\n"}
+,{"stream_name":"stdout","time":7142.961777612,"data":"| version | clean short | clean long | messy short | messy long | filler short | filler long | searched when needed | bookkeeping fails |\n"}
+,{"stream_name":"stdout","time":7142.961821652,"data":"|---|---|---|---|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":7142.961826226,"data":"| untouched | 0% | 0% | 0% | 0% | 0% | 0% | 8% | 9 |\n"}
+,{"stream_name":"stdout","time":7142.96183035,"data":"| ft | 100% | 100% | 96% | 100% | 58% | 58% | 93% | 5 |\n"}
+,{"stream_name":"stdout","time":7142.961834785,"data":"| ft-slots | 100% | 100% | 100% | 100% | 96% | 58% | 95% | 2 |\n"}
+,{"stream_name":"stdout","time":7142.961838384,"data":"| lora-slots | 100% | 96% | 100% | 96% | 83% | 67% | 97% | 4 |\n"}
+,{"stream_name":"stdout","time":7142.96184191,"data":"| ft, 4-bit | 100% | 100% | 100% | 100% | 54% | 62% | 94% | 4 |\n"}
+,{"stream_name":"stdout","time":7142.961845656,"data":"| ft-slots, 4-bit | 100% | 100% | 100% | 100% | 83% | 62% | 96% | 4 |\n"}
+,{"stream_name":"stdout","time":7142.961849189,"data":"| lora-slots, 4-bit | 96% | 88% | 92% | 92% | 71% | 62% | 92% | 12 |\n"}
+,{"stream_name":"stdout","time":7142.961852701,"data":"\n"}
+,{"stream_name":"stdout","time":7142.961855967,"data":"## Why plans failed (clean + messy + filler)\n"}
+,{"stream_name":"stdout","time":7142.961859753,"data":"\n"}
+,{"stream_name":"stdout","time":7142.96186312,"data":"- untouched: garbled 116, wrong choice 8, another skin's word 8, bad open 3, wrong agent 3, false claim 2, bad unlock 2, bad go 1, bad take 1\n"}
+,{"stream_name":"stdout","time":7142.961867047,"data":"- ft: garbled 13, bad go 3, wrong choice 3, false claim 1, bad take 1\n"}
+,{"stream_name":"stdout","time":7142.961870558,"data":"- ft-slots: garbled 6, wrong choice 3, bad take 1, bad go 1\n"}
+,{"stream_name":"stdout","time":7142.961874092,"data":"- lora-slots: garbled 9, bad go 4, wrong choice 1\n"}
+,{"stream_name":"stdout","time":7142.961877659,"data":"\n"}
+,{"stream_name":"stdout","time":7142.961882771,"data":"## Keal's real messages (45: pick what he meant out of four; chance 25%)\n"}
+,{"stream_name":"stdout","time":7142.961890903,"data":"\n"}
+,{"stream_name":"stdout","time":7142.961893509,"data":"| version | typed | voice | all | 4-bit all |\n"}
+,{"stream_name":"stdout","time":7142.961912171,"data":"|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":7142.961915974,"data":"| untouched | 21% | 33% | 27% | – |\n"}
+,{"stream_name":"stdout","time":7142.961920081,"data":"| ft | 38% | 43% | 40% | 33% |\n"}
+,{"stream_name":"stdout","time":7142.961924264,"data":"| ft-slots | 21% | 33% | 27% | 33% |\n"}
+,{"stream_name":"stdout","time":7142.961928001,"data":"| lora-slots | 38% | 43% | 40% | 31% |\n"}
+,{"stream_name":"stdout","time":7142.961931417,"data":"\n"}
+,{"stream_name":"stdout","time":7142.961935106,"data":"## English kept\n"}
+,{"stream_name":"stdout","time":7142.961939224,"data":"\n"}
+,{"stream_name":"stdout","time":7142.96194254,"data":"| version | ARC-Easy | WikiText-2 perplexity | 4-bit ARC | 4-bit perplexity |\n"}
+,{"stream_name":"stdout","time":7142.961946946,"data":"|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":7142.961953674,"data":"| untouched | 57% | 36.2 | – | – |\n"}
+,{"stream_name":"stdout","time":7142.961957318,"data":"| ft | 44% | 157.7 | 43% | 140.1 |\n"}
+,{"stream_name":"stdout","time":7142.96196096,"data":"| ft-slots | 51% | 122.7 | 52% | 122.5 |\n"}
+,{"stream_name":"stdout","time":7142.961964292,"data":"| lora-slots | 51% | 126.6 | 44% | 119.4 |\n"}
+,{"stream_name":"stdout","time":7142.961967587,"data":"\n"}
+,{"stream_name":"stdout","time":7142.961970782,"data":"## Time\n"}
+,{"stream_name":"stdout","time":7142.96197787,"data":"\n"}
+,{"stream_name":"stdout","time":7142.961981026,"data":"- untouched: 3 min\n"}
+,{"stream_name":"stdout","time":7142.961985144,"data":"- ft: 42 min (training 15 min, final plan loss 0.0002)\n"}
+,{"stream_name":"stdout","time":7142.961995817,"data":"- ft-slots: 46 min (training 18 min, final plan loss 0.0001)\n"}
+,{"stream_name":"stdout","time":7142.961999704,"data":"- lora-slots: 58 min (training 19 min, final plan loss 0.0000)\n"}
+,{"stream_name":"stdout","time":7142.962003278,"data":"\n"}
+,{"stream_name":"stdout","time":7142.962006828,"data":"## One long problem (clean)\n"}
+,{"stream_name":"stdout","time":7142.96201065,"data":"\n"}
+,{"stream_name":"stdout","time":7142.962014562,"data":"- untouched (fail): problem `the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :`\n"}
+,{"stream_name":"stdout","time":7142.962041185,"data":"  plan: `search : where is the water ? result : the water is at the shop . the person goes to the shop .`\n"}
+,{"stream_name":"stdout","time":7142.962045821,"data":"- ft (ok): problem `the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :`\n"}
+,{"stream_name":"stdout","time":7142.96205171,"data":"  plan: `search : where is the water ? result : the water is at the shop . the door of the shop is locked , so the person needs the key . search : where is the key ? result : the key is at the school . the person is not at the school , so the person goes to the school . the door of the school is closed , so the person opens the door of the school . the person takes the key . the person is not at the shop , so the person goes to the shop . the door of the shop is locked , so the person opens the door of the shop with the key . the person takes the water . the person has the water , so the goal is done . done .`\n"}
+,{"stream_name":"stdout","time":7142.962058202,"data":"- ft-slots (ok): problem `the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :`\n"}
+,{"stream_name":"stdout","time":7142.96206366,"data":"  plan: `search : where is the water ? result : the water is at the shop . the door of the shop is locked , so the person needs the key . search : where is the key ? result : the key is at the school . the person is not at the school , so the person goes to the school . the door of the school is closed , so the person opens the door of the school . the person takes the key . the person is not at the shop , so the person goes to the shop . the door of the shop is locked , so the person opens the door of the shop with the key . the person takes the water . the person has the water , so the goal is done . done .`\n"}
+,{"stream_name":"stdout","time":7142.962069035,"data":"- lora-slots (ok): problem `the door of the shop is locked . the door of the school is closed . the door of the house is open . the person is at the shop . the book is at the forest . the person wants the water . plan :`\n"}
+,{"stream_name":"stdout","time":7142.962073184,"data":"  plan: `search : where is the water ? result : the water is at the shop . the door of the shop is locked , so the person needs the key . search : where is the key ? result : the key is at the school . the person is not at the school , so the person goes to the school . the door of the school is closed , so the person opens the door of the school . the person takes the key . the person is not at the shop , so the person goes to the shop . the door of the shop is locked , so the person opens the door of the shop with the key . the person takes the water . the person has the water , so the goal is done . done .`\n"}
+,{"stream_name":"stdout","time":7142.96207954,"data":"\n"}
+,{"stream_name":"stdout","time":7142.962083283,"data":" \n"}
+,{"stream_name":"stderr","time":7146.228515535,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":7146.228542635,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":7146.443928166,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":7146.443954641,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":7147.320697665,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":7147.406678406,"data":"[NbConvertApp] Writing 112641 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":7149.930192103,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":7150.489100493,"data":"[NbConvertApp] Writing 397890 bytes to __results__.html\n"}
+]

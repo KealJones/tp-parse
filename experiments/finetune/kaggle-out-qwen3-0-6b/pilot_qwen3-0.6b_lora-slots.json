@@ -1,0 +1,134 @@
+{
+ "model": "Qwen/Qwen3-0.6B",
+ "version": "lora-slots",
+ "tag": "pilot",
+ "final_plan_loss": 0.9546337351202965,
+ "train_s": 38,
+ "plans": {
+  "clean/short": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 2
+   }
+  },
+  "clean/long": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 2
+   }
+  },
+  "messy/short": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "too long": 2
+   }
+  },
+  "messy/long": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "too long": 1,
+    "garbled": 1
+   }
+  },
+  "filler/short": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "too long": 2
+   }
+  },
+  "filler/long": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "too long": 2
+   }
+  }
+ },
+ "sample": {
+  "problem": "the fruit is hot . the door of the house is closed . the bread is not hot . the fruit is at the school . the door of the school is locked . the fish is at the school . the water is not hot . the water is at the shop . the bread is at the house . the person is at the field . the person wants a hot thing . plan :",
+  "plan": "the person wants a hot thing .",
+  "result": "fail"
+ },
+ "messages": {
+  "typed": 0.16666666666666666,
+  "voice": null,
+  "all": 0.16666666666666666,
+  "n": 6
+ },
+ "english": {
+  "arc_easy": 0.5,
+  "wiki_ppl": 34.72116740271754
+ },
+ "plans_4bit": {
+  "clean/short": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 2
+   }
+  },
+  "clean/long": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "garbled": 2
+   }
+  },
+  "messy/short": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "too long": 2
+   }
+  },
+  "messy/long": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "too long": 2
+   }
+  },
+  "filler/short": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "too long": 2
+   }
+  },
+  "filler/long": {
+   "success": 0,
+   "looked_when_needed": 0,
+   "searched_when_not": 0,
+   "fails": {
+    "too long": 2
+   }
+  }
+ },
+ "messages_4bit": {
+  "typed": 0.16666666666666666,
+  "voice": null,
+  "all": 0.16666666666666666,
+  "n": 6
+ },
+ "english_4bit": {
+  "arc_easy": 0.7,
+  "wiki_ppl": 42.21451231856541
+ },
+ "total_s": 454
+}

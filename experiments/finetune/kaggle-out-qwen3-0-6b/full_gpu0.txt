@@ -1,0 +1,37 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+    clean/short: 0%  (21s)
+    clean/long: 0%  (44s)
+    messy/short: 0%  (67s)
+    messy/long: 0%  (90s)
+    filler/short: 0%  (110s)
+    filler/long: 0%  (128s)
+== untouched done in 166s: messages {'typed': 0.20833333333333334, 'voice': 0.3333333333333333, 'all': 0.26666666666666666, 'n': 45}, english {'arc_easy': 0.5666666666666667, 'wiki_ppl': 36.20207084991279}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+training 440.5M base + 0.00M slot params
+fp16 check ok (loss 1.809)
+    step 100/1000  plan loss 0.2173  (90s)
+    step 200/1000  plan loss 0.0099  (180s)
+    step 300/1000  plan loss 0.0028  (269s)
+    step 400/1000  plan loss 0.0037  (359s)
+    step 500/1000  plan loss 0.0025  (448s)
+    step 600/1000  plan loss 0.0003  (538s)
+    step 700/1000  plan loss 0.0004  (627s)
+    step 800/1000  plan loss 0.0000  (717s)
+    step 900/1000  plan loss 0.0000  (806s)
+    step 1000/1000  plan loss 0.0002  (895s)
+    clean/short: 100%  (110s)
+    clean/long: 100%  (287s)
+    messy/short: 96%  (392s)
+    messy/long: 100%  (569s)
+    filler/short: 58%  (662s)
+    filler/long: 58%  (786s)
+squashed 196 linear layers to 4 bits
+    clean/short: 100%  (107s)
+    clean/long: 100%  (280s)
+    messy/short: 100%  (387s)
+    messy/long: 100%  (558s)
+    filler/short: 54%  (641s)
+    filler/long: 62%  (766s)
+== ft done in 2517s: messages {'typed': 0.375, 'voice': 0.42857142857142855, 'all': 0.4, 'n': 45}, english {'arc_easy': 0.44, 'wiki_ppl': 157.66652729846464}
