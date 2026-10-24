@@ -1,0 +1,105 @@
+job 6adc2daa046eb82b1ecda176 on gpu: harness-choice-qwen06 at 40c2276
+fetched experiments/finetune/ft.py
+fetched experiments/finetune/harness_choice.py
+  random clean/short: 0%  (0s)
+  random clean/long: 0%  (0s)
+  random messy/short: 0%  (0s)
+  random messy/long: 0%  (0s)
+  random filler/short: 0%  (0s)
+  random filler/long: 0%  (0s)
+
+
+config.json:   0%|          | 0.00/726 [00:00<?, ?B/s][A
+config.json: 100%|██████████| 726/726 [00:00<00:00, 4.15MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/9.73k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 9.73k/9.73k [00:00<00:00, 38.9MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 38.4MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 49.0MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 11.4MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  338kB/s  
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  338kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 11.4MB / 11.4MB, 1.14MB/s  
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 1.50GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: █▊        |  271MB, 25.0MB/s  
+model.safetensors: downloading bytes: █████     |  756MB, 61.8MB/s  
+
+model.safetensors: reconstructing file:  17%|█▋        |  256MB / 1.50GB, 1.65MB/s  [A
+model.safetensors: downloading bytes: ███████▋  | 1.15GB, 94.2MB/s  
+
+model.safetensors: reconstructing file:  77%|███████▋  | 1.16GB / 1.50GB, 83.3MB/s  [A
+model.safetensors: downloading bytes: ██████████| 1.26GB,  105MB/s  
+model.safetensors: downloading bytes: ██████████| 1.26GB,  105MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 1.50GB / 1.50GB,  133MB/s  
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 585.03it/s]
+
+
+generation_config.json:   0%|          | 0.00/239 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 239/239 [00:00<00:00, 1.27MB/s]
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+  qwen clean/short: 0%  (1s)
+  qwen clean/long: 0%  (3s)
+  qwen messy/short: 67%  (4s)
+  qwen messy/long: 0%  (6s)
+  qwen filler/short: 67%  (7s)
+  qwen filler/long: 0%  (8s)
+# Untouched Qwen/Qwen3-0.6B + planning harness
+
+No training. The harness lists the legal next moves; the model picks one by letter. 3 problems per cell.
+
+| picker | clean/short | clean/long | messy/short | messy/long | filler/short | filler/long |
+|---|---|---|---|---|---|---|
+| random | 0% | 0% | 0% | 0% | 0% | 0% |
+| qwen | 0% | 0% | 67% | 0% | 67% | 0% |
+
+Failures:
+- random: too many steps 11, wrong choice 7
+- qwen: too many steps 10, wrong choice 4
+  random clean/short: 10%  (0s)
+  random clean/long: 2%  (0s)
+  random messy/short: 6%  (0s)
+  random messy/long: 2%  (0s)
+  random filler/short: 8%  (0s)
+  random filler/long: 0%  (0s)
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 581.48it/s]
+loaded Qwen/Qwen3-0.6B: 596M params, vocab 151669, 27 sentence-end tokens
+  qwen clean/short: 22%  (23s)
+  qwen clean/long: 0%  (53s)
+  qwen messy/short: 24%  (75s)
+  qwen messy/long: 0%  (105s)
+  qwen filler/short: 22%  (126s)
+  qwen filler/long: 2%  (155s)
+# Untouched Qwen/Qwen3-0.6B + planning harness
+
+No training. The harness lists the legal next moves; the model picks one by letter. 50 problems per cell.
+
+| picker | clean/short | clean/long | messy/short | messy/long | filler/short | filler/long |
+|---|---|---|---|---|---|---|
+| random | 10% | 2% | 6% | 2% | 8% | 0% |
+| qwen | 22% | 0% | 24% | 0% | 22% | 2% |
+
+Failures:
+- random: too many steps 195, wrong choice 91
+- qwen: too many steps 208, wrong choice 57
+exit code 0 after 3.2 min
