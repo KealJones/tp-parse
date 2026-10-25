@@ -1,0 +1,578 @@
+[
+ {
+  "id": 0,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "kill 8080",
+  "answer": "Use the command `kill 8080` to terminate the port.",
+  "auto_pass": false
+ },
+ {
+  "id": 1,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "undo last commit but keep changes",
+  "answer": "git reset --soft",
+  "auto_pass": false
+ },
+ {
+  "id": 2,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "Chinchilla insight what!?",
+  "answer": "Chinchilla's insight is about equalizing model size and training tokens for cost and performance.",
+  "auto_pass": false
+ },
+ {
+  "id": 3,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "Wait what the fuck how much training do frontier models do how do they not take a fucking year!?",
+  "answer": "The reference states that frontier training takes thousands of years on a single GPU, which means it's significantly longer than the previous claim.",
+  "auto_pass": true
+ },
+ {
+  "id": 4,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "What about a stupidly small model and train it on trillions?",
+  "answer": "The training of a small model on trillions of tokens would exceed its capacity, leading to storage and performance issues, similar to SmolLM2-360M and Qwen3-0.6B.",
+  "auto_pass": true
+ },
+ {
+  "id": 5,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "Jesus fucking christ what are models like you opus 5.5 then?",
+  "answer": "The reference text states that no external figures are available for Claude Opus 5.5, so the user's comment about \"Jesus fucking christ\" is likely incorrect.",
+  "auto_pass": false
+ },
+ {
+  "id": 6,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "isnt REN what attention replaced? are we using attention and mlp?",
+  "answer": "The reference states that RNNs and memory designs like REN were replaced by Transformers with attention and MLP blocks. Therefore, \"REN\" is not the attention that replaced it, and current LLMs like Qwen3 still use attention and MLP.",
+  "auto_pass": true
+ },
+ {
+  "id": 7,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "Has anyone made a like multiple tiny very specific models like instead of layers keep a clean as shit divide?",
+  "answer": "The reference text discusses splitting MLP layers into experts and using routers, not creating models instead of layers.",
+  "auto_pass": true
+ },
+ {
+  "id": 8,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "How can I give you access to kraggle",
+  "answer": "To give access to Kaggle, create an API token, save it in the `kaggle.json` file, or set environment variables or secrets.",
+  "auto_pass": true
+ },
+ {
+  "id": 9,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "Cloudflare worker?",
+  "answer": "Cloudflare Workers are small serverless functions that act as proxies, handling requests on Cloudflare's edge network. The free plan allows 100,000 requests a day.",
+  "auto_pass": true
+ },
+ {
+  "id": 10,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "What the fuck are you talking about I use fetch all the damn time",
+  "answer": "I'm sorry, but fetch() is a tool that can send requests to any site, and CORS is a security feature that allows cross-origin requests. If you're encountering issues with your fetch usage, it might be due to CORS settings on the server or the browser.",
+  "auto_pass": true
+ },
+ {
+  "id": 11,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "I seeee ok and there's no fun hack silly tricky ways to use like web assembly or workers or some other shit to make it work?",
+  "answer": "The reference explains that CORS is enforced by browsers and requires methods like server proxies, browser extensions, or desktop apps. There are no \"fun\" or \"tricky\" hacks like WebAssembly or workers to bypass it.",
+  "auto_pass": true
+ },
+ {
+  "id": 12,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "If this is gonna live in the browser what is to stop anyone who see that endpoint from just straight up seeing my key too?",
+  "answer": "The key should be kept on a server or proxy to prevent direct exposure. If it's in the browser, it's not secret and could be seen by anyone.",
+  "auto_pass": true
+ },
+ {
+  "id": 13,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "Um, I'm open to having the model's base size be between like 200 and 500 megabytes. Is that even reasonable?",
+  "answer": "Yes, a model's base size of 200-500 MB is reasonable based on the parameter count and byte per parameter calculations.",
+  "auto_pass": false
+ },
+ {
+  "id": 14,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "How is it getting better every 8 months if you say there isn't anything different about the blocks changing?",
+  "answer": "The blocks are unchanged, but improvements are achieved through other factors like training data, training tokens, and model tweaks.",
+  "auto_pass": true
+ },
+ {
+  "id": 15,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "Don't worry about cost tell me the services that can",
+  "answer": "The available services include AWS, Google Cloud, Microsoft Azure, and free options like Kaggle and Google Colab.",
+  "auto_pass": true
+ },
+ {
+  "id": 16,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "I didn't add CLOUDFLARE_ACCOUNT_ID do you need that?",
+  "answer": "Yes, you need to add CLOUDFLARE_ACCOUNT_ID to the workflow. If it's only accessible to one account, the ID isn't required, but if multiple accounts are allowed, the ID must be provided.",
+  "auto_pass": true
+ },
+ {
+  "id": 17,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "gold",
+  "msg": "So I'm a little bit curious though. Um, Are you able to tell when a message was sent with voice?",
+  "answer": "Based on the style, the assistant can infer the message is a voice-dictated one. The answer would be: \"I can't tell when a message was sent with voice, but I can guess based on the style.\"",
+  "auto_pass": true
+ },
+ {
+  "id": 0,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "kill 8080",
+  "answer": "The command to kill the port 8080 is to use `lsof -ti tcp:8080 | xargs kill` or `fuser -k 8080` on Linux, or `npx kill-port 8080` on Node. Since your message is \"kill 8080\", the answer is based on the reference's instructions.",
+  "auto_pass": true
+ },
+ {
+  "id": 1,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "undo last commit but keep changes",
+  "answer": "`git reset --soft HEAD~1` to undo the last commit while keeping the changes.",
+  "auto_pass": true
+ },
+ {
+  "id": 2,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "Chinchilla insight what!?",
+  "answer": "Chinchilla insight: model size and training tokens grow in equal proportion, making it more efficient and cheaper than previous models.",
+  "auto_pass": false
+ },
+ {
+  "id": 3,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "Wait what the fuck how much training do frontier models do how do they not take a fucking year!?",
+  "answer": "The training time for Frontier models is significantly longer than previously stated. With parallel processing across thousands of GPUs, it would take thousands of years on a single GPU, not a year.",
+  "auto_pass": true
+ },
+ {
+  "id": 4,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "What about a stupidly small model and train it on trillions?",
+  "answer": "The model's limited capacity prevents training on trillions of tokens, as it cannot store or use all data.",
+  "auto_pass": true
+ },
+ {
+  "id": 5,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "Jesus fucking christ what are models like you opus 5.5 then?",
+  "answer": "The reference text does not provide information about models like Claude Opus 5.5. The user's message appears to be unrelated to the context provided.",
+  "auto_pass": false
+ },
+ {
+  "id": 6,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "isnt REN what attention replaced? are we using attention and mlp?",
+  "answer": "Yes, REN (which might be a typo for RNNs) was replaced by the Transformer, and current models like Qwen3 still use attention and MLPs.",
+  "auto_pass": true
+ },
+ {
+  "id": 7,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "Has anyone made a like multiple tiny very specific models like instead of layers keep a clean as shit divide?",
+  "answer": "Yes, models like SmolLM2-360M and Qwen3-0.6B use techniques such as MoE (Mixture of Experts) to divide layers into sub-networks, resulting in a clean and organized structure.",
+  "auto_pass": true
+ },
+ {
+  "id": 8,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "How can I give you access to kraggle",
+  "answer": "To access Kaggle, create an API token on Kaggle.com, save it in ~/.kaggle/kaggle.json or set environment variables, and use the CLI.",
+  "auto_pass": true
+ },
+ {
+  "id": 9,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "Cloudflare worker?",
+  "answer": "Yes, Cloudflare Worker is mentioned in the reference text.",
+  "auto_pass": false
+ },
+ {
+  "id": 10,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "What the fuck are you talking about I use fetch all the damn time",
+  "answer": "The assistant's response was based on the provided context about browser behavior, not the user's actual usage of fetch. The user's comment is a sarcastic critique of the assistant's explanation.",
+  "auto_pass": false
+ },
+ {
+  "id": 11,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "I seeee ok and there's no fun hack silly tricky ways to use like web assembly or workers or some other shit to make it work?",
+  "answer": "The reference text discusses CORS, not webAssembly or workers. There are no mentioned methods to use them.",
+  "auto_pass": false
+ },
+ {
+  "id": 12,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "If this is gonna live in the browser what is to stop anyone who see that endpoint from just straight up seeing my key too?",
+  "answer": "The key is not secret and can be accessed by the browser.",
+  "auto_pass": true
+ },
+ {
+  "id": 13,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "Um, I'm open to having the model's base size be between like 200 and 500 megabytes. Is that even reasonable?",
+  "answer": "Yes, a model's base size between 200-500 MB is reasonable, as per reference [2], which aligns with typical parameter counts and file sizes.",
+  "auto_pass": false
+ },
+ {
+  "id": 14,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "How is it getting better every 8 months if you say there isn't anything different about the blocks changing?",
+  "answer": "The blocks remain unchanged, and improvements are achieved through other factors like training data, techniques, and model architecture evolution.",
+  "auto_pass": false
+ },
+ {
+  "id": 15,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "Don't worry about cost tell me the services that can",
+  "answer": "The services available for training models include Kaggle and Google Colab, as well as cloud GPU providers like AWS, Google Cloud, and Hugging Face.",
+  "auto_pass": true
+ },
+ {
+  "id": 16,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "I didn't add CLOUDFLARE_ACCOUNT_ID do you need that?",
+  "answer": "Yes, you need to add CLOUDFLARE_ACCOUNT_ID. If the token can access only one account, the ID isn't required. If it can access multiple, the ID must be set.",
+  "auto_pass": false
+ },
+ {
+  "id": 17,
+  "model": "Qwen/Qwen3-0.6B",
+  "cond": "mixed",
+  "msg": "So I'm a little bit curious though. Um, Are you able to tell when a message was sent with voice?",
+  "answer": "The assistant cannot determine when a message was sent with voice, as it is transcribed as plain text without flags.",
+  "auto_pass": true
+ },
+ {
+  "id": 0,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "kill 8080",
+  "answer": "Use `lsof -ti tcp:8080 | xargs kill` (macOS) or `fuser -k 8080/tcp` (Linux) to terminate the process using port 8080. Alternatively, run `npx kill-port 8080` if Node.js is installed.",
+  "auto_pass": true
+ },
+ {
+  "id": 1,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "undo last commit but keep changes",
+  "answer": "`git reset --soft HEAD~1` moves the branch back one commit while keeping your changes staged.",
+  "auto_pass": true
+ },
+ {
+  "id": 2,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "Chinchilla insight what!?",
+  "answer": "The Chinchilla insight refers to the finding that for a fixed compute budget, model size and training tokens should grow in equal proportion (about 20 tokens per parameter). This allows models to be cheaper to train and run compared to earlier large models like Gopher, which were undertrained.",
+  "auto_pass": true
+ },
+ {
+  "id": 3,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "Wait what the fuck how much training do frontier models do how do they not take a fucking year!?",
+  "answer": "Frontier models leverage massive parallelism across thousands of GPUs, drastically reducing training time. The example of 31 million GPU-hours for Llama 3 405B on 16,384 H100s shows that training on many GPUs is much faster than on a single one. The key is distributed computation and scale, not just one GPU.",
+  "auto_pass": true
+ },
+ {
+  "id": 4,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "What about a stupidly small model and train it on trillions?",
+  "answer": "Training a model on trillions of tokens with a stupidly small size would still face significant limitations. The model's capacity to store and process data is constrained by its size, meaning it can't capture all the information, leading to diminishing returns and a plateau in performance.",
+  "auto_pass": true
+ },
+ {
+  "id": 5,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "Jesus fucking christ what are models like you opus 5.5 then?",
+  "answer": "The reference text states that Anthropic hasn't disclosed the parameter count, architecture, training data size, or training compute for Claude Opus 5.5. Any figures provided are estimates.",
+  "auto_pass": false
+ },
+ {
+  "id": 6,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "isnt REN what attention replaced? are we using attention and mlp?",
+  "answer": "Yes, Recurrent Entity Networks (REN) were replaced by attention mechanisms in transformer-based models. Current LLMs like Qwen3 use the attention + MLP architecture, which is the core of Transformers.",
+  "auto_pass": true
+ },
+ {
+  "id": 7,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "Has anyone made a like multiple tiny very specific models like instead of layers keep a clean as shit divide?",
+  "answer": "Yes, Mixup of Experts (MoE) and Branch-Train-Merge are examples of models that split into multiple tiny, specialized sub-models (experts) and route queries to specific ones. MoE uses a router to select which expert to use, while Branch-Train-Merge trains separate experts on different domains and merges them.",
+  "auto_pass": true
+ },
+ {
+  "id": 8,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "How can I give you access to kraggle",
+  "answer": "To grant access to Kaggle, create an API token on Kaggle.com (Settings > API > Create New Token). Save the token in a file at `~/.kaggle/kaggle.json` or set environment variables `KAGGLE_USERNAME` and `KAGGLE_KEY`. This allows the tool to download data automatically.",
+  "auto_pass": true
+ },
+ {
+  "id": 9,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "Cloudflare worker?",
+  "answer": "Cloudflare Workers are serverless functions that run on Cloudflare's edge network, allowing you to proxy requests, handle CORS, and more. The free plan supports 100,000 requests/day. Let me know if you need details on setup!",
+  "auto_pass": true
+ },
+ {
+  "id": 10,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "What the fuck are you talking about I use fetch all the damn time",
+  "answer": "Because most sites don't send the necessary CORS headers, fetch() can't access their responses unless the server explicitly allows it. You're using fetch() correctly, but it's limited by CORS policies unless the server permits it.",
+  "auto_pass": true
+ },
+ {
+  "id": 11,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "I seeee ok and there's no fun hack silly tricky ways to use like web assembly or workers or some other shit to make it work?",
+  "answer": "CORS is enforced by the browser for all page code, including WebAssembly, Workers, and Service Workers. Bypassing it requires a server or proxy, not client-side technologies like WebAssembly or Workers. There are no \"fun\" or \"tricky\" ways to bypass CORS using those tools.",
+  "auto_pass": true
+ },
+ {
+  "id": 12,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "If this is gonna live in the browser what is to stop anyone who see that endpoint from just straight up seeing my key too?",
+  "answer": "The API key in the browser is exposed to DevTools, making it vulnerable. To secure it, keep the key on a server or proxy, add authentication, or restrict access to specific domains and actions.",
+  "auto_pass": true
+ },
+ {
+  "id": 13,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "Um, I'm open to having the model's base size be between like 200 and 500 megabytes. Is that even reasonable?",
+  "answer": "Yes, 200–500 MB is reasonable for a model's base size, as it aligns with the range of small models like SmolLM2-360M and Qwen3-0.6B, which operate on devices and browsers. This size corresponds to approximately 100–250M parameters at 16-bit or 400M–1B parameters at 4-bit.",
+  "auto_pass": true
+ },
+ {
+  "id": 14,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "How is it getting better every 8 months if you say there isn't anything different about the blocks changing?",
+  "answer": "The improvements come from advancements in training data, optimization techniques, distillation, and post-training methods like RLHF, even though the basic blocks (attention/MLP) remain unchanged. These factors drive performance gains over time.",
+  "auto_pass": true
+ },
+ {
+  "id": 15,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "Don't worry about cost tell me the services that can",
+  "answer": "The services that can be used for training include cloud GPU providers (AWS, Google Cloud, etc.), free options like Kaggle and Google Colab.",
+  "auto_pass": true
+ },
+ {
+  "id": 16,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "I didn't add CLOUDFLARE_ACCOUNT_ID do you need that?",
+  "answer": "Yes, if the API token can access multiple accounts, you need to set the CLOUDFLARE_ACCOUNT_ID in the wrangler config. If it only accesses one, it's not required. Let me know if you have the account ID or need help setting it up.",
+  "auto_pass": true
+ },
+ {
+  "id": 17,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "gold",
+  "msg": "So I'm a little bit curious though. Um, Are you able to tell when a message was sent with voice?",
+  "answer": "The assistant cannot definitively determine if the message was voice-dictated or transcribed based on the provided text. It may guess it's transcribed due to filler words and run-on sentences, but this is speculative.",
+  "auto_pass": true
+ },
+ {
+  "id": 0,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "kill 8080",
+  "answer": "To kill port 8080, first find the process ID (PID) using `lsof -ti tcp:8080` or `fuser -k 8080/tcp`. Then use `kill <PID>` or `kill -9 <PID>` if the process doesn't exit.",
+  "auto_pass": true
+ },
+ {
+  "id": 1,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "undo last commit but keep changes",
+  "answer": "`git reset --soft HEAD~1`",
+  "auto_pass": true
+ },
+ {
+  "id": 2,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "Chinchilla insight what!?",
+  "answer": "The \"Chinchilla insight\" refers to the finding that for a fixed compute budget, model size and training tokens should grow proportionally. This allows models like Chinchilla (70B parameters trained on 1.4T tokens) to be cheaper to run compared to larger models like Gopher (280B parameters trained on fewer tokens), as they achieve the same computational efficiency with less resource investment.",
+  "auto_pass": false
+ },
+ {
+  "id": 3,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "Wait what the fuck how much training do frontier models do how do they not take a fucking year!?",
+  "answer": "Frontier models leverage advanced parallelism (data, tensor, pipeline) to drastically reduce training time. While a single GPU would take thousands of years, the models are trained across thousands of GPUs, making the process feasible. The exact time depends on the scale and efficiency of the training process.",
+  "auto_pass": true
+ },
+ {
+  "id": 4,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "What about a stupidly small model and train it on trillions?",
+  "answer": "Training a model on trillions of tokens is impractical due to the extreme computational and memory requirements. Even the smallest models (like SmolLM2-360M) struggle with 4T tokens, and scaling further would require exascale computing, which is not feasible. The model's capacity to store and process such data would be overwhelmed, and training would yield diminishing returns.",
+  "auto_pass": true
+ },
+ {
+  "id": 5,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "Jesus fucking christ what are models like you opus 5.5 then?",
+  "answer": "The exact details about Claude Opus 5.5's compute, architecture, or training data are not publicly disclosed. Anthropic has chosen to keep these specifics private, and estimates are used for such information. The training process requires significant computational resources, but specific numbers are not available. Let me know if you'd like clarification on other aspects!",
+  "auto_pass": true
+ },
+ {
+  "id": 6,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "isnt REN what attention replaced? are we using attention and mlp?",
+  "answer": "Yes, attention mechanisms (like self-attention) are still used in models like Qwen3, along with MLP blocks. RNNs and memory networks (REN) were replaced by Transformers, which use attention + MLP architecture.",
+  "auto_pass": true
+ },
+ {
+  "id": 7,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "Has anyone made a like multiple tiny very specific models like instead of layers keep a clean as shit divide?",
+  "answer": "Yes, techniques like Mixture of Experts (MoE) and Branch-Train-Merge are used to create multiple specialized models with clean divides. These approaches split models into expert sub-networks or train separate models on specific domains, then combine or route them. Examples include models trained on specific tasks or domains.",
+  "auto_pass": true
+ },
+ {
+  "id": 8,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "How can I give you access to kraggle",
+  "answer": "To give access to Kaggle, create an API token on Kaggle.com (Settings > API > Create New Token). Save the token in `~/.kaggle/kaggle.json` or set environment variables `KAGGLE_USERNAME` and `KAGGLE_KEY`. This allows the Kaggle CLI/API to access your account.",
+  "auto_pass": true
+ },
+ {
+  "id": 9,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "Cloudflare worker?",
+  "answer": "Cloudflare Workers are serverless functions that act as a proxy, relaying web requests and returning results with CORS headers. They run on Cloudflare's edge network, offering free plans with 100,000 requests/day. Ensure the API key is on a server/proxy for security.",
+  "auto_pass": true
+ },
+ {
+  "id": 10,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "What the fuck are you talking about I use fetch all the damn time",
+  "answer": "Fetch works, but cross-origin requests need server permission (CORS). Most sites don't enable it, so you'll need to handle CORS manually or use same-origin requests. Your use of fetch is correct, just be mindful of CORS restrictions.",
+  "auto_pass": true
+ },
+ {
+  "id": 11,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "I seeee ok and there's no fun hack silly tricky ways to use like web assembly or workers or some other shit to make it work?",
+  "answer": "CORS is a security feature enforced by browsers, and bypassing it typically requires external tools like server-side proxies, browser extensions, or desktop apps. While there are methods to work around CORS, they are not trivial and often involve additional setup or infrastructure.",
+  "auto_pass": true
+ },
+ {
+  "id": 12,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "If this is gonna live in the browser what is to stop anyone who see that endpoint from just straight up seeing my key too?",
+  "answer": "Exposing an API key in the browser (e.g., via JavaScript or network requests) makes it vulnerable to inspection in DevTools. If the key is visible in the browser's developer tools, attackers can easily access it. To secure it, keep the key on a server or use server-side authentication instead.",
+  "auto_pass": true
+ },
+ {
+  "id": 13,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "Um, I'm open to having the model's base size be between like 200 and 500 megabytes. Is that even reasonable?",
+  "answer": "Yes, a model's base size between 200-500 MB is reasonable. It corresponds to approximately 100-250M parameters at 16-bit (2 bytes per parameter) or 400M-1B parameters at 4-bit. Models like SmolLM2-360M and Qwen3-0.6B fall into this range and are suitable for mobile devices or browsers.",
+  "auto_pass": true
+ },
+ {
+  "id": 14,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "How is it getting better every 8 months if you say there isn't anything different about the blocks changing?",
+  "answer": "The improvements over time come from factors like larger training data, optimized training methods, and distributed training (e.g., using thousands of GPUs), which allow the model to scale and refine its performance even without changing the basic block architecture.",
+  "auto_pass": true
+ },
+ {
+  "id": 15,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "Don't worry about cost tell me the services that can",
+  "answer": "The services mentioned are cloud GPU providers (AWS, Google Cloud, Microsoft Azure, etc.) and free platforms like Kaggle and Google Colab.",
+  "auto_pass": true
+ },
+ {
+  "id": 16,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "I didn't add CLOUDFLARE_ACCOUNT_ID do you need that?",
+  "answer": "Yes, you need to add the CLOUDFLARE_ACCOUNT_ID if the API token can access multiple accounts. If it can only access one, it's not needed. Check your token's access scope.",
+  "auto_pass": true
+ },
+ {
+  "id": 17,
+  "model": "Qwen/Qwen3-1.7B",
+  "cond": "mixed",
+  "msg": "So I'm a little bit curious though. Um, Are you able to tell when a message was sent with voice?",
+  "answer": "The assistant cannot determine if a message was sent with voice; it can only guess based on text style (e.g., filler words, run-on sentences, mishears).",
+  "auto_pass": true
+ }
+]
