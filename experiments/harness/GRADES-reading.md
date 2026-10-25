@@ -10,3 +10,9 @@
 - 0.6B: misreads even with the answer handed to it (`kill 8080` as the command; "CORS allows cross-origin requests";
   "you need to add CLOUDFLARE_ACCOUNT_ID" then the opposite). Reading is its limit, not search.
 - The auto check over-counted 0.6B (13 and 10) and under-counted 1.7B on #5 (it said the details aren't public; the regex missed the wording).
+
+## Test audit (after Keal caught #0)
+Fixed: #0 (added the dev-server context; asking which app instead of giving the command now fails), #4 (added context; rule was
+one-sided, now credits "it keeps improving, with diminishing returns"), #7 (MoE alone no longer passes; it isn't a clean divide),
+#9 (must say how a Worker relays), #12 (added what "this" and "my key" are). Open: #6, what REN and "we" referred to.
+Re-checked against the fixed rules: reading test 1.7B still 18/18 and 16/18, v3 still 5/18.
