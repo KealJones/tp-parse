@@ -342,7 +342,7 @@ def t_bridge(r, W):
     req = {"population": "How many people live in the town where {p} lives?", "region": "What region is {p}'s hometown in?",
            "founded": "When was the town {p} lives in founded?"}[attr].format(p=p)
     v = W["town"][t][attr]
-    return T(type="bridge", parts=["search-link", "search"], request=req,
+    return T(type="bridge", parts=["search-link", "search"], request=req, hidden={t: f"{p}'s town"},
              needs=[("search", "person", p, "home"), ("search", "town", t, attr)], short=short_val("town", attr, v),
              check=chk_number(v) if isinstance(v, int) else chk_text(v), link=(p, t))
 
@@ -352,7 +352,7 @@ def t_ask(r, W):
     req = {"population": "How many people live in my town?", "region": "What region is my town in?",
            "founded": "When was my town founded?"}[attr]
     v = W["town"][t][attr]
-    return T(type="ask", parts=["ask", "search"], request=req, person={"town": t, "town_reply": r.choice([t, f"i live in {t}", f"{t.lower()}", f"im in {t}"])},
+    return T(type="ask", parts=["ask", "search"], request=req, hidden={t: "their town"}, person={"town": t, "town_reply": r.choice([t, f"i live in {t}", f"{t.lower()}", f"im in {t}"])},
              needs=[("ask", "Which town do you live in?", "town"), ("search", "town", t, attr)],
              short=short_val("town", attr, v), check=chk_number(v) if isinstance(v, int) else chk_text(v))
 
@@ -392,7 +392,7 @@ def h_bridge_compare(r, W):        # a link followed inside a comparison
     pt, po = W["town"][t]["population"], W["town"][o]["population"]
     win = t if pt > po else o
     req = r.choice(["Is the town {p} lives in bigger than {o}?", "Which is bigger: {p}'s town or {o}?"]).format(p=p, o=o)
-    return T(type="H:bridge-compare", parts=["search-link", "search", "search", "compare"], request=req,
+    return T(type="H:bridge-compare", parts=["search-link", "search", "search", "compare"], request=req, hidden={t: f"{p}'s town"},
              needs=[("search", "person", p, "home"), ("search", "town", t, "population"), ("search", "town", o, "population"),
                     ("calc", f"{pt} > {po}", "which is bigger")],
              short=win, check=chk_name(win, [x for x in (t, o) if x != win]))
@@ -403,7 +403,7 @@ def h_ask_diff(r, W):              # the person's answer feeds a calculation
     pt, po = W["town"][t]["population"], W["town"][o]["population"]
     req = r.choice(["How many more people live in my town than in {o}?", "How big is my town compared to {o}, like how many more or fewer people?"]).format(o=o)
     d = pt - po
-    return T(type="H:ask-diff", parts=["ask", "search", "search", "calc"], request=req,
+    return T(type="H:ask-diff", parts=["ask", "search", "search", "calc"], request=req, hidden={t: "their town"},
              person={"town": t, "town_reply": r.choice([t, f"i live in {t}", f"{t.lower()}"])},
              needs=[("ask", "Which town do you live in?", "town"), ("search", "town", t, "population"), ("search", "town", o, "population"),
                     ("calc", f"{pt} - {po}", "the difference")],
@@ -460,7 +460,11 @@ def score(task, final_text, H, first_content=""):
     req_ents = [s[2] for s in task["needs"] if s[0] == "search"]
     covered = sum(any(re.search(r"\b" + re.escape(e.lower()) + r"(s|'s)?\b", q) for q in queries) for e in req_ents)
     given_ents = [g[1] for g in task["given"] if g[0] != "link"]
-    return {"type": task["type"], "style": task["style"], "ok": bool(final_text) and bool(task["check"](short)),
+    ok = bool(final_text) and bool(task["check"](short))
+    cov = covered / len(req_ents) if req_ents else 1.0
+    need_calc = any(s[0] == "calc" for s in task["needs"]); need_ask = any(s[0] == "ask" for s in task["needs"])
+    strict = ok and cov == 1 and ("calculator" in names or not need_calc) and ("ask_person" in names or not need_ask)
+    return {"type": task["type"], "style": task["style"], "ok": ok, "strict": strict,
             "answer_line": has_line, "format_fail": not final_text, "calls": len(H.log),
             "searches": names.count("search"), "needed_searches": len(req_ents),
             "coverage": covered / len(req_ents) if req_ents else 1.0,
@@ -485,6 +489,7 @@ def need_text(step, task):
         _, kind, e, attr = step
         if attr == "home":
             return f"where {e} lives (search)"
+        e = task.get("hidden", {}).get(e, e)          # not known yet: describe it, don't name it
         return ATTR_Q[(kind, attr)][1].format(e=e) + " (search)"
     if step[0] == "ask":
         return "which town they live in (ask them)"
@@ -615,7 +620,8 @@ if __name__ == "__main__":
             msgs, H = gold_episode(t, r)
             sc = score(t, msgs[-1]["content"], H, msgs[0]["content"])
             n += 1
-            if not (sc["ok"] and sc["coverage"] == 1 and not sc["searched_given"]):
+            leak = any(h.lower() in msgs[0]["content"].lower() for h in t.get("hidden", {}))
+            if leak or not (sc["strict"] and not sc["searched_given"]):
                 bad[t["type"]] += 1
                 if bad[t["type"]] < 3:
                     print("FAIL", t["type"], t["request"], sc, msgs[-1]["content"][-200:])
