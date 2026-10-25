@@ -13,5 +13,9 @@
   "requests"
  ],
  "outdir": "out",
- "out": "experiments/harness/hf-out-reading"
+ "out": "experiments/harness/hf-out-reading",
+ "job_id": "6add53c2046eb82b1ece14ea",
+ "url": "https://huggingface.co/jobs/kealjones/6add53c2046eb82b1ece14ea",
+ "started": "2026-10-25T00:56:34+00:00",
+ "sha": "05a3bd17dec7976f8d9af0496f89540e414bae47"
 }
