@@ -18,5 +18,9 @@
  "job_id": "6ade40671e112550ce7ed44c",
  "url": "https://huggingface.co/jobs/kealjones/6ade40671e112550ce7ed44c",
  "started": "2026-10-25T17:46:15+00:00",
- "sha": "07fed43fe474fa9c578b2097405656b7263c81de"
+ "sha": "07fed43fe474fa9c578b2097405656b7263c81de",
+ "result": "complete",
+ "finished": "2026-10-25T18:01:34+00:00",
+ "minutes": 14.6,
+ "est_cost": 0.19
 }

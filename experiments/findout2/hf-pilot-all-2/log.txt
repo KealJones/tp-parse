@@ -1,0 +1,38 @@
+[  0.0 min] arms ['untouched', 'gold', 'teacher'], GPU NVIDIA L4, smoke=False
+[  0.0 min] renderer matches the chat template
+[  0.0 min] 360 test episodes (191 messy)
+[  0.3 min] base English perplexity {'raw': 2134.1741355968966, 'raw_masked': 2134.1741355968966, 'as_reply': 75.82058025991401}
+[  1.0 min] untouched: H:argmax4 12%, H:ask-diff 0%, H:basket3 0%, H:bridge-compare 50%, H:cost-compare 17%, argmax3 8%, ask 0%, basket2 0%, bridge 0%, compare2 33%, diff 4%, given 79%, lookup 12%, total 0%, whose 0%; ppl 75.82
+[  1.9 min] 302 replay examples from the base model
+[  2.0 min] step 1/287 loss 2.087 lr 2.86e-06
+[  2.3 min] step 21/287 loss 0.652 lr 1.98e-05
+[  2.7 min] step 41/287 loss 0.195 lr 1.91e-05
+[  3.0 min] step 61/287 loss 0.195 lr 1.81e-05
+[  3.3 min] step 81/287 loss 0.211 lr 1.67e-05
+[  3.7 min] step 101/287 loss 0.161 lr 1.50e-05
+[  4.0 min] step 121/287 loss 0.195 lr 1.32e-05
+[  4.3 min] step 141/287 loss 0.186 lr 1.12e-05
+[  4.7 min] step 161/287 loss 0.141 lr 9.29e-06
+[  5.0 min] step 181/287 loss 0.136 lr 7.41e-06
+[  5.3 min] step 201/287 loss 0.135 lr 5.70e-06
+[  5.7 min] step 221/287 loss 0.126 lr 4.25e-06
+[  6.0 min] step 241/287 loss 0.125 lr 3.12e-06
+[  6.3 min] step 261/287 loss 0.131 lr 2.36e-06
+[  6.7 min] step 281/287 loss 0.126 lr 2.02e-06
+[  6.8 min] step 287/287 loss 0.127 lr 2.00e-06
+[  8.0 min] gold: H:argmax4 71%, H:ask-diff 0%, H:basket3 46%, H:bridge-compare 17%, H:cost-compare 58%, argmax3 100%, ask 100%, basket2 100%, bridge 100%, compare2 100%, diff 100%, given 100%, lookup 100%, total 100%, whose 100%; ppl 62.82
+[  8.4 min] exported: https://huggingface.co/kealjones/findout-pilot
+[  8.4 min] teacher file: 1720 episodes, 1143 kept; using 1143
+[  8.4 min] step 1/180 loss 1.698 lr 4.44e-06
+[  8.7 min] step 21/180 loss 0.531 lr 1.94e-05
+[  9.1 min] step 41/180 loss 0.289 lr 1.78e-05
+[  9.4 min] step 61/180 loss 0.259 lr 1.54e-05
+[  9.7 min] step 81/180 loss 0.243 lr 1.24e-05
+[ 10.1 min] step 101/180 loss 0.189 lr 9.28e-06
+[ 10.4 min] step 121/180 loss 0.135 lr 6.36e-06
+[ 10.8 min] step 141/180 loss 0.137 lr 4.01e-06
+[ 11.1 min] step 161/180 loss 0.128 lr 2.49e-06
+[ 11.4 min] step 180/180 loss 0.138 lr 2.00e-06
+[ 14.0 min] teacher: H:argmax4 50%, H:ask-diff 21%, H:basket3 54%, H:bridge-compare 33%, H:cost-compare 67%, argmax3 50%, ask 96%, basket2 92%, bridge 96%, compare2 62%, diff 100%, given 100%, lookup 88%, total 100%, whose 100%; ppl 65.46
+[ 14.2 min] exported: https://huggingface.co/kealjones/findout-pilot
+[ 14.2 min] done
