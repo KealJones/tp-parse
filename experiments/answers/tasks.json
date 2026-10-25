@@ -3,12 +3,14 @@
   "id": 0,
   "ctx": "Earlier in this session, the assistant started a dev server on port 8080.",
   "msg": "kill 8080",
-  "rule": "Gives a working shell command that kills the process listening on port 8080 (e.g. lsof -ti :8080 | xargs kill, fuser -k 8080/tcp, npx kill-port 8080).",
+  "rule": "Gives a working shell command that kills the process listening on port 8080 (e.g. lsof -ti :8080 | xargs kill, fuser -k 8080/tcp, npx kill-port 8080). Fails if it asks which app/process instead of giving the command: the command works whatever is on the port.",
   "auto": [
    "8080",
    "(lsof|fuser|kill-port|netstat|ss -)"
   ],
-  "fail_if": []
+  "fail_if": [
+   "which (application|app|process|service)"
+  ]
  },
  {
   "id": 1,
@@ -45,13 +47,15 @@
  },
  {
   "id": 4,
-  "ctx": "",
+  "ctx": "They are planning to train their own small language model.",
   "msg": "What about a stupidly small model and train it on trillions?",
-  "rule": "Says it improves at first but hits a ceiling set by its size (diminishing returns / plateau); a small model can't store or use everything.",
+  "rule": "Says it does keep getting better well past the usual compute-optimal amount (that is what SmolLM2 and Qwen3 do), but with diminishing returns and a ceiling set by its size. Fails if it says training a small model on trillions of tokens is pointless or impractical.",
   "auto": [
    "(plateau|diminishing|ceiling|limit|saturat|capacity)"
   ],
-  "fail_if": []
+  "fail_if": [
+   "(impractical|pointless|not feasible|infeasible)"
+  ]
  },
  {
   "id": 5,
@@ -80,9 +84,9 @@
   "id": 7,
   "ctx": "",
   "msg": "Has anyone made a like multiple tiny very specific models like instead of layers keep a clean as shit divide?",
-  "rule": "Says yes and names a real approach: mixture of experts, routing between specialist models, modular networks, Branch-Train-Merge, or ensembles of specialists.",
+  "rule": "Says yes and names an approach that keeps separate specialist models: Branch-Train-Merge, a router that sends each query to one specialist model, or modular/ensemble systems. Mixture of experts alone doesn't pass: its experts sit inside each layer, are trained together and don't split cleanly by topic.",
   "auto": [
-   "(mixture.of.experts|\\bMoE\\b|router|routing|modular|ensemble|branch.train)"
+   "(router|routing|modular|ensemble|branch.train)"
   ],
   "fail_if": []
  },
@@ -101,9 +105,10 @@
   "id": 9,
   "ctx": "Earlier, the assistant listed a Cloudflare Worker as one way to relay web requests for the browser.",
   "msg": "Cloudflare worker?",
-  "rule": "Explains a Cloudflare Worker is a small serverless function (JavaScript/TypeScript) running on Cloudflare's edge network that handles HTTP requests.",
+  "rule": "Explains a Cloudflare Worker is a small serverless function (JavaScript/TypeScript) running on Cloudflare's edge network, and how it would relay: the page calls the Worker, which fetches the other site server-side and returns the result with CORS headers.",
   "auto": [
-   "(serverless|edge|runs? (your )?(javascript|code|script))"
+   "(serverless|edge|runs? (your )?(javascript|code|script))",
+   "(proxy|relay|forward|CORS)"
   ],
   "fail_if": []
  },
@@ -129,7 +134,7 @@
  },
  {
   "id": 12,
-  "ctx": "",
+  "ctx": "They want the harness to run as a page in the browser, hosted on GitHub Pages, calling a model API that needs their key.",
   "msg": "If this is gonna live in the browser what is to stop anyone who see that endpoint from just straight up seeing my key too?",
   "rule": "Says nothing stops them: anything sent to the browser is visible, so the key isn't secret; fixes are a backend/proxy, real auth, or limiting what the key can do.",
   "auto": [
