@@ -1,0 +1,17 @@
+{
+ "slug": "reading-test",
+ "flavor": "a10g-small",
+ "timeout": "40m",
+ "files": [
+  "experiments/harness/harness.py",
+  "experiments/harness/reading.py",
+  "experiments/harness/tasks.json"
+ ],
+ "cmd": "python reading.py --pilot && rm -rf out && python reading.py",
+ "pip": [
+  "transformers>=4.51",
+  "requests"
+ ],
+ "outdir": "out",
+ "out": "experiments/harness/hf-out-reading"
+}
