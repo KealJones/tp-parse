@@ -22,7 +22,7 @@ QUICK = "--quick" in sys.argv
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 if QUICK:
     D, LAYERS, HEADS, CTX, BATCH, STEPS, TRAIN_TOK, VAL_TOK = 128, 2, 4, 128, 8, 30, 400_000, 50_000
-    BLIMP_N, HS_N, VARIANTS_LIMIT = 10, 20, 3
+    BLIMP_N, HS_N, VARIANTS_LIMIT = 10, 20, None   # every variant, a few steps each
 else:
     D, LAYERS, HEADS, CTX, BATCH, STEPS, TRAIN_TOK, VAL_TOK = 384, 6, 6, 512, 16, 4000, 60_000_000, 1_000_000
     BLIMP_N, HS_N, VARIANTS_LIMIT = 100, 1000, None
@@ -354,14 +354,14 @@ def report(R):
     fmt = lambda v, f: "–" if v is None else f.format(v)
     rows = sorted(R.items(), key=lambda kv: kv[1]["val_loss"] if kv[1]["val_loss"] is not None else 99)
     L = ["# Weird maths in a transformer: results", "",
-         f"GPT, {LAYERS} layers, width {D}, {next(iter(R.values()))['params_M']:.0f}M parameters (incl. embeddings), GPT-2 tokenizer, "
+         f"GPT, {LAYERS} layers, width {D}, {max(r['params_M'] for r in R.values()):.0f}M parameters (incl. embeddings), GPT-2 tokenizer, "
          f"{STEPS * BATCH * CTX / 1e6:.0f}M FineWeb-Edu tokens each, same batches and seed.",
          f"Baseline FineWeb val loss {fmt(bm, '{:.3f}')} ± {bs:.3f} (std over 3 seeds); a difference smaller than about {2 * bs:.3f} is probably noise.", "",
          "| variant | FineWeb val loss | vs baseline | WikiText-2 ppl | BLiMP | HellaSwag | tokens/s | blew up |", "|---|---|---|---|---|---|---|---|"]
     for n, r in rows:
         d = None if (bm is None or r["val_loss"] is None) else r["val_loss"] - bm
         L.append(f"| {n} | {fmt(r['val_loss'], '{:.3f}')} | {fmt(d, '{:+.3f}')} | {fmt(r['wiki_ppl'], '{:.0f}')} | {fmt(r['blimp'], '{:.1%}')} | "
-                 f"{fmt(r['hellaswag'], '{:.1%}')} | {r['tok_per_s']/1e3:.0f}k | {'yes' if r['blew_up'] else ''} |")
+                 f"{fmt(r['hellaswag'], '{:.1%}')} | {r['tok_per_s']/1e3:.0f}k | {'crashed' if r.get('crashed') else 'yes' if r['blew_up'] else ''} |")
     L += ["", "HellaSwag chance is 25%; BLiMP chance is 50%. Lower loss and perplexity are better.", "",
           f"Total time {(time.time() - T0) / 60:.0f} min."]
     return "\n".join(L) + "\n"
@@ -373,11 +373,16 @@ def main():
     R = {}
     for name, spec in VARIANTS.items():
         log(f"=== {name}")
-        m, info = train(spec)
-        info["val_loss"] = None if info["blew_up"] else lm_loss(m, VAL)
-        info["wiki_ppl"] = None if (info["blew_up"] or wiki is None) else math.exp(lm_loss(m, wiki))
-        info["blimp"] = None if info["blew_up"] else blimp_acc(m, blimp)
-        info["hellaswag"] = None if info["blew_up"] else hellaswag_acc(m, hs)
+        try:
+            m, info = train(spec)
+            info["val_loss"] = None if info["blew_up"] else lm_loss(m, VAL)
+            info["wiki_ppl"] = None if (info["blew_up"] or wiki is None) else math.exp(lm_loss(m, wiki))
+            info["blimp"] = None if info["blew_up"] else blimp_acc(m, blimp)
+            info["hellaswag"] = None if info["blew_up"] else hellaswag_acc(m, hs)
+        except Exception as e:                       # one broken variant shouldn't sink the whole run
+            log(f"    crashed: {type(e).__name__}: {e}")
+            m, info = None, {"blew_up": True, "crashed": f"{type(e).__name__}: {e}", "val_loss": None, "wiki_ppl": None,
+                             "blimp": None, "hellaswag": None, "tok_per_s": 0, "params_M": 0, "train_curve": []}
         R[name] = info
         log(f"    val {info['val_loss']}  wiki {info['wiki_ppl']}  blimp {info['blimp']}  hellaswag {info['hellaswag']}  {info['tok_per_s']/1e3:.0f}k tok/s")
         json.dump(R, open("weird_results.json", "w"), indent=1)
