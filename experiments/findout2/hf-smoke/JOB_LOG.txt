@@ -1,0 +1,225 @@
+job 6ade2d8f1e112550ce7ec920 on gpu: findout2-smoke at 5c11765
+fetched experiments/findout2/world2.py
+fetched experiments/findout2/pilot.py
+
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 8.58MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 2.19MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][A
+tokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 50.4MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 28.8MB/s]
+[  0.0 min] arms ['untouched', 'gold'], GPU NVIDIA L4, smoke=True
+[  0.0 min] renderer matches the chat template
+[  0.0 min] 30 test episodes (16 messy)
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  709MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: █▏        | 81.2MB, 6.66MB/s  
+
+model.safetensors: reconstructing file:  19%|█▉        |  134MB /  709MB,  498kB/s  [A
+model.safetensors: downloading bytes: ██▉       |  213MB, 18.2MB/s  
+
+model.safetensors: reconstructing file:  44%|████▍     |  313MB /  709MB, 25.5MB/s  [A
+model.safetensors: downloading bytes: █████▌    |  397MB, 33.0MB/s  
+
+model.safetensors: reconstructing file:  74%|███████▍  |  523MB /  709MB, 42.6MB/s  [A
+model.safetensors: downloading bytes: ████████▏ |  578MB, 46.0MB/s  
+model.safetensors: downloading bytes: ██████████|  610MB, 49.0MB/s  
+model.safetensors: downloading bytes: ██████████|  610MB, 49.0MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  709MB /  709MB, 57.3MB/s  
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1293.79it/s]
+
+
+generation_config.json:   0%|          | 0.00/134 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 134/134 [00:00<00:00, 859kB/s]
+
+
+README.md:   0%|          | 0.00/10.5k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 10.5k/10.5k [00:00<00:00, 28.0MB/s]
+
+
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): reconstructing file:   0%|          |  0.00B /  733kB            [A
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes: ██████████|  732kB, 73.0kB/s  
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes: ██████████|  732kB, 73.0kB/s  
+
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): reconstructing file: 100%|██████████|  733kB /  733kB, 73.1kB/s  
+
+
+wikitext-2-raw-v1/train-00000-of-00001.p(…): reconstructing file:   0%|          |  0.00B / 6.36MB            [A
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes: ██████████| 6.35MB,  632kB/s  
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes: ██████████| 6.35MB,  632kB/s  
+
+wikitext-2-raw-v1/train-00000-of-00001.p(…): reconstructing file: 100%|██████████| 6.36MB / 6.36MB,  633kB/s  
+
+
+wikitext-2-raw-v1/validation-00000-of-00(…): reconstructing file:   0%|          |  0.00B /  657kB            [A
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes: ██████████|  657kB, 65.6kB/s  
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes: ██████████|  657kB, 65.6kB/s  
+
+wikitext-2-raw-v1/validation-00000-of-00(…): reconstructing file: 100%|██████████|  657kB /  657kB, 65.6kB/s  
+
+
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s][A
+Generating test split: 100%|██████████| 4358/4358 [00:00<00:00, 537959.17 examples/s]
+
+
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 36718/36718 [00:00<00:00, 1228121.64 examples/s]
+
+
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s][A
+Generating validation split: 100%|██████████| 3760/3760 [00:00<00:00, 1084037.88 examples/s]
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[  0.1 min] base WikiText-2 perplexity 3078.62
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[  0.3 min] untouched: H:argmax4 0%, H:ask-diff 0%, H:basket3 0%, H:bridge-compare 100%, H:cost-compare 0%, argmax3 0%, ask 0%, basket2 0%, bridge 0%, compare2 0%, diff 0%, given 50%, lookup 0%, total 0%, whose 0%; ppl 3078.62
+
+
+README.md:   0%|          | 0.00/11.6k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 11.6k/11.6k [00:00<00:00, 51.4MB/s]
+
+
+alpaca_data_cleaned.json: reconstructing file:   0%|          |  0.00B / 44.3MB            [A
+alpaca_data_cleaned.json: downloading bytes:           |  0.00B            
+alpaca_data_cleaned.json: downloading bytes: ██████████| 24.5MB, 2.41MB/s  
+alpaca_data_cleaned.json: downloading bytes: ██████████| 24.5MB, 2.41MB/s  
+
+alpaca_data_cleaned.json: reconstructing file: 100%|██████████| 44.3MB / 44.3MB, 4.39MB/s  
+
+
+Generating train split:   0%|          | 0/51760 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 51760/51760 [00:00<00:00, 107264.42 examples/s]
+[  0.4 min] 9 replay examples from the base model
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1467.17it/s]
+[  0.4 min] step 1/3 loss 2.753 lr 1.55e-05
+[  0.4 min] step 3/3 loss 1.672 lr 2.00e-06
+[  0.8 min] gold: H:argmax4 0%, H:ask-diff 0%, H:basket3 0%, H:bridge-compare 0%, H:cost-compare 0%, argmax3 0%, ask 0%, basket2 0%, bridge 0%, compare2 0%, diff 0%, given 0%, lookup 0%, total 0%, whose 0%; ppl 830.14
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.28it/s]
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+
+  /tmp/findout-pilot-gold.gguf:  11%|█         | 40.4MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  11%|█         | 40.4MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  27%|██▋       |  103MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  35%|███▌      |  134MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  35%|███▌      |  134MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  35%|███▌      |  134MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  35%|███▌      |  134MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  35%|███▌      |  134MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  39%|███▉      |  148MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  55%|█████▌    |  210MB /  379MB            [A[A
+Processing Files (0 / 1)      :  55%|█████▌    |  210MB /  379MB, 19.8MB/s  
+
+New Data Upload               :  78%|███████▊  |  210MB /  268MB, 19.8MB/s  [A
+
+
+  /tmp/findout-pilot-gold.gguf:  73%|███████▎  |  277MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  88%|████████▊ |  335MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  88%|████████▊ |  335MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  88%|████████▊ |  335MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  88%|████████▊ |  335MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  88%|████████▊ |  335MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  99%|█████████▊|  374MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+Processing Files (0 / 1)      : 100%|█████████▉|  379MB /  379MB, 33.2MB/s  
+
+New Data Upload               : 100%|█████████▉|  379MB /  379MB, 33.2MB/s  [A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|██████████|  379MB /  379MB            [A[A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|██████████|  379MB /  379MB            [A[A
+
+
+
+Validating                    : ██████████| 100%            [A[A[A
+Processing Files (1 / 1)      : 100%|██████████|  379MB /  379MB, 32.2MB/s  
+
+New Data Upload               : 100%|██████████|  379MB /  379MB, 32.2MB/s  
+
+Validating                    : ██████████| 100%            
+
+  /tmp/findout-pilot-gold.gguf: 100%|██████████|  379MB /  379MB            
+[  1.2 min] exported: https://huggingface.co/kealjones/findout-pilot
+[  1.2 min] done
+exit code 0 after 1.6 min
