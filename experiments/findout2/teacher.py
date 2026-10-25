@@ -46,8 +46,11 @@ TEACHER_SYSTEM = SYSTEM + (
     "(for example the town someone lives in), find the link first.\n"
     "- Search results can include facts about other things; use only the ones about what you asked for.\n"
     "- Do every calculation and comparison with the calculator, even easy ones.\n"
-    "- When you have everything, reply in one or two plain sentences and end with a last line 'Answer: <short answer>'. "
-    "For 'which' questions the short answer is just the winner's name.")
+    "- Never write 'Answer:' before you have the tool results for every item on your list.\n"
+    "- When you have everything, reply in one or two plain sentences and end with a last line 'Answer: ' followed by the short answer. "
+    "For 'which' questions the short answer is just the winner's name.\n\n"
+    "Example first message for 'How much do 4 lanterns cost?':\nNeeds:\n1. the price of a lantern (search)\n2. 4 x that price (calculator)\n"
+    "Starting with 1.\n(then the search tool call)")
 
 
 def log(*a):
@@ -67,14 +70,27 @@ def to_qwen(msgs):
     return out
 
 
+TOOL_MARK = re.compile(r"\((search|calculator|ask them|ask)\)", re.I)
+
+
 def advance(a, text, results):
-    """Apply one teacher reply to an episode. Returns True if the episode goes on (a tool was called)."""
-    content, calls = parse_qwen(text)
+    """Apply one teacher reply to an episode. Returns True if the episode goes on.
+    A reply that plans tools but stops (often with a made-up answer) is cut before 'Answer:' and continued
+    from its own words, so the stored message reads as one natural turn."""
+    full = a.pop("prefix", "") + text
+    content, calls = parse_qwen(full)
     a["turns"] += 1
     if calls and a["turns"] < MAX_TURNS:
         c = calls[0]                                 # one call per turn
         a["msgs"].append({"role": "assistant", "content": content, "tool_calls": [c]})
         a["msgs"].append({"role": "tool", "name": c["name"], "content": a["H"].run(c["name"], c["arguments"])})
+        return True
+    first = not any(m["role"] == "tool" for m in a["msgs"])
+    head = re.split(r"answer\s*:", content, flags=re.I)[0].rstrip()
+    has_answer = head != content.rstrip()
+    if not calls and a.get("cont", 0) < 3 and a["turns"] < MAX_TURNS and (not has_answer or (first and TOOL_MARK.search(head))):
+        a["cont"] = a.get("cont", 0) + 1
+        a["prefix"] = head + ("\nStarting with 1.\n" if first and "starting with" not in head.lower()[-40:] else "\n")
         return True
     a["msgs"].append({"role": "assistant", "content": content})
     t = a["task"]
@@ -115,7 +131,7 @@ def worker(gpu, tok, model, tasks, results, stats):
     active = []                                     # dicts: task, idx, msgs, H, turns
     gen_tokens = 0
     while queue or active:
-        if len(results) >= 100 and sum(x["kept"] for x in results) < 0.1 * len(results):
+        if len(results) >= 400 and sum(x["kept"] for x in results) < 0.05 * len(results):
             if not ABORT:
                 ABORT.append(f"stopped early: only {sum(x['kept'] for x in results)} of {len(results)} episodes kept")
                 log(ABORT[0])
@@ -126,7 +142,8 @@ def worker(gpu, tok, model, tasks, results, stats):
         if not active:
             break
         prompts = [tok.apply_chat_template([{"role": "system", "content": TEACHER_SYSTEM}, {"role": "user", "content": a["task"]["request"]}]
-                                           + to_qwen(a["msgs"]), tools=TOOLS, add_generation_prompt=True, tokenize=False) for a in active]
+                                           + to_qwen(a["msgs"]), tools=TOOLS, add_generation_prompt=True, tokenize=False) + a.get("prefix", "")
+                   for a in active]
         enc = tok(prompts, return_tensors="pt", padding=True).to(dev)
         with torch.no_grad():
             out = model.generate(**enc, max_new_tokens=320, do_sample=True, temperature=0.7, top_p=0.8, top_k=20,

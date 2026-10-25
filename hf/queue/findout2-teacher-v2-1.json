@@ -1,0 +1,10 @@
+{
+ "slug": "findout2-teacher-v2-1",
+ "flavor": "a100-large",
+ "timeout": "45m",
+ "files": ["experiments/findout2/world2.py", "experiments/findout2/teacher.py"],
+ "cmd": "python teacher.py --shard=1/2 --batch=96 --hours=0.5 --out=out",
+ "pip": ["transformers>=4.57", "accelerate"],
+ "outdir": "out",
+ "out": "experiments/findout2/hf-teacher-v2-1"
+}

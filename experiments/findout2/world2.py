@@ -223,8 +223,12 @@ def chk_number(n):
     return lambda a: n in numbers_in(a)
 
 
+def _norm(s):
+    return re.sub(r"\bthe\s+", "", s.lower()).strip()
+
+
 def chk_text(v):
-    return lambda a: v.lower() in a.lower()
+    return lambda a: _norm(v) in _norm(a)
 
 
 def chk_name(win, losers):
