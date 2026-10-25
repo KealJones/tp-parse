@@ -1,0 +1,20 @@
+{
+ "slug": "findout2-gemma4-e2b",
+ "flavor": "l4x1",
+ "timeout": "45m",
+ "files": [
+  "experiments/findout2/world2.py",
+  "experiments/findout2/gemma_eval.py"
+ ],
+ "cmd": "python gemma_eval.py --models google/gemma-4-E2B-it --bs 24 --out out",
+ "pip": [
+  "transformers",
+  "accelerate"
+ ],
+ "outdir": "out",
+ "out": "experiments/findout2/hf-gemma4-e2b",
+ "job_id": "6ade51c1046eb82b1ece72ee",
+ "url": "https://huggingface.co/jobs/kealjones/6ade51c1046eb82b1ece72ee",
+ "started": "2026-10-25T19:00:17+00:00",
+ "sha": "d3d66b9153c33427351b1cea1e9121a0ce06478c"
+}
