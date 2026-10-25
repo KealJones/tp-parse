@@ -1,5 +1,0 @@
-{"slug": "findout2-pilot-all-2", "flavor": "l4x1", "timeout": "90m",
- "files": ["experiments/findout2/world2.py", "experiments/findout2/pilot.py",
-           "experiments/findout2/hf-teacher-v2-0/teacher_episodes_0.jsonl", "experiments/findout2/hf-teacher-v2-1/teacher_episodes_1.jsonl"],
- "cmd": "python pilot.py --arms untouched,gold,teacher --teacher teacher_episodes_0.jsonl,teacher_episodes_1.jsonl --export",
- "pip": ["transformers>=4.57", "datasets"], "outdir": "out", "out": "experiments/findout2/hf-pilot-all-2"}
