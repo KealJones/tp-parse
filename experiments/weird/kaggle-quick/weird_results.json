@@ -2,7 +2,7 @@
  "baseline": {
   "train_curve": [],
   "blew_up": false,
-  "tok_per_s": 18470.04359450857,
+  "tok_per_s": 20255.254125595166,
   "params_M": 6.849792,
   "val_loss": 10.544466889210236,
   "wiki_ppl": 42998.49818181188,
@@ -12,7 +12,7 @@
  "baseline seed 2": {
   "train_curve": [],
   "blew_up": false,
-  "tok_per_s": 58787.41373103766,
+  "tok_per_s": 58398.221743611495,
   "params_M": 6.849792,
   "val_loss": 10.556629572159204,
   "wiki_ppl": 42063.950658717375,
@@ -22,11 +22,171 @@
  "baseline seed 3": {
   "train_curve": [],
   "blew_up": false,
-  "tok_per_s": 59070.23560882691,
+  "tok_per_s": 59176.79961531343,
   "params_M": 6.849792,
   "val_loss": 10.543860225188427,
   "wiki_ppl": 42186.14293142217,
   "blimp": 0.3333333333333333,
   "hellaswag": 0.2
+ },
+ "sin after attention": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 57808.65565250475,
+  "params_M": 6.849792,
+  "val_loss": 10.54447009746845,
+  "wiki_ppl": 42998.54528681305,
+  "blimp": 0.4,
+  "hellaswag": 0.35
+ },
+ "sign-sqrt after attention": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 52350.623409865635,
+  "params_M": 6.849792,
+  "val_loss": 10.595291000757461,
+  "wiki_ppl": 44545.20277487875,
+  "blimp": 0.4666666666666667,
+  "hellaswag": 0.4
+ },
+ "learned cubic after attention": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 57932.193360564896,
+  "params_M": 6.85056,
+  "val_loss": 10.544432146121293,
+  "wiki_ppl": 42997.768060892915,
+  "blimp": 0.4,
+  "hellaswag": 0.35
+ },
+ "log after MLP": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 57696.802619011476,
+  "params_M": 6.849792,
+  "val_loss": 10.545004213773288,
+  "wiki_ppl": 42997.02028860917,
+  "blimp": 0.43333333333333335,
+  "hellaswag": 0.35
+ },
+ "learned power after MLP": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 46530.03507925514,
+  "params_M": 6.850048,
+  "val_loss": 10.544397461720003,
+  "wiki_ppl": 42997.73525621175,
+  "blimp": 0.4,
+  "hellaswag": 0.35
+ },
+ "rounding after MLP": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 58714.227853038785,
+  "params_M": 6.849792,
+  "val_loss": 10.58320570725661,
+  "wiki_ppl": 44069.23529597453,
+  "blimp": 0.36666666666666664,
+  "hellaswag": 0.3
+ },
+ "running mean after MLP": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 54260.55746672647,
+  "params_M": 6.849792,
+  "val_loss": 10.520326330722906,
+  "wiki_ppl": 42451.57247877035,
+  "blimp": 0.4,
+  "hellaswag": 0.3
+ },
+ "abs before MLP": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 58997.586909349986,
+  "params_M": 6.849792,
+  "val_loss": 10.514036159026316,
+  "wiki_ppl": 42058.32049186168,
+  "blimp": 0.6,
+  "hellaswag": 0.3
+ },
+ "channel max before MLP": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 56634.01876914462,
+  "params_M": 6.849792,
+  "val_loss": 10.520093516814404,
+  "wiki_ppl": 42217.69566342016,
+  "blimp": 0.6666666666666666,
+  "hellaswag": 0.2
+ },
+ "fourier before MLP": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 58625.695348810754,
+  "params_M": 6.849792,
+  "val_loss": 10.544566677778196,
+  "wiki_ppl": 42983.54579368983,
+  "blimp": 0.43333333333333335,
+  "hellaswag": 0.35
+ },
+ "gaussian squash before attention": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 58526.04934576145,
+  "params_M": 6.849792,
+  "val_loss": 10.562600483038487,
+  "wiki_ppl": 43593.923839368115,
+  "blimp": 0.4666666666666667,
+  "hellaswag": 0.35
+ },
+ "tanh cap between blocks (known-ish)": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 59063.033080592664,
+  "params_M": 6.849792,
+  "val_loss": 10.544455063648712,
+  "wiki_ppl": 42998.17433632597,
+  "blimp": 0.4,
+  "hellaswag": 0.35
+ },
+ "random rotation between blocks": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 59100.06626963596,
+  "params_M": 6.849792,
+  "val_loss": 10.567482278285883,
+  "wiki_ppl": 44272.909939808,
+  "blimp": 0.3,
+  "hellaswag": 0.3
+ },
+ "swap halves between blocks": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 59120.458394664296,
+  "params_M": 6.849792,
+  "val_loss": 10.563514836629231,
+  "wiki_ppl": 43180.31894948508,
+  "blimp": 0.3,
+  "hellaswag": 0.25
+ },
+ "noise between blocks": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 57648.504250407146,
+  "params_M": 6.849792,
+  "val_loss": 10.559946138430865,
+  "wiki_ppl": 43356.462883577275,
+  "blimp": 0.4,
+  "hellaswag": 0.35
+ },
+ "attention x MLP product": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 58795.7564883448,
+  "params_M": 6.849792,
+  "val_loss": 10.544468669402294,
+  "wiki_ppl": 42998.73959548829,
+  "blimp": 0.4,
+  "hellaswag": 0.35
  }
 }
