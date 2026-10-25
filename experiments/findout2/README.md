@@ -36,3 +36,20 @@ Other gates: English perplexity passed for both (it went down). Plain chat witho
 **Not resolved:** raw-text WikiText perplexity is 2,134 for the base model and identical with and without the attention mask, so the first measurement is not an attention-mask bug. It is still unexplained (trained models score 426 and 523). The verdict uses the as-an-assistant-reply number, which is sane (about 63 to 76).
 
 **Run notes:** the first attempt (`hf-pilot-all`) died in the teacher arm with an out-of-memory error (teacher episodes are longer than template ones). `pilot.py` now packs training micro-batches up to 2,048 tokens instead of a fixed 8 examples; the gradient is unchanged. Teacher v2 kept 1,143 of 1,720 episodes (66%). Models are in the private repo `kealjones/findout-pilot`.
+
+## Gemma 4 E2B and E4B, off the shelf (Sun 25 Oct 2026, `hf-gemma4-small/`)
+
+Same 120 held-out episodes, system prompt, tools and request text as the pilot; no fine-tuning; thinking off, greedy (`gemma_eval.py`).
+"Fair" applies the scorer fixes from `bigmodel-check/` (yes/no accepted, facts already seen count, non-answers fail).
+
+| held-out (120) | right answer | strict | fair right | fair strict | clean / messy (fair right) | Q4 GGUF size |
+| --- | --- | --- | --- | --- | --- | --- |
+| pilot gold / teacher (LFM2.5-350M, fine-tuned) | 38% / 45% | 26% / 28% | — | — | — | 379 MB (Q8) |
+| Gemma 4 E2B | 61% | 46% | 59% | 50% | 73% / 49% | 3.3 GB |
+| Gemma 4 E4B | 67% | 49% | 77% | 72% | 85% / 71% | 5.2 GB |
+
+Both always asked for the person's town on ask-diff and always used tools. Two more test problems showed up:
+- "Answer: Wexkodun's town" is right but fails the name check; the checker should accept the hidden town's description.
+- The fake person replies with their town name to any question containing "live" or "town", so "How many people live in Rinzelwex?"
+  gets "Lolozel". E4B asked the person for both populations on 11 ask-diff episodes, got town names back and gave up.
+  That is mostly E4B's mistake (it should search populations), but a real person would not answer that way.
