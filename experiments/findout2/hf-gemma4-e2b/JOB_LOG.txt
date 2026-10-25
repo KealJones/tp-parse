@@ -1,0 +1,101 @@
+job 6ade51c1046eb82b1ece72ee on gpu: findout2-gemma4-e2b at d3d66b9
+fetched experiments/findout2/world2.py
+fetched experiments/findout2/gemma_eval.py
+
+
+config.json:   0%|          | 0.00/4.95k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 4.95k/4.95k [00:00<00:00, 19.1MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/3.08k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 3.08k/3.08k [00:00<00:00, 7.78MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 32.2MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 8.75MB,  871kB/s  
+tokenizer.json: downloading bytes: ██████████| 8.75MB,  871kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 32.2MB / 32.2MB, 3.20MB/s  
+
+
+chat_template.jinja:   0%|          | 0.00/18.6k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 18.6k/18.6k [00:00<00:00, 70.8MB/s]
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 10.2GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:   4%|▎         |  370MB / 10.2GB, 29.9MB/s  [A
+model.safetensors: downloading bytes: ▏         |  200MB, 16.0MB/s  
+model.safetensors: downloading bytes: ▌         |  609MB, 47.1MB/s  
+
+model.safetensors: reconstructing file:  10%|▉         | 1.02GB / 10.2GB, 56.3MB/s  [A
+model.safetensors: downloading bytes: █▍        | 1.47GB,  121MB/s  
+
+model.safetensors: reconstructing file:  16%|█▋        | 1.68GB / 10.2GB,  134MB/s  [A
+model.safetensors: downloading bytes: ██▍       | 2.52GB,  201MB/s  
+
+model.safetensors: reconstructing file:  31%|███       | 3.15GB / 10.2GB,  255MB/s  [A
+model.safetensors: downloading bytes: ███▌      | 3.71GB,  284MB/s  
+
+model.safetensors: reconstructing file:  43%|████▎     | 4.36GB / 10.2GB,  331MB/s  [A
+model.safetensors: downloading bytes: ████▊     | 4.94GB,  363MB/s  
+
+model.safetensors: reconstructing file:  59%|█████▉    | 6.04GB / 10.2GB,  342MB/s  [A
+model.safetensors: downloading bytes: █████▊    | 5.95GB,  413MB/s  
+model.safetensors: downloading bytes: ██████▊   | 6.97GB,  330MB/s  
+
+model.safetensors: reconstructing file:  67%|██████▋   | 6.90GB / 10.2GB,  293MB/s  [A
+model.safetensors: downloading bytes: ███████▋  | 7.85GB,  272MB/s  
+
+model.safetensors: reconstructing file:  73%|███████▎  | 7.52GB / 10.2GB,  275MB/s  [A
+model.safetensors: downloading bytes: ████████▎ | 8.49GB,  261MB/s  
+
+model.safetensors: reconstructing file:  81%|████████  | 8.28GB / 10.2GB,  266MB/s  [A
+
+model.safetensors: reconstructing file:  85%|████████▍ | 8.66GB / 10.2GB,  260MB/s  [A
+
+model.safetensors: reconstructing file:  90%|█████████ | 9.27GB / 10.2GB,  252MB/s  [A
+
+model.safetensors: reconstructing file:  93%|█████████▎| 9.57GB / 10.2GB,  248MB/s  [A
+
+model.safetensors: reconstructing file:  97%|█████████▋| 9.93GB / 10.2GB,  244MB/s  [A
+
+model.safetensors: reconstructing file: 100%|█████████▉| 10.2GB / 10.2GB,  239MB/s  [A
+model.safetensors: downloading bytes: ██████████| 8.66GB,  266MB/s  
+model.safetensors: downloading bytes: ██████████| 8.66GB,  266MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 10.2GB / 10.2GB,  239MB/s  
+
+
+Loading weights:   0%|          | 0/1951 [00:00<?, ?it/s][A
+
+Loading weights:  66%|██████▌   | 1278/1951 [00:01<00:00, 1277.91it/s][A
+Loading weights: 100%|██████████| 1951/1951 [00:01<00:00, 1666.78it/s]
+
+
+generation_config.json:   0%|          | 0.00/208 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 208/208 [00:00<00:00, 1.13MB/s]
+[  0.7 min] example prompt:
+<bos><|turn>system
+You figure things out for the person. You know nothing about this world's towns, items, people or creatures, so look up every fact you need with search; never guess one. Use the calculator for all arithmetic and comparisons. Ask the person only for things only they know. If the message already gives a fact, use it without searching. Start by listing what you need, then get each piece with one tool call at a time. Finish with a short reply whose last line is 'Answer: <short answer>'.<|tool>declaration:search{description:<|"|>Look something up. Returns a few short facts.<|"|>,parameters:{properties:{query:{description:<|"|>what to look up<|"|>,type:<|"|>STRING<|"|>}},required:[<|"|>query<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><|tool>declaration:calculator{description:<|"|>Exact arithmetic: numbers with + - * / ( ), < > to compare, max(...) and min(...).<|"|>,parameters:{properties:{expression:{type:<|"|>STRING<|"|>}},required:[<|"|>expression<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><|tool>declaration:ask_person{description:<|"|>Ask the person something only they know.<|"|>,parameters:{properties:{question:{type:<|"|>STRING<|"|>}},required:[<|"|>question<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><turn|>
+<|turn>user
+ok this is gonna sound dumb but hey which costs more 11 wait no 10 nethmokduns or 4 pelwexneths if u know<turn|>
+<|turn>model
+
+[  0.9 min] google/gemma-4-E2B-it: turn 1, 120 still going
+[  1.7 min] google/gemma-4-E2B-it: turn 2, 112 still going
+[  2.5 min] google/gemma-4-E2B-it: turn 3, 90 still going
+[  3.3 min] google/gemma-4-E2B-it: turn 4, 48 still going
+[  3.7 min] google/gemma-4-E2B-it: turn 5, 17 still going
+[  4.0 min] google/gemma-4-E2B-it: turn 6, 6 still going
+[  4.2 min] google/gemma-4-E2B-it: turn 7, 4 still going
+[  4.3 min] google/gemma-4-E2B-it: turn 8, 3 still going
+[  4.3 min] google/gemma-4-E2B-it: turn 9, 3 still going
+[  4.3 min] google/gemma-4-E2B-it: turn 10, 3 still going
+[  4.4 min] google/gemma-4-E2B-it: turn 11, 3 still going
+[  4.4 min] google/gemma-4-E2B-it: turn 12, 0 still going
+[  4.4 min] gemma-4-E2B-it | 58% | 43% | 58% | 48% | 13/16 | 4.4
+[  4.4 min] done
+exit code 0 after 4.6 min
