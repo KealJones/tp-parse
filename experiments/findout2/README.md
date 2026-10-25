@@ -1,0 +1,9 @@
+# Findout pilot (v2)
+
+A cheap test, before spending $20–40 on the full plan ([Figure-it-out model plan](https://claude.ai/artifact/G6ciovi1M9LaqeftgCUnhh)), of the thing run 1 failed at: putting known steps together into a plan it has never seen.
+
+- **World v2** (`world2.py`): tasks are small plans built from parts (look up, use what's given, ask, calculate, compare, follow a link). Ten task types are trained on. Five combinations of those same parts are held out for testing: comparing two costs, a four-way comparison, a link inside a comparison, the person's answer feeding a calculation, and a three-item basket. Half the requests are rewritten in Keal's style, with false starts, self-corrections and repeats. Search results include a fact about a different thing, which has to be ignored. `python world2.py` replays 4,500 gold episodes through the harness; all pass.
+- **Teacher** (`teacher.py`, Kaggle 2×T4, free): Qwen3-4B-Instruct-2507 works through 3,000 tasks with the real tools and no answer key. Only fully right episodes are kept. Template-written examples taught the askfirst model to recite, so the teacher's own wording is the main training set.
+- **Pilot** (`pilot.py`, Hugging Face L4, about $1 in total): LFM2.5-350M, untouched (two worked examples in the prompt), then fully fine-tuned on about 2,000 template episodes (`gold`) or 2,000 teacher episodes (`teacher`). Each trained arm also replays 20% of the base model's own everyday answers. Tests: the trained types on fresh worlds, the held-out combinations, clean against messy requests, WikiText-2 perplexity, and plain chat with and without tools.
+
+**Go/no-go** (computed in `PILOT_RESULTS.md`): held-out mean at least 50% with no held-out type under 20% (run 1 scored 0% on cost-compare), English perplexity up at most 15%, at most 1 broken plain-chat reply, and messy requests within 10 points of clean ones.
