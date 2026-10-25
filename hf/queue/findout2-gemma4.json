@@ -1,0 +1,4 @@
+{"slug": "findout2-gemma4", "flavor": "a100-large", "timeout": "120m",
+ "files": ["experiments/findout2/world2.py", "experiments/findout2/gemma_eval.py"],
+ "cmd": "python gemma_eval.py --models google/gemma-4-E2B-it,google/gemma-4-E4B-it,google/gemma-4-12B-it,google/gemma-4-26B-A4B-it,google/gemma-4-31B-it --out out",
+ "pip": ["transformers", "accelerate"], "outdir": "out", "out": "experiments/findout2/hf-gemma4"}
