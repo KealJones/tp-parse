@@ -1,0 +1,161 @@
+job 6add53c2046eb82b1ece14ea on gpu: reading-test at 05a3bd1
+fetched experiments/harness/harness.py
+fetched experiments/harness/reading.py
+fetched experiments/harness/tasks.json
+
+
+config.json:   0%|          | 0.00/726 [00:00<?, ?B/s][A
+config.json: 100%|██████████| 726/726 [00:00<00:00, 3.26MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/9.73k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 9.73k/9.73k [00:00<00:00, 28.5MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 51.5MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 52.1MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 11.4MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  338kB/s  
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  338kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 11.4MB / 11.4MB, 1.14MB/s  
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 1.50GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: ██▋       |  403MB, 33.2MB/s  
+
+model.safetensors: reconstructing file:  21%|██        |  311MB / 1.50GB, 25.0MB/s  [A
+model.safetensors: downloading bytes: █████▌    |  837MB, 70.2MB/s  
+
+model.safetensors: reconstructing file:  68%|██████▊   | 1.03GB / 1.50GB, 89.7MB/s  [A
+model.safetensors: downloading bytes: ██████████| 1.26GB,  106MB/s  
+model.safetensors: downloading bytes: ██████████| 1.26GB,  106MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 1.50GB / 1.50GB,  128MB/s  
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 4048.54it/s]
+
+
+generation_config.json:   0%|          | 0.00/239 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 239/239 [00:00<00:00, 1.51MB/s]
+Qwen/Qwen3-0.6B gold: auto 1/2 (26s)
+Qwen/Qwen3-0.6B mixed: auto 2/2 (47s)
+# Reading test (gold paragraph given, thinking on): auto check (first pass; Claude grades by hand)
+
+- Qwen/Qwen3-0.6B, gold: 1/2
+- Qwen/Qwen3-0.6B, mixed: 2/2
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 4294.34it/s]
+Qwen/Qwen3-0.6B gold: auto 13/18 (81s)
+Qwen/Qwen3-0.6B mixed: auto 10/18 (158s)
+
+
+config.json:   0%|          | 0.00/726 [00:00<?, ?B/s][A
+config.json: 100%|██████████| 726/726 [00:00<00:00, 4.61MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/9.73k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 9.73k/9.73k [00:00<00:00, 39.1MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 49.0MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 63.4MB/s]
+
+
+model.safetensors.index.json:   0%|          | 0.00/25.6k [00:00<?, ?B/s][A
+model.safetensors.index.json: 100%|██████████| 25.6k/25.6k [00:00<00:00, 101MB/s]
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s][A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 4.06GB            [A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 4.06GB            [A
+
+Reconstructing (incomplete total...):   6%|▋         |  256MB / 4.06GB            [A
+
+Downloading bytes: ▋         |  256MB,   ???B/s  [A
+
+Fetching 2 files:  50%|█████     | 1/2 [00:01<00:01,  1.85s/it][A
+
+Downloading bytes: █▊        |  751MB,  240MB/s  [A
+
+Reconstructing (incomplete total...):  19%|█▊        |  756MB / 4.06GB,  242MB/s  [A
+
+Downloading bytes: ███▏      | 1.29GB,  384MB/s  [A
+
+Reconstructing (incomplete total...):  36%|███▌      | 1.45GB / 4.06GB,  328MB/s  [A
+
+Downloading bytes: ████▎     | 1.75GB,  448MB/s  [A
+
+Reconstructing (incomplete total...):  48%|████▊     | 1.96GB / 4.06GB,  403MB/s  [A
+
+Downloading bytes: █████▎    | 2.17GB,  413MB/s  [A
+
+Reconstructing (incomplete total...):  60%|██████    | 2.45GB / 4.06GB,  424MB/s  [A
+
+Downloading bytes: ██████▎   | 2.58GB,  385MB/s  [A
+
+Downloading bytes: ███████▌  | 3.10GB,  392MB/s  [A
+
+Reconstructing (incomplete total...):  77%|███████▋  | 3.13GB / 4.06GB,  379MB/s  [A
+
+Downloading bytes: ████████▋ | 3.53GB,  417MB/s  [A
+
+Reconstructing (incomplete total...):  92%|█████████▏| 3.75GB / 4.06GB,  308MB/s  [A
+
+Reconstructing (incomplete total...): 100%|██████████| 4.06GB / 4.06GB,  251MB/s  [A
+
+Fetching 2 files: 100%|██████████| 2/2 [00:14<00:00,  8.16s/it][A
+Fetching 2 files: 100%|██████████| 2/2 [00:14<00:00,  7.21s/it]
+
+
+Downloading bytes: ██████████| 3.53GB,  268MB/s  [A
+
+Download complete: ██████████| 3.53GB,  268MB/s  [A
+
+Reconstruction complete: 100%|██████████| 4.06GB / 4.06GB,  233MB/s               [A
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 2320.23it/s]
+
+
+generation_config.json:   0%|          | 0.00/239 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 239/239 [00:00<00:00, 1.49MB/s]
+
+
+Download complete: ██████████| 3.53GB,  268MB/s  [A
+
+Reconstruction complete: 100%|██████████| 4.06GB / 4.06GB,  233MB/s  [AQwen/Qwen3-1.7B gold: auto 17/18 (242s)
+Qwen/Qwen3-1.7B mixed: auto 17/18 (317s)
+# Reading test (gold paragraph given, thinking on): auto check (first pass; Claude grades by hand)
+
+- Qwen/Qwen3-0.6B, gold: 13/18
+- Qwen/Qwen3-0.6B, mixed: 10/18
+- Qwen/Qwen3-1.7B, gold: 17/18
+- Qwen/Qwen3-1.7B, mixed: 17/18
+
+Download complete: ██████████| 3.53GB,  268MB/s  
+
+Reconstruction complete: 100%|██████████| 4.06GB / 4.06GB,  233MB/s  
+exit code 0 after 6.4 min
