@@ -1,0 +1,49 @@
+[{"stream_name":"stderr","time":6.657005793,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":6.657060002,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":7.593023763,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.5930563,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.593060042,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.593062619,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.205986814,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.206012944,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.20601732,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.206024906,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":41.691141808,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":41.691167654,"data":"\n"}
+,{"stream_name":"stderr","time":41.691174387,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":43.797615756,"data":"[   0.5 min] tokenising FineWeb-Edu\n"}
+,{"stream_name":"stderr","time":49.251289943,"data":"[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (1055 \u003e 1024). Running this sequence through the model will result in indexing errors\n"}
+,{"stream_name":"stderr","time":49.251325391,"data":"\n"}
+,{"stream_name":"stderr","time":49.25133055,"data":"[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (1055 \u003e 1024). Running this sequence through the model will result in indexing errors\n"}
+,{"stream_name":"stdout","time":49.335865859,"data":"[   0.5 min] train 0.4M tokens, val 0.05M (tokens per variant: 0M)\n"}
+,{"stream_name":"stdout","time":63.116838191,"data":"[   0.8 min] tests: wikitext 50000 tokens, blimp 30 pairs, hellaswag 20\n"}
+,{"stream_name":"stdout","time":63.117569628,"data":"[   0.8 min] === baseline\n"}
+,{"stream_name":"stdout","time":65.978141725,"data":"[   0.8 min]     val 10.544466889210236  wiki 42998.49818181188  blimp 0.4  hellaswag 0.35  18k tok/s\n"}
+,{"stream_name":"stdout","time":66.038992739,"data":"[   0.8 min] === baseline seed 2\n"}
+,{"stream_name":"stdout","time":67.290050959,"data":"[   0.8 min]     val 10.556629572159204  wiki 42063.950658717375  blimp 0.7  hellaswag 0.35  59k tok/s\n"}
+,{"stream_name":"stdout","time":67.354002286,"data":"[   0.8 min] === baseline seed 3\n"}
+,{"stream_name":"stdout","time":68.58498757,"data":"[   0.9 min]     val 10.543860225188427  wiki 42186.14293142217  blimp 0.3333333333333333  hellaswag 0.2  59k tok/s\n"}
+,{"stream_name":"stdout","time":68.645698647,"data":"# Weird maths in a transformer: results\n"}
+,{"stream_name":"stdout","time":68.645735457,"data":"\n"}
+,{"stream_name":"stdout","time":68.645740233,"data":"GPT, 2 layers, width 128, 7M parameters (incl. embeddings), GPT-2 tokenizer, 0M FineWeb-Edu tokens each, same batches and seed.\n"}
+,{"stream_name":"stdout","time":68.645747413,"data":"Baseline FineWeb val loss 10.548 ± 0.007 (std over 3 seeds); a difference smaller than about 0.014 is probably noise.\n"}
+,{"stream_name":"stdout","time":68.645753151,"data":"\n"}
+,{"stream_name":"stdout","time":68.645766614,"data":"| variant | FineWeb val loss | vs baseline | WikiText-2 ppl | BLiMP | HellaSwag | tokens/s | blew up |\n"}
+,{"stream_name":"stdout","time":68.645769148,"data":"|---|---|---|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":68.645771361,"data":"| baseline seed 3 | 10.544 | -0.004 | 42186 | 33.3% | 20.0% | 59k |  |\n"}
+,{"stream_name":"stdout","time":68.645773755,"data":"| baseline | 10.544 | -0.004 | 42998 | 40.0% | 35.0% | 18k |  |\n"}
+,{"stream_name":"stdout","time":68.645776138,"data":"| baseline seed 2 | 10.557 | +0.008 | 42064 | 70.0% | 35.0% | 59k |  |\n"}
+,{"stream_name":"stdout","time":68.645778411,"data":"\n"}
+,{"stream_name":"stdout","time":68.645780511,"data":"HellaSwag chance is 25%; BLiMP chance is 50%. Lower loss and perplexity are better.\n"}
+,{"stream_name":"stdout","time":68.645782864,"data":"\n"}
+,{"stream_name":"stdout","time":68.645785079,"data":"Total time 1 min.\n"}
+,{"stream_name":"stdout","time":68.645787268,"data":"\n"}
+,{"stream_name":"stderr","time":74.057270241,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":74.057325697,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":74.221430091,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":74.221459117,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":74.992245998,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":75.124243903,"data":"[NbConvertApp] Writing 520502 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":77.579847782,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":78.229778816,"data":"[NbConvertApp] Writing 782929 bytes to __results__.html\n"}
+]
