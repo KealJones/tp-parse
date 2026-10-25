@@ -1,0 +1,351 @@
+job 6ade40671e112550ce7ed44c on gpu: findout2-pilot-all-2 at 07fed43
+fetched experiments/findout2/world2.py
+fetched experiments/findout2/pilot.py
+fetched experiments/findout2/hf-teacher-v2-0/teacher_episodes_0.jsonl
+fetched experiments/findout2/hf-teacher-v2-1/teacher_episodes_1.jsonl
+
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 8.33MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 3.44MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][A
+tokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 53.7MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 31.7MB/s]
+[  0.0 min] arms ['untouched', 'gold', 'teacher'], GPU NVIDIA L4, smoke=False
+[  0.0 min] renderer matches the chat template
+[  0.0 min] 360 test episodes (191 messy)
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  709MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:  14%|█▍        | 97.9MB /  709MB, 6.57MB/s  [A
+model.safetensors: downloading bytes: █▎        | 93.2MB, 7.23MB/s  
+model.safetensors: downloading bytes: ███▋      |  264MB, 20.7MB/s  
+
+model.safetensors: reconstructing file:  41%|████▏     |  294MB /  709MB, 23.5MB/s  [A
+model.safetensors: downloading bytes: ██████▏   |  436MB, 35.3MB/s  
+
+model.safetensors: reconstructing file:  72%|███████▏  |  511MB /  709MB, 42.2MB/s  [A
+model.safetensors: downloading bytes: ██████████|  610MB, 49.4MB/s  
+model.safetensors: downloading bytes: ██████████|  610MB, 49.4MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  709MB /  709MB, 57.7MB/s  
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1261.93it/s]
+
+
+generation_config.json:   0%|          | 0.00/134 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 134/134 [00:00<00:00, 948kB/s]
+
+
+README.md:   0%|          | 0.00/10.5k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 10.5k/10.5k [00:00<00:00, 42.5MB/s]
+
+
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): reconstructing file:   0%|          |  0.00B /  733kB            [A
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes: ██████████|  732kB, 73.0kB/s  
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): downloading bytes: ██████████|  732kB, 73.0kB/s  
+
+wikitext-2-raw-v1/test-00000-of-00001.pa(…): reconstructing file: 100%|██████████|  733kB /  733kB, 73.1kB/s  
+
+
+wikitext-2-raw-v1/train-00000-of-00001.p(…): reconstructing file:   0%|          |  0.00B / 6.36MB            [A
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes: ██████████| 6.35MB,  633kB/s  
+wikitext-2-raw-v1/train-00000-of-00001.p(…): downloading bytes: ██████████| 6.35MB,  633kB/s  
+
+wikitext-2-raw-v1/train-00000-of-00001.p(…): reconstructing file: 100%|██████████| 6.36MB / 6.36MB,  633kB/s  
+
+
+wikitext-2-raw-v1/validation-00000-of-00(…): reconstructing file:   0%|          |  0.00B /  657kB            [A
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes:           |  0.00B            
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes: ██████████|  657kB, 65.6kB/s  
+wikitext-2-raw-v1/validation-00000-of-00(…): downloading bytes: ██████████|  657kB, 65.6kB/s  
+
+wikitext-2-raw-v1/validation-00000-of-00(…): reconstructing file: 100%|██████████|  657kB /  657kB, 65.6kB/s  
+
+
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s][A
+Generating test split: 100%|██████████| 4358/4358 [00:00<00:00, 569751.79 examples/s]
+
+
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 36718/36718 [00:00<00:00, 1219611.60 examples/s]
+
+
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s][A
+Generating validation split: 100%|██████████| 3760/3760 [00:00<00:00, 1000354.14 examples/s]
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[  0.3 min] base English perplexity {'raw': 2134.1741355968966, 'raw_masked': 2134.1741355968966, 'as_reply': 75.82058025991401}
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[  1.0 min] untouched: H:argmax4 12%, H:ask-diff 0%, H:basket3 0%, H:bridge-compare 50%, H:cost-compare 17%, argmax3 8%, ask 0%, basket2 0%, bridge 0%, compare2 33%, diff 4%, given 79%, lookup 12%, total 0%, whose 0%; ppl 75.82
+
+
+README.md:   0%|          | 0.00/11.6k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 11.6k/11.6k [00:00<00:00, 24.2MB/s]
+
+
+alpaca_data_cleaned.json: reconstructing file:   0%|          |  0.00B / 44.3MB            [A
+alpaca_data_cleaned.json: downloading bytes:           |  0.00B            
+alpaca_data_cleaned.json: downloading bytes: ██████████| 24.5MB, 2.41MB/s  
+alpaca_data_cleaned.json: downloading bytes: ██████████| 24.5MB, 2.41MB/s  
+
+alpaca_data_cleaned.json: reconstructing file: 100%|██████████| 44.3MB / 44.3MB, 4.39MB/s  
+
+
+Generating train split:   0%|          | 0/51760 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 51760/51760 [00:00<00:00, 104315.92 examples/s]
+[  1.9 min] 302 replay examples from the base model
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1386.59it/s]
+[  2.0 min] step 1/287 loss 2.087 lr 2.86e-06
+[  2.3 min] step 21/287 loss 0.652 lr 1.98e-05
+[  2.7 min] step 41/287 loss 0.195 lr 1.91e-05
+[  3.0 min] step 61/287 loss 0.195 lr 1.81e-05
+[  3.3 min] step 81/287 loss 0.211 lr 1.67e-05
+[  3.7 min] step 101/287 loss 0.161 lr 1.50e-05
+[  4.0 min] step 121/287 loss 0.195 lr 1.32e-05
+[  4.3 min] step 141/287 loss 0.186 lr 1.12e-05
+[  4.7 min] step 161/287 loss 0.141 lr 9.29e-06
+[  5.0 min] step 181/287 loss 0.136 lr 7.41e-06
+[  5.3 min] step 201/287 loss 0.135 lr 5.70e-06
+[  5.7 min] step 221/287 loss 0.126 lr 4.25e-06
+[  6.0 min] step 241/287 loss 0.125 lr 3.12e-06
+[  6.3 min] step 261/287 loss 0.131 lr 2.36e-06
+[  6.7 min] step 281/287 loss 0.126 lr 2.02e-06
+[  6.8 min] step 287/287 loss 0.127 lr 2.00e-06
+[  8.0 min] gold: H:argmax4 71%, H:ask-diff 0%, H:basket3 46%, H:bridge-compare 17%, H:cost-compare 58%, argmax3 100%, ask 100%, basket2 100%, bridge 100%, compare2 100%, diff 100%, given 100%, lookup 100%, total 100%, whose 100%; ppl 62.82
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.20it/s]
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+
+  /tmp/findout-pilot-gold.gguf:   1%|          | 2.26MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:   1%|          | 2.26MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  12%|█▏        | 44.6MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  24%|██▍       | 92.3MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  36%|███▌      |  136MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  36%|███▌      |  136MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  36%|███▌      |  136MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  36%|███▌      |  136MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  36%|███▌      |  136MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  36%|███▌      |  136MB /  379MB            [A[A
+Processing Files (0 / 1)      :  36%|███▌      |  136MB /  379MB, 12.7MB/s  
+
+New Data Upload               :  67%|██████▋   |  134MB /  201MB, 12.5MB/s  [A
+
+
+  /tmp/findout-pilot-gold.gguf:  48%|████▊     |  181MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  65%|██████▍   |  246MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  80%|████████  |  304MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  89%|████████▉ |  338MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  89%|████████▉ |  338MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  89%|████████▉ |  338MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  89%|████████▉ |  338MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf:  89%|████████▉ |  338MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+Processing Files (0 / 1)      : 100%|█████████▉|  379MB /  379MB, 33.6MB/s  
+
+New Data Upload               : 100%|█████████▉|  377MB /  377MB, 33.4MB/s  [A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|██████████|  379MB /  379MB            [A[A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|██████████|  379MB /  379MB            [A[A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+  /tmp/findout-pilot-gold.gguf: 100%|██████████|  379MB /  379MB            [A[A
+
+
+
+Validating                    : ██████████| 100%            [A[A[A
+Processing Files (1 / 1)      : 100%|██████████|  379MB /  379MB, 32.0MB/s  
+
+New Data Upload               : 100%|██████████|  377MB /  377MB, 31.9MB/s  
+
+Validating                    : ██████████| 100%            
+
+  /tmp/findout-pilot-gold.gguf: 100%|██████████|  379MB /  379MB            
+No files have been modified since last commit. Skipping to prevent empty commit.
+[  8.4 min] exported: https://huggingface.co/kealjones/findout-pilot
+[  8.4 min] teacher file: 1720 episodes, 1143 kept; using 1143
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1077.55it/s]
+[  8.4 min] step 1/180 loss 1.698 lr 4.44e-06
+[  8.7 min] step 21/180 loss 0.531 lr 1.94e-05
+[  9.1 min] step 41/180 loss 0.289 lr 1.78e-05
+[  9.4 min] step 61/180 loss 0.259 lr 1.54e-05
+[  9.7 min] step 81/180 loss 0.243 lr 1.24e-05
+[ 10.1 min] step 101/180 loss 0.189 lr 9.28e-06
+[ 10.4 min] step 121/180 loss 0.135 lr 6.36e-06
+[ 10.8 min] step 141/180 loss 0.137 lr 4.01e-06
+[ 11.1 min] step 161/180 loss 0.128 lr 2.49e-06
+[ 11.4 min] step 180/180 loss 0.138 lr 2.00e-06
+[ 14.0 min] teacher: H:argmax4 50%, H:ask-diff 21%, H:basket3 54%, H:bridge-compare 33%, H:cost-compare 67%, argmax3 50%, ask 96%, basket2 92%, bridge 96%, compare2 62%, diff 100%, given 100%, lookup 88%, total 100%, whose 100%; ppl 65.46
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.96it/s]
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+
+  ...indout-pilot-teacher.gguf:   1%|          | 2.61MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf:   1%|          | 2.61MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf:  14%|█▎        | 52.1MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf:  29%|██▊       |  108MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf:  46%|████▋     |  176MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf:  59%|█████▊    |  223MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf:  72%|███████▏  |  274MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf:  96%|█████████▌|  362MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+Processing Files (0 / 1)      : 100%|█████████▉|  379MB /  379MB, 35.6MB/s  
+
+New Data Upload               : 100%|█████████▉|  377MB /  377MB, 35.4MB/s  [A
+
+
+  ...indout-pilot-teacher.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf: 100%|█████████▉|  379MB /  379MB            [A[A
+
+
+  ...indout-pilot-teacher.gguf: 100%|██████████|  379MB /  379MB            [A[A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+  ...indout-pilot-teacher.gguf: 100%|██████████|  379MB /  379MB            [A[A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+  ...indout-pilot-teacher.gguf: 100%|██████████|  379MB /  379MB            [A[A
+
+
+
+Validating                    : ██████████| 100%            [A[A[A
+Processing Files (1 / 1)      : 100%|██████████|  379MB /  379MB, 33.8MB/s  
+
+New Data Upload               : 100%|██████████|  377MB /  377MB, 33.5MB/s  
+
+Validating                    : ██████████| 100%            
+
+  ...indout-pilot-teacher.gguf: 100%|██████████|  379MB /  379MB            
+[ 14.2 min] exported: https://huggingface.co/kealjones/findout-pilot
+[ 14.2 min] done
+exit code 0 after 14.6 min
