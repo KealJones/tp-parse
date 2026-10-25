@@ -1,0 +1,173 @@
+[{"stream_name":"stderr","time":8.964477812,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":8.964557165,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":10.288482131,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":10.288538826,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":10.288548326,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":10.288553237,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":11.016565273,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":11.016596159,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":11.016599692,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":11.016602215,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":59.443872041,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":59.443904798,"data":"\n"}
+,{"stream_name":"stderr","time":59.443909501,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":101.882044931,"data":"[  0.7 min] 40 tasks, 2 GPU(s): ['Tesla T4', 'Tesla T4']\n"}
+,{"stream_name":"stderr","time":115.011626388,"data":"[transformers] \u001b[1mQwen3ForCausalLM LOAD REPORT\u001b[0m from: Qwen/Qwen3-4B-Instruct-2507\n"}
+,{"stream_name":"stderr","time":115.011669563,"data":"Key            | Status  | \n"}
+,{"stream_name":"stderr","time":115.011687468,"data":"---------------+---------+-\n"}
+,{"stream_name":"stderr","time":115.011692674,"data":"lm_head.weight | MISSING | \n"}
+,{"stream_name":"stderr","time":115.011697253,"data":"\n"}
+,{"stream_name":"stderr","time":115.011702013,"data":"Notes:\n"}
+,{"stream_name":"stderr","time":115.011706855,"data":"- MISSING:\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\n"}
+,{"stream_name":"stderr","time":115.011711901,"data":"\n"}
+,{"stream_name":"stderr","time":115.011715882,"data":"[transformers] \u001b[1mQwen3ForCausalLM LOAD REPORT\u001b[0m from: Qwen/Qwen3-4B-Instruct-2507\n"}
+,{"stream_name":"stderr","time":115.011720729,"data":"Key            | Status  | \n"}
+,{"stream_name":"stderr","time":115.011725358,"data":"---------------+---------+-\n"}
+,{"stream_name":"stderr","time":115.01172942,"data":"lm_head.weight | MISSING | \n"}
+,{"stream_name":"stderr","time":115.011733537,"data":"\n"}
+,{"stream_name":"stderr","time":115.011737484,"data":"Notes:\n"}
+,{"stream_name":"stderr","time":115.011741551,"data":"- MISSING:\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\n"}
+,{"stream_name":"stderr","time":115.020698629,"data":"[transformers] \u001b[1mQwen3ForCausalLM LOAD REPORT\u001b[0m from: Qwen/Qwen3-4B-Instruct-2507\n"}
+,{"stream_name":"stderr","time":115.020733735,"data":"Key            | Status  | \n"}
+,{"stream_name":"stderr","time":115.020739191,"data":"---------------+---------+-\n"}
+,{"stream_name":"stderr","time":115.02074306,"data":"lm_head.weight | MISSING | \n"}
+,{"stream_name":"stderr","time":115.020747073,"data":"\n"}
+,{"stream_name":"stderr","time":115.020751183,"data":"Notes:\n"}
+,{"stream_name":"stderr","time":115.020755127,"data":"- MISSING:\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\n"}
+,{"stream_name":"stderr","time":115.020759579,"data":"\n"}
+,{"stream_name":"stderr","time":115.020763722,"data":"[transformers] \u001b[1mQwen3ForCausalLM LOAD REPORT\u001b[0m from: Qwen/Qwen3-4B-Instruct-2507\n"}
+,{"stream_name":"stderr","time":115.020768234,"data":"Key            | Status  | \n"}
+,{"stream_name":"stderr","time":115.020772082,"data":"---------------+---------+-\n"}
+,{"stream_name":"stderr","time":115.020776062,"data":"lm_head.weight | MISSING | \n"}
+,{"stream_name":"stderr","time":115.020779721,"data":"\n"}
+,{"stream_name":"stderr","time":115.020783453,"data":"Notes:\n"}
+,{"stream_name":"stderr","time":115.020787322,"data":"- MISSING:\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\n"}
+,{"stream_name":"stderr","time":118.476671142,"data":"Exception in thread Exception in thread Thread-7 (worker):\n"}
+,{"stream_name":"stderr","time":118.476707474,"data":"Thread-6 (worker):\n"}
+,{"stream_name":"stderr","time":118.47671339,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":118.476718062,"data":"  File \"/usr/lib/python3.13/threading.py\", line 1044, in _bootstrap_inner\n"}
+,{"stream_name":"stderr","time":118.476722878,"data":"    self.run()\n"}
+,{"stream_name":"stderr","time":118.476727413,"data":"    ~~~~~~~~^^\n"}
+,{"stream_name":"stderr","time":118.476731514,"data":"  File \"/usr/lib/python3.13/threading.py\", line 995, in run\n"}
+,{"stream_name":"stderr","time":118.476736267,"data":"    self._target(*self._args, **self._kwargs)\n"}
+,{"stream_name":"stderr","time":118.476740024,"data":"    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.476743547,"data":"  File \"/tmp/ipykernel_23/2851520636.py\", line 125, in worker\n"}
+,{"stream_name":"stderr","time":118.476747796,"data":"    model = model.to(dev).eval()\n"}
+,{"stream_name":"stderr","time":118.476751482,"data":"            ~~~~~~~~^^^^^\n"}
+,{"stream_name":"stderr","time":118.476755328,"data":"  File \"/usr/local/lib/python3.13/dist-packages/transformers/modeling_utils.py\", line 3768, in to\n"}
+,{"stream_name":"stderr","time":118.476759236,"data":"    return super().to(*args, **kwargs)\n"}
+,{"stream_name":"stderr","time":118.476762821,"data":"           ~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.476767998,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1384, in to\n"}
+,{"stream_name":"stderr","time":118.476772522,"data":"    return self._apply(convert)\n"}
+,{"stream_name":"stderr","time":118.476776868,"data":"           ~~~~~~~~~~~^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.476781064,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 934, in _apply\n"}
+,{"stream_name":"stderr","time":118.476786031,"data":"    module._apply(fn)\n"}
+,{"stream_name":"stderr","time":118.476789356,"data":"    ~~~~~~~~~~~~~^^^^\n"}
+,{"stream_name":"stderr","time":118.476806211,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 965, in _apply\n"}
+,{"stream_name":"stderr","time":118.476821955,"data":"    param_applied = fn(param)\n"}
+,{"stream_name":"stderr","time":118.476826338,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1377, in convert\n"}
+,{"stream_name":"stderr","time":118.476829998,"data":"    raise NotImplementedError(\n"}
+,{"stream_name":"stderr","time":118.476834069,"data":"    ...\u003c2 lines\u003e...\n"}
+,{"stream_name":"stderr","time":118.47683828,"data":"    ) from None\n"}
+,{"stream_name":"stderr","time":118.476842121,"data":"NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.\n"}
+,{"stream_name":"stderr","time":118.476846453,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":118.47685054,"data":"  File \"/usr/lib/python3.13/threading.py\", line 1044, in _bootstrap_inner\n"}
+,{"stream_name":"stderr","time":118.476854427,"data":"    self.run()\n"}
+,{"stream_name":"stderr","time":118.476857589,"data":"    ~~~~~~~~^^\n"}
+,{"stream_name":"stderr","time":118.476861303,"data":"  File \"/usr/lib/python3.13/threading.py\", line 995, in run\n"}
+,{"stream_name":"stderr","time":118.476864651,"data":"    self._target(*self._args, **self._kwargs)\n"}
+,{"stream_name":"stderr","time":118.476867928,"data":"    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.476871234,"data":"  File \"/tmp/ipykernel_23/2851520636.py\", line 125, in worker\n"}
+,{"stream_name":"stderr","time":118.476875129,"data":"    model = model.to(dev).eval()\n"}
+,{"stream_name":"stderr","time":118.476878282,"data":"            ~~~~~~~~^^^^^\n"}
+,{"stream_name":"stderr","time":118.476881501,"data":"  File \"/usr/local/lib/python3.13/dist-packages/transformers/modeling_utils.py\", line 3768, in to\n"}
+,{"stream_name":"stderr","time":118.476885597,"data":"    return super().to(*args, **kwargs)\n"}
+,{"stream_name":"stderr","time":118.476888734,"data":"           ~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.476899678,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1384, in to\n"}
+,{"stream_name":"stderr","time":118.47690419,"data":"    return self._apply(convert)\n"}
+,{"stream_name":"stderr","time":118.476908022,"data":"           ~~~~~~~~~~~^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.476911674,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 934, in _apply\n"}
+,{"stream_name":"stderr","time":118.476916118,"data":"    module._apply(fn)\n"}
+,{"stream_name":"stderr","time":118.476919379,"data":"    ~~~~~~~~~~~~~^^^^\n"}
+,{"stream_name":"stderr","time":118.476923399,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 965, in _apply\n"}
+,{"stream_name":"stderr","time":118.476927076,"data":"    param_applied = fn(param)\n"}
+,{"stream_name":"stderr","time":118.476930851,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1377, in convert\n"}
+,{"stream_name":"stderr","time":118.476934949,"data":"    raise NotImplementedError(\n"}
+,{"stream_name":"stderr","time":118.47693907,"data":"    ...\u003c2 lines\u003e...\n"}
+,{"stream_name":"stderr","time":118.476942525,"data":"    ) from None\n"}
+,{"stream_name":"stderr","time":118.476945877,"data":"NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.\n"}
+,{"stream_name":"stderr","time":118.476954353,"data":"\n"}
+,{"stream_name":"stderr","time":118.476958317,"data":"Exception in thread Exception in thread Thread-7 (worker):\n"}
+,{"stream_name":"stderr","time":118.476962715,"data":"Thread-6 (worker):\n"}
+,{"stream_name":"stderr","time":118.476966018,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":118.476969852,"data":"  File \"/usr/lib/python3.13/threading.py\", line 1044, in _bootstrap_inner\n"}
+,{"stream_name":"stderr","time":118.476973525,"data":"    self.run()\n"}
+,{"stream_name":"stderr","time":118.47697731,"data":"    ~~~~~~~~^^\n"}
+,{"stream_name":"stderr","time":118.47698059,"data":"  File \"/usr/lib/python3.13/threading.py\", line 995, in run\n"}
+,{"stream_name":"stderr","time":118.476984809,"data":"    self._target(*self._args, **self._kwargs)\n"}
+,{"stream_name":"stderr","time":118.476995655,"data":"    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.476998869,"data":"  File \"/tmp/ipykernel_23/2851520636.py\", line 125, in worker\n"}
+,{"stream_name":"stderr","time":118.477002505,"data":"    model = model.to(dev).eval()\n"}
+,{"stream_name":"stderr","time":118.477005855,"data":"            ~~~~~~~~^^^^^\n"}
+,{"stream_name":"stderr","time":118.477009861,"data":"  File \"/usr/local/lib/python3.13/dist-packages/transformers/modeling_utils.py\", line 3768, in to\n"}
+,{"stream_name":"stderr","time":118.477013766,"data":"    return super().to(*args, **kwargs)\n"}
+,{"stream_name":"stderr","time":118.477017294,"data":"           ~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.477021439,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1384, in to\n"}
+,{"stream_name":"stderr","time":118.477025153,"data":"    return self._apply(convert)\n"}
+,{"stream_name":"stderr","time":118.477028347,"data":"           ~~~~~~~~~~~^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.477032267,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 934, in _apply\n"}
+,{"stream_name":"stderr","time":118.477036338,"data":"    module._apply(fn)\n"}
+,{"stream_name":"stderr","time":118.477039619,"data":"    ~~~~~~~~~~~~~^^^^\n"}
+,{"stream_name":"stderr","time":118.477042914,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 965, in _apply\n"}
+,{"stream_name":"stderr","time":118.477047044,"data":"    param_applied = fn(param)\n"}
+,{"stream_name":"stderr","time":118.477050204,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1377, in convert\n"}
+,{"stream_name":"stderr","time":118.477053834,"data":"    raise NotImplementedError(\n"}
+,{"stream_name":"stderr","time":118.477057757,"data":"    ...\u003c2 lines\u003e...\n"}
+,{"stream_name":"stderr","time":118.477061954,"data":"    ) from None\n"}
+,{"stream_name":"stderr","time":118.477066843,"data":"NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.\n"}
+,{"stream_name":"stderr","time":118.477071328,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":118.47707522,"data":"  File \"/usr/lib/python3.13/threading.py\", line 1044, in _bootstrap_inner\n"}
+,{"stream_name":"stderr","time":118.477078559,"data":"    self.run()\n"}
+,{"stream_name":"stderr","time":118.477081668,"data":"    ~~~~~~~~^^\n"}
+,{"stream_name":"stderr","time":118.477085063,"data":"  File \"/usr/lib/python3.13/threading.py\", line 995, in run\n"}
+,{"stream_name":"stderr","time":118.477092668,"data":"    self._target(*self._args, **self._kwargs)\n"}
+,{"stream_name":"stderr","time":118.477097291,"data":"    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.477101119,"data":"  File \"/tmp/ipykernel_23/2851520636.py\", line 125, in worker\n"}
+,{"stream_name":"stderr","time":118.477105204,"data":"    model = model.to(dev).eval()\n"}
+,{"stream_name":"stderr","time":118.477109219,"data":"            ~~~~~~~~^^^^^\n"}
+,{"stream_name":"stderr","time":118.477113433,"data":"  File \"/usr/local/lib/python3.13/dist-packages/transformers/modeling_utils.py\", line 3768, in to\n"}
+,{"stream_name":"stderr","time":118.477116988,"data":"    return super().to(*args, **kwargs)\n"}
+,{"stream_name":"stderr","time":118.477121034,"data":"           ~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.47712449,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1384, in to\n"}
+,{"stream_name":"stderr","time":118.477128404,"data":"    return self._apply(convert)\n"}
+,{"stream_name":"stderr","time":118.477131849,"data":"           ~~~~~~~~~~~^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":118.477135651,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 934, in _apply\n"}
+,{"stream_name":"stderr","time":118.477140109,"data":"    module._apply(fn)\n"}
+,{"stream_name":"stderr","time":118.477143322,"data":"    ~~~~~~~~~~~~~^^^^\n"}
+,{"stream_name":"stderr","time":118.477147156,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 965, in _apply\n"}
+,{"stream_name":"stderr","time":118.477151176,"data":"    param_applied = fn(param)\n"}
+,{"stream_name":"stderr","time":118.477155061,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1377, in convert\n"}
+,{"stream_name":"stderr","time":118.477159201,"data":"    raise NotImplementedError(\n"}
+,{"stream_name":"stderr","time":118.477162944,"data":"    ...\u003c2 lines\u003e...\n"}
+,{"stream_name":"stderr","time":118.477166192,"data":"    ) from None\n"}
+,{"stream_name":"stderr","time":118.477169538,"data":"NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.\n"}
+,{"stream_name":"stdout","time":118.518932747,"data":"# Teacher traces (findout pilot)\n"}
+,{"stream_name":"stdout","time":118.518961737,"data":"\n"}
+,{"stream_name":"stdout","time":118.518980447,"data":"Qwen/Qwen3-4B-Instruct-2507 on 2 GPU(s), 0 of 40 tasks finished in 1 min. Generated about 0 tokens, 0 tokens/s across GPUs (prompts re-read every turn).\n"}
+,{"stream_name":"stdout","time":118.518985606,"data":"\n"}
+,{"stream_name":"stdout","time":118.518990126,"data":"Kept: **0** (0%).\n"}
+,{"stream_name":"stdout","time":118.518993622,"data":"\n"}
+,{"stream_name":"stdout","time":118.518996854,"data":"| type | episodes | right answer | kept |\n"}
+,{"stream_name":"stdout","time":118.519000461,"data":"| --- | --- | --- | --- |\n"}
+,{"stream_name":"stdout","time":118.519004176,"data":"\n"}
+,{"stream_name":"stdout","time":118.519007874,"data":"Why episodes were dropped: \n"}
+,{"stream_name":"stdout","time":118.519012203,"data":"\n"}
+,{"stream_name":"stderr","time":124.293045703,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":124.293073611,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":124.504670662,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":124.504712911,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":125.312653032,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":125.404488077,"data":"[NbConvertApp] Writing 121836 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":127.911027518,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":128.67894221,"data":"[NbConvertApp] Writing 584903 bytes to __results__.html\n"}
+]
