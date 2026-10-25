@@ -15,6 +15,9 @@
 # %%
 import json, os, random, re, subprocess, sys, threading, time, collections
 QUICK = "--quick" in sys.argv or os.environ.get("TEACHER_QUICK") == "1"
+ARGS = dict(a.split("=", 1) for a in sys.argv[1:] if a.startswith("--") and "=" in a)
+SHARD, NSHARD = (int(x) for x in ARGS.get("--shard", "0/1").split("/"))   # e.g. --shard=1/2 runs every second task
+OUTDIR = ARGS.get("--out", ".")
 import transformers
 if tuple(int(x) for x in transformers.__version__.split(".")[:2]) < (4, 51):
     subprocess.run([sys.executable, "-m", "pip", "install", "-q", "-U", "transformers>=4.51,<5", "accelerate"], check=False)
@@ -27,9 +30,10 @@ from world2 import *  # noqa: E402,F401  -- replaced in the notebook
 
 MODEL = "Qwen/Qwen3-4B-Instruct-2507"
 N_TASKS = 40 if QUICK else 3000
-BATCH = 12
+BATCH = int(ARGS.get("--batch", 12))
 MAX_TURNS = 12
-TIME_LIMIT_H = 0.4 if QUICK else 6.0
+TIME_LIMIT_H = float(ARGS.get("--hours", 0.4 if QUICK else 4.5))
+ABORT = []
 T0 = time.time()
 
 TEACHER_SYSTEM = SYSTEM + (
@@ -84,16 +88,21 @@ def advance(a, text, results):
     return False
 
 
-def worker(gpu, tasks, results, stats):
-    dev = f"cuda:{gpu}"
+DTYPE = torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float16
+
+
+def load_model(gpu):
     tok = AutoTokenizer.from_pretrained(MODEL)
     tok.padding_side = "left"
-    dtype = torch.float16
-    try:
-        model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=dtype)
+    try:                                            # loaded straight onto its GPU, in the main thread (loading isn't thread-safe)
+        model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=DTYPE, device_map={"": gpu})
     except TypeError:
-        model = AutoModelForCausalLM.from_pretrained(MODEL, torch_dtype=dtype)
-    model = model.to(dev).eval()
+        model = AutoModelForCausalLM.from_pretrained(MODEL, torch_dtype=DTYPE, device_map={"": gpu})
+    return tok, model.eval()
+
+
+def worker(gpu, tok, model, tasks, results, stats):
+    dev = f"cuda:{gpu}"
     eos = [tok.convert_tokens_to_ids("<|im_end|>"), tok.eos_token_id]
     queue = list(tasks)
     if gpu == 0:                                    # show one raw reply, so a broken fp16 model is obvious in the log
@@ -106,6 +115,11 @@ def worker(gpu, tasks, results, stats):
     active = []                                     # dicts: task, idx, msgs, H, turns
     gen_tokens = 0
     while queue or active:
+        if len(results) >= 100 and sum(x["kept"] for x in results) < 0.1 * len(results):
+            if not ABORT:
+                ABORT.append(f"stopped early: only {sum(x['kept'] for x in results)} of {len(results)} episodes kept")
+                log(ABORT[0])
+            queue.clear()
         while queue and len(active) < BATCH and time.time() - T0 < TIME_LIMIT_H * 3600:
             idx, t = queue.pop(0)
             active.append({"task": t, "idx": idx, "msgs": [], "H": Harness(t), "turns": 0})
@@ -134,17 +148,20 @@ def worker(gpu, tasks, results, stats):
 def main():
     from huggingface_hub import snapshot_download
     snapshot_download(MODEL)                        # once, before the two GPU threads start
-    tasks = list(enumerate(make_set(2, N_TASKS, TRAIN_TASKS)))
+    tasks = list(enumerate(make_set(2, N_TASKS, TRAIN_TASKS)))[SHARD::NSHARD]
+    os.makedirs(OUTDIR, exist_ok=True)
     ngpu = max(1, torch.cuda.device_count())
     log(f"{len(tasks)} tasks, {ngpu} GPU(s): {[torch.cuda.get_device_name(i) for i in range(ngpu)]}")
     results, stats, threads = [], {}, []
+    models = [load_model(g) for g in range(ngpu)]
+    log("models loaded")
     for g in range(ngpu):
-        th = threading.Thread(target=worker, args=(g, tasks[g::ngpu], results, stats))
+        th = threading.Thread(target=worker, args=(g, *models[g], tasks[g::ngpu], results, stats))
         th.start(); threads.append(th)
     for th in threads:
         th.join()
     results.sort(key=lambda x: x["idx"])
-    with open("teacher_episodes.jsonl", "w") as f:
+    with open(os.path.join(OUTDIR, f"teacher_episodes{'' if NSHARD == 1 else f'_{SHARD}'}.jsonl"), "w") as f:
         for r in results:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
     mins = (time.time() - T0) / 60
@@ -153,9 +170,9 @@ def main():
         b = by[r["type"]]; b[0] += 1; b[1] += r["score"]["ok"]; b[2] += r["kept"]
     tok_total = sum(s["gen_tokens"] for s in stats.values())
     L = ["# Teacher traces (findout pilot)", "",
-         f"{MODEL} on {ngpu} GPU(s), {len(results)} of {len(tasks)} tasks finished in {mins:.0f} min. "
+         f"{MODEL} ({str(DTYPE).split('.')[-1]}, batch {BATCH}, shard {SHARD + 1} of {NSHARD}) on {ngpu} GPU(s), {len(results)} of {len(tasks)} tasks finished in {mins:.0f} min. "
          f"Generated about {tok_total:,} tokens, {tok_total / max(1, mins * 60):.0f} tokens/s across GPUs (prompts re-read every turn).", "",
-         f"Kept: **{sum(r['kept'] for r in results)}** ({sum(r['kept'] for r in results) / max(1, len(results)):.0%}).", "",
+         f"Kept: **{sum(r['kept'] for r in results)}** ({sum(r['kept'] for r in results) / max(1, len(results)):.0%}). {' '.join(ABORT)}", "",
          "| type | episodes | right answer | kept |", "| --- | --- | --- | --- |"]
     for ty in sorted(by):
         n, ok, k = by[ty]
@@ -174,7 +191,7 @@ def main():
         for m in r["messages"]:
             L.append(f"{m['role']}: {m.get('content', '')}" + (f"  -> {m['tool_calls'][0]['name']}({m['tool_calls'][0]['arguments']})" if m.get("tool_calls") else ""))
         L += ["```", ""]
-    open("TEACHER_RESULTS.md", "w").write("\n".join(L) + "\n")
+    open(os.path.join(OUTDIR, f"TEACHER_RESULTS{'' if NSHARD == 1 else f'_{SHARD}'}.md"), "w").write("\n".join(L) + "\n")
     print("\n".join(L))
 
 

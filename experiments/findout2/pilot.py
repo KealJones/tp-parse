@@ -180,13 +180,15 @@ def transcript(s):
 
 
 def perplexity(model, max_tokens):
+    """WikiText-2 test perplexity, 1024-token windows, each starting with the BOS token the model always sees first."""
     from datasets import load_dataset
     text = "\n\n".join(load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1", split="test")["text"])
     ids = tok(text, add_special_tokens=False, return_tensors="pt")["input_ids"][0][:max_tokens]
+    bos = torch.tensor([tok.convert_tokens_to_ids("<|startoftext|>")])
     model.eval(); nll, n = 0.0, 0
     with torch.no_grad():
-        for k in range(0, len(ids) - 1, 1024):
-            x = ids[k:k + 1025].unsqueeze(0).to(DEV)
+        for k in range(0, len(ids), 1024):
+            x = torch.cat([bos, ids[k:k + 1024]]).unsqueeze(0).to(DEV)
             if x.shape[1] < 2:
                 break
             with torch.autocast("cuda", dtype=torch.bfloat16):
@@ -250,7 +252,7 @@ def gold_examples(n):
 
 
 def teacher_examples(path, n):
-    recs = [json.loads(l) for l in open(path)]
+    recs = [json.loads(l) for f in path.split(",") for l in open(f)]
     kept = [x for x in recs if x["kept"]]
     log(f"teacher file: {len(recs)} episodes, {len(kept)} kept; using {min(n, len(kept))}")
     random.Random(12).shuffle(kept)
