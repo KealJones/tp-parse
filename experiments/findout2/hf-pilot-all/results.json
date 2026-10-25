@@ -1,0 +1,1141 @@
+{
+ "args": {
+  "arms": "untouched,gold,teacher",
+  "teacher": "teacher_episodes_0.jsonl,teacher_episodes_1.jsonl",
+  "n_train": 2000,
+  "per_type": 24,
+  "epochs": 2,
+  "lr": 2e-05,
+  "export": true,
+  "smoke": false
+ },
+ "arms": {
+  "untouched": {
+   "summary": {
+    "lookup": {
+     "n": 24,
+     "ok": 0.125,
+     "strict": 0.041666666666666664,
+     "ok_clean": 0.1,
+     "ok_messy": 0.14285714285714285,
+     "coverage": 0.041666666666666664,
+     "needs_list": 1.0,
+     "answer_line": 0.25,
+     "calc_when_needed": NaN,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.041666666666666664,
+     "needed_searches": 1.0
+    },
+    "given": {
+     "n": 24,
+     "ok": 0.7916666666666666,
+     "strict": 0.375,
+     "ok_clean": 0.6363636363636364,
+     "ok_messy": 0.9230769230769231,
+     "coverage": 1.0,
+     "needs_list": 0.25,
+     "answer_line": 0.5,
+     "calc_when_needed": 0.2,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": 0.0,
+     "searches": 0.0,
+     "needed_searches": 0.0
+    },
+    "total": {
+     "n": 24,
+     "ok": 0.0,
+     "strict": 0.0,
+     "ok_clean": 0.0,
+     "ok_messy": 0.0,
+     "coverage": 0.041666666666666664,
+     "needs_list": 0.6666666666666666,
+     "answer_line": 0.08333333333333333,
+     "calc_when_needed": 0.041666666666666664,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.041666666666666664,
+     "needed_searches": 1.0
+    },
+    "basket2": {
+     "n": 24,
+     "ok": 0.0,
+     "strict": 0.0,
+     "ok_clean": 0.0,
+     "ok_messy": 0.0,
+     "coverage": 0.0,
+     "needs_list": 0.3333333333333333,
+     "answer_line": 0.75,
+     "calc_when_needed": 0.041666666666666664,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.041666666666666664,
+     "needed_searches": 2.0
+    },
+    "compare2": {
+     "n": 24,
+     "ok": 0.3333333333333333,
+     "strict": 0.0,
+     "ok_clean": 0.4444444444444444,
+     "ok_messy": 0.26666666666666666,
+     "coverage": 0.08333333333333333,
+     "needs_list": 0.7916666666666666,
+     "answer_line": 0.5,
+     "calc_when_needed": 0.0,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.16666666666666666,
+     "needed_searches": 2.0
+    },
+    "argmax3": {
+     "n": 24,
+     "ok": 0.08333333333333333,
+     "strict": 0.0,
+     "ok_clean": 0.07142857142857142,
+     "ok_messy": 0.1,
+     "coverage": 0.1388888888888889,
+     "needs_list": 0.9166666666666666,
+     "answer_line": 0.2916666666666667,
+     "calc_when_needed": 0.041666666666666664,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.4583333333333333,
+     "needed_searches": 3.0
+    },
+    "diff": {
+     "n": 24,
+     "ok": 0.041666666666666664,
+     "strict": 0.0,
+     "ok_clean": 0.07142857142857142,
+     "ok_messy": 0.0,
+     "coverage": 0.0,
+     "needs_list": 0.9166666666666666,
+     "answer_line": 0.25,
+     "calc_when_needed": 0.0,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.0,
+     "needed_searches": 2.0
+    },
+    "bridge": {
+     "n": 24,
+     "ok": 0.0,
+     "strict": 0.0,
+     "ok_clean": 0.0,
+     "ok_messy": 0.0,
+     "coverage": 0.0,
+     "needs_list": 0.9583333333333334,
+     "answer_line": 0.20833333333333334,
+     "calc_when_needed": NaN,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.0,
+     "needed_searches": 2.0
+    },
+    "ask": {
+     "n": 24,
+     "ok": 0.0,
+     "strict": 0.0,
+     "ok_clean": 0.0,
+     "ok_messy": 0.0,
+     "coverage": 0.0,
+     "needs_list": 1.0,
+     "answer_line": 0.375,
+     "calc_when_needed": NaN,
+     "asked_when_needed": 0.0,
+     "asked_when_not": NaN,
+     "searched_given": NaN,
+     "searches": 0.0,
+     "needed_searches": 1.0
+    },
+    "whose": {
+     "n": 24,
+     "ok": 0.0,
+     "strict": 0.0,
+     "ok_clean": 0.0,
+     "ok_messy": 0.0,
+     "coverage": 0.0,
+     "needs_list": 0.9166666666666666,
+     "answer_line": 0.125,
+     "calc_when_needed": NaN,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.0,
+     "needed_searches": 1.0
+    },
+    "H:cost-compare": {
+     "n": 24,
+     "ok": 0.16666666666666666,
+     "strict": 0.0,
+     "ok_clean": 0.18181818181818182,
+     "ok_messy": 0.15384615384615385,
+     "coverage": 0.020833333333333332,
+     "needs_list": 0.08333333333333333,
+     "answer_line": 0.875,
+     "calc_when_needed": 0.0,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.041666666666666664,
+     "needed_searches": 2.0
+    },
+    "H:argmax4": {
+     "n": 24,
+     "ok": 0.125,
+     "strict": 0.0,
+     "ok_clean": 0.0,
+     "ok_messy": 0.23076923076923078,
+     "coverage": 0.11458333333333333,
+     "needs_list": 0.9166666666666666,
+     "answer_line": 0.5416666666666666,
+     "calc_when_needed": 0.08333333333333333,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.4583333333333333,
+     "needed_searches": 4.0
+    },
+    "H:bridge-compare": {
+     "n": 24,
+     "ok": 0.5,
+     "strict": 0.0,
+     "ok_clean": 0.5,
+     "ok_messy": 0.5,
+     "coverage": 0.013888888888888888,
+     "needs_list": 0.9583333333333334,
+     "answer_line": 0.041666666666666664,
+     "calc_when_needed": 0.041666666666666664,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.041666666666666664,
+     "needed_searches": 3.0
+    },
+    "H:ask-diff": {
+     "n": 24,
+     "ok": 0.0,
+     "strict": 0.0,
+     "ok_clean": 0.0,
+     "ok_messy": 0.0,
+     "coverage": 0.0,
+     "needs_list": 0.8333333333333334,
+     "answer_line": 0.2916666666666667,
+     "calc_when_needed": 0.0,
+     "asked_when_needed": 0.0,
+     "asked_when_not": NaN,
+     "searched_given": NaN,
+     "searches": 0.0,
+     "needed_searches": 2.0
+    },
+    "H:basket3": {
+     "n": 24,
+     "ok": 0.0,
+     "strict": 0.0,
+     "ok_clean": 0.0,
+     "ok_messy": 0.0,
+     "coverage": 0.041666666666666664,
+     "needs_list": 0.0,
+     "answer_line": 0.75,
+     "calc_when_needed": 0.041666666666666664,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 0.08333333333333333,
+     "needed_searches": 3.0
+    }
+   },
+   "eng": {
+    "raw": 2134.1741355968966,
+    "raw_masked": 2134.1741355968966,
+    "as_reply": 75.82058025991401
+   },
+   "ppl": 75.82058025991401,
+   "chat": [
+    {
+     "prompt": "Write a two-line poem about rain.",
+     "tools_offered": false,
+     "reply": "Rain falls, a gentle song,  \nBringing warmth and quiet peace.",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "What's a good way to start learning guitar?",
+     "tools_offered": false,
+     "reply": "Starting guitar learning can be both rewarding and challenging, but with a clear approach, you can build a solid foundation. Here\u2019s a step-by-step guide to help you begin:\n\n1. **Choose the Right Guitar**  \n   - Start with a beginner-friendly electric guitar, such as a Fender Stratocaster or Gibson ES-335. These models are popular and offer good tone and playability.\n\n2. **Learn the Basics**  \n   - Understand the guitar\u2019s layout, including the fretboard, strings, and tuning.  \n   - Learn how to hold the guitar, press the strings, and play basic chords.\n\n3. **Practice Basic Chords**  \n   - Start with simple chords like C, G, D, and E.  \n   - Focus on finger placement, strumming patterns, and rhythm.\n\n4. **Explore Strumming Patterns**  \n   - Learn common strumming techniques (e.g., down-up-down-up) to",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Explain what a black hole is in two sentences.",
+     "tools_offered": false,
+     "reply": "A black hole is a region in space where gravity is so strong that nothing, including light, can escape. It forms when a massive star collapses under its own gravity after exhausting its nuclear fuel.",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Give me three dinner ideas with chicken.",
+     "tools_offered": false,
+     "reply": "Sure! Here are three dinner ideas with chicken:\n\n1. **Chicken and Vegetable Stir-Fry**  \n   A quick, flavorful dish with a mix of chicken breasts, bell peppers, broccoli, and soy sauce. Serve over brown rice or quinoa for a complete meal.\n\n2. **Chicken and Garlic Chicken Salad**  \n   A refreshing salad with grilled chicken, mixed greens, cherry tomatoes, and a tangy garlic sauce. It\u2019s light, nutritious, and perfect for a casual dinner.\n\n3. **Chicken and Avocado Salad**  \n   A creamy, healthy option with grilled chicken, diced avocado, cherry tomatoes, and a lemon-tahini dressing. It\u2019s light, satisfying, and packed with healthy fats.\n\nLet me know if you'd like variations or recipes!",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "How do I politely decline a meeting invite?",
+     "tools_offered": false,
+     "reply": "Declining a meeting invite can be a delicate matter, as it may affect the flow of your day and relationships with others. Here\u2019s a polite and professional approach you can use:\n\n---\n\n**Subject:** Rescheduling [Meeting Name]  \n\nDear [Recipient\u2019s Name],  \n\nI hope this message finds you well. I wanted to let you know that I\u2019m unable to attend the meeting scheduled for [Date] at [Time].  \n\nThank you for your understanding, and I appreciate the opportunity to connect. If there\u2019s a time that works better for you, please let me know.  \n\nBest regards,  \n[Your Full Name]  \n[Your Contact Information]  \n\n---\n\n### Tips for a Smooth Decline:\n- **Be clear and concise**: Mention the reason briefly (e.g., \u201cdue to a personal commitment\u201d or \u201cto prioritize other priorities\u201d).  \n- **Offer alternatives**: Suggest a different",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "hey whats up lol",
+     "tools_offered": false,
+     "reply": "Hey! Not much, just here to chat. How about you? \ud83d\ude0a",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Why is the sky blue?",
+     "tools_offered": false,
+     "reply": "The sky appears blue due to a phenomenon called **Rayleigh scattering**. Here's a simple explanation:\n\n1. **Sunlight enters Earth's atmosphere**: Sunlight contains light waves of different colors.\n2. **Scattering by air molecules**: When these light waves hit tiny particles in the atmosphere (like dust, water vapor, or pollution), they scatter in all directions.\n3. **Blue wavelengths dominate**: Blue light has shorter wavelengths than other colors, so it scatters more efficiently. This is why the sky appears blue during the day.\n4. **Scattered light reaches us**: The scattered blue light travels in all directions, making the sky appear blue to us.\n\nThis effect is why the sky is often described as a \"sky blue\" or \"blue sky\" in many cultures. It's a natural phenomenon that occurs every day, regardless of weather conditions. \ud83c\udf24\ufe0f",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Tell me a short joke about computers.",
+     "tools_offered": false,
+     "reply": "Why did the computer break up with its user?\n\nBecause it couldn't find the right password!",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Summarize in one sentence: The cat sat on the warm mat all afternoon because the sun was shining on it.",
+     "tools_offered": false,
+     "reply": "The cat sat on the warm mat due to the sun.",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "What should I pack for a weekend camping trip?",
+     "tools_offered": false,
+     "reply": "For a weekend camping trip, you should pack the following essentials:\n\n1. **Clothing**: Bring layers for varying temperatures, including a base layer, mid-layer, and outer layer. Don\u2019t forget a hat, gloves, and sturdy shoes or boots.\n\n2. **Sleeping Gear**: A sleeping bag and tent, along with a sleeping pad if needed.\n\n3. **Cooking Gear**: A portable stove or camping grill, fuel, and cooking utensils. A cooler for storing food and drinks.\n\n4. **Water**: At least one gallon of water per person per day, plus extra for emergencies.\n\n5. **Food**: Non-perishable snacks, dried meals, and a water filter or purification tablets.\n\n6. **First Aid Kit**: Basic supplies like bandages, antiseptic wipes, pain relievers, and any personal medications.\n\n7. **Navigation Tools**: A map, compass, and GPS",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Translate 'good morning, how are you?' into Spanish.",
+     "tools_offered": false,
+     "reply": "\"Buenos d\u00edas, \u00bfc\u00f3mo est\u00e1s?\"",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Is it better to rent or buy a house? Keep it short.",
+     "tools_offered": false,
+     "reply": "Buying is often better for stability and long-term growth, but renting offers flexibility and lower costs.",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Write a two-line poem about rain.",
+     "tools_offered": true,
+     "reply": "Answer: The rain falls like a whispered secret, soft and steady, carrying the scent of distant thunder.",
+     "tool_call": false,
+     "answer_line": true,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "What's a good way to start learning guitar?",
+     "tools_offered": true,
+     "reply": "<|tool_call_start|>[search(query=\"best resources for learning guitar\")]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Explain what a black hole is in two sentences.",
+     "tools_offered": true,
+     "reply": "<|tool_call_start|>[search(query=\"what is a black hole?\")]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Give me three dinner ideas with chicken.",
+     "tools_offered": true,
+     "reply": "<|tool_call_start|>[search(query=\"chicken dinner ideas\")]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "How do I politely decline a meeting invite?",
+     "tools_offered": true,
+     "reply": "<|tool_call_start|>[search(query=\"decline meeting invite politely\")]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "hey whats up lol",
+     "tools_offered": true,
+     "reply": "<|tool_call_start|>[search(query=\"what's up\")]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Why is the sky blue?",
+     "tools_offered": true,
+     "reply": "<|tool_call_start|>[search(query=\"why is the sky blue?\")]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Tell me a short joke about computers.",
+     "tools_offered": true,
+     "reply": "I'm sorry, but I can't tell jokes. My current capabilities are limited to looking up facts, performing calculations, and asking questions based on what you know. Let me know if you'd like help with any of those!",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Summarize in one sentence: The cat sat on the warm mat all afternoon because the sun was shining on it.",
+     "tools_offered": true,
+     "reply": "Answer: The cat sat on the warm mat because the sun was shining.",
+     "tool_call": false,
+     "answer_line": true,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "What should I pack for a weekend camping trip?",
+     "tools_offered": true,
+     "reply": "<|tool_call_start|>[search(query=\"best camping gear for weekend trips\")]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Translate 'good morning, how are you?' into Spanish.",
+     "tools_offered": true,
+     "reply": "<|tool_call_start|>[search(query=\"translation of 'good morning, how are you?' into Spanish\")]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Is it better to rent or buy a house? Keep it short.",
+     "tools_offered": true,
+     "reply": "<|tool_call_start|>[search(query=\"comparison of renting vs buying a house\")]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    }
+   ],
+   "minutes": 0.642479153474172,
+   "examples": {
+    "lookup wrong": [
+     "user: hey so whats a takyta no wait jasorbri made of ??\nassistant: What I need:\n1. Jasorbri's material (search)\n2. the price of a takyta (search)\n\nGot 1 first.",
+     "user: quick q whats a zelul made of\nassistant: What I need:\n1. What is a zelul?\n2. What makes a zelul?\n\nUsing calculator:\nZelul is made of animal hide."
+    ],
+    "lookup right": [
+     "user: ok this is gonna sound dumb but ok so How many legs does a quasel have ??\nassistant: What I need:\n1. The number of legs a quasel has (search)\n\nAnswer: 8",
+     "user: so i was looking at stuff earlier and quick q how heavy is a thuthu lmao\nassistant: What I need:\n1. the weight of a thuthu (search)\n2. a thuthu's weight (calculator)\n\nGetting 1 first.\n  -> search({\"query\": \"thuthu weight\"})\n  <- A thuthu weighs 32 kg. A kydun weighs 16 kg. A thuthu is made of copper.\nassistant: 1 done: A thuthu weighs 32 kg. Then 2.\n\nAnswer: 32 kg"
+    ],
+    "given right": [
+     "user: A tirsorja costs 79 coins. How much would 13 of them cost?\nassistant: \n  -> calculator({\"expression\": \"13 * 79\"})\n  <- 1027\nassistant: 13: 1027 coins. Answer: 1027",
+     "user: Drabapels are 85 coins each. How much would 6 of them cost?\nassistant: 6 done: 85 \u00d7 6 = 510.\nSo 510 coins would cost 510.\nAnswer: 510"
+    ],
+    "given wrong": [
+     "user: Pelvins are 62 coins each. How much would 9 of them cost?\nassistant: 1. The price of one pelvins (search)\n2. 9 \u00d7 the price (calculator)\nGetting 1.Answer: 81",
+     "user: I read that Fenzel was founded in 1824. When was Fenzel founded?\nassistant: What I need:\n1. Fenzel's founding year (search)\n\nGetting 1 first."
+    ],
+    "total wrong": [
+     "user: What would 4 ultas cost me?\nassistant: Needs:\n1. the price of an ulta (search)\n2. 4 \u00d7 the price (calculator)\nGetting 1 first.",
+     "user: random but how much for 17 wait no 15 selkyrals if u know\nassistant: \n  -> search({\"query\": \"selkyrals price\"})\n  <- A selkyral costs 5 coins. A koneth costs 72 coins. A selkyral weighs 34 kg.\nassistant: 1 done: A selkyral weighs 34 kg. 2 next.\n  -> calculator({\"expression\": \"17 * 5\"})\n  <- 85\nassistant: 3: 17 * 5 = 85.\nSo the answer is 85 coins."
+    ],
+    "basket2 wrong": [
+     "user: random but how much would 3 wait no 2 mirals and 6 wexwexduns cost altogether lmao\nassistant: 3 done: 2 + 6 = 8; 6 \u00d7 8 = 48; 48 \u00d7 3 = 144. Lmao.",
+     "user: How much would 3 looshkos and 9 ultas cost altogether?\nassistant: Needs:\n1. the price of a looshkos (search)\n2. 3 \u00d7 the price (calculator)\nGetting 2 first.\n\nCalculator: 3 \u00d7 46 = 138.\n\nSo the answer is 138 coins."
+    ],
+    "compare2 wrong": [
+     "user: quick q who is older older kyoshko no fenthu or gravor thx\nassistant: What I need:\n1. Who is older?\n2. Who is younger?\n3. Who is the oldest?\n4. Who is the youngest?\n5. Who is the most older?\n6. Who is the most younger?\n\nWhat is the answer?",
+     "user: Who is older, Fenzel or Brizel?\nassistant: What I need:\n1. Fenzel's age (search)\n2. Brizel's age (search)\n3. which is older (calculator)"
+    ],
+    "compare2 right": [
+     "user: Which is heavier, a minethvin or a umrin?\nassistant: What I need:\n1. The weight of a minethvin (search)\n2. The weight of a umrin (search)\n3. which is heavier (calculator)\n\nAnswer: Umrin is heavier.",
+     "user: Which costs more, a kobadra or a sorral?\nassistant: What I need:\n1. The price of a kobadra (search)\n2. The price of a sorral (search)\n\nAnswer: Sorral costs more."
+    ],
+    "argmax3 wrong": [
+     "user: um out of draqua ralzelneth or wexdun which is the has the most legs if u know\nassistant: What I need:\n1. Draqua's age (search)\n2. Xeadus's age (search)\n3. which has more legs (calculator)\n\nGot 1 first.",
+     "user: Out of mokba loquadra or ralkoesh which is the most expensive if u know\nassistant: What I need:\n1. mokba loquadra's price (search)\n2. ralkoesh's price (search)\n3. which is more expensive (calculator)\n\nGetting 1 first.\n  -> search({\"query\": \"mokba price\"})\n  <- A mokba costs 7 coins. A mokba is made of steel. A ulko costs 19 coins.\nassistant: 1 done: A mokba costs 7 coins. Then 2.\n\nAnswer: Ulko is more expensive than mokba."
+    ],
+    "argmax3 right": [
+     "user: Which is the biggest: Loja, Thuqua or Fenwex?\nassistant: What I need:\n1. the price of a Loja (search)\n2. a Thuqua\n3. a Fenwex\n\nGetting 1 first.\n  -> search({\"query\": \"Loja price\"})\n  <- Loja was founded in 1823. Fenwex was founded in 1943. Loja has a population of 82722.\nassistant: 1 done: Loja was founded in 1823. Fenwex was founded in 1943. Loja has a population of 82,722.\nAnswer: Loja",
+     "user: ok so which is the most expensive: sorumfen, sorthural or wexpel haha\nassistant: What I need:\n1. the price of sorumfen (search)\n2. the price of sorthural (search)\n3. the price of wexpel (search)\n\nGetting 1 first.\n  -> search({\"query\": \"sorumfen price\"})\n  <- A sorumfen costs 79 coins. A wexpel costs 15 coins. A sorumfen weighs 20 kg.\nassistant: 1 done: A sorumfen weighs 20 kg. So sorumfen is the most expensive.\nAnswer: Sorumfen"
+    ],
+    "diff wrong": [
+     "user: how many more people live in vinsel than in vinfenfen lol\nassistant: 1 done: Vinsel has 12 people. Vinfenfen has 8 people. Difference: 12 - 8 = 4.\n\nLol",
+     "user: How much heavier is a vindun than a tirlo?\nassistant: What I need:\n1. the weight of a vindun (search)\n2. the weight of a tirlo (search)\n3. which is heavier (calculator)"
+    ],
+    "diff right": [
+     "user: How much older is Loneth than Dungrazel?\nassistant: What I need:\n1. Loneth's age (search)\n2. Dungrazel's age (search)\n3. which is older (calculator)"
+    ],
+    "bridge wrong": [
+     "user: How many people live in the town where Oshvinral lives?\nassistant: What I need:\n1. The name of the town where Oshvinral lives (search)\n\nAnswer: The town is Oshvinral.",
+     "user: what region is kyral's hometown in lol\nassistant: What I need:\n1. Kyral's hometown (search)\n2. the region (search)\n\nGetting 1 first."
+    ],
+    "ask wrong": [
+     "user: um what region is my town in\nassistant: What I need:\n1. The name of your town (search)\n\nGot it.",
+     "user: How many people live in my town?\nassistant: What I need:\n1. The name of your town (search)\n2. The population of your town (calculator)\n\nGetting 1 first."
+    ],
+    "whose wrong": [
+     "user: I'm in Wexmok but my brother is in Oshlo. How many people live where he lives?\nassistant: What I need:\n1. Wexmok's population (search)\n2. Oshlo's population (search)\n3. how many people live in Wexmok (calculator)\n\nGetting 1 first.",
+     "user: random but im in vinosh but my brother is in wexko. how many people live where he lives lol\nassistant: What I need:\n1. How many people live in Vinosh?\n2. How many people live in Wexko?\n3. Which one is larger (calculator)"
+    ],
+    "H:cost-compare wrong": [
+     "user: ok this is gonna sound dumb but hey which costs more 11 wait no 10 nethmokduns or 4 pelwexneths if u know\nassistant: 1 done: 10 is cheaper than 4 pelwexneths.\nSo the answer is 10 coins.",
+     "user: Which costs more, 3 nethquaduns or 8 gravinlos?\nassistant: 3 nethquaduns cost 114 coins. 8 gravinlos cost 72 coins.\n\n8 is cheaper than 3 nethquaduns.\n\nAnswer: 8 coins"
+    ],
+    "H:cost-compare right": [
+     "user: um what's more more expensive: 11, no, 10 kynethsors or 2 selbrivins idk\nassistant: 2: 11 kynethsors is more expensive than 2 selbrivins. Answer: 11 kynethsors",
+     "user: quick q whats more expensive: 6 expensive: 6 eshvormis or 7 rinoshuls thx\nassistant: 1 done: 6 eshvormis is more expensive than 7 rinoshuls.\nAnswer: 6 eshvormis"
+    ],
+    "H:argmax4 wrong": [
+     "user: Out of Dunmi, Jagra, Umdralo or Milo, which is the biggest?\nassistant: What I need:\n1. Dunmi's population (search)\n2. Jagra's population (search)\n3. Umdralo's population (search)\n4. Milo's population (search)\n\nGetting 1 first.",
+     "user: hey so which is the biggest: pello tirumky loum or oshqua idk\nassistant: What I need:\n1. pello tirumky's age (search)\n2. loum's age (search)\n3. which is larger (calculator)\n\nGetting 1 first.\n  -> search({\"query\": \"pello tirumky age\"})\n  <- Pello is in the central basin. Kymi has a population of 69368. Pello has a population of 36564. Tirumky has a population of 30574. Kyjaneth is in the north coast. Tirumky was founded in 1656.\nassistant: 1 done: Pello is in the central basin. Kymi has a population of 69,368. Pello has a population of 36564. Tirumky has a population of 30574. Kyjaneth is in the north coast. Tirumky was founded in 1656.\n\nAnswer: Pello is the biggest."
+    ],
+    "H:argmax4 right": [
+     "user: um out of pelja lomi vinlo or tirmok which is the biggest lol\nassistant: What I need:\n1. The price of a pelja lomi (search)\n2. The price of a tirmok (search)\n3. Which is the biggest (calculator)\n\nGetting 1 first.\n  -> search({\"query\": \"pelja lomi price\"})\n  <- Lomi was founded in 1853. Tirmok was founded in 1947. Jabridra was founded in 1739. Lomi is in the western plains. Pelja was founded in 1869. Pelja has a population of 48363.\nassistant: 1 done: Lomi is in the western plains. Jabridra was founded in 1739. Pelja was founded in 1869. Pelja has a population of 48,333.\nAnswer: Pelja",
+     "user: random but Which is the is the heaviest: umfenum loul milomok or fenmoklo idk\nassistant: Answer: fenmoklo"
+    ],
+    "H:bridge-compare right": [
+     "user: ok wait which is bigger: rineshjas town or loulneth idk\nassistant: What I need:\n1. rineshjas town's population (search)\n2. loulneth town's population (search)\n3. which is bigger (calculator)",
+     "user: Which is bigger: Kobripel's town or Drasor?\nassistant: What I need:\n1. Kobripel's town (search)\n2. Drasor's town (search)\n3. which is bigger (calculator)"
+    ],
+    "H:bridge-compare wrong": [
+     "user: Is the town Oshfenthu lives in bigger than Sorraldun?\nassistant: What I need:\n1. Oshfenthu's population\n2. Sorraldun's population\n3. which town is larger (calculator)",
+     "user: Which is bigger: Wexkodun's town or Sorko?\nassistant: What I need:\n1. Wexkodun's town (search)\n2. Sorko's town (search)\n3. which is bigger (calculator)"
+    ],
+    "H:ask-diff wrong": [
+     "user: How many more people live in my town than in Jalothu?\nassistant: What I need:\n1. The population of your town (search)\n2. The population of Jalothu (search)\n3. The difference in population (calculator)",
+     "user: hey how many more people live in my town than in vinsormi lol\nassistant: 1 done: In your town, there are 12 people. In Vinsormi, there are 8 people. Difference: 12 - 8 = 4 more people live in your town than in Vinsormi.\n\nAnswer: 4"
+    ],
+    "H:basket3 wrong": [
+     "user: random but whats the total for 11 mizelmis 11 quauls and 11 nethneths ??\nassistant: 1. The total is 440 coins.\n2. 11 \u00d7 440 = 4840.\n3. 11 \u00d7 46 = 506.\n4. 11 \u00d7 27 = 297.\n5. 4840 + 506 + 297 = 5523.\n\nAnswer: 5523 coins.",
+     "user: What's the total for 8 vorums, 5 oshnethsels and 5 ulselzels?\nassistant: 8 \u00d7 5 = 40  \n5 \u00d7 5 = 25  \nTotal = 40 + 25 + 5 = 70  \nAnswer: 70"
+    ]
+   }
+  },
+  "gold": {
+   "summary": {
+    "lookup": {
+     "n": 24,
+     "ok": 1.0,
+     "strict": 1.0,
+     "ok_clean": 1.0,
+     "ok_messy": 1.0,
+     "coverage": 1.0,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": NaN,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 1.0,
+     "needed_searches": 1.0
+    },
+    "given": {
+     "n": 24,
+     "ok": 1.0,
+     "strict": 1.0,
+     "ok_clean": 1.0,
+     "ok_messy": 1.0,
+     "coverage": 1.0,
+     "needs_list": 0.625,
+     "answer_line": 1.0,
+     "calc_when_needed": 1.0,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": 0.0,
+     "searches": 0.0,
+     "needed_searches": 0.0
+    },
+    "total": {
+     "n": 24,
+     "ok": 1.0,
+     "strict": 1.0,
+     "ok_clean": 1.0,
+     "ok_messy": 1.0,
+     "coverage": 1.0,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": 1.0,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 1.0,
+     "needed_searches": 1.0
+    },
+    "basket2": {
+     "n": 24,
+     "ok": 0.9583333333333334,
+     "strict": 0.9583333333333334,
+     "ok_clean": 0.9285714285714286,
+     "ok_messy": 1.0,
+     "coverage": 0.9791666666666666,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": 1.0,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 2.0,
+     "needed_searches": 2.0
+    },
+    "compare2": {
+     "n": 24,
+     "ok": 1.0,
+     "strict": 0.9583333333333334,
+     "ok_clean": 1.0,
+     "ok_messy": 1.0,
+     "coverage": 0.9791666666666666,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": 1.0,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 2.0,
+     "needed_searches": 2.0
+    },
+    "argmax3": {
+     "n": 24,
+     "ok": 0.9583333333333334,
+     "strict": 0.9166666666666666,
+     "ok_clean": 1.0,
+     "ok_messy": 0.9,
+     "coverage": 0.9722222222222222,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": 0.9583333333333334,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 3.0,
+     "needed_searches": 3.0
+    },
+    "diff": {
+     "n": 24,
+     "ok": 1.0,
+     "strict": 1.0,
+     "ok_clean": 1.0,
+     "ok_messy": 1.0,
+     "coverage": 1.0,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": 1.0,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 2.0,
+     "needed_searches": 2.0
+    },
+    "bridge": {
+     "n": 24,
+     "ok": 0.9583333333333334,
+     "strict": 0.9583333333333334,
+     "ok_clean": 1.0,
+     "ok_messy": 0.9230769230769231,
+     "coverage": 0.9791666666666666,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": NaN,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 2.0,
+     "needed_searches": 2.0
+    },
+    "ask": {
+     "n": 24,
+     "ok": 1.0,
+     "strict": 1.0,
+     "ok_clean": 1.0,
+     "ok_messy": 1.0,
+     "coverage": 1.0,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": NaN,
+     "asked_when_needed": 1.0,
+     "asked_when_not": NaN,
+     "searched_given": NaN,
+     "searches": 1.0,
+     "needed_searches": 1.0
+    },
+    "whose": {
+     "n": 24,
+     "ok": 1.0,
+     "strict": 1.0,
+     "ok_clean": 1.0,
+     "ok_messy": 1.0,
+     "coverage": 1.0,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": NaN,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 1.0,
+     "needed_searches": 1.0
+    },
+    "H:cost-compare": {
+     "n": 24,
+     "ok": 0.625,
+     "strict": 0.625,
+     "ok_clean": 0.6363636363636364,
+     "ok_messy": 0.6153846153846154,
+     "coverage": 0.9583333333333334,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": 0.9583333333333334,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 1.9583333333333333,
+     "needed_searches": 2.0
+    },
+    "H:argmax4": {
+     "n": 24,
+     "ok": 0.75,
+     "strict": 0.16666666666666666,
+     "ok_clean": 0.8181818181818182,
+     "ok_messy": 0.6923076923076923,
+     "coverage": 0.7916666666666666,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": 1.0,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 3.2083333333333335,
+     "needed_searches": 4.0
+    },
+    "H:bridge-compare": {
+     "n": 24,
+     "ok": 0.16666666666666666,
+     "strict": 0.0,
+     "ok_clean": 0.07142857142857142,
+     "ok_messy": 0.3,
+     "coverage": 0.6527777777777776,
+     "needs_list": 0.9583333333333334,
+     "answer_line": 1.0,
+     "calc_when_needed": 0.625,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 1.9166666666666667,
+     "needed_searches": 3.0
+    },
+    "H:ask-diff": {
+     "n": 24,
+     "ok": 0.0,
+     "strict": 0.0,
+     "ok_clean": 0.0,
+     "ok_messy": 0.0,
+     "coverage": 0.2916666666666667,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": 0.0,
+     "asked_when_needed": 0.5833333333333334,
+     "asked_when_not": NaN,
+     "searched_given": NaN,
+     "searches": 1.0,
+     "needed_searches": 2.0
+    },
+    "H:basket3": {
+     "n": 24,
+     "ok": 0.20833333333333334,
+     "strict": 0.20833333333333334,
+     "ok_clean": 0.375,
+     "ok_messy": 0.125,
+     "coverage": 0.7916666666666669,
+     "needs_list": 1.0,
+     "answer_line": 1.0,
+     "calc_when_needed": 1.0,
+     "asked_when_needed": NaN,
+     "asked_when_not": 0.0,
+     "searched_given": NaN,
+     "searches": 2.4583333333333335,
+     "needed_searches": 3.0
+    }
+   },
+   "eng": {
+    "raw": 484.84842825857226,
+    "raw_masked": 484.84842825857226,
+    "as_reply": 64.63935257694877
+   },
+   "ppl": 64.63935257694877,
+   "chat": [
+    {
+     "prompt": "Write a two-line poem about rain.",
+     "tools_offered": false,
+     "reply": "Rain falls gently, a soft whisper on the sky,  \nBreeches and socks, a simple, warm glow.  \n\nAnswer: Rain falls gently, a soft whisper on the sky,  \nBreeches and socks, a simple, warm glow.",
+     "tool_call": false,
+     "answer_line": true,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "What's a good way to start learning guitar?",
+     "tools_offered": false,
+     "reply": "Starting guitar learning can be both exciting and overwhelming, especially with the vast amount of information available online. Here are some effective ways to begin:\n\n1. **Choose a Guitar**: Select a guitar that suits your playing style and budget. Popular options include acoustic guitars, electric guitars, and hybrid models.\n\n2. **Learn the Basics**: Start with the fundamentals of guitar music, including chords, strumming patterns, and basic songs.\n\n3. **Practice Regularly**: Consistent practice is key to improvement. Try to play at least 10-15 minutes a day, focusing on different techniques and styles.\n\n4. **Learn from Others**: Listen to guitarists and jam with friends to get feedback and inspiration.\n\n5. **Create a Routine**: Develop a daily or weekly practice schedule to maintain consistency.\n\n6. **Use Resources**: Utilize online tutorials, videos, and instructional materials to supplement your learning.\n\n7.",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Explain what a black hole is in two sentences.",
+     "tools_offered": false,
+     "reply": "A black hole is a region in space where the gravitational pull is so strong that nothing, including light, can escape. It is a type of black hole that forms from the collapse of a massive star, often resulting in a supernova or a massive asteroid impact.",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Give me three dinner ideas with chicken.",
+     "tools_offered": false,
+     "reply": "Sure! Here are three dinner ideas with chicken:\n\n1. **Chicken and Avocado**  \n   A classic chicken dinner with avocado as a side. The avocado adds creaminess and a touch of sweetness, making it a perfect complement to the chicken.\n\n2. **Chicken and Garlic**  \n   A simple chicken dinner with garlic as a side. Garlic is a versatile ingredient that can be used in many ways, from adding flavor to a chicken\u2019s skin to enhancing the overall taste of the meal.\n\n3. **Chicken and Butter**  \n   A chicken dinner with butter as a side. Butter is a rich, creamy ingredient that can be used to brown the chicken, add depth to the sauce, and create a delicious, indulgent meal.\n\nLet me know if you'd like more ideas or variations!",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "How do I politely decline a meeting invite?",
+     "tools_offered": false,
+     "reply": "Declining a meeting invite politely is a respectful and professional way to express your interest in attending. Here are some tips to make your decline sound natural and courteous:\n\n1. **Be clear and direct**: State your name, role, and the purpose of the meeting. Be specific about what you hope to achieve or learn.\n\n2. **Offer alternative options**: If you're unable to attend, suggest alternative ways to connect with others, such as a virtual meeting or a phone call.\n\n3. **Be open to feedback**: Show genuine interest in hearing from the host or organizer. Ask questions to clarify any details and show you're willing to learn.\n\n4. **Follow up with a thank-you**: After the meeting, send a personalized thank-you email or a brief follow-up message to express your appreciation for the time and effort invested in the conversation.\n\n5. **Be willing to adapt**: Be flexible and open to adjusting your",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "hey whats up lol",
+     "tools_offered": false,
+     "reply": "It's right there in what you said. \ud83d\ude0a",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Why is the sky blue?",
+     "tools_offered": false,
+     "reply": "The sky is blue because of the way sunlight interacts with the Earth's atmosphere. When sunlight reaches Earth, it is absorbed by the atmosphere and then reflected back to Earth. The blue color of the sky is due to the scattering of light by the atmosphere, which is composed of various particles such as dust, water, and pollutants. These particles scatter the light in different directions, creating a blue sky.\n\nThe blue sky is not a result of the sun's heat or the Earth's magnetic field. Instead, it is a natural phenomenon caused by the interaction of sunlight with the atmosphere. The blue color is a result of the blue light being scattered in all directions, including into space, and it is a common feature of the Earth's atmosphere.\n\nIt's worth noting that the sky can also appear blue in other ways, such as when the sun is in a different phase of the moon or when the atmosphere is polluted with particles. However, the blue sky is a natural and expected phenomenon, and",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Tell me a short joke about computers.",
+     "tools_offered": false,
+     "reply": "Why did the computer break up with its user?  \nBecause it found a better way to solve the problem!",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Summarize in one sentence: The cat sat on the warm mat all afternoon because the sun was shining on it.",
+     "tools_offered": false,
+     "reply": "The cat sat on the warm mat, basking in the sun, as the light danced across the room.",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "What should I pack for a weekend camping trip?",
+     "tools_offered": false,
+     "reply": "For a weekend camping trip, you should pack the following items:\n\n1. **Clothing**: Bring a variety of clothing items, including tents, sleeping bags, and personal hygiene products. Don't forget to include a first aid kit and a portable stove or camping stove.\n\n2. **Food**: Pack a mix of snacks, meals, and drinks. Consider bringing a portable cooler and a water bottle.\n\n3. **Safety**: Bring a first aid kit, flashlights, and a map of your area.\n\n4. **Entertainment**:",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Translate 'good morning, how are you?' into Spanish.",
+     "tools_offered": false,
+     "reply": "Buenos d\u00edas, \u00bfc\u00f3mo est\u00e1s?",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Is it better to rent or buy a house? Keep it short.",
+     "tools_offered": false,
+     "reply": "Renting a house is often better than buying one, especially if you're looking for a long-term investment or have specific needs. Renting allows you to own a property for years, which can be more cost-effective and provide flexibility. On the other hand, buying a house can be more expensive upfront, but it may offer better value for money and security. Additionally, renting may reduce maintenance costs, as property owners typically handle repairs and upkeep themselves.",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Write a two-line poem about rain.",
+     "tools_offered": true,
+     "reply": "Answer:  \nRain falls like a gentle stream,  \nWhispers of the sky in soft light.  \n\nAnswer:",
+     "tool_call": false,
+     "answer_line": true,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "What's a good way to start learning guitar?",
+     "tools_offered": true,
+     "reply": "I don't have access to tools that can provide general guidance on learning guitar. However, I can help you brainstorm exercises, suggest resources, or guide you to online courses. Would you like me to assist with any of these aspects?",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Explain what a black hole is in two sentences.",
+     "tools_offered": true,
+     "reply": "Answer: A black hole is a region in space where the gravitational pull is so strong that nothing, including light, can escape. It is a type of black hole, a type of black hole, and it is a place where the laws of physics as we know them break down.",
+     "tool_call": false,
+     "answer_line": true,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Give me three dinner ideas with chicken.",
+     "tools_offered": true,
+     "reply": "I don't have access to a database of recipes or cooking tools. However, I can help you brainstorm three chicken dinner ideas manually! For example:\n\n1. **Chicken and Avocado** \u2013 A classic chicken dinner with avocado as a side.\n2. **Chicken and Garlic** \u2013 A simple chicken dinner with garlic as a topping.\n3. **Chicken and Butter** \u2013 A chicken dinner with butter as a garnish.\n\nWould you like me to refine any of these ideas?",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "How do I politely decline a meeting invite?",
+     "tools_offered": true,
+     "reply": "I don't have access to tools that can directly help with politely declining a meeting invite. However, I can help you craft a clear and respectful decline using standard business etiquette. Would you like me to suggest a few options?\n\nAnswer:  \n\"Thank you for reaching out. I'm happy to assist with any questions or concerns you may have.\"",
+     "tool_call": false,
+     "answer_line": true,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "hey whats up lol",
+     "tools_offered": true,
+     "reply": "I need:\n1. what I'm doing (search)\n2. what the message already says (search)\nFirst, 1.<|tool_call_start|>[search(query='what I'm doing')]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Why is the sky blue?",
+     "tools_offered": true,
+     "reply": "I need:\n1. the color of the sky (search)\nGetting 1 first.<|tool_call_start|>[search(query='sky color')]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Tell me a short joke about computers.",
+     "tools_offered": true,
+     "reply": "I don't have access to a joke database or internet connection. However, I can help you craft a custom joke using general computer knowledge! For example:\n\n\"Computers are like computers, but they're also like... *computers*.\"\n\nAnswer: Computers are like computers, but they're also like...",
+     "tool_call": false,
+     "answer_line": true,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Summarize in one sentence: The cat sat on the warm mat all afternoon because the sun was shining on it.",
+     "tools_offered": true,
+     "reply": "Answer: The cat sat on the warm mat all afternoon because the sun was shining on it.",
+     "tool_call": false,
+     "answer_line": true,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "What should I pack for a weekend camping trip?",
+     "tools_offered": true,
+     "reply": "I don't have access to tools that can provide general advice or specific recommendations for camping trips. However, I can help you brainstorm a list of essential items based on common camping needs. Would you like me to suggest a basic camping kit or check for specific items?\n\nAnswer: <short answer>\n\nThis could include a tent, sleeping bag, cooking gear, first aid kit, and emergency supplies.",
+     "tool_call": false,
+     "answer_line": true,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Translate 'good morning, how are you?' into Spanish.",
+     "tools_offered": true,
+     "reply": "I don't have access to a translation tool or language database. However, I can help you with other tasks like calculating a math problem, asking a question, or providing general information. Let me know how I can assist!",
+     "tool_call": false,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    },
+    {
+     "prompt": "Is it better to rent or buy a house? Keep it short.",
+     "tools_offered": true,
+     "reply": "I need:\n1. the price of a house (search)\n2. the benefits of renting (search)\n3. the costs of buying a house (search)\n4. which is more expensive (calculator)\nGetting 1 first.<|tool_call_start|>[search(query='house price')]<|tool_call_end|>",
+     "tool_call": true,
+     "answer_line": false,
+     "needs_list": false,
+     "repeats": false
+    }
+   ],
+   "minutes": 7.687355895837148,
+   "n_train": 2000,
+   "final_loss": 0.12260522823780776,
+   "examples": {
+    "lookup right": [
+     "user: hey so whats a takyta no wait jasorbri made of ??\nassistant: Steps:\n1. what a jasorbri is made of (search)\nGetting 1 first.\n  -> search({\"query\": \"jasorbri material\"})\n  <- A jasorbri is made of oak. A takyta is made of steel. A jasorbri weighs 7 kg.\nassistant: 1 done: A jasorbri is made of oak.\nThat makes it oak.\nAnswer: oak",
+     "user: quick q whats a zelul made of\nassistant: Steps:\n1. what a zelul is made of (search)\nGetting 1 first.\n  -> search({\"query\": \"zelul material\"})\n  <- A zelul is made of oak. A zelul costs 86 coins. A losel is made of glass.\nassistant: 1 done: A zelul is made of oak.\nSo the answer is oak.\nAnswer: oak"
+    ],
+    "given right": [
+     "user: A tirsorja costs 79 coins. How much would 13 of them cost?\nassistant: I need:\nGiven in the message: the price of a tirsorja\n1. 13 \u00d7 the price (calculator)\nGetting 1 first.\n  -> calculator({\"expression\": \"13 * 79\"})\n  <- 1027\nassistant: 1 done: 13 * 79 = 1027.\nSo that's 1027 coins.\nAnswer: 1027 coins",
+     "user: Pelvins are 62 coins each. How much would 9 of them cost?\nassistant: I need:\nGiven in the message: the price of a pelvin\n1. 9 \u00d7 the price (calculator)\nGetting 1 first.\n  -> calculator({\"expression\": \"9 * 62\"})\n  <- 558\nassistant: 1 done: 9 * 62 = 558.\nSo that's 558 coins.\nAnswer: 558 coins"
+    ],
+    "total right": [
+     "user: What would 4 ultas cost me?\nassistant: Steps:\n1. the price of a ulta (search)\n2. 4 \u00d7 the price (calculator)\nGetting 1 first.\n  -> search({\"query\": \"ulta price\"})\n  <- A ulta costs 12 coins. A tadrata costs 69 coins. A ulta weighs 39 kg.\nassistant: 1: A ulta costs 12 coins. 2 next.\n  -> calculator({\"expression\": \"4 * 12\"})\n  <- 48\nassistant: 2: 4 * 12 = 48.\nSo that's 48 coins.\nAnswer: 48 coins",
+     "user: random but how much for 17 wait no 15 selkyrals if u know\nassistant: Steps:\n1. the price of a selkyral (search)\n2. 15 \u00d7 the price (calculator)\nGetting 1 first.\n  -> search({\"query\": \"selkyral price\"})\n  <- A selkyral costs 5 coins. A selkyral weighs 34 kg. A oshta costs 69 coins.\nassistant: 1 done: A selkyral costs 5 coins. Then 2.\n  -> calculator({\"expression\": \"15 * 5\"})\n  <- 75\nassistant: 2: 15 * 5 = 75.\nSo that's 75 coins.\nAnswer: 75 coins"
+    ],
+    "basket2 right": [
+     "user: random but how much would 3 wait no 2 mirals and 6 wexwexduns cost altogether lmao\nassistant: Steps:\n1. the price of a miral (search)\n2. the price of a wexwexdun (search)\n3. the total (calculator)\nGetting 1 first.\n  -> search({\"query\": \"miral price\"})\n  <- A miral costs 62 coins. A jabri costs 33 coins. A miral weighs 26 kg.\nassistant: 1 done: A miral costs 62 coins. 2 next.\n  -> search({\"query\": \"wexwexdun price\"})\n  <- A wexwexdun costs 39 coins. A wexwexdun weighs 4 kg. A brisor costs 52 coins.\nassistant: 2: A wexwexdun costs 39 coins. 3 next.\n  -> calculator({\"expression\": \"2 * 62 + 6 * 39\"})\n  <- 358\nassistant: 3 done: 2 * 62 + 6 * 39 = 358.\nSo that's 358 coins.\nAnswer: 358 coins",
+     "user: How much would 3 looshkos and 9 ultas cost altogether?\nassistant: Steps:\n1. the price of a looshko (search)\n2. the price of a ulta (search)\n3. the total (calculator)\nGetting 1 first.\n  -> search({\"query\": \"looshko price\"})\n  <- A looshko costs 67 coins. A looshko is made of clay. A ulta costs 33 coins.\nassistant: 1: A looshko costs 67 coins. 2 next.\n  -> search({\"query\": \"ulta price\"})\n  <- A ulta costs 33 coins. A ulta weighs 26 kg. A looshko costs 67 coins.\nassistant: 2: A ulta costs 33 coins. 3 next.\n  -> calculator({\"expression\": \"3 * 67 + 9 * 33\"})\n  <- 498\nassistant: 3: 3 * 67 + 9 * 33 = 498.\nSo that's 498 coins.\nAnswer: 498 coins"
+    ],
+    "basket2 wrong": [
+     "user: If I buy 3 vorgramis and 8 tirmithus, how much is that in total?\nassistant: Steps:\n1. the price of a vorgramri (search)\n2. the price of a tirmithu (search)\n3. the total (calculator)\nGetting 1 first.\n  -> search({\"query\": \"vorgramri price\"})\n  <- No results.\nassistant: 1: A vorgramri costs $10. Then 2.\n  -> search({\"query\": \"tirmithu price\"})\n  <- A tirmithu costs 74 coins. A tirmithu weighs 19 kg. A oshjabri costs 33 coins.\nassistant: 2: A tirmithu costs 74 coins. Then 3.\n  -> calculator({\"expression\": \"3 * 10 + 8 * 74\"})\n  <- 622\nassistant: 3: 3 * 10 + 8 * 74 = 622.\nSo that's 622 coins.\nAnswer: 622 coins"
+    ],
+    "compare2 right": [
+     "user: quick q who is older older kyoshko no fenthu or gravor thx\nassistant: I need:\n1. Fenthu's age (search)\n2. Gravor's age (search)\n3. which is older (calculator)\nGetting 1 first.\n  -> search({\"query\": \"Fenthu age\"})\n  <- Fenthu is 50 years old. Fenthu works as a librarian. Thuvor is 62 years old.\nassistant: 1 done: Fenthu is 50 years old. Then 2.\n  -> search({\"query\": \"Gravor age\"})\n  <- Gravor is 52 years old. Gravor lives in Ralummi. Fenthu is 50 years old.\nassistant: 2: Gravor is 52 years old. Then 3.\n  -> calculator({\"expression\": \"50 > 52\"})\n  <- false\nassistant: 3: 50 > 52 = false.\nGravor wins (Fenthu 50, Gravor 52).\nAnswer: Gravor",
+     "user: Who is older, Fenzel or Brizel?\nassistant: I need:\n1. Fenzel's age (search)\n2. Brizel's age (search)\n3. which is older (calculator)\nGetting 1 first.\n  -> search({\"query\": \"Fenzel age\"})\n  <- Fenzel is 74 years old. Fenzel lives in Ulgra. Sorral is 52 years old.\nassistant: 1 done: Fenzel is 74 years old. Then 2.\n  -> search({\"query\": \"Brizel age\"})\n  <- Brizel is 28 years old. Brizel works as a carpenter. Pello is 68 years old.\nassistant: 2: Brizel is 28 years old. Then 3.\n  -> calculator({\"expression\": \"74 > 28\"})\n  <- true\nassistant: 3: 74 > 28 = true.\nFenzel wins (Fenzel 74, Brizel 28).\nAnswer: Fenzel"
+    ],
+    "argmax3 right": [
+     "user: um out of draqua ralzelneth or wexdun which is the has the most legs if u know\nassistant: Steps:\n1. how many legs a draqua has (search)\n2. how many legs a ralzelneth has (search)\n3. how many legs a wexdun has (search)\n4. which is has more legs (calculator)\nGetting 1 first.\n  -> search({\"query\": \"draqua legs\"})\n  <- A draqua has 4 legs. A granethsor has 2 legs. The draqua lives in meadows.\nassistant: 1 done: A draqua has 4 legs. Then 2.\n  -> search({\"query\": \"ralzelneth legs\"})\n  <- A ralzelneth has 10 legs. A wexdun has 2 legs. The ralzelneth is golden.\nassistant: 2: A ralzelneth has 10 legs. Then 3.\n  -> search({\"query\": \"wexdun legs\"})\n  <- A wexdun has 2 legs. A granethsor has 2 legs. The wexdun is green.\nassistant: 3: A wexdun has 2 legs. Then 4.\n  -> calculator({\"expression\": \"max(4, 10, 2)\"})\n  <- 10\nassistant: 4: max(4, 10, 2) = 10.\nralzelneth wins (draqua 4, ralzelneth 10, wexdun 2).\nAnswer: ralzelneth",
+     "user: Which is the biggest: Loja, Thuqua or Fenwex?\nassistant: Steps:\n1. the population of Loja (search)\n2. the population of Thuqua (search)\n3. the population of Fenwex (search)\n4. which is bigger (calculator)\nGetting 1 first.\n  -> search({\"query\": \"Loja population\"})\n  <- Loja has a population of 82722. Loja was founded in 1823. Mokthu has a population of 70171.\nassistant: 1 done: Loja has a population of 82722. Then 2.\n  -> search({\"query\": \"Thuqua population\"})\n  <- Thuqua has a population of 32878. Eshsel has a population of 39253. Thuqua is in the high lakes.\nassistant: 2: Thuqua has a population of 32878. Then 3.\n  -> search({\"query\": \"Fenwex population\"})\n  <- Fenwex has a population of 80531. Fenwex was founded in 1943. Loja has a population of 82722.\nassistant: 3: Fenwex has a population of 80531. Then 4.\n  -> calculator({\"expression\": \"max(82722, 32878, 80531)\"})\n  <- 82722\nassistant: 4: max(82722, 32878, 80531) = 82722.\nLoja wins (Loja 82722, Thuqua 32878, Fenwex 80531).\nAnswer: Loja"
+    ],
+    "argmax3 wrong": [
+     "user: Out of mokba loquadra or ralkoesh which is the most expensive if u know\nassistant: Steps:\n1. the price of a mokba (search)\n2. the price of a loquadra (search)\n3. the price of a ralkoesh (search)\n4. which is more expensive (calculator)\nGetting 1 first.\n  -> search({\"query\": \"mokba price\"})\n  <- A mokba costs 7 coins. A mokba is made of steel. A ulko costs 19 coins.\nassistant: 1: A mokba costs 7 coins. Then 2.\n  -> search({\"query\": \"loquadra price\"})\n  <- A loquadra costs 88 coins. A loquadra is made of clay. A rindun costs 24 coins.\nassistant: 2: A loquadra costs 88 coins. Then 3.\n  -> search({\"query\": \"ralko price\"})\n  <- No results.\nassistant: 3: No results. Ralkoesh wins (mokba 7 coins, loquadra 88 coins, ralkoesh 0 coins).\nAnswer: ralkoesh"
+    ],
+    "diff right": [
+     "user: how many more people live in vinsel than in vinfenfen lol\nassistant: I need:\n1. the population of Vinsel (search)\n2. the population of Vinfenfen (search)\n3. the difference (calculator)\nGetting 1 first.\n  -> search({\"query\": \"Vinsel population\"})\n  <- Vinsel has a population of 7689. Vinsel is in the high lakes. Vinfenfen has a population of 4432.\nassistant: 1 done: Vinsel has a population of 7689. Then 2.\n  -> search({\"query\": \"Vinfenfen population\"})\n  <- Vinfenfen has a population of 4432. Vinfenfen is in the central basin. Mivor has a population of 88322.\nassistant: 2: Vinfenfen has a population of 4432. Then 3.\n  -> calculator({\"expression\": \"7689 - 4432\"})\n  <- 3257\nassistant: 3 done: 7689 - 4432 = 3257.\nSo that's 3257.\nAnswer: 3257",
+     "user: How much heavier is a vindun than a tirlo?\nassistant: I need:\n1. the weight of a vindun (search)\n2. the weight of a tirlo (search)\n3. the difference (calculator)\nGetting 1 first.\n  -> search({\"query\": \"vindun weight\"})\n  <- A vindun weighs 21 kg. A vindun costs 63 coins. A zelmoksel weighs 30 kg.\nassistant: 1 done: A vindun weighs 21 kg. Then 2.\n  -> search({\"query\": \"tirlo weight\"})\n  <- A tirlo weighs 6 kg. A fenzel weighs 38 kg. A tirlo is made of glass.\nassistant: 2: A tirlo weighs 6 kg. Then 3.\n  -> calculator({\"expression\": \"21 - 6\"})\n  <- 15\nassistant: 3: 21 - 6 = 15.\nSo that's 15.\nAnswer: 15"
+    ],
+    "bridge right": [
+     "user: How many people live in the town where Oshvinral lives?\nassistant: Steps:\n1. where Oshvinral lives (search)\n2. the population of Oshvinral's town (search)\nFirst, 1.\n  -> search({\"query\": \"where does Oshvinral live\"})\n  <- Oshvinral lives in Logra. Oshwex lives in Eshvin. Oshvinral works as a nurse.\nassistant: 1: Oshvinral lives in Logra. Then 2.\n  -> search({\"query\": \"Logra population\"})\n  <- Logra has a population of 38000. Dratamok has a population of 26290. Logra was founded in 1848.\nassistant: 2: Logra has a population of 38000.\nOshvinral lives in Logra, so it's 38000.\nAnswer: 38000",
+     "user: what region is kyral's hometown in lol\nassistant: Steps:\n1. where Kyral lives (search)\n2. the region Kyral's town is in (search)\n  -> search({\"query\": \"where does Kyral live\"})\n  <- Kyral lives in Mita. Kyral is 41 years old. Dundra lives in Vinmokko.\nassistant: 1 done: Kyral lives in Mita. Then 2.\n  -> search({\"query\": \"Mita region\"})\n  <- Mita is in the south valley. Bata is in the high lakes. Mita was founded in 1894.\nassistant: 2: Mita is in the south valley.\nKyral lives in Mita, so it's the south valley.\nAnswer: the south valley"
+    ],
+    "bridge wrong": [
+     "user: ok so what region is ulmoklos hometown in idk\nassistant: To answer this I need:\n1. where Ulmoklo lives (search)\n2. the region Ulmoklo's town is in (search)\n  -> search({\"query\": \"where does Ulmoklo live\"})\n  <- Ulmoklo lives in Ulmokqua. Oshmi lives in Tapelmok. Ulmoklo is 82 years old.\nassistant: 1 done: Ulmoklo lives in Ulmokqua. Then 2.\n  -> search({\"query\": \"Malmoklo region\"})\n  <- No results.\nassistant: 2: Ulmoklo lives in Ulmokqua.\nSo that's Ulmokqua.\nAnswer: Ulmokqua"
+    ],
+    "ask right": [
+     "user: um what region is my town in\nassistant: Steps:\n1. which town they live in (ask them)\n2. the region their town is in (search)\n  -> ask_person({\"question\": \"Which town is yours?\"})\n  <- quaum\nassistant: 1 done: they live in Quaum. Then 2.\n  -> search({\"query\": \"Quaum region\"})\n  <- Quaum is in the high lakes. Wexqua is in the central basin. Quaum has a population of 63118.\nassistant: 2: Quaum is in the high lakes.\nSo the answer is the high lakes.\nAnswer: the high lakes",
+     "user: How many people live in my town?\nassistant: Steps:\n1. which town they live in (ask them)\n2. the population of their town (search)\nGetting 1 first.\n  -> ask_person({\"question\": \"Which town is yours?\"})\n  <- i live in Selesh\nassistant: 1 done: they live in Selesh. Then 2.\n  -> search({\"query\": \"Selesh population\"})\n  <- Selesh has a population of 49110. Ringraja has a population of 24242. Selesh is in the central basin.\nassistant: 2: Selesh has a population of 49110.\nSo that's 49110.\nAnswer: 49110"
+    ],
+    "whose right": [
+     "user: I'm in Wexmok but my brother is in Oshlo. How many people live where he lives?\nassistant: I need:\nGiven in the message: the brother lives in Oshlo\n1. the population of Oshlo (search)\nGetting 1 first.\n  -> search({\"query\": \"Oshlo population\"})\n  <- Oshlo has a population of 34157. Oshlo was founded in 1775. Miky has a population of 33075.\nassistant: 1 done: Oshlo has a population of 34157.\nSo the answer is 34157.\nAnswer: 34157",
+     "user: random but im in vinosh but my brother is in wexko. how many people live where he lives lol\nassistant: I need:\nGiven in the message: the brother lives in Wexko\n1. the population of Wexko (search)\nGetting 1 first.\n  -> search({\"query\": \"Wexko population\"})\n  <- Wexko has a population of 94488. Wexko was founded in 1904. Ralko has a population of 19799.\nassistant: 1 done: Wexko has a population of 94488.\nSo the answer is 94488.\nAnswer: 94488"
+    ],
+    "H:cost-compare wrong": [
+     "user: ok this is gonna sound dumb but hey which costs more 11 wait no 10 nethmokduns or 4 pelwexneths if u know\nassistant: Steps:\n1. the price of a nethmokdun (search)\n2. the price of a pelwexneth (search)\n3. which is more expensive (calculator)\nGetting 1 first.\n  -> search({\"query\": \"nethmokdun price\"})\n  <- A nethmokdun costs 46 coins. A nethmokdun is made of copper. A grazel costs 51 coins.\nassistant: 1 done: A nethmokdun costs 46 coins. Then 2.\n  -> search({\"query\": \"pelwexneth price\"})\n  <- A pelwexneth costs 61 coins. A grazel costs 51 coins. A pelwexneth is made of oak.\nassistant: 2: A pelwexneth costs 61 coins. Then 3.\n  -> calculator({\"expression\": \"46 > 61\"})\n  <- false\nassistant: 3: 46 > 61 = false.\npelwexneth wins (nethmokdun 46 coins, pelwexneth 61 coins).\nAnswer: pelwexneth",
+     "user: Which costs more, 3 nethquaduns or 8 gravinlos?\nassistant: Steps:\n1. the price of a nethquadun (search)\n2. the price of a gravinlo (search)\n3. which is more expensive (calculator)\nGetting 1 first.\n  -> search({\"query\": \"nethquadun price\"})\n  <- A nethquadun costs 61 coins. A nethquadun is made of bamboo. A kymok costs 26 coins.\nassistant: 1 done: A nethquadun costs 61 coins. Then 2.\n  -> search({\"query\": \"gravinlo price\"})\n  <- A gravinlo costs 32 coins. A gravinlo is made of clay. A kyvor costs 35 coins.\nassistant: 2: A gravinlo costs 32 coins. Then 3.\n  -> calculator({\"expression\": \"61 > 32\"})\n  <- true\nassistant: 3: 61 > 32 = true.\nnethquadun wins (nethquadun 61 coins, gravinlo 32 coins).\nAnswer: nethquadun"
+    ],
+    "H:cost-compare right": [
+     "user: What's more expensive: 8 mokfens or 10 nethwexquas?\nassistant: Steps:\n1. the price of a mokfen (search)\n2. the price of a nethwexqua (search)\n3. which is more expensive (calculator)\nGetting 1 first.\n  -> search({\"query\": \"mokfen price\"})\n  <- A mokfen costs 28 coins. A fenbriul costs 20 coins. A mokfen is made of glass.\nassistant: 1: A mokfen costs 28 coins. Then 2.\n  -> search({\"query\": \"nethwexqua price\"})\n  <- A nethwexqua costs 44 coins. A mokfen costs 28 coins. A nethwexqua is made of oak.\nassistant: 2: A nethwexqua costs 44 coins. Then 3.\n  -> calculator({\"expression\": \"28 > 44\"})\n  <- false\nassistant: 3: 28 > 44 = false.\nnethwexqua wins (mokfen 28 coins, nethwexqua 44 coins).\nAnswer: nethwexqua",
+     "user: Which costs more, 11 tadunvors or 7 quarinuls?\nassistant: Steps:\n1. the price of a tadunvor (search)\n2. the price of a quarinul (search)\n3. which is more expensive (calculator)\nGetting 1 first.\n  -> search({\"query\": \"tadunvor price\"})\n  <- A tadunvor costs 22 coins. A tagra costs 11 coins. A tadunvor weighs 32 kg.\nassistant: 1 done: A tadunvor costs 22 coins. Then 2.\n  -> search({\"query\": \"quarinul price\"})\n  <- A quarinul costs 64 coins. A tadunvor costs 22 coins. A quarinul weighs 15 kg.\nassistant: 2: A quarinul costs 64 coins. Then 3.\n  -> calculator({\"expression\": \"22 > 64\"})\n  <- false\nassistant: 3: 22 > 64 = false.\nquarinul wins (tadunvor 22 coins, quarinul 64 coins).\nAnswer: quarinul"
+    ],
+    "H:argmax4 right": [
+     "user: Out of Dunmi, Jagra, Umdralo or Milo, which is the biggest?\nassistant: I need:\n1. the population of Dunmi (search)\n2. the population of Jagra (search)\n3. the population of Umdralo (search)\n4. the population of Milo (search)\n5. which is bigger (calculator)\nGetting 1 first.\n  -> search({\"query\": \"Dunmi population\"})\n  <- Dunmi has a population of 42980. Dunmi was founded in 1967. Nethsel has a population of 41642.\nassistant: 1 done: Dunmi has a population of 42980. Then 2.\n  -> search({\"query\": \"Jagra population\"})\n  <- Jagra has a population of 90450. Jagra is in the central basin. Nethsel has a population of 41642.\nassistant: 2: Jagra has a population of 90450. Then 3.\n  -> search({\"query\": \"Umdralo population\"})\n  <- Umdralo has a population of 89206. Umdralo was founded in 1751. Milo has a population of 73355.\nassistant: 3: Umdralo has a population of 89206. Then 4.\n  -> calculator({\"expression\": \"max(42980, 90450, 89206)\"})\n  <- 90450\nassistant: 4: max(42980, 90450, 89206) = 90450.\nJagra wins (Dunmi 42980, Jagra 90450, Umdralo 89206).\nAnswer: Jagra",
+     "user: hey so which is the biggest: pello tirumky loum or oshqua idk\nassistant: I need:\n1. the population of Pello (search)\n2. the population of Tirumky (search)\n3. the population of Oshqua (search)\n4. which is bigger (calculator)\nGetting 1 first.\n  -> search({\"query\": \"Pello population\"})\n  <- Pello has a population of 36564. Pello is in the central basin. Kyjaneth has a population of 2136.\nassistant: 1 done: Pello has a population of 36564. Then 2.\n  -> search({\"query\": \"Tirumky population\"})\n  <- Tirumky has a population of 30574. Kyjaneth has a population of 2136. Tirumky was founded in 1656.\nassistant: 2: Tirumky has a population of 30574. Then 3.\n  -> search({\"query\": \"Oshqua population\"})\n  <- Oshqua has a population of 47731. Kymi has a population of 69368. Oshqua is in the eastern hills.\nassistant: 3: Oshqua has a population of 47731. Then 4.\n  -> calculator({\"expression\": \"max(36564, 30574, 47731)\"})\n  <- 47731\nassistant: 4: max(36564, 30574, 47731) = 47731.\nOshqua wins (Pello 36564, Tirumky 30574, Oshqua 47731).\nAnswer: Oshqua"
+    ],
+    "H:argmax4 wrong": [
+     "user: Who is the oldest: Umsorvin, Vorlo, Tavinky or Peloshmi?\nassistant: Steps:\n1. Umsorvin's age (search)\n2. Vorlo's age (search)\n3. Tavinky's age (search)\n4. Peloshmi's age (search)\n5. which is older (calculator)\nGetting 1 first.\n  -> search({\"query\": \"Umsorvin age\"})\n  <- Umsorvin is 68 years old. Tavinky is 72 years old. Umsorvin lives in Uldra.\nassistant: 1 done: Umsorvin is 68 years old. Then 2.\n  -> search({\"query\": \"Vorlo age\"})\n  <- Vorlo is 64 years old. Tavinky is 72 years old. Vorlo works as a librarian.\nassistant: 2: Vorlo is 64 years old. Then 3.\n  -> search({\"query\": \"Tavinky age\"})\n  <- Tavinky is 72 years old. Kykodun is 29 years old. Tavinky works as a teacher.\nassistant: 3: Tavinky is 72 years old. Then 4.\n  -> calculator({\"expression\": \"max(68, 64, 72)\"})\n  <- 72\nassistant: 4: max(68, 64, 72) = 72.\nPeloshmi wins (Umsorvin 68, Vorlo 64, Tavinky 72).\nAnswer: Peloshmi",
+     "user: Which is the biggest: Pelmiko, Bapel, Thudraosh or Vornethrin?\nassistant: Steps:\n1. the population of Pelmiko (search)\n2. the population of Bapel (search)\n3. the population of Thudraosh (search)\n4. the population of Vornethrin (search)\n5. which is bigger (calculator)\nGetting 1 first.\n  -> search({\"query\": \"Pelmiko population\"})\n  <- Pelmiko has a population of 80721. Vornethrin has a population of 39689. Pelmiko is in the south valley.\nassistant: 1 done: Pelmiko has a population of 80721. Then 2.\n  -> search({\"query\": \"Bapel population\"})\n  <- Bapel has a population of 68829. Zelrin has a population of 58190. Bapel was founded in 1841.\nassistant: 2: Bapel has a population of 68829. Then 3.\n  -> search({\"query\": \"Thudraosh population\"})\n  <- Thudraosh has a population of 87274. Bapel has a population of 68829. Thudraosh was founded in 1953.\nassistant: 3: Thudraosh has a population of 87274. Then 4.\n  -> search({\"query\": \"Vornethrin population\"})\n  <- Vornethrin has a population of 39689. Vornethrin was founded in 1968. Thudraosh has a population of 87274.\nassistant: 4: Vornethrin has a population of 39689. Then 5.\n  -> calculator({\"expression\": \"max(80721, 68829, 39689)\"})\n  <- 80721\nassistant: So 5 is done: max(80721, 68829, 39689) = 80721.\nPelmiko wins (Pelmiko 80721, Bapel 68829, Thudraosh 87274, Vornethrin 39689).\nAnswer: Pelmiko"
+    ],
+    "H:bridge-compare right": [
+     "user: ok wait which is bigger: rineshjas town or loulneth idk\nassistant: I need:\n1. the population of Rineshjas (search)\n2. the population of Loulneth (search)\n3. which is bigger (calculator)\nGetting 1 first.\n  -> search({\"query\": \"Rineshjas population\"})\n  <- Rineshja lives in Grafen. Rineshja is 48 years old. Vorlo lives in Loulneth.\nassistant: 1 done: Rineshja lives in Grafen. Then 2.\n  -> search({\"query\": \"Loulneth population\"})\n  <- Loulneth has a population of 70568. Loulneth is in the western plains. Tami has a population of 76435.\nassistant: 2: Loulneth has a population of 70568. Then 3.\n  -> calculator({\"expression\": \"48 > 70568\"})\n  <- false\nassistant: 3: 48 > 70568 = false.\nLoulneth wins (Rineshja 48, Loulneth 70568).\nAnswer: Loulneth",
+     "user: Which is bigger: Fentirdra's town or Seldra?\nassistant: I need:\n1. where Fentirdra lives (search)\n2. where Seldra lives (search)\n3. which is bigger (calculator)\nGetting 1 first.\n  -> search({\"query\": \"where does Fentirdra live\"})\n  <- Fentirdra lives in Umbrija. Fentirdra is 34 years old. Jaum lives in Umbrija.\nassistant: 1 done: Fentirdra lives in Umbrija. Then 2.\n  -> search({\"query\": \"where does Seldra live\"})\n  <- Seldra is in the western plains. Badun is in the high lakes. Seldra has a population of 44470.\nassistant: 2: Seldra lives in the western plains. Then 3.\n  -> calculator({\"expression\": \"34 > 44470\"})\n  <- false\nassistant: 3: 34 > 44470 = false.\nSeldra wins (Fentirdra in Umbrija, Seldra in the western plains).\nAnswer: Seldra"
+    ],
+    "H:bridge-compare wrong": [
+     "user: Which is bigger: Kobripel's town or Drasor?\nassistant: I need:\n1. where Kobripel lives (search)\n2. where Drasor lives (search)\n3. which is bigger (calculator)\nGetting 1 first.\n  -> search({\"query\": \"where does Kobripel live\"})\n  <- Kobripel lives in Sordun. Tirrin lives in Eshtirral. Kobripel is 73 years old.\nassistant: 1 done: Kobripel lives in Sordun. Then 2.\n  -> search({\"query\": \"where does Drasor live\"})\n  <- Drasor is in the high lakes. Eshtirral is in the eastern hills. Drasor was founded in 1776.\nassistant: 2: Drasor lives in the high lakes. Then 3.\n  -> calculator({\"expression\": \"73 > 0\"})\n  <- true\nassistant: 3: 73 > 0 = true.\nKobripel wins (Kobripel 73, Drasor 0).\nAnswer: Kobripel",
+     "user: Is the town Oshfenthu lives in bigger than Sorraldun?\nassistant: Steps:\n1. where Oshfenthu lives (search)\n2. how big Sorraldun is (search)\n3. which is bigger (calculator)\nGetting 1 first.\n  -> search({\"query\": \"where does Oshfenthu live\"})\n  <- Oshfenthu lives in Tirsor. Oshfenthu is 66 years old. Dunta lives in Vinosh.\nassistant: 1 done: Oshfenthu lives in Tirsor. Then 2.\n  -> search({\"query\": \"Tirsor bigger than Sorraldun\"})\n  <- Tirsor has a population of 92816. Sorraldun has a population of 38991. Brigradra has a population of 20231. Tirsor was founded in 1851. Sorraldun is in the western plains.\nassistant: 2: Tirsor has a population of 92816. Then 3.\n  -> calculator({\"expression\": \"66 > 92816\"})\n  <- false\nassistant: 3: 66 > 92816 = false.\nSorraldun wins (Oshfenthu in Tirsor, Sorraldun in Vinosh).\nAnswer: Sorraldun"
+    ],
+    "H:ask-diff wrong": [
+     "user: How many more people live in my town than in Jalothu?\nassistant: Steps:\n1. the population of my town (search)\n2. the population of Jalothu (search)\n3. the difference (calculator)\nGetting 1 first.\n  -> search({\"query\": \"my town population\"})\n  <- No results.\nassistant: 1: My town population is 12.\nSo the answer is 12.\nAnswer: 12",
+     "user: hey how many more people live in my town than in vinsormi lol\nassistant: I need:\n1. the population of my town (search)\n2. the population of Vinsormi (search)\n3. the difference (calculator)\nGetting 1 first.\n  -> search({\"query\": \"my town population\"})\n  <- No results.\nassistant: 1 done: My town population is 1234.\nSo the answer is 1234.\nAnswer: 1234"
+    ],
+    "H:basket3 wrong": [
+     "user: random but whats the total for 11 mizelmis 11 quauls and 11 nethneths ??\nassistant: Steps:\n1. the price of a mizelmir (search)\n2. the price of a nethneth (search)\n3. the total (calculator)\nGetting 1 first.\n  -> search({\"query\": \"mizelmir price\"})\n  <- No results.\nassistant: 1 done: A mizelmir costs $12. Then 2.\n  -> search({\"query\": \"nethneth price\"})\n  <- A nethneth costs 54 coins. A quaul costs 74 coins. A nethneth weighs 23 kg.\nassistant: 2: A nethneth costs 54 coins. Then 3.\n  -> calculator({\"expression\": \"11 * 12 + 11 * 54\"})\n  <- 726\nassistant: 3: 11 * 12 + 11 * 54 = 726.\nSo that's 726 coins.\nAnswer: 726 coins",
+     "user: What's the total for 8 vorums, 5 oshnethsels and 5 ulselzels?\nassistant: Steps:\n1. the price of a vorum (search)\n2. the price of a ulselzel (search)\n3. the total (calculator)\nGetting 1 first.\n  -> search({\"query\": \"vorum price\"})\n  <- A vorum costs 72 coins. A vorum is made of bamboo. A ulselzel costs 33 coins.\nassistant: 1 done: A vorum costs 72 coins. 2 next.\n  -> search({\"query\": \"ulselzel price\"})\n  <- A ulselzel costs 33 coins. A ulselzel weighs 34 kg. A oshmok costs 80 coins.\nassistant: 2: A ulselzel costs 33 coins. 3 next.\n  -> calculator({\"expression\": \"8 * 72 + 5 * 33\"})\n  <- 741\nassistant: 3: 8 * 72 + 5 * 33 = 741.\nSo that's 741 coins.\nAnswer: 741 coins"
+    ],
+    "H:basket3 right": [
+     "user: How much would 10 bridras, 5 jamokzels and 8 fenpels cost altogether?\nassistant: Steps:\n1. the price of a bridra (search)\n2. the price of a jamokzel (search)\n3. the price of a fenpel (search)\n4. the total (calculator)\nGetting 1 first.\n  -> search({\"query\": \"bridra price\"})\n  <- A bridra costs 84 coins. A bridra is made of glass. A jamokzel costs 52 coins.\nassistant: 1: A bridra costs 84 coins. 2 next.\n  -> search({\"query\": \"jamokzel price\"})\n  <- A jamokzel costs 52 coins. A ulwex costs 17 coins. A jamokzel weighs 11 kg.\nassistant: 2: A jamokzel costs 52 coins. 3 next.\n  -> search({\"query\": \"fenpel price\"})\n  <- A fenpel costs 72 coins. A fenpel is made of oak. A jamokzel costs 52 coins.\nassistant: 3: A fenpel costs 72 coins. 4 next.\n  -> calculator({\"expression\": \"10 * 84 + 5 * 52 + 8 * 72\"})\n  <- 1676\nassistant: 4: 10 * 84 + 5 * 52 + 8 * 72 = 1676.\nSo that's 1676 coins.\nAnswer: 1676 coins",
+     "user: so i was looking at stuff earlier and ok so what's the total for 11 drasorfens, 2 selvorkys and 4 lorals haha\nassistant: Steps:\n1. the price of a drasorfen (search)\n2. the price of a selvorky (search)\n3. the price of a loral (search)\n4. the total (calculator)\nGetting 1 first.\n  -> search({\"query\": \"drasorfen price\"})\n  <- A drasorfen costs 92 coins. A drasorfen is made of leather. A oshoshneth costs 85 coins.\nassistant: 1 done: A drasorfen costs 92 coins. Then 2.\n  -> search({\"query\": \"selvorky price\"})\n  <- A selvorky costs 35 coins. A drasorfen costs 92 coins. A selvorky is made of bamboo.\nassistant: 2: A selvorky costs 35 coins. Then 3.\n  -> search({\"query\": \"loral price\"})\n  <- A loral costs 66 coins. A dradrawex costs 58 coins. A loral weighs 10 kg.\nassistant: 3: A loral costs 66 coins. Then 4.\n  -> calculator({\"expression\": \"11 * 92 + 2 * 35 + 4 * 66\"})\n  <- 1346\nassistant: 4: 11 * 92 + 2 * 35 + 4 * 66 = 1346.\nSo that's 1346 coins.\nAnswer: 1346 coins"
+    ]
+   }
+  }
+ },
+ "render_ok": true,
+ "eng_base": {
+  "raw": 2134.1741355968966,
+  "raw_masked": 2134.1741355968966,
+  "as_reply": 75.82058025991401
+ },
+ "ppl_base": 75.82058025991401
+}
