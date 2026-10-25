@@ -1,0 +1,20 @@
+{
+ "slug": "findout2-teacher-v2-0",
+ "flavor": "a100-large",
+ "timeout": "45m",
+ "files": [
+  "experiments/findout2/world2.py",
+  "experiments/findout2/teacher.py"
+ ],
+ "cmd": "python teacher.py --shard=0/2 --batch=96 --hours=0.5 --out=out",
+ "pip": [
+  "transformers>=4.57",
+  "accelerate"
+ ],
+ "outdir": "out",
+ "out": "experiments/findout2/hf-teacher-v2-0",
+ "job_id": "6ade3460046eb82b1ece68e2",
+ "url": "https://huggingface.co/jobs/kealjones/6ade3460046eb82b1ece68e2",
+ "started": "2026-10-25T16:54:56+00:00",
+ "sha": "03774baec2cca40073a75e29ab0be21a7ccdc8c6"
+}
