@@ -1,0 +1,10 @@
+{
+ "slug": "weird-quick-1",
+ "notebook": "experiments/weird/weird_quick.ipynb",
+ "out": "experiments/weird/kaggle-quick",
+ "gpu": true,
+ "internet": true,
+ "push_output": "Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/kealinit/weird-quick-1",
+ "ref": "kealinit/weird-quick-1",
+ "started": "2026-10-25T02:03:01+00:00"
+}
