@@ -157,7 +157,7 @@ def summarise(rows):
         return sum(1 for x in xs if x[k]) / len(xs) if xs else float("nan")
     out = {}
     for ty, xs in by.items():
-        out[ty] = {"n": len(xs), "ok": frac(xs, "ok"), "ok_clean": frac([x for x in xs if x["style"] == "clean"], "ok"),
+        out[ty] = {"n": len(xs), "ok": frac(xs, "ok"), "strict": frac(xs, "strict"), "strict": frac(xs, "strict"), "ok_clean": frac([x for x in xs if x["style"] == "clean"], "ok"),
                    "ok_messy": frac([x for x in xs if x["style"] == "messy"], "ok"), "coverage": sum(x["coverage"] for x in xs) / len(xs),
                    "needs_list": frac(xs, "needs_list"), "answer_line": frac(xs, "answer_line"),
                    "calc_when_needed": frac([x for x in xs if x["needs_calc"]], "calc"),
@@ -179,22 +179,30 @@ def transcript(s):
     return "\n".join(L)
 
 
-def perplexity(model, max_tokens):
-    """WikiText-2 test perplexity, 1024-token windows, each starting with the BOS token the model always sees first."""
+def english(model, max_tokens):
+    """English kept, three ways on WikiText-2 test: raw text (as before), raw text with an explicit mask and no cache,
+    and the same text as an assistant reply (the form this model actually writes in). Each window starts with BOS."""
     from datasets import load_dataset
     text = "\n\n".join(load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1", split="test")["text"])
     ids = tok(text, add_special_tokens=False, return_tensors="pt")["input_ids"][0][:max_tokens]
-    bos = torch.tensor([tok.convert_tokens_to_ids("<|startoftext|>")])
-    model.eval(); nll, n = 0.0, 0
-    with torch.no_grad():
-        for k in range(0, len(ids), 1024):
-            x = torch.cat([bos, ids[k:k + 1024]]).unsqueeze(0).to(DEV)
-            if x.shape[1] < 2:
-                break
-            with torch.autocast("cuda", dtype=torch.bfloat16):
-                logits = model(x[:, :-1]).logits.float()
-            nll += F.cross_entropy(logits[0], x[0, 1:], reduction="sum").item(); n += x.shape[1] - 1
-    return math.exp(nll / n)
+    head = tok("<|startoftext|><|im_start|>user\nWrite a passage of encyclopedia text.<|im_end|>\n<|im_start|>assistant\n",
+               add_special_tokens=False, return_tensors="pt")["input_ids"][0]
+    bos = head[:1]
+    model.eval(); out = {}
+    for mode in ("raw", "raw_masked", "as_reply"):
+        nll, n = 0.0, 0
+        with torch.no_grad():
+            for k in range(0, len(ids), 1024):
+                w = ids[k:k + 1024]
+                pre = head if mode == "as_reply" else bos
+                x = torch.cat([pre, w]).unsqueeze(0).to(DEV)
+                kw = {} if mode == "raw" else {"attention_mask": torch.ones_like(x[:, :-1]), "use_cache": False}
+                with torch.autocast("cuda", dtype=torch.bfloat16):
+                    logits = model(x[:, :-1], **kw).logits.float()
+                tgt = x[0, 1:].clone(); tgt[:len(pre) - 1] = -100        # score only the passage
+                nll += F.cross_entropy(logits[0], tgt, reduction="sum", ignore_index=-100).item(); n += int((tgt != -100).sum())
+        out[mode] = math.exp(nll / n)
+    return out
 
 
 CHAT = ["Write a two-line poem about rain.", "What's a good way to start learning guitar?", "Explain what a black hole is in two sentences.",
@@ -334,8 +342,9 @@ def main():
         shots.append((t["request"], gold_episode(t, r)[0]))
     ppl_tokens = 8000 if A.smoke else 120000
     base = load()
-    R["ppl_base"] = perplexity(base, ppl_tokens)
-    log(f"base WikiText-2 perplexity {R['ppl_base']:.2f}")
+    R["eng_base"] = english(base, ppl_tokens)
+    R["ppl_base"] = R["eng_base"]["as_reply"]
+    log(f"base English perplexity {R['eng_base']}")
     replay = None
     for arm in arms:
         t_arm = time.time()
@@ -350,7 +359,8 @@ def main():
             m = load()
             losses = train(m, ex + replay, A.epochs, A.lr)
         rows = run_eval(m, test, shots=shots if arm == "untouched" else ())
-        res = {"summary": summarise(rows), "ppl": R["ppl_base"] if arm == "untouched" else perplexity(m, ppl_tokens),
+        eng = R["eng_base"] if arm == "untouched" else english(m, ppl_tokens)
+        res = {"summary": summarise(rows), "eng": eng, "ppl": eng["as_reply"],
                "chat": chat_check(m, 3 if A.smoke else len(CHAT)), "minutes": (time.time() - t_arm) / 60}
         if arm != "untouched":
             res["n_train"], res["final_loss"] = ntrain, sum(losses[-10:]) / len(losses[-10:])
@@ -383,19 +393,20 @@ def report(R):
     trained = sorted({t for a in arms for t in R["arms"][a]["summary"] if not t.startswith("H:")})
     held = sorted({t for a in arms for t in R["arms"][a]["summary"] if t.startswith("H:")})
     L = ["# Findout pilot", "", f"LFM2.5-350M. Arms: {', '.join(arms)}. Renderer matches the chat template: {R['render_ok']}.", "",
-         "## Success by task type (clean / messy)", "", "| type | " + " | ".join(arms) + " |", "| --- |" + " --- |" * len(arms)]
+         "## Success by task type", "", "Strict = right answer and every needed step done (searched each fact, used the calculator, asked when needed). Right answer alone can be luck on which-questions. Brackets: right answer on clean / messy requests.", "", "| type | " + " | ".join(arms) + " |", "| --- |" + " --- |" * len(arms)]
     for ty in trained + held:
         cells = []
         for a in arms:
             v = R["arms"][a]["summary"].get(ty)
-            cells.append(f"**{pct(v['ok'])}** ({pct(v['ok_clean'])} / {pct(v['ok_messy'])})" if v else "")
+            cells.append(f"**{pct(v['strict'])}** strict, {pct(v['ok'])} right answer ({pct(v['ok_clean'])} / {pct(v['ok_messy'])})" if v else "")
         L.append(f"| {ty} | " + " | ".join(cells) + " |")
     def mean(a, tys, k="ok"):
         xs = [R["arms"][a]["summary"][t][k] for t in tys if t in R["arms"][a]["summary"]]
         xs = [x for x in xs if x == x]
         return sum(xs) / len(xs) if xs else float("nan")
-    L += ["| **trained types, mean** | " + " | ".join(pct(mean(a, trained)) for a in arms) + " |",
-          "| **held-out, mean** | " + " | ".join(pct(mean(a, held)) for a in arms) + " |", "",
+    L += ["| **trained types, mean (strict)** | " + " | ".join(pct(mean(a, trained, "strict")) for a in arms) + " |",
+          "| **held-out, mean (strict)** | " + " | ".join(pct(mean(a, held, "strict")) for a in arms) + " |",
+          "| held-out, mean (right answer) | " + " | ".join(pct(mean(a, held)) for a in arms) + " |", "",
           "## Habits", "", "| | " + " | ".join(arms) + " |", "| --- |" + " --- |" * len(arms)]
     for k, label in (("coverage", "searched every needed thing (held-out)"), ("needs_list", "needs list first (held-out)"),
                      ("calc_when_needed", "calculator when arithmetic was needed (held-out)"), ("answer_line", "ended with an Answer: line (held-out)")):
@@ -405,18 +416,20 @@ def report(R):
                           ("searched_given", "searched for what the message gave (lower is better)", ["given"])):
         L.append(f"| {label} | " + " | ".join(pct(mean(a, tys, k)) for a in arms) + " |")
     L += ["", "## English and plain chat", "", "| | " + " | ".join(arms) + " |", "| --- |" + " --- |" * len(arms),
-          "| WikiText-2 perplexity (base " + f"{R['ppl_base']:.2f}) | " + " | ".join(f"{R['arms'][a]['ppl']:.2f}" for a in arms) + " |"]
+          "| WikiText-2 perplexity, as an assistant reply | " + " | ".join(f"{R['arms'][a]['eng']['as_reply']:.2f}" for a in arms) + " |",
+          "| WikiText-2 perplexity, raw text, masked | " + " | ".join(f"{R['arms'][a]['eng']['raw_masked']:.2f}" for a in arms) + " |",
+          "| WikiText-2 perplexity, raw text (first method) | " + " | ".join(f"{R['arms'][a]['eng']['raw']:.2f}" for a in arms) + " |"]
     for k, label in (("tool_call", "plain chat replies with a tool call"), ("answer_line", "plain chat replies with an Answer: line"),
                      ("repeats", "plain chat replies that loop")):
         L.append(f"| {label} | " + " | ".join(f"{sum(c[k] for c in R['arms'][a]['chat'])}/{len(R['arms'][a]['chat'])}" for a in arms) + " |")
     L += ["", "## Verdict", ""]
     for a in [x for x in arms if x != "untouched"]:
-        h = mean(a, held); worst = min((R["arms"][a]["summary"][t]["ok"] for t in held), default=float("nan"))
+        h = mean(a, held, "strict"); worst = min((R["arms"][a]["summary"][t]["strict"] for t in held), default=float("nan"))
         ppl_up = R["arms"][a]["ppl"] / R["ppl_base"] - 1
         chat_bad = sum(c["tool_call"] or c["repeats"] for c in R["arms"][a]["chat"] if not c["tools_offered"])
         gap = mean(a, trained, "ok_clean") - mean(a, trained, "ok_messy")
-        checks = [(h >= 0.5 and worst >= 0.2, f"held-out mean {pct(h)} (need 50%), worst held-out type {pct(worst)} (need 20%)"),
-                  (ppl_up <= 0.15, f"English perplexity {ppl_up:+.0%} (need at most +15%)"),
+        checks = [(h >= 0.5 and worst >= 0.2, f"held-out strict mean {pct(h)} (need 50%), worst held-out type {pct(worst)} (need 20%)"),
+                  (ppl_up <= 0.15, f"English perplexity as an assistant reply {ppl_up:+.0%} (need at most +15%)"),
                   (chat_bad <= 1, f"{chat_bad} broken plain-chat replies without tools (need at most 1)"),
                   (gap <= 0.10, f"clean minus messy on trained types {gap * 100:+.0f} points (need at most 10)")]
         L.append(f"**{a}:** " + ("GO" if all(c for c, _ in checks) else "NOT YET"))
