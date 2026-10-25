@@ -1,0 +1,11 @@
+[  0.0 min] arms ['untouched', 'gold'], GPU NVIDIA L4, smoke=True
+[  0.0 min] renderer matches the chat template
+[  0.0 min] 30 test episodes (16 messy)
+[  0.1 min] base WikiText-2 perplexity 3078.62
+[  0.3 min] untouched: H:argmax4 0%, H:ask-diff 0%, H:basket3 0%, H:bridge-compare 100%, H:cost-compare 0%, argmax3 0%, ask 0%, basket2 0%, bridge 0%, compare2 0%, diff 0%, given 50%, lookup 0%, total 0%, whose 0%; ppl 3078.62
+[  0.4 min] 9 replay examples from the base model
+[  0.4 min] step 1/3 loss 2.753 lr 1.55e-05
+[  0.4 min] step 3/3 loss 1.672 lr 2.00e-06
+[  0.8 min] gold: H:argmax4 0%, H:ask-diff 0%, H:basket3 0%, H:bridge-compare 0%, H:cost-compare 0%, argmax3 0%, ask 0%, basket2 0%, bridge 0%, compare2 0%, diff 0%, given 0%, lookup 0%, total 0%, whose 0%; ppl 830.14
+[  1.2 min] exported: https://huggingface.co/kealjones/findout-pilot
+[  1.2 min] done
