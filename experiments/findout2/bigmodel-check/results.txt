@@ -1,0 +1,32 @@
+h-ad0     ok=True  strict=True  gold=16611     calls=4 | answer: 16,611
+h-ad1     ok=True  strict=True  gold=49390     calls=4 | answer: 49390
+h-ad3     ok=True  strict=True  gold=-22697    calls=4 | answer: Thuthu has 22,697 more people than Javorta.
+h-ad4     ok=True  strict=True  gold=-23415    calls=4 | answer: -23415 (Vorpelum has 23,415 fewer people than Kovin)
+h-ad5     ok=True  strict=True  gold=-42650    calls=4 | answer: Rinfen has 42,650 fewer people than Tirneth (it does not have more).
+h-ad8     ok=True  strict=True  gold=-28482    calls=4 | answer: Umneth has 28,482 fewer people than Kyeshdun (none more).
+h-am0     ok=True  strict=False gold=Jagra     calls=4 | answer: Jagra
+h-am1     ok=True  strict=True  gold=Oshqua    calls=4 | answer: Oshqua
+h-am10    ok=True  strict=True  gold=thutir    calls=5 | answer: thutir (10 legs)
+h-am4     ok=True  strict=True  gold=Tavorral  calls=5 | answer: Tavorral
+h-bc0     ok=True  strict=False gold=Loulneth  calls=8 | answer: Can't say; Loulneth has 70,568 people, but no size data was found for 
+h-bc1     ok=True  strict=False gold=Drasor    calls=3 | answer: Drasor
+h-bc2     ok=True  strict=True  gold=Seldra    calls=4 | answer: Seldra
+h-bc3     ok=False strict=False gold=Tirsor    calls=4 | answer: Yes, Tirsor (92,816) is bigger than Sorraldun (38,991).
+h-bc6     ok=True  strict=True  gold=Thural    calls=4 | answer: Thural (38,200 vs 22,267)
+h-bc7     ok=False strict=False gold=Eshpel    calls=3 | answer: No, Zelvinba (63,035) is smaller than Eshpel (76,433)
+s-ad0     ok=True  strict=False gold=16611     calls=3 | answer: 16,611
+s-ad1     ok=True  strict=True  gold=49390     calls=4 | answer: 49,390 more people
+s-ad3     ok=True  strict=True  gold=-22697    calls=4 | answer: Javorta has 22,697 fewer people than Thuthu
+s-ad4     ok=True  strict=True  gold=-23415    calls=4 | answer: None. Vorpelum has 23,415 fewer people than Kovin.
+s-ad5     ok=True  strict=True  gold=-42650    calls=4 | answer: None. Rinfen has 42,650 fewer people than Tirneth.
+s-ad8     ok=True  strict=True  gold=-28482    calls=4 | answer: None. Umneth has 28,482 fewer people than Kyeshdun.
+s-am0     ok=True  strict=False gold=Jagra     calls=4 | answer: Jagra
+s-am1     ok=True  strict=False gold=Oshqua    calls=3 | answer: Oshqua
+s-am10    ok=True  strict=False gold=thutir    calls=3 | answer: thutir
+s-am4     ok=True  strict=True  gold=Tavorral  calls=5 | answer: Tavorral
+s-bc0     ok=True  strict=True  gold=Loulneth  calls=4 | answer: Loulneth
+s-bc1     ok=True  strict=True  gold=Drasor    calls=4 | answer: Drasor
+s-bc2     ok=True  strict=True  gold=Seldra    calls=4 | answer: Seldra
+s-bc3     ok=False strict=False gold=Tirsor    calls=4 | answer: Yes
+s-bc6     ok=True  strict=True  gold=Thural    calls=4 | answer: Loeshlo's town (Thural)
+s-bc7     ok=False strict=False gold=Eshpel    calls=4 | answer: No
