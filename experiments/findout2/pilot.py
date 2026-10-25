@@ -267,6 +267,20 @@ def teacher_examples(path, n):
     return [encode(render_lfm(x["messages"], user=x["request"])) for x in kept[:n]]
 
 
+def micro_batches(batch, micro=8, budget=2048):
+    """Split a batch into pieces of at most `micro` examples whose padded size stays under `budget` tokens.
+    Same gradient as one big batch (the loss is normalised over the whole batch); only the peak memory changes.
+    The logits over the ~65k-word vocabulary are what overflow a 22 GB card when examples are long."""
+    out, cur = [], []
+    for ex in sorted(batch, key=lambda e: len(e[0])):
+        if cur and (len(cur) + 1 > micro or (len(cur) + 1) * len(ex[0]) > budget):
+            out.append(cur); cur = []
+        cur.append(ex)
+    if cur:
+        out.append(cur)
+    return out
+
+
 def train(model, examples, epochs, lr, bs=16, micro=8):
     random.Random(0).shuffle(examples)
     steps = max(1, int(len(examples) * epochs / bs))
@@ -283,8 +297,7 @@ def train(model, examples, epochs, lr, bs=16, micro=8):
         batch = [examples[i] for i in order[s * bs:(s + 1) * bs]]
         ntok = sum(sum(1 for l in lab if l != -100) for _, lab in batch)
         tot = 0.0
-        for k in range(0, bs, micro):
-            mb = batch[k:k + micro]
+        for mb in micro_batches(batch, micro):
             L = max(len(x) for x, _ in mb)
             ids = torch.tensor([x + [PAD] * (L - len(x)) for x, _ in mb], device=DEV)
             lab = torch.tensor([y + [-100] * (L - len(y)) for _, y in mb], device=DEV)
