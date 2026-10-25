@@ -1,0 +1,36 @@
+[  0.7 min] example prompt:
+<bos><|turn>system
+You figure things out for the person. You know nothing about this world's towns, items, people or creatures, so look up every fact you need with search; never guess one. Use the calculator for all arithmetic and comparisons. Ask the person only for things only they know. If the message already gives a fact, use it without searching. Start by listing what you need, then get each piece with one tool call at a time. Finish with a short reply whose last line is 'Answer: <short answer>'.<|tool>declaration:search{description:<|"|>Look something up. Returns a few short facts.<|"|>,parameters:{properties:{query:{description:<|"|>what to look up<|"|>,type:<|"|>STRING<|"|>}},required:[<|"|>query<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><|tool>declaration:calculator{description:<|"|>Exact arithmetic: numbers with + - * / ( ), < > to compare, max(...) and min(...).<|"|>,parameters:{properties:{expression:{type:<|"|>STRING<|"|>}},required:[<|"|>expression<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><|tool>declaration:ask_person{description:<|"|>Ask the person something only they know.<|"|>,parameters:{properties:{question:{type:<|"|>STRING<|"|>}},required:[<|"|>question<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><turn|>
+<|turn>user
+ok this is gonna sound dumb but hey which costs more 11 wait no 10 nethmokduns or 4 pelwexneths if u know<turn|>
+<|turn>model
+
+[  1.0 min] google/gemma-4-E2B-it: turn 1, 120 still going
+[  2.0 min] google/gemma-4-E2B-it: turn 2, 111 still going
+[  3.1 min] google/gemma-4-E2B-it: turn 3, 90 still going
+[  4.5 min] google/gemma-4-E2B-it: turn 4, 45 still going
+[  5.0 min] google/gemma-4-E2B-it: turn 5, 15 still going
+[  5.3 min] google/gemma-4-E2B-it: turn 6, 7 still going
+[  5.5 min] google/gemma-4-E2B-it: turn 7, 3 still going
+[  5.6 min] google/gemma-4-E2B-it: turn 8, 3 still going
+[  5.6 min] google/gemma-4-E2B-it: turn 9, 3 still going
+[  5.6 min] google/gemma-4-E2B-it: turn 10, 3 still going
+[  5.6 min] google/gemma-4-E2B-it: turn 11, 3 still going
+[  5.7 min] google/gemma-4-E2B-it: turn 12, 0 still going
+[  5.7 min] gemma-4-E2B-it | 61% | 46% | 59% | 50% | 13/16 | 5.7
+[  7.3 min] example prompt:
+<bos><|turn>system
+You figure things out for the person. You know nothing about this world's towns, items, people or creatures, so look up every fact you need with search; never guess one. Use the calculator for all arithmetic and comparisons. Ask the person only for things only they know. If the message already gives a fact, use it without searching. Start by listing what you need, then get each piece with one tool call at a time. Finish with a short reply whose last line is 'Answer: <short answer>'.<|tool>declaration:search{description:<|"|>Look something up. Returns a few short facts.<|"|>,parameters:{properties:{query:{description:<|"|>what to look up<|"|>,type:<|"|>STRING<|"|>}},required:[<|"|>query<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><|tool>declaration:calculator{description:<|"|>Exact arithmetic: numbers with + - * / ( ), < > to compare, max(...) and min(...).<|"|>,parameters:{properties:{expression:{type:<|"|>STRING<|"|>}},required:[<|"|>expression<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><|tool>declaration:ask_person{description:<|"|>Ask the person something only they know.<|"|>,parameters:{properties:{question:{type:<|"|>STRING<|"|>}},required:[<|"|>question<|"|>],type:<|"|>OBJECT<|"|>}}<tool|><turn|>
+<|turn>user
+ok this is gonna sound dumb but hey which costs more 11 wait no 10 nethmokduns or 4 pelwexneths if u know<turn|>
+<|turn>model
+
+[  7.9 min] google/gemma-4-E4B-it: turn 1, 120 still going
+[  8.5 min] google/gemma-4-E4B-it: turn 2, 115 still going
+[  9.5 min] google/gemma-4-E4B-it: turn 3, 112 still going
+[ 10.6 min] google/gemma-4-E4B-it: turn 4, 76 still going
+[ 11.4 min] google/gemma-4-E4B-it: turn 5, 18 still going
+[ 11.8 min] google/gemma-4-E4B-it: turn 6, 2 still going
+[ 11.8 min] google/gemma-4-E4B-it: turn 7, 0 still going
+[ 11.8 min] gemma-4-E4B-it | 67% | 49% | 77% | 72% | 12/16 | 6.1
+[ 11.8 min] done
