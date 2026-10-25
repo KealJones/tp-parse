@@ -4,7 +4,7 @@ Claude then grades every answer against `rule` by hand and publishes answer + ve
 import json
 
 T = [
- dict(ctx="", msg="kill 8080",
+ dict(ctx="Earlier in this session, the assistant started a dev server on port 8080.", msg="kill 8080",
       rule="Gives a working shell command that kills the process listening on port 8080 (e.g. lsof -ti :8080 | xargs kill, fuser -k 8080/tcp, npx kill-port 8080).",
       auto=[r"8080", r"(lsof|fuser|kill-port|netstat|ss -)"], fail_if=[]),
  dict(ctx="", msg="undo last commit but keep changes",
