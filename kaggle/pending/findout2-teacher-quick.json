@@ -1,0 +1,10 @@
+{
+ "slug": "findout2-teacher-quick",
+ "notebook": "experiments/findout2/teacher_quick.ipynb",
+ "out": "experiments/findout2/kaggle-teacher-quick",
+ "gpu": true,
+ "internet": true,
+ "push_output": "Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/kealinit/findout2-teacher-quick",
+ "ref": "kealinit/findout2-teacher-quick",
+ "started": "2026-10-25T16:25:55+00:00"
+}
