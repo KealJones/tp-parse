@@ -6,5 +6,8 @@
  "internet": true,
  "push_output": "Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/kealinit/findout2-teacher-quick",
  "ref": "kealinit/findout2-teacher-quick",
- "started": "2026-10-25T16:25:55+00:00"
+ "started": "2026-10-25T16:25:55+00:00",
+ "finished": "2026-10-25T16:45:34+00:00",
+ "result": "complete",
+ "hours": 0.33
 }
