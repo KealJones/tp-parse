@@ -6,5 +6,8 @@
  "internet": true,
  "push_output": "Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/kealinit/weird-quick-1",
  "ref": "kealinit/weird-quick-1",
- "started": "2026-10-25T02:03:01+00:00"
+ "started": "2026-10-25T02:03:01+00:00",
+ "finished": "2026-10-25T02:13:29+00:00",
+ "result": "complete",
+ "hours": 0.17
 }

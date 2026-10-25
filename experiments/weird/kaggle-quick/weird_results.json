@@ -1,0 +1,32 @@
+{
+ "baseline": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 18470.04359450857,
+  "params_M": 6.849792,
+  "val_loss": 10.544466889210236,
+  "wiki_ppl": 42998.49818181188,
+  "blimp": 0.4,
+  "hellaswag": 0.35
+ },
+ "baseline seed 2": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 58787.41373103766,
+  "params_M": 6.849792,
+  "val_loss": 10.556629572159204,
+  "wiki_ppl": 42063.950658717375,
+  "blimp": 0.7,
+  "hellaswag": 0.35
+ },
+ "baseline seed 3": {
+  "train_curve": [],
+  "blew_up": false,
+  "tok_per_s": 59070.23560882691,
+  "params_M": 6.849792,
+  "val_loss": 10.543860225188427,
+  "wiki_ppl": 42186.14293142217,
+  "blimp": 0.3333333333333333,
+  "hellaswag": 0.2
+ }
+}
