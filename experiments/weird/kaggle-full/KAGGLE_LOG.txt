@@ -1,0 +1,97 @@
+[{"stream_name":"stderr","time":5.758730964,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":5.758784458,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":6.555091377,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.555118057,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.55512933,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.55513323,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":7.121075883,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.121118334,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.12112387,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.121127853,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":37.14206875,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":37.142095719,"data":"\n"}
+,{"stream_name":"stderr","time":37.142100256,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":41.905679835,"data":"[   0.5 min] tokenising FineWeb-Edu\n"}
+,{"stream_name":"stderr","time":51.041820876,"data":"[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (1055 \u003e 1024). Running this sequence through the model will result in indexing errors\n"}
+,{"stream_name":"stderr","time":51.04189138,"data":"\n"}
+,{"stream_name":"stderr","time":51.04189654,"data":"[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (1055 \u003e 1024). Running this sequence through the model will result in indexing errors\n"}
+,{"stream_name":"stdout","time":138.603475833,"data":"[   2.1 min] train 60.0M tokens, val 1.00M (tokens per variant: 33M)\n"}
+,{"stream_name":"stdout","time":369.878748891,"data":"[   5.9 min] tests: wikitext 287644 tokens, blimp 6700 pairs, hellaswag 1000\n"}
+,{"stream_name":"stdout","time":369.879679608,"data":"[   5.9 min] === baseline\n"}
+,{"stream_name":"stdout","time":1117.528926642,"data":"[  18.4 min]     val 4.95000541899916  wiki 506.797174219542  blimp 0.6182089552238806  hellaswag 0.278  45k tok/s\n"}
+,{"stream_name":"stdout","time":1117.763724536,"data":"[  18.4 min] === baseline seed 2\n"}
+,{"stream_name":"stdout","time":1867.602995633,"data":"[  30.9 min]     val 4.965486009122162  wiki 538.1446787301634  blimp 0.6040298507462687  hellaswag 0.276  45k tok/s\n"}
+,{"stream_name":"stdout","time":1867.82531651,"data":"[  30.9 min] === baseline seed 3\n"}
+,{"stream_name":"stdout","time":2617.668150055,"data":"[  43.4 min]     val 4.9584776345608  wiki 544.8963693488197  blimp 0.6325373134328358  hellaswag 0.279  45k tok/s\n"}
+,{"stream_name":"stdout","time":2617.890819862,"data":"[  43.4 min] === sin after attention\n"}
+,{"stream_name":"stdout","time":3370.989950425,"data":"[  55.9 min]     val 4.990546735078936  wiki 615.1127937536988  blimp 0.6240298507462687  hellaswag 0.275  45k tok/s\n"}
+,{"stream_name":"stdout","time":3371.221309487,"data":"[  55.9 min] === sign-sqrt after attention\n"}
+,{"stream_name":"stdout","time":4145.783473115,"data":"[  68.9 min]     val 5.01446337756046  wiki 679.9015536965  blimp 0.608955223880597  hellaswag 0.274  43k tok/s\n"}
+,{"stream_name":"stdout","time":4146.019633492,"data":"[  68.9 min] === learned cubic after attention\n"}
+,{"stream_name":"stdout","time":4978.969982678,"data":"[  82.7 min]     val 4.931125475819515  wiki 508.4988832002308  blimp 0.6208955223880597  hellaswag 0.277  40k tok/s\n"}
+,{"stream_name":"stdout","time":4979.203720339,"data":"[  82.7 min] === log after MLP\n"}
+,{"stream_name":"stdout","time":5764.900493132,"data":"[  95.8 min]     val 4.931041886241267  wiki 473.60816209074136  blimp 0.6320895522388059  hellaswag 0.273  43k tok/s\n"}
+,{"stream_name":"stdout","time":5765.13525856,"data":"[  95.8 min] === learned power after MLP\n"}
+,{"stream_name":"stdout","time":6577.155177388,"data":"[ 109.4 min]     val 4.960385096482113  wiki 575.4115120307954  blimp 0.62  hellaswag 0.267  41k tok/s\n"}
+,{"stream_name":"stdout","time":6577.392763482,"data":"[ 109.4 min] === rounding after MLP\n"}
+,{"stream_name":"stdout","time":7335.939144352,"data":"[ 122.0 min]     val 4.985639981105275  wiki 616.3462303662902  blimp 0.6135820895522388  hellaswag 0.273  44k tok/s\n"}
+,{"stream_name":"stdout","time":7336.161870504,"data":"[ 122.0 min] === running mean after MLP\n"}
+,{"stream_name":"stdout","time":8127.832782311,"data":"[ 135.2 min]     val 4.963593877283537  wiki 533.1403223119385  blimp 0.6259701492537313  hellaswag 0.285  42k tok/s\n"}
+,{"stream_name":"stdout","time":8128.06493672,"data":"[ 135.2 min] === abs before MLP\n"}
+,{"stream_name":"stdout","time":8886.534008747,"data":"[ 147.9 min]     val 5.2252343300361845  wiki 860.5620883944343  blimp 0.6040298507462687  hellaswag 0.273  44k tok/s\n"}
+,{"stream_name":"stdout","time":8886.779782427,"data":"[ 147.9 min] === channel max before MLP\n"}
+,{"stream_name":"stdout","time":9681.842276026,"data":"[ 161.1 min]     val 5.073761327170251  wiki 704.4830608386486  blimp 0.6143283582089553  hellaswag 0.275  42k tok/s\n"}
+,{"stream_name":"stdout","time":9682.089426651,"data":"[ 161.1 min] === fourier before MLP\n"}
+,{"stream_name":"stdout","time":10467.076060627,"data":"[ 174.2 min]     val 4.965319739936012  wiki 549.9877751213896  blimp 0.6223880597014926  hellaswag 0.268  43k tok/s\n"}
+,{"stream_name":"stdout","time":10467.312057806,"data":"[ 174.2 min] === gaussian squash before attention\n"}
+,{"stream_name":"stdout","time":11269.214467135,"data":"[ 187.6 min]     val 4.973011348165736  wiki 586.8401063336286  blimp 0.6037313432835821  hellaswag 0.272  42k tok/s\n"}
+,{"stream_name":"stdout","time":11269.447255276,"data":"[ 187.6 min] === tanh cap between blocks (known-ish)\n"}
+,{"stream_name":"stdout","time":12041.852886154,"data":"[ 200.5 min]     val 4.9550226736972105  wiki 533.2193587628083  blimp 0.6201492537313433  hellaswag 0.285  44k tok/s\n"}
+,{"stream_name":"stdout","time":12042.084925655,"data":"[ 200.5 min] === random rotation between blocks\n"}
+,{"stream_name":"stdout","time":12799.145534096,"data":"[ 213.1 min]     val 4.971794198490813  wiki 536.3644965429286  blimp 0.6253731343283582  hellaswag 0.273  44k tok/s\n"}
+,{"stream_name":"stdout","time":12799.378720206,"data":"[ 213.1 min] === swap halves between blocks\n"}
+,{"stream_name":"stdout","time":13558.276109792,"data":"[ 225.7 min]     val 4.944785783672968  wiki 542.3068229599857  blimp 0.6128358208955224  hellaswag 0.271  44k tok/s\n"}
+,{"stream_name":"stdout","time":13558.507880818,"data":"[ 225.7 min] === noise between blocks\n"}
+,{"stream_name":"stdout","time":14321.16346171,"data":"[ 238.4 min]     val 4.954801135837147  wiki 561.2438796351314  blimp 0.6137313432835821  hellaswag 0.276  44k tok/s\n"}
+,{"stream_name":"stdout","time":14321.395859829,"data":"[ 238.5 min] === attention x MLP product\n"}
+,{"stream_name":"stdout","time":15092.947902781,"data":"[ 251.3 min]     val 4.962533378991724  wiki 538.5533637618807  blimp 0.6125373134328358  hellaswag 0.283  44k tok/s\n"}
+,{"stream_name":"stdout","time":15093.183469558,"data":"# Weird maths in a transformer: results\n"}
+,{"stream_name":"stdout","time":15093.183499351,"data":"\n"}
+,{"stream_name":"stdout","time":15093.183506191,"data":"GPT, 6 layers, width 384, 30M parameters (incl. embeddings), GPT-2 tokenizer, 33M FineWeb-Edu tokens each, same batches and seed.\n"}
+,{"stream_name":"stdout","time":15093.183511654,"data":"Baseline FineWeb val loss 4.958 ± 0.008 (std over 3 seeds); a difference smaller than about 0.016 is probably noise.\n"}
+,{"stream_name":"stdout","time":15093.183517994,"data":"\n"}
+,{"stream_name":"stdout","time":15093.183522975,"data":"| variant | FineWeb val loss | vs baseline | WikiText-2 ppl | BLiMP | HellaSwag | tokens/s | blew up |\n"}
+,{"stream_name":"stdout","time":15093.183528217,"data":"|---|---|---|---|---|---|---|---|\n"}
+,{"stream_name":"stdout","time":15093.183532971,"data":"| log after MLP | 4.931 | -0.027 | 474 | 63.2% | 27.3% | 43k |  |\n"}
+,{"stream_name":"stdout","time":15093.183538,"data":"| learned cubic after attention | 4.931 | -0.027 | 508 | 62.1% | 27.7% | 40k |  |\n"}
+,{"stream_name":"stdout","time":15093.183543406,"data":"| swap halves between blocks | 4.945 | -0.013 | 542 | 61.3% | 27.1% | 44k |  |\n"}
+,{"stream_name":"stdout","time":15093.183549135,"data":"| baseline | 4.950 | -0.008 | 507 | 61.8% | 27.8% | 45k |  |\n"}
+,{"stream_name":"stdout","time":15093.183554352,"data":"| noise between blocks | 4.955 | -0.003 | 561 | 61.4% | 27.6% | 44k |  |\n"}
+,{"stream_name":"stdout","time":15093.183559577,"data":"| tanh cap between blocks (known-ish) | 4.955 | -0.003 | 533 | 62.0% | 28.5% | 44k |  |\n"}
+,{"stream_name":"stdout","time":15093.18356474,"data":"| baseline seed 3 | 4.958 | +0.000 | 545 | 63.3% | 27.9% | 45k |  |\n"}
+,{"stream_name":"stdout","time":15093.183569845,"data":"| learned power after MLP | 4.960 | +0.002 | 575 | 62.0% | 26.7% | 41k |  |\n"}
+,{"stream_name":"stdout","time":15093.183575119,"data":"| attention x MLP product | 4.963 | +0.005 | 539 | 61.3% | 28.3% | 44k |  |\n"}
+,{"stream_name":"stdout","time":15093.183580428,"data":"| running mean after MLP | 4.964 | +0.006 | 533 | 62.6% | 28.5% | 42k |  |\n"}
+,{"stream_name":"stdout","time":15093.183585634,"data":"| fourier before MLP | 4.965 | +0.007 | 550 | 62.2% | 26.8% | 43k |  |\n"}
+,{"stream_name":"stdout","time":15093.183590686,"data":"| baseline seed 2 | 4.965 | +0.007 | 538 | 60.4% | 27.6% | 45k |  |\n"}
+,{"stream_name":"stdout","time":15093.183595253,"data":"| random rotation between blocks | 4.972 | +0.014 | 536 | 62.5% | 27.3% | 44k |  |\n"}
+,{"stream_name":"stdout","time":15093.183600418,"data":"| gaussian squash before attention | 4.973 | +0.015 | 587 | 60.4% | 27.2% | 42k |  |\n"}
+,{"stream_name":"stdout","time":15093.183605315,"data":"| rounding after MLP | 4.986 | +0.028 | 616 | 61.4% | 27.3% | 44k |  |\n"}
+,{"stream_name":"stdout","time":15093.183610397,"data":"| sin after attention | 4.991 | +0.033 | 615 | 62.4% | 27.5% | 45k |  |\n"}
+,{"stream_name":"stdout","time":15093.183615586,"data":"| sign-sqrt after attention | 5.014 | +0.056 | 680 | 60.9% | 27.4% | 43k |  |\n"}
+,{"stream_name":"stdout","time":15093.183620761,"data":"| channel max before MLP | 5.074 | +0.116 | 704 | 61.4% | 27.5% | 42k |  |\n"}
+,{"stream_name":"stdout","time":15093.183638971,"data":"| abs before MLP | 5.225 | +0.267 | 861 | 60.4% | 27.3% | 44k |  |\n"}
+,{"stream_name":"stdout","time":15093.1836434,"data":"\n"}
+,{"stream_name":"stdout","time":15093.183647372,"data":"HellaSwag chance is 25%; BLiMP chance is 50%. Lower loss and perplexity are better.\n"}
+,{"stream_name":"stdout","time":15093.183651959,"data":"\n"}
+,{"stream_name":"stdout","time":15093.183656352,"data":"Total time 251 min.\n"}
+,{"stream_name":"stdout","time":15093.183660254,"data":"\n"}
+,{"stream_name":"stderr","time":15098.959833052,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":15098.959872127,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":15099.139083988,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":15099.139111511,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":15100.007995303,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":15100.549063978,"data":"[NbConvertApp] Writing 3488663 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":15103.444641087,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":15104.598055081,"data":"[NbConvertApp] Writing 3139996 bytes to __results__.html\n"}
+]
