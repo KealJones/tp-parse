@@ -1,0 +1,20 @@
+{
+ "slug": "findout2-smoke",
+ "flavor": "l4x1",
+ "timeout": "25m",
+ "files": [
+  "experiments/findout2/world2.py",
+  "experiments/findout2/pilot.py"
+ ],
+ "cmd": "python pilot.py --smoke --arms untouched,gold --export",
+ "pip": [
+  "transformers>=4.57",
+  "datasets"
+ ],
+ "outdir": "out",
+ "out": "experiments/findout2/hf-smoke",
+ "job_id": "6ade2d8f1e112550ce7ec920",
+ "url": "https://huggingface.co/jobs/kealjones/6ade2d8f1e112550ce7ec920",
+ "started": "2026-10-25T16:25:51+00:00",
+ "sha": "5c11765a87f27acb5184cd16a1d6da3be98e7334"
+}
