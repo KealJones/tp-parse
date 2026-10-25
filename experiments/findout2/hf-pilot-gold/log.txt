@@ -1,0 +1,25 @@
+[  0.0 min] arms ['untouched', 'gold'], GPU NVIDIA L4, smoke=False
+[  0.0 min] renderer matches the chat template
+[  0.0 min] 360 test episodes (191 messy)
+[  0.2 min] base WikiText-2 perplexity 2134.17
+[  0.8 min] untouched: H:argmax4 12%, H:ask-diff 0%, H:basket3 0%, H:bridge-compare 50%, H:cost-compare 17%, argmax3 8%, ask 0%, basket2 0%, bridge 0%, compare2 33%, diff 4%, given 79%, lookup 12%, total 0%, whose 0%; ppl 2134.17
+[  1.8 min] 302 replay examples from the base model
+[  1.9 min] step 1/287 loss 2.109 lr 2.86e-06
+[  2.3 min] step 21/287 loss 0.687 lr 1.98e-05
+[  2.6 min] step 41/287 loss 0.219 lr 1.91e-05
+[  3.0 min] step 61/287 loss 0.221 lr 1.81e-05
+[  3.4 min] step 81/287 loss 0.231 lr 1.67e-05
+[  3.8 min] step 101/287 loss 0.185 lr 1.50e-05
+[  4.2 min] step 121/287 loss 0.214 lr 1.32e-05
+[  4.5 min] step 141/287 loss 0.203 lr 1.12e-05
+[  4.9 min] step 161/287 loss 0.160 lr 9.29e-06
+[  5.3 min] step 181/287 loss 0.150 lr 7.41e-06
+[  5.7 min] step 201/287 loss 0.151 lr 5.70e-06
+[  6.1 min] step 221/287 loss 0.135 lr 4.25e-06
+[  6.4 min] step 241/287 loss 0.141 lr 3.12e-06
+[  6.8 min] step 261/287 loss 0.144 lr 2.36e-06
+[  7.2 min] step 281/287 loss 0.138 lr 2.02e-06
+[  7.3 min] step 287/287 loss 0.138 lr 2.00e-06
+[  8.4 min] gold: H:argmax4 71%, H:ask-diff 4%, H:basket3 83%, H:bridge-compare 50%, H:cost-compare 58%, argmax3 100%, ask 75%, basket2 96%, bridge 100%, compare2 100%, diff 100%, given 100%, lookup 100%, total 100%, whose 100%; ppl 446.15
+[  8.8 min] exported: https://huggingface.co/kealjones/findout-pilot
+[  8.8 min] done
