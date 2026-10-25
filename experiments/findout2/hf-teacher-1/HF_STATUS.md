@@ -1,4 +1,7 @@
 # Hugging Face job: findout2-teacher-1
 
-Status: **running** (started 2026-10-25T16:48:42+00:00, last check 2026-10-25T17:19:27+00:00)
+Status: **canceled** after 0.0 min of work on `a100-large`, about $0.00 (plus a minute or two of startup)
 Job page: https://huggingface.co/jobs/kealjones/6ade32ea046eb82b1ece683f
+
+Files copied here:
+- JOB_LOG.txt (from job logs)

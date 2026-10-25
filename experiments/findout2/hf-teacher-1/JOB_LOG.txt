@@ -1,0 +1,120 @@
+job 6ade32ea046eb82b1ece683f on gpu: findout2-teacher-1 at d872355
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+fetched experiments/findout2/world2.py
+fetched experiments/findout2/teacher.py
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 13 files:   0%|          | 0/13 [00:00<?, ?it/s][A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B /   238B            [A
+
+Reconstructing (incomplete total...):   0%|          |   238B / 3.96GB            [A
+
+Reconstructing (incomplete total...):   0%|          |   238B / 7.95GB            [A
+
+Reconstructing (incomplete total...):   0%|          |   238B / 8.04GB            [A
+
+Reconstructing (incomplete total...):   0%|          |   238B / 8.05GB            [A
+
+Reconstructing (incomplete total...):   0%|          |   238B / 8.05GB            [A
+
+Reconstructing (incomplete total...):   0%|          |   965B / 8.05GB            [A
+
+Reconstructing (incomplete total...):   0%|          | 12.3kB / 8.06GB            [A
+
+Reconstructing (incomplete total...):   0%|          | 12.3kB / 8.06GB            [A
+
+Reconstructing (incomplete total...):   0%|          | 20.5kB / 8.06GB            [A
+
+Reconstructing (incomplete total...):   0%|          | 22.0kB / 8.06GB            [A
+
+Reconstructing (incomplete total...):   0%|          | 54.9kB / 8.06GB            [A
+
+Reconstructing (incomplete total...):   0%|          | 1.74MB / 8.06GB            [A
+
+Reconstructing (incomplete total...):   0%|          | 4.51MB / 8.06GB            [A
+
+Downloading bytes:           | 4.59MB,   ???B/s  [A
+
+Fetching 13 files:  69%|██████▉   | 9/13 [00:01<00:00,  8.85it/s][A
+
+Downloading bytes: ▏         |  136MB, 4.52MB/s  [A
+
+Reconstructing (incomplete total...):   1%|▏         |  104MB / 8.06GB            [A
+
+Downloading bytes: ▍         |  381MB, 77.7MB/s  [A
+
+Reconstructing (incomplete total...):   5%|▍         |  384MB / 8.06GB, 45.9MB/s  [A
+
+Downloading bytes: ▊         |  690MB,  153MB/s  [A
+
+Reconstructing (incomplete total...):   9%|▉         |  719MB / 8.06GB,  137MB/s  [A
+
+Downloading bytes: █▎        | 1.09GB,  214MB/s  [A
+
+Downloading bytes: █▍        | 1.12GB,  329MB/s  [A
+
+Reconstructing (incomplete total...):  18%|█▊        | 1.46GB / 8.06GB,  176MB/s  [A
+
+Downloading bytes: ██        | 1.66GB,  329MB/s  [A
+
+Downloading bytes: ██▉       | 2.32GB,  396MB/s  [A
+
+Downloading bytes: ██▉       | 2.32GB,  516MB/s  [A
+
+Reconstructing (incomplete total...):  27%|██▋       | 2.21GB / 8.06GB,  343MB/s  [A
+
+Downloading bytes: ███▊      | 3.07GB,  516MB/s  [A
+
+Reconstructing (incomplete total...):  43%|████▎     | 3.49GB / 8.06GB,  452MB/s  [A
+
+Downloading bytes: ████▊     | 3.90GB,  586MB/s  [A
+
+Reconstructing (incomplete total...):  55%|█████▍    | 4.43GB / 8.06GB,  603MB/s  [A
+
+Downloading bytes: █████▉    | 4.79GB,  661MB/s  [A
+
+Downloading bytes: █████▉    | 4.79GB,  773MB/s  [A
+
+Downloading bytes: ███████▏  | 5.81GB,  773MB/s  [A
+
+Reconstructing (incomplete total...):  72%|███████▏  | 5.82GB / 8.06GB,  674MB/s  [A
+
+Downloading bytes: ████████▍ | 6.78GB,  847MB/s  [A
+
+Reconstructing (incomplete total...):  90%|█████████ | 7.29GB / 8.06GB,  764MB/s  [A
+Fetching 13 files: 100%|██████████| 13/13 [00:13<00:00,  1.00s/it]
+
+
+Downloading bytes: ██████████| 7.01GB,  878MB/s  [A
+
+Download complete: ██████████| 7.01GB,  878MB/s  [A
+
+Reconstruction complete: 100%|██████████| 8.06GB / 8.06GB,  894MB/s               [A
+Download complete: ██████████| 7.01GB,  878MB/s  
+
+Reconstruction complete: 100%|██████████| 8.06GB / 8.06GB,  894MB/s  
+[  0.2 min] 1500 tasks, 1 GPU(s): ['NVIDIA A100-SXM4-80GB']
+
+
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s][A
+
+Loading weights:  48%|████▊     | 190/398 [00:01<00:01, 188.13it/s][A
+Loading weights: 100%|██████████| 398/398 [00:01<00:00, 202.20it/s]
+[  0.3 min] models loaded
+[  0.4 min] sanity reply: 'Needs: The cost of one Baoshthus coin  \nCalculation: Total cost for 11 Baoshthus  \n\n(ask them) What is the value of one Baoshthus coin?  \n<tool_call>\n{"name": "ask_person", "arguments": {"question": "What is the value of one Baoshthus coin?"}}\n</tool_call><|im_end|>'
+[  2.7 min] gpu0: 180 finished (both GPUs), 30 kept, 1272 left here, ~190 new tok/s on this GPU
+[  5.2 min] gpu0: 302 finished (both GPUs), 59 kept, 1143 left here, ~161 new tok/s on this GPU
+[  8.1 min] gpu0: 397 finished (both GPUs), 85 kept, 1055 left here, ~129 new tok/s on this GPU
+[ 11.0 min] gpu0: 491 finished (both GPUs), 97 kept, 959 left here, ~114 new tok/s on this GPU
+[ 14.3 min] gpu0: 591 finished (both GPUs), 120 kept, 863 left here, ~103 new tok/s on this GPU
+[ 16.9 min] gpu0: 730 finished (both GPUs), 146 kept, 723 left here, ~107 new tok/s on this GPU
+[ 20.0 min] gpu0: 821 finished (both GPUs), 161 kept, 629 left here, ~101 new tok/s on this GPU
+[ 22.1 min] gpu0: 963 finished (both GPUs), 188 kept, 486 left here, ~106 new tok/s on this GPU
+[ 24.6 min] gpu0: 1095 finished (both GPUs), 216 kept, 358 left here, ~109 new tok/s on this GPU
+[ 26.6 min] gpu0: 1146 finished (both GPUs), 226 kept, 309 left here, ~105 new tok/s on this GPU
+[ 29.4 min] gpu0: 1274 finished (both GPUs), 247 kept, 174 left here, ~106 new tok/s on this GPU
