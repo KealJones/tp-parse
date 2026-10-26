@@ -1,4 +1,11 @@
 # Hugging Face job: findout2-coder-tools
 
-Status: **running** (started 2026-10-26T01:45:33+00:00, last check 2026-10-26T01:50:59+00:00)
+Status: **complete** after 6.0 min of work on `l4x1`, about $0.08 (plus a minute or two of startup)
 Job page: https://huggingface.co/jobs/kealjones/6adeb0bd046eb82b1ece9f23
+
+Files copied here:
+- JOB_LOG.txt
+- MULTI_RESULTS.md
+- job_status.json
+- log.txt
+- tools_Qwen2.5-Coder-0.5B-Instruct.jsonl

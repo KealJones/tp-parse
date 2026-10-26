@@ -1,0 +1,61 @@
+job 6adeb0bd046eb82b1ece9f23 on gpu: findout2-coder-tools at 6721985
+fetched experiments/findout2/world2.py
+fetched experiments/findout2/multi_eval.py
+
+
+config.json:   0%|          | 0.00/659 [00:00<?, ?B/s][A
+config.json: 100%|██████████| 659/659 [00:00<00:00, 3.37MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/7.30k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 7.30k/7.30k [00:00<00:00, 39.0MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 25.7MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 33.2MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/7.03M [00:00<?, ?B/s][A
+tokenizer.json: 100%|██████████| 7.03M/7.03M [00:00<00:00, 37.5MB/s]
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  988MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:  27%|██▋       |  268MB /  988MB            [A
+model.safetensors: downloading bytes: ██▍       |  245MB, 20.7MB/s  
+
+model.safetensors: reconstructing file:  81%|████████▏ |  805MB /  988MB, 56.7MB/s  [A
+model.safetensors: downloading bytes: ████████  |  803MB, 69.0MB/s  
+model.safetensors: downloading bytes: ██████████|  856MB, 76.0MB/s  
+model.safetensors: downloading bytes: ██████████|  856MB, 76.0MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  988MB /  988MB, 89.3MB/s  
+
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 5440.08it/s]
+
+
+generation_config.json:   0%|          | 0.00/243 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 243/243 [00:00<00:00, 1.46MB/s]
+[  0.1 min] Qwen/Qwen2.5-Coder-0.5B-Instruct: loaded with AutoModelForCausalLM
+[  0.7 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 1, 69 still going
+[  1.4 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 2, 69 still going
+[  2.5 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 3, 69 still going
+[  3.4 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 4, 69 still going
+[  3.8 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 5, 69 still going
+[  4.3 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 6, 68 still going
+[  4.8 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 7, 59 still going
+[  5.3 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 8, 36 still going
+[  5.4 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 9, 19 still going
+[  5.5 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 10, 14 still going
+[  5.6 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 11, 13 still going
+[  5.7 min] Qwen/Qwen2.5-Coder-0.5B-Instruct tools: turn 12, 0 still going
+[  5.7 min] Qwen2.5-Coder-0.5B-Instruct | 4% | 4% | 0% | 5% / 4% |  | 5.7
+[  5.7 min] done
+exit code 0 after 6.0 min
