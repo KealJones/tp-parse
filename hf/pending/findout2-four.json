@@ -1,0 +1,24 @@
+{
+ "slug": "findout2-four",
+ "flavor": "l4x1",
+ "timeout": "90m",
+ "files": [
+  "experiments/findout2/world2.py",
+  "experiments/findout2/multi_eval.py"
+ ],
+ "cmd": "python multi_eval.py --models LiquidAI/LFM2.5-350M,Qwen/Qwen2.5-Coder-0.5B-Instruct,Qwen/Qwen3.5-0.8B,Qwen/Qwen3.5-2B --bs 24 --out out",
+ "pip": [
+  "transformers",
+  "accelerate",
+  "pandas",
+  "pyarrow",
+  "huggingface_hub",
+  "nodejs-wheel-binaries"
+ ],
+ "outdir": "out",
+ "out": "experiments/findout2/hf-four",
+ "job_id": "6adea9aa1e112550ce7f0e44",
+ "url": "https://huggingface.co/jobs/kealjones/6adea9aa1e112550ce7f0e44",
+ "started": "2026-10-26T01:15:22+00:00",
+ "sha": "b8d9e737c7543bb7160fab0b48243fd7d5af521c"
+}
