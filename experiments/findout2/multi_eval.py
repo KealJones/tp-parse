@@ -44,13 +44,18 @@ def parse_any(text):
             except Exception:
                 pass
     if not calls:   # small Qwen2.5 models often write the call as a bare JSON object (in a ```json block) instead of <tool_call>
-        for m in re.finditer(r"(?:```(?:json)?\s*)?(\{\s*\"name\"\s*:.*?\})\s*(?:```|\n|$)", t, re.S):
+        dec, i = json.JSONDecoder(), 0
+        while True:                       # decode every top-level JSON object, however it is spread over lines
+            i = t.find("{", i)
+            if i < 0:
+                break
             try:
-                j = json.loads(m.group(1))
-                if isinstance(j, dict) and j.get("name") in ("search", "calculator", "ask_person"):
-                    calls.append({"name": j["name"], "arguments": j.get("arguments") or {}})
-            except Exception:
-                pass
+                j, end = dec.raw_decode(t, i)
+            except ValueError:
+                i += 1; continue
+            if isinstance(j, dict) and j.get("name") in ("search", "calculator", "ask_person"):
+                calls.append({"name": j["name"], "arguments": j.get("arguments") or {}})
+            i = end
         if calls:
             return t.split("```")[0].split("{")[0].strip(), calls
     return t.split("<tool_call>")[0].strip(), calls
