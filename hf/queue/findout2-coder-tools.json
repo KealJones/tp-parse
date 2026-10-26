@@ -1,4 +1,0 @@
-{"slug": "findout2-coder-tools", "flavor": "l4x1", "timeout": "30m",
- "files": ["experiments/findout2/world2.py", "experiments/findout2/multi_eval.py"],
- "cmd": "python multi_eval.py --models Qwen/Qwen2.5-Coder-0.5B-Instruct --tests tools --bs 24 --out out",
- "pip": ["transformers", "accelerate", "pandas", "pyarrow", "huggingface_hub"], "outdir": "out", "out": "experiments/findout2/hf-coder-tools"}
