@@ -1,0 +1,4 @@
+{"slug": "findout2-four", "flavor": "l4x1", "timeout": "90m",
+ "files": ["experiments/findout2/world2.py", "experiments/findout2/multi_eval.py"],
+ "cmd": "python multi_eval.py --models LiquidAI/LFM2.5-350M,Qwen/Qwen2.5-Coder-0.5B-Instruct,Qwen/Qwen3.5-0.8B,Qwen/Qwen3.5-2B --bs 24 --out out",
+ "pip": ["transformers", "accelerate", "pandas", "pyarrow", "huggingface_hub", "nodejs-wheel-binaries"], "outdir": "out", "out": "experiments/findout2/hf-four"}
