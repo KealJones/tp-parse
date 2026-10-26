@@ -53,3 +53,19 @@ Both always asked for the person's town on ask-diff and always used tools. Two m
 - The fake person replies with their town name to any question containing "live" or "town", so "How many people live in Rinzelwex?"
   gets "Lolozel". E4B asked the person for both populations on 11 ask-diff episodes, got town names back and gave up.
   That is mostly E4B's mistake (it should search populations), but a real person would not answer that way.
+
+## Four small models off the shelf, v3 test (Sun 25 Oct 2026, `hf-four/`, `hf-coder-tools/`)
+
+World v3: normal-sounding names, the fixed scorer (`world2.fair_score`) and simulated person, grammar fixes. Not comparable
+one-to-one with the pilot numbers above. TypeScript: MultiPL-E HumanEval-TS (159), run against its tests (`multi_eval.py`).
+
+| model | tools: fair right | tools: fair strict | clean / messy | TypeScript pass@1 |
+| --- | --- | --- | --- | --- |
+| LFM2.5-350M | 20% | 1% | 17% / 24% | 10% (16/159) |
+| Qwen2.5-Coder-0.5B-Instruct | 4% | 0% | 5% / 4% | 51% (81/159) |
+| Qwen3.5-0.8B | 22% | 2% | 32% / 9% | 19% (30/159) |
+| Qwen3.5-2B | 46% | 37% | 54% / 36% | 41% (65/159) |
+
+Qwen2.5-Coder's 51% matches its published 50.3%, so the TypeScript harness checks out. Its tools row comes from the rerun
+(`hf-coder-tools/`) after a JSON-parsing fix; it writes calls as plain JSON instead of `<tool_call>`, invents tools
+("total_cost", "town_size") and loops (10+ calls on 68 of 120). No model under 2B does both jobs off the shelf.
