@@ -23,31 +23,58 @@ MATERIALS = ["oak", "copper", "glass", "wool", "clay", "steel", "bamboo", "leath
 JOBS = ["baker", "teacher", "nurse", "carpenter", "pilot", "farmer", "librarian", "mechanic"]
 
 
+# Normal-sounding names (v3). The model still can't know their facts, but they tokenize like ordinary words
+# (about 2 tokens each instead of 4 for the old syllable soup) and read like something a person would type.
+NAME_POOLS = {
+    "town": ["Millbrook", "Ashford", "Oakdale", "Riverton", "Fairview", "Brookhaven", "Westfield", "Pinecrest", "Clearwater",
+             "Maplewood", "Stonebridge", "Elmhurst", "Harrowgate", "Kingsbury", "Lakemont", "Northwick", "Redhill", "Thornbury",
+             "Willowby", "Greystone", "Dunmore", "Halford", "Carlow", "Bramley", "Marston", "Penhallow", "Rockport", "Sutton",
+             "Wexley", "Glenbrook"],
+    "person": ["Dana", "Marcus", "Priya", "Elena", "Tomas", "Nadia", "Owen", "Leila", "Victor", "Hannah", "Jonah", "Maya",
+               "Felix", "Ruth", "Simone", "Arjun", "Clara", "Diego", "Imani", "Gideon", "Rosalind", "Theo", "Yusuf", "Beatrix",
+               "Malik", "Ingrid", "Callum", "Noemi", "Petra", "Silas"],
+    "item": ["moonlantern", "sparkwheel", "thimblejar", "brightcomb", "windbell", "tidecup", "starbrush", "pebblebox",
+             "dewflask", "emberstick", "fogwhistle", "sunclock", "hollowdrum", "frostbowl", "quillcase", "ribbonreel",
+             "glimmerbead", "cloudkite", "honeyspoon", "thornpin", "puddleboot", "wickerfan", "chimebox", "inkwheel"],
+    "creature": ["fernbuck", "mudskitter", "glowmoth", "reedrunner", "cliffwing", "dusklark", "puddlehop", "bramblefox",
+                 "sandwhisker", "nettlebug", "hollowtoad", "frostmink", "pinewhistler", "shellhorn", "dunecreeper", "embertail"],
+}
+
+
 def make_world(r):
     W = {"creature": {}, "town": {}, "item": {}, "person": {}}
     used = set()
 
-    def nm(n=None):                  # unique, and no name contains another, so search can't confuse them
+    def nm(kind):                    # unique, and no name contains another, so search can't confuse them
         while True:
-            x = "".join(r.choice(SYL) for _ in range(n or r.choice((2, 3))))
-            if len(x) >= 4 and not any(x in u or u in x for u in used):
-                used.add(x)
+            x = r.choice(NAME_POOLS[kind])
+            if not any(x.lower() in u or u in x.lower() for u in used):
+                used.add(x.lower())
                 return x
     for _ in range(4):
-        W["creature"][nm()] = {"legs": r.choice([2, 4, 6, 8, 10]), "color": r.choice(COLORS),
-                               "diet": r.choice(FOODS), "habitat": r.choice(HABITATS)}
+        W["creature"][nm("creature")] = {"legs": r.choice([2, 4, 6, 8, 10]), "color": r.choice(COLORS),
+                                         "diet": r.choice(FOODS), "habitat": r.choice(HABITATS)}
     pops = r.sample(range(800, 99000), 6)                      # distinct, so "bigger" always has one answer
     for p in pops:
-        W["town"][nm().capitalize()] = {"population": p, "region": r.choice(REGIONS), "founded": r.randrange(1650, 1990)}
+        W["town"][nm("town")] = {"population": p, "region": r.choice(REGIONS), "founded": r.randrange(1650, 1990)}
     towns = sorted(W["town"])
     for pr, wt in zip(r.sample(range(3, 95), 6), r.sample(range(1, 40), 6)):
-        W["item"][nm()] = {"price": pr, "weight": wt, "material": r.choice(MATERIALS)}
+        W["item"][nm("item")] = {"price": pr, "weight": wt, "material": r.choice(MATERIALS)}
     for age in r.sample(range(19, 88), 6):
-        W["person"][nm().capitalize()] = {"age": age, "job": r.choice(JOBS), "home": r.choice(towns)}
+        W["person"][nm("person")] = {"age": age, "job": r.choice(JOBS), "home": r.choice(towns)}
     return W
 
 
+def _an(s):
+    """'a emberstick' -> 'an emberstick'."""
+    return re.sub(r"\b([Aa]) (?=[aeiouAEIOU])", r"\1n ", s)
+
+
 def fact_sentence(kind, ent, attr, val):
+    return _an(_fact_sentence(kind, ent, attr, val))
+
+
+def _fact_sentence(kind, ent, attr, val):
     if kind == "creature":
         return {"legs": f"A {ent} has {val} legs.", "color": f"The {ent} is {val}.",
                 "diet": f"The {ent} eats {val}.", "habitat": f"The {ent} lives in {val}."}[attr]
@@ -131,6 +158,8 @@ SYSTEM = ("You figure things out for the person. You know nothing about this wor
 
 def person_reply(person, question):
     q = question.lower()
+    if person.get("town") and re.search(r"how many|population|how big|number of", q):   # a real person doesn't know that
+        return f"no idea how many, i just know i live in {person['town']}"
     if person.get("town") and re.search(r"town|live|city|where|home", q):
         return person["town_reply"]
     return "not sure what you mean"
@@ -304,7 +333,9 @@ def compare(r, W, n, typ):
         req = CMP[(kind, attr)][0].format(a=es[0], b=es[1])
     else:
         lst = ", ".join(es[:-1]) + " or " + es[-1]
-        req = r.choice([f"Which is the {CMP[(kind, attr)][2]}: {{l}}?", f"Out of {{l}}, which is the {CMP[(kind, attr)][2]}?"]).format(l=lst)
+        sup = CMP[(kind, attr)][2]
+        isw = "" if sup.startswith("has ") else "is the "        # "which has the most legs", not "which is the has the most legs"
+        req = r.choice([f"Which {isw}{sup}: {{l}}?", f"Out of {{l}}, which {isw}{sup}?"]).format(l=lst)
         if kind == "person":
             req = req.replace("Which is", "Who is").replace("which is", "who is")
     expr = f"{vals[0]} > {vals[1]}" if n == 2 else f"max({', '.join(str(v) for v in vals)})"
@@ -422,6 +453,7 @@ def make_task(r, fn, style_p=0.5):
     W = make_world(r)
     t = T(**fn(r, W))
     t["world"] = W
+    t["request"] = _an(t["request"])
     t["clean"] = t["request"]
     t["style"] = "messy" if r.random() < style_p else "clean"
     if t["style"] == "messy":
@@ -472,6 +504,36 @@ def score(task, final_text, H, first_content=""):
             "calc": "calculator" in names, "needs_calc": any(s[0] == "calc" for s in task["needs"]),
             "asked": "ask_person" in names, "needs_ask": any(s[0] == "ask" for s in task["needs"]),
             "needs_list": bool(re.search(r"\b(needs?|plan|steps?)\b[^\n]*\n(?:[^\n]*\n){0,2}\s*(1[.)]|-)", first_content, re.I))}
+
+
+def fair_score(task, final_text, H, outputs):
+    """The scorer with the problems found by the big-model check fixed (see bigmodel-check/README.md):
+    yes/no answers to "Is the town X lives in bigger than Y?" are graded as yes/no; "X's town" counts as naming
+    X's town; a needed fact counts as found if it appeared in any tool result (not only a search naming it);
+    and non-answers ("can't say ...") fail even if they mention the right name."""
+    short, _ = short_answer(final_text or "")
+    ok = bool(final_text) and bool(task["check"](short))
+    hidden_desc = {t: d for t, d in task.get("hidden", {}).items()}
+    if task["type"] == "H:bridge-compare":
+        towns = [s[2] for s in task["needs"] if s[0] == "search" and s[1] == "town"]
+        home, other = towns[0], towns[1]
+        home_wins = task["world"]["town"][home]["population"] > task["world"]["town"][other]["population"]
+        if re.search(r"\bis the town\b", task["clean"], re.I):
+            m = re.match(r"\W*(yes|no)\b", short, re.I)
+            if m:
+                ok = (m.group(1).lower() == "yes") == home_wins
+        desc = hidden_desc.get(home, "").lower().replace("'", "")
+        names_home = desc and desc in short.lower().replace("'", "")
+        if names_home and other.lower() not in short.lower():
+            ok = home_wins
+    if re.search(r"can'?t|cannot|unable|not sure|don'?t know|no (size|population|data)|need (the|more)", short, re.I):
+        ok = False
+    seen = " ".join(outputs)
+    got = all(fact_sentence(s[1], s[2], s[3], task["world"][s[1]][s[2]][s[3]]) in seen for s in task["needs"] if s[0] == "search")
+    names = [n for n, _ in H.log]
+    calc_ok = "calculator" in names or not any(s[0] == "calc" for s in task["needs"])
+    ask_ok = "ask_person" in names or not any(s[0] == "ask" for s in task["needs"])
+    return {"fair_ok": ok, "fair_strict": ok and got and calc_ok and ask_ok}
 
 
 # %% [markdown]
