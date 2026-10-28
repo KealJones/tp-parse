@@ -40,15 +40,14 @@ EVAL_PLAN = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute": 12
 # v2 (CORPUS_V2.md §4): new teacher episodes, attempted. Reused teach-v1 episodes come on top (re-checked with the v2
 # checker, leak-filtered, repo families capped at 25 each: train.py --reuse-cap). Families marked TODO have no maker yet
 # (make_sets skips them with a warning); counts are the plan the review asked for (thin cells >= 40).
-V2_PLAN = {   # the trimmed plan (CORPUS_V2 §4): 815 new episodes attempted
-    "web_fact": 100, "web_fact_retry": 40,
-    "need_web": 50, "hermes_need": 40, "math_pair": 80,          # math_pair: 40 problems x (complete, one number missing)
-    "recipe_web": 40,           # before lookup_then_compute: both draw "born first" pairs, and recipe_web is pickier
-    "hermes_compute": 40, "lookup_then_compute": 40,          # + one retry each for a rejected compute episode
-    "repo_chain": 20, "messy_multi": 20,                      # cut after the mini-smoke (0/3 each); low yield accepted
-    "recipe_skip": 40,
-    "unknown_word": 60, "near_miss": 50,
-    "personal": 45, "personal_mid": 30, "personal_tool": 15, "chat_mid": 50,   # 75 personal requests, none used twice
+V2_PLAN = {   # the fitted plan (coordinator, after the cost estimate): 446 attempted + compute retries, under an 85-min job cap
+    "recipe_web": 16,           # before lookup_then_compute: both draw "born first" pairs, and recipe_web is pickier
+    "lookup_then_compute": 40, "hermes_compute": 40, "math_pair": 60,     # + one retry each for a rejected compute episode
+    "messy_multi": 20, "repo_chain": 20,                                  # cut after the mini-smoke (0/3 each); low yield accepted
+    "near_miss": 30, "unknown_word": 30,
+    "personal": 45, "personal_tool": 15, "personal_mid": 20, "chat_mid": 20,
+    "need_web": 25, "hermes_need": 25, "web_fact_retry": 20, "recipe_skip": 20,
+    # web_fact: 0 (cut first to fit the budget; teach-v1's kept web_fact episodes are reused)
 }
 # The teacher smoke before the v2 round: 3 attempted per family (51), to read keep rates and rejection reasons.
 SMOKE_V2_PLAN = {k: 3 for k in V2_PLAN}
