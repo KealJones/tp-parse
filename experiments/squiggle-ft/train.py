@@ -327,6 +327,10 @@ def main():
                         examples += list(build.examples(rec))
                 else:
                     examples.append(rec)
+        held = [e for e in examples if e.get("family") in F.HELD_OUT]
+        examples = [e for e in examples if e.get("family") not in F.HELD_OUT]      # held-out types never train
+        if held:
+            log(f"dropped {len(held)} examples of held-out types")
         random.Random(0).shuffle(examples)
         if args.limit:
             examples = examples[:args.limit]
