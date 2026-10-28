@@ -79,7 +79,7 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=12288, per_step=32,
     log(f"[{base}] {len(items)} of {len(examples)} examples fit; target tokens {sum(len(o) for _, o in items)}, all tokens {sum(len(p) + len(o) for p, o in items)}")
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     dt = torch.bfloat16 if dev == "cuda" and torch.cuda.is_bf16_supported() else torch.float32
-    model = AutoModelForCausalLM.from_pretrained(BASES[base], torch_dtype=torch.float32).to(dev)
+    model = AutoModelForCausalLM.from_pretrained(BASES[base], dtype=torch.float32).to(dev)
     model.gradient_checkpointing_enable()
     model.config.use_cache = False
     head = model.get_output_embeddings()

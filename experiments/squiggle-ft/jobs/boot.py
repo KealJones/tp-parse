@@ -42,6 +42,8 @@ def untar(tgz, dest, inner=None):
 spec = json.loads(os.environ.get("SPEC", "{}"))
 sha = spec.get("sha", "main")
 subprocess.run("nvidia-smi || true", shell=True)
+# vLLM's torch.compile/triton and the llama.cpp build need a C compiler; the pytorch runtime image has none.
+subprocess.run("(command -v gcc && command -v cmake) || (apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gcc g++ make cmake >/dev/null) || echo 'apt-get failed'", shell=True)
 get(f"https://codeload.github.com/KealJones/tp-parse/tar.gz/{sha}", "tp.tgz")
 untar("tp.tgz", "sqft", "experiments/squiggle-ft")
 get(f"https://codeload.github.com/KealJones/squiggle/tar.gz/{SQUIGGLE_COMMIT}", "sq.tgz")

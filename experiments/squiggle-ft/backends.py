@@ -160,7 +160,7 @@ class HFStudent:
         if self.tok.pad_token is None:
             self.tok.pad_token = self.tok.eos_token
         dt = {"auto": (torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float32), "fp32": torch.float32}[dtype]
-        self.model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=dt).to(device).eval()
+        self.model = AutoModelForCausalLM.from_pretrained(model_path, dtype=dt).to(device).eval()
         self.device, self.greedy, self.ctx, self.batch = device, greedy, ctx, batch
         self.stats = {"calls": 0, "too_long": 0, "out_tokens": 0}
         ends = [self.tok.eos_token_id]
