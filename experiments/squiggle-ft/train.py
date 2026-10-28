@@ -85,6 +85,30 @@ def copy_tokenizer(base, out_dir):
 
 
 
+def init_think_tokens(model, tok, base):
+    """LFM2.5-350M has single tokens for <think> and </think> whose embeddings were never trained: they are identical to
+    hundreds of <|reserved_…|> / <|img_…|> rows (cosine 0.99999), so after a few dozen steps the model emits a random
+    member of that cluster where <think> belongs (training smoke 4: 1 of 195 calls started with <think>). Such a row
+    starts from the mean of the text pieces it stands for ("<", "think", ">"). Trained rows, and tokenizers where
+    <think> is plain text (Gemma), are left alone."""
+    import torch
+    E = model.get_input_embeddings().weight
+    O = model.get_output_embeddings().weight
+    with torch.no_grad():
+        for t, pieces in (("<think>", ["<", "think", ">"]), ("</think>", ["</", "think", ">"])):
+            if tok(t, add_special_tokens=False).input_ids != [tok.convert_tokens_to_ids(t)]:
+                continue
+            i = tok.convert_tokens_to_ids(t)
+            twins = int((torch.nn.functional.cosine_similarity(E, E[i][None], dim=1) > 0.999).sum())
+            if twins < 10:
+                continue
+            ids = [x for p in pieces for x in tok(p, add_special_tokens=False).input_ids]
+            E[i] = E[ids].mean(0)
+            if O.data_ptr() != E.data_ptr():
+                O[i] = O[ids].mean(0)
+            log(f"[{base}] {t} (id {i}) had an untrained embedding ({twins} identical rows); started it from {tok.convert_ids_to_tokens(ids)}")
+
+
 def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, seed=0):
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -96,6 +120,7 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, 
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     dt = torch.bfloat16 if dev == "cuda" and torch.cuda.is_bf16_supported() else torch.float32
     model = AutoModelForCausalLM.from_pretrained(BASES[base], dtype=torch.float32, attn_implementation="sdpa").to(dev)
+    init_think_tokens(model, tok, base)
     model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
     log(f"[{base}] attention {model.config._attn_implementation}, gradient checkpointing {model.is_gradient_checkpointing}")
     model.config.use_cache = False
