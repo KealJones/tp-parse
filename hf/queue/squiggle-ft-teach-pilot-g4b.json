@@ -1,0 +1,20 @@
+{
+ "slug": "squiggle-ft-teach-pilot-g4b",
+ "flavor": "a100-large",
+ "timeout": "30m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "VLLM_USE_FLASHINFER_SAMPLER=0 TEACHER_MODEL=google/gemma-4-26B-A4B-it PLAN=pilot_g4 SCALE=1 MINUTES=17 CONCURRENCY=48 KV_FP8=0 EPISODE_TIMEOUT=900 SELFTEST=0 TAG=teach-pilot-g4b python boot.py teach_smoke.sh",
+ "pip": [
+  "vllm==0.30.0",
+  "pyarrow",
+  "gguf",
+  "sentencepiece",
+  "protobuf"
+ ],
+ "upload_every": 120,
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-teach-pilot-g4b",
+ "note": "Retry of teach-pilot-g4, which failed at vLLM startup: FlashInfer's top-k sampler JIT-compiles and the image has no nvcc (Gemma 4 samples with top_k 64). VLLM_USE_FLASHINFER_SAMPLER=0 uses vLLM's own sampler. 17 min of episodes so startup (~7 min) plus upload fit in 30 min. Hard cap $1.25."
+}
