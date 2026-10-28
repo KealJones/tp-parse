@@ -1,0 +1,340 @@
+job 6ae181803fb22a235dd3a5d9 on gpu: squiggle-ft-train-smoke-2 at 3733ccd
+fetched experiments/squiggle-ft/jobs/boot.py
+Wed Oct 28 05:02:01 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L4                      On  |   00000000:31:00.0 Off |                    0 |
+| N/A   50C    P8             17W /   72W |       0MiB /  23034MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+debconf: delaying package configuration, since apt-utils is not installed
+boot: node v22.23.4, squiggle e9c27cabe7c15ae72242d6f62ea02710d57af535, tp-parse 3733ccd, setup took 64 s
++ DATA=
++ for t in ${TAG//,/ }
++ python hub.py down kealjones/squiggle-ft-data teach-smoke/train_examples.jsonl.gz --to data_in
+
+
+teach-smoke/train_examples.jsonl.gz: reconstructing file:   0%|          |  0.00B / 38.9kB            [A
+teach-smoke/train_examples.jsonl.gz: downloading bytes:           |  0.00B            
+teach-smoke/train_examples.jsonl.gz: downloading bytes: ██████████| 39.0kB, 3.88kB/s  
+teach-smoke/train_examples.jsonl.gz: downloading bytes: ██████████| 39.0kB, 3.88kB/s  
+
+teach-smoke/train_examples.jsonl.gz: reconstructing file: 100%|██████████| 38.9kB / 38.9kB, 3.88kB/s  
+/workspace/work/sqft/data_in/teach-smoke/train_examples.jsonl.gz
++ DATA=,data_in/teach-smoke/train_examples.jsonl.gz
++ for t in ${TAG//,/ }
++ python hub.py down kealjones/squiggle-ft-data teach-smoke-2/train_examples.jsonl.gz --to data_in
+
+
+teach-smoke-2/train_examples.jsonl.gz: reconstructing file:   0%|          |  0.00B / 41.0kB            [A
+teach-smoke-2/train_examples.jsonl.gz: downloading bytes:           |  0.00B            
+teach-smoke-2/train_examples.jsonl.gz: downloading bytes: ██████████| 41.0kB, 4.09kB/s  
+teach-smoke-2/train_examples.jsonl.gz: downloading bytes: ██████████| 41.0kB, 4.09kB/s  
+
+teach-smoke-2/train_examples.jsonl.gz: reconstructing file: 100%|██████████| 41.0kB / 41.0kB, 4.09kB/s  
+/workspace/work/sqft/data_in/teach-smoke-2/train_examples.jsonl.gz
++ DATA=,data_in/teach-smoke/train_examples.jsonl.gz,data_in/teach-smoke-2/train_examples.jsonl.gz
++ python selftest.py data_in/teach-smoke/train_examples.jsonl.gz data_in/teach-smoke-2/train_examples.jsonl.gz --tokenizers unsloth/gemma-3-270m-it,unsloth/functiongemma-270m-it,LiquidAI/LFM2.5-350M
++ tail -12 /workspace/work/out/selftest.txt
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 9.53MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 5.39MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][A
+tokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 58.7MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 18.3MB/s]
+
+243 model calls checked, 0 with problems.
+  unsloth/gemma-3-270m-it: prompt tokens median 451, max 3486; output tokens median 92, max 204
+  unsloth/functiongemma-270m-it: prompt tokens median 455, max 3490; output tokens median 92, max 204
+  LiquidAI/LFM2.5-350M: prompt tokens median 455, max 3301; output tokens median 86, max 196
++ python train.py --data data_in/teach-smoke/train_examples.jsonl.gz,data_in/teach-smoke-2/train_examples.jsonl.gz --bases gemma3,functiongemma,lfm25 --epochs 1 --eval-scale 0.1 --eval-minutes 6 --out /workspace/work/out/train --work work --export --hub-repo ''
+05:03:25 eval set: 30 episodes
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  536MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:  48%|████▊     |  256MB /  536MB            [A
+model.safetensors: downloading bytes: ████▏     |  224MB, 21.2MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 43.4MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 43.4MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  536MB /  536MB, 50.3MB/s  
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 6234.60it/s]
+
+
+generation_config.json:   0%|          | 0.00/233 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 233/233 [00:00<00:00, 1.15MB/s]
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+05:04:17 [untouched-gemma3] eval 30 episodes in 0.8 min; student {'calls': 36, 'too_long': 0, 'out_tokens': 2588}
+05:04:17 training data: ['data_in/teach-smoke/train_examples.jsonl.gz', 'data_in/teach-smoke-2/train_examples.jsonl.gz']
+05:04:17 243 training examples: {'hermes_need': 4, 'memory_repo': 11, 'repo_fact': 32, 'repo_where': 39, 'refs': 29, 'hermes_compute': 10, 'repo_two': 21, 'web_compare': 20, 'math': 21, 'need_repo': 32, 'bare_link': 12, 'web_fact': 8, 'chat': 4}
+05:04:19 [gemma3] 243 of 243 examples fit; target tokens 24766, all tokens 202616
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 2182.17it/s]
+05:04:19 [gemma3] attention sdpa, gradient checkpointing True
+05:04:19 [gemma3] 29 micro-batches/epoch, accum 4, 8 steps, warmup 5
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.13s/it][A
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.13s/it]
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s][A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 4.69MB            [A
+Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 25.83it/s]
+
+
+Downloading bytes: ██████████| 3.26MB,   ???B/s  [A
+
+Download complete: ██████████| 3.26MB,   ???B/s  [A
+
+Reconstruction complete: 100%|██████████| 4.69MB / 4.69MB,   ???B/s               [A
+Download complete: ██████████| 3.26MB,   ???B/s  
+
+Reconstruction complete: 100%|██████████| 4.69MB / 4.69MB,   ???B/s  
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 5302.53it/s]
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+05:05:21 [gemma3] eval 30 episodes in 0.5 min; student {'calls': 36, 'too_long': 0, 'out_tokens': 2220}
+05:05:23 [functiongemma] 243 of 243 examples fit; target tokens 24766, all tokens 203588
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  536MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:  13%|█▎        | 67.1MB /  536MB            [A
+model.safetensors: downloading bytes: ███████▋  |  410MB, 35.4MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 43.0MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 43.0MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  536MB /  536MB, 51.1MB/s  
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 2097.45it/s]
+
+
+generation_config.json:   0%|          | 0.00/205 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 205/205 [00:00<00:00, 1.15MB/s]
+05:05:25 [functiongemma] attention sdpa, gradient checkpointing True
+05:05:25 [functiongemma] 29 micro-batches/epoch, accum 4, 8 steps, warmup 5
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.11s/it][A
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.11s/it]
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s][A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 4.69MB            [A
+Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 30.70it/s]
+
+
+Downloading bytes: ██████████| 3.26MB,   ???B/s  [A
+
+Download complete: ██████████| 3.26MB,   ???B/s  [A
+
+Reconstruction complete: 100%|██████████| 4.69MB / 4.69MB,   ???B/s               [A
+Download complete: ██████████| 3.26MB,   ???B/s  
+
+Reconstruction complete: 100%|██████████| 4.69MB / 4.69MB,   ???B/s  
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 5301.45it/s]
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+05:06:43 [functiongemma] eval 30 episodes in 0.8 min; student {'calls': 36, 'too_long': 0, 'out_tokens': 2741}
+05:06:44 [lfm25] 243 of 243 examples fit; target tokens 23152, all tokens 200579
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  709MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:   8%|▊         | 54.0MB /  709MB, 3.12MB/s  [A
+model.safetensors: downloading bytes: ██▎       |  163MB, 13.4MB/s  
+
+model.safetensors: reconstructing file:  61%|██████    |  434MB /  709MB, 36.8MB/s  [A
+model.safetensors: downloading bytes: █████▍    |  385MB, 32.9MB/s  
+model.safetensors: downloading bytes: ████████▏ |  583MB, 48.8MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  709MB /  709MB, 57.1MB/s  [A
+model.safetensors: downloading bytes: ██████████|  610MB, 51.2MB/s  
+model.safetensors: downloading bytes: ██████████|  610MB, 51.2MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  709MB /  709MB, 60.2MB/s  
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1282.82it/s]
+
+
+generation_config.json:   0%|          | 0.00/134 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 134/134 [00:00<00:00, 755kB/s]
+05:06:47 [lfm25] attention sdpa, gradient checkpointing True
+05:06:47 [lfm25] 29 micro-batches/epoch, accum 4, 8 steps, warmup 5
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it][A
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s][A
+Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 2029.91it/s]
+
+
+Download complete:           |  0.00B            [A
+
+Reconstruction complete: |          |  0.00B /  0.00B                         [A
+Download complete:           |  0.00B            
+
+Reconstruction complete: |          |  0.00B /  0.00B            
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 3646.45it/s]
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+05:07:34 [lfm25] eval 30 episodes in 0.3 min; student {'calls': 36, 'too_long': 0, 'out_tokens': 3431}
+05:07:34 # Squiggle small-model fine-tune: results
+
+**Verdict: NO-GO (not yet)** for `gemma3`.
+
+| check | pass | value |
+| --- | --- | --- |
+| trained types, strict mean | no | 0% (bar 50%) |
+| held-out types, strict mean | no | 0% (bar 30%) |
+| no held-out type at 0% | no | lowest 0% |
+| well-formed model calls | no | 0.0% (bar 95%) |
+| episodes that loop or hit the call cap | yes | 3.3% (bar ≤ 5%) |
+| plain chat stays plain | yes | 100% (bar 90%) |
+| messy within 10 points of clean | yes | clean 0%, messy 0% |
+| beats the untouched Gemma 3 270M | no | 0%/0% vs 0%/0% |
+
+## Strict score per task type (right answer and the habit)
+
+| type | habit | untouched-gemma3 | gemma3 | functiongemma | lfm25 |
+| --- | --- | --- | --- | --- | --- |
+| bare_link | read a bare link | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| chat | plain chat stays plain | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| chat_after | a task, then plain thanks | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| hermes_compute | compute (Hermes requests) | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| hermes_need | ask for missing input (Hermes requests) | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| math | compute with run_js | 0% (0%) | 0% (0%) | 0% (0%) | 0% (50%) |
+| memory_repo | use memory, don't ask | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| need_math (held out) | ask for a missing number (held out) | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| need_repo | ask which repo | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| past_chat | find an earlier chat | 0% (0%) | 0% (0%) | 0% (100%) | 0% (0%) |
+| recipe_compare (held out) | use a recipe on web lookups (held out) | 0% (50%) | 0% (50%) | 0% (50%) | 0% (100%) |
+| recipe_repo | use a recipe | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| refs | follow 'it' to the last repo | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| repo_fact | look in the repo | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| repo_two | plan a two-part repo task | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| repo_where | find a definition | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| web_bridge (held out) | plan a two-hop lookup (held out) | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| web_compare | plan + look up two things | 0% (0%) | 0% (50%) | 0% (0%) | 0% (50%) |
+| web_fact | look it up | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+
+(right answer only in brackets)
+
+## Habits
+
+| measure | untouched-gemma3 | gemma3 | functiongemma | lfm25 |
+| --- | --- | --- | --- | --- |
+| trained types, strict mean | 0% | 0% | 0% | 0% |
+| trained types, right answer | 0% | 3% | 6% | 6% |
+| held-out types, strict mean | 0% | 0% | 0% | 0% |
+| well-formed calls | 0% | 0% | 0% | 0% |
+| episodes looping / call-capped | 3% | 3% | 0% | 0% |
+| plans multi-step requests | 0% | 0% | 0% | 0% |
+| asks (need) when info is missing | 0% | 0% | 0% | 0% |
+| plain chat stays plain | 100% | 100% | 100% | 33% |
+| done results carry the answer | - | - | - | - |
+| clean requests, strict | 0% | 0% | 0% | 0% |
+| messy requests, strict | 0% | 0% | 0% | 0% |
+
+## Notes
+
+- `gemma3` (unsloth/gemma-3-270m-it): trained 1 epochs on 243 examples in 0 min.
+- `functiongemma` (unsloth/functiongemma-270m-it): trained 1 epochs on 243 examples in 0 min.
+- `lfm25` (LiquidAI/LFM2.5-350M): trained 1 epochs on 243 examples in 1 min.
+
+Traceback (most recent call last):
+  File "/workspace/work/sqft/train.py", line 405, in <module>
+    main()
+  File "/workspace/work/sqft/train.py", line 398, in main
+    sizes, check = export(str(Path("models") / best), best, out, args.hub_repo, out / "RESULTS.md")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/sqft/train.py", line 278, in export
+    if subprocess.run(["git", "clone", "-q", "--depth", "1", "https://github.com/ggml-org/llama.cpp", str(lc)]).returncode != 0:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/conda/lib/python3.11/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'git'
++ ls -la /workspace/work/out/train/gguf
+total 0
+drwxr-xr-x. 2 root root   6 Oct 28 05:07 .
+drwxr-xr-x. 3 root root 184 Oct 28 05:07 ..
++ rm -rf '/workspace/work/out/train/gguf/*.gguf'
+exit code 0 after 5.8 min
