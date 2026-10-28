@@ -148,7 +148,8 @@ and Squiggle at the pinned commit, installs node, and runs `jobs/<script>`.
 | `squiggle-ft-train-smoke-5` | `jobs/train_smoke.sh` (`BASES=lfm25 EPOCHS=4`) | l4x1, 25 min | ~$0.08 (crashed in export) | LFM2.5 with `<think>`/`</think>` started from their text pieces: well-formed 0% → 57% after 32 steps. Then llama-quantize's log (raw vocab bytes) crashed the runner's UTF-8 reader, and the GGUF files it left in `out` (1.1 GB) blocked the collect push; fixed in `hf/runner.py`, `hf/bridge.py` and train.py |
 | `squiggle-ft-teach` | `jobs/teach_smoke.sh` (`PLAN=targets`, `KV_FP8=0`, `CONCURRENCY=96`, `MINUTES=115`, `TAG=teach-v1`) | a100-large, 150 min | $0.19 (failed) | died loading data (datasets-server HTTP 429); the source slices are now committed in `data/sources/` |
 | `squiggle-ft-teach-2` | same as `squiggle-ft-teach` | a100-large, 150 min | $3.51 (done) | 830 episodes in 78 min (1,029 tokens/s): 565 kept (68%), 2,839 examples; recipe_repo 29/40, memory_repo 34/35, past_chat 14/40, chat_after 11/30; selftest clean |
-| `squiggle-ft-train` | `jobs/train.sh` (`TAG=teach-v1 EPOCHS=3 EVAL_MINUTES=20 LIMIT=165`) | l4x1, ≤180 min | ~$1.40 (cap $2.40) | train the three bases on teach-v1, eval, RESULTS.md, export + upload the winner (GGUF and weights) |
+| `squiggle-ft-train` | `jobs/train.sh` (`TAG=teach-v1 EPOCHS=3 EVAL_MINUTES=20 LIMIT=165`) | l4x1, ≤180 min | $1.06 (trained + evaluated; export died) | 3 bases × 3 epochs on 2,839 examples, eval on 293 episodes: **NO-GO**; best lfm25 (trained strict 36%, held-out 0%, 99% well-formed, chat 96%); weights to `kealjones/squiggle-small/hf`; export hit the runner UTF-8 bug (fixed) |
+| `squiggle-ft-export-lfm25` | `jobs/export.sh` (`BASE=lfm25`) | l4x1, 30 min | $0.06 (done) | Q8_0 (379 MB) + Q4_0 (219 MB) in `kealjones/squiggle-small`; llama.cpp generates; wllama 3.8.1 loads both and emits a valid tool call, but with no `<think>` in `delta.content` (open: dropped as reasoning, or skipped; `wllama_check.py` now records `reasoning_content`) |
 | `squiggle-ft-teach-round2` | `jobs/teach_smoke.sh` (`PLAN=round2`, template `jobs/templates/squiggle-ft-teach-round2.json`) | a100-large, 50 min | ~$0.80 (cap $2.10), not launched | second data round: 60 unknown_word + 70 personal episodes, then a retrain on teach-v1 + teach-round2 (~$1.40) |
 
 Teacher data goes to the private dataset `kealjones/squiggle-ft-data/<tag>/` (not git); the training job downloads it.
@@ -161,5 +162,9 @@ Teacher data goes to the private dataset `kealjones/squiggle-ft-data/<tag>/` (no
   the teacher plumbing (format mapping, rejection and rewrite) with a stand-in model; GGUF export fixed and checked:
   a Gemma 3 270M saved by train.py (it held the base weights, see train-smoke-3; same architecture) converted to Q8_0
   (292 MB), and LFM2.5-350M (379 MB), load and generate in wllama 3.8.1 in headless Chromium.
-- **On HF so far:** about $5.71 in finished jobs (see the table). The teacher data (teach-v1: 565 episodes, 2,839
-  examples) is in `kealjones/squiggle-ft-data`; the training run is next.
+- **On HF so far:** about $6.91 in all (see the table).
+- **Result (hf-train/RESULTS.md): NO-GO (not yet).** Best is LFM2.5-350M: trained types strict 36% (bar 50%), held-out
+  0% (bar 30%), 99% well-formed calls, plain chat 96%, messy 26% vs clean 19%, 91 tokens per call. Strong on
+  memory_repo 100%, bare_link 83%, recipe_repo 67%, repo_fact 50%, need_repo 50%; weak on web lookups (web_fact 0%:
+  wrong answers), planning two-hop questions, and asking for a missing number (need_math 0%).
+- **Next:** round 2 (unknown_word, personal) when approved; see the job table.
