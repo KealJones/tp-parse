@@ -1,0 +1,24 @@
+{
+ "slug": "squiggle-ft-teach-smoke-v2",
+ "flavor": "l40sx1",
+ "timeout": "33m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "PLAN=smoke_v2 SCALE=1 MINUTES=18 CONCURRENCY=48 TAG=teach-smoke-v2 python boot.py teach_smoke.sh",
+ "pip": [
+  "vllm==0.11.0",
+  "transformers>=4.57,<5",
+  "pyarrow",
+  "gguf",
+  "sentencepiece",
+  "protobuf"
+ ],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-teach-smoke-v2",
+ "note": "v2 teacher smoke: 51 episodes, 3 per family of the trimmed plan (all new families), v2 checker + judge; Squiggle ab248b4; read keep rate and rejection reasons before the full round. Expected ~$0.60, hard cap $0.99 (33 min of l40sx1 at $1.80/h)",
+ "job_id": "6ae1c2043fb22a235dd3cd89",
+ "url": "https://huggingface.co/jobs/kealjones/6ae1c2043fb22a235dd3cd89",
+ "started": "2026-10-28T09:36:04+00:00",
+ "sha": "e132a1c5ba80e5151f3ebe499223821539515cd1"
+}
