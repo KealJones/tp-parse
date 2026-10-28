@@ -72,12 +72,15 @@ def batches(items, budget, rng):
 def copy_tokenizer(base, out_dir):
     """The base model's own tokenizer files, unchanged (the tokenizer isn't trained). transformers 5 re-saves Gemma's
     tokenizer without tokenizer.model, which llama.cpp's converter then rejects."""
+    import fnmatch
     from huggingface_hub import snapshot_download
-    snap = snapshot_download(BASES[base], allow_patterns=["tokenizer*", "special_tokens_map.json", "added_tokens.json",
-                                                          "chat_template.jinja", "generation_config.json"])
+    pats = ["tokenizer*", "special_tokens_map.json", "added_tokens.json", "chat_template.jinja"]
+    snap = snapshot_download(BASES[base], allow_patterns=pats)
     Path(out_dir).mkdir(parents=True, exist_ok=True)
+    # Only these names: the snapshot folder also holds whatever else was downloaded for the base (model.safetensors,
+    # config.json), and copying those would put the untrained weights back over the trained ones.
     for f in Path(snap).iterdir():
-        if f.is_file():
+        if f.is_file() and any(fnmatch.fnmatch(f.name, p) for p in pats):
             shutil.copy(f, Path(out_dir) / f.name)
 
 
@@ -166,6 +169,26 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, 
 
 
 # ── eval ────────────────────────────────────────────────────────────────────
+GEN_STATS = {}            # label -> the eval student's {calls, too_long, out_tokens}
+PHONE_TOK_S = 15          # rough generation speed on a phone CPU, for the seconds-per-call column
+
+
+def arm(res, label):
+    """metrics + output length + three raw generations (first model call of a chat, a web and a repo episode)."""
+    m = metrics(res)
+    g = GEN_STATS.get(label, {})
+    m["gen"] = {"calls": g.get("calls", 0), "out_tokens": g.get("out_tokens", 0),
+                "per_call": g.get("out_tokens", 0) / max(1, g.get("calls", 0) - g.get("too_long", 0))}
+    picks = []
+    for fams in (("chat",), ("web_fact", "web_compare"), ("repo_fact", "repo_where", "repo_two")):
+        r = next((r for r in sorted(res, key=lambda r: r["id"]) if r["family"] in fams and r.get("calls")), None)
+        if r:
+            c = r["calls"][0]
+            picks.append({"id": r["id"], "request": r.get("first", ""), "kind": c.get("kind"), "output": (c.get("output") or "")[:1500]})
+    m["samples"] = picks
+    return m
+
+
 def evaluate(model_path, episodes, work, squiggle, label, out_dir, minutes=25):
     import torch
     from backends import HFStudent
@@ -182,6 +205,7 @@ def evaluate(model_path, episodes, work, squiggle, label, out_dir, minutes=25):
                                {"turns": [{"reply": t.get("reply"), "tools": t.get("tools")} for t in r.get("turns", [])],
                                 "outputs": [{"kind": c.get("kind"), "output": c.get("output")} for c in r.get("calls", [])]}, ensure_ascii=False) + "\n")
     log(f"[{label}] eval {len(res)} episodes in {(time.time() - t0) / 60:.1f} min; student {st.stats}")
+    GEN_STATS[label] = dict(st.stats)
     del st
     gc.collect()
     if torch.cuda.is_available():
@@ -267,6 +291,18 @@ def write_results(out, arms, notes):
         L.append(f"| {label} | " + " | ".join("-" if arms[a].get(key) is None else f"{arms[a][key]:.0%}" for a in names) + " |")
     # Episodes not started before an arm's eval deadline are skipped (a random tail: the set is shuffled).
     L.append("| episodes evaluated | " + " | ".join(str(sum(v["n"] for v in arms[a]["families"].values())) for a in names) + " |")
+    if any("gen" in arms[a] for a in names):
+        L += ["", "## Output length", "", f"Generated tokens per model call (thinking + call or reply). Seconds per call at ~{PHONE_TOK_S} tokens/s on a phone CPU.", "",
+              "| model | calls | tokens per call | seconds per call |", "| --- | --- | --- | --- |"]
+        for a in names:
+            g = arms[a].get("gen")
+            if g:
+                L.append(f"| {a} | {g['calls']} | {g['per_call']:.0f} | {g['per_call'] / PHONE_TOK_S:.0f} |")
+    if any(arms[a].get("samples") for a in names):
+        L += ["", "## Sample generations", "", "The first model call of three eval episodes per model, raw (as the harness got it).", ""]
+        for a in names:
+            for x in arms[a].get("samples", []):
+                L += [f"**{a}**, `{x['id']}` ({x['kind']}): {x['request'][:200]!r}", "", "````text", x["output"] or "(empty)", "````", ""]
     L += ["", "## Notes", ""] + notes
     (Path(out) / "RESULTS.md").write_text("\n".join(L) + "\n")
     return best, go
@@ -305,7 +341,7 @@ def export(model_dir, base, out, hub_repo, results_md):
     f8 = work / f"squiggle-small-{base}-Q8_0.gguf"
     subprocess.run([sys.executable, str(lc / "convert_hf_to_gguf.py"), model_dir, "--outtype", "q8_0", "--outfile", str(f8)], check=True, env=env)
     files = [f8]
-    built = subprocess.run(f"cd {lc} && cmake -B build -DGGML_CUDA=OFF -DLLAMA_CURL=OFF -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_SERVER=OFF >/dev/null "
+    built = subprocess.run(f"cd {lc} && cmake -B build -DGGML_CUDA=OFF -DLLAMA_CURL=OFF -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_EXAMPLES=ON -DLLAMA_BUILD_SERVER=OFF >/dev/null "
                            "&& cmake --build build -j 8 --target llama-quantize llama-simple >/dev/null", shell=True).returncode == 0
     check = "llama.cpp build failed: no Q4_0 and no load check"
     if built:
@@ -368,7 +404,7 @@ def main():
     arms, notes = {}, []
     bases = [b for b in args.bases.split(",") if b]
     if not args.no_untouched:
-        arms["untouched-gemma3"] = metrics(evaluate(BASES["gemma3"], eval_eps(), args.work, args.squiggle, "untouched-gemma3", out, args.eval_minutes))
+        arms["untouched-gemma3"] = arm(evaluate(BASES["gemma3"], eval_eps(), args.work, args.squiggle, "untouched-gemma3", out, args.eval_minutes), "untouched-gemma3")
         json.dump(arms, open(out / "metrics.json", "w"), indent=1)
     if not args.eval_only:
         import glob
@@ -408,7 +444,7 @@ def main():
             md = str(Path("models") / b)
             mins = train(b, examples, md, epochs=args.epochs, lr=args.lr)
             notes.append(f"- `{b}` ({BASES[b]}): trained {args.epochs} epochs on {len(examples)} examples in {mins:.0f} min.")
-            arms[b] = metrics(evaluate(md, eval_eps(), args.work, args.squiggle, b, out, args.eval_minutes))
+            arms[b] = arm(evaluate(md, eval_eps(), args.work, args.squiggle, b, out, args.eval_minutes), b)
             json.dump(arms, open(out / "metrics.json", "w"), indent=1)
             write_results(out, arms, notes)
             nxt = bases[bi + 1] if bi + 1 < len(bases) else None
