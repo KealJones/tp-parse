@@ -1,0 +1,37 @@
+
+config.json:   0%|          | 0.00/1.37k [00:00<?, ?B/s][Aconfig.json: 100%|██████████| 1.37k/1.37k [00:00<00:00, 6.70MB/s]
+
+tokenizer_config.json:   0%|          | 0.00/1.16M [00:00<?, ?B/s][Atokenizer_config.json: 100%|██████████| 1.16M/1.16M [00:00<00:00, 3.93MB/s]
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 33.4MB            [Atokenizer.json: downloading bytes:           |  0.00B            tokenizer.json: downloading bytes: ▎         |  941kB, 25.5kB/s  
+tokenizer.json: reconstructing file: 100%|██████████| 33.4MB / 33.4MB            [Atokenizer.json: downloading bytes: ██████████| 8.83MB,  845kB/s  tokenizer.json: downloading bytes: ██████████| 8.83MB,  845kB/s  
+tokenizer.json: reconstructing file: 100%|██████████| 33.4MB / 33.4MB, 3.22MB/s  
+
+added_tokens.json:   0%|          | 0.00/35.0 [00:00<?, ?B/s][Aadded_tokens.json: 100%|██████████| 35.0/35.0 [00:00<00:00, 144kB/s]
+
+special_tokens_map.json:   0%|          | 0.00/670 [00:00<?, ?B/s][Aspecial_tokens_map.json: 100%|██████████| 670/670 [00:00<00:00, 3.50MB/s]
+
+chat_template.jinja:   0%|          | 0.00/1.65k [00:00<?, ?B/s][Achat_template.jinja: 100%|██████████| 1.65k/1.65k [00:00<00:00, 11.2MB/s]
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][Aconfig.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 7.83MB/s]
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][Atokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 4.36MB/s]
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][Atokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 31.0MB/s]
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][Achat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 33.3MB/s]
+Traceback (most recent call last):
+  File "/workspace/work/sqft/selftest.py", line 145, in <module>
+    main()
+  File "/workspace/work/sqft/selftest.py", line 103, in main
+    for rec in read(path):
+  File "/workspace/work/sqft/selftest.py", line 33, in read
+    with op(path, "rt") as f:
+         ^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/gzip.py", line 58, in open
+    binary_file = GzipFile(filename, gz_mode, compresslevel)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/gzip.py", line 174, in __init__
+    fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/out/teach/train_examples.jsonl.gz'

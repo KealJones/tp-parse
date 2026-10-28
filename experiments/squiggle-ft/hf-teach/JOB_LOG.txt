@@ -1,0 +1,114 @@
+job 6ae17e0241e90535df76f279 on gpu: squiggle-ft-teach at 37b29c1
+fetched experiments/squiggle-ft/jobs/boot.py
+Wed Oct 28 04:48:42 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          On  |   00000000:90:1C.0 Off |                    0 |
+| N/A   38C    P0             67W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+debconf: delaying package configuration, since apt-utils is not installed
+boot: node v22.23.4, squiggle e9c27cabe7c15ae72242d6f62ea02710d57af535, tp-parse 37b29c1, setup took 16 s
++ python -c 'import torch, vllm, transformers; print('\''torch'\'', torch.__version__, '\''vllm'\'', vllm.__version__, '\''transformers'\'', transformers.__version__)'
+torch 2.8.0+cu128 vllm 0.11.0 transformers 4.57.6
++ nvidia-smi --query-gpu=name,memory.total --format=csv
+name, memory.total [MiB]
+NVIDIA A100-SXM4-80GB, 81920 MiB
++ python build.py teach --plan targets --scale 1 --minutes 115 --concurrency 96 --out /workspace/work/out/teach --work work
+Traceback (most recent call last):
+  File "/workspace/work/sqft/build.py", line 246, in <module>
+    main()
+  File "/workspace/work/sqft/build.py", line 237, in main
+    teach(args)
+  File "/workspace/work/sqft/build.py", line 180, in teach
+    src = load_sources(work, "eval" if args.plan == "eval" else "train")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/sqft/build.py", line 42, in load_sources
+    gsm = S.gsm8k(work, 800, "train", 0)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/sqft/sources.py", line 68, in gsm8k
+    raw = rows("openai/gsm8k", "main", split, n, offset, Path(work) / "data" / f"gsm8k_{split}_{offset}_{n}.json")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/sqft/sources.py", line 45, in rows
+    d = _get(f"{ROWS}?{q}")
+        ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/sqft/sources.py", line 28, in _get
+    with urllib.request.urlopen(req, timeout=60) as r:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/urllib/request.py", line 525, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/urllib/request.py", line 634, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/urllib/request.py", line 563, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/urllib/request.py", line 643, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 429: Too Many Requests
++ python showcase.py /workspace/work/out/teach/teacher_results.jsonl.gz /workspace/work/out/TEACHER_EXAMPLES.md
+Traceback (most recent call last):
+  File "/workspace/work/sqft/showcase.py", line 6, in <module>
+    rs = [json.loads(l) for l in gzip.open(sys.argv[1], "rt")]
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/gzip.py", line 58, in open
+    binary_file = GzipFile(filename, gz_mode, compresslevel)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/gzip.py", line 174, in __init__
+    fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/out/teach/teacher_results.jsonl.gz'
++ python hub.py up kealjones/squiggle-ft-data teach-v1 /workspace/work/out/teach/train_examples.jsonl.gz /workspace/work/out/teach/teacher_results.jsonl.gz
+Traceback (most recent call last):
+  File "/workspace/work/sqft/hub.py", line 14, in <module>
+    api.upload_file(path_or_fileobj=f, path_in_repo=prefix.rstrip("/") + "/" + os.path.basename(f), repo_id=repo, repo_type="dataset")
+  File "/opt/conda/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/huggingface_hub/hf_api.py", line 1687, in _inner
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/huggingface_hub/hf_api.py", line 4662, in upload_file
+    operation = CommitOperationAdd(
+                ^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 5, in __init__
+  File "/opt/conda/lib/python3.11/site-packages/huggingface_hub/_commit_api.py", line 182, in __post_init__
+    raise ValueError(f"Provided path: '{path_or_fileobj}' is not a file on the local file system")
+ValueError: Provided path: '/workspace/work/out/teach/train_examples.jsonl.gz' is not a file on the local file system
++ pip install -q -U 'transformers>=5,<6'
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ python selftest.py /workspace/work/out/teach/train_examples.jsonl.gz --tokenizers unsloth/gemma-3-270m-it,LiquidAI/LFM2.5-350M
++ tail -12 /workspace/work/out/selftest.txt
+  File "/workspace/work/sqft/selftest.py", line 103, in main
+    for rec in read(path):
+  File "/workspace/work/sqft/selftest.py", line 33, in read
+    with op(path, "rt") as f:
+         ^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/gzip.py", line 58, in open
+    binary_file = GzipFile(filename, gz_mode, compresslevel)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/gzip.py", line 174, in __init__
+    fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/out/teach/train_examples.jsonl.gz'
+exit code 0 after 4.6 min
