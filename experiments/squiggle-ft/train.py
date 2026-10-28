@@ -652,7 +652,9 @@ def main():
         for p in paths:
             for rec in read_jsonl(p):
                 if "calls" in rec and "turns" in rec:          # an episode result: its calls, if it passes now
-                    if F.check(rec)["strict"]:
+                    judged_out = any(str(x).startswith("judge:") for x in (rec.get("check") or {}).get("reasons", [])) \
+                        and rec.get("family") in build.JUDGE_FAMS      # the judge's verdict stands (A-or-B families only)
+                    if F.check(rec)["strict"] and not judged_out:
                         examples += list(build.examples(rec, rec.get("source")))
                 else:
                     examples.append(rec)

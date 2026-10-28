@@ -396,7 +396,7 @@ def report(results, path, extra=""):
     Path(path).write_text("\n".join(lines) + "\n")
 
 
-JUDGE_FAMS = {"web_compare", "recipe_compare", "lookup_then_compute", "recipe_web"}
+JUDGE_FAMS = {"web_compare", "recipe_compare", "recipe_web"}     # "A or B" questions only (lookup_then_compute asks how many years: no options)
 
 
 def judge_turn(r):
