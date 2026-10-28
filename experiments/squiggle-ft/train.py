@@ -105,7 +105,7 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, 
             logits = torch.tanh(logits / softcap) * softcap
         return torch.nn.functional.cross_entropy(logits, yc, reduction="sum")
     opt = (torch.optim.SGD(model.parameters(), lr=lr) if os.environ.get("SQFT_SGD")       # tiny-memory local tests only
-           else torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=0.0, betas=(0.9, 0.95)))
+           else torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=0.0, betas=(0.9, 0.95), foreach=dev == "cuda"))
     mbs_per_epoch = len(batches(items, budget, random.Random(0)))
     ex_per_mb = len(items) / max(1, mbs_per_epoch)
     accum = max(1, round(per_step / ex_per_mb))
@@ -118,7 +118,7 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, 
     model.train()
     for ep in range(epochs):
         mbs = batches(items, budget, rng)
-        run_loss, run_n = 0.0, 0
+        run_loss, run_n, ep_loss, ep_n = 0.0, 0, 0.0, 0
         opt.zero_grad(set_to_none=True)
         for k, mb in enumerate(mbs):
             L = max(len(items[i][0]) + len(items[i][1]) for i in mb)
@@ -145,6 +145,7 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, 
             n_t = int(sel.sum())
             (loss / max(1, n_t) / accum).backward()
             run_loss += loss.item(); run_n += n_t
+            ep_loss += loss.item(); ep_n += n_t
             if (k + 1) % accum == 0 or k == len(mbs) - 1:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
                 opt.step(); sched.step(); opt.zero_grad(set_to_none=True)
@@ -152,6 +153,7 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, 
                 if step % 20 == 0:
                     log(f"[{base}] epoch {ep + 1} step {step}/{total} loss {run_loss / max(1, run_n):.4f} lr {sched.get_last_lr()[0]:.2e} ({(time.time() - t0) / 60:.1f} min)")
                     run_loss, run_n = 0.0, 0
+        log(f"[{base}] epoch {ep + 1} done: mean loss {ep_loss / max(1, ep_n):.4f} ({(time.time() - t0) / 60:.1f} min)")
     model.config.use_cache = True
     Path(out_dir).mkdir(parents=True, exist_ok=True)
     model.save_pretrained(out_dir, safe_serialization=True)
@@ -263,21 +265,40 @@ def write_results(out, arms, notes):
                        ("asks", "asks (need) when info is missing"), ("chat", "plain chat stays plain"), ("done_facts", "done results carry the answer"),
                        ("clean", "clean requests, strict"), ("messy", "messy requests, strict")]:
         L.append(f"| {label} | " + " | ".join("-" if arms[a].get(key) is None else f"{arms[a][key]:.0%}" for a in names) + " |")
+    # Episodes not started before an arm's eval deadline are skipped (a random tail: the set is shuffled).
+    L.append("| episodes evaluated | " + " | ".join(str(sum(v["n"] for v in arms[a]["families"].values())) for a in names) + " |")
     L += ["", "## Notes", ""] + notes
     (Path(out) / "RESULTS.md").write_text("\n".join(L) + "\n")
     return best, go
 
 
 # ── export ──────────────────────────────────────────────────────────────────
+LLAMA_CPP_COMMIT = "8ca4060b7e30e76baaa5670ee1ec1b760b7f8552"
+
+
+def upload_weights(model_dir, hub_repo):
+    """The trained model in transformers format, to <hub_repo>/hf/, so a failed GGUF export can be redone later."""
+    if not (hub_repo and os.environ.get("HF_TOKEN")):
+        return False
+    from huggingface_hub import HfApi
+    api = HfApi(token=os.environ["HF_TOKEN"])
+    api.create_repo(hub_repo, private=True, exist_ok=True)
+    api.upload_folder(folder_path=model_dir, path_in_repo="hf", repo_id=hub_repo)
+    log(f"uploaded {model_dir} to {hub_repo}/hf")
+    return True
+
+
 def export(model_dir, base, out, hub_repo, results_md):
     """GGUF (Q8_0 and Q4_0) with llama.cpp's converter, a llama.cpp load-and-generate check, upload to a private repo."""
     work = Path(out) / "gguf"
     work.mkdir(parents=True, exist_ok=True)
     lc = Path(os.environ.get("LLAMA_CPP_DIR", "llama.cpp"))
     if not lc.exists():
-        if subprocess.run(["git", "clone", "-q", "--depth", "1", "https://github.com/ggml-org/llama.cpp", str(lc)]).returncode != 0:
-            subprocess.run([sys.executable, "-c", "import urllib.request as u; u.urlretrieve('https://codeload.github.com/ggml-org/llama.cpp/tar.gz/refs/heads/master', 'lc.tgz')"], check=True)
-            subprocess.run(f"mkdir -p {lc} && tar xzf lc.tgz -C {lc} --strip-components=1", shell=True, check=True)
+        # llama.cpp at the commit the export was checked with locally (convert -> Q8_0 -> loads in wllama 3.8.1); a
+        # tarball, so the job needs no git.
+        import urllib.request
+        urllib.request.urlretrieve(f"https://codeload.github.com/ggml-org/llama.cpp/tar.gz/{LLAMA_CPP_COMMIT}", "lc.tgz")
+        subprocess.run(f"mkdir -p {lc} && tar xzf lc.tgz -C {lc} --strip-components=1", shell=True, check=True)
     copy_tokenizer(base, model_dir)            # models trained before this fix
     subprocess.run([sys.executable, "-m", "pip", "install", "-q", "gguf", "sentencepiece", "protobuf"], check=False)
     env = dict(os.environ, PYTHONPATH=str(lc / "gguf-py"))
@@ -395,10 +416,24 @@ def main():
     best, go = write_results(out, arms, notes)
     log(open(out / "RESULTS.md").read())
     if args.export and best and not best.startswith("untouched"):
-        sizes, check = export(str(Path("models") / best), best, out, args.hub_repo, out / "RESULTS.md")
+        md = str(Path("models") / best)
+        try:
+            saved = upload_weights(md, args.hub_repo)
+        except Exception as e:                        # the GGUF export still runs; RESULTS.md says what happened
+            saved = False
+            log(f"weights upload failed: {e!r}")
+        try:
+            sizes, check = export(md, best, out, args.hub_repo, out / "RESULTS.md")
+            where = f", uploaded to the private repo `{args.hub_repo}`" if args.hub_repo else " (not uploaded: smoke)"
+            text = f"`{best}` → " + ", ".join(f"{k} ({v / 1e6:.0f} MB)" for k, v in sizes.items()) + f"{where}.\n\n{check}"
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            text = f"GGUF export of `{best}` failed: {e!r}." + (f" The trained weights are in `{args.hub_repo}/hf`." if saved else "")
+        if saved:
+            text += f"\n\nTransformers weights: `{args.hub_repo}/hf`."
         with open(out / "RESULTS.md", "a") as f:
-            f.write(f"\n## Export\n\n`{best}` → " + ", ".join(f"{k} ({v / 1e6:.0f} MB)" for k, v in sizes.items()) +
-                    f", uploaded to the private repo `{args.hub_repo}`.\n\n{check}\n")
+            f.write(f"\n## Export\n\n{text}\n")
 
 
 if __name__ == "__main__":
