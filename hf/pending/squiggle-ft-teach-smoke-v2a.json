@@ -16,5 +16,9 @@
  ],
  "outdir": "out",
  "out": "experiments/squiggle-ft/hf-teach-smoke-v2a",
- "note": "v2 teacher smoke relaunched on a100-large (the l40sx1 one, 6ae1c204, sat in scheduling for 2 h): 51 episodes, 3 per family of the trimmed plan; expected ~$0.70, hard cap $1.00 (24 min of a100-large)"
+ "note": "v2 teacher smoke relaunched on a100-large (the l40sx1 one, 6ae1c204, sat in scheduling for 2 h): 51 episodes, 3 per family of the trimmed plan; expected ~$0.70, hard cap $1.00 (24 min of a100-large)",
+ "job_id": "6ae1de5c41e90535df772ce4",
+ "url": "https://huggingface.co/jobs/kealjones/6ae1de5c41e90535df772ce4",
+ "started": "2026-10-28T11:37:00+00:00",
+ "sha": "2ad0dd38c03b302a50e4683e04b6ad5b016dc724"
 }
