@@ -1,0 +1,21 @@
+{
+ "slug": "squiggle-ft-teach-topup-ltc",
+ "flavor": "a100-large",
+ "timeout": "26m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "PLAN=topup_ltc SCALE=1 MINUTES=3 CONCURRENCY=32 KV_FP8=0 EPISODE_TIMEOUT=1200 SELFTEST=0 JUDGE_PENDING=hf-teach-v2/teach/judge_pending.jsonl.gz TAG=teach-topup-ltc python boot.py teach_smoke.sh",
+ "pip": [
+  "vllm==0.11.0",
+  "transformers>=4.57,<5",
+  "pyarrow",
+  "gguf",
+  "sentencepiece",
+  "protobuf"
+ ],
+ "upload_every": 120,
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-teach-topup-ltc",
+ "note": "lookup_then_compute top-up on Squiggle f54bbf7: 30 episodes with the plan fix (the calculation is the plan's last step), episodes capped at 20 min, concurrency 32, no retries; plus the judge for teach-v2's 3 pending recipe_web episodes; hard cap $1.08 (26 min of a100-large)"
+}
