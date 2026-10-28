@@ -1,0 +1,24 @@
+{
+ "slug": "squiggle-ft-train",
+ "flavor": "l4x1",
+ "timeout": "180m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "TAG=teach-v1 EPOCHS=3 EVAL_MINUTES=20 LIMIT=165 python boot.py train.sh",
+ "pip": [
+  "transformers>=5,<6",
+  "pyarrow",
+  "gguf",
+  "sentencepiece",
+  "protobuf",
+  "playwright"
+ ],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-train",
+ "note": "the real training run on teach-v1 (565 kept teacher episodes, 2,839 examples): gemma3, lfm25, functiongemma x 3 epochs, eval on 296 fresh episodes (unseen repos, 3 held-out task types) against the untouched Gemma 3 270M, RESULTS.md with go/no-go, winner exported (Q8_0 + Q4_0, wllama 3.8.1 check) and uploaded with its weights to the private repo kealjones/squiggle-small. Expected ~$1.40 (about 105 min), cap $2.40 (180 min of l4x1)",
+ "job_id": "6ae194bb3fb22a235dd3b498",
+ "url": "https://huggingface.co/jobs/kealjones/6ae194bb3fb22a235dd3b498",
+ "started": "2026-10-28T06:22:51+00:00",
+ "sha": "d2dfb1100947a57bdddcc856dfa1a2d977f046b5"
+}
