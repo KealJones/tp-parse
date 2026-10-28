@@ -147,10 +147,19 @@ v1 families. Their v1 kept episodes are reused (§4).
 
 ## 2h. Computation goes through `calculate`, never the model and never run_js (Keal)
 
-Squiggle is getting a dedicated tool, `calculate(expression)`, on the `calc` branch of tools.js. The final spec is
-still to come. As described so far:
-- It takes plain math: `+ - * / ^`, parentheses, `%`, and functions like `round`, `sqrt`, `min`, `max`.
-- It returns `{"result": number}` or `{"error": "..."}`.
+The `calculate` tool is final on Squiggle main (commit d9cbfea and later; code in `app/src/calc.js` and
+`app/src/tools.js`).
+- **Signature:** `calculate({expression: string})`; `expression` is required.
+- **Returns:** `{expression, result: number}` (rounded to 12 significant digits) or `{expression, error: "plain words"}`.
+- **Accepts:** `+ - * / ^`, parentheses, percentages ("15% of 240", postfix % = /100), and `sqrt`, `round(x, digits)`,
+  `min`, `max`, `abs`, `floor`, `ceil`, `pow`, `log`, `ln`, `exp`. Also `$ € £`, thousands commas (not inside function
+  calls), `x × ÷ **`, and "of" as multiply.
+- **find:** money, totals, percentages, conversions and "how much is" route to calculate (intent boost 6).
+- **run_js's description** now says "for code, data processing, or checking logic, not for plain math (use calculate)".
+- **The sim uses Squiggle main's real `tools.js`, `find.js` and `calc.js`.** `jobs/boot.py` moves its Squiggle pin
+  from e9c27ca to a main commit at or after d9cbfea, `tool_specs.json` is re-exported from that commit, and
+  quality.py's schema check picks calculate up from there. `sq/hooks.mjs` needs no change: calc.js is pure and runs in
+  node as-is.
 
 Writing JavaScript is too error-prone for a 350M model. So in v2:
 - **Every computation goes find → calculate.** That covers math_pair, hermes_compute, need_math (after the user
@@ -173,15 +182,18 @@ Writing JavaScript is too error-prone for a 350M model. So in v2:
   4. This also catches arithmetic hidden in a reply ("so that's 12 years apart") after two lookups.
 - **calculate errors:** if calculate returns `{"error"}`, the next call fixes the expression and tries again, or says
   it couldn't compute. It never states a number.
-- **Quality bar:** `calculate` is added to `tool_specs.json` from the `calc` branch once the spec is final. Its
-  `expression` must be a string with no variable names or code (`=`, `;`, `=>` and `function` are rejected) and no
-  words except the allowed function names.
+- **Quality bar:** `calculate` comes from the re-exported `tool_specs.json`. Its `expression` must be a string with no
+  code (`=`, `;`, `=>`, `function`, `console.log` are rejected). Words other than the allowed function names, "of" and
+  "x" are rejected. Units belong in the reply, not in the expression.
 - **Eval:** two new measurements. The *computed-number grounded rate* across all families, and the *run_js misuse
   rate* (run_js used for plain arithmetic). The v1 models get scored on these as a baseline; they use run_js, so the
   table shows them as "computes via run_js".
-- **Dependency:** the teacher round can't start until the `calc` branch is merged into Squiggle (or pinned in
-  jobs/boot.py) and `sq/format.mjs` has re-exported the tool specs. The harness runs Squiggle's real tools.js, so
-  calculate's real behaviour is what training sees.
+- **Before any teacher run:**
+  - Re-pin, then re-run selftest, gold.py and the scripted checker cases on the new Squiggle commit.
+  - The new pin also changes find's ranking and the LITE system prompt, if they changed upstream. v1's reused
+    episodes were made under e9c27ca, so they are re-rendered with the new prompts where the harness can replay
+    them, or kept only if their prompts are unchanged. That gets checked when the pin moves.
+- **Not launched:** waiting for the v1 corpus/checker audit and the Fable review.
 
 ## 3. Web accuracy: verify before replying
 
