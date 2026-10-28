@@ -407,8 +407,14 @@ def plan_follows_recipe(res, k):
     plans = args_of(segs[k], "plan")
     if not m or not plans:
         return False
-    rw = set(toks(re.sub(r"<\w+>", " ", m.group(1)))) - STOP
-    pw = set(toks(" ".join(map(str, plans[0].get("steps", []))))) - STOP
+    # Compare the recipe's numbered steps with the plan's steps, without names (capitalised words, placeholders,
+    # paths): a recipe saved from "Susan Oliver's birth date" fits a plan for "Josephine Tey's birth date".
+    def generic(text):
+        text = re.sub(r"<\w+>|\S*[/.]\S+", " ", text)
+        return {t for w in text.split() if not w[:1].isupper() for t in toks(w)} - STOP
+    steps = [l for l in m.group(1).splitlines() if re.match(r"\s*\d+\.\s", l)]
+    rw = generic(" ".join(re.sub(r"^\s*\d+\.\s*", "", l) for l in steps))
+    pw = generic(" ".join(map(str, plans[0].get("steps", []))))
     return bool(rw) and len(rw & pw) / len(rw | pw) >= 0.3
 
 
