@@ -82,7 +82,7 @@ def copy_tokenizer(base, out_dir):
 
 
 
-def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=12288, per_step=32, seed=0):
+def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, seed=0):
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
     torch.manual_seed(seed)
@@ -92,11 +92,18 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=12288, per_step=32,
     log(f"[{base}] {len(items)} of {len(examples)} examples fit; target tokens {sum(len(o) for _, o in items)}, all tokens {sum(len(p) + len(o) for p, o in items)}")
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     dt = torch.bfloat16 if dev == "cuda" and torch.cuda.is_bf16_supported() else torch.float32
-    model = AutoModelForCausalLM.from_pretrained(BASES[base], dtype=torch.float32).to(dev)
-    model.gradient_checkpointing_enable()
+    model = AutoModelForCausalLM.from_pretrained(BASES[base], dtype=torch.float32, attn_implementation="sdpa").to(dev)
+    model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
+    log(f"[{base}] attention {model.config._attn_implementation}, gradient checkpointing {model.is_gradient_checkpointing}")
     model.config.use_cache = False
     head = model.get_output_embeddings()
     softcap = getattr(model.config, "final_logit_softcapping", None)
+
+    def chunk_loss(hc, yc):
+        logits = head(hc).float()
+        if softcap:
+            logits = torch.tanh(logits / softcap) * softcap
+        return torch.nn.functional.cross_entropy(logits, yc, reduction="sum")
     opt = (torch.optim.SGD(model.parameters(), lr=lr) if os.environ.get("SQFT_SGD")       # tiny-memory local tests only
            else torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=0.0, betas=(0.9, 0.95)))
     mbs_per_epoch = len(batches(items, budget, random.Random(0)))
@@ -127,14 +134,14 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=12288, per_step=32,
             ids, att, lab = ids.to(dev), att.to(dev), lab.to(dev)
             with torch.autocast(dev, dtype=dt, enabled=dev == "cuda"):
                 hid = model.model(input_ids=ids, attention_mask=att).last_hidden_state
-                # loss only where a target token is predicted; the full vocab is only computed there
+                # Loss only where a target token is predicted. The vocabulary is huge (Gemma: 262k), so logits are made
+                # 512 positions at a time and recomputed in the backward pass instead of kept.
                 tgt = lab[:, 1:]
                 sel = tgt != -100
                 h = hid[:, :-1][sel]
-                logits = head(h).float()
-                if softcap:
-                    logits = torch.tanh(logits / softcap) * softcap
-                loss = torch.nn.functional.cross_entropy(logits, tgt[sel], reduction="sum")
+                y = tgt[sel]
+                loss = sum(torch.utils.checkpoint.checkpoint(chunk_loss, h[i:i + 512], y[i:i + 512], use_reentrant=False)
+                           for i in range(0, h.shape[0], 512))
             n_t = int(sel.sum())
             (loss / max(1, n_t) / accum).backward()
             run_loss += loss.item(); run_n += n_t
