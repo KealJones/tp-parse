@@ -22,6 +22,7 @@ TERMINAL = {"COMPLETED", "ERROR", "CANCELED", "DELETED"}
 api = HfApi(token=os.environ["HF_TOKEN"])
 USER = api.whoami()["name"]
 RESULTS = f"{USER}/tp-parse-runs"
+MAX_FILE = 50_000_000      # bigger outputs (model files) stay in the results repo; GitHub refuses >100 MB and big pushes time out
 REPO = os.environ.get("GITHUB_REPOSITORY", "KealJones/tp-parse")
 
 
@@ -87,7 +88,9 @@ def collect():
                 snapshot_download(RESULTS, repo_type="dataset", local_dir=d, allow_patterns=[f"{job['slug']}/{job['job_id']}/*"])
                 src = Path(d) / job["slug"] / job["job_id"]
                 for p in sorted(src.rglob("*")) if src.exists() else []:
-                    if p.is_file():
+                    if p.is_file() and p.stat().st_size > MAX_FILE:     # git can't take it: leave it in the results repo
+                        got.append(f"{p.relative_to(src)} (not copied: {p.stat().st_size / 1e6:.0f} MB, it stays in {RESULTS})")
+                    elif p.is_file():
                         (dest / p.relative_to(src)).parent.mkdir(parents=True, exist_ok=True)
                         shutil.copy(p, dest / p.relative_to(src)); got.append(str(p.relative_to(src)))
                 js = json.loads((src / "job_status.json").read_text()) if (src / "job_status.json").exists() else {}

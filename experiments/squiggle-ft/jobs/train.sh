@@ -11,4 +11,4 @@ for t in ${TAG//,/ }; do python hub.py down kealjones/squiggle-ft-data $t/teache
 python selftest.py ${DATA//,/ } --tokenizers unsloth/gemma-3-270m-it,LiquidAI/LFM2.5-350M > $OUT/selftest.txt 2>&1; tail -12 $OUT/selftest.txt
 python train.py --data "${DATA#,}" --bases ${BASES:-gemma3,lfm25,functiongemma} \
   --epochs ${EPOCHS:-3} --eval-minutes ${EVAL_MINUTES:-15} --budget-minutes ${LIMIT:-150} --out $OUT --work work --export --hub-repo kealjones/squiggle-small
-rm -rf $OUT/gguf/*.gguf
+rm -rf gguf

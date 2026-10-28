@@ -351,7 +351,7 @@ def upload_weights(model_dir, hub_repo):
 
 def export(model_dir, base, out, hub_repo, results_md):
     """GGUF (Q8_0 and Q4_0) with llama.cpp's converter, a llama.cpp load-and-generate check, upload to a private repo."""
-    work = Path(out) / "gguf"
+    work = Path(os.environ.get("SQFT_GGUF_DIR", "gguf"))     # outside `out`: the job uploads `out`, and model files don't belong in git
     work.mkdir(parents=True, exist_ok=True)
     lc = Path(os.environ.get("LLAMA_CPP_DIR", "llama.cpp"))
     if not lc.exists():
@@ -373,10 +373,12 @@ def export(model_dir, base, out, hub_repo, results_md):
         f16 = work / "f16.gguf"
         subprocess.run([sys.executable, str(lc / "convert_hf_to_gguf.py"), model_dir, "--outtype", "f16", "--outfile", str(f16)], check=True, env=env)
         f4 = work / f"squiggle-small-{base}-Q4_0.gguf"
-        subprocess.run([str(lc / "build/bin/llama-quantize"), str(f16), str(f4), "Q4_0"], check=True)
+        r = subprocess.run([str(lc / "build/bin/llama-quantize"), str(f16), str(f4), "Q4_0"], capture_output=True)   # its log has raw vocab bytes
+        if r.returncode != 0:
+            raise RuntimeError(f"llama-quantize failed: {r.stderr.decode(errors='replace')[-500:]}")
         f16.unlink()
         files.append(f4)
-        r = subprocess.run([str(lc / "build/bin/llama-simple"), "-m", str(f8), "-n", "32", "Hello"], capture_output=True, text=True, timeout=300)
+        r = subprocess.run([str(lc / "build/bin/llama-simple"), "-m", str(f8), "-n", "32", "Hello"], capture_output=True, text=True, errors="replace", timeout=300)
         check = f"llama.cpp (master) loads the Q8_0 file and generates: {'yes' if r.returncode == 0 else 'NO'} ({(r.stdout + r.stderr)[-300:]!r})"
     sizes = {f.name: f.stat().st_size for f in files}
     log("GGUF", sizes, check)
@@ -418,10 +420,22 @@ def main():
     ap.add_argument("--work", default=str(HERE / "work"))
     ap.add_argument("--out", default="out")
     ap.add_argument("--squiggle", default=os.environ.get("SQUIGGLE_DIR", str(HERE / "squiggle")))
+    ap.add_argument("--export-only", default="", help="base name: GGUF-export the weights an earlier run put in <hub-repo>/hf, and upload")
+    ap.add_argument("--results", default="", help="with --export-only: that run's RESULTS.md (for the model card)")
     args = ap.parse_args()
     t_main = time.time()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
+    if args.export_only:
+        from huggingface_hub import snapshot_download
+        md = str(Path(snapshot_download(args.hub_repo, allow_patterns=["hf/*"], token=os.environ.get("HF_TOKEN"))) / "hf")
+        res = out / "RESULTS.md"
+        res.write_text(Path(args.results).read_text() if args.results else f"# {args.export_only}\n")
+        sizes, check = export(md, args.export_only, out, args.hub_repo, res)
+        with open(res, "a") as f:
+            f.write(f"\n## Export\n\n`{args.export_only}` → " + ", ".join(f"{k} ({v / 1e6:.0f} MB)" for k, v in sizes.items()) +
+                    f", uploaded to the private repo `{args.hub_repo}`.\n\n{check}\n")
+        return
     import build
     src = build.load_sources(Path(args.work), "eval")
     eval_eps = lambda: build.make_sets(src, build.EVAL_PLAN, seed=123, scale=args.eval_scale)

@@ -9,5 +9,5 @@ for t in ${TAG//,/ }; do python hub.py down kealjones/squiggle-ft-data $t/train_
 python selftest.py ${DATA//,/ } --tokenizers unsloth/gemma-3-270m-it,unsloth/functiongemma-270m-it,LiquidAI/LFM2.5-350M > $OUT/selftest.txt 2>&1; tail -12 $OUT/selftest.txt
 python train.py --data "${DATA#,}" --bases ${BASES:-gemma3,functiongemma,lfm25} --epochs ${EPOCHS:-1} \
   --eval-scale 0.1 --eval-minutes 6 --out $OUT/train --work work --export --hub-repo ""
-ls -la $OUT/train/gguf 2>/dev/null
-rm -rf $OUT/train/gguf/*.gguf
+ls -la gguf 2>/dev/null
+rm -rf gguf

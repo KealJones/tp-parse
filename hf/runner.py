@@ -25,7 +25,7 @@ try:
         urllib.request.urlretrieve(url, os.path.join(work, os.path.basename(path)))
         say("fetched", path)
     p = subprocess.Popen(SPEC["cmd"], cwd=work, shell=isinstance(SPEC["cmd"], str),
-                         stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
+                         stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, errors="replace", bufsize=1)
     for line in p.stdout:
         say(line.rstrip("\n"))
     code = p.wait()
