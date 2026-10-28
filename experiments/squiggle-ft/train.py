@@ -276,6 +276,13 @@ def export(model_dir, base, out, hub_repo, results_md):
         check = f"llama.cpp (master) loads the Q8_0 file and generates: {'yes' if r.returncode == 0 else 'NO'} ({(r.stdout + r.stderr)[-300:]!r})"
     sizes = {f.name: f.stat().st_size for f in files}
     log("GGUF", sizes, check)
+    # The real runtime: wllama 3.8.1 in headless Chromium, the app's settings, a Squiggle prompt.
+    subprocess.run(f"{sys.executable} -m pip install -q playwright && {sys.executable} -m playwright install --with-deps chromium >/dev/null 2>&1", shell=True)
+    for f in files:
+        r = subprocess.run([sys.executable, str(HERE / "wllama_check.py"), str(f)], capture_output=True, text=True, timeout=900)
+        line = (r.stdout.strip().splitlines() or [r.stderr[-300:]])[-1]
+        check += f"\n\nwllama 3.8.1 in Chromium, {f.name}: {line[:600]}"
+        log("wllama check", f.name, line[:300])
     if hub_repo and os.environ.get("HF_TOKEN"):
         from huggingface_hub import HfApi
         api = HfApi(token=os.environ["HF_TOKEN"])
