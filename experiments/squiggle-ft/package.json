@@ -1,0 +1,10 @@
+{
+  "name": "squiggle-ft",
+  "private": true,
+  "type": "module",
+  "description": "Runs Squiggle's real agent loop (app/src at a pinned commit) in node, for building and scoring fine-tune episodes.",
+  "dependencies": {
+    "isomorphic-git": "1.44.5",
+    "linkedom": "0.18.12"
+  }
+}
