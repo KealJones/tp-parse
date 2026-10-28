@@ -83,7 +83,7 @@ SLANG = {"and": "n", "you": "u", "your": "ur", "please": "pls", "thanks": "thx",
          "which": "wich", "defined": "defind", "license": "lisence", "commit": "comit", "people": "ppl", "with": "w/"}
 
 
-def messy(rng, text, swap=None):
+def messy(rng, text, swap=None, keep=()):
     """Spoken-style rewrite that keeps every fact. swap=(right, wrong): a false start corrected in place.
     Fillers and stutters never go inside a name (between two capitalised words)."""
     s = text.strip()
@@ -114,7 +114,7 @@ def messy(rng, text, swap=None):
                 s = s.replace(a, b)
     if rng.random() < 0.6:                                       # "n" for "and", "u", typos
         rate = rng.choice([0.3, 0.6])
-        s = " ".join(SLANG[w] if w in SLANG and rng.random() < rate else w for w in s.split(" "))
+        s = " ".join(SLANG[w] if w in SLANG and w not in keep and rng.random() < rate else w for w in s.split(" "))
     if rng.random() < 0.2:                                       # run-on: a second thought tacked on
         s += rng.choice([" and like if thats not easy just tell me", " or whatever u can find", " idk if that makes sense",
                          " i think thats it", " n let me know"])
@@ -303,14 +303,15 @@ def _ep(fam, i, first, gold, world=None, user=None, rng=None, messy_=False, **me
     return Episode(id=f"{fam}-{i}", family=fam, first=first, world=world or {}, gold=gold, user=user, meta={"messy": messy_, **meta})
 
 
-def maybe_messy(rng, text, p, swap=None):
+def maybe_messy(rng, text, p, swap=None, keep=()):
     if rng.random() < p:
-        return messy(rng, text, swap), True
+        return messy(rng, text, swap, keep), True
     return text, False
 
 
 # 1. web_fact: a real search question (NQ). Habit 1. Questions whose answer changes over time are skipped.
-TIME_BOUND = re.compile(r"\b(current|currently|latest|last|now|recent|recently|newest|this year|this season|who won|who is the|who's the|how many .* (are there|have)|most recent|still)\b", re.I)
+TIME_BOUND = re.compile(r"\b(current|currently|latest|last|now|recent|recently|new|newest|next|upcoming|present|today|this year|"
+                        r"this season|who won|who is the|who's the|who is in charge|how many .* (are there|have)|most recent|still)\b", re.I)
 
 
 def timeless(q):
@@ -562,41 +563,63 @@ def check_repo_two(res, k=0, gold=None):
     return {"ok": ok, "strict": ok and planned and not reasons, "reasons": reasons, "planned": planned}
 
 
-# 7. recipe: the same kind of task twice, in two chats; the second prompt carries the recipe saved from the first. Habit 3.
+# 7. recipe: a similar task was done in an earlier session, so memory holds the recipe the app saved from it (real
+# recipes from gold.py's finished plans, examples/gold_recipes.json); the prompt shows it and the plan should use it.
+# Habit 3. (Making the recipe in the same episode depended on the first task planning, which tied two habits together.)
+GOLD_RECIPES = None
+
+
+def gold_recipes():
+    global GOLD_RECIPES
+    if GOLD_RECIPES is None:
+        from pathlib import Path
+        p = Path(__file__).resolve().parent / "examples" / "gold_recipes.json"
+        GOLD_RECIPES = json.loads(p.read_text()) if p.exists() else []
+    return GOLD_RECIPES
+
+
+RECIPE_ASKS = ["Clone {r} and tell me what version it's at and what the latest commit was.",
+               "what's the version and latest commit of {r}?", "find {r}'s version and latest commit",
+               "can you get me the version and the latest commit for {r}", "version and latest commit for {r} please",
+               "tell me {r}'s version and its latest commit"]
+
+
 def make_recipe_repo(rng, facts, i):
-    a, b = rng.sample([f for f in facts if (f.get("package") or {}).get("version") and f.get("commits")], 2)
-    e1 = make_repo_two(rng, facts, i, f=a, fam="recipe_repo", p_messy=0.0)
-    e2 = make_repo_two(random.Random(rng.random()), facts, i, f=b, fam="recipe_repo", p_messy=0.3)
-    if not e1 or not e2:
+    recs = gold_recipes()
+    cands = [f for f in facts if (f.get("package") or {}).get("version") and f.get("commits")]
+    if not recs or not cands:
         return None
-    tpl_first = e1.first
-
-    def user(turn, ep):
-        if turn["n"] == 0:
-            return (e2.first, "second")
+    b = rng.choice(cands)
+    others = [r for r in recs if r.get("repo") != b["repo"]]
+    if not others:
         return None
-    return _ep("recipe_repo", i, tpl_first, {"first": e1.gold, "second": e2.gold}, world=e1.world, user=user, messy_=e2.meta["messy"])
+    rec = {k: v for k, v in rng.choice(others).items() if k not in ("from_episode", "repo")}
+    c = b["commits"][0]
+    gold = {"parts": [{"kind": "version", "answers": [b["package"]["version"]]}, {"kind": "latest_commit", "subject": c["subject"], "oid": c["oid"]}],
+            "repo": b["repo"], "recipe": rec["id"]}
+    # A request similar enough for the app to offer the recipe (recipes.match >= STRONG): it talks about the version
+    # and the latest commit. Messy, but those two words stay spelled right (a misspelling would hide the recipe).
+    text, m = maybe_messy(rng, rng.choice(RECIPE_ASKS).format(r=b["repo"]), 0.45, keep={"version", "latest", "commit"})
+    world = {"repos": world_repos(facts), "recipes": [rec]}
+    return _ep("recipe_repo", i, text, gold, world=world, messy_=m, repo=b["repo"])
 
 
-def recipe_seen(res, k=1):
+def recipe_seen(res, k=0):
     segs = turn_calls(res)
     return len(segs) > k and any("## Recipe from a similar task" in (x["messages"][0]["content"] if x["messages"] else "") for x in segs[k])
 
 
 def check_recipe_repo(res):
     reasons = base_check(res)
-    if len(res.get("turns", [])) < 2:
-        return {"ok": False, "strict": False, "reasons": reasons + ["second request never ran"]}
-    c1 = check_repo_two(res, 0, res["gold"]["first"])
-    c2 = check_repo_two(res, 1, res["gold"]["second"])
-    seen = recipe_seen(res, 1)
+    c = check_repo_two(res, 0, res["gold"])
+    seen = recipe_seen(res, 0)
+    follows = seen and plan_follows_recipe(res, 0)
     if not seen:
-        reasons.append("no recipe in the second prompt (first task didn't plan, or no match)")
-    elif not plan_follows_recipe(res, 1):
-        reasons.append("second plan doesn't follow the recipe")
-    ok = c1["ok"] and c2["ok"]
-    reasons += [f"first: {r}" for r in c1["reasons"] if r not in reasons] + [f"second: {r}" for r in c2["reasons"] if r not in reasons]
-    return {"ok": ok, "strict": ok and seen and c1["strict"] and c2["strict"], "reasons": reasons, "recipe_seen": seen, "second_ok": c2["ok"]}
+        reasons.append("the recipe didn't reach the prompt (no strong match)")
+    elif not follows:
+        reasons.append("the plan doesn't follow the recipe")
+    reasons += [r for r in c["reasons"] if r not in reasons]
+    return {"ok": c["ok"], "strict": c["ok"] and seen and follows and not reasons, "reasons": reasons, "recipe_seen": seen}
 
 
 # Held out: the recipe habit on web comparisons (two HotpotQA comparisons of the same shape).
@@ -708,13 +731,16 @@ def check_past_chat(res):
     ok = answer_in(reply_of(res, 1), res["gold"]["answers"]) and not non_answer(reply_of(res, 1))
     segs = turn_calls(res)
     n1 = names(segs[1])
-    used_memory = bool({"find", "search_history"} & set(n1))
+    # Smart context may already have retrieved the earlier chat into the prompt; answering from it is right too.
+    sys1 = (segs[1][0]["messages"][0]["content"] if segs[1] and segs[1][0]["messages"] else "")
+    retrieved = "(from the chat " in sys1 and answer_in(sys1, res["gold"]["answers"])
+    used_memory = bool({"find", "search_history"} & set(n1)) or retrieved
     if not first_ok:
         reasons.append("first chat got it wrong")
     if not ok:
         reasons.append("didn't recall the earlier answer")
     if not used_memory:
-        reasons.append("didn't search past chats")
+        reasons.append("didn't search past chats (and the prompt didn't already have the answer)")
     return {"ok": ok, "strict": ok and first_ok and used_memory and not reasons, "reasons": reasons}
 
 

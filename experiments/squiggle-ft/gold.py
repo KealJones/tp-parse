@@ -49,7 +49,7 @@ def pkg_version(req):
 
 
 # ── policies ────────────────────────────────────────────────────────────────
-def repo_two_policy(repo):
+def repo_two_policy(repo, recipe=False):
     name = repo.split("/")[1]
 
     def act(req):
@@ -62,12 +62,16 @@ def repo_two_policy(repo):
                        reply=f"{repo} is at version {v.group(1)} (from its package.json), and the latest commit is {c.group(1)} from {c.group(2)} by {c.group(3)}: \"{c.group(4)}\" (from the git log).")
         step = re.search(r"Work on step (\d+) now", first_user(req))
         if not step:
+            know = (f"Know: the repo is {repo}, and the prompt has a recipe from a similar task (version, then latest commit)."
+                    if recipe else f"Know: the repo is {repo}.")
+            plan_line = ("Plan: the recipe's two steps, filled in with this repo." if recipe else
+                         f"Plan: 1. clone {repo} and read the version from package.json, 2. get the latest commit from the git log.")
             return out([f"Request: For the {repo} repo, its current version and its latest commit.",
                         "Pieces: 1. the version. 2. the latest commit.",
-                        f"Know: the repo is {repo}.",
+                        know,
                         "Don't know: the version (it's in package.json) and the latest commit (the git log); I'd be guessing both.",
                         f"Goal: Report {name}'s version and latest commit.",
-                        f"Plan: 1. clone {repo} and read the version from package.json, 2. get the latest commit from the git log."],
+                        plan_line],
                        "plan", {"goal": f"Find {name}'s version and latest commit", "steps": [f"Clone {repo} and read the version from package.json", "Get the latest commit from the git log"]})
         n = int(step.group(1))
         if n == 1:
@@ -226,7 +230,7 @@ def episodes(facts):
     eps = []
     for t in CHAT_REPLIES:
         eps.append((Episode(id=f"gold-chat-{len(eps)}", family="chat", first=t), chat_policy(t)))
-    for repo in ["lukeed/clsx", "vercel/ms"]:
+    for repo in ["lukeed/clsx", "vercel/ms", "chalk/chalk", "sindresorhus/p-limit"]:
         if repo in facts:
             f = facts[repo]
             gold = {"parts": [{"kind": "version", "answers": [f["package"]["version"]]}, {"kind": "latest_commit", "subject": f["commits"][0]["subject"], "oid": f["commits"][0]["oid"]}], "repo": repo}
@@ -238,6 +242,13 @@ def episodes(facts):
         eps.append((Episode(id="gold-need_repo-mitt", family="need_repo", first="what's the latest commit on my repo", world=world,
                             gold={"kind": "latest_commit", "repo": repo, "subject": c["subject"], "oid": c["oid"]},
                             user=lambda turn, ep: (f"the mitt one, {repo}" if turn["n"] == 0 else None)), need_repo_policy(repo)))
+    recs = json.loads((HERE / "examples" / "gold_recipes.json").read_text()) if (HERE / "examples" / "gold_recipes.json").exists() else []
+    rec = next((r for r in recs if r.get("repo") == "lukeed/clsx"), None)
+    if rec and "expressjs/cors" in facts:
+        f = facts["expressjs/cors"]
+        gold = {"parts": [{"kind": "version", "answers": [f["package"]["version"]]}, {"kind": "latest_commit", "subject": f["commits"][0]["subject"], "oid": f["commits"][0]["oid"]}], "repo": "expressjs/cors"}
+        eps.append((Episode(id="gold-recipe_repo-cors", family="recipe_repo", first="what's the version and latest commit of expressjs/cors?", gold=gold,
+                            world={**world, "recipes": [{k: v for k, v in rec.items() if k not in ("from_episode", "repo")}]}), repo_two_policy("expressjs/cors", recipe=True)))
     eps.append((Episode(id="gold-web_fact-ff", family="web_fact", first="When did the first Fast and Furious come out?", gold={"answers": ["2001"]}),
                 web_fact_policy("When the first Fast and Furious film came out.", "The Fast and the Furious 2001 film release date", "Fast and the Furious", "2001")))
     eps.append((Episode(id="gold-web_compare-born", family="web_compare", first="Who was born first, Susan Oliver or W. S. Van Dyke?",
@@ -257,11 +268,19 @@ def main():
     res = Runner(ScriptBackend({e.id: p for e, p in eps}), a.squiggle, a.work, concurrency=4, batch_wait=0.05).run([e for e, _ in eps])
     res.sort(key=lambda r: r["id"])
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+    recipes = []
     with open(a.out, "w") as f:
         for r in res:
             r["check"] = F.check(r)
             print(r["id"], "kept" if r["check"]["strict"] else f"NOT kept: {r['check']['reasons']}", r.get("error") or "")
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
+            if r["family"] == "repo_two" and r["check"]["strict"]:
+                for rec in r.get("recipes") or []:
+                    recipes.append({**rec, "from_episode": r["id"], "repo": r["gold"]["repo"]})
+    # Recipes the app saved from the finished gold plans (lite mode: built from the task log). recipe_repo episodes
+    # start with one of these in memory, as if the similar task had been done in an earlier session.
+    Path(a.out).with_name("gold_recipes.json").write_text(json.dumps(recipes, ensure_ascii=False, indent=1))
+    print(len(recipes), "recipes ->", Path(a.out).with_name("gold_recipes.json"))
 
 
 if __name__ == "__main__":

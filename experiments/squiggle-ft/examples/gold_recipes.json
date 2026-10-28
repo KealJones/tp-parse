@@ -1,0 +1,110 @@
+[
+ {
+  "title": "Find <repo>'s version and latest commit",
+  "when": "Find chalk's version and latest commit",
+  "examples": [
+   "Clone chalk/chalk and tell me what version it's at and what the latest commit was."
+  ],
+  "steps": [
+   "Clone <repo> and read the version from <path>",
+   "Get the latest commit from the git log"
+  ],
+  "specifics": [
+   "<repo> = chalk/chalk",
+   "<path> = /repos/chalk/package.json"
+  ],
+  "uses": 0,
+  "created": 1793162644860,
+  "lastUsed": 1793162644860,
+  "sessions": [
+   "s0mvrmqmbw000v18ji"
+  ],
+  "draft": true,
+  "id": "r0mvrmqnwf0001quje",
+  "ts": 1793162644860,
+  "mts": 1793162644863,
+  "from_episode": "gold-repo_two-chalk",
+  "repo": "chalk/chalk"
+ },
+ {
+  "title": "Find <repo>'s version and latest commit",
+  "when": "Find clsx's version and latest commit",
+  "examples": [
+   "Clone lukeed/clsx and tell me what version it's at and what the latest commit was."
+  ],
+  "steps": [
+   "Clone <repo> and read the version from <path>",
+   "Get the latest commit from the git log"
+  ],
+  "specifics": [
+   "<repo> = lukeed/clsx",
+   "<path> = /repos/clsx/package.json"
+  ],
+  "uses": 0,
+  "created": 1793162642337,
+  "lastUsed": 1793162642337,
+  "sessions": [
+   "s0mvrmqkex000xctvj"
+  ],
+  "draft": true,
+  "id": "r0mvrmqlyg0007sh4g",
+  "ts": 1793162642337,
+  "mts": 1793162642344,
+  "from_episode": "gold-repo_two-clsx",
+  "repo": "lukeed/clsx"
+ },
+ {
+  "title": "Find <repo>'s version and latest commit",
+  "when": "Find ms's version and latest commit",
+  "examples": [
+   "Clone vercel/ms and tell me what version it's at and what the latest commit was."
+  ],
+  "steps": [
+   "Clone <repo> and read the version from <path>",
+   "Get the latest commit from the git log"
+  ],
+  "specifics": [
+   "<repo> = vercel/ms",
+   "<path> = /repos/ms/package.json"
+  ],
+  "uses": 0,
+  "created": 1793162644807,
+  "lastUsed": 1793162644807,
+  "sessions": [
+   "s0mvrmqm96000b5jmz"
+  ],
+  "draft": true,
+  "id": "r0mvrmqnuz000994ag",
+  "ts": 1793162644807,
+  "mts": 1793162644811,
+  "from_episode": "gold-repo_two-ms",
+  "repo": "vercel/ms"
+ },
+ {
+  "title": "Find <repo>'s version and latest commit",
+  "when": "Find p-limit's version and latest commit",
+  "examples": [
+   "Clone sindresorhus/p-limit and tell me what version it's at and what the latest commit was."
+  ],
+  "steps": [
+   "Clone <repo> and read the version from <path>",
+   "Get the latest commit from the git log"
+  ],
+  "specifics": [
+   "<repo> = sindresorhus/p-limit",
+   "<path> = /repos/p-limit/package.json"
+  ],
+  "uses": 0,
+  "created": 1793162644807,
+  "lastUsed": 1793162644807,
+  "sessions": [
+   "s0mvrmqm9s000i7uys"
+  ],
+  "draft": true,
+  "id": "r0mvrmqnuz000a6m7q",
+  "ts": 1793162644807,
+  "mts": 1793162644811,
+  "from_episode": "gold-repo_two-p-limit",
+  "repo": "sindresorhus/p-limit"
+ }
+]

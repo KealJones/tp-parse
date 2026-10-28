@@ -4,7 +4,7 @@ OUT=$1
 set -x
 python -c "import torch, vllm, transformers; print('torch', torch.__version__, 'vllm', vllm.__version__, 'transformers', transformers.__version__)"
 nvidia-smi --query-gpu=name,memory.total --format=csv
-python build.py teach --plan ${PLAN:-train} --scale ${SCALE:-0.025} --minutes ${MINUTES:-15} --concurrency ${CONCURRENCY:-48} --out $OUT/teach --work work
+python build.py teach --plan ${PLAN:-train} --scale ${SCALE:-0.025} --minutes ${MINUTES:-15} --concurrency ${CONCURRENCY:-48} ${SHARD:+--shard $SHARD} --out $OUT/teach --work work
 python showcase.py $OUT/teach/teacher_results.jsonl.gz $OUT/TEACHER_EXAMPLES.md
 python hub.py up kealjones/squiggle-ft-data ${TAG:-teach-smoke} $OUT/teach/train_examples.jsonl.gz $OUT/teach/teacher_results.jsonl.gz
 pip install -q -U "transformers>=5,<6"     # vLLM 0.11 needed 4.x; LFM2.5's tokenizer needs 5.x

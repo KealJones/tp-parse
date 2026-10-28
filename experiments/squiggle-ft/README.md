@@ -124,7 +124,9 @@ and Squiggle at the pinned commit, installs node, and runs `jobs/<script>`.
 | `squiggle-ft-smoke` | (retired `smoke.sh`) | l4x1, 70 min | $0.07 (done) | failed early: no C compiler for vLLM; the harness and untouched eval ran |
 | `squiggle-ft-smoke-2` | (retired `smoke.sh`) | l4x1, 70 min | $0.21 (done) | training, eval and baseline all ran on GPU; the Qwen3-4B-Instruct teacher never wrote `<think>` (0/44 kept); GGUF conversion failed (tokenizer, since fixed) |
 | `squiggle-ft-teach-smoke` | `jobs/teach_smoke.sh` | l40sx1, 40 min | ~$0.75 (cap $1.20) | ~40 episodes across all families with the thinking teacher; keep rate, drop reasons, tokens/s, readable episodes |
-| `squiggle-ft-teach` | `jobs/teach_smoke.sh` with `SCALE`, `MINUTES`, `TAG=teach-v1` | l40sx1, ≤150 min | ≤ $4.50 | the full teacher run, only if the smoke's keep rate and episodes look right |
+| `squiggle-ft-teach-smoke-2` | `jobs/teach_smoke.sh` | l40sx1, 40 min | $0.73 (done) | 20/40 kept; web search works now (12/18); 7 episodes lost to `done` without a plan (fixed in the per-call hints) |
+| `squiggle-ft-train-smoke` | `jobs/train_smoke.sh` | l4x1, 45 min | ~$0.40 (cap $0.60) | training side on the 243 teacher-smoke examples: 3 bases × 1 epoch, small eval, GGUF + wllama check, no upload |
+| `squiggle-ft-teach` | `jobs/teach_smoke.sh` (`PLAN=targets`, `KV_FP8=0`, `CONCURRENCY=96`, `MINUTES=115`, `TAG=teach-v1`) | a100-large, 150 min | ≤ $6.25 | the full teacher run on the 830 target episodes (A100: 80 GB, so ~2× the episodes in flight of an L40S) |
 | `squiggle-ft-train` | `jobs/train.sh` | l4x1, ≤180 min | ≤ $2.40 | train the three bases, eval, RESULTS.md, export + upload the winner |
 
 Teacher data goes to the private dataset `kealjones/squiggle-ft-data/<tag>/` (not git); the training job downloads it.
