@@ -17,7 +17,7 @@ import path from 'node:path';
 import readline from 'node:readline';
 import { pathToFileURL } from 'node:url';
 import { W } from './world.mjs';
-import { loadSandbox, setInstantAnswer, netStats } from './env.mjs';
+import { loadSandbox, setInstantAnswer, netStats, missing } from './env.mjs';
 
 // Resolves once the line is handed to the OS (process.exit would drop a pending pipe write).
 const out = (o) => new Promise(r => process.stdout.write(JSON.stringify(o) + '\n', r));
@@ -61,6 +61,7 @@ async function main() {
   W.netCache = spec.netCache || null;
   W.offline = Boolean(spec.offline);
   W.approve = spec.approve || 'deny';
+  W.noNet = spec.noNet || [];
   fs.mkdirSync(W.repoCache, { recursive: true });
   if (W.netCache) fs.mkdirSync(W.netCache, { recursive: true });
   fs.mkdirSync(path.join(W.root, 'repos'), { recursive: true });
@@ -74,7 +75,7 @@ async function main() {
     entry.kind = kind;
     if (kind === 'background') return '';          // titles, summaries, facts: not this experiment's job
     const id = ++genId;
-    out({ t: 'gen', id, kind, messages, max_tokens, temperature });
+    out({ t: 'gen', id, kind, messages, max_tokens, temperature, missing: missing.splice(0) });
     const r = await next(m => m.t === 'out' && m.id === id);
     if (r.meta) entry.meta = r.meta;
     if (r.error) { entry.error = r.error; throw new Error(r.error); }   // like wllama when the prompt overflows n_ctx
@@ -119,12 +120,13 @@ async function main() {
     await sleep(1700);   // afterTurn's background work (recipe saving) runs 1.5 s after the turn
     const task = reply.task && session.tasks[reply.task];
     out({ t: 'turn', n: n++, session: msg.session || 'main', reply: reply.content, tools: reply.tools || [],
-      task: task ? JSON.parse(JSON.stringify(task)) : null, waiting: Boolean(task && task.waiting), calls: W.log.length - before });
+      task: task ? JSON.parse(JSON.stringify(task)) : null, waiting: Boolean(task && task.waiting), calls: W.log.length - before,
+      asked: (reply.tools || []).some(t => t.name === 'need' && /^asked you/.test(t.label || '')) });
     msg = await next(m => m.t === 'user' || m.t === 'end');
   }
   await sessions.flush({ sync: false });
   await out({ t: 'done', calls: W.log, sessions: [...chats.entries()].map(([key, s]) => ({ key, session: JSON.parse(JSON.stringify(s)) })),
-    recipes: recipes.list(), facts: memory.all(), net: netStats });
+    recipes: recipes.list(), facts: memory.all(), net: netStats, missing: missing.splice(0) });
   if (!spec.keepRoot && !spec.root) fs.rmSync(W.root, { recursive: true, force: true });
 }
 

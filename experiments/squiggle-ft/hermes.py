@@ -100,7 +100,7 @@ def select(rows, seed=0):
 
 
 def make_compute(rng, row, i):
-    text, m = F.maybe_messy(rng, row["request"], 0.2)
+    text, m = F.maybe_messy(rng, row["request"], 0.35)
     return Episode(id=f"hermes_compute-{i}", family="hermes_compute", first=text, gold={"tools": row["tools"]}, meta={"messy": m, "source": row["source"]})
 
 
