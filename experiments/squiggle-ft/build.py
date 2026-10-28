@@ -348,6 +348,23 @@ def examples(res, source=None):
                    **({"source": source} if source else {})}
 
 
+class GzLines:
+    """A .jsonl.gz written as one gzip member per flush (append mode): the file on disk is complete and readable after
+    every flush, so the job's periodic upload, or a timeout, never leaves a truncated stream."""
+    def __init__(self, path):
+        self.path, self.buf = Path(path), []
+        gzip.open(self.path, "wt").close()
+
+    def write(self, line):
+        self.buf.append(line)
+
+    def flush(self):
+        if self.buf:
+            with gzip.open(self.path, "at") as f:
+                f.write("".join(self.buf))
+            self.buf = []
+
+
 def report(results, path, extra=""):
     by = collections.defaultdict(list)
     for r in results:
@@ -409,8 +426,8 @@ def teach(args):
     runner.episode_timeout = args.episode_timeout
     t0 = time.time()
     results = []
-    fres = gzip.open(out / "teacher_results.jsonl.gz", "wt")
-    fex = gzip.open(out / "train_examples.jsonl.gz", "wt")
+    fres = GzLines(out / "teacher_results.jsonl.gz")
+    fex = GzLines(out / "train_examples.jsonl.gz")
     n_ex = 0
     deferred = []
 
@@ -422,16 +439,18 @@ def teach(args):
         keep = r["check"]["strict"]
         if keep and judge_options(r):
             deferred.append(r)               # written after the judge has read it (below)
-            return
-        fres.write(json.dumps(compact(r, True), ensure_ascii=False) + "\n")
-        if keep:
-            for x in examples(r, source):
-                fex.write(json.dumps(x, ensure_ascii=False) + "\n")
-                n_ex += 1
-        if len(results) % 10 == 0:
+        else:
+            fres.write(json.dumps(compact(r, True), ensure_ascii=False) + "\n")
+            if keep:
+                for x in examples(r, source):
+                    fex.write(json.dumps(x, ensure_ascii=False) + "\n")
+                    n_ex += 1
+            fres.flush(); fex.flush()       # on disk after every episode: a job that times out keeps what it did
+        if len(results) % 5 == 0:
             k = sum(x["check"]["strict"] for x in results)
             print(f"[{(time.time() - t0) / 60:.1f} min] {len(results)}/{len(eps)} episodes, kept {k}, examples {n_ex}, teacher {teacher.stats}", flush=True)
-            fres.flush(); fex.flush()
+            report(results, out / "TEACHER_RESULTS.md", f"PARTIAL: {len(results)} of {len(eps)} episodes after "
+                   f"{(time.time() - t0) / 60:.0f} min ({len(deferred)} kept ones still wait for the judge and aren't in the files yet).")
     runner.run(eps, on_result=done, deadline=t0 + args.minutes * 60)
     # The judge (same vLLM engine, already loaded): kept "A or B" episodes whose reply names more than one candidate.
     if deferred:
@@ -455,7 +474,7 @@ def teach(args):
                     fex.write(json.dumps(x, ensure_ascii=False) + "\n")
                     n_ex += 1
         print(f"judge: {len(deferred)} ambiguous picks read, {dropped} dropped", flush=True)
-    fres.close(); fex.close()
+    fres.flush(); fex.flush()
     mins = (time.time() - t0) / 60
     tps = teacher.stats["gen_tokens"] / max(1, mins * 60)
     report(results, out / "TEACHER_RESULTS.md",
