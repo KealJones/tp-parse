@@ -30,6 +30,17 @@ Best model: **LFM2.5-350M**.
 | **recipe_compare: rarely gets a recipe** | 22 of 23 fail with "no recipe in the second prompt". | That family measures the harness as much as the model. A recipe exists only if chat 1 finishes a plan with `done` on every step and the app saves it. Even then, `recipes.match` needs a word-overlap score of at least 0.6 (STRONG) against the saved recipe. Two comparison questions share only frame words ("Who was born first…"), so they rarely match. The 0% is mostly not a model failure. *To verify in v2:* log whether chat 1 saved a recipe and what the match score was. |
 | **gemma3: plain chat 38%** (lfm25 96%, functiongemma 71%) | 9/16 failures call tools on chat ("night!" → Request/Pieces… → find). Thinking reads the chat as a task: *"Request: They want to know about 'the night'…"*. | The training mix was 50 chat + 11 chat_after against about 500 task episodes, so the full-label "Request:" template dominated. Gemma 3 also got the least out of training overall (trained strict 10%). It needs more plain turns spread through multi-turn sessions, not a separate pile. |
 
+**Untouched baselines** (`hf-baselines/RESULTS_COMBINED.md`, same 293 episodes; every base as released, with no
+embedding changes):
+- All three untouched bases score 0% strict and 0% well-formed.
+- Fine-tuning moved lfm25's trained-strict score from 0% to 36% and its plans from 0% to 51%.
+- **But on raw right-answer rates, training made some things worse:**
+  - math: untouched lfm25 31% → tuned 6%. The tuned model routes every word problem through run_js and gets the
+    JavaScript wrong. This backs Keal's calculate rule (§2h).
+  - web_fact: 12% → 0%.
+  - recipe_compare: 65% → 48%. The untouched model answers well-known comparisons from memory, without the habit.
+- So v2's "worth it" bar compares against the untouched base on right-answer rates too, not only on strict scores.
+
 Other lessons from `experiments/gemma-traces/RESULTS.md` (Gemma 4 E2B/E4B thinking on messy prompts) that v2 must
 build in:
 1. **Plan the task, not the reply.** Gemma's lists are "Analyze → Draft the response → Self-correct". A plan step
