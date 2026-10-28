@@ -11,7 +11,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 N = 8
 SOURCES = [HERE / "examples" / "gold.jsonl", HERE / "examples" / "worked.jsonl", HERE / "samples" / "samples.jsonl", HERE / "TEACHER.md",
-           HERE / "checker_tests.py", HERE / "harness_tests.py"]      # their fixtures are Claude-written too
+           HERE / "checker_tests.py", HERE / "harness_tests.py",       # their fixtures are Claude-written too
+           HERE / "teacher.py"]                                          # the rules and retry hints the teacher reads
 FENCE = re.compile(r"```tool_call[\s\S]*?(```|$)")
 LABEL = re.compile(r"(?m)^(Request|Pieces|Know|Don't know|Goal|Plan|Next|Step|Check|Answer|Need):\s*")
 _SHINGLES = None
