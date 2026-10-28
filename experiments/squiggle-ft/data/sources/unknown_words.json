@@ -1,0 +1,962 @@
+[
+ {
+  "word": "frundozzle",
+  "forms": {
+   "base": "frundozzle",
+   "ing": "frundozzling",
+   "s": "frundozzles",
+   "ed": "frundozzled"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "glourgen",
+  "forms": {
+   "base": "glourgen",
+   "ing": "glourgening",
+   "s": "glourgens",
+   "ed": "glourgened"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "prounkump",
+  "forms": {
+   "base": "prounkump",
+   "ing": "prounkumping",
+   "s": "prounkumps",
+   "ed": "prounkumped"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "slondulate",
+  "forms": {
+   "base": "slondulate",
+   "ing": "slondulating",
+   "s": "slondulates",
+   "ed": "slondulated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "brombump",
+  "forms": {
+   "base": "brombump",
+   "ing": "brombumping",
+   "s": "brombumps",
+   "ed": "brombumped"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "clelzulate",
+  "forms": {
+   "base": "clelzulate",
+   "ing": "clelzulating",
+   "s": "clelzulates",
+   "ed": "clelzulated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "fnaizzinate",
+  "forms": {
+   "base": "fnaizzinate",
+   "ing": "fnaizzinating",
+   "s": "fnaizzinates",
+   "ed": "fnaizzinated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "flouffinate",
+  "forms": {
+   "base": "flouffinate",
+   "ing": "flouffinating",
+   "s": "flouffinates",
+   "ed": "flouffinated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "skoorgump",
+  "forms": {
+   "base": "skoorgump",
+   "ing": "skoorgumping",
+   "s": "skoorgumps",
+   "ed": "skoorgumped"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "groondorate",
+  "forms": {
+   "base": "groondorate",
+   "ing": "groondorating",
+   "s": "groondorates",
+   "ed": "groondorated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "blonkish",
+  "forms": {
+   "base": "blonkish",
+   "ing": "blonkishing",
+   "s": "blonkishs",
+   "ed": "blonkished"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "prouspock",
+  "forms": {
+   "base": "prouspock",
+   "ing": "prouspocking",
+   "s": "prouspocks",
+   "ed": "prouspocked"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "scrirven",
+  "forms": {
+   "base": "scrirven",
+   "ing": "scrirvening",
+   "s": "scrirvens",
+   "ed": "scrirvened"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "gloorgump",
+  "forms": {
+   "base": "gloorgump",
+   "ing": "gloorgumping",
+   "s": "gloorgumps",
+   "ed": "gloorgumped"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "vrudgax",
+  "forms": {
+   "base": "vrudgax",
+   "ing": "vrudgaxing",
+   "s": "vrudgaxs",
+   "ed": "vrudgaxed"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "preentump",
+  "forms": {
+   "base": "preentump",
+   "ing": "preentumping",
+   "s": "preentumps",
+   "ed": "preentumped"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "pludgen",
+  "forms": {
+   "base": "pludgen",
+   "ing": "pludgening",
+   "s": "pludgens",
+   "ed": "pludgened"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "preervinate",
+  "forms": {
+   "base": "preervinate",
+   "ing": "preervinating",
+   "s": "preervinates",
+   "ed": "preervinated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "prumpax",
+  "forms": {
+   "base": "prumpax",
+   "ing": "prumpaxing",
+   "s": "prumpaxs",
+   "ed": "prumpaxed"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "snorvump",
+  "forms": {
+   "base": "snorvump",
+   "ing": "snorvumping",
+   "s": "snorvumps",
+   "ed": "snorvumped"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "plubben",
+  "forms": {
+   "base": "plubben",
+   "ing": "plubbening",
+   "s": "plubbens",
+   "ed": "plubbened"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "flurkax",
+  "forms": {
+   "base": "flurkax",
+   "ing": "flurkaxing",
+   "s": "flurkaxs",
+   "ed": "flurkaxed"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "skainden",
+  "forms": {
+   "base": "skainden",
+   "ing": "skaindening",
+   "s": "skaindens",
+   "ed": "skaindened"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "drocklate",
+  "forms": {
+   "base": "drocklate",
+   "ing": "drocklating",
+   "s": "drocklates",
+   "ed": "drocklated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "scrundinate",
+  "forms": {
+   "base": "scrundinate",
+   "ing": "scrundinating",
+   "s": "scrundinates",
+   "ed": "scrundinated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "claibbish",
+  "forms": {
+   "base": "claibbish",
+   "ing": "claibbishing",
+   "s": "claibbishs",
+   "ed": "claibbished"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "scrailven",
+  "forms": {
+   "base": "scrailven",
+   "ing": "scrailvening",
+   "s": "scrailvens",
+   "ed": "scrailvened"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "skumpwick",
+  "forms": {
+   "base": "skumpwick",
+   "ing": "skumpwicking",
+   "s": "skumpwicks",
+   "ed": "skumpwicked"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "blelborate",
+  "forms": {
+   "base": "blelborate",
+   "ing": "blelborating",
+   "s": "blelborates",
+   "ed": "blelborated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "spluzzax",
+  "forms": {
+   "base": "spluzzax",
+   "ing": "spluzzaxing",
+   "s": "spluzzaxs",
+   "ed": "spluzzaxed"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "proskump",
+  "forms": {
+   "base": "proskump",
+   "ing": "proskumping",
+   "s": "proskumps",
+   "ed": "proskumped"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "scraimpump",
+  "forms": {
+   "base": "scraimpump",
+   "ing": "scraimpumping",
+   "s": "scraimpumps",
+   "ed": "scraimpumped"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "prezzump",
+  "forms": {
+   "base": "prezzump",
+   "ing": "prezzumping",
+   "s": "prezzumps",
+   "ed": "prezzumped"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "skebbozzle",
+  "forms": {
+   "base": "skebbozzle",
+   "ing": "skebbozzling",
+   "s": "skebbozzles",
+   "ed": "skebbozzled"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "gwouzzle",
+  "forms": {
+   "base": "gwouzzle",
+   "ing": "gwouzzling",
+   "s": "gwouzzles",
+   "ed": "gwouzzled"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "vroombinate",
+  "forms": {
+   "base": "vroombinate",
+   "ing": "vroombinating",
+   "s": "vroombinates",
+   "ed": "vroombinated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "fnirvify",
+  "forms": {
+   "base": "fnirvify",
+   "ing": "fnirvifying",
+   "s": "fnirvifies",
+   "ed": "fnirvified"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "froumbulate",
+  "forms": {
+   "base": "froumbulate",
+   "ing": "froumbulating",
+   "s": "froumbulates",
+   "ed": "froumbulated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "fneelver",
+  "forms": {
+   "base": "fneelver",
+   "ing": "fneelvering",
+   "s": "fneelvers",
+   "ed": "fneelvered"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "zlountozzle",
+  "forms": {
+   "base": "zlountozzle",
+   "ing": "zlountozzling",
+   "s": "zlountozzles",
+   "ed": "zlountozzled"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "proundulate",
+  "forms": {
+   "base": "proundulate",
+   "ing": "proundulating",
+   "s": "proundulates",
+   "ed": "proundulated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "phlimpate",
+  "forms": {
+   "base": "phlimpate",
+   "ing": "phlimpating",
+   "s": "phlimpates",
+   "ed": "phlimpated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "cloorgize",
+  "forms": {
+   "base": "cloorgize",
+   "ing": "cloorgizing",
+   "s": "cloorgizes",
+   "ed": "cloorgized"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "phlailzize",
+  "forms": {
+   "base": "phlailzize",
+   "ing": "phlailzizing",
+   "s": "phlailzizes",
+   "ed": "phlailzized"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "squairvozzle",
+  "forms": {
+   "base": "squairvozzle",
+   "ing": "squairvozzling",
+   "s": "squairvozzles",
+   "ed": "squairvozzled"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "twoundlen",
+  "forms": {
+   "base": "twoundlen",
+   "ing": "twoundlening",
+   "s": "twoundlens",
+   "ed": "twoundlened"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "fnoompax",
+  "forms": {
+   "base": "fnoompax",
+   "ing": "fnoompaxing",
+   "s": "fnoompaxs",
+   "ed": "fnoompaxed"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "glorgify",
+  "forms": {
+   "base": "glorgify",
+   "ing": "glorgifying",
+   "s": "glorgifies",
+   "ed": "glorgified"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "greskify",
+  "forms": {
+   "base": "greskify",
+   "ing": "greskifying",
+   "s": "greskifies",
+   "ed": "greskified"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "bloulvax",
+  "forms": {
+   "base": "bloulvax",
+   "ing": "bloulvaxing",
+   "s": "bloulvaxs",
+   "ed": "bloulvaxed"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "cleelborate",
+  "forms": {
+   "base": "cleelborate",
+   "ing": "cleelborating",
+   "s": "cleelborates",
+   "ed": "cleelborated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "flecklinate",
+  "forms": {
+   "base": "flecklinate",
+   "ing": "flecklinating",
+   "s": "flecklinates",
+   "ed": "flecklinated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "kridgump",
+  "forms": {
+   "base": "kridgump",
+   "ing": "kridgumping",
+   "s": "kridgumps",
+   "ed": "kridgumped"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "prailvorate",
+  "forms": {
+   "base": "prailvorate",
+   "ing": "prailvorating",
+   "s": "prailvorates",
+   "ed": "prailvorated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "skompish",
+  "forms": {
+   "base": "skompish",
+   "ing": "skompishing",
+   "s": "skompishs",
+   "ed": "skompished"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "gradgozzle",
+  "forms": {
+   "base": "gradgozzle",
+   "ing": "gradgozzling",
+   "s": "gradgozzles",
+   "ed": "gradgozzled"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "clindulate",
+  "forms": {
+   "base": "clindulate",
+   "ing": "clindulating",
+   "s": "clindulates",
+   "ed": "clindulated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "phlolzify",
+  "forms": {
+   "base": "phlolzify",
+   "ing": "phlolzifying",
+   "s": "phlolzifies",
+   "ed": "phlolzified"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "gwailborate",
+  "forms": {
+   "base": "gwailborate",
+   "ing": "gwailborating",
+   "s": "gwailborates",
+   "ed": "gwailborated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "skirpulate",
+  "forms": {
+   "base": "skirpulate",
+   "ing": "skirpulating",
+   "s": "skirpulates",
+   "ed": "skirpulated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "flazzock",
+  "forms": {
+   "base": "flazzock",
+   "ing": "flazzocking",
+   "s": "flazzocks",
+   "ed": "flazzocked"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "flourkize",
+  "forms": {
+   "base": "flourkize",
+   "ing": "flourkizing",
+   "s": "flourkizes",
+   "ed": "flourkized"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ },
+ {
+  "word": "frandax",
+  "forms": {
+   "base": "frandax",
+   "ing": "frandaxing",
+   "s": "frandaxs",
+   "ed": "frandaxed"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "train"
+ },
+ {
+  "word": "floulvate",
+  "forms": {
+   "base": "floulvate",
+   "ing": "floulvating",
+   "s": "floulvates",
+   "ed": "floulvated"
+  },
+  "hits": {
+   "en.wikipedia.org": 0,
+   "en.wiktionary.org": 0,
+   "web": "no exact match"
+  },
+  "split": "eval"
+ }
+]

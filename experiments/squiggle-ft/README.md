@@ -49,10 +49,24 @@ renders them; training uses each base model's own template.
 | chat, chat_after | plain chat stays plain | casual openers; a task followed by "thanks" |
 | bare_link | a message that is just a link | Wikipedia pages named in HotpotQA |
 | hermes_compute, hermes_need | compute; ask for a missing input | requests from interstellarninja/hermes_reasoning_tool_use (see hermes.py) |
-| **held out** web_bridge, need_math, recipe_compare | two-hop plan; ask for a missing number; recipe on web tasks | HotpotQA bridge; GSM8K with a number removed; HotpotQA pairs |
+| unknown_word | look a made-up word up, say plainly it isn't a known word, a guess only if labelled, ask (need or a question) | invented words (`make_words.py`) in work/tech and personal sentences |
+| personal | advice and empathy with nothing to look up: Request / Need thinking, no tools, warm reply under 200 words, one question when key information is missing | real requests from OpenAssistant oasst2 (Apache-2.0) and Dolly-15k (CC BY-SA 3.0), `data/sources/personal.json` |
+| **held out** web_bridge, need_math, recipe_compare, unknown_action | two-hop plan; ask for a missing number; recipe on web tasks; a made-up word as a task ("can you <word> my config") | HotpotQA bridge; GSM8K with a number removed; HotpotQA pairs; invented words |
 
 About 40% of requests are rewritten as messy voice dictation (fillers, restarts, "no wait" corrections, misheard
 words like "get hub"), never inside a name.
+
+**Made-up words** (`make_words.py` -> `data/sources/unknown_words.json`): pronounceable invented verbs; every form
+(-ing, -s, -ed) has zero hits in English Wikipedia's and Wiktionary's search (the harness's web_search answers from
+Wikipedia), and the words were searched on the open web (six quoted words per query, no result contained any of them).
+Words too close to real ones were dropped by hand. Half are training words, half eval words. The checker fails an
+episode that skips the web_search for the word, states a meaning for it as fact (in the reply, the need question or a
+done result), or ends without saying it isn't a known word and asking what they mean.
+
+**Personal requests** (`data/sources/personal.json`): English first prompts from oasst2 and Dolly-15k, keyword-filtered
+for relationships, family, work and feelings, then picked by hand (no facts to look up, no crisis or medical topics).
+Requests where a good reply needs one more fact (who the gift is for, what happened) are marked `ask`; those replies
+must end with a question. A quarter are held for eval.
 
 **Hermes:** its tools are invented APIs and its tool results invented data, so conversations can't be copied in under
 "real data only". It supplies requests plus the reference model's call-or-ask decision: pure computations (→ run_js,
@@ -114,6 +128,8 @@ python gold.py                                 # template gold episodes through 
 python selftest.py examples/gold.jsonl examples/worked.jsonl --tokenizers unsloth/gemma-3-270m-it,LiquidAI/LFM2.5-350M
 node teach.mjs families                        # the step-wise CLI (TEACHER.md): play the phone model by hand
 python build.py sets --plan train --scale 0.02 # list some episodes (no model)
+python make_words.py                           # invented words, checked against Wikipedia and Wiktionary search
+python make_personal.py                        # personal-request candidates (the picks are in data/sources/personal.json)
 ```
 
 On Hugging Face Jobs (hf/README.md): a job file in `hf/queue/` runs `jobs/boot.py <script>`, which unpacks this folder
@@ -133,6 +149,7 @@ and Squiggle at the pinned commit, installs node, and runs `jobs/<script>`.
 | `squiggle-ft-teach` | `jobs/teach_smoke.sh` (`PLAN=targets`, `KV_FP8=0`, `CONCURRENCY=96`, `MINUTES=115`, `TAG=teach-v1`) | a100-large, 150 min | $0.19 (failed) | died loading data (datasets-server HTTP 429); the source slices are now committed in `data/sources/` |
 | `squiggle-ft-teach-2` | same as `squiggle-ft-teach` | a100-large, 150 min | $3.51 (done) | 830 episodes in 78 min (1,029 tokens/s): 565 kept (68%), 2,839 examples; recipe_repo 29/40, memory_repo 34/35, past_chat 14/40, chat_after 11/30; selftest clean |
 | `squiggle-ft-train` | `jobs/train.sh` (`TAG=teach-v1 EPOCHS=3 EVAL_MINUTES=20 LIMIT=165`) | l4x1, ≤180 min | ~$1.40 (cap $2.40) | train the three bases on teach-v1, eval, RESULTS.md, export + upload the winner (GGUF and weights) |
+| `squiggle-ft-teach-round2` | `jobs/teach_smoke.sh` (`PLAN=round2`, template `jobs/templates/squiggle-ft-teach-round2.json`) | a100-large, 50 min | ~$0.80 (cap $2.10), not launched | second data round: 60 unknown_word + 70 personal episodes, then a retrain on teach-v1 + teach-round2 (~$1.40) |
 
 Teacher data goes to the private dataset `kealjones/squiggle-ft-data/<tag>/` (not git); the training job downloads it.
 

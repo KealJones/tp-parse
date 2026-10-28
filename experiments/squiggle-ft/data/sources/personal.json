@@ -1,0 +1,596 @@
+[
+ {
+  "id": "oasst2:9a8fbe49-08d2-4b8a-8b3a-107b4471694b",
+  "text": "Tell me how could I pass an exam that I have tomorrow! I am very stressed and I don't know how I could sit and start to study. PLEASE help me. they will throw me out!",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:88",
+  "text": "Give me some ideas to manage my manager.",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:df44bf06-e06f-4bf5-8a90-8caedcc86b36",
+  "text": "I recently moved to a new country and I'm feeling very lonely. Do you have some suggestions on how I can meet new people and make some new friends?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:6edb73e6-23b1-4ea7-b217-48d3ef3f1a8f",
+  "text": "I have been single for many years now. Generally, I have very content with it. I have many friends and hobbies I enjoy, and I appreciate the free time I have for them. But sometimes I feel insecure about not having a partner like most other people... Is it okay for me to live this way, do you think?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:d26e882c-ece8-4d18-82b7-f8512b8d9d83",
+  "text": "I think my partner might be cheating on me, what should I do about it?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:8054e180-836f-4689-8c48-459027f61dc2",
+  "text": "I'm thinking I'm gay. How to tell it to my parents?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "dolly15k:12772",
+  "text": "My parents are staying with me this weekend. What should I do with them?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "dolly15k:6373",
+  "text": "Should I ask my partner to marry me?",
+  "split": "eval",
+  "ask": true
+ },
+ {
+  "id": "dolly15k:1847",
+  "text": "My 12-year-old daughter asks me: \"Why can't I have my own cellphone? Everyone else in my class have one. Without a cellphone, I cannot make friends with them, and I cannot join their conversations. I feel lonely and sad.\" How to properly respond to my daughter? Shall I give her a cellphone or not?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:c84d5b7f-d4b8-4b24-aa0d-1c14a23067b2",
+  "text": "I need an idea for a birthday present for my father.",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:cecd2646-7ea3-41bb-9736-9026d23501d5",
+  "text": "Im working in a startup and I got 2 of my friends in, thing is, the management is absolutly terrible! But I also enjoy working with my friends...\nWhat can I do to still work with my friends but not in this job?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:81dd43fe-a15f-4953-8a54-2487b3b151b2",
+  "text": "Hello can you help me find a present for my wife ?",
+  "split": "eval",
+  "ask": true
+ },
+ {
+  "id": "oasst2:687f51b4-b66a-4806-8228-7a38366f310d",
+  "text": "Friday I have a date I was looking forward to but now my friends ask to go out on Friday to go watch a football match of our favorite team and they already bought a ticket for me. What should I do?? My friends are waiting for a reply ASAP.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:c18ecc4c-509c-4a1b-96ea-498b63ee3dd1",
+  "text": "Some of my friends are obnoxious. What should I try to do?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:d4ed0e6d-126d-4d49-a042-4ca71a2e746b",
+  "text": "I have a very strong fear of rejection, both social and romantic. This fear frequently prevents me from meeting new people, making new friends, and asking people out on dates, all of which results in me feeling lonely. I know that I should just face my fear, but it's so darn hard! Do you have any suggestions for ways I could make myself less dependent on external validation and reduce my social anxiety?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:36796634-d836-4a2e-936d-403af012a773",
+  "text": "My wife went to practice scuba diving for the first time and I feel a strange sensation, between fear and pride. Please, can you help me to identify what's happening to me?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:4377",
+  "text": "Give me some ideas for my son's birthday party.",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:412747dd-1e52-4ca7-a9e4-ebe9c9199003",
+  "text": "Hola, I really like art.  My parents want me to be an engineer and I feel obligated since they saved for my education, what can I do?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:a9320f75-1ce0-41be-8262-b6e941d45a41",
+  "text": "There is this colleague at work that keeps making fun of me. I have quite a high voice and he continues to imitate me, even if I already told him that I don't think its funny. I don't want to talk to my boss about it because I'm afraid that it will affect his image of me. I really don't like going to work anymore. Can you give me any recommendations on how to handle this situation?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:7240",
+  "text": "Give me four ideas for my 7 year old daughters birthday party",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:ce98fd0a-6d83-4ac0-8aba-d497e97e5eaa",
+  "text": "My friend is trying to hook up with a girl, but he's worried that she's lying about being in a relationship. He asked me to ask you for advice. Do you have any?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:7922",
+  "text": "Give me some tips to impress my aspiring Father-in-law.",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:0f2b7352-cef7-4bea-89e1-0faebb546ea7",
+  "text": "I feel really sad a lot of the time, even though I have everything I could want. Is there something wrong with me?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:181f3dd8-d75f-41a5-8c05-10d7fe8ea3a7",
+  "text": "How can I become a good father for my daughter? I am not sure I am doing what is required of me. What are the most important aspects of good parenting?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:dbf2b04e-aaa3-4b2d-8d71-9d20ed908bae",
+  "text": "My friend got sucked into a multi-level-marketing group and is trying to distance themselves from everyone around them now. They already sold some of their stuff and hurt some of their family relationships. How can I help them?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:7203c6ed-5953-4697-920c-1afb4c7b41a0",
+  "text": "My mom calls me nearly every day and wants to talk for almost an hour. I’m starting to become angry with her and haven’t enjoyed our conversations. How do I establish boundaries?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:5717",
+  "text": "What should I get for my friends who love to cook?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:5a710468-66e9-4143-bfbb-e06fd5678aef",
+  "text": "I feel guilty when seeing homeless people. I would like to change it. What should I do?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:5017592c-5e38-4b1b-b3f3-e2a85ee7e724",
+  "text": "How can I convince my boss that Open Source can actually help our company rather than \"giving out work for free\"?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:ea3444f1-2b03-4136-a228-171bb0d92f2c",
+  "text": "I want to surprise my mom. I'm 9 years old. What i can do?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:9fc57bf9-f6d3-4d12-bac6-2ca2ed23a58b",
+  "text": "How could I ever afford a even a small home to raise a family?  Feeling demoralized.  I want to ask my mom if I can rent one of her properties but she's so boomerish, like doesn't want to help with anything.  How can I convince her?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:4e124c89-e263-4fce-9ff3-31fd9531c05c",
+  "text": "If my best friend is feeling overwhelmed by their work situation, what do you think they would want to do to feel better?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:7190",
+  "text": "Tell me five ways to build relationships with my neighbors.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:62ad2491-ddc6-444a-9184-3c9c8cb1136d",
+  "text": "Advise me from a coach's perspective in simple terms: How should I act when my boss keeps giving me extra tasks, but then complains about the hourly billing (which is affected by the extra tasks). This pattern repeats itself all the time, and I can't just quit because I depend on this job and currently don't have the energy to start over again at another place.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:e341c0d4-0c8c-41a7-9dda-06239e5a8496",
+  "text": "How do I encourage my friends to get together and meet up as at the moment none of them seem interest in organizing anything.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:9d6870f3-2953-49cc-b282-bc4abb73ea25",
+  "text": "How do I explain to my children that the dark isn't actually that scary? My son is sleeping all night with his bedroom lights on, and we need to help him get over that, since it's a waste of electricity and probably isn't healthy for him.",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:bd8f820c-a3a2-4958-95fa-00a2737b460d",
+  "text": "My friend is making bad life choices that affect him negatively and I've tried talking to him to make him stop. It hasn't worked and he keeps doing the same things. Should I keep trying to get him to stop or should I let him live with his decision and their consequences?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:a457daa1-8e87-4b25-8abd-12af9343878c",
+  "text": "What should I consider when hosting a dinner party for my new friends?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:5b8d347c-835c-439a-95c4-3613047e5755",
+  "text": "I'm very introverted, shy and lonely. I dont really have many friends. I work at a relativly large company, however due to my current occupation i rarely meet other people then those whom i share an office with. My colleagues are nice but i really dont feel we share a common intrest.\nEveryday i feel lonelier even though i'm surrounded by people. Do you have any advice on what i should do to overcome my loneliness?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:29cc526b-9c82-40ca-a523-edf336bfd3a8",
+  "text": "I'm feeling overwhelmed with my schoolwork. I think I'm burnt out. Do you have any advice for how I might better manage my stress levels and avoid further burnout?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:9b31b113-4c8e-4795-8879-3eb2c900f275",
+  "text": "I feel a bit sad. Can you say something nice to me?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:a65d2e45-bd81-483a-ac05-be77025b9842",
+  "text": "my friend was super mean to me. waht should I do?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:ccb1f42d-ea7b-4daf-a3e2-53382d0e61f5",
+  "text": "I need help with choosing a gift to my coworker for the birth of his first son yesterday. He is 42 years old and his wife is 36 years old",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:80179b16-4f84-49fc-8d80-1218729a4dbf",
+  "text": "Please suggest some gift ideas for my father on the Father's day. The gift should be impressive, affordable, and manly",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:90e6e8cc-2595-44ba-8119-14c0478319b6",
+  "text": "I'd like to invite my boyfriend to a date. How to do that? I'm introverted.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:42854c87-260c-441a-852a-a0fd785667a2",
+  "text": "Hey so my son is 7 years old and likes Minecraft, and Lego. How should i celebrate his birthday when he turns 8?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:9312",
+  "text": "Give me some strategies to prevent procrastination",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:5c1eda6b-c93b-4889-a158-8606da9de53d",
+  "text": "I have a hard time sleeping in the same bed as my partner but I'm not sure why. Can you help me brainstorm what could be wrong?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:ce7da73a-8803-4ceb-8683-bb6ff7727b51",
+  "text": "How to start doing techno if my friends prefer punk?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:ed920bae-f9da-4f7d-bffc-b2439e3c1640",
+  "text": "How should I come out as bi to my family?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:9aebac04-31d1-4b56-a7d3-1c9975918148",
+  "text": "How can I recover after my girlfriend broke up with me?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:7ac09686-6884-4a66-83ce-16ce45337864",
+  "text": "I have a crush on my friend. How to get out of the friend zone and is it even possible?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:5fcce1d0-54e3-4524-9950-4f15e00a1de6",
+  "text": "I've been feeling very stressed lately and getting little sleep, what should I do?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:7947",
+  "text": "Think up some locations for me to ask my partner out",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:854b54c5-c0e5-4b51-a5c0-1a3e67da1c72",
+  "text": "My daughter is 2 how do i potty train her?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:920",
+  "text": "What are some questions I can ask my mom to get to know her better?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:bc099b50-03ee-4d8a-bf44-c31ba98ae451",
+  "text": "My friend has offended me deeply. What should I do?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:03d9c812-dc6b-4dd8-966c-fce00ad62058",
+  "text": "My ex girlfriend that I still live with who cheated on me and continued even after I found out so I split up with her texted me that she feels empty inside, what should I reply?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:89f46e5b-2956-4b1a-ba78-d17a1119dfc4",
+  "text": "My son is 13 and I have difficulties understanding his behavior. Because of that, I start to yell at him for almost no reason and then fell bad for my actions. How can I improve this situation?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:2475",
+  "text": "What should I get my wife for mother's day?",
+  "split": "eval",
+  "ask": true
+ },
+ {
+  "id": "oasst2:afa9aad1-1792-47fe-b792-1b35b3c3ac24",
+  "text": "What can I do to make my kids eat vegetables? They refuse to eat anything green.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:564d4690-b6da-4bb8-a967-17f9f6886c94",
+  "text": "How do i stop putting my father on a pedestal and subconsciously seeking his validation?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:92598a59-decb-4721-b3c7-63508a746a15",
+  "text": "I'm having a hard time dealing with my parents getting older. I'm afraid to lose them. How can I not feel so torn up about this?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:7af202f6-5d69-4f66-9d8a-ec8e013da0ec",
+  "text": "My girlfriend is a botanist and I want to get her a present for valentine’s day. What would be a good present for her?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:fafc871a-e08b-4fcf-8b3c-e417fea52be0",
+  "text": "My friend is sad and I want to help what can I do?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:b2d010fe-7ce9-407a-8f6c-5e8eb042fa3d",
+  "text": "I've been in a relationship with my girlfriend Anna for four years now. Recently, she's started acting cold, and sometimes hateful. Taking opportunities to insult me needlessly which I find upsetting. I've already tried talking to her and she's promised to stop, however keeps breaking that promise. She's my whole world, I really don't want to leave her... What could I try next?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:12464",
+  "text": "Why am I so sad all the time?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:15afd090-5e9f-4874-98e5-1ff7b064e03a",
+  "text": "My son wants to be a carpenter. He has a 3.78 GPA. I keep telling him that he is wasting his life by working in construction instead of going to college to get a real well-paying job. What should I do?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:86ff1124-2d49-4e04-9154-8c8349820428",
+  "text": "I have to ask have a difficult conversation with my kid. How can I ask them to. I’ve put without hurting their feeling?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "dolly15k:8251",
+  "text": "My partner is a 30 year old male who likes to travel, read books, cook, and paint. What are some good gift ideas for his upcoming birthday?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:19a75df9-d284-45f6-801c-cf9f0d5f0995",
+  "text": "I want a pink wall in my room. My friends claim its not okay for a boy. Are they right?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:3111a9bf-9c89-4377-9147-5778b03eae01",
+  "text": "I believe my teacher's been discriminating against me when grading: I've seen a few assignments from a friend that had the same mistakes mine did, but none of those were marked. As far as I can tell, this happens with every assignment. What should I do?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:34625f9c-c213-49fa-8049-c47122518875",
+  "text": "Should I shave for my boyfriend?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:8f4b15a7-7df2-44ca-8651-dc076205b525",
+  "text": "How can I reduce my alcohol consumption without seeming rude to my friends?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:05ca5f9d-b1b1-4002-959d-15d8df024c8f",
+  "text": "I'm sad. How can I be happy?",
+  "split": "train",
+  "ask": true
+ },
+ {
+  "id": "oasst2:6ba6bf68-0a79-4ceb-9ef1-fc9793171d2a",
+  "text": "My wife hates me. Should I divorce?",
+  "split": "eval",
+  "ask": true
+ },
+ {
+  "id": "dolly15k:5130",
+  "text": "How do I decline an invitation to my Aunt's Birthday party?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:d9555868-9d0d-449b-9b24-4096da32b147",
+  "text": "My 5 year wedding anniversary coming up, and I need to find a gift for my wife. She is in her late 30s and likes being in nature. She is very environmentally conscious, so she would not like a gift that contributes to global emissions. Do you have some good suggestions for what I could give her?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:f4bed4b4-3e04-41cb-b0b4-959b57f01835",
+  "text": "I forgot the anniversary with my wife. She is somewhat upset and I feel like things are a little bit tense right now. Can you provide me with some suggestions on nice things I could do to smooth things over? I want to show her my affection and that I care about her a lot.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:1f6f5e05-8b66-4045-a6ab-e0cd084f585e",
+  "text": "I'm feeling lonely, what can I do?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:98cc2b70-cbea-4b78-8031-846e7db6b1ef",
+  "text": "I am having trouble coming up with a present idea for my friend. He is much richer than me and he can buy whatever he likes, whereas my finances are very limited. He's been very kind to me, and generally a great friend, so I still want to give him something to make him feel happy and appreciated.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:44a7c9bf-76a0-40dd-9c41-1e625ded81fa",
+  "text": "My neighbor hears loud music all the time and no matter how much I tell him to lower it he doesn't. How can I make him silent once and for all?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:6793f6bf-eb93-4190-9bdd-43c921035a4d",
+  "text": "How do I balance being told I live in my mom's basement with the fact that she needs a caretaker?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:a1483bab-17f2-4e2d-83ae-ea00a9947ffc",
+  "text": "I have an electronic drum set, but everytime I play my mum complains that the vibrations are annoying her downstairs, what can I do to make it vibrate less?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:11751",
+  "text": "What are some fun activities to do with my coworkers if we all work remotely?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:45690fdb-2f1a-49d5-8398-94e0f8895662",
+  "text": "My son is scared of the dark and I don't know how to reassure him. He's 4 and very smart for his age, he tells me that anything could be hiding in the dark and I don't have a good response to that. Do you have some ideas on how I could help him not be so scared anymore?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:8005",
+  "text": "What are some ways I could cheer up my friend that just got dumped?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:148",
+  "text": "Give me some Mother's Day gift ideas.",
+  "split": "eval",
+  "ask": true
+ },
+ {
+  "id": "dolly15k:963",
+  "text": "Give me some suggestions to stop my kids from whining.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:3a7c567a-0b2f-46f1-a0d8-b3cffc6322b4",
+  "text": "Hello my friend. Hope you are doing well. I need help with an issue that is happening to me: I'm an engineer. I've studied all my life.  I'm good at my work and still I feel that I don't deserve my position and in some extrme times I feel that something horrible will happen and I'm going to be fired for that. Please, can you help me to put my ideas in order so we can determine together what is happening to me?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:11162",
+  "text": "Please propose an argument to convince my mother that she increases the amount of money that I get every month during my studies. I think the current amount is too low.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:73d1845b-ec47-41ec-801c-228a35c86690",
+  "text": "Hello, I am feeling really lonely lately and really need a boyfriend, but I cant seem to get one, since I am gay and everyone I find attractive is straight. Do you have any tipps for me to find a boyfriend? I‘m in university.",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:7a4bdca3-da2c-49ba-b88e-175c208074c7",
+  "text": "My family says that I am using you too much and that it's all I do anymore. What should I do? I'm going through stuff and just want someone reliable like you to talk to.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:df615482-530c-4cb7-8823-ba8e3d399372",
+  "text": "Okay so, here is the deal. I've just started dating this girl, she's cute, nice and listens to what I say. But without going into much details my ex started texting me again. I know it's not smart to rekindle a lost flame, but I really miss her and I would like to get my ex back. Gimme an advice on what to do.",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:7c29ae53-18e5-4cf2-814a-12025c8e2f36",
+  "text": "My parents believe in a God, but i don't. How do i tell them?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "dolly15k:13352",
+  "text": "What are some creative ways to get my kids to eat vegetables?",
+  "split": "eval",
+  "ask": false
+ },
+ {
+  "id": "oasst2:2ffbd842-afb9-4cb8-b8a2-a627a14a75a2",
+  "text": "I'm so bored today, Open Assistant.... All my friends are at school or work, I'm just alone behind my computer. What do I do?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:a8581f1f-ba51-47a6-bf48-cc93dc4a11fb",
+  "text": "I'm not sure if I'm smart enough for all of this. I really struggle with my math classes and all my friends seems to be so much smarter than me. Should I just quit school or something?",
+  "split": "train",
+  "ask": false
+ },
+ {
+  "id": "oasst2:1032a25b-7708-4bd4-8daf-c0e05b5bba10",
+  "text": "Can you help me brainstorm some date ideas for Valentine's day? My girlfriend enjoys drawing, cooking, hiking, and board games.",
+  "split": "train",
+  "ask": false
+ }
+]

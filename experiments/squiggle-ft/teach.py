@@ -194,6 +194,7 @@ HOW = {
     "after_result": "a TOOL RESULT. Thinking lines, in order: Check: / Next:",
     "final": "the FINAL REPLY (every step is done). Thinking line: Answer: ; then the reply (no tool call), citing sources",
     "chat_plain": "PLAIN CHAT. One or two short thinking lines, no labels; then a short normal reply, no tools",
+    "personal": "a PERSONAL ADVICE / EMPATHY REQUEST. Labels: Request: / Need: (feelings first, then options); then a warm reply under 200 words, no tools",
 }
 
 
@@ -224,7 +225,7 @@ def show_state(out, ep, as_json=False):
         return
     p = ep["pending"]
     fam = ep["family"]
-    plain = (fam, p["turn"]) in F.PLAIN
+    plain = F.plain_mode(fam, p["turn"])
     ck = Q.call_kind(p["messages"], p["kind"], plain)
     if as_json:
         print(json.dumps({"id": eid, "family": fam, "call": p["index"] + 1, "kind": p["kind"], "answering": ck, "messages": p["messages"]}, ensure_ascii=False, indent=1))
@@ -279,7 +280,7 @@ def cmd_reply(a):
         text = text.rstrip("\n")
     text = text.strip("\n")
     p = ep["pending"]
-    plain = (ep["family"], p["turn"]) in F.PLAIN
+    plain = F.plain_mode(ep["family"], p["turn"])
     probs, _ = Q.output_problems(text, p["messages"], p["kind"], plain)
     if probs:
         print(f"REJECTED (not stored) — fix these and reply again:")

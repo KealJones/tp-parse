@@ -1,0 +1,17 @@
+{
+ "slug": "squiggle-ft-teach-round2",
+ "flavor": "a100-large",
+ "timeout": "50m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "PLAN=round2 SCALE=1 MINUTES=30 CONCURRENCY=96 KV_FP8=0 TAG=teach-round2 python boot.py teach_smoke.sh",
+ "pip": [
+  "vllm==0.11.0",
+  "transformers>=4.57,<5",
+  "pyarrow"
+ ],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-teach-round2",
+ "note": "second data round: 60 unknown_word + 70 personal episodes with the same teacher, rules and quality bar (about 400 teacher calls); expected ~$0.80 (about 20 min of a100-large incl. model load), cap $2.10"
+}
