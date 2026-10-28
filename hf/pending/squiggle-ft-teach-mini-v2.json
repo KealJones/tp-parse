@@ -1,0 +1,24 @@
+{
+ "slug": "squiggle-ft-teach-mini-v2",
+ "flavor": "a100-large",
+ "timeout": "12m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "PLAN=mini_v2 SCALE=1 MINUTES=8 CONCURRENCY=64 KV_FP8=0 EPISODE_TIMEOUT=450 SELFTEST=0 TAG=teach-mini-v2 python boot.py teach_smoke.sh",
+ "pip": [
+  "vllm==0.11.0",
+  "transformers>=4.57,<5",
+  "pyarrow",
+  "gguf",
+  "sentencepiece",
+  "protobuf"
+ ],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-teach-mini-v2",
+ "note": "v2 mini-smoke after the audit fixes: 24 episodes, 3 each of the 8 families that kept 0/3 (chat_mid, personal_mid, hermes_compute, lookup_then_compute, math_pair, messy_multi, near_miss, repo_chain); episodes capped at 7.5 min, no selftest; hard cap $0.50 (12 min of a100-large at $2.50/h)",
+ "job_id": "6ae1e7bb3fb22a235dd3ef26",
+ "url": "https://huggingface.co/jobs/kealjones/6ae1e7bb3fb22a235dd3ef26",
+ "started": "2026-10-28T12:16:59+00:00",
+ "sha": "ca320e961b94ec1082be9d74d7a940dc64e666e0"
+}
