@@ -1,0 +1,416 @@
+{
+ "untouched-gemma3": {
+  "families": {
+   "bare_link": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_after": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_need": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 2,
+    "ok": 0.5,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_two": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 2,
+    "ok": 0.5,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.0,
+  "trained_ok": 0.03125,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.0,
+  "loops": 0.03333333333333333,
+  "plans": 0.0,
+  "asks": 0.0,
+  "chat": 1.0,
+  "done_facts": null,
+  "messy": 0.0,
+  "clean": 0.0,
+  "messy_gap": 0.0,
+  "call_capped": 0.0,
+  "gen": {
+   "calls": 36,
+   "out_tokens": 2708,
+   "per_call": 75.22222222222223
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "omg yes",
+    "kind": "chat",
+    "output": "Okay, I understand the instructions. Let's begin!"
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "Okay, I've got it! The answer to the question is **Flying Padre**."
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "who committed last in jprichardson/node-fs-extra?",
+    "kind": "chat",
+    "output": "Okay, I understand the task. I'm ready to be Squiggle! Let's begin."
+   }
+  ]
+ },
+ "gemma3": {
+  "families": {
+   "bare_link": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_after": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_need": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_two": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 2,
+    "ok": 0.5,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.0,
+  "trained_ok": 0.03125,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.8652849740932642,
+  "loops": 0.0,
+  "plans": 0.5555555555555556,
+  "asks": 0.0,
+  "chat": 0.0,
+  "done_facts": null,
+  "messy": 0.0,
+  "clean": 0.0,
+  "messy_gap": 0.0,
+  "call_capped": 0.0,
+  "gen": {
+   "calls": 193,
+   "out_tokens": 19233,
+   "per_call": 99.65284974093264
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "omg yes",
+    "kind": "chat",
+    "output": "<think>\nRequest: answer \"yes\" with the correct tool and source. The user's question asks if there are multiple ways to solve this problem (e.g., using a calculator or coding).\nPieces: 1. Answer with the tool name and source; 2. Mention which tools were looked up before.\nKnow: no tools looked up yet, so plan is needed.\nDon't know: tools looked up for calculation vs. programming. Need to find one first.\nGoal: answer correctly using \"yes\" or \"no\".\nNext: list all the tools looked up and cite their sources (using the tool_call block).\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"list tools for a problem\"}}\n```"
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "<think>\nRequest: Which movie is the Black and White Film (from its title) ?\nPieces: 1. The film's name; 2. Key plot points (best match).\nKnow: no trailers or info from the movie.\nDon't know: trailer, key actors, director/screenplay details.\nGoal: Find which one is a black and white film.\nNext: look up \"The Black and White Film\" to see if it exists online.\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"search for 'Black and White Film' (from movie\"): [\"The Black and White Film\"]}}\n```"
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "who committed last in jprichardson/node-fs-extra?",
+    "kind": "chat",
+    "output": "<think>\nRequest: Who committed the last line of JPRICHARDSON's Node-FS-Extra package. The repo name \"jsrc\" doesn't exist; no tools found yet.\nPieces: 1. Which user gave the commit message. 2. The date and time for the commit (from its documentation).\nDon't know: User given commit message, tool to get version number; need confirmation from source.\nGoal: Find where JPRICHARDSON was committed.\nNext: Use find to confirm if a tool like git_clone is available before using it.\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"git clone\"}}\n```"
+   }
+  ]
+ },
+ "lfm25": {
+  "families": {
+   "bare_link": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_after": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_need": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 2,
+    "ok": 1.0,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_two": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 2,
+    "ok": 1.0,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.0,
+  "trained_ok": 0.0625,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.0,
+  "loops": 0.16666666666666666,
+  "plans": 0.2222222222222222,
+  "asks": 0.0,
+  "chat": 0.0,
+  "done_facts": null,
+  "messy": 0.0,
+  "clean": 0.0,
+  "messy_gap": 0.0,
+  "call_capped": 0.0,
+  "gen": {
+   "calls": 195,
+   "out_tokens": 21072,
+   "per_call": 108.06153846153846
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "omg yes",
+    "kind": "chat",
+    "output": "Request: The user says \"yes\" after a long time; they want to know if it's true before finalizing the answer.\nPieces: 1. User said \"yes\"; need confirmation from data or source.\nKnow: No prior knowledge about the claim, but asked for certainty.\nDon't know: Whether the statement is factual (e.g., yes/no) or requires evidence.\nGoal: Provide a verified response with birth date and age.\nNext: Use plan to structure the answer correctly before finalizing it.\nmedskip: Call plan first; then use it to confirm facts via web search.\n namn: \"yes confirmation\" \u2192 call plan for verification.\nrodes: User's statement, need for data (birth/death dates/noise).\npr\u00e8s: The user asked if they're a grown-up. Need birth date and age before confirming.\ngoal: Verify the claim with birth date and age from reliable sources.\nnext: Find web search tools to look up birth dates and ages.\n\u0456\u0442\u0435\u0442: plan, find; need two steps (verification first) but only one step is done yet.\n namn: \"find\" \u2192 call it for both verification steps.\nrodes: User's statement (\"yes\"), the fact they want (birth date/age).\npr\u00e8s: The user wants a verified answer. Need to confirm birth dates and ages from reliable sources before finalizing.\nGoal: Provide a correct, verifiable response with birth date and age.\nNext: Call plan for two separate steps (verification first) but use it only once.\n namn: \"find\" \u2192 call both tools for the search.\nrodes: User's statement (\"yes\"), need birth dates/ages from web searches.\npr\u00e8s: The user wants a verified an"
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "Request: Which of the two films (Flying Padre and Inside Job) is a black-and-white movie?\nPieces: 1. The color scheme in each film.\nKnow: No prior knowledge; both are films from their respective cultures with no known color palette.\nDon't know: Whether the user wants to know if they're viewing them in black-and-white or not.\nGoal: Find which of the two films is a black-and-white movie, citing the source.\nNext: Use find to get \"black and white film\" as a tool before looking it up.\n\\paragraph{find\": \"search for 'black and white' using web search tools.\"\nmedskip: Call find first; then use it to look up the specific titles from both films.\n\\footnote{\"name\": \"find\", \"arguments\": {\"query\": \"black and white film\"}}\n\\ref{\"name\": \"find\", \"arguments\": {\"query\": \"Flying Padre or Inside Job\"}}\n\\ref{\"name\": \"find\", \"arguments\": {\"query\": \"inside job movie\"}}\n\\ref{\"name\": \"find\", \"arguments\": {\"query\": \"Flying Padre and inside job films: black-and-white\"}}\n\\ref{\"name\": \"plan\", \"arguments\": {\"goal\": \"Determine which film is a black-and-white movie\", \"steps\": [\"Check: Both films have no color palette (no black-and-white)\"}}\n\\ref{\"name\": \"plan\", \"arguments\": {\"goal\": \"Find the correct title for both films\"}}\n\\ref{\"name\": \"find\", \"arguments\": {\"query\": \"Flying Padre and inside job movies\"}}\n\\ref{\"name\": \"plan\", \"arguments\": {\"goal\": \"Answer with the film titles from each movie\"}}\n\\ref{\"name\": \"plan\", \"arguments\": {\"goal\": \"Compare: Flying Padre's black-and-white, Inside Job's color palette\"}}\n"
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "who committed last in jprichardson/node-fs-extra?",
+    "kind": "chat",
+    "output": "<|img_row_7_col_2|>\nRequest: Who committed last in the repo \"jprichaudson/node-fs-extra\"?\nPieces: 1. The user wants to know who has made their latest commit.\nKnow: No prior context; need to look up GitHub repos and commits.\nDon't know: Which repo they mean, or whether it's a tool for finding users.\nGoal: Find the person with the most recent commit in \"jprichaudson/node-fs-extra\".\nNext: Call find to get user ID and git_clone tools.\n<|reserved_383|>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"user who made their latest commit\"}}\n```"
+   }
+  ]
+ }
+}
