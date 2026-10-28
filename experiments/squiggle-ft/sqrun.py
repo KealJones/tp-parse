@@ -165,7 +165,7 @@ class Runner:
         result["seconds"] = round(time.time() - t0, 1)
         return result
 
-    async def _run(self, episodes, on_result=None, deadline=None):
+    async def _run(self, episodes, on_result=None, deadline=None, after=None):
         self.q = asyncio.Queue()
         batcher = asyncio.create_task(self._batcher())
         sem = asyncio.Semaphore(self.concurrency)
@@ -186,11 +186,13 @@ class Runner:
             if follow is not None:
                 await one(follow)
         await asyncio.gather(*(one(e) for e in episodes))
+        if after is not None:       # same event loop: vLLM's async engine dies if it's used from a second asyncio.run
+            await after()
         batcher.cancel()
         return results
 
-    def run(self, episodes, on_result=None, deadline=None):
-        return asyncio.run(self._run(episodes, on_result, deadline))
+    def run(self, episodes, on_result=None, deadline=None, after=None):
+        return asyncio.run(self._run(episodes, on_result, deadline, after))
 
 
 # ── Parsing model output with the app's own functions (via node) ─────────────

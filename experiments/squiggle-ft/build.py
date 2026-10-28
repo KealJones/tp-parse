@@ -465,15 +465,15 @@ def teach(args):
             return dataclasses.replace(ep, id=ep.id + "r", meta={**ep.meta, "attempt": 2, "retry_hint": retry_hint(r["check"]["reasons"]),
                                                                  "retry_of": ep.id})
     by_id = {e.id: e for e in eps}
-    runner.run(eps, on_result=done, deadline=t0 + args.minutes * 60)
-    print(f"retried once: {dict(retried)}", flush=True)
-    # The judge (same vLLM engine, already loaded): kept "A or B" episodes whose reply names more than one candidate.
-    if deferred:
-        import asyncio
+    picks = []
 
-        async def run_judge():
-            return await asyncio.gather(*(teacher.judge(r["first"], F.reply_of(r, judge_turn(r)), judge_options(r)) for r in deferred))
-        picks = asyncio.run(run_judge())
+    async def run_judge():
+        # The judge (same vLLM engine, same event loop): kept "A or B" episodes whose reply names more than one candidate.
+        picks.extend(await asyncio.gather(*(teacher.judge(r["first"], F.reply_of(r, judge_turn(r)), judge_options(r)) for r in deferred)))
+    import asyncio
+    runner.run(eps, on_result=done, deadline=t0 + args.minutes * 60, after=run_judge)
+    print(f"retried once: {dict(retried)}", flush=True)
+    if deferred:
         dropped = 0
         for r, pick in zip(deferred, picks):
             gold = (r["gold"].get("second") or r["gold"]) if r["family"] == "recipe_compare" else r["gold"]

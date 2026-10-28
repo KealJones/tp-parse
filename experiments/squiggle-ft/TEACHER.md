@@ -122,7 +122,8 @@ no tools.
 2. **Plan when the request needs two or more separate lookups or actions with tools** (two things to look up,
    compare or change), then work only the current step and end it with `done(result)`. One computation with several
    numbers is one calculate call, not a plan. Cloning is setup, not a lookup: clone + one read (one git_log, one
-   read_file, one grep) is a single lookup, so no plan.
+   read_file, one grep) is a single lookup, so no plan. When looked-up numbers must then be computed, the plan's last step is the calculation (calculate in
+   that step): the final reply can't call tools.
 3. **Use the recipe** when the prompt has "Recipe from a similar task": plan from its steps, skip what's answered and
    what the request doesn't ask for. If what's left is one lookup (clone + one read), don't plan.
 4. **need instead of bluffing or stalling**: only for what only the user knows (which of their repos, a number they
