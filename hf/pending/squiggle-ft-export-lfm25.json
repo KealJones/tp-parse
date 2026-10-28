@@ -1,0 +1,24 @@
+{
+ "slug": "squiggle-ft-export-lfm25",
+ "flavor": "l4x1",
+ "timeout": "30m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "BASE=lfm25 RESULTS=hf-train/RESULTS.md python boot.py export.sh",
+ "pip": [
+  "transformers>=5,<6",
+  "pyarrow",
+  "gguf",
+  "sentencepiece",
+  "protobuf",
+  "playwright"
+ ],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-export-lfm25",
+ "note": "GGUF export of the squiggle-ft-train winner (lfm25), whose own export died on the runner UTF-8 bug (fixed since): weights from kealjones/squiggle-small/hf -> Q8_0 + Q4_0, llama.cpp + wllama 3.8.1 checks, upload; expected ~$0.15, cap $0.40",
+ "job_id": "6ae1a7ea3fb22a235dd3be29",
+ "url": "https://huggingface.co/jobs/kealjones/6ae1a7ea3fb22a235dd3be29",
+ "started": "2026-10-28T07:44:42+00:00",
+ "sha": "6ca7527a018ce42ccb751d8475b38108e141e052"
+}
