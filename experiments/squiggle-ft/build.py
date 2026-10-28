@@ -33,6 +33,11 @@ EVAL_PLAN = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute": 12
              "unknown_word": 16, "personal": 20,
              # held out: never in training
              "web_bridge": 30, "need_math": 30, "recipe_compare": 24, "unknown_action": 16}
+# The eval plan squiggle-ft-train used (293 episodes at seed 123): baselines on other bases are run on exactly this set.
+EVAL_PLAN_V1 = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute": 12, "hermes_need": 12, "repo_fact": 16,
+                "repo_where": 16, "repo_two": 12, "recipe_repo": 12, "need_repo": 12, "memory_repo": 10, "past_chat": 12,
+                "refs": 12, "chat": 16, "chat_after": 8, "bare_link": 12,
+                "web_bridge": 30, "need_math": 30, "recipe_compare": 24}
 # The second data round: the families added after teach-v1 (made-up words, personal advice).
 ROUND2_PLAN = {"unknown_word": 60, "personal": 70}
 
@@ -73,8 +78,9 @@ def make_sets(src, plan, seed=0, scale=1.0):
     mem_facts = facts + [f for r, f in src["keal"].items() if r not in {x["repo"] for x in facts}]
     pools = {"nq": iter(nq), "comp": iter(comp), "bridge": iter(bridge), "gsm": iter(gsm), "titles": iter(titles),
              "compute": iter(src["compute"]), "need": iter(src["need"])}
-    words = list(src.get("words", [])); rng.shuffle(words)
-    personal = list(src.get("personal", [])); rng.shuffle(personal)
+    r2 = random.Random(seed + 7919)     # a separate stream, so adding these pools left the v1 episode sets unchanged
+    words = list(src.get("words", [])); r2.shuffle(words)
+    personal = list(src.get("personal", [])); r2.shuffle(personal)
     pools["words"] = itertools.cycle(words) if words else iter(())       # a word can come back in another sentence
     pools["personal"] = iter(personal)
     # recipe_compare: two comparison questions of the same shape (same first two words)

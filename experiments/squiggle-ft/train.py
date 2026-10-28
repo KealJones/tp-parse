@@ -414,6 +414,8 @@ def main():
     ap.add_argument("--eval-minutes", type=float, default=25)
     ap.add_argument("--eval-only", action="store_true")
     ap.add_argument("--no-untouched", action="store_true")
+    ap.add_argument("--eval-bases", default="", help="also evaluate these bases untouched, as released (e.g. lfm25,functiongemma)")
+    ap.add_argument("--eval-plan", default="current", choices=["current", "v1"], help="v1: the 293-episode set squiggle-ft-train used")
     ap.add_argument("--export", action="store_true")
     ap.add_argument("--budget-minutes", type=float, default=0, help="stop starting new bases when what's left can't fit one more (+15 min for export)")
     ap.add_argument("--hub-repo", default="kealjones/squiggle-small")
@@ -438,12 +440,17 @@ def main():
         return
     import build
     src = build.load_sources(Path(args.work), "eval")
-    eval_eps = lambda: build.make_sets(src, build.EVAL_PLAN, seed=123, scale=args.eval_scale)
+    eval_plan = build.EVAL_PLAN_V1 if args.eval_plan == "v1" else build.EVAL_PLAN
+    eval_eps = lambda: build.make_sets(src, eval_plan, seed=123, scale=args.eval_scale)
     log(f"eval set: {len(eval_eps())} episodes")
     arms, notes = {}, []
     bases = [b for b in args.bases.split(",") if b]
     if not args.no_untouched:
         arms["untouched-gemma3"] = arm(evaluate(BASES["gemma3"], eval_eps(), args.work, args.squiggle, "untouched-gemma3", out, args.eval_minutes), "untouched-gemma3")
+        json.dump(arms, open(out / "metrics.json", "w"), indent=1)
+    for b in [x for x in args.eval_bases.split(",") if x]:
+        label = f"untouched-{b}"
+        arms[label] = arm(evaluate(BASES[b], eval_eps(), args.work, args.squiggle, label, out, args.eval_minutes), label)
         json.dump(arms, open(out / "metrics.json", "w"), indent=1)
     if not args.eval_only:
         import glob
