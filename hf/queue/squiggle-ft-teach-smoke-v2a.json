@@ -1,0 +1,20 @@
+{
+ "slug": "squiggle-ft-teach-smoke-v2a",
+ "flavor": "a100-large",
+ "timeout": "24m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "PLAN=smoke_v2 SCALE=1 MINUTES=12 CONCURRENCY=64 KV_FP8=0 TAG=teach-smoke-v2a python boot.py teach_smoke.sh",
+ "pip": [
+  "vllm==0.11.0",
+  "transformers>=4.57,<5",
+  "pyarrow",
+  "gguf",
+  "sentencepiece",
+  "protobuf"
+ ],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-teach-smoke-v2a",
+ "note": "v2 teacher smoke relaunched on a100-large (the l40sx1 one, 6ae1c204, sat in scheduling for 2 h): 51 episodes, 3 per family of the trimmed plan; expected ~$0.70, hard cap $1.00 (24 min of a100-large)"
+}
