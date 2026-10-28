@@ -74,7 +74,7 @@ Counts are **attempted** teacher episodes. The keep rate is expected to run 55�
 | web_compare | 70 | HotpotQA comparison | Parallel plan: one step per entity, then compare. | As v1, plus grounded step results. | – |
 | repo_two | 40 | train repos | Parallel plan within one repo. | As v1. | – |
 | **repo_chain** (new) | 50 | train repos: dependencies from package.json / pyproject (repofacts.mjs already extracts them) | **Sequential plan.** Step 1 reads which dependency or file, and step 2 uses that result: "what license does chalk's first dependency use?", "who last committed to the file that defines `parse` in X?". | A plan with ≥2 steps. Step 2's tool arguments contain a value that first appeared in step 1's done result. Answer right. | **web_bridge** (sequential × web) stays held out, so we measure transfer of sequential planning from repo to web. |
-| **lookup_then_compute** (new) | 40 | HotpotQA comparison pairs with dates or numbers ("how many years apart were A and B born?") | Sequential: two lookups, then run_js on the two values. | Plan; both values grounded; the run_js code uses both numbers; answer equals the run_js output. | – |
+| **lookup_then_compute** (new) | 40 | HotpotQA comparison pairs with dates or numbers ("how many years apart were A and B born?") | Sequential: two lookups, then find → calculate on the two values. | Plan; both values grounded; the calculate expression uses both numbers; answer equals the calculate result. | – |
 | messy_multi (new) | 40 | combinations of the families above in one run-on message ("whats chalks version and also who was born first X or Y") | Split into pieces in the user's order. One plan covering every part; no part dropped after the first tool call (the Gemma miss). | Every part answered (each sub-gold). The plan covers each part. | 3 of 12 joiner templates are eval-only |
 | plan rule (all families) | – | – | Plan steps are task actions. | `quality.validate_call(plan)`: rejects steps matching `^(write|draft|compose|review|summari[sz]e the (answer|reply)|respond|self-correct|format)`. A one-fact request with a plan fails ("plan when ≥2 separate lookups or actions"). | – |
 
@@ -83,7 +83,7 @@ Counts are **attempted** teacher episodes. The keep rate is expected to run 55�
 | family | n | source | habit | checker | held out |
 |---|---|---|---|---|---|
 | need_repo | 35 | train repos | "my repo" → ask which. | As v1. | – |
-| **math_pair** (new; replaces most of math) | 60 pairs (120 episodes) | GSM8K train: each problem **complete** and with one needed number removed (v1's need_math generator) | Complete: run_js and answer. Incomplete: notice which quantity is missing and ask with need, never assume it. | Complete: answer = gold, computed in run_js. Incomplete: need asked before any run_js, the question names the missing quantity, and the answer after the user replies = gold. | – |
+| **math_pair** (new; replaces most of math) | 60 pairs (120 episodes) | GSM8K train: each problem **complete** and with one needed number removed (v1's need_math generator) | Complete: find → calculate, then answer. Incomplete: notice which quantity is missing and ask with need, never assume it. | Complete: answer = gold, and every computed number comes from calculate. Incomplete: need is asked before any calculate, the question names the missing quantity, and the answer after the user replies = gold. | – |
 | hermes_need / hermes_compute | 40 / 40 | Hermes requests (as v1) | Ask for a missing API input / compute. | As v1. | – |
 | **need_web** (new) | 30 | NQ questions with the subject replaced by a pronoun or a vague reference ("when did his first album come out", "how tall is that bridge"), with no earlier turn naming it | Ask who or what they mean. Don't pick a famous one. | need before any web_search, and no guessed entity in the question. | – |
 | **held out: need_math** | eval only | GSM8K test with a number removed | – | – | ask × math on **test** problems, with **3 removal patterns not used in training** (rate, count, unit price) |
@@ -134,6 +134,44 @@ change the answer. Families mark the key term in `gold`, so the checker knows wh
 memory_repo 30, past_chat 40 (the checker counts an answer that smart context already retrieved), refs 40. These are
 v1 families. Their v1 kept episodes are reused (§4).
 
+## 2h. Computation goes through `calculate`, never the model and never run_js (Keal)
+
+Squiggle is getting a dedicated tool, `calculate(expression)`, on the `calc` branch of tools.js. The final spec is
+still to come. As described so far:
+- It takes plain math: `+ - * / ^`, parentheses, `%`, and functions like `round`, `sqrt`, `min`, `max`.
+- It returns `{"result": number}` or `{"error": "..."}`.
+
+Writing JavaScript is too error-prone for a 350M model. So in v2:
+- **Every computation goes find → calculate.** That covers math_pair, hermes_compute, need_math (after the user
+  answers), lookup_then_compute, comparisons that need a difference or ratio (web_compare "how many years apart"),
+  and any unknown_word or personal edge case that involves arithmetic (a budget split, an age gap).
+- The teacher rule and its find query become: "anything to compute (arithmetic, percentages, differences, dates as
+  numbers) goes through calculate with one expression, never in your head and never run_js". The good find query is
+  "calculate a math expression".
+- **run_js stays only for real code or data tasks**: run this snippet, parse this JSON, sort this list, test a regex.
+  v2 has no family that teaches run_js for arithmetic. v1 math and hermes_compute episodes that used run_js are **not
+  reused**; they are regenerated with calculate (counted in §4).
+- **New checker rule, `computed_numbers_grounded()`, applied to every family:**
+  1. A number in a reply or a `done` result counts as **computed** if it isn't copied from the prompt or a tool
+     result (page, file, user message) and it appears in a sentence with arithmetic wording (total, sum, altogether,
+     difference, apart, more/less than, times, percent, %, average, per, left, remaining, each) or next to an
+     operator.
+  2. Every computed number must equal (after formatting: commas, currency, trailing zeros) a `calculate` result in
+     the same turn. For real code tasks only, a `run_js` output also counts.
+  3. Otherwise the episode fails: "stated a computed number that no calculate result gave".
+  4. This also catches arithmetic hidden in a reply ("so that's 12 years apart") after two lookups.
+- **calculate errors:** if calculate returns `{"error"}`, the next call fixes the expression and tries again, or says
+  it couldn't compute. It never states a number.
+- **Quality bar:** `calculate` is added to `tool_specs.json` from the `calc` branch once the spec is final. Its
+  `expression` must be a string with no variable names or code (`=`, `;`, `=>` and `function` are rejected) and no
+  words except the allowed function names.
+- **Eval:** two new measurements. The *computed-number grounded rate* across all families, and the *run_js misuse
+  rate* (run_js used for plain arithmetic). The v1 models get scored on these as a baseline; they use run_js, so the
+  table shows them as "computes via run_js".
+- **Dependency:** the teacher round can't start until the `calc` branch is merged into Squiggle (or pinned in
+  jobs/boot.py) and `sq/format.mjs` has re-exported the tool specs. The harness runs Squiggle's real tools.js, so
+  calculate's real behaviour is what training sees.
+
 ## 3. Web accuracy: verify before replying
 
 **Teacher rule (added to teacher.py RULES, habit 1):**
@@ -172,11 +210,12 @@ found/confirmed/verified → any tool result in this turn. This also covers Gemm
 
 | | episodes attempted | expected kept | examples (about 5 per kept episode) |
 |---|---|---|---|
-| reused from teach-v1 (re-checked with the v2 checkers; the ones that fail the grounding or narrated-check rules are dropped) | 0 new | about 420 of 565 | about 2,100 |
+| reused from teach-v1 (re-checked with the v2 checkers; the ones that fail the grounding or narrated-check rules are dropped, and all run_js arithmetic episodes, from math and hermes_compute, are dropped) | 0 new | about 340 of 565 | about 1,700 |
+| hermes_compute regenerated with calculate | 40 | about 26 | about 100 |
 | new families (repo_chain 50, lookup_then_compute 40, messy_multi 40, math_pair 120, need_web 30, recipe_web 30, recipe_skip 20, near_miss 50, chat_mid 50, personal_mid 30, web_fact_retry 40) | 500 | about 320 | about 1,500 |
 | round 2 (built): unknown_word 60, personal 70 | 130 | about 95 | about 250 |
 | web_fact re-run under the grounding rule (replaces v1 web_fact) | 120 | about 60 | about 300 |
-| **total** | **750 new** | **about 900** | **about 4,150** |
+| **total** | **790 new** | **about 840** | **about 3,850** |
 
 The mix by habit (kept): H1 lookup + verify about 25%, H2 plan about 20%, H3 ask about 15%, H4 recipe about 7%,
 H5 unknown/near-miss about 10%, H6 chat/personal about 15%, H8 memory/refs about 8%. That is about 15% plain or
@@ -187,12 +226,12 @@ l4x1 $0.80/h):
 
 | job | flavor | time | cost |
 |---|---|---|---|
-| teach-v2 (750 episodes) | a100-large | about 75 min of generation + 8 min loading | **about $3.45** (cap $4.20) |
+| teach-v2 (790 episodes) | a100-large | about 79 min of generation + 8 min loading | **about $3.60** (cap $4.30) |
 | train-v2: lfm25 + gemma3 × 3 epochs, eval | l4x1 | about 85 min | **about $1.15** (cap $1.60) |
 | export of the winner | l4x1 | about 5 min | about $0.07 |
-| **total** | | | **about $4.70** (caps $5.90) |
+| **total** | | | **about $4.85** (caps $6.00) |
 
-That is under $5 as Keal asked. FunctionGemma is dropped: it is the same architecture as Gemma 3 and lost on every
+That is just under $5, as Keal asked. FunctionGemma is dropped: it is the same architecture as Gemma 3 and lost on every
 headline measure. If the reviewer cuts families, the teacher cost scales at about $0.43 per 100 episodes.
 
 **What counts as worth it (decided before running):**
