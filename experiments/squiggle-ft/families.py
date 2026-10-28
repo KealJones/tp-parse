@@ -1785,10 +1785,12 @@ def check_messy_multi(res):
 
 # 24. recipe_web: a recipe the app saved from a finished "born first" comparison (gold_recipes.json, family web)
 #     offered on another "born first" comparison. Habit: plan from the recipe, adapt the names.
-# Phrasings Squiggle's recipes.match scores >= STRONG (0.6) against the saved recipe: its lexical score reads the first
-# five content words, so two-word names push "born first" out unless "find" leads (checked with the app's matchSync;
-# "Who was born first, A or B?" scores 0.4 and the app wouldn't offer the recipe at all).
-RECIPE_WEB_ASKS = ["find who was born first, {a} or {b}", "can you find out who was born first: {a} or {b}",
+# Phrasings Squiggle's recipes.match (slot-aware since squiggle f09cac0) scores >= STRONG (0.6) against the saved recipe:
+# plain ones like the app will really see, plus "find ..." ones. Dictation noise and name-first word orders still score
+# 0.4, as do names of three or more words and "what's"/"what is" (0.573), so these stay clean and short-named
+# (checked with the app's matchSync).
+RECIPE_WEB_ASKS = ["Who was born first, {a} or {b}?", "who was born first {a} or {b}", "Who was born first: {a} or {b}?",
+                   "find who was born first, {a} or {b}", "can you find out who was born first: {a} or {b}",
                    "find who was born first out of {a} and {b}"]
 
 
@@ -1797,6 +1799,8 @@ def make_recipe_web(rng, row, i):
     if not recs or not re.search(r"born first", row["question"], re.I) or len(row["titles"]) != 2:
         return None
     a, b = [re.sub(r"\s*\(.*?\)\s*", " ", t).strip() for t in row["titles"]]
+    if max(len(a.split()), len(b.split())) > 2:      # squiggle's matcher (f09cac0) doesn't fill 3-word name slots: 0.4
+        return None
     rec = {k: v for k, v in rng.choice(recs).items() if k not in ("from_episode", "repo", "kind")}
     text, m = rng.choice(RECIPE_WEB_ASKS).format(a=a, b=b), False      # no dictation noise: it would hide the recipe (see above)
     return _ep("recipe_web", i, text, {"answer": row["answer"], "titles": row["titles"], "type": row["type"], "recipe": rec["id"]},
@@ -1817,7 +1821,8 @@ def check_recipe_web(res):
 
 # 25. recipe_skip: the "version + latest commit" recipe offered on a request for only one of the two. Habit: use only
 #     the steps that fit (no version step, no version in the reply).
-SKIP_ASKS = ["find the latest commit of {r}", "find {r}'s latest commit", "find who made the latest commit in {r}"]   # match >= 0.6 (see RECIPE_WEB_ASKS)
+SKIP_ASKS = ["whats the latest commit of {r}", "who made the latest commit in {r}", "show me the latest commit for {r}",
+             "find the latest commit of {r}", "find {r}'s latest commit", "find who made the latest commit in {r}"]   # >= 0.6, see RECIPE_WEB_ASKS
 
 
 def make_recipe_skip(rng, facts, i):
