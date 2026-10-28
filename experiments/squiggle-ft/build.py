@@ -43,14 +43,18 @@ EVAL_PLAN = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute": 12
 V2_PLAN = {   # the trimmed plan (CORPUS_V2 §4): 815 new episodes attempted
     "web_fact": 100, "web_fact_retry": 40,
     "need_web": 50, "hermes_need": 40, "math_pair": 80,          # math_pair: 40 problems x (complete, one number missing)
+    "recipe_web": 40,           # before lookup_then_compute: both draw "born first" pairs, and recipe_web is pickier
     "hermes_compute": 40, "lookup_then_compute": 40,
     "repo_chain": 40, "messy_multi": 40,
-    "recipe_web": 40, "recipe_skip": 40,
+    "recipe_skip": 40,
     "unknown_word": 60, "near_miss": 50,
-    "personal": 70, "personal_mid": 40, "personal_tool": 15, "chat_mid": 50,
+    "personal": 45, "personal_mid": 30, "personal_tool": 15, "chat_mid": 50,   # 75 personal requests, none used twice
 }
 # The teacher smoke before the v2 round: 3 attempted per family (51), to read keep rates and rejection reasons.
 SMOKE_V2_PLAN = {k: 3 for k in V2_PLAN}
+# After the smoke: only the families that kept 0 of 3, to see whether the fixes make them yield before the full run.
+MINI_V2_PLAN = {k: 3 for k in ["chat_mid", "personal_mid", "hermes_compute", "lookup_then_compute", "math_pair", "messy_multi",
+                               "near_miss", "repo_chain"]}
 # The eval plan squiggle-ft-train used (293 episodes at seed 123): baselines on other bases are run on exactly this set.
 EVAL_PLAN_V1 = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute": 12, "hermes_need": 12, "repo_fact": 16,
                 "repo_where": 16, "repo_two": 12, "recipe_repo": 12, "need_repo": 12, "memory_repo": 10, "past_chat": 12,
@@ -60,16 +64,51 @@ EVAL_PLAN_V1 = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute":
 ROUND2_PLAN = {"unknown_word": 60, "personal": 70}
 
 
+V1_PLANS = {"train", "targets", "round2"}     # rebuilt exactly as they ran: no dedupe, no exclusions
+
+
+def exclude_keys(work):
+    """Source questions a new training run may not use: every question of the eval sources, and the questions of
+    teach-v1's kept episodes (they are reused in v2 training). teach-v1's sets are rebuilt (TARGET_PLAN, seed 0, no
+    dedupe; every row-drawn episode's gold matches the stored one) to learn which row each episode used."""
+    ev = load_sources(work, "eval")
+    keys = {k for name in ("nq", "hotpot", "gsm", "compute", "need", "personal", "retry") for r in ev.get(name, []) for k in row_key(r)}
+    n_eval = len(keys)
+    p = HERE / "hf-teach-2" / "teach" / "teacher_results.jsonl.gz"
+    n_v1 = 0
+    if p.exists():
+        kept = {r["id"]: r for r in map(json.loads, gzip.open(p, "rt")) if r["check"]["strict"]}
+        for e in make_sets(load_sources(work, "train"), TARGET_PLAN, seed=0, dedupe=False):
+            r = kept.get(e.id)
+            if r is not None and e.meta.get("src") and json.dumps(r["gold"], sort_keys=True) == json.dumps(e.gold, sort_keys=True):
+                keys.update(e.meta["src"])
+                n_v1 += 1
+    print(f"excluded source questions: {n_eval} from the eval sources, those of {n_v1} kept teach-v1 episodes", file=sys.stderr)
+    return keys
+
+
+def episodes_for(args):
+    plan = PLANS[args.plan]
+    work = Path(args.work)
+    if args.plan == "eval":
+        return make_sets(load_sources(work, "eval"), plan, seed=args.seed, scale=args.scale)
+    if args.plan in V1_PLANS:
+        return make_sets(load_sources(work, "train"), plan, seed=args.seed, scale=args.scale, dedupe=False)
+    return make_sets(load_sources(work, "train"), plan, seed=args.seed, scale=args.scale, exclude=exclude_keys(work))
+
+
 def load_sources(work, split):
     """Disjoint slices for training and eval."""
     if split == "train":
         nq = S.nq_open(work, 1500, "validation", 0)
         hp = S.hotpot(work, 2500, "validation", 0)
+        hp_more = S.hotpot(work, 3000, "validation", 2500)    # rows 2500-5499: more "born first" pairs (eval starts at 6000)
         gsm = S.gsm8k(work, 800, "train", 0)
         repos = S.TRAIN_REPOS
     else:
         nq = S.nq_open(work, 600, "validation", 3000)
         hp = S.hotpot(work, 1400, "validation", 6000)
+        hp_more = []
         gsm = S.gsm8k(work, 400, "test", 0)
         repos = S.EVAL_REPOS
     facts = S.repo_facts(work, repos)
@@ -82,10 +121,32 @@ def load_sources(work, split):
         compute, need = compute[cut_c:], need[cut_n:]
     return {"nq": nq, "hotpot": hp, "gsm": gsm, "facts": list(facts.values()), "keal": keal, "compute": compute, "need": need,
             "words": F.unknown_words(split), "personal": F.personal_rows(split), "split": split, "retry": F.retry_rows(split),
-            "near": F.near_rows(split), "repo_cache": str(Path(work) / "repo-cache")}
+            "near": F.near_rows(split), "hotpot_more": hp_more, "repo_cache": str(Path(work) / "repo-cache")}
 
 
-def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
+def row_key(row):
+    """The source question a row is about, normalised: two episodes with the same key ask the same thing."""
+    if isinstance(row, (tuple, list)):
+        return [k for r in row for k in row_key(r)]
+    if isinstance(row, str):
+        return [F.norm(row)]
+    if isinstance(row, dict):
+        q = row.get("question") or row.get("request") or row.get("text")
+        return [F.norm(q)] if q else []
+    return []
+
+
+REPEATS_OK = {"words", "near"}   # a made-up or near-miss word comes back in a different sentence on purpose
+
+
+PLANS = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "smoke_v2": SMOKE_V2_PLAN,
+         "mini_v2": MINI_V2_PLAN, "eval": EVAL_PLAN}
+
+
+def make_sets(src, plan, seed=0, scale=1.0, date_shift=True, exclude=(), dedupe=True):
+    """exclude: source keys (row_key) no episode may use: questions of the eval sources and of reused teach-v1
+    episodes. dedupe: no source question is used twice within the run, across families (math_pair's complete and
+    incomplete twin share one on purpose). dedupe=False reproduces the sets of runs made before it existed."""
     rng = random.Random(seed)
     nq = [r for r in src["nq"] if F.timeless(r["question"])]; rng.shuffle(nq)
     comp = [r for r in src["hotpot"] if r["type"] == "comparison"]
@@ -107,18 +168,15 @@ def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
     split = src.get("split", "train")
     nq2 = list(nq); r3.shuffle(nq2)
     born = [r for r in comp if F.BORN_FIRST.search(r["question"])]; r3.shuffle(born)
+    more = [r for r in src.get("hotpot_more", []) if r["type"] == "comparison" and F.BORN_FIRST.search(r["question"])]
+    random.Random(seed + 15485863).shuffle(more)
+    born += more            # after the original order, so the first draws are what they were
     retry = list(src.get("retry", [])); r3.shuffle(retry)
     near = list(src.get("near", [])); r3.shuffle(near)
     gsm2 = list(src["gsm"]); r3.shuffle(gsm2)
     pools.update({"nq2": itertools.cycle(nq2) if nq2 else iter(()), "born": itertools.cycle(born) if born else iter(()),
                   "retry": iter(retry), "near": itertools.cycle(near) if near else iter(()),
                   "personal2": itertools.cycle(personal) if personal else iter(()), "gsm2": iter(gsm2)})
-    # chat_mid / personal_mid lead in with a question teach-v1's teacher answered and grounded (web_answerable.json):
-    # their habit is the second turn, and NQ golds that drifted (3.97 vs 3.99 degrees) shouldn't sink them.
-    p_ans = Path(__file__).resolve().parent / "data" / "sources" / "web_answerable.json"
-    answerable = [r for r in (json.loads(p_ans.read_text()) if p_ans.exists() else []) if r["split"] == split]
-    r3.shuffle(answerable)
-    pools["answerable"] = itertools.cycle(answerable) if answerable else pools["nq2"]
     media = [r for r in nq2 if F.MEDIA.search(r["question"])]
     pools["media"] = itertools.cycle(media) if media else iter(())
     pair_state = {}
@@ -136,6 +194,35 @@ def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
     pools["pairs"] = iter(pairs)
 
     split = src.get("split", "train")     # templated families draw eval-only templates, aliases and chat lines
+    used, drawn, skipped = set(exclude), [], collections.Counter()
+    # web_fact_retry's questions (teach-v1 questions whose first search missed) are kept for that family alone
+    reserved = {k for r in src.get("retry", []) for k in row_key(r)} if dedupe else set()
+
+    class Pools(dict):
+        """pools[name] draws the next row whose source question hasn't been used (or excluded) yet."""
+        def __getitem__(self, name):
+            it = dict.__getitem__(self, name)
+            return it if name in REPEATS_OK else Draw(it, name)
+
+    class Draw:
+        def __init__(self, it, name):
+            self.it, self.name = it, name
+
+        def __iter__(self):
+            return self
+
+        def __next__(self):
+            for _ in range(20000):
+                row = next(self.it)
+                keys = row_key(row)
+                if dedupe and keys and any(k in used or (k in reserved and self.name != "retry") for k in keys):
+                    skipped[self.name] += 1
+                    continue
+                drawn.extend(keys)
+                return row
+            raise StopIteration
+
+    pools = Pools(pools)
     makers = {
         "web_fact": lambda i: F.make_web_fact(rng, next(pools["nq"]), i),
         "chat_after": lambda i: F.make_chat_after(rng, next(pools["nq"]), i, split=split),
@@ -168,8 +255,8 @@ def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
         "recipe_web": lambda i: F.make_recipe_web(r3, next(pools["born"]), i),
         "recipe_skip": lambda i: F.make_recipe_skip(r3, facts, i),
         "near_miss": lambda i: F.make_near_miss(r3, next(pools["near"]), i, split=split),
-        "chat_mid": lambda i: F.make_chat_mid(r3, next(pools["answerable"] if split == "train" else pools["nq2"]), i, split=split),
-        "personal_mid": lambda i: F.make_personal_mid(r3, next(pools["answerable"] if split == "train" else pools["nq2"]), next(pools["personal2"]), i),
+        "chat_mid": lambda i: F.make_chat_mid(r3, next(pools["nq2"]), i, split=split),
+        "personal_mid": lambda i: F.make_personal_mid(r3, next(pools["nq2"]), next(pools["personal2"]), i),
         "personal_tool": lambda i: F.make_personal_tool(r3, next(pools["media"]), i),
         "need_schedule": lambda i: F.make_need_schedule(r3, i),
         "recipe_compute": lambda i: F.make_recipe_compute(r3, next(pools["born"]), i),
@@ -183,6 +270,7 @@ def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
         got = tries = 0
         while got < want and tries < want * 5:
             tries += 1
+            drawn.clear()
             try:
                 e = makers[fam](got)
             except StopIteration:
@@ -190,8 +278,14 @@ def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
             if e is None:
                 continue
             e.id = f"{fam}-{got}"
+            if dedupe:
+                used.update(drawn)
+            if drawn or e.meta.get("src"):
+                e.meta["src"] = list(dict.fromkeys(drawn)) or e.meta["src"]
             eps.append(e)
             got += 1
+    if skipped:
+        print(f"make_sets: skipped rows whose question was already used or excluded: {dict(skipped)}", file=sys.stderr)
     rng.shuffle(eps)
     if date_shift:      # each episode's "today" is a different day within two years of the real date (audit 7)
         for e in eps:
@@ -224,6 +318,8 @@ def examples(res, source=None):
     for i, c in enumerate(calls):
         if c.get("kind") in ("chat", "step", "final") and c.get("output") and not c.get("error"):
             turn = turn_of[i] if i < len(turn_of) else k
+            if turn == 0 and res["family"] in F.LEAD_IN_FAMS:
+                continue        # the lead-in lookup is context for the turn being taught, not trained itself
             yield {"messages": c["messages"], "output": c["output"], "family": res["family"], "kind": c["kind"], "episode": res["id"],
                    "turn": turn, "plain": F.plain_mode(res["family"], turn), "messy": res.get("meta", {}).get("messy", False), "repo": (res.get("meta") or {}).get("repo") or (res.get("gold") or {}).get("repo"),
                    **({"source": source} if source else {})}
@@ -279,9 +375,7 @@ def teach(args):
     work = Path(args.work)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    plan = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "smoke_v2": SMOKE_V2_PLAN, "eval": EVAL_PLAN}[args.plan]
-    src = load_sources(work, "eval" if args.plan == "eval" else "train")
-    eps = make_sets(src, plan, seed=args.seed, scale=args.scale)
+    eps = episodes_for(args)
     if args.shard:
         i, n = map(int, args.shard.split("/"))
         eps = eps[i::n]
@@ -289,6 +383,7 @@ def teach(args):
     teacher = VLLMTeacher(args.teacher, max_tokens=args.max_tokens, max_seqs=max(64, args.concurrency), kv_fp8=args.kv_fp8)
     source = "teacher:" + args.teacher
     runner = Runner(teacher, args.squiggle, work, concurrency=args.concurrency, max_calls=40)
+    runner.episode_timeout = args.episode_timeout
     t0 = time.time()
     results = []
     fres = gzip.open(out / "teacher_results.jsonl.gz", "wt")
@@ -350,10 +445,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["teach", "sets"])
     ap.add_argument("--teacher", default=os.environ.get("TEACHER_MODEL", "Qwen/Qwen3-30B-A3B-Thinking-2507-FP8"))
-    ap.add_argument("--plan", default="train", choices=["train", "targets", "round2", "v2", "smoke_v2", "eval"])
+    ap.add_argument("--plan", default="train", choices=sorted(PLANS))
     ap.add_argument("--scale", type=float, default=1.0)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--minutes", type=float, default=120)
+    ap.add_argument("--episode-timeout", type=float, default=float(os.environ.get("EPISODE_TIMEOUT", "1800")),
+                    help="seconds before one episode is given up (recorded as 'episode timed out'); keeps a small job inside its cap")
     ap.add_argument("--concurrency", type=int, default=48)
     ap.add_argument("--max-tokens", type=int, default=8192)
     ap.add_argument("--shard", default="", help="i/n: run every n-th episode starting at i (split one run over several jobs)")
@@ -365,9 +462,7 @@ def main():
     if args.cmd == "teach":
         teach(args)
     else:
-        src = load_sources(Path(args.work), "eval" if args.plan == "eval" else "train")
-        eps = make_sets(src, {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "smoke_v2": SMOKE_V2_PLAN, "eval": EVAL_PLAN}[args.plan], seed=args.seed, scale=args.scale)
-        for e in eps:
+        for e in episodes_for(args):
             print(json.dumps({"id": e.id, "family": e.family, "first": e.first, "gold": e.gold, "meta": e.meta}, ensure_ascii=False))
 
 

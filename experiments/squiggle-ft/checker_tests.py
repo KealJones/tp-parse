@@ -308,11 +308,41 @@ def v2_cases():
         expect(not {r["miss"] for r in F.near_rows("train")} & {r["miss"] for r in F.near_rows("eval")}, "near-miss words split")
 
 
+def grounding_cases(by):
+    """Every name, number and quote in a reply or done result comes from the turn (coordinator's audit of the v2
+    smoke: need_web-1 named "the Iroquois Confederacy", which no prompt or result had, and passed on its gold)."""
+    idx = F.source_index(["Lynda Carter starred in Wonder Woman (1975\u20131979). Revenue was $1,683,000 in the 2026\u201327 season."])
+    expect(F.unsourced_facts("Lynda Carter played her, 1975 to 1979.", idx) == [], "grounding: names and a dashed year range pass")
+    expect(F.unsourced_facts("About 1.68 million, in 2027.", idx) == [], "grounding: a scaled number and a short season pass")
+    expect(F.unsourced_facts("It aired from 1975 with Gal Gadot.", idx) == ["name Gal", "name Gadot"], "grounding: a name from nowhere")
+    expect(F.unsourced_facts("It ran 1975 to 1981.", idx) == ["number 1981"], "grounding: a number from nowhere")
+    expect(F.unsourced_facts('The page says "Carter starred in Batman".', idx) [:1] == ['quote "Carter starred in Batman"'], "grounding: a quote the page lacks")
+    expect(F.unsourced_facts("Hey! Sure, from Wikipedia and the git log.", idx) == [], "grounding: sentence starts and source labels pass")
+    expect(F.unsourced_facts('Try saying "I\'m here" for 10 minutes, or ask Gal.', idx, names_only=True) == ["name Gal"], "grounding: personal advice checks names only")
+    p = HERE / "hf-teach-smoke-v2a" / "teach" / "teacher_results.jsonl.gz"
+    if p.exists():
+        smoke = {r["id"]: r for r in map(json.loads, gzip.open(p, "rt")) if r.get("family")}
+        rejected(smoke["recipe_skip-1"], "smoke recipe_skip-1: planned clone + one git_log (one lookup: no plan)", "one-lookup")
+        rejected(smoke["need_web-1"], "smoke need_web-1: 'the Iroquois Confederacy' is in no result", "no prompt or tool result")
+        for i in ["unknown_word-0", "unknown_word-1", "unknown_word-2", "web_fact_retry-1", "web_fact_retry-2", "personal-1", "personal-2",
+                  "personal_tool-1", "personal_tool-2", "recipe_skip-0", "recipe_web-1", "recipe_web-2", "hermes_need-0", "web_fact-0"]:
+            if i in smoke:
+                accepted(smoke[i], f"smoke {i}")
+    ids = {r["id"]: r for v in by.values() for r in v}
+    if "chat_after-5" in ids:
+        rejected(ids["chat_after-5"], "v1 chat_after-5: 'August 1962' came from memory, the snippet was cut", "no prompt or tool result")
+    web = next((r for r in by.get("web_fact", []) if F.check(r)["strict"]), None)
+    if web:
+        r = set_reply(web, 0, web["turns"][0]["reply"] + " It was later backed by the Iroquois Confederacy.")
+        rejected(r, "kept web_fact + an invented name in the reply", "no prompt or tool result")
+
+
 if __name__ == "__main__":
     unit()
     v2_cases()
     by = episodes()
     if by:
         episode_cases(by)
+    grounding_cases(by or {})
     print(f"\n{len(FAILS)} failing" if FAILS else "\nall checker tests pass")
     sys.exit(1 if FAILS else 0)
