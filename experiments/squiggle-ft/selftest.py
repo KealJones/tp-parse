@@ -9,6 +9,7 @@ For every model call it checks, with the app's code (sq/format.mjs -> engine-wll
   - the output parses: thinking opens and closes, at most one tool call, valid JSON, a tool Squiggle has; a final
     reply has no tool call; nothing loops (isLooping)
   - the Python checker's parser (families.parse_out) reads the same call the app reads
+  - Keal's quality bar (quality.py): labelled thinking for the kind of call, tool schema, find-before-use, done facts
 With --tokenizers, it also renders each example with each chat template and checks the prompt is a prefix of
 prompt+output (so the loss mask is exact), the prompt fits the phone's 4096 tokens and the output 1024.
 For episode results it re-runs the family checker and reports kept / not kept.
@@ -19,6 +20,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import families as F
+import quality as Q
 from sqrun import AppFormat
 
 TOOLS = {"plan", "done", "need", "find", "find_tools", "list_files", "read_file", "grep", "note", "write_file", "delete_file",
@@ -37,15 +39,15 @@ def read(path):
 def as_calls(rec):
     """(episode id, family, kind, messages, output) from an episode result or a training example."""
     if "messages" in rec and "output" in rec:
-        yield rec.get("episode"), rec.get("family"), rec.get("kind"), rec["messages"], rec["output"]
+        yield rec.get("episode"), rec.get("family"), rec.get("kind"), rec["messages"], rec["output"], rec.get("plain", False)
         return
-    for c in rec.get("calls", []):
-        if c.get("kind") in ("chat", "step", "final") and c.get("output") is not None and not c.get("error"):
-            yield rec.get("id"), rec.get("family"), c["kind"], c["messages"], c["output"]
+    import build
+    for x in build.examples(rec):
+        yield rec.get("id"), rec.get("family"), x["kind"], x["messages"], x["output"], x["plain"]
 
 
-def check_call(app, system, kind, messages, output):
-    p = []
+def check_call(app, system, kind, messages, output, plain=False):
+    p = [f"quality: {x}" for x in Q.output_problems(output, messages, kind, plain)[0]]
     if not messages or messages[0]["role"] != "system" or not messages[0]["content"].startswith(system):
         p.append("prompt doesn't start with LITE_SYSTEM")
     roles = [m["role"] for m in messages[1:]]
@@ -105,9 +107,9 @@ def main():
                 kept += c["strict"]
                 if not c["strict"]:
                     print(f"  episode {rec['id']}: not kept ({'; '.join(c['reasons'])[:200]})")
-            for eid, fam, kind, msgs, out in as_calls(rec):
+            for eid, fam, kind, msgs, out, plain in as_calls(rec):
                 n += 1
-                p = check_call(app, system, kind, msgs, out)
+                p = check_call(app, system, kind, msgs, out, plain)
                 for name, tok in toks:
                     prompt = tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
                     full = tok.apply_chat_template(msgs + [{"role": "assistant", "content": out}], tokenize=False)

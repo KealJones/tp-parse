@@ -96,20 +96,31 @@ async function polite(host) {
 }
 const cachePath = (key) => W.netCache && path.join(W.netCache, crypto.createHash('sha1').update(key).digest('hex').slice(0, 24) + '.json');
 export const netStats = { hits: 0, misses: 0, errors: 0 };
+// Web results the episode needed but couldn't fetch (no network from here): the teacher supplies them
+// (teach.py tool-result), and they go in the cache under the same key. W.noNet lists keys known to be missing,
+// so replays don't wait on the network again.
+export const missing = [];
+const noteMissing = (m) => { if (!missing.some(x => x.key === m.key)) missing.push(m); };
 
 // GET with the cache. Returns { status, type, body, url } or throws like fetch does.
 export async function cachedGet(url, headers = {}) {
   const file = cachePath(url);
   if (file && fs.existsSync(file)) { netStats.hits++; return JSON.parse(fs.readFileSync(file, 'utf8')); }
-  if (W.offline) { netStats.errors++; throw new TypeError(`fetch failed (offline, not cached: ${url})`); }
+  if (W.offline || (W.noNet && W.noNet.includes(url))) { netStats.errors++; throw new TypeError(`fetch failed (offline, not cached: ${url})`); }
   netStats.misses++;
-  await polite(new URL(url).host);
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 20000);
   let r;
-  try { r = await realFetch(url, { headers: { 'User-Agent': UA, ...headers }, redirect: 'follow', signal: ctrl.signal }); }
-  catch (e) { netStats.errors++; throw new TypeError('fetch failed: ' + (e && e.message)); }
-  finally { clearTimeout(timer); }
+  for (let attempt = 0; ; attempt++) {
+    await polite(new URL(url).host);
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 20000);
+    try { r = await realFetch(url, { headers: { 'User-Agent': UA, ...headers }, redirect: 'follow', signal: ctrl.signal }); }
+    catch (e) { netStats.errors++; throw new TypeError('fetch failed: ' + (e && e.message)); }
+    finally { clearTimeout(timer); }
+    if (r.status !== 429 && r.status < 500) break;
+    // Rate-limited or a server error: back off twice, then report it missing (never cached).
+    if (attempt >= 2) { netStats.errors++; throw new TypeError(`fetch failed: HTTP ${r.status}`); }
+    await new Promise(res => setTimeout(res, 3000 * (attempt + 1)));
+  }
   const type = r.headers.get('content-type') || '';
   let body = '';
   if (/^(text\/|application\/(json|xml|xhtml|javascript)|.*\+xml)/i.test(type) || !type) body = (await r.text()).slice(0, 3_000_000);
@@ -132,6 +143,12 @@ export function setInstantAnswer(fn) { instantAnswer = fn; }
 async function relaySearch(q, n) {
   const query = String(q || '').trim().slice(0, 300);
   if (!query) return { status: 400, body: { error: 'Pass a search query: ?q=...' } };
+  const over = cachePath('search:' + query);
+  if (over && fs.existsSync(over)) {
+    netStats.hits++;
+    const r = JSON.parse(fs.readFileSync(over, 'utf8'));
+    return { status: 200, body: { query, answer: null, results: JSON.parse(r.body) } };
+  }
   const wiki = `https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srprop=snippet&srlimit=${Math.min(Math.max(n, 1), 10)}&srsearch=${encodeURIComponent(query)}`;
   const ddg = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_html=1&skip_disambig=1&t=squiggle`;
   const [w, d] = await Promise.all([
@@ -147,6 +164,7 @@ async function relaySearch(q, n) {
       snippet: decode(x.snippet),
     }));
   } catch {}
+  if (!w) noteMissing({ kind: 'search', key: 'search:' + query, query });
   if (!w && !answer) return { status: 503, body: { error: 'Search is not reachable right now. Try again in a little while.' } };
   return { status: 200, body: { query, answer, results } };
 }
@@ -165,6 +183,8 @@ globalThis.fetch = async (input, init = {}) => {
     if (W.offline) throw new TypeError('fetch failed (offline)');
     return realFetch(input, init);
   }
-  const r = await cachedGet(url);
+  let r;
+  try { r = await cachedGet(url); }
+  catch (e) { noteMissing({ kind: 'url', key: url, url }); throw e; }
   return new Response(r.body, { status: r.status, headers: { 'content-type': r.type } });
 };

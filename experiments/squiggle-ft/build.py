@@ -130,10 +130,16 @@ def _task(t):
 
 
 def examples(res):
-    for c in res.get("calls", []):
+    """One training example per model call: the prompt as the phone model gets it, and the output."""
+    calls, k, turn_of = res.get("calls", []), 0, []
+    for t in res.get("turns", []):
+        turn_of += [k] * t.get("calls", 0)
+        k += 1
+    for i, c in enumerate(calls):
         if c.get("kind") in ("chat", "step", "final") and c.get("output") and not c.get("error"):
+            turn = turn_of[i] if i < len(turn_of) else k
             yield {"messages": c["messages"], "output": c["output"], "family": res["family"], "kind": c["kind"], "episode": res["id"],
-                   "messy": res.get("meta", {}).get("messy", False)}
+                   "turn": turn, "plain": (res["family"], turn) in F.PLAIN, "messy": res.get("meta", {}).get("messy", False)}
 
 
 def report(results, path, extra=""):

@@ -8,6 +8,7 @@ check(result) returns {"ok": right answer, "strict": right answer AND the habit 
 Teacher episodes are kept only when strict; the eval reports both.
 """
 import json, random, re, unicodedata
+import quality as Q
 from sqrun import Episode
 
 # ── text helpers ────────────────────────────────────────────────────────────
@@ -65,8 +66,11 @@ def yes_no(reply):
 # ── voice-dictated, rambling requests (habit 5) ─────────────────────────────
 FILL = ["um ", "uh ", "so ", "ok so ", "hey ", "like ", "okay um ", "so basically ", "quick one ", ""]
 TAIL = ["", "", " thanks", " thx", " lol", " if you can", " please", " real quick", " ok"]
-MISHEAR = [("github", "get hub"), ("readme", "read me"), ("json", "jason"), ("npm", "n p m"), ("repo", "repo"),
-           ("commit", "commit"), ("javascript", "java script"), ("version", "version")]
+MISHEAR = [("github", "get hub"), ("readme", "read me"), ("json", "jason"), ("npm", "n p m"), ("javascript", "java script")]
+# Keal's texting habits and common dictation slips, on everyday words only (never on names, numbers or paths).
+SLANG = {"and": "n", "you": "u", "your": "ur", "please": "pls", "thanks": "thx", "about": "abt", "because": "cuz",
+         "probably": "prolly", "really": "rly", "what": "wat", "version": "verison", "latest": "lastest",
+         "which": "wich", "defined": "defind", "license": "lisence", "commit": "comit", "people": "ppl", "with": "w/"}
 
 
 def messy(rng, text, swap=None):
@@ -81,8 +85,9 @@ def messy(rng, text, swap=None):
     w = s.split()
     cap = lambda x: bool(re.match(r"[A-Z0-9\[\(\"']", x))
     safe = [i for i in range(1, len(w)) if not (cap(w[i - 1]) and cap(w[i])) and not cap(w[i])]
-    if len(w) > 5 and safe and rng.random() < 0.35:              # a stutter / restart
-        i = rng.choice(safe)
+    safe_st = [i for i in safe if not any(re.search(r"\d", x) for x in w[max(0, i - 2):i])]
+    if len(w) > 5 and safe_st and rng.random() < 0.35:           # a stutter / restart (never repeats a number)
+        i = rng.choice(safe_st)
         w = w[:i] + w[max(0, i - 2):i] + w[i:]
         safe = [j for j in range(1, len(w)) if not (cap(w[j - 1]) and cap(w[j])) and not cap(w[j])]
     if len(w) > 6 and safe and rng.random() < 0.3:               # a filler in the middle
@@ -97,6 +102,12 @@ def messy(rng, text, swap=None):
         for a, b in MISHEAR:
             if a in s and rng.random() < 0.5 and a != b:
                 s = s.replace(a, b)
+    if rng.random() < 0.6:                                       # "n" for "and", "u", typos
+        rate = rng.choice([0.3, 0.6])
+        s = " ".join(SLANG[w] if w in SLANG and rng.random() < rate else w for w in s.split(" "))
+    if rng.random() < 0.2:                                       # run-on: a second thought tacked on
+        s += rng.choice([" and like if thats not easy just tell me", " or whatever u can find", " idk if that makes sense",
+                         " i think thats it", " n let me know"])
     lead = rng.choice(FILL)
     if rng.random() < 0.25:
         lead = rng.choice(["ok im trying to figure something out ", "random question ", "so i was wondering ", "hey can you help me with something "]) + lead
@@ -184,7 +195,7 @@ def asked_user(res, k=0):
     if not t or len(segs) <= k or not segs[k]:
         return False
     last = segs[k][-1]["parsed"]["calls"]
-    return bool(t.get("waiting")) or bool(last and last[0]["name"] == "need")
+    return bool(t.get("waiting")) or bool(t.get("asked")) or bool(last and last[0]["name"] == "need")
 
 
 def format_problems(seg):
@@ -218,16 +229,34 @@ def nudged(result):
     return any("Finish your thought, then call a tool" in json.dumps(c.get("messages", "")) for c in result.get("calls", []))
 
 
+PLAIN = {("chat", 0), ("chat_after", 1)}       # (family, user turn) that are plain chat
+
+
+def call_problems(result):
+    """Keal's quality bar (quality.py) for every model call, plus: a reply after web or repo tools cites its sources."""
+    r = []
+    fam = result.get("family")
+    for k, seg in enumerate(turn_calls(result)):
+        plain = (fam, k) in PLAIN
+        for j, x in enumerate(seg):
+            probs, _ = Q.output_problems(x["out"], x["messages"] or [], x["kind"], plain)
+            r += [f"turn {k + 1} call {j + 1} ({x['kind']}): {p}" for p in probs]
+        used = set(names(seg))
+        t = (result.get("turns") or [])[k] if k < len(result.get("turns") or []) else {}
+        reply = t.get("reply") or ""
+        if used & (WEB | REPO_TOOLS) and not t.get("asked") and not Q.final_cites(reply):
+            r.append(f"turn {k + 1}: the reply doesn't say where its facts came from (page, repo, file)")
+    return r
+
+
 def base_check(result, need_tools=True):
-    """Problems every family shares: errors, format, loops, stuck steps."""
+    """Problems every family shares: errors, the quality bar, loops, stuck steps."""
     r = []
     if result.get("error"):
         r.append("error: " + result["error"][:200])
     if result.get("capped"):
         r.append("too many model calls (stopped)")
-    segs = turn_calls(result)
-    for s in segs:
-        r += format_problems(s)
+    r += call_problems(result)
     if looped(result):
         r.append("looped")
     if nudged(result):
@@ -238,6 +267,21 @@ def base_check(result, need_tools=True):
         if "context filled up" in (t.get("reply") or "") or "too long for the model's context" in (t.get("reply") or ""):
             r.append("context full")
     return r
+
+
+def plan_follows_recipe(res, k):
+    """In turn k, the plan reuses the recipe's steps (word overlap of at least a third)."""
+    segs = turn_calls(res)
+    if len(segs) <= k:
+        return False
+    sys = next((x["messages"][0]["content"] for x in segs[k] if x["messages"]), "")
+    m = re.search(r"## Recipe from a similar task[^\n]*\n(.*?)(\n## |\Z)", sys, re.S)
+    plans = args_of(segs[k], "plan")
+    if not m or not plans:
+        return False
+    rw = set(toks(re.sub(r"<\w+>", " ", m.group(1)))) - STOP
+    pw = set(toks(" ".join(map(str, plans[0].get("steps", []))))) - STOP
+    return bool(rw) and len(rw & pw) / len(rw | pw) >= 0.3
 
 
 # ── families ────────────────────────────────────────────────────────────────
@@ -263,7 +307,7 @@ def timeless(q):
     return not TIME_BOUND.search(q)
 
 
-def make_web_fact(rng, row, i, p_messy=0.4):
+def make_web_fact(rng, row, i, p_messy=0.45):
     q = row["question"].strip()
     q = q[0].upper() + q[1:] + ("?" if not q.endswith("?") else "")
     text, m = maybe_messy(rng, q, p_messy)
@@ -285,7 +329,7 @@ def check_web_fact(res):
 
 
 # 2. web_compare: a two-hop comparison (HotpotQA). Habits 1, 2.
-def make_web_compare(rng, row, i, p_messy=0.4, fam="web_compare"):
+def make_web_compare(rng, row, i, p_messy=0.45, fam="web_compare"):
     text, m = maybe_messy(rng, row["question"], p_messy)
     return _ep(fam, i, text, {"answer": row["answer"], "titles": row["titles"], "type": row["type"]}, messy_=m)
 
@@ -325,7 +369,7 @@ def check_web_compare(res, k=0):
 
 
 # 3. math: GSM8K, computed with run_js. Habit 1 (keep the maths in the calculator).
-def make_math(rng, row, i, p_messy=0.3):
+def make_math(rng, row, i, p_messy=0.4):
     text, m = maybe_messy(rng, row["question"], p_messy)
     return _ep("math", i, text, {"answer": row["answer"]}, messy_=m)
 
@@ -358,7 +402,7 @@ def make_need_math(rng, row, i, p_messy=0.3):
     text, messy_ = maybe_messy(rng, q2, p_messy)
 
     def user(turn, ep):
-        if turn["n"] == 0 and turn.get("waiting"):
+        if turn["n"] == 0 and (turn.get("asked") or turn.get("waiting")):
             return rng.choice([f"it's {value}", f"{value}", f"oh sorry, {value}", f"um {value} i think. yeah {value}"])
         return None
     return _ep("need_math", i, text, {"answer": row["answer"], "missing": value}, user=user, messy_=messy_)
@@ -429,7 +473,7 @@ def check_repo_answer(kind, gold, reply):
     return False
 
 
-def make_repo_fact(rng, facts, i, p_messy=0.35, fam="repo_fact"):
+def make_repo_fact(rng, facts, i, p_messy=0.45, fam="repo_fact"):
     f = rng.choice(facts)
     qs = repo_questions(f)
     if not qs:
@@ -458,7 +502,7 @@ def check_repo_fact(res, k=0):
     return {"ok": ok, "strict": ok and looked and not reasons, "reasons": reasons}
 
 
-def make_repo_where(rng, facts, i, p_messy=0.35):
+def make_repo_where(rng, facts, i, p_messy=0.45):
     f = rng.choice([x for x in facts if x.get("defs")])
     d = rng.choice(f["defs"])
     r = repo_ref(rng, f)
@@ -473,7 +517,7 @@ check_repo_where = check_repo_fact
 
 
 # 6. two-part repo task (plan) — also the first half of the recipe family. Habit 2.
-def make_repo_two(rng, facts, i, f=None, fam="repo_two", p_messy=0.3):
+def make_repo_two(rng, facts, i, f=None, fam="repo_two", p_messy=0.45):
     f = f or rng.choice(facts)
     qs = {k: (t, g) for k, t, g in repo_questions(f)}
     if "latest_commit" not in qs or ("version" not in qs and "license" not in qs):
@@ -535,6 +579,8 @@ def check_recipe_repo(res):
     seen = recipe_seen(res, 1)
     if not seen:
         reasons.append("no recipe in the second prompt (first task didn't plan, or no match)")
+    elif not plan_follows_recipe(res, 1):
+        reasons.append("second plan doesn't follow the recipe")
     ok = c1["ok"] and c2["ok"]
     reasons += [f"first: {r}" for r in c1["reasons"] if r not in reasons] + [f"second: {r}" for r in c2["reasons"] if r not in reasons]
     return {"ok": ok, "strict": ok and seen and c1["strict"] and c2["strict"], "reasons": reasons, "recipe_seen": seen, "second_ok": c2["ok"]}
@@ -558,11 +604,13 @@ def check_recipe_compare(res):
     r2 = dict(res, gold=res["gold"]["second"])
     c2 = check_web_compare(r2, 1)
     seen = recipe_seen(res, 1)
-    return {"ok": c2["ok"], "strict": c2["strict"] and seen, "reasons": reasons + c2["reasons"] + ([] if seen else ["no recipe in the second prompt"]), "recipe_seen": seen}
+    follows = seen and plan_follows_recipe(res, 1)
+    extra = ([] if seen else ["no recipe in the second prompt"]) + ([] if follows or not seen else ["second plan doesn't follow the recipe"])
+    return {"ok": c2["ok"], "strict": c2["strict"] and follows, "reasons": reasons + c2["reasons"] + extra, "recipe_seen": seen}
 
 
 # 8. need_repo: "my repo" with several repos and nothing saying which. Habit 4.
-def make_need_repo(rng, facts, i, p_messy=0.4):
+def make_need_repo(rng, facts, i, p_messy=0.5):
     f = rng.choice([x for x in facts if x.get("commits")])
     tpl = rng.choice(["What's the latest commit on my repo?", "can you check the newest commit in the repo", "what changed last in my project?",
                       "who made the last commit on my repo", "whats the most recent commit message on the repo"])
@@ -604,7 +652,7 @@ MEM_ASK = {"KealJones/squiggle": ["my agent project", "the squiggle repo", "my b
            "KealJones/tp-parse": ["my fine-tune experiments repo", "the repo where I run my experiments", "my experiments repo"]}
 
 
-def make_memory_repo(rng, facts, i, p_messy=0.4):
+def make_memory_repo(rng, facts, i, p_messy=0.5):
     repo = rng.choice(list(MEM_ASK))
     f = next(x for x in facts if x["repo"] == repo)
     c = f["commits"][0]
@@ -632,7 +680,7 @@ def make_past_chat(rng, row, i):
     first = q[0].upper() + q[1:] + "?"
     ask = rng.choice(["Earlier you looked up {q} for me. What was the answer again?", "remind me what you found out about {q}?",
                       "what did you tell me before about {q}", "you checked {q} the other day — what was it?"]).format(q=q)
-    text, m = maybe_messy(rng, ask, 0.4)
+    text, m = maybe_messy(rng, ask, 0.55)
 
     def user(turn, ep):
         return (text, "later") if turn["n"] == 0 else None

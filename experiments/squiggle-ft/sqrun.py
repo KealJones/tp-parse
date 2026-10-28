@@ -104,7 +104,7 @@ class Runner:
         def send(obj):
             proc.stdin.write((json.dumps(obj, ensure_ascii=False) + "\n").encode())
 
-        spec = {"t": "episode", "first": ep.first, "world": ep.world, "root": root, "approve": ep.approve,
+        spec = {"t": "episode", "first": ep.first, "world": ep.world, "root": root, "approve": ep.approve, "noNet": ep.meta.get("noNet", []),
                 "repoCache": str(self.work / "repo-cache"), "netCache": str(self.work / "net-cache"), "offline": self.offline}
         send(spec)
         await proc.stdin.drain()
@@ -115,7 +115,9 @@ class Runner:
                 m = json.loads(raw)
                 t = m.get("t")
                 if t == "gen":
-                    req = {"episode": ep.id, "index": index, "kind": m["kind"], "messages": m["messages"], "max_tokens": m.get("max_tokens", 1024)}
+                    req = {"episode": ep.id, "index": index, "kind": m["kind"], "messages": m["messages"], "max_tokens": m.get("max_tokens", 1024),
+                           "missing": m.get("missing") or [], "turn": len(result["turns"])}
+                    result.setdefault("missing", []).extend(m.get("missing") or [])
                     index += 1
                     if index > self.max_calls:
                         text = {"error": f"Stopped: more than {self.max_calls} model calls in one episode."}
@@ -141,6 +143,7 @@ class Runner:
                         send({"t": "end"})
                 elif t == "done":
                     result.update(calls=m["calls"], sessions=m["sessions"], recipes=m["recipes"], facts=m["facts"], net=m["net"])
+                    result.setdefault("missing", []).extend(m.get("missing") or [])
                 elif t == "error":
                     result["error"] = m["error"]
                 await proc.stdin.drain()
