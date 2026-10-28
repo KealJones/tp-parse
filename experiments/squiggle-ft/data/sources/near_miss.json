@@ -1,0 +1,212 @@
+[
+ {
+  "real": "lasagna",
+  "miss": "lasabna",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "thermostat",
+  "miss": "thermodtat",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "spreadsheet",
+  "miss": "spreadhheet",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "mortgage",
+  "miss": "morngage",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "bluetooth",
+  "miss": "bluegooth",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "router",
+  "miss": "roufer",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "firmware",
+  "miss": "firmgare",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "playlist",
+  "miss": "playlidt",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "carburetor",
+  "miss": "carbugetor",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "sunscreen",
+  "miss": "sumscreen",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "compost",
+  "miss": "compobt",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "fertilizer",
+  "miss": "ferbilizer",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "dehumidifier",
+  "miss": "dehubidifier",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "toaster",
+  "miss": "toasber",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "smoothie",
+  "miss": "smoodhie",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "croissant",
+  "miss": "croijsant",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "vinaigrette",
+  "miss": "vinaigretwe",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "espresso",
+  "miss": "espremso",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "cardigan",
+  "miss": "cardilan",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "treadmill",
+  "miss": "treadmibl",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "hammock",
+  "miss": "hamfock",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "voicemail",
+  "miss": "voicekail",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "screenshot",
+  "miss": "screefshot",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "printer",
+  "miss": "prinver",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "sourdough",
+  "miss": "sourdoukh",
+  "split": "train",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "rebase",
+  "miss": "rebaze",
+  "split": "eval",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "merge",
+  "miss": "merje",
+  "split": "eval",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "squash",
+  "miss": "sqvash",
+  "split": "eval",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "branch",
+  "miss": "bramch",
+  "split": "eval",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "commit",
+  "miss": "comnit",
+  "split": "eval",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "checkout",
+  "miss": "checkoub",
+  "split": "eval",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "symbolic",
+  "miss": "zymbolic",
+  "split": "eval",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "submodule",
+  "miss": "submodyle",
+  "split": "eval",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "cherry-pick",
+  "miss": "cherry-pyck",
+  "split": "eval",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ },
+ {
+  "real": "stash",
+  "miss": "stazh",
+  "split": "eval",
+  "checked": "open-web search, quoted, no exact match (2026-10-28)"
+ }
+]

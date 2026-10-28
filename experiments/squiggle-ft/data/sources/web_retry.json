@@ -1,0 +1,604 @@
+[
+ {
+  "question": "What is the name given to the common currency to the european union?",
+  "answers": [
+   "euro",
+   "The euro"
+  ],
+  "split": "train",
+  "from": "web_fact-57"
+ },
+ {
+  "question": "Who were the bands in pitch perfect 3?",
+  "answers": [
+   "Evermoist",
+   "Saddle Up",
+   "the Bellas"
+  ],
+  "split": "train",
+  "from": "web_fact-17"
+ },
+ {
+  "question": "Who has the most international goals of all time?",
+  "answers": [
+   "Ali Daei"
+  ],
+  "split": "train",
+  "from": "web_fact-6"
+ },
+ {
+  "question": "Nobel laureate who began career as accountant in calcutta?",
+  "answers": [
+   "Amartya Sen"
+  ],
+  "split": "train",
+  "from": "web_fact-88"
+ },
+ {
+  "question": "The lowest temperature at which a lubricant will flow is called the?",
+  "answers": [
+   "pour point"
+  ],
+  "split": "train",
+  "from": "web_fact-47"
+ },
+ {
+  "question": "When does season 18 of law and order svu start?",
+  "answers": [
+   "September 21, 2016"
+  ],
+  "split": "train",
+  "from": "web_fact-50"
+ },
+ {
+  "question": "Authorities involved in formulating accounting standard in india?",
+  "answers": [
+   "government department",
+   "FICCI",
+   "other professional bodies",
+   "ASSOCHAM",
+   "CII",
+   "Accounting Standards Board",
+   "ICAI",
+   "academicians"
+  ],
+  "split": "train",
+  "from": "web_fact-4"
+ },
+ {
+  "question": "When did university stop being free in australia?",
+  "answers": [
+   "1989"
+  ],
+  "split": "train",
+  "from": "web_fact-14"
+ },
+ {
+  "question": "Where was the original planet of the apes filmed at?",
+  "answers": [
+   "Utah",
+   "in northern Arizona",
+   "California",
+   "Arizona"
+  ],
+  "split": "train",
+  "from": "web_fact-71"
+ },
+ {
+  "question": "What is the width of a cricket bat?",
+  "answers": [
+   "no more than 4.25 inches"
+  ],
+  "split": "train",
+  "from": "web_fact-65"
+ },
+ {
+  "question": "Where does the term jack mormon come from?",
+  "answers": [
+   "Jackson County, Missouri"
+  ],
+  "split": "train",
+  "from": "web_fact-12"
+ },
+ {
+  "question": "When does the world cup of hockey start?",
+  "answers": [
+   "2020"
+  ],
+  "split": "train",
+  "from": "web_fact-78"
+ },
+ {
+  "question": "Who made the nuclear model of an atom?",
+  "answers": [
+   "Ernest Rutherford"
+  ],
+  "split": "train",
+  "from": "web_fact-7"
+ },
+ {
+  "question": "Who is doing 2018 super bowl half time show?",
+  "answers": [
+   "Justin Timberlake"
+  ],
+  "split": "train",
+  "from": "web_fact-76"
+ },
+ {
+  "question": "Who is mostly responsible for writing the declaration of independence?",
+  "answers": [
+   "Thomas Jefferson"
+  ],
+  "split": "train",
+  "from": "web_fact-15"
+ },
+ {
+  "question": "When did the smoking ban in public places start?",
+  "answers": [
+   "August 2, 1990",
+   "1995"
+  ],
+  "split": "train",
+  "from": "web_fact-82"
+ },
+ {
+  "question": "When did the first movie of harry potter come out?",
+  "answers": [
+   "16 November 2001",
+   "2001"
+  ],
+  "split": "train",
+  "from": "web_fact-55"
+ },
+ {
+  "question": "When does kc undercover season 3 episode 10 air?",
+  "answers": [
+   "November\u00a010,\u00a02017"
+  ],
+  "split": "train",
+  "from": "web_fact-2"
+ },
+ {
+  "question": "What does the adrenal gland produce that is necessary for the sympathetic nervous system to function?",
+  "answers": [
+   "epinephrine"
+  ],
+  "split": "train",
+  "from": "web_fact-61"
+ },
+ {
+  "question": "The era of the great mughals began with the accession of?",
+  "answers": [
+   "Akbar the Great",
+   "Babur"
+  ],
+  "split": "train",
+  "from": "web_fact-29"
+ },
+ {
+  "question": "Theme of the song roar by katy perry?",
+  "answers": [
+   "self-empowerment",
+   "standing up for oneself"
+  ],
+  "split": "train",
+  "from": "web_fact-68"
+ },
+ {
+  "question": "Who plays the robot on the orville show?",
+  "answers": [
+   "Mark Jackson"
+  ],
+  "split": "train",
+  "from": "web_fact-72"
+ },
+ {
+  "question": "Who may be affected by monetary penalties imposed by the irs?",
+  "answers": [
+   "Taxpayers in the United States"
+  ],
+  "split": "train",
+  "from": "web_fact-37"
+ },
+ {
+  "question": "What was the final episode of quantum leap?",
+  "answers": [
+   "\"Mirror Image\""
+  ],
+  "split": "train",
+  "from": "web_fact-49"
+ },
+ {
+  "question": "Who recorded i can't help falling in love with you?",
+  "answers": [
+   "Elvis Presley"
+  ],
+  "split": "train",
+  "from": "web_fact-69"
+ },
+ {
+  "question": "Which state is the richest state in nigeria?",
+  "answers": [
+   "Lagos State"
+  ],
+  "split": "train",
+  "from": "web_fact-44"
+ },
+ {
+  "question": "What percentage of the us population lives below the poverty line?",
+  "answers": [
+   "13.5%",
+   "In 2015, 13.5%"
+  ],
+  "split": "train",
+  "from": "web_fact-38"
+ },
+ {
+  "question": "Who was the youngest president to be elected?",
+  "answers": [
+   "Theodore Roosevelt",
+   "John F. Kennedy"
+  ],
+  "split": "train",
+  "from": "web_fact-81"
+ },
+ {
+  "question": "When does madea's family funeral come out?",
+  "answers": [
+   "2018"
+  ],
+  "split": "train",
+  "from": "web_fact-46"
+ },
+ {
+  "question": "The cast of a good day to die hard?",
+  "answers": [
+   "Mary Elizabeth Winstead",
+   "Sebastian Koch",
+   "Radivoje Bukvi\u0107",
+   "Jai Courtney",
+   "Bruce Willis",
+   "Yuliya Snigir",
+   "Sergei Kolesnikov"
+  ],
+  "split": "train",
+  "from": "web_fact-53"
+ },
+ {
+  "question": "How long is a whale shark in meters?",
+  "answers": [
+   "12.65\u00a0m",
+   "estimated at 9.7\u00a0m",
+   "9.7\u00a0m"
+  ],
+  "split": "train",
+  "from": "web_fact-79"
+ },
+ {
+  "question": "What theater number was the aurora shooting in?",
+  "answers": [
+   "9",
+   "Theater 9"
+  ],
+  "split": "train",
+  "from": "web_fact-22"
+ },
+ {
+  "question": "Three largest cities in the world by population?",
+  "answers": [
+   "Beijing",
+   "Shanghai",
+   "Delhi"
+  ],
+  "split": "train",
+  "from": "web_fact-42"
+ },
+ {
+  "question": "Who opens the church of the holy sepulchre?",
+  "answers": [
+   "the Sunni Muslim family",
+   "the Nusaybah family"
+  ],
+  "split": "train",
+  "from": "web_fact-63"
+ },
+ {
+  "question": "Who sings angel of the morning in deadpool?",
+  "answers": [
+   "Juice Newton",
+   "Juice Newton's"
+  ],
+  "split": "train",
+  "from": "web_fact-5"
+ },
+ {
+  "question": "Whos jack the ripper in gotham by gaslight?",
+  "answers": [
+   "Jacob Packer"
+  ],
+  "split": "train",
+  "from": "web_fact-75"
+ },
+ {
+  "question": "A single period of precession of earth's axis is completed in about?",
+  "answers": [
+   "approximately 26,000 years",
+   "26,000 years"
+  ],
+  "split": "train",
+  "from": "web_fact-34"
+ },
+ {
+  "question": "What languages are spoken in india the most?",
+  "answers": [
+   "Bengali",
+   "Telugu",
+   "Marathi",
+   "Hindi",
+   "English"
+  ],
+  "split": "train",
+  "from": "web_fact-74"
+ },
+ {
+  "question": "What is the average height of a chinese man?",
+  "answers": [
+   "5\u00a0ft 6\u00a0in"
+  ],
+  "split": "train",
+  "from": "web_fact-41"
+ },
+ {
+  "question": "Who built the tower of london in 1066?",
+  "answers": [
+   "William the Conqueror"
+  ],
+  "split": "train",
+  "from": "web_fact-13"
+ },
+ {
+  "question": "What is the population of fayetteville north carolina?",
+  "answers": [
+   "204,408 in 2013"
+  ],
+  "split": "train",
+  "from": "web_fact-48"
+ },
+ {
+  "question": "How long were the pyramids the tallest structure?",
+  "answers": [
+   "over 3,800",
+   "over 3,800 years"
+  ],
+  "split": "train",
+  "from": "web_fact-39"
+ },
+ {
+  "question": "The most important battles in the revolutionary war?",
+  "answers": [
+   "Philadelphia campaign",
+   "Yorktown campaign",
+   "Saratoga campaign",
+   "Boston campaign",
+   "Invasion of Quebec"
+  ],
+  "split": "train",
+  "from": "web_fact-32"
+ },
+ {
+  "question": "Who wrote the text for jeanie with the light brown hair?",
+  "answers": [
+   "Stephen Foster"
+  ],
+  "split": "train",
+  "from": "web_fact-43"
+ },
+ {
+  "question": "How many wars held between india and pakistan?",
+  "answers": [
+   "four"
+  ],
+  "split": "train",
+  "from": "web_fact-24"
+ },
+ {
+  "question": "What is the legal age for marriage in australia?",
+  "answers": [
+   "18"
+  ],
+  "split": "train",
+  "from": "web_fact-31"
+ },
+ {
+  "question": "When did houston go to the american league?",
+  "answers": [
+   "2013"
+  ],
+  "split": "train",
+  "from": "web_fact-40"
+ },
+ {
+  "question": "Who played stonewall jackson in gods and generals?",
+  "answers": [
+   "Stephen Lang"
+  ],
+  "split": "train",
+  "from": "web_fact-60"
+ },
+ {
+  "question": "Who gave a speech to the democratic national convention in 1984?",
+  "answers": [
+   "Mario Cuomo",
+   "Jesse Jackson",
+   "Rev. Jesse Jackson",
+   "New York Governor Mario Cuomo",
+   "Senator Gary Hart",
+   "Gary Hart"
+  ],
+  "split": "train",
+  "from": "web_fact-73"
+ },
+ {
+  "question": "Who votes in the speaker of the house?",
+  "answers": [
+   "The House of Representatives"
+  ],
+  "split": "train",
+  "from": "web_fact-26"
+ },
+ {
+  "question": "Derek and meredith get back together season 3?",
+  "answers": [
+   "Staring at the Sun"
+  ],
+  "split": "train",
+  "from": "web_fact-86"
+ },
+ {
+  "question": "What is the most famous building in rennes?",
+  "answers": [
+   "Parlement de Bretagne",
+   "The Parlement de Bretagne"
+  ],
+  "split": "train",
+  "from": "web_fact-0"
+ },
+ {
+  "question": "Who does the voice of mickey mouse on mickey mouse clubhouse?",
+  "answers": [
+   "Bret Iwan",
+   "Wayne Allwine"
+  ],
+  "split": "train",
+  "from": "web_fact-18"
+ },
+ {
+  "question": "What is katie running from in safe haven?",
+  "answers": [
+   "her abusive husband"
+  ],
+  "split": "train",
+  "from": "web_fact-19"
+ },
+ {
+  "question": "Who sang what are we doing in love?",
+  "answers": [
+   "Dottie West",
+   "Kenny Rogers"
+  ],
+  "split": "train",
+  "from": "web_fact-21"
+ },
+ {
+  "question": "Who were the the continent of the americas named after logically?",
+  "answers": [
+   "Amerigo Vespucci"
+  ],
+  "split": "train",
+  "from": "web_fact-67"
+ },
+ {
+  "question": "At what age are you no longer a toddler?",
+  "answers": [
+   "36 months"
+  ],
+  "split": "train",
+  "from": "web_fact-64"
+ },
+ {
+  "question": "How long are the episodes in stranger things season 1?",
+  "answers": [
+   "42\u201362 minutes"
+  ],
+  "split": "train",
+  "from": "web_fact-28"
+ },
+ {
+  "question": "What grade was arnold from hey arnold in?",
+  "answers": [
+   "fourth"
+  ],
+  "split": "train",
+  "from": "web_fact-80"
+ },
+ {
+  "question": "What is the biggest determinant of climate in venezuela?",
+  "answers": [
+   "altitude"
+  ],
+  "split": "train",
+  "from": "web_fact-54"
+ },
+ {
+  "question": "When did the revolution begin in the united states?",
+  "answers": [
+   "1775",
+   "1765"
+  ],
+  "split": "train",
+  "from": "web_fact-16"
+ },
+ {
+  "question": "Who sings the theme song for the tv show cops?",
+  "answers": [
+   "Inner Circle",
+   "Jamaican reggae band Inner Circle"
+  ],
+  "split": "train",
+  "from": "web_fact-58"
+ },
+ {
+  "question": "Who founded mission nuestra senora de la soledad?",
+  "answers": [
+   "the Franciscan order",
+   "Ferm\u00edn Francisco de Lasu\u00e9n"
+  ],
+  "split": "train",
+  "from": "web_fact-62"
+ },
+ {
+  "question": "Where did the term hot rod come from?",
+  "answers": [
+   "southern California"
+  ],
+  "split": "train",
+  "from": "web_fact-84"
+ },
+ {
+  "question": "When did the cubs won a world series?",
+  "answers": [
+   "1908",
+   "1907",
+   "2016"
+  ],
+  "split": "train",
+  "from": "web_fact-3"
+ },
+ {
+  "question": "Who did bette midler portray in the rose?",
+  "answers": [
+   "Mary Rose Foster"
+  ],
+  "split": "train",
+  "from": "web_fact-25"
+ },
+ {
+  "question": "Who invented the transtheoretical model of behavior change?",
+  "answers": [
+   "colleagues",
+   "Carlo Di Clemente"
+  ],
+  "split": "train",
+  "from": "web_fact-33"
+ },
+ {
+  "question": "Who played cosette in les miserables on broadway?",
+  "answers": [
+   "Samantha Hill",
+   "Judy Kuhn",
+   "Ali Ewoldt"
+  ],
+  "split": "train",
+  "from": "web_fact-8"
+ }
+]

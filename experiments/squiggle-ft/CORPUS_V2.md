@@ -112,14 +112,39 @@ frozen v1 eval set keeps the real date. Rate limits use the real clock.
 - `metrics()` adds held-out right answers and the run_js misuse rate.
 - A CPU code-path test covers the dev split, best-epoch keep, weights and normalisation.
 
-**Families: built vs not yet.**
-- **Built (makers + checkers):** every v1 family (stricter now), unknown_word, unknown_action (held out), personal,
-  plus hermes_compute and math on calculate.
-- **Not built yet** (planned in §2; `make_sets` skips them with a warning):
-  - web_fact_retry, need_web, math_pair, lookup_then_compute, repo_chain, messy_multi
-  - recipe_web, recipe_skip, near_miss, personal_mid, personal_tool, chat_mid
-  - the held-out need_schedule and recipe_compute
-- They have to be written, with checker tests and train/eval template splits, before the teacher smoke.
+**Families: all built for the trimmed plan** (makers + checkers; `build.V2_PLAN` = 815 attempted, `SMOKE_V2_PLAN` =
+3 per family):
+- web_fact_retry, need_web, math_pair, lookup_then_compute, repo_chain, messy_multi
+- recipe_web, recipe_skip, near_miss, chat_mid, personal_mid, personal_tool
+- held out: need_schedule, recipe_compute
+
+Only user-side text was written: request templates, with eval-only templates for each family. The data is real:
+- NQ, HotpotQA, GSM8K and repo files
+- teach-v1's own searches for web_fact_retry (`data/sources/web_retry.json`)
+- hand-picked near-misses (`make_nearmiss.py` → `data/sources/near_miss.json`)
+  - one letter off a real term, with no exact match on the open web
+  - git/code terms are eval-only
+
+**Tests:**
+- `checker_tests.py`: 98 cases, 77 from the review and 21 negative cases for the new families.
+- `harness_tests.py`: scripted positive cases through the real harness. They're kept for repo_chain, recipe_skip and
+  near_miss. recipe_web's recipe reaches the prompt.
+
+**Squiggle finding.** recipes.match only offers a recipe (score ≥ 0.6) when the request's first five content words
+overlap the recipe. With two-word names, "Who was born first, A or B?" scores 0.4, and so does "what's the latest
+commit of X?" against the version-and-commit recipe. So in the real app, these recipes never reach the prompt for
+such phrasings. recipe_web and recipe_skip therefore use phrasings that start with "find" (all 40 sampled score ≥ 0.6
+in the app's own matchSync) and carry no dictation noise. That's a Squiggle matching limitation to look at
+separately.
+
+**Chat template.** `template_check.py` compares the HF chat template with what `convert_hf_to_gguf.py` writes.
+- selftest runs it for every `--tokenizers` base.
+- export runs it against the produced GGUF.
+- Gemma 3, LFM2.5 and FunctionGemma are byte-identical, and a converted LFM2.5 GGUF matches too.
+
+**v1 eval set.** The review's train/eval template split means the 293-episode v1 eval can't be rebuilt exactly any
+more: 105 episodes in template families now differ. v1's numbers stand on their stored results, and v2's eval set will
+be frozen when it is first built.
 
 ## 1. v1 failures and their causes (from the eval)
 

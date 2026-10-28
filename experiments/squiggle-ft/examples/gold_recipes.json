@@ -14,16 +14,17 @@
    "<path> = /repos/chalk/package.json"
   ],
   "uses": 0,
-  "created": 1793162644860,
-  "lastUsed": 1793162644860,
+  "created": 1793179675878,
+  "lastUsed": 1793179675878,
   "sessions": [
-   "s0mvrmqmbw000v18ji"
+   "s0mvrwvni7000r9lwq"
   ],
   "draft": true,
-  "id": "r0mvrmqnwf0001quje",
-  "ts": 1793162644860,
-  "mts": 1793162644863,
+  "id": "r0mvrwvp49000ndxjg",
+  "ts": 1793179675878,
+  "mts": 1793179675881,
   "from_episode": "gold-repo_two-chalk",
+  "kind": "repo",
   "repo": "chalk/chalk"
  },
  {
@@ -41,16 +42,17 @@
    "<path> = /repos/clsx/package.json"
   ],
   "uses": 0,
-  "created": 1793162642337,
-  "lastUsed": 1793162642337,
+  "created": 1793179673516,
+  "lastUsed": 1793179673516,
   "sessions": [
-   "s0mvrmqkex000xctvj"
+   "s0mvrwvlpg000nt7hz"
   ],
   "draft": true,
-  "id": "r0mvrmqlyg0007sh4g",
-  "ts": 1793162642337,
-  "mts": 1793162642344,
+  "id": "r0mvrwvnau000wf38p",
+  "ts": 1793179673516,
+  "mts": 1793179673525,
   "from_episode": "gold-repo_two-clsx",
+  "kind": "repo",
   "repo": "lukeed/clsx"
  },
  {
@@ -68,16 +70,17 @@
    "<path> = /repos/ms/package.json"
   ],
   "uses": 0,
-  "created": 1793162644807,
-  "lastUsed": 1793162644807,
+  "created": 1793179673518,
+  "lastUsed": 1793179673518,
   "sessions": [
-   "s0mvrmqm96000b5jmz"
+   "s0mvrwvlpi000lgwm3"
   ],
   "draft": true,
-  "id": "r0mvrmqnuz000994ag",
-  "ts": 1793162644807,
-  "mts": 1793162644811,
+  "id": "r0mvrwvnaq000odhxb",
+  "ts": 1793179673518,
+  "mts": 1793179673522,
   "from_episode": "gold-repo_two-ms",
+  "kind": "repo",
   "repo": "vercel/ms"
  },
  {
@@ -95,16 +98,44 @@
    "<path> = /repos/p-limit/package.json"
   ],
   "uses": 0,
-  "created": 1793162644807,
-  "lastUsed": 1793162644807,
+  "created": 1793179675877,
+  "lastUsed": 1793179675877,
   "sessions": [
-   "s0mvrmqm9s000i7uys"
+   "s0mvrwvnh4000rypjg"
   ],
   "draft": true,
-  "id": "r0mvrmqnuz000a6m7q",
-  "ts": 1793162644807,
-  "mts": 1793162644811,
+  "id": "r0mvrwvp49000iuz69",
+  "ts": 1793179675877,
+  "mts": 1793179675881,
   "from_episode": "gold-repo_two-p-limit",
+  "kind": "repo",
   "repo": "sindresorhus/p-limit"
+ },
+ {
+  "title": "Find who was born first: Susan Oliver or W",
+  "when": "Find who was born first: Susan Oliver or W. S. Van Dyke",
+  "examples": [
+   "Who was born first, Susan Oliver or W. S. Van Dyke?"
+  ],
+  "steps": [
+   "Find Susan Oliver's birth date",
+   "Find W. S. Van Dyke's birth date"
+  ],
+  "specifics": [
+   "<url1> = https://en.wikipedia.org/wiki/Susan_Oliver",
+   "<url2> = https://en.wikipedia.org/wiki/W._S._Van_Dyke"
+  ],
+  "uses": 0,
+  "created": 1793179678744,
+  "lastUsed": 1793179678744,
+  "sessions": [
+   "s0mvrwvpn6000cojcq"
+  ],
+  "draft": true,
+  "id": "r0mvrwvrc50009idg6",
+  "ts": 1793179678744,
+  "mts": 1793179678757,
+  "from_episode": "gold-web_compare-born",
+  "kind": "web"
  }
 ]

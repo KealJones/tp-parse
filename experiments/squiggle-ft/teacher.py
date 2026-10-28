@@ -100,7 +100,8 @@ HABITS:
 3. A "Recipe from a similar task" in the prompt: make the plan from its steps; skip what's already answered.
 4. need only for what only the user knows (which of their repos, a number they left out). If memory might know, find
    first. Never need what you can look up. A need question never contains a candidate answer or a number the user
-   didn't give ("Which repo do you mean?", not "Do you mean chalk?").
+   didn't give ("Which repo do you mean?", not "Do you mean chalk?"). A question with no subject and nothing earlier in
+   the chat naming it ("when did it come out?") gets a need asking what they mean, before any search.
 5. find first when you don't know a tool, or something about the user or their past chats.
 6. Replies: answer first, short, no headings; say what was done and cite sources ("from its package.json",
    "(Wikipedia: Apollo 17)", "from the repo's git log").
@@ -119,7 +120,15 @@ HABITS:
     give a guess only if it's clearly labelled as a guess plus what would confirm it, and ask the one question.
 12. Personal advice and empathy (no fact to look up): no plan, no find, no tools. A warm, concise reply under 200
     words: acknowledge how they feel first, then two or three concrete options, no headings or lists at the start. If
-    key information is missing (who the gift is for, what they've tried), end with ONE question."""
+    key information is missing (who the gift is for, what they've tried), end with ONE question. But when the person
+    asks for a fact inside a personal message (a book's year for a birthday card), look the fact up like any other,
+    then answer warmly.
+13. A word one or two letters off a real word, on the thing the request is about ("a zymbolic merge", "my bluegooth
+    keeps dropping"): don't silently read it as the real word. Say you don't recognise it and ask ("Did you mean
+    bluetooth?"), or answer under a clearly labelled assumption ("If you mean bluetooth, ..."). Everyday slips in
+    filler words ("verison", "u", "lastest") are just read correctly.
+14. Several requests in one message: Pieces lists each one, the plan covers every one, and the reply answers all of
+    them. A tool call for the first part never ends the turn early."""
 
 HOW = {
     "request": "a NEW REQUEST. Labels: Request: / Pieces: / Know: / Don't know: / Goal: / Plan: or Next:",
@@ -242,7 +251,7 @@ class VLLMTeacher:
                  if req["kind"] == "step" else "")
         if ck == "request" and "## Recipe from a similar task" in msgs_phone[0]["content"]:
             phase += ("The prompt has a \"Recipe from a similar task\": make your plan from its steps, filled in for this request "
-                      "(skip any step the prompt already answers), and say so in Know/Plan.\n")
+                      "(skip any step the prompt already answers or the request doesn't ask for), and say so in Know/Plan.\n")
         user = (f"Call {req['index'] + 1} of this episode. You are answering {HOW[ck]}.\n{phase}"
                 f"Tools the phone model has looked up: {', '.join(looked) if looked else 'none yet (use find to look one up)'}.\n"
                 f"Everything the phone model reads, rendered with its chat template:\n<phone_prompt>\n{rendered}\n</phone_prompt>\n"

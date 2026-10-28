@@ -544,6 +544,11 @@ def export(model_dir, base, out, hub_repo, results_md):
         files.append(f4)
         r = subprocess.run([str(lc / "build/bin/llama-simple"), "-m", str(f8), "-n", "32", "Hello"], capture_output=True, text=True, errors="replace", timeout=300)
         check = f"llama.cpp (master) loads the Q8_0 file and generates: {'yes' if r.returncode == 0 else 'NO'} ({(r.stdout + r.stderr)[-300:]!r})"
+    try:                                              # the phone renders with the GGUF's template: must match training's
+        import template_check as TC
+        check += f"\n\nchat template, GGUF vs the HF template training used: {TC.compare(TC.hf_template(model_dir), TC.gguf_template(str(f8)))}"
+    except Exception as e:
+        check += f"\n\nchat template check failed to run: {e!r}"
     sizes = {f.name: f.stat().st_size for f in files}
     log("GGUF", sizes, check)
     # The real runtime: wllama 3.8.1 in headless Chromium, the app's settings, a Squiggle prompt.

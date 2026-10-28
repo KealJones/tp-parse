@@ -92,9 +92,15 @@ def main():
     app = AppFormat(args.squiggle)
     system = app("system")
     toks = []
+    tmpl_bad = 0
     for name in [t for t in args.tokenizers.split(",") if t]:
         from transformers import AutoTokenizer
         toks.append((name, AutoTokenizer.from_pretrained(name)))
+        # The phone renders with the GGUF's template; it must be byte-identical to the one training uses.
+        import template_check as TC
+        r = TC.compare(TC.hf_template(name), TC.converter_template(name))
+        print(f"  chat template, {name}: HF vs what convert_hf_to_gguf.py writes: {r}")
+        tmpl_bad += r != "identical"
     n = bad = 0
     why = collections.Counter()
     lengths = collections.defaultdict(list)
@@ -138,7 +144,7 @@ def main():
         ps = sorted(x for x, _ in ls)
         os_ = sorted(y for _, y in ls)
         print(f"  {name}: prompt tokens median {ps[len(ps) // 2]}, max {ps[-1]}; output tokens median {os_[len(os_) // 2]}, max {os_[-1]}")
-    sys.exit(1 if bad else 0)
+    sys.exit(1 if bad or tmpl_bad else 0)
 
 
 if __name__ == "__main__":
