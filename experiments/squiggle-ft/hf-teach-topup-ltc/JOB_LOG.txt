@@ -1,0 +1,334 @@
+job 6ae20a0841e90535df774ff6 on gpu: squiggle-ft-teach-topup-ltc at ac0e5c9
+fetched experiments/squiggle-ft/jobs/boot.py
+Wed Oct 28 14:45:47 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          On  |   00000000:20:1D.0 Off |                    0 |
+| N/A   30C    P0             66W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+debconf: delaying package configuration, since apt-utils is not installed
+boot: node v22.23.4, squiggle f54bbf7c6be51681cc44e221a763ee2ec3a97890, tp-parse ac0e5c9, setup took 17 s
++ python -c 'import torch, vllm, transformers; print('\''torch'\'', torch.__version__, '\''vllm'\'', vllm.__version__, '\''transformers'\'', transformers.__version__)'
+torch 2.8.0+cu128 vllm 0.11.0 transformers 4.57.6
++ nvidia-smi --query-gpu=name,memory.total --format=csv
+name, memory.total [MiB]
+NVIDIA A100-SXM4-80GB, 81920 MiB
++ python build.py teach --plan topup_ltc --scale 1 --minutes 3 --concurrency 32 --judge-pending hf-teach-v2/teach/judge_pending.jsonl.gz --out /workspace/work/out/teach --work work
+excluded source questions: 2702 from the eval sources, those of 245 kept teach-v1 episodes (cached in exclude_keys.json)
+make_sets: skipped rows whose question was already used or excluded: {'born': 6, 'compute': 26, 'gsm2': 9, 'media': 3, 'nq2': 19, 'personal2': 45, 'need': 23, 'retry': 17}
+make_sets: skipped rows whose question was already used or excluded: {'born': 62}
+30 episodes: {'lookup_then_compute': 30}
+INFO 10-28 14:46:31 [__init__.py:216] Automatically detected platform cuda.
+
+
+config.json:   0%|          | 0.00/7.16k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 7.16k/7.16k [00:00<00:00, 42.5MB/s]
+INFO 10-28 14:46:44 [model.py:547] Resolved architecture: Qwen3MoeForCausalLM
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 10-28 14:46:44 [model.py:1510] Using max model len 24576
+INFO 10-28 14:46:44 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=2048.
+
+
+tokenizer_config.json:   0%|          | 0.00/10.8k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 10.8k/10.8k [00:00<00:00, 50.7MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 9.86MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 23.9MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/11.4M [00:00<?, ?B/s][A
+
+tokenizer.json: 100%|██████████| 11.4M/11.4M [00:01<00:00, 10.5MB/s][A
+tokenizer.json: 100%|██████████| 11.4M/11.4M [00:01<00:00, 9.96MB/s]
+
+
+generation_config.json:   0%|          | 0.00/239 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 239/239 [00:00<00:00, 1.91MB/s]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:46:47 [core.py:644] Waiting for init message from front-end.
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:46:47 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='Qwen/Qwen3-30B-A3B-Thinking-2507-FP8', speculative_config=None, tokenizer='Qwen/Qwen3-30B-A3B-Thinking-2507-FP8', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=24576, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=fp8, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=Qwen/Qwen3-30B-A3B-Thinking-2507-FP8, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":3,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output","vllm.mamba_mixer2","vllm.mamba_mixer","vllm.short_conv","vllm.linear_attention","vllm.plamo2_mamba_mixer","vllm.gdn_attention","vllm.sparse_attn_indexer"],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":[2,1],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":128,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:46:48 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+[1;36m(EngineCore_DP0 pid=1526)[0;0m WARNING 10-28 14:46:49 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:46:49 [gpu_model_runner.py:2602] Starting to load model Qwen/Qwen3-30B-A3B-Thinking-2507-FP8...
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:46:49 [gpu_model_runner.py:2634] Loading model from scratch...
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:46:49 [cuda.py:366] Using Flash Attention backend on V1 engine.
+[1;36m(EngineCore_DP0 pid=1526)[0;0m WARNING 10-28 14:46:49 [fp8.py:457] Failed to import DeepGemm kernels.
+[1;36m(EngineCore_DP0 pid=1526)[0;0m WARNING 10-28 14:46:49 [fp8.py:480] CutlassBlockScaledGroupedGemm not supported on the current platform.
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:46:50 [weight_utils.py:392] Using model weights format ['*.safetensors']
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:   0%|          | 0.00/10.0G [00:00<?, ?B/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00002-of-00004.safetensors:   0%|          | 0.00/10.0G [00:00<?, ?B/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00004-of-00004.safetensors:   0%|          | 0.00/1.17G [00:00<?, ?B/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00001-of-00004.safetensors:   0%|          | 0.00/10.0G [00:00<?, ?B/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00001-of-00004.safetensors:   0%|          | 1.44M/10.0G [00:02<3:52:56, 715kB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00004-of-00004.safetensors:   6%|▌         | 67.1M/1.17G [00:02<00:37, 29.6MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:   0%|          | 1.49M/10.0G [00:03<5:50:50, 475kB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00004-of-00004.safetensors:  22%|██▏       | 256M/1.17G [00:03<00:10, 91.1MB/s] [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00001-of-00004.safetensors:   2%|▏         | 203M/10.0G [00:03<02:33, 63.9MB/s]  [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:   1%|          | 68.6M/10.0G [00:04<08:22, 19.8MB/s] [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00001-of-00004.safetensors:   5%|▍         | 471M/10.0G [00:05<01:20, 118MB/s] [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00004-of-00004.safetensors:  34%|███▍      | 403M/1.17G [00:06<00:11, 68.3MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00001-of-00004.safetensors:   8%|▊         | 768M/10.0G [00:06<00:58, 159MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:   3%|▎         | 270M/10.0G [00:06<03:02, 53.4MB/s] [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00004-of-00004.safetensors:  77%|███████▋  | 907M/1.17G [00:07<00:01, 172MB/s] [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00002-of-00004.safetensors:   0%|          | 1.44M/10.0G [00:07<14:27:31, 192kB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:   8%|▊         | 768M/10.0G [00:07<01:01, 149MB/s] [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00001-of-00004.safetensors:  10%|█         | 1.02G/10.0G [00:08<01:01, 145MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00002-of-00004.safetensors:   1%|          | 68.5M/10.0G [00:08<15:50, 10.5MB/s]  [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00004-of-00004.safetensors: 100%|██████████| 1.17G/1.17G [00:09<00:00, 133MB/s][A
+model-00004-of-00004.safetensors: 100%|██████████| 1.17G/1.17G [00:09<00:00, 118MB/s]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00002-of-00004.safetensors:  10%|█         | 1.02G/10.0G [00:10<00:54, 166MB/s] [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00001-of-00004.safetensors:  13%|█▎        | 1.30G/10.0G [00:10<01:00, 143MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00001-of-00004.safetensors:  23%|██▎       | 2.31G/10.0G [00:11<00:24, 312MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00001-of-00004.safetensors:  47%|████▋     | 4.72G/10.0G [00:14<00:09, 563MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00001-of-00004.safetensors:  69%|██████▉   | 6.94G/10.0G [00:15<00:03, 835MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00001-of-00004.safetensors:  82%|████████▏ | 8.21G/10.0G [00:16<00:02, 880MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:  11%|█         | 1.07G/10.0G [00:17<02:23, 62.4MB/s][A
+model-00001-of-00004.safetensors: 100%|██████████| 10.0G/10.0G [00:17<00:00, 574MB/s]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:  25%|██▍       | 2.48G/10.0G [00:19<00:41, 183MB/s] [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00002-of-00004.safetensors:  22%|██▏       | 2.21G/10.0G [00:19<00:55, 140MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:  42%|████▏     | 4.23G/10.0G [00:20<00:15, 367MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00002-of-00004.safetensors:  36%|███▌      | 3.56G/10.0G [00:20<00:25, 249MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:  52%|█████▏    | 5.23G/10.0G [00:21<00:10, 443MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:  65%|██████▌   | 6.51G/10.0G [00:22<00:06, 581MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00002-of-00004.safetensors:  50%|█████     | 5.03G/10.0G [00:22<00:14, 352MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00002-of-00004.safetensors:  62%|██████▏   | 6.24G/10.0G [00:23<00:08, 464MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:  80%|████████  | 8.05G/10.0G [00:24<00:02, 669MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00002-of-00004.safetensors:  74%|███████▍  | 7.45G/10.0G [00:25<00:04, 559MB/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00003-of-00004.safetensors:  93%|█████████▎| 9.32G/10.0G [00:25<00:00, 786MB/s][A
+model-00003-of-00004.safetensors: 100%|██████████| 10.0G/10.0G [00:25<00:00, 391MB/s]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model-00002-of-00004.safetensors:  93%|█████████▎| 9.26G/10.0G [00:26<00:00, 748MB/s][A
+model-00002-of-00004.safetensors: 100%|██████████| 10.0G/10.0G [00:26<00:00, 377MB/s]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:47:17 [weight_utils.py:413] Time spent downloading weights for Qwen/Qwen3-30B-A3B-Thinking-2507-FP8: 26.973868 seconds
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+model.safetensors.index.json:   0%|          | 0.00/3.57M [00:00<?, ?B/s][A
+model.safetensors.index.json: 100%|██████████| 3.57M/3.57M [00:00<00:00, 10.4MB/s]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:04<00:04,  2.41s/it]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:09<00:03,  3.32s/it]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m [A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:14<00:00,  3.82s/it]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m [A
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:14<00:00,  3.52s/it]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:47:32 [default_loader.py:267] Loading weights took 14.14 seconds
+[1;36m(EngineCore_DP0 pid=1526)[0;0m WARNING 10-28 14:47:32 [marlin_utils_fp8.py:80] Your GPU does not have native support for FP8 computation but FP8 quantization is being used. Weight-only FP8 compression will be used leveraging the Marlin kernel. This may degrade performance for compute-heavy workloads.
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:47:34 [gpu_model_runner.py:2653] Model loading took 29.5246 GiB and 44.023076 seconds
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:47:44 [backends.py:548] Using cache directory: /root/.cache/vllm/torch_compile_cache/2e1a0023be/rank_0_0/backbone for vLLM's torch.compile
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:47:44 [backends.py:559] Dynamo bytecode transform time: 9.84 s
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:47:49 [backends.py:197] Cache the graph for dynamic shape for later use
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:48:37 [backends.py:218] Compiling a graph for dynamic shape takes 52.42 s
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:48:39 [marlin_utils.py:353] You are running Marlin kernel with bf16 on GPUs before SM90. You can consider change to fp16 to achieve better performance if possible.
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:48:39 [monitor.py:34] torch.compile takes 62.26 s in total
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:48:41 [gpu_worker.py:298] Available KV cache memory: 42.88 GiB
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:48:41 [kv_cache_utils.py:1087] GPU KV cache size: 468,304 tokens
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:48:41 [kv_cache_utils.py:1091] Maximum concurrency for 24,576 tokens per request: 19.06x
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/19 [00:00<?, ?it/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 10/19 [00:01<00:00,  9.66it/s][A
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 19/19 [00:01<00:00,  9.77it/s]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+Capturing CUDA graphs (decode, FULL):   0%|          | 0/11 [00:00<?, ?it/s][A
+[1;36m(EngineCore_DP0 pid=1526)[0;0m 
+Capturing CUDA graphs (decode, FULL):  91%|█████████ | 10/11 [00:01<00:00,  9.89it/s][A
+Capturing CUDA graphs (decode, FULL): 100%|██████████| 11/11 [00:01<00:00,  9.93it/s]
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:48:45 [gpu_model_runner.py:3480] Graph capturing finished in 4 secs, took 0.40 GiB
+[1;36m(EngineCore_DP0 pid=1526)[0;0m INFO 10-28 14:48:45 [core.py:210] init engine (profile, create kv cache, warmup model) took 71.44 seconds
+
+
+tokenizer_config.json:   0%|          | 0.00/1.16M [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 1.16M/1.16M [00:00<00:00, 32.0MB/s]
+
+
+tokenizer.model:   0%|          | 0.00/4.69M [00:00<?, ?B/s][A
+tokenizer.model: 100%|██████████| 4.69M/4.69M [00:00<00:00, 4.86MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/33.4M [00:00<?, ?B/s][A
+
+tokenizer.json: 100%|██████████| 33.4M/33.4M [00:01<00:00, 28.3MB/s][A
+tokenizer.json: 100%|██████████| 33.4M/33.4M [00:01<00:00, 27.0MB/s]
+
+
+added_tokens.json:   0%|          | 0.00/35.0 [00:00<?, ?B/s][A
+added_tokens.json: 100%|██████████| 35.0/35.0 [00:00<00:00, 412kB/s]
+
+
+special_tokens_map.json:   0%|          | 0.00/670 [00:00<?, ?B/s][A
+special_tokens_map.json: 100%|██████████| 670/670 [00:00<00:00, 7.26MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/1.65k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 1.65k/1.65k [00:00<00:00, 18.2MB/s]
+judge: 3 pending episodes from hf-teach-v2/teach/judge_pending.jsonl.gz
+[4.3 min] 5/30 episodes, kept 3, examples 0, teacher {'calls': 155, 'retries': 12, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 181781, 'answer_chars': 48827}
+[5.5 min] 10/30 episodes, kept 3, examples 0, teacher {'calls': 182, 'retries': 16, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 227909, 'answer_chars': 59423}
+[7.1 min] 15/30 episodes, kept 3, examples 0, teacher {'calls': 214, 'retries': 22, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 292237, 'answer_chars': 70314}
+[8.9 min] 20/30 episodes, kept 3, examples 0, teacher {'calls': 240, 'retries': 33, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 359966, 'answer_chars': 79609}
+[9.9 min] 25/30 episodes, kept 4, examples 0, teacher {'calls': 251, 'retries': 36, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 393541, 'answer_chars': 83620}
+[10.6 min] 30/30 episodes, kept 7, examples 0, teacher {'calls': 255, 'retries': 39, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 417249, 'answer_chars': 86078}
+retried once: {'lookup_then_compute': 25}
+judge: 8 ambiguous picks read, 5 dropped
+# Teacher episodes (squiggle-ft)
+
+Teacher Qwen/Qwen3-30B-A3B-Thinking-2507-FP8 on gpu: 33 of 30 episodes in 11 min (deadline 3.0 min), 21 training examples, 629 generated tokens/s. Teacher stats: {'calls': 256, 'retries': 41, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 428101, 'answer_chars': 86779, 'judge_calls': 8}.
+
+| family | habit | episodes | right answer | kept (strict) | examples |
+| --- | --- | --- | --- | --- | --- |
+| lookup_then_compute | two lookups, then calculate | 30 | 10 | 0 (0%) | 0 |
+| recipe_web | use a recipe on web lookups | 3 | 3 | 3 (100%) | 21 |
+| **all** | | 33 | 13 | 3 (9%) | 21 |
+
+## Why episodes were dropped (top 40)
+
+- 14 × lookup_then_compute: no calculate call for the difference
+- 11 × lookup_then_compute: the reply doesn't give the calculated difference
+- 6 × lookup_then_compute: didn't find both birth years in a result about each person
+- 5 × lookup_then_compute: the calculate expression doesn't use both looked-up birth years
+- 5 × lookup_then_compute: judge: the reply picks 'neither', not the gold
+- 3 × lookup_then_compute: no plan for a two-lookup task
+- 1 × lookup_then_compute: turn 1: a Check line doesn't refer to the result it follows: 'fetch_url gave Pelle Almqvis
+- 1 × lookup_then_compute: turn 1: the reply states a fact no prompt or tool result of the turn has: number 16
+- 1 × lookup_then_compute: turn 1: stated a computed number (35) that no calculate result gave
+- 1 × lookup_then_compute: turn 1: the reply states a fact no prompt or tool result of the turn has: number 35
+- 1 × lookup_then_compute: turn 1: stated a computed number (9) that no calculate result gave
+- 1 × lookup_then_compute: turn 1: stated a computed number (6) that no calculate result gave
+- 1 × lookup_then_compute: turn 1: the reply states a fact no prompt or tool result of the turn has: number 6
+- 1 × lookup_then_compute: turn 1: stated a computed number (19) that no calculate result gave
+- 1 × lookup_then_compute: turn 1: the reply states a fact no prompt or tool result of the turn has: number 19
+- 1 × lookup_then_compute: turn 1: the reply doesn't say where its facts came from (page, repo, file)
+- 1 × lookup_then_compute: turn 1: stated a computed number (13) that no calculate result gave
+- 1 × lookup_then_compute: turn 1: the reply states a fact no prompt or tool result of the turn has: number 13
+- 1 × lookup_then_compute: turn 1: stated a computed number (21) that no calculate result gave
+- 1 × lookup_then_compute: turn 1: the reply states a fact no prompt or tool result of the turn has: number 21
+- 1 × lookup_then_compute: turn 1: a Check line doesn't refer to the result it follows: 'The two birth years are 1881
+- 1 × lookup_then_compute: turn 1: a Check line doesn't refer to the result it follows: 'Dan Bejar born 1972 (from Wi
+- 1 × lookup_then_compute: turn 1: a Check line doesn't refer to the result it follows: 'Chanda Rubin born 1976 (from
+- 1 × lookup_then_compute: turn 1: the reply states a fact no prompt or tool result of the turn has: number 72
+- 1 × lookup_then_compute: turn 1: the reply states a fact no prompt or tool result of the turn has: number 769
+- 1 × lookup_then_compute: turn 1: a Check line doesn't refer to the result it follows: 'Michael McKean born 1947, Si
+- 1 × lookup_then_compute: turn 1: the reply states a fact no prompt or tool result of the turn has: number 67
+- 1 × lookup_then_compute: turn 1: a Check line doesn't refer to the result it follows: 'Birth years from step result
+- 1 × lookup_then_compute: turn 1: a Check line doesn't refer to the result it follows: 'Bertalan Farkas: "born Augus
+- 1 × lookup_then_compute: turn 1: a Check line doesn't refer to the result it follows: 'Step 1 says Herschell Gordon
+- 1 × lookup_then_compute: turn 1: a Check line doesn't refer to the result it follows: 'Step 3 needs the difference 
+
+ERROR 10-28 15:00:13 [core_client.py:564] Engine core proc EngineCore_DP0 died unexpectedly, shutting down client.
++ python showcase.py /workspace/work/out/teach/teacher_results.jsonl.gz /workspace/work/out/TEACHER_EXAMPLES.md
+1 families written to /workspace/work/out/TEACHER_EXAMPLES.md
++ python hub.py up kealjones/squiggle-ft-data teach-topup-ltc /workspace/work/out/teach/train_examples.jsonl.gz /workspace/work/out/teach/teacher_results.jsonl.gz
+
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+
+  ...h/train_examples.jsonl.gz: 100%|██████████| 21.1kB / 21.1kB            [A[A
+
+
+  ...h/train_examples.jsonl.gz: 100%|██████████| 21.1kB / 21.1kB            [A[A
+Processing Files (1 / 1)      : 100%|██████████| 21.1kB / 21.1kB, 2.08kB/s  
+
+New Data Upload               : 100%|██████████| 21.1kB / 21.1kB, 2.08kB/s  
+
+  ...h/train_examples.jsonl.gz: 100%|██████████| 21.1kB / 21.1kB            
+uploaded /workspace/work/out/teach/train_examples.jsonl.gz -> kealjones/squiggle-ft-data/teach-topup-ltc
+
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+
+  .../teacher_results.jsonl.gz:   7%|▋         | 10.6kB /  155kB            [A[A
+
+
+  .../teacher_results.jsonl.gz:   7%|▋         | 10.6kB /  155kB            [A[A
+
+
+  .../teacher_results.jsonl.gz: 100%|██████████|  155kB /  155kB            [A[A
+Processing Files (1 / 1)      : 100%|██████████|  155kB /  155kB,   ???B/s  
+
+New Data Upload               : 100%|██████████|  145kB /  145kB,   ???B/s  
+
+  .../teacher_results.jsonl.gz: 100%|██████████|  155kB /  155kB            
+uploaded /workspace/work/out/teach/teacher_results.jsonl.gz -> kealjones/squiggle-ft-data/teach-topup-ltc
++ '[' 0 = 0 ']'
++ exit 0
+exit code 0 after 16.9 min
