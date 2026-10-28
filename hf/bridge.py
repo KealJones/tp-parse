@@ -103,6 +103,9 @@ def collect():
             except Exception as e:
                 print("logs failed:", e)
         mins = js.get("elapsed_s", 0) / 60
+        limit = re.fullmatch(r"(\d+)([mh])", str(job.get("timeout", "")))
+        if stage != "COMPLETED" and limit and (not js or js.get("partial")) and "timeout" in str(info.status.message or "").lower():
+            mins = int(limit.group(1)) * (60 if limit.group(2) == "h" else 1)     # killed at its time limit: charged all of it
         cost = mins / 60 * PRICE.get(job.get("flavor", "a10g-small"), 0)
         result = "complete" if stage == "COMPLETED" and js.get("exit_code") == 0 else f"{stage.lower()}" + (f" (exit {js.get('exit_code')})" if js else "")
         job.update(result=result, finished=now(), minutes=round(mins, 1), est_cost=round(cost, 2))
