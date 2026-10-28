@@ -55,6 +55,15 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 async function main() {
   const spec = await next(m => m.t === 'episode');
+  // A different "today" per episode (spec.dateShiftDays), so prompts don't all carry the same date line.
+  if (spec.dateShiftDays) {
+    const RealDate = Date, shift = spec.dateShiftDays * 86400000;
+    class ShiftedDate extends RealDate {
+      constructor(...a) { if (a.length) super(...a); else super(RealDate.now() + shift); }
+      static now() { return RealDate.now() + shift; }
+    }
+    globalThis.Date = ShiftedDate;
+  }
   const squiggle = path.resolve(process.env.SQUIGGLE_DIR);
   W.root = spec.root || fs.mkdtempSync(path.join(os.tmpdir(), 'sqep-'));
   W.repoCache = spec.repoCache || path.join(os.tmpdir(), 'sq-repo-cache');

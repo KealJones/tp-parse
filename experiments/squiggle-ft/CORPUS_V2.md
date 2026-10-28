@@ -1,6 +1,6 @@
 # squiggle-ft corpus v2: design for review
 
-**Status: design only. Nothing has been launched, and nothing will be spent until it is reviewed.** v1 is described in
+**Status: design, with part of the code built (§0). Nothing has been launched or spent since the review.** v1 is described in
 README.md, and its numbers come from `hf-train/RESULTS.md`: 293 eval episodes per model, untouched Gemma 3 270M plus
 three fine-tuned bases. The goal of v2 is **generalization**. Each habit should appear across many domains and
 phrasings, so the phone model learns the habit and not a template. Whole habit × domain combinations are held out to
@@ -12,6 +12,114 @@ Ground rules carried over from v1:
   training text.
 - Requests come from real datasets where one exists, and facts come from real tool results.
 - Every call must pass `quality.py`, and every episode must pass its family checker on the **strict** setting.
+
+## 0. What the code does now (after AUDIT_V1 and REVIEW_V2_FABLE)
+
+This section describes the code at the commit that carries it. The design sections below are the plan; where they
+disagree with this section, this section is what runs.
+
+**Harness pin.**
+- `jobs/boot.py` pins Squiggle main ab248b4, which has calculate (d9cbfea+) and typo-tolerant recipe matching.
+- `tool_specs.json` is re-exported from that commit. It adds `calculate` and run_js's new description, and is
+  byte-identical to the review patch's copy.
+- Re-rendering every kept teach-v1 episode on both pins with its stored outputs:
+  - **481 of 565 render identically** apart from live-data noise. Live web results and pages drift; the same pin
+    replayed twice differs on 117 episodes, all from live data or the simulated user's random wording.
+  - **The 84 that change are all math and hermes_compute.** find now also returns calculate.
+  - The system prompt (LITE_SYSTEM) is unchanged.
+  - None of the 404 episodes the v2 checker keeps are affected.
+
+**Checker** (`quality.py`, `families.py`, `hermes.py`; from `review_v2_checker.patch`, tested by `checker_tests.py`, 77
+cases):
+
+| rule | what it does |
+|---|---|
+| grounding | The gold answer must appear in a **non-error** tool result of the turn. It must not appear in the model's own text (thinking, query, path) before a result has it (`answer_grounded`, `guessed_early`). Applies to web_fact, repo_*, refs, need_repo, memory_repo, past_chat and chat_after. `refs` and `need_repo` need a lookup in every answering turn. |
+| checks refer to results | Every Check line must carry a word or quote from the result it follows (`check_refers_to_result`). |
+| no narrated checks | "I checked/confirmed/found" needs a tool result (`narrated_without_tools`). |
+| citations | The cited page, file, repo or tool must be one used in this turn (`cited_source_called`). `SOURCE` no longer accepts "from memory", "from <any word>" or "and/or". |
+| computed numbers | A number in a reply or done that sits in arithmetic wording must equal a `calculate` result (`computed_numbers_grounded`). run_js in a math family fails. calculate expressions must be plain math. |
+| plans | Steps that write or review the reply, or "find the tools", are rejected (`META_STEP`). So are narrating dones and a plan in a one-lookup family. |
+| answers | Hedged, negated and "either A or B" replies fail. For "A or B" questions, `picked()` requires the gold to be the first candidate named. License names match as whole words, and paths as whole paths. |
+| need | A need question may not contain a guessed candidate or a number the user didn't give. |
+| eval split | Chat openers, need_repo/refs/repo_where templates and memory aliases have disjoint train and eval sets. |
+
+On teach-v1 this keeps **404 of 830** episodes (v1 checker: 565):
+
+| family | kept |
+|---|---|
+| chat | 50/50 |
+| need_repo | 41/50 |
+| repo_fact | 45/80 |
+| repo_where | 40/70 |
+| web_fact | 36/90 |
+| memory_repo | 30/35 |
+| bare_link | 29/35 |
+| web_compare | 27/70 |
+| recipe_repo | 26/40 |
+| hermes_need | 22/40 |
+| refs | 21/40 |
+| repo_two | 16/50 |
+| past_chat | 12/40 |
+| chat_after | 9/30 |
+| math | 0/70 |
+| hermes_compute | 0/40 |
+
+math and hermes_compute are 0 by design: they used run_js, and will be regenerated with calculate.
+
+**Judge** (`teacher.judge`, `build.judge_options`). Inside the teach job, after the run, the loaded Qwen3-30B reads
+each kept "A or B" episode whose reply names both candidates and answers with one letter. The families are
+web_compare, recipe_compare, lookup_then_compute and recipe_web. A pick that isn't the gold drops the episode. On
+teach-v1, 17 of 27 kept web_compare episodes would go to the judge. Nothing the grounding rules decide mechanically is
+judged.
+
+**Teacher** (`teacher.py`):
+- The literal list of "good find queries" is gone. Queries are described instead: 3–6 own words naming the kind of
+  thing.
+- Habit 7 is calculate. Check quotes the answering words.
+- The answer may never appear in a query or the thinking before a result has shown it.
+- Empty or error results mean try again or say so. Follow-up turns look again, and the model cites only this turn.
+- Need questions carry no candidate.
+- The plan describes the task, not the reply.
+- Few-shots:
+  - gold-chat-0 (whose reply leaked into v1) and gold-web_fact-ff (answer in the query) are dropped.
+  - Plain chat and the web lookup now come from kept teach-v1 teacher episodes (`examples/teacher_fewshot.jsonl`:
+    chat-40, web_fact-15). No Claude-written replacement.
+  - The remaining few-shots are gold.py templates: web_compare, need_repo, recipe_repo, unknown_word and personal.
+
+**Training data** (`train.prepare`, `leak.py`):
+- **Leak filter:** an example is dropped if its output shares an 8-word run with gold.jsonl, worked.jsonl,
+  samples.jsonl or TEACHER.md, unless that run also appears in its own prompt (copied real data). On re-checked v1
+  this drops 201 of 1,956 examples, mostly chat thinking copied from gold.
+- **Within an episode:** repeated identical find calls are dropped, and an episode keeps at most 10 examples.
+- **Reuse cap:** v1 repo-heavy families (repo_fact, repo_where, repo_two, recipe_repo, refs, need_repo, memory_repo)
+  are capped at 25 episodes each, round-robin over repos.
+- **Weights:** each example gets weight 1/√n, where n counts examples with the same (kind, tool, arguments). "search
+  the web" (63 copies) weighs 0.13 each.
+- **Result on v1:** 1,487 examples from 324 episodes.
+
+**Sim.** Each episode's "today" is shifted by a random day within ±2 years (`date_shift`, seeded by episode id). The
+frozen v1 eval set keeps the real date. Rate limits use the real clock.
+
+**Training** (`train.py`):
+- 5% of episodes are held out as dev. Dev loss is computed every epoch, and the weights of the best epoch are kept.
+- Per-base learning rate: lfm25 2e-5, gemma3 4e-5.
+- Each step's loss is divided by that step's weighted target tokens, not per micro-batch. Example weights apply per
+  token.
+- Every trained base is also evaluated untouched. The verdict compares the best model with **its own untouched base**
+  on strict scores, and on right-answer rates (trained and held-out) too.
+- The eval has no deadline.
+- `metrics()` adds held-out right answers and the run_js misuse rate.
+- A CPU code-path test covers the dev split, best-epoch keep, weights and normalisation.
+
+**Families: built vs not yet.**
+- **Built (makers + checkers):** every v1 family (stricter now), unknown_word, unknown_action (held out), personal,
+  plus hermes_compute and math on calculate.
+- **Not built yet** (planned in §2; `make_sets` skips them with a warning):
+  - web_fact_retry, need_web, math_pair, lookup_then_compute, repo_chain, messy_multi
+  - recipe_web, recipe_skip, near_miss, personal_mid, personal_tool, chat_mid
+  - the held-out need_schedule and recipe_compute
+- They have to be written, with checker tests and train/eval template splits, before the teacher smoke.
 
 ## 1. v1 failures and their causes (from the eval)
 
@@ -197,6 +305,16 @@ Writing JavaScript is too error-prone for a 350M model. So in v2:
 
 ## 3. Web accuracy: verify before replying
 
+> **As built (§0):** the teacher rule below (quote the answering words) is in teacher.py. The checker doesn't
+> implement the quote-span test. It uses the review's rules instead:
+> - the gold appears in a non-error result of the turn, and nowhere in the model's own text before that
+> - every Check carries a word or quote from its result
+> - citations name a tool used this turn
+> - no narrated checks
+>
+> The quote-span version would be a further tightening, to add if teach-v2 shows ungrounded answers slipping
+> through.
+
 **Teacher rule (added to teacher.py RULES, habit 1):**
 - After fetch_url, the Check line must **quote the exact sentence or infobox field from the page** that answers the
   question, in double quotes. Example: `Check: the "Born" field says "22 May 1859".`
@@ -231,38 +349,60 @@ found/confirmed/verified → any tool result in this turn. This also covers Gemm
 
 ## 4. Size, mix and cost
 
-| | episodes attempted | expected kept | examples (about 5 per kept episode) |
+This is the plan in code: `build.V2_PLAN`, 1,015 new episodes attempted. On top come the reused teach-v1 episodes
+after `train.prepare`: 324 episodes, 1,487 examples. With the stricter checker the keep rate is expected at 45–60%;
+web families sit at the low end.
+
+| habit | family (attempted) | built? |
+|---|---|---|
+| look it up, verify | web_fact 140, web_fact_retry 40, web_compare 60 | web_fact, web_compare yes; retry no |
+| ask for what's missing | need_web 50, hermes_need 40, math_pair 120 (60 problems × complete/incomplete) | hermes_need yes |
+| compute via calculate | hermes_compute 40, lookup_then_compute 40 | hermes_compute yes |
+| plan | repo_chain 40, messy_multi 40 | no |
+| recipes | recipe_web 40, recipe_skip 40 | no |
+| words | unknown_word 60, near_miss 50 | unknown_word yes |
+| chat and personal | personal 70, personal_mid 40, personal_tool 15, chat_mid 50, chat 40 | personal, chat yes |
+
+Every cell has at least 40 attempted, except personal_tool at 15. It is trained on purpose in a small amount (one fact
+type) and held out on another (review D5, Q4).
+
+| | episodes | expected kept | examples |
 |---|---|---|---|
-| reused from teach-v1 (re-checked with the v2 checkers; the ones that fail the grounding or narrated-check rules are dropped, and all run_js arithmetic episodes, from math and hermes_compute, are dropped) | 0 new | about 340 of 565 | about 1,700 |
-| hermes_compute regenerated with calculate | 40 | about 26 | about 100 |
-| new families (repo_chain 50, lookup_then_compute 40, messy_multi 40, math_pair 120, need_web 30, recipe_web 30, recipe_skip 20, near_miss 50, chat_mid 50, personal_mid 30, web_fact_retry 40) | 500 | about 320 | about 1,500 |
-| round 2 (built): unknown_word 60, personal 70 | 130 | about 95 | about 250 |
-| web_fact re-run under the grounding rule (replaces v1 web_fact) | 120 | about 60 | about 300 |
-| **total** | **790 new** | **about 840** | **about 3,850** |
+| reused teach-v1 (re-checked, leak-filtered, repo families capped at 25) | 0 new | 324 | 1,487 |
+| new (V2_PLAN) | 1,015 | about 500 | about 2,300 |
+| **total** | | **about 820** | **about 3,800** |
 
 The mix by habit (kept): H1 lookup + verify about 25%, H2 plan about 20%, H3 ask about 15%, H4 recipe about 7%,
 H5 unknown/near-miss about 10%, H6 chat/personal about 15%, H8 memory/refs about 8%. That is about 15% plain or
 personal, versus 11% in v1, and it is spread through sessions.
 
-**Expected HF cost** (rates from v1: a100-large $2.50/h at about 1,000 tok/s and about 10 episodes per minute;
-l4x1 $0.80/h):
+**Expected HF cost** (rates from v1: a100-large $2.50/h, about $0.43 per 100 teacher episodes including the share
+of model loading; l4x1 $0.80/h):
 
 | job | flavor | time | cost |
 |---|---|---|---|
-| teach-v2 (790 episodes) | a100-large | about 79 min of generation + 8 min loading | **about $3.60** (cap $4.30) |
-| train-v2: lfm25 + gemma3 × 3 epochs, eval | l4x1 | about 85 min | **about $1.15** (cap $1.60) |
+| teacher smoke (40 episodes across the new families, read the keep rate) | a100-large or l40sx1 | about 15 min | about $0.60 |
+| teach-v2 (1,015 episodes) | a100-large | about 95 min + 8 min loading | **about $4.30** (cap $5.00) |
+| train-v2: lfm25 + gemma3 (dev split, best epoch), each also evaluated untouched; no eval deadline | l4x1 | about 100 min | **about $1.35** (cap $1.80) |
 | export of the winner | l4x1 | about 5 min | about $0.07 |
-| **total** | | | **about $4.85** (caps $6.00) |
+| **total** | | | **about $6.30** (caps $7.50) |
 
-That is just under $5, as Keal asked. FunctionGemma is dropped: it is the same architecture as Gemma 3 and lost on every
-headline measure. If the reviewer cuts families, the teacher cost scales at about $0.43 per 100 episodes.
+About $7.4 has been spent, so this lands at about $13.7 of the $15 cap. It is above Keal's "under $5 per experiment".
+A trimmed plan comes in at about $5.30:
+- drop the web_compare re-run (60) and the new chat (40)
+- web_fact 140 → 100
+- math_pair 120 → 80
+
+That is about 815 episodes, teacher about $3.50. The pooled habits keep at least 40 attempted per cell except
+personal_tool.
 
 **What counts as worth it (decided before running):**
 - lfm25 v2 must beat lfm25 v1 on trained strict by at least 10 points.
 - It must reach at least 15% held-out strict, with no held-out cell at 0% (v1 had 0% everywhere).
 - Grounded web answers must make up at least 70% of its web replies.
 
-If the teacher run's keep rate is below 45%, the training run is not launched, and I report back instead.
+If the teacher run's keep rate is below 45%, the training run is not launched, and I report back instead. A family under
+30% kept is dropped from training, not padded (review F).
 
 ## 5. Eval changes, so generalization is measured honestly
 
@@ -324,7 +464,7 @@ keeps or changes.
 - **G, gold-unknown_word-0 (template):** an invented word, searched, nothing found, said plainly, then the user is asked.
 - **H, gold-personal-0 (template):** Request / Need, no tools, warm, ends with one question.
 
-### A. gold-web_fact-ff (template)
+### A. gold-web_fact-ff (template; dropped from the few-shots and gold.py after the review, because its query had the answer)
 
 ```text
 User: When did the first Fast and Furious come out?

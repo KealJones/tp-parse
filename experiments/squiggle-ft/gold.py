@@ -254,8 +254,8 @@ def chat_policy(text):
 def episodes(facts):
     world = {"repos": F.world_repos(list(facts.values()))}
     eps = []
-    for t in CHAT_REPLIES:
-        eps.append((Episode(id=f"gold-chat-{len(eps)}", family="chat", first=t), chat_policy(t)))
+    for t in list(CHAT_REPLIES)[1:]:      # gold-chat-0 dropped (its reply leaked into teach-v1; audit 6); ids kept stable
+        eps.append((Episode(id=f"gold-chat-{list(CHAT_REPLIES).index(t)}", family="chat", first=t), chat_policy(t)))
     for repo in ["lukeed/clsx", "vercel/ms", "chalk/chalk", "sindresorhus/p-limit"]:
         if repo in facts:
             f = facts[repo]
@@ -275,8 +275,8 @@ def episodes(facts):
         gold = {"parts": [{"kind": "version", "answers": [f["package"]["version"]]}, {"kind": "latest_commit", "subject": f["commits"][0]["subject"], "oid": f["commits"][0]["oid"]}], "repo": "expressjs/cors"}
         eps.append((Episode(id="gold-recipe_repo-cors", family="recipe_repo", first="what's the version and latest commit of expressjs/cors?", gold=gold,
                             world={**world, "recipes": [{k: v for k, v in rec.items() if k not in ("from_episode", "repo")}]}), repo_two_policy("expressjs/cors", recipe=True)))
-    eps.append((Episode(id="gold-web_fact-ff", family="web_fact", first="When did the first Fast and Furious come out?", gold={"answers": ["2001"]}),
-                web_fact_policy("When the first Fast and Furious film came out.", "The Fast and the Furious 2001 film release date", "Fast and the Furious", "2001")))
+    # gold-web_fact-ff dropped: its query carried the answer ("... 2001 film release date"); the web few-shot is now a
+    # kept teacher episode (examples/teacher_fewshot.jsonl).
     eps.append((Episode(id="gold-web_compare-born", family="web_compare", first="Who was born first, Susan Oliver or W. S. Van Dyke?",
                         gold={"answer": "Woodbridge Strong Van Dyke II", "titles": ["Susan Oliver", "W. S. Van Dyke"], "type": "comparison"}),
                 web_compare_policy("Susan Oliver", "W. S. Van Dyke")))

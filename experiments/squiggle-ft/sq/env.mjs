@@ -12,6 +12,10 @@ import { DOMParser as LinkeDOMParser } from 'linkedom';
 import { W } from './world.mjs';
 import { RELAY } from './stubs/github.mjs';
 
+// Real clock for rate limits and lock ages: the driver may shift the global Date per episode (dateShiftDays).
+const RealDate = Date;
+const realNow = () => RealDate.now();
+
 export const UA = 'squiggle-ft/1.0 (fine-tune data for an on-device agent; https://github.com/KealJones/tp-parse)';
 const RELAY_UA = 'Mozilla/5.0 (compatible; squiggle-relay)';   // what the real relay sends
 
@@ -101,26 +105,26 @@ const GAP = { 'en.wikipedia.org': 350, 'api.duckduckgo.com': 500 };
 async function polite(host) {
   const gap = GAP[host] || 250;
   if (!W.netCache) {
-    const wait = gap - (Date.now() - (lastHit.get(host) || 0));
+    const wait = gap - (realNow() - (lastHit.get(host) || 0));
     if (wait > 0) await new Promise(r => setTimeout(r, wait));
-    lastHit.set(host, Date.now());
+    lastHit.set(host, realNow());
     return;
   }
   const lock = path.join(W.netCache, `.lock-${host}`), slot = path.join(W.netCache, `.slot-${host}`);
   for (;;) {
     try { fs.mkdirSync(lock); break; }
     catch {
-      try { if (Date.now() - fs.statSync(lock).mtimeMs > 5000) fs.rmSync(lock, { recursive: true, force: true }); } catch {}
+      try { if (realNow() - fs.statSync(lock).mtimeMs > 5000) fs.rmSync(lock, { recursive: true, force: true }); } catch {}
       await new Promise(r => setTimeout(r, 15 + Math.random() * 30));
     }
   }
   let at;
   try {
     const last = Number(fs.existsSync(slot) ? fs.readFileSync(slot, 'utf8') : 0) || 0;
-    at = Math.max(Date.now(), last + gap);
+    at = Math.max(realNow(), last + gap);
     fs.writeFileSync(slot, String(at));
   } finally { fs.rmSync(lock, { recursive: true, force: true }); }
-  const wait = at - Date.now();
+  const wait = at - realNow();
   if (wait > 0) await new Promise(r => setTimeout(r, wait));
 }
 const cachePath = (key) => W.netCache && path.join(W.netCache, crypto.createHash('sha1').update(key).digest('hex').slice(0, 24) + '.json');

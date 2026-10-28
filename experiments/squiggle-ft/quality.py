@@ -82,6 +82,22 @@ def type_ok(value, schema):
     return True
 
 
+# Plan steps must be task actions that produce a fact or a change. Steps that write, review or format the reply, and
+# meta steps ("find the tools"), are rejected: the reply is written automatically after the last step, and find is an
+# action inside a step, not a step. (AUDIT_V1 problem 8; gemma-traces lesson 1.)
+META_STEP = re.compile(r"^\s*(?:\d+[.)]\s*)?(write|draft|compose|review|summari[sz]e|respond|reply|answer|self-?correct|format|"
+                       r"(?:verify|check|proofread|polish|refine) (?:the |my )?(answer|reply|response|tone|wording)|"
+                       r"(?:find|look ?up|locate|identify|get|list|search for) (?:the |my |available |needed |required )?tools?\b|"
+                       r"(?:prepare|present|deliver|provide|give|report|state|tell) (?:the |a )?(?:final )?(answer|reply|response|result|summary|user))\b", re.I)
+# A done result narrates instead of stating facts. (AUDIT_V1 problem 8: the old regex accepted any capitalised word.)
+DONE_NARRATES = re.compile(r"^(I |I've|I have|I'm|Done\b|Successfully|The step (is|was)|Step \d+ (is|was)|Finished|Completed|Ready\b|"
+                           r"Tools? (found|located|looked up|identified|available|ready)|Found the tools?|Located the tools?|"
+                           r"Looked up|Identified the tools?|Proceed|Moving on|Now |Next\b)", re.I)
+DONE_FACT = re.compile(r"\d|/|\.\w|\"|'[A-Za-z]|(?<=\S )[A-Z][a-z]+|^[A-Z][a-z]+ [A-Z][a-z]+")   # a capital counts only after the first word
+# calculate takes a plain expression: numbers, operators, parentheses, the functions calc.js has, "of" and "x".
+CALC_WORDS = {"sqrt", "abs", "round", "floor", "ceil", "min", "max", "pow", "log", "ln", "exp", "pi", "e", "of", "x"}
+
+
 def validate_call(name, args):
     p = []
     spec = SPECS.get(name)
@@ -106,14 +122,27 @@ def validate_call(name, args):
             p.append(f"plan: {n} steps (use 2 to 6; a one-step job needs no plan)")
         if any(len(str(s)) > 140 for s in args["steps"]):
             p.append("plan: steps must be short (under 140 characters)")
+        for s in args["steps"]:
+            if META_STEP.match(str(s)):
+                p.append(f"plan: step {str(s)[:60]!r} isn't a task action (no steps that write or review the reply, and no "
+                         "'find the tools' steps: find is an action inside a step)")
     if name == "done" and isinstance(args.get("result"), str):
         r = args["result"].strip()
         if len(r) > 600:
             p.append("done: result over 600 characters (one to three lines of facts)")
-        if re.match(r"^(I |I've|I have|I'm|Done\b|Successfully|The step (is|was)|Step \d+ (is|was)|Finished)", r):
+        if DONE_NARRATES.match(r):
             p.append("done: result narrates instead of giving the facts (start with the facts)")
-        if not re.search(r"\d|/|\.\w|\"|'[A-Za-z]|[A-Z][a-z]+", r):
+        if not DONE_FACT.search(r):
             p.append("done: result has no concrete facts (names, numbers, paths, quotes)")
+    if name == "calculate" and isinstance(args.get("expression"), str):
+        e = args["expression"]
+        if re.search(r"=>|==|[=;{}\[\]`]|\b(function|return|console|let|const|var|Math)\b", e):
+            p.append("calculate: the expression is code; give a plain math expression (numbers, + - * / ^ %, parentheses, sqrt, round...)")
+        words = {w.lower() for w in re.findall(r"[A-Za-z_]+", e)}
+        if words - CALC_WORDS:
+            p.append(f"calculate: words in the expression ({', '.join(sorted(words - CALC_WORDS))}); units and names go in the reply, only numbers here")
+        if not re.search(r"\d", e):
+            p.append("calculate: the expression has no number")
     return p
 
 
@@ -228,9 +257,14 @@ def output_problems(output, messages, kind, plain=False):
     return p, {"name": name, "arguments": args}
 
 
-SOURCE = re.compile(r"https?://|wikipedia|\bsource|according to|\bfrom (the )?(page|article|repo|readme|package\.json|git log|log|commit)|"
-                    r"\((?:from|via|per|source:?|see) [^)]{3,}\)|\bfrom [A-Z][\w.'&-]+|"
-                    r"[\w.-]+/[\w.-]+|\b[\w-]+\.(json|md|js|py|ts|toml)\b|\bran\b|\bcalculated\b|\bcomputed\b|\bsandbox\b", re.I)
+# The shape of a citation. This is only the syntactic half: families.cited_source_called checks that what is cited is a
+# page, file, repo or tool the model actually used in that turn ("from memory" and "and/or" no longer count;
+# AUDIT_V1 problem 4).
+SOURCE = re.compile(r"https?://|wikipedia|\bsource\b|according to|\bfrom (the |its |their )?(page|article|repo|readme|package\.json|pyproject|git log|log|commit|"
+                    r"search result|web search|file|calculator|calculate)|"
+                    r"\((?:from|via|per|source:?|see|wikipedia:?) [^)]{3,}\)|"
+                    r"(?<![\w/])[A-Za-z][\w.-]*/[A-Za-z][\w.-]*(?![\w/])(?<!and/or)(?<!w/o)|/repos/|/home/|\b[\w-]+\.(json|md|js|py|ts|toml|txt)\b|"
+                    r"\bcalculated\b|\bcomputed\b|\bcalculate\b", re.I)
 
 
 def final_cites(reply):

@@ -104,7 +104,7 @@ class Runner:
         def send(obj):
             proc.stdin.write((json.dumps(obj, ensure_ascii=False) + "\n").encode())
 
-        spec = {"t": "episode", "first": ep.first, "world": ep.world, "root": root, "approve": ep.approve, "noNet": ep.meta.get("noNet", []),
+        spec = {"t": "episode", "first": ep.first, "world": ep.world, "root": root, "approve": ep.approve, "noNet": ep.meta.get("noNet", []), "dateShiftDays": ep.meta.get("date_shift", 0),
                 "repoCache": str(self.work / "repo-cache"), "netCache": str(self.work / "net-cache"), "offline": self.offline}
         send(spec)
         await proc.stdin.drain()

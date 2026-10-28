@@ -9,7 +9,7 @@ chat template (what its GGUF carries), micro-batches packed by tokens, AdamW + c
 Eval: fresh episodes of the trained task types (other repos, other questions) plus three held-out types, run in
 the real harness with phone sampling (backends.HFStudent).
 """
-import argparse, collections, gc, gzip, json, math, os, random, shutil, subprocess, sys, time
+import argparse, collections, gc, gzip, json, math, os, random, re, shutil, subprocess, sys, time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -109,14 +109,36 @@ def init_think_tokens(model, tok, base):
             log(f"[{base}] {t} (id {i}) had an untrained embedding ({twins} identical rows); started it from {tok.convert_ids_to_tokens(ids)}")
 
 
-def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, seed=0):
+def split_dev(examples, frac=0.05, seed=0):
+    """Hold out a fraction of whole episodes (never single calls of a training episode) for the dev loss."""
+    eps = sorted({str(e.get("episode")) for e in examples})
+    random.Random(seed).shuffle(eps)
+    dev_eps = set(eps[:max(1, round(len(eps) * frac))]) if len(eps) >= 20 else set()
+    return [e for e in examples if str(e.get("episode")) not in dev_eps], [e for e in examples if str(e.get("episode")) in dev_eps]
+
+
+def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, seed=0, dev_frac=0.05):
+    """Full fine-tune, loss on the output only. Each step's loss is normalised by the (weighted) target tokens of the
+    whole step, examples carry a weight (duplicate control, see prepare()), and the weights of the epoch with the lowest
+    dev loss (5% of episodes, held out) are the ones saved."""
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
     torch.manual_seed(seed)
     rng = random.Random(seed)
     tok = AutoTokenizer.from_pretrained(BASES[base])
-    items = [r for r in (render(tok, ex) for ex in examples) if r]
-    log(f"[{base}] {len(items)} of {len(examples)} examples fit; target tokens {sum(len(o) for _, o in items)}, all tokens {sum(len(p) + len(o) for p, o in items)}")
+    train_ex, dev_ex = split_dev(examples, dev_frac, seed) if dev_frac else (examples, [])
+
+    def rendered(exs):
+        out = []
+        for ex in exs:
+            r = render(tok, ex)
+            if r:
+                out.append((r[0], r[1], float(ex.get("weight", 1.0))))
+        return out
+    items, dev_items = rendered(train_ex), rendered(dev_ex)
+    log(f"[{base}] {len(items)} of {len(train_ex)} training examples fit (dev: {len(dev_items)} examples from "
+        f"{len({e.get('episode') for e in dev_ex})} episodes); target tokens {sum(len(o) for _, o, _ in items)}, "
+        f"weighted {sum(len(o) * w for _, o, w in items):.0f}, all tokens {sum(len(p) + len(o) for p, o, _ in items)}")
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     dt = torch.bfloat16 if dev == "cuda" and torch.cuda.is_bf16_supported() else torch.float32
     model = AutoModelForCausalLM.from_pretrained(BASES[base], dtype=torch.float32, attn_implementation="sdpa").to(dev)
@@ -127,14 +149,60 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, 
     head = model.get_output_embeddings()
     softcap = getattr(model.config, "final_logit_softcapping", None)
 
-    def chunk_loss(hc, yc):
+    def chunk_loss(hc, yc, wc):
         logits = head(hc).float()
         if softcap:
             logits = torch.tanh(logits / softcap) * softcap
-        return torch.nn.functional.cross_entropy(logits, yc, reduction="sum")
+        return (torch.nn.functional.cross_entropy(logits, yc, reduction="none") * wc).sum()
+
+    CH = 512 if dev == "cuda" else 64          # positions per logits chunk (CPU tests have little memory)
+
+    def tensors(mb, its):
+        L = max(len(its[i][0]) + len(its[i][1]) for i in mb)
+        ids = torch.full((len(mb), L), tok.pad_token_id or 0, dtype=torch.long)
+        att = torch.zeros((len(mb), L), dtype=torch.long)
+        lab = torch.full((len(mb), L), -100, dtype=torch.long)
+        wt = torch.zeros((len(mb), L), dtype=torch.float32)
+        for r, i in enumerate(mb):
+            p, o, w = its[i]
+            seq = p + o
+            ids[r, :len(seq)] = torch.tensor(seq)
+            att[r, :len(seq)] = 1
+            lab[r, len(p):len(seq)] = torch.tensor(o)
+            wt[r, len(p):len(seq)] = w
+        return ids.to(dev), att.to(dev), lab.to(dev), wt.to(dev)
+
+    def mb_loss(mb, its):
+        """(weighted loss sum, unweighted token count) of one micro-batch."""
+        ids, att, lab, wt = tensors(mb, its)
+        with torch.autocast(dev, dtype=dt, enabled=dev == "cuda"):
+            hid = model.model(input_ids=ids, attention_mask=att).last_hidden_state
+            # Loss only where a target token is predicted. The vocabulary is huge (Gemma: 262k), so logits are made
+            # 512 positions at a time and recomputed in the backward pass instead of kept.
+            tgt = lab[:, 1:]
+            sel = tgt != -100
+            h = hid[:, :-1][sel]
+            y = tgt[sel]
+            w = wt[:, 1:][sel]
+            loss = sum(torch.utils.checkpoint.checkpoint(chunk_loss, h[i:i + CH], y[i:i + CH], w[i:i + CH], use_reentrant=False)
+                       for i in range(0, h.shape[0], CH))
+        return loss, int(sel.sum())
+
+    def dev_loss():
+        if not dev_items:
+            return None
+        model.eval()
+        tot = n = 0.0
+        with torch.no_grad():
+            for mb in batches([(p, o) for p, o, _ in dev_items], budget, random.Random(0)):
+                its = [(p, o, 1.0) for p, o, _ in (dev_items[i] for i in mb)]
+                l, k = mb_loss(list(range(len(its))), its)
+                tot += float(l); n += k
+        model.train()
+        return tot / max(1, n)
     opt = (torch.optim.SGD(model.parameters(), lr=lr) if os.environ.get("SQFT_SGD")       # tiny-memory local tests only
            else torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=0.0, betas=(0.9, 0.95), foreach=dev == "cuda"))
-    mbs_per_epoch = len(batches(items, budget, random.Random(0)))
+    mbs_per_epoch = len(batches([(p, o) for p, o, _ in items], budget, random.Random(0)))
     ex_per_mb = len(items) / max(1, mbs_per_epoch)
     accum = max(1, round(per_step / ex_per_mb))
     total = math.ceil(mbs_per_epoch / accum) * epochs
@@ -144,36 +212,20 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, 
     step = 0
     t0 = time.time()
     model.train()
+    best_dev, best_ep, dev_hist = None, None, []
+    best_dir = str(out_dir) + ".best-epoch"
     for ep in range(epochs):
-        mbs = batches(items, budget, rng)
+        mbs = batches([(p, o) for p, o, _ in items], budget, rng)
         run_loss, run_n, ep_loss, ep_n = 0.0, 0, 0.0, 0
         opt.zero_grad(set_to_none=True)
         for k, mb in enumerate(mbs):
-            L = max(len(items[i][0]) + len(items[i][1]) for i in mb)
-            ids = torch.full((len(mb), L), tok.pad_token_id or 0, dtype=torch.long)
-            att = torch.zeros((len(mb), L), dtype=torch.long)
-            lab = torch.full((len(mb), L), -100, dtype=torch.long)
-            for r, i in enumerate(mb):
-                p, o = items[i]
-                seq = p + o
-                ids[r, :len(seq)] = torch.tensor(seq)
-                att[r, :len(seq)] = 1
-                lab[r, len(p):len(seq)] = torch.tensor(o)
-            ids, att, lab = ids.to(dev), att.to(dev), lab.to(dev)
-            with torch.autocast(dev, dtype=dt, enabled=dev == "cuda"):
-                hid = model.model(input_ids=ids, attention_mask=att).last_hidden_state
-                # Loss only where a target token is predicted. The vocabulary is huge (Gemma: 262k), so logits are made
-                # 512 positions at a time and recomputed in the backward pass instead of kept.
-                tgt = lab[:, 1:]
-                sel = tgt != -100
-                h = hid[:, :-1][sel]
-                y = tgt[sel]
-                loss = sum(torch.utils.checkpoint.checkpoint(chunk_loss, h[i:i + 512], y[i:i + 512], use_reentrant=False)
-                           for i in range(0, h.shape[0], 512))
-            n_t = int(sel.sum())
-            (loss / max(1, n_t) / accum).backward()
-            run_loss += loss.item(); run_n += n_t
-            ep_loss += loss.item(); ep_n += n_t
+            if k % accum == 0:      # the step's weighted target tokens, so every token in the step counts the same
+                group = [i for b in mbs[k:k + accum] for i in b]
+                denom = max(1e-6, sum(len(items[i][1]) * items[i][2] for i in group))
+            loss, n_t = mb_loss(mb, items)
+            (loss / denom).backward()
+            run_loss += loss.item(); run_n += sum(len(items[i][1]) * items[i][2] for i in mb)
+            ep_loss += loss.item(); ep_n += sum(len(items[i][1]) * items[i][2] for i in mb)
             if (k + 1) % accum == 0 or k == len(mbs) - 1:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
                 opt.step(); sched.step(); opt.zero_grad(set_to_none=True)
@@ -181,7 +233,30 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, 
                 if step % 20 == 0:
                     log(f"[{base}] epoch {ep + 1} step {step}/{total} loss {run_loss / max(1, run_n):.4f} lr {sched.get_last_lr()[0]:.2e} ({(time.time() - t0) / 60:.1f} min)")
                     run_loss, run_n = 0.0, 0
-        log(f"[{base}] epoch {ep + 1} done: mean loss {ep_loss / max(1, ep_n):.4f} ({(time.time() - t0) / 60:.1f} min)")
+        d = dev_loss()
+        dev_hist.append(d)
+        log(f"[{base}] epoch {ep + 1} done: mean loss {ep_loss / max(1, ep_n):.4f}, dev loss "
+            f"{'-' if d is None else f'{d:.4f}'} ({(time.time() - t0) / 60:.1f} min)")
+        if d is not None and (best_dev is None or d < best_dev):
+            best_dev, best_ep = d, ep + 1
+            if ep + 1 < epochs:                       # a later epoch could be worse: keep these weights on disk
+                from safetensors.torch import save_file
+                Path(best_dir).mkdir(parents=True, exist_ok=True)
+                seen, state = set(), {}
+                for k, v in model.state_dict().items():      # tied weights (embeddings = head) are saved once
+                    if v is not None and v.data_ptr() not in seen:
+                        seen.add(v.data_ptr())
+                        state[k] = v.detach().contiguous().cpu()
+                save_file(state, str(Path(best_dir) / "best.safetensors"))
+    if best_ep is not None and best_ep < epochs:
+        from safetensors.torch import load_file
+        missing = model.load_state_dict(load_file(str(Path(best_dir) / "best.safetensors"), device=dev), strict=False).missing_keys
+        model.tie_weights()
+        if [k for k in missing if "lm_head" not in k]:
+            raise RuntimeError(f"best-epoch weights incomplete: {missing[:5]}")
+        log(f"[{base}] kept epoch {best_ep} (lowest dev loss {best_dev:.4f}; dev by epoch {['%.4f' % x for x in dev_hist]})")
+    shutil.rmtree(best_dir, ignore_errors=True)
+    TRAIN_INFO[base] = {"dev_loss": dev_hist, "best_epoch": best_ep or epochs}
     model.config.use_cache = True
     Path(out_dir).mkdir(parents=True, exist_ok=True)
     model.save_pretrained(out_dir, safe_serialization=True)
@@ -191,6 +266,82 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=8192, per_step=32, 
     if dev == "cuda":
         torch.cuda.empty_cache()
     return (time.time() - t0) / 60
+
+
+TRAIN_INFO = {}           # base -> {dev_loss per epoch, best_epoch}
+
+
+def prepare(examples, reuse_cap=0, per_episode_cap=10):
+    """The training mix (REVIEW_V2_FABLE D2, E4; audit 6, 7):
+    - drop examples that copy an 8-word run from template or Claude-written text (leak.py);
+    - in each episode, drop repeated identical find calls, and cap the episode at per_episode_cap examples;
+    - cap reused v1 repo-heavy families at reuse_cap episodes each, spread over repos;
+    - weight each example 1/sqrt(n) where n counts examples with the same (kind, tool, arguments) signature, so one
+      string ("search the web") can't dominate."""
+    import leak
+    kept, leaked = [], 0
+    for e in examples:
+        if leak.leaked(e["output"], e.get("messages", ())):
+            leaked += 1
+        else:
+            kept.append(e)
+    log(f"leak filter: dropped {leaked} of {len(examples)} examples")
+    by_ep = collections.defaultdict(list)
+    for e in kept:
+        by_ep[str(e.get("episode"))].append(e)
+    out, dup_find = [], 0
+    for ep, exs in by_ep.items():
+        seen, row = set(), []
+        for e in exs:
+            sig = call_signature(e)
+            if sig and sig[1] == "find" and sig in seen:
+                dup_find += 1
+                continue
+            seen.add(sig)
+            row.append(e)
+        out.append((ep, row[:per_episode_cap] if per_episode_cap and len(row) > per_episode_cap else row))
+    if reuse_cap:
+        fam_eps = collections.defaultdict(list)
+        for ep, row in out:
+            fam_eps[row[0]["family"] if row else ""].append((ep, row))
+        capped = []
+        for fam, lst in fam_eps.items():
+            if fam in REUSE_CAP_FAMS and len(lst) > reuse_cap:
+                by_repo = collections.defaultdict(list)          # round-robin over repos so the cap keeps variety
+                for ep, row in sorted(lst):
+                    by_repo[(row[0].get("repo") or "") if row else ""].append((ep, row))
+                pick, queues = [], [q for _, q in sorted(by_repo.items())]
+                while len(pick) < reuse_cap and any(queues):
+                    for q in queues:
+                        if q and len(pick) < reuse_cap:
+                            pick.append(q.pop(0))
+                log(f"reuse cap: {fam} {len(lst)} -> {len(pick)} episodes")
+                lst = pick
+            capped += lst
+        out = capped
+    flat = [e for _, row in out for e in row]
+    counts = collections.Counter(call_signature(e) for e in flat)
+    for e in flat:
+        sig = call_signature(e)
+        e["weight"] = min(1.0, 1.0 / math.sqrt(counts[sig])) if sig else 1.0
+    heavy = [(s, c) for s, c in counts.most_common(5) if s]
+    log(f"dedupe: dropped {dup_find} repeated find calls; {len(flat)} examples; most repeated signatures {heavy}")
+    return flat
+
+
+REUSE_CAP_FAMS = {"repo_fact", "repo_where", "repo_two", "recipe_repo", "refs", "need_repo", "memory_repo"}
+
+
+def call_signature(ex):
+    """(kind, tool, arguments) of the example's tool call, or None for a reply."""
+    m = re.search(r"```tool_call\s*\n(.*?)\n```", ex.get("output") or "", re.S)
+    if not m:
+        return None
+    try:
+        obj = json.loads(m.group(1))
+        return (ex.get("kind"), obj.get("name"), json.dumps(obj.get("arguments"), sort_keys=True))
+    except Exception:
+        return None
 
 
 # ── eval ────────────────────────────────────────────────────────────────────
@@ -221,7 +372,7 @@ def evaluate(model_path, episodes, work, squiggle, label, out_dir, minutes=25):
     st = HFStudent(model_path, device="cuda" if torch.cuda.is_available() else "cpu")
     runner = Runner(st, squiggle, work, concurrency=48, batch_wait=0.5, max_calls=30)
     t0 = time.time()
-    res = runner.run(episodes, deadline=time.time() + minutes * 60)
+    res = runner.run(episodes)          # no deadline: every model gets every episode (REVIEW D6)
     for r in res:
         r["check"] = F.check(r)
     with gzip.open(Path(out_dir) / f"eval_{label}.jsonl.gz", "wt") as f:
@@ -249,6 +400,10 @@ def metrics(res):
     ho = [v["strict"] for f, v in m["families"].items() if f in F.HELD_OUT]
     m["trained_strict"] = sum(tr) / max(1, len(tr))
     m["trained_ok"] = sum(v["ok"] for f, v in m["families"].items() if f not in F.HELD_OUT) / max(1, len(tr))
+    m["held_ok"] = sum(v["ok"] for f, v in m["families"].items() if f in F.HELD_OUT) / max(1, len(ho))
+    # CORPUS_V2 §2h: plain arithmetic through run_js (any family whose task is a computation)
+    comp = [r for r in res if r["family"] in COMPUTE_FAMS]
+    m["run_js_misuse"] = (sum(1 for r in comp if "run_js" in F.names([x for s in F.turn_calls(r) for x in s])) / len(comp)) if comp else None
     m["held_strict"] = sum(ho) / max(1, len(ho))
     m["held_min"] = min(ho) if ho else 0
     calls = [x for r in res for s in F.turn_calls(r) for x in s]
@@ -277,7 +432,10 @@ def metrics(res):
     return m
 
 
-def verdict(m, base_m):
+COMPUTE_FAMS = {"math", "math_pair", "need_math", "hermes_compute", "lookup_then_compute"}
+
+
+def verdict(m, base_m, base_name="the untouched base"):
     checks = [
         ("trained types, strict mean", m["trained_strict"] >= BARS["trained_strict"], f"{m['trained_strict']:.0%} (bar {BARS['trained_strict']:.0%})"),
         ("held-out types, strict mean", m["held_strict"] >= BARS["held_strict"], f"{m['held_strict']:.0%} (bar {BARS['held_strict']:.0%})"),
@@ -288,17 +446,23 @@ def verdict(m, base_m):
         ("messy within 10 points of clean", m["messy_gap"] <= BARS["messy_gap"], f"clean {m['clean']:.0%}, messy {m['messy']:.0%}"),
     ]
     if base_m:
+        # Against the SAME base as released: strict scores and the plain right-answer rates (training must not cost
+        # the model answers it already got right).
         better = m["trained_strict"] > base_m["trained_strict"] and m["held_strict"] > base_m["held_strict"]
-        checks.append(("beats the untouched Gemma 3 270M", better, f"{m['trained_strict']:.0%}/{m['held_strict']:.0%} vs {base_m['trained_strict']:.0%}/{base_m['held_strict']:.0%}"))
+        checks.append((f"beats {base_name} (strict, trained/held-out)", better,
+                       f"{m['trained_strict']:.0%}/{m['held_strict']:.0%} vs {base_m['trained_strict']:.0%}/{base_m['held_strict']:.0%}"))
+        ok_better = m["trained_ok"] >= base_m["trained_ok"] and m.get("held_ok", 0) >= base_m.get("held_ok", 0)
+        checks.append((f"right answers at least {base_name}'s (trained/held-out)", ok_better,
+                       f"{m['trained_ok']:.0%}/{m.get('held_ok', 0):.0%} vs {base_m['trained_ok']:.0%}/{base_m.get('held_ok', 0):.0%}"))
     return all(c[1] for c in checks), checks
 
 
 def write_results(out, arms, notes):
     names = list(arms)
-    base_key = next((k for k in names if k.startswith("untouched")), None)
     tuned = [k for k in names if not k.startswith("untouched")]
     best = max(tuned, key=lambda k: arms[k]["trained_strict"] + arms[k]["held_strict"]) if tuned else None
-    go, checks = verdict(arms[best], arms.get(base_key)) if best else (False, [])
+    base_key = f"untouched-{best}" if best and f"untouched-{best}" in arms else next((k for k in names if k.startswith("untouched")), None)
+    go, checks = verdict(arms[best], arms.get(base_key), f"`{base_key}`") if best else (False, [])
     L = ["# Squiggle small-model fine-tune: results", ""]
     if best:
         L += [f"**Verdict: {'GO' if go else 'NO-GO (not yet)'}** for `{best}`.", ""]
@@ -309,10 +473,10 @@ def write_results(out, arms, notes):
         L.append(f"| {f}{' (held out)' if f in F.HELD_OUT else ''} | {F.HABIT.get(f, '')} | " + " | ".join(
             f"{arms[a]['families'][f]['strict']:.0%} ({arms[a]['families'][f]['ok']:.0%})" if f in arms[a]["families"] else "-" for a in names) + " |")
     L += ["", "(right answer only in brackets)", "", "## Habits", "", "| measure | " + " | ".join(names) + " |", "| --- |" + " --- |" * len(names)]
-    for key, label in [("trained_strict", "trained types, strict mean"), ("trained_ok", "trained types, right answer"), ("held_strict", "held-out types, strict mean"),
+    for key, label in [("trained_strict", "trained types, strict mean"), ("trained_ok", "trained types, right answer"), ("held_strict", "held-out types, strict mean"), ("held_ok", "held-out types, right answer"),
                        ("format", "well-formed calls"), ("loops", "episodes looping / call-capped"), ("plans", "plans multi-step requests"),
                        ("asks", "asks (need) when info is missing"), ("chat", "plain chat stays plain"), ("done_facts", "done results carry the answer"),
-                       ("clean", "clean requests, strict"), ("messy", "messy requests, strict")]:
+                       ("clean", "clean requests, strict"), ("messy", "messy requests, strict"), ("run_js_misuse", "arithmetic through run_js")]:
         L.append(f"| {label} | " + " | ".join("-" if arms[a].get(key) is None else f"{arms[a][key]:.0%}" for a in names) + " |")
     # Episodes not started before an arm's eval deadline are skipped (a random tail: the set is shuffled).
     L.append("| episodes evaluated | " + " | ".join(str(sum(v["n"] for v in arms[a]["families"].values())) for a in names) + " |")
@@ -409,6 +573,9 @@ def main():
     ap.add_argument("--bases", default="gemma3,functiongemma,lfm25")
     ap.add_argument("--epochs", type=int, default=2)
     ap.add_argument("--lr", type=float, default=4e-5)
+    ap.add_argument("--lr-per-base", default="lfm25=2e-5", help="per-base learning rates, e.g. lfm25=2e-5,gemma3=4e-5")
+    ap.add_argument("--dev-frac", type=float, default=0.05, help="episodes held out for the per-epoch dev loss (best epoch kept)")
+    ap.add_argument("--reuse-cap", type=int, default=0, help="at most this many episodes per v1 repo-heavy family (REUSE_CAP_FAMS)")
     ap.add_argument("--limit", type=int, default=0, help="use only this many training examples (smoke test)")
     ap.add_argument("--eval-scale", type=float, default=1.0)
     ap.add_argument("--eval-minutes", type=float, default=25)
@@ -441,14 +608,13 @@ def main():
     import build
     src = build.load_sources(Path(args.work), "eval")
     eval_plan = build.EVAL_PLAN_V1 if args.eval_plan == "v1" else build.EVAL_PLAN
-    eval_eps = lambda: build.make_sets(src, eval_plan, seed=123, scale=args.eval_scale)
+    eval_eps = lambda: build.make_sets(src, eval_plan, seed=123, scale=args.eval_scale, date_shift=args.eval_plan != "v1")
     log(f"eval set: {len(eval_eps())} episodes")
     arms, notes = {}, []
     bases = [b for b in args.bases.split(",") if b]
-    if not args.no_untouched:
-        arms["untouched-gemma3"] = arm(evaluate(BASES["gemma3"], eval_eps(), args.work, args.squiggle, "untouched-gemma3", out, args.eval_minutes), "untouched-gemma3")
-        json.dump(arms, open(out / "metrics.json", "w"), indent=1)
-    for b in [x for x in args.eval_bases.split(",") if x]:
+    # Every trained base is also evaluated as released (CORPUS_V2 §5.8), plus any --eval-bases.
+    untouched = [] if args.no_untouched else (bases if not args.eval_only else [])
+    for b in list(dict.fromkeys(untouched + [x for x in args.eval_bases.split(",") if x])):
         label = f"untouched-{b}"
         arms[label] = arm(evaluate(BASES[b], eval_eps(), args.work, args.squiggle, label, out, args.eval_minutes), label)
         json.dump(arms, open(out / "metrics.json", "w"), indent=1)
@@ -474,6 +640,7 @@ def main():
         examples = [e for e in examples if e.get("family") not in F.HELD_OUT]      # held-out types never train
         if held:
             log(f"dropped {len(held)} examples of held-out types")
+        examples = prepare(examples, reuse_cap=args.reuse_cap)
         random.Random(0).shuffle(examples)
         if args.limit:
             examples = examples[:args.limit]
@@ -488,8 +655,12 @@ def main():
                     continue
             t_b = time.time()
             md = str(Path("models") / b)
-            mins = train(b, examples, md, epochs=args.epochs, lr=args.lr)
-            notes.append(f"- `{b}` ({BASES[b]}): trained {args.epochs} epochs on {len(examples)} examples in {mins:.0f} min.")
+            lrs = dict(x.split("=") for x in args.lr_per_base.split(",") if "=" in x)
+            lr = float(lrs.get(b, args.lr))
+            mins = train(b, examples, md, epochs=args.epochs, lr=lr, dev_frac=args.dev_frac)
+            info = TRAIN_INFO.get(b, {})
+            notes.append(f"- `{b}` ({BASES[b]}): lr {lr:g}, up to {args.epochs} epochs on {len(examples)} examples in {mins:.0f} min; "
+                         f"dev loss by epoch {[round(x, 4) for x in info.get('dev_loss', []) if x is not None]}, kept epoch {info.get('best_epoch')}.")
             arms[b] = arm(evaluate(md, eval_eps(), args.work, args.squiggle, b, out, args.eval_minutes), b)
             json.dump(arms, open(out / "metrics.json", "w"), indent=1)
             write_results(out, arms, notes)

@@ -127,6 +127,14 @@ def _values(blob):
     return out
 
 
+# Hermes tools that are plain arithmetic: in Squiggle those go through calculate (CORPUS_V2 §2h). String and list
+# tools (reverse_words, is_palindrome, sort_numbers...) are real code and stay on run_js.
+NUMERIC = re.compile(r"^(calculate_|gcd$|greatest_common|lcm$|least_common|average$|median$|mean$|std_|compound_interest|future_investment|"
+                     r"monthly_mortgage|triangle_area|circle_area|euclidean|potential_energy|density|wire_resistance|permutation|probability|"
+                     r"dice_roll|celsius|fahrenheit|convert_|factorial$|sum_of_digits|integrate|trapezoidal|power$|square_root|hypotenuse|"
+                     r"cosine_similarity|dot_product|polygon_area)")
+
+
 def check(res):
     reasons = F.base_check(res)
     segs = F.turn_calls(res)
@@ -140,18 +148,25 @@ def check(res):
             reasons.append("didn't ask for the missing input")
         if acted:
             reasons.append("acted before asking: " + ", ".join(acted))
+        if F.need_new_numbers(seg, res.get("first", "")):
+            reasons.append("the need question contains a number the request didn't have (an assumed value inside the question)")
         ok = bool(asked) and not acted
         return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
-    ran = "run_js" in names
-    vals = [v for b in F.results_of(seg, "run_js") for v in _values(b)]
-    errs = [b for b in F.results_of(seg, "run_js") if '"error"' in b]
+    arithmetic = all(NUMERIC.match(t) for t in res["gold"].get("tools", [])) if res["gold"].get("tools") else True
+    tool = "calculate" if arithmetic else "run_js"
+    ran = tool in names
+    blobs = F.results_of(seg, tool)
+    vals = [v for b in blobs for v in _values(b)]
+    errs = [b for b in blobs if '"error"' in b]
     nums = {F.num(t) for t in F.toks(rep) if F.num(t) is not None}
     carried = any((F.num(v) is not None and F.num(v) in nums) or (F.num(v) is None and F.norm(v) and F.norm(v) in F.norm(rep)) for v in vals)
     if not ran:
-        reasons.append("didn't compute it")
+        reasons.append("didn't compute it with " + tool + (" (plain arithmetic goes through calculate, not run_js)" if arithmetic and "run_js" in names else ""))
     if ran and not carried:
         reasons.append("reply doesn't carry the computed value")
     if errs and not vals:
-        reasons.append("run_js failed")
+        reasons.append(tool + " failed")
+    if ran and carried and F.hedged(rep):
+        reasons.append("the answer is hedged")
     ok = ran and carried
     return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
