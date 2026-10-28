@@ -1,0 +1,979 @@
+job 6ae1944b41e90535df7700f9 on gpu: squiggle-ft-train-smoke-5 at 8ccd370
+fetched experiments/squiggle-ft/jobs/boot.py
+Wed Oct 28 06:22:08 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L4                      On  |   00000000:31:00.0 Off |                    0 |
+| N/A   32C    P8             16W /   72W |       0MiB /  23034MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+debconf: delaying package configuration, since apt-utils is not installed
+boot: node v22.23.4, squiggle e9c27cabe7c15ae72242d6f62ea02710d57af535, tp-parse 8ccd370, setup took 14 s
++ DATA=
++ for t in ${TAG//,/ }
++ python hub.py down kealjones/squiggle-ft-data teach-smoke/train_examples.jsonl.gz --to data_in
+
+
+teach-smoke/train_examples.jsonl.gz: reconstructing file:   0%|          |  0.00B / 38.9kB            [A
+teach-smoke/train_examples.jsonl.gz: downloading bytes:           |  0.00B            
+teach-smoke/train_examples.jsonl.gz: downloading bytes: ██████████| 39.0kB, 3.88kB/s  
+teach-smoke/train_examples.jsonl.gz: downloading bytes: ██████████| 39.0kB, 3.88kB/s  
+
+teach-smoke/train_examples.jsonl.gz: reconstructing file: 100%|██████████| 38.9kB / 38.9kB, 3.88kB/s  
+/workspace/work/sqft/data_in/teach-smoke/train_examples.jsonl.gz
++ DATA=,data_in/teach-smoke/train_examples.jsonl.gz
++ for t in ${TAG//,/ }
++ python hub.py down kealjones/squiggle-ft-data teach-smoke-2/train_examples.jsonl.gz --to data_in
+
+
+teach-smoke-2/train_examples.jsonl.gz: reconstructing file:   0%|          |  0.00B / 41.0kB            [A
+teach-smoke-2/train_examples.jsonl.gz: downloading bytes:           |  0.00B            
+teach-smoke-2/train_examples.jsonl.gz: downloading bytes: ██████████| 41.0kB, 4.08kB/s  
+teach-smoke-2/train_examples.jsonl.gz: downloading bytes: ██████████| 41.0kB, 4.08kB/s  
+
+teach-smoke-2/train_examples.jsonl.gz: reconstructing file: 100%|██████████| 41.0kB / 41.0kB, 4.08kB/s  
+/workspace/work/sqft/data_in/teach-smoke-2/train_examples.jsonl.gz
++ DATA=,data_in/teach-smoke/train_examples.jsonl.gz,data_in/teach-smoke-2/train_examples.jsonl.gz
++ python selftest.py data_in/teach-smoke/train_examples.jsonl.gz data_in/teach-smoke-2/train_examples.jsonl.gz --tokenizers unsloth/gemma-3-270m-it,unsloth/functiongemma-270m-it,LiquidAI/LFM2.5-350M
++ tail -12 /workspace/work/out/selftest.txt
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 9.22MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 3.47MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][A
+tokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 79.9MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 33.5MB/s]
+
+243 model calls checked, 0 with problems.
+  unsloth/gemma-3-270m-it: prompt tokens median 451, max 3486; output tokens median 92, max 204
+  unsloth/functiongemma-270m-it: prompt tokens median 455, max 3490; output tokens median 92, max 204
+  LiquidAI/LFM2.5-350M: prompt tokens median 455, max 3301; output tokens median 86, max 196
++ python train.py --data data_in/teach-smoke/train_examples.jsonl.gz,data_in/teach-smoke-2/train_examples.jsonl.gz --bases lfm25 --epochs 4 --eval-scale 0.1 --eval-minutes 6 --out /workspace/work/out/train --work work --export --hub-repo ''
+06:22:41 eval set: 30 episodes
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  536MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:  48%|████▊     |  256MB /  536MB, 6.55MB/s  [A
+model.safetensors: downloading bytes: ████▏     |  224MB, 20.7MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 43.1MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 43.1MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  536MB /  536MB, 50.0MB/s  
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 6289.39it/s]
+
+
+generation_config.json:   0%|          | 0.00/233 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 233/233 [00:00<00:00, 1.17MB/s]
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+06:23:07 [untouched-gemma3] eval 30 episodes in 0.3 min; student {'calls': 36, 'too_long': 0, 'out_tokens': 2175}
+06:23:08 training data: ['data_in/teach-smoke/train_examples.jsonl.gz', 'data_in/teach-smoke-2/train_examples.jsonl.gz']
+06:23:08 243 training examples: {'hermes_need': 4, 'memory_repo': 11, 'repo_fact': 32, 'repo_where': 39, 'refs': 29, 'hermes_compute': 10, 'repo_two': 21, 'web_compare': 20, 'math': 21, 'need_repo': 32, 'bare_link': 12, 'web_fact': 8, 'chat': 4}
+06:23:08 [lfm25] 243 of 243 examples fit; target tokens 23152, all tokens 200579
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  709MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:   0%|          | 3.31MB /  709MB,  187kB/s  [A
+model.safetensors: downloading bytes: █▌        |  107MB, 8.96MB/s  
+
+model.safetensors: reconstructing file:  46%|████▌     |  327MB /  709MB, 29.4MB/s  [A
+model.safetensors: downloading bytes: ████▏     |  300MB, 26.2MB/s  
+
+model.safetensors: reconstructing file:  80%|████████  |  567MB /  709MB, 46.4MB/s  [A
+model.safetensors: downloading bytes: ██████▉   |  495MB, 40.7MB/s  
+model.safetensors: downloading bytes: ██████████|  610MB, 49.8MB/s  
+model.safetensors: downloading bytes: ██████████|  610MB, 49.8MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  709MB /  709MB, 58.7MB/s  
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1278.09it/s]
+
+
+generation_config.json:   0%|          | 0.00/134 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 134/134 [00:00<00:00, 889kB/s]
+06:23:12 [lfm25] <think> (id 64400) had an untrained embedding (1690 identical rows); started it from ['<', 'think', '>']
+06:23:12 [lfm25] </think> (id 64401) had an untrained embedding (1689 identical rows); started it from ['</', 'think', '>']
+06:23:12 [lfm25] attention sdpa, gradient checkpointing True
+06:23:12 [lfm25] 29 micro-batches/epoch, accum 4, 32 steps, warmup 5
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+06:23:35 [lfm25] epoch 1 done: mean loss 1.6821 (0.4 min)
+06:23:59 [lfm25] epoch 2 done: mean loss 0.8372 (0.8 min)
+06:24:12 [lfm25] epoch 3 step 20/32 loss 0.5590 lr 1.23e-05 (1.0 min)
+06:24:22 [lfm25] epoch 3 done: mean loss 0.5019 (1.2 min)
+06:24:46 [lfm25] epoch 4 done: mean loss 0.3390 (1.6 min)
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.46s/it][A
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.46s/it]
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s][A
+Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 1926.94it/s]
+
+
+Download complete:           |  0.00B            [A
+
+Reconstruction complete: |          |  0.00B /  0.00B                         [A
+Download complete:           |  0.00B            
+
+Reconstruction complete: |          |  0.00B /  0.00B            
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1759.73it/s]
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+06:26:09 [lfm25] eval 30 episodes in 1.3 min; student {'calls': 210, 'too_long': 0, 'out_tokens': 19778}
+06:26:09 # Squiggle small-model fine-tune: results
+
+**Verdict: NO-GO (not yet)** for `lfm25`.
+
+| check | pass | value |
+| --- | --- | --- |
+| trained types, strict mean | no | 0% (bar 50%) |
+| held-out types, strict mean | no | 0% (bar 30%) |
+| no held-out type at 0% | no | lowest 0% |
+| well-formed model calls | no | 56.9% (bar 95%) |
+| episodes that loop or hit the call cap | yes | 3.3% (bar ≤ 5%) |
+| plain chat stays plain | no | 0% (bar 90%) |
+| messy within 10 points of clean | yes | clean 0%, messy 0% |
+| beats the untouched Gemma 3 270M | no | 0%/0% vs 0%/0% |
+
+## Strict score per task type (right answer and the habit)
+
+| type | habit | untouched-gemma3 | lfm25 |
+| --- | --- | --- | --- |
+| bare_link | read a bare link | 0% (0%) | 0% (0%) |
+| chat | plain chat stays plain | 0% (0%) | 0% (0%) |
+| chat_after | a task, then plain thanks | 0% (0%) | 0% (0%) |
+| hermes_compute | compute (Hermes requests) | 0% (0%) | 0% (0%) |
+| hermes_need | ask for missing input (Hermes requests) | 0% (0%) | 0% (0%) |
+| math | compute with run_js | 0% (0%) | 0% (0%) |
+| memory_repo | use memory, don't ask | 0% (0%) | 0% (100%) |
+| need_math (held out) | ask for a missing number (held out) | 0% (0%) | 0% (0%) |
+| need_repo | ask which repo | 0% (0%) | 0% (0%) |
+| past_chat | find an earlier chat | 0% (0%) | 0% (0%) |
+| recipe_compare (held out) | use a recipe on web lookups (held out) | 0% (0%) | 0% (0%) |
+| recipe_repo | use a recipe | 0% (0%) | 0% (0%) |
+| refs | follow 'it' to the last repo | 0% (0%) | 0% (0%) |
+| repo_fact | look in the repo | 0% (0%) | 0% (0%) |
+| repo_two | plan a two-part repo task | 0% (0%) | 0% (0%) |
+| repo_where | find a definition | 0% (0%) | 0% (0%) |
+| web_bridge (held out) | plan a two-hop lookup (held out) | 0% (0%) | 0% (0%) |
+| web_compare | plan + look up two things | 0% (50%) | 0% (100%) |
+| web_fact | look it up | 0% (0%) | 0% (0%) |
+
+(right answer only in brackets)
+
+## Habits
+
+| measure | untouched-gemma3 | lfm25 |
+| --- | --- | --- |
+| trained types, strict mean | 0% | 0% |
+| trained types, right answer | 3% | 12% |
+| held-out types, strict mean | 0% | 0% |
+| well-formed calls | 0% | 57% |
+| episodes looping / call-capped | 0% | 3% |
+| plans multi-step requests | 0% | 11% |
+| asks (need) when info is missing | 0% | 0% |
+| plain chat stays plain | 100% | 0% |
+| done results carry the answer | - | 100% |
+| clean requests, strict | 0% | 0% |
+| messy requests, strict | 0% | 0% |
+| episodes evaluated | 30 | 30 |
+
+## Output length
+
+Generated tokens per model call (thinking + call or reply). Seconds per call at ~15 tokens/s on a phone CPU.
+
+| model | calls | tokens per call | seconds per call |
+| --- | --- | --- | --- |
+| untouched-gemma3 | 36 | 60 | 4 |
+| lfm25 | 210 | 94 | 6 |
+
+## Sample generations
+
+The first model call of three eval episodes per model, raw (as the harness got it).
+
+**untouched-gemma3**, `chat-0` (chat): 'omg yes'
+
+````text
+Okay, I understand the instructions. Let's begin!
+````
+
+**untouched-gemma3**, `web_compare-0` (chat): 'Which is a black-and-white film, Flying Padre or Inside Job?'
+
+````text
+I am Squiggle and I don't have access to the movie library of today. Therefore, I cannot answer your question about the Black-And-White Film.
+````
+
+**untouched-gemma3**, `repo_fact-0` (chat): 'who committed last in jprichardson/node-fs-extra?'
+
+````text
+Okay, I'm ready to be Squiggle! Let's start with the information about JPRICHARDSON/NODE-FS-EXTRA.
+````
+
+**lfm25**, `chat-0` (chat): 'omg yes'
+
+````text
+<
+Check: The user said "yes" after the initial confirmation; no prior context about which tool to use.
+Next: Use plan to structure steps before finalizing answers.
+</think>
+```tool_call
+{"name": "plan", "arguments": {"goal": "Request confirmed: Yes, answer with details from the source.", "steps": ["Find the correct tools for the task (e.g., grep, read_file")."}}
+```
+````
+
+**lfm25**, `web_compare-0` (chat): 'Which is a black-and-white film, Flying Padre or Inside Job?'
+
+````text
+<
+Request: Which of the two films (Black-and-White Film, Flying Padre, Inside Job) is a Black-and-White?
+Pieces: 1. The film with "Black-and-White". 2. Its title and source.
+Know: No prior context; must confirm if they're referring to specific movies.
+Don't know: Which one (Flying Padre or Inside Job) the user meant, so need two steps.
+Goal: Find which movie is a Black-and-White film by using plan.
+Next: Call plan with "Find" and "Confirm Film Title".
+</think>
+```tool_call
+{"name": "plan", "arguments": {"goal": "Identify which of the two films (Flying Padre or Inside Job) is a Black-and-White movie", "steps": ["Search for 'Black-and-Blue' in film databases"]
+```
+````
+
+**lfm25**, `repo_fact-0` (chat): 'who committed last in jprichardson/node-fs-extra?'
+
+````text
+<think>
+Request: Who committed last in the repo "jprichardson/node-fs-extra"?
+Pieces: 1. Which commit is from the latest email.
+Know: The tool to find commits; need its name or source.
+Don't know: The repository path, but the user provided it.
+Goal: Identify the last commit message in "jprichardson/node-fs-extra".
+Next: Use find to discover tools for locating GitHub repos and their commits.
+</think>
+```tool_call
+{"name": "find", "arguments": {"query": "recent commits"}}
+```
+````
+
+
+## Notes
+
+- `lfm25` (LiquidAI/LFM2.5-350M): trained 4 epochs on 243 examples in 2 min.
+
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s][A
+Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 364.43it/s]
+
+
+Download complete:           |  0.00B            [A
+
+Reconstruction complete: |          |  0.00B /  0.00B                         [AWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+INFO:hf-to-gguf:Loading model: lfm25
+INFO:hf-to-gguf:Model architecture: Lfm2ForCausalLM
+INFO:hf-to-gguf:gguf: indexing model part 'model.safetensors'
+INFO:gguf.gguf_writer:gguf: This GGUF file is for Little Endian only
+INFO:hf-to-gguf:Exporting model...
+INFO:hf-to-gguf:token_embd.weight,                torch.float32 --> Q8_0, shape = {1024, 65536}
+INFO:hf-to-gguf:token_embd_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.0.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.0.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.0.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.0.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.0.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.0.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.0.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.0.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.1.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.1.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.1.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.1.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.1.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.1.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.1.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.1.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.10.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.10.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.10.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.10.attn_k.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.10.attn_output.weight,        torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.10.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.10.attn_q.weight,             torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.10.attn_v.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.11.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.11.shortconv.in_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.11.shortconv.out_proj.weight, torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.11.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.11.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.11.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.11.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.11.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.12.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.12.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.12.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.12.attn_k.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.12.attn_output.weight,        torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.12.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.12.attn_q.weight,             torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.12.attn_v.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.13.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.13.shortconv.in_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.13.shortconv.out_proj.weight, torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.13.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.13.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.13.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.13.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.13.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.14.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.14.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.14.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.14.attn_k.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.14.attn_output.weight,        torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.14.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.14.attn_q.weight,             torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.14.attn_v.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.15.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.15.shortconv.in_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.15.shortconv.out_proj.weight, torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.15.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.15.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.15.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.15.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.15.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.2.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.2.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.2.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.2.attn_k.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.2.attn_output.weight,         torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.2.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.2.attn_q.weight,              torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.2.attn_v.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.3.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.3.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.3.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.3.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.3.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.3.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.3.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.3.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.4.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.4.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.4.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.4.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.4.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.4.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.4.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.4.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.5.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.5.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.5.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.5.attn_k.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.5.attn_output.weight,         torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.5.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.5.attn_q.weight,              torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.5.attn_v.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.6.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.6.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.6.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.6.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.6.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.6.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.6.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.6.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.7.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.7.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.7.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.7.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.7.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.7.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.7.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.7.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.8.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.8.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.8.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.8.attn_k.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.8.attn_output.weight,         torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.8.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.8.attn_q.weight,              torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.8.attn_v.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.9.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.9.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.9.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.9.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.9.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.9.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.9.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.9.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:Set meta model
+INFO:hf-to-gguf:Set model parameters
+INFO:hf-to-gguf:gguf: context length = 128000
+INFO:hf-to-gguf:gguf: embedding length = 1024
+INFO:hf-to-gguf:gguf: feed forward length = 6656
+INFO:hf-to-gguf:gguf: head count = 16
+INFO:hf-to-gguf:gguf: key-value head count = [0, 0, 8, 0, 0, 8, 0, 0, 8, 0, 8, 0, 8, 0, 8, 0]
+WARNING:hf-to-gguf:Unknown RoPE type: default
+INFO:hf-to-gguf:gguf: rope scaling type = NONE
+INFO:hf-to-gguf:gguf: rope theta = 1000000.0
+INFO:hf-to-gguf:gguf: rms norm epsilon = 1e-05
+INFO:hf-to-gguf:gguf: file type = 7
+WARNING:gguf.gguf_writer:Duplicated key name 'lfm2.attention.layer_norm_rms_epsilon', overwriting it with new value 1e-05 of type FLOAT32
+WARNING:gguf.gguf_writer:Duplicated key name 'lfm2.feed_forward_length', overwriting it with new value 4608 of type UINT32
+INFO:hf-to-gguf:Set model quantization version
+INFO:hf-to-gguf:Set model tokenizer
+WARNING:gguf.vocab:Unknown separator token '<|startoftext|>' in TemplateProcessing<pair>
+INFO:gguf.vocab:Adding 63683 merge(s).
+INFO:gguf.vocab:Setting special token type bos to 1
+INFO:gguf.vocab:Setting special token type eos to 7
+INFO:gguf.vocab:Setting special token type pad to 0
+INFO:gguf.vocab:Setting add_bos_token to True
+INFO:gguf.vocab:Setting add_eos_token to False
+INFO:gguf.vocab:Setting add_sep_token to False
+INFO:gguf.vocab:Setting chat_template to {{- bos_token -}}
+{%- set preserve_thinking = preserve_thinking | default(keep_past_thinking | default(false)) -%}
+
+{%- macro format_arg_value(arg_value) -%}
+    {%- if arg_value is string -%}
+        {{- "'" + (arg_value | replace("\\", "\\\\") | replace("'", "\\'") | replace("\n", "\\n") | replace("\r", "\\r")) + "'" -}}
+    {%- elif arg_value is mapping or arg_value is iterable -%}
+        {{- arg_value | tojson -}}
+    {%- else -%}
+        {{- arg_value | string -}}
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro parse_content(content) -%}
+    {%- if content is string -%}
+        {{- content -}}
+    {%- elif content is mapping -%}
+        {{- content | tojson -}}
+    {%- elif content is iterable -%}
+        {%- set _ns = namespace(result="") -%}
+        {%- for item in content -%}
+            {%- if item is string -%}
+                {%- set _ns.result = _ns.result + item -%}
+            {%- elif item is mapping and item.get("type") == "image" -%}
+                {%- set _ns.result = _ns.result + "<image>" -%}
+            {%- elif item is mapping and item.get("type") == "text" -%}
+                {%- set _ns.result = _ns.result + ((item.get("text") or "") | string) -%}
+            {%- else -%}
+                {%- set _ns.result = _ns.result + (item | tojson) -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {{- _ns.result -}}
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro render_tool_calls(tool_calls) -%}
+    {%- set tool_calls_ns = namespace(tool_calls=[]) -%}
+    {%- for tool_call in tool_calls -%}
+        {%- set func = tool_call["function"] if "function" in tool_call else tool_call -%}
+        {%- set func_name = func["name"] -%}
+        {%- set func_args = func.get("arguments") -%}
+        {%- set args_ns = namespace(arg_strings=[]) -%}
+        {%- if func_args is mapping -%}
+            {%- for arg_name, arg_value in func_args.items() -%}
+                {%- set args_ns.arg_strings = args_ns.arg_strings + [arg_name + "=" + format_arg_value(arg_value)] -%}
+            {%- endfor -%}
+        {%- elif func_args is string and (func_args | trim) not in ["", "{}", "null"] -%}
+            {{- raise_exception("Tool call arguments must be a mapping, got a JSON-encoded string: parse arguments with json.loads() before applying the chat template") -}}
+        {%- endif -%}
+        {%- set tool_calls_ns.tool_calls = tool_calls_ns.tool_calls + [func_name + "(" + (args_ns.arg_strings | join(", ")) + ")"] -%}
+    {%- endfor -%}
+    {{- "<|tool_call_start|>[" + (tool_calls_ns.tool_calls | join(", ")) + "]<|tool_call_end|>" -}}
+{%- endmacro -%}
+
+{%- set ns = namespace(system_prompt="", last_assistant_index=-1) -%}
+{%- if messages and messages[0]["role"] == "system" -%}
+    {%- if messages[0].get("content") -%}
+        {%- set ns.system_prompt = parse_content(messages[0]["content"]) -%}
+    {%- endif -%}
+    {%- set messages = messages[1:] -%}
+{%- endif -%}
+{%- if tools -%}
+    {%- set ns.system_prompt = ns.system_prompt + ("\n" if ns.system_prompt else "") + "List of tools: [" -%}
+    {%- for tool in tools -%}
+        {%- if tool is not string -%}
+            {%- set tool = tool | tojson -%}
+        {%- endif -%}
+        {%- set ns.system_prompt = ns.system_prompt + tool -%}
+        {%- if not loop.last -%}
+            {%- set ns.system_prompt = ns.system_prompt + ", " -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- set ns.system_prompt = ns.system_prompt + "]" -%}
+{%- endif -%}
+{%- if ns.system_prompt -%}
+    {{- "<|im_start|>system\n" + ns.system_prompt + "<|im_end|>\n" -}}
+{%- endif -%}
+{%- for message in messages -%}
+    {%- if message["role"] == "assistant" -%}
+        {%- set ns.last_assistant_index = loop.index0 -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- for message in messages -%}
+    {{- "<|im_start|>" + message.role + "\n" -}}
+    {%- if message.role == "assistant" -%}
+        {%- generation -%}
+        {%- set keep_thinking = preserve_thinking or loop.index0 == ns.last_assistant_index -%}
+        {%- set thinking = message.thinking or message.reasoning or message.reasoning_content -%}
+        {%- set thinking = thinking if thinking is string else "" -%}
+        {%- if thinking and keep_thinking -%}
+            {{- "<think>" + thinking + "</think>" -}}
+        {%- endif -%}
+        {%- set _cfm_tag = "CONTINUE_FINAL_MESSAGE_TAG " -%}
+        {%- set _has_cfm = false -%}
+        {%- set content = "" -%}
+        {%- if message.get("content") -%}
+            {%- set content = parse_content(message.content) -%}
+        {%- endif -%}
+        {%- if not keep_thinking and "</think>" in content -%}
+            {%- set content = content.split("</think>")[-1] | trim -%}
+        {%- endif -%}
+        {%- if content.endswith(_cfm_tag) -%}
+            {%- set _has_cfm = true -%}
+            {%- set _trunc_len = (content | length) - (_cfm_tag | length) -%}
+            {%- set content = content[:_trunc_len] -%}
+        {%- endif -%}
+        {{- content -}}
+        {%- if message.tool_calls -%}
+            {{- render_tool_calls(message.tool_calls) -}}
+        {%- endif -%}
+        {%- if _has_cfm -%}
+            {{- _cfm_tag -}}
+        {%- endif -%}
+        {{- "<|im_end|>\n" -}}
+        {%- endgeneration -%}
+    {%- else %}
+        {%- if message.get("content") -%}
+            {{- parse_content(message["content"]) -}}
+        {%- endif -%}
+        {{- "<|im_end|>\n" -}}
+    {%- endif %}
+{%- endfor -%}
+{%- if add_generation_prompt -%}
+    {{- "<|im_start|>assistant\n" -}}
+{%- endif -%}
+
+INFO:gguf.vocab:Setting clean_spaces to False
+INFO:gguf.gguf_writer:Writing the following files:
+INFO:gguf.gguf_writer:/workspace/work/out/train/gguf/squiggle-small-lfm25-Q8_0.gguf: n_tensors = 148, total_size = 376.8M
+
+
+Writing:   0%|          | 0.00/377M [00:00<?, ?byte/s][A
+
+Writing:  45%|████▌     | 170M/377M [00:01<00:01, 169Mbyte/s][A
+
+Writing:  93%|█████████▎| 349M/377M [00:02<00:00, 172Mbyte/s][A
+Writing: 100%|██████████| 377M/377M [00:02<00:00, 171Mbyte/s]
+INFO:hf-to-gguf:Model successfully exported to /workspace/work/out/train/gguf/squiggle-small-lfm25-Q8_0.gguf
+CMAKE_BUILD_TYPE=Release
+CMake Warning at cmake/build-info.cmake:14 (message):
+  Git not found.  Build info will not be accurate.
+Call Stack (most recent call first):
+  CMakeLists.txt:151 (include)
+
+
+CMake Warning at vendor/cpp-httplib/CMakeLists.txt:154 (message):
+  OpenSSL not found, HTTPS support disabled
+
+
+CMake Warning at common/CMakeLists.txt:33 (message):
+  Git repository not found; to enable automatic generation of build info,
+  make sure Git is installed and the project is a Git repository.
+
+
+INFO:hf-to-gguf:Loading model: lfm25
+INFO:hf-to-gguf:Model architecture: Lfm2ForCausalLM
+INFO:hf-to-gguf:gguf: indexing model part 'model.safetensors'
+INFO:gguf.gguf_writer:gguf: This GGUF file is for Little Endian only
+INFO:hf-to-gguf:Exporting model...
+INFO:hf-to-gguf:token_embd.weight,                torch.float32 --> F16, shape = {1024, 65536}
+INFO:hf-to-gguf:token_embd_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.0.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.0.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.0.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.0.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.0.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.0.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.0.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.0.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.1.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.1.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.1.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.1.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.1.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.1.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.1.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.1.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.10.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.10.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.10.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.10.attn_k.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.10.attn_output.weight,        torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.10.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.10.attn_q.weight,             torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.10.attn_v.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.11.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.11.shortconv.in_proj.weight,  torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.11.shortconv.out_proj.weight, torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.11.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.11.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.11.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.11.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.11.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.12.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.12.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.12.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.12.attn_k.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.12.attn_output.weight,        torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.12.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.12.attn_q.weight,             torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.12.attn_v.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.13.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.13.shortconv.in_proj.weight,  torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.13.shortconv.out_proj.weight, torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.13.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.13.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.13.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.13.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.13.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.14.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.14.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.14.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.14.attn_k.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.14.attn_output.weight,        torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.14.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.14.attn_q.weight,             torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.14.attn_v.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.15.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.15.shortconv.in_proj.weight,  torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.15.shortconv.out_proj.weight, torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.15.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.15.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.15.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.15.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.15.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.2.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.2.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.2.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.2.attn_k.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.2.attn_output.weight,         torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.2.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.2.attn_q.weight,              torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.2.attn_v.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.3.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.3.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.3.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.3.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.3.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.3.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.3.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.3.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.4.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.4.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.4.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.4.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.4.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.4.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.4.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.4.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.5.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.5.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.5.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.5.attn_k.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.5.attn_output.weight,         torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.5.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.5.attn_q.weight,              torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.5.attn_v.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.6.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.6.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.6.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.6.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.6.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.6.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.6.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.6.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.7.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.7.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.7.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.7.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.7.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.7.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.7.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.7.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.8.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.8.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.8.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.8.attn_k.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.8.attn_output.weight,         torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.8.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.8.attn_q.weight,              torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.8.attn_v.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.9.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.9.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.9.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.9.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.9.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.9.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.9.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.9.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:Set meta model
+INFO:hf-to-gguf:Set model parameters
+INFO:hf-to-gguf:gguf: context length = 128000
+INFO:hf-to-gguf:gguf: embedding length = 1024
+INFO:hf-to-gguf:gguf: feed forward length = 6656
+INFO:hf-to-gguf:gguf: head count = 16
+INFO:hf-to-gguf:gguf: key-value head count = [0, 0, 8, 0, 0, 8, 0, 0, 8, 0, 8, 0, 8, 0, 8, 0]
+WARNING:hf-to-gguf:Unknown RoPE type: default
+INFO:hf-to-gguf:gguf: rope scaling type = NONE
+INFO:hf-to-gguf:gguf: rope theta = 1000000.0
+INFO:hf-to-gguf:gguf: rms norm epsilon = 1e-05
+INFO:hf-to-gguf:gguf: file type = 1
+WARNING:gguf.gguf_writer:Duplicated key name 'lfm2.attention.layer_norm_rms_epsilon', overwriting it with new value 1e-05 of type FLOAT32
+WARNING:gguf.gguf_writer:Duplicated key name 'lfm2.feed_forward_length', overwriting it with new value 4608 of type UINT32
+INFO:hf-to-gguf:Set model quantization version
+INFO:hf-to-gguf:Set model tokenizer
+WARNING:gguf.vocab:Unknown separator token '<|startoftext|>' in TemplateProcessing<pair>
+INFO:gguf.vocab:Adding 63683 merge(s).
+INFO:gguf.vocab:Setting special token type bos to 1
+INFO:gguf.vocab:Setting special token type eos to 7
+INFO:gguf.vocab:Setting special token type pad to 0
+INFO:gguf.vocab:Setting add_bos_token to True
+INFO:gguf.vocab:Setting add_eos_token to False
+INFO:gguf.vocab:Setting add_sep_token to False
+INFO:gguf.vocab:Setting chat_template to {{- bos_token -}}
+{%- set preserve_thinking = preserve_thinking | default(keep_past_thinking | default(false)) -%}
+
+{%- macro format_arg_value(arg_value) -%}
+    {%- if arg_value is string -%}
+        {{- "'" + (arg_value | replace("\\", "\\\\") | replace("'", "\\'") | replace("\n", "\\n") | replace("\r", "\\r")) + "'" -}}
+    {%- elif arg_value is mapping or arg_value is iterable -%}
+        {{- arg_value | tojson -}}
+    {%- else -%}
+        {{- arg_value | string -}}
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro parse_content(content) -%}
+    {%- if content is string -%}
+        {{- content -}}
+    {%- elif content is mapping -%}
+        {{- content | tojson -}}
+    {%- elif content is iterable -%}
+        {%- set _ns = namespace(result="") -%}
+        {%- for item in content -%}
+            {%- if item is string -%}
+                {%- set _ns.result = _ns.result + item -%}
+            {%- elif item is mapping and item.get("type") == "image" -%}
+                {%- set _ns.result = _ns.result + "<image>" -%}
+            {%- elif item is mapping and item.get("type") == "text" -%}
+                {%- set _ns.result = _ns.result + ((item.get("text") or "") | string) -%}
+            {%- else -%}
+                {%- set _ns.result = _ns.result + (item | tojson) -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {{- _ns.result -}}
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro render_tool_calls(tool_calls) -%}
+    {%- set tool_calls_ns = namespace(tool_calls=[]) -%}
+    {%- for tool_call in tool_calls -%}
+        {%- set func = tool_call["function"] if "function" in tool_call else tool_call -%}
+        {%- set func_name = func["name"] -%}
+        {%- set func_args = func.get("arguments") -%}
+        {%- set args_ns = namespace(arg_strings=[]) -%}
+        {%- if func_args is mapping -%}
+            {%- for arg_name, arg_value in func_args.items() -%}
+                {%- set args_ns.arg_strings = args_ns.arg_strings + [arg_name + "=" + format_arg_value(arg_value)] -%}
+            {%- endfor -%}
+        {%- elif func_args is string and (func_args | trim) not in ["", "{}", "null"] -%}
+            {{- raise_exception("Tool call arguments must be a mapping, got a JSON-encoded string: parse arguments with json.loads() before applying the chat template") -}}
+        {%- endif -%}
+        {%- set tool_calls_ns.tool_calls = tool_calls_ns.tool_calls + [func_name + "(" + (args_ns.arg_strings | join(", ")) + ")"] -%}
+    {%- endfor -%}
+    {{- "<|tool_call_start|>[" + (tool_calls_ns.tool_calls | join(", ")) + "]<|tool_call_end|>" -}}
+{%- endmacro -%}
+
+{%- set ns = namespace(system_prompt="", last_assistant_index=-1) -%}
+{%- if messages and messages[0]["role"] == "system" -%}
+    {%- if messages[0].get("content") -%}
+        {%- set ns.system_prompt = parse_content(messages[0]["content"]) -%}
+    {%- endif -%}
+    {%- set messages = messages[1:] -%}
+{%- endif -%}
+{%- if tools -%}
+    {%- set ns.system_prompt = ns.system_prompt + ("\n" if ns.system_prompt else "") + "List of tools: [" -%}
+    {%- for tool in tools -%}
+        {%- if tool is not string -%}
+            {%- set tool = tool | tojson -%}
+        {%- endif -%}
+        {%- set ns.system_prompt = ns.system_prompt + tool -%}
+        {%- if not loop.last -%}
+            {%- set ns.system_prompt = ns.system_prompt + ", " -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- set ns.system_prompt = ns.system_prompt + "]" -%}
+{%- endif -%}
+{%- if ns.system_prompt -%}
+    {{- "<|im_start|>system\n" + ns.system_prompt + "<|im_end|>\n" -}}
+{%- endif -%}
+{%- for message in messages -%}
+    {%- if message["role"] == "assistant" -%}
+        {%- set ns.last_assistant_index = loop.index0 -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- for message in messages -%}
+    {{- "<|im_start|>" + message.role + "\n" -}}
+    {%- if message.role == "assistant" -%}
+        {%- generation -%}
+        {%- set keep_thinking = preserve_thinking or loop.index0 == ns.last_assistant_index -%}
+        {%- set thinking = message.thinking or message.reasoning or message.reasoning_content -%}
+        {%- set thinking = thinking if thinking is string else "" -%}
+        {%- if thinking and keep_thinking -%}
+            {{- "<think>" + thinking + "</think>" -}}
+        {%- endif -%}
+        {%- set _cfm_tag = "CONTINUE_FINAL_MESSAGE_TAG " -%}
+        {%- set _has_cfm = false -%}
+        {%- set content = "" -%}
+        {%- if message.get("content") -%}
+            {%- set content = parse_content(message.content) -%}
+        {%- endif -%}
+        {%- if not keep_thinking and "</think>" in content -%}
+            {%- set content = content.split("</think>")[-1] | trim -%}
+        {%- endif -%}
+        {%- if content.endswith(_cfm_tag) -%}
+            {%- set _has_cfm = true -%}
+            {%- set _trunc_len = (content | length) - (_cfm_tag | length) -%}
+            {%- set content = content[:_trunc_len] -%}
+        {%- endif -%}
+        {{- content -}}
+        {%- if message.tool_calls -%}
+            {{- render_tool_calls(message.tool_calls) -}}
+        {%- endif -%}
+        {%- if _has_cfm -%}
+            {{- _cfm_tag -}}
+        {%- endif -%}
+        {{- "<|im_end|>\n" -}}
+        {%- endgeneration -%}
+    {%- else %}
+        {%- if message.get("content") -%}
+            {{- parse_content(message["content"]) -}}
+        {%- endif -%}
+        {{- "<|im_end|>\n" -}}
+    {%- endif %}
+{%- endfor -%}
+{%- if add_generation_prompt -%}
+    {{- "<|im_start|>assistant\n" -}}
+{%- endif -%}
+
+INFO:gguf.vocab:Setting clean_spaces to False
+INFO:gguf.gguf_writer:Writing the following files:
+INFO:gguf.gguf_writer:/workspace/work/out/train/gguf/f16.gguf: n_tensors = 148, total_size = 709.1M
+
+
+Writing:   0%|          | 0.00/709M [00:00<?, ?byte/s][A
+
+Writing:  77%|███████▋  | 549M/709M [00:01<00:00, 548Mbyte/s][A
+Writing: 100%|██████████| 709M/709M [00:01<00:00, 535Mbyte/s]
+INFO:hf-to-gguf:Model successfully exported to /workspace/work/out/train/gguf/f16.gguf
+version: 0.7.0-dev (build 0, commit unknown)
+built with GNU 11.4.0 for Linux x86_64
+llama_quantize: quantizing '/workspace/work/out/train/gguf/f16.gguf' to '/workspace/work/out/train/gguf/squiggle-small-lfm25-Q4_0.gguf' as Q4_0
+llama_model_loader: loaded meta data with 29 key-value pairs and 148 tensors from /workspace/work/out/train/gguf/f16.gguf (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = lfm2
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Lfm25
+llama_model_loader: - kv   3:                         general.size_label str              = 354M
+llama_model_loader: - kv   4:                           lfm2.block_count u32              = 16
+llama_model_loader: - kv   5:                        lfm2.context_length u32              = 128000
+llama_model_loader: - kv   6:                      lfm2.embedding_length u32              = 1024
+llama_model_loader: - kv   7:                   lfm2.feed_forward_length u32              = 4608
+llama_model_loader: - kv   8:                  lfm2.attention.head_count u32              = 16
+llama_model_loader: - kv   9:               lfm2.attention.head_count_kv arr[i32,16]      = [0, 0, 8, 0, 0, 8, 0, 0, 8, 0, 8, 0, ...
+llama_model_loader: - kv  10:                        lfm2.rope.freq_base f32              = 1000000.000000
+llama_model_loader: - kv  11:      lfm2.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  12:                          general.file_type u32              = 1
+llama_model_loader: - kv  13:                            lfm2.vocab_size u32              = 65536
+runner error: UnicodeDecodeError('utf-8', b'llama_model_loader: - kv  14:                     lfm2.shortconv.l_cache u32              = 3\nllama_model_loader: - kv  15:               general.quantization_version u32              = 2\nllama_model_loader: - kv  16:                       tokenizer.ggml.model str              = gpt2\nllama_model_loader: - kv  17:                         tokenizer.ggml.pre str              = lfm2\nllama_model_loader: - kv  18:                      tokenizer.ggml.tokens arr[str,65536]   = ["<|pad|>", "<|startoftext|>", "<|end...\nllama_model_loader: - kv  19:                  tokenizer.ggml.token_type arr[i32,65536]   = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...\nllama_model_loader: - kv  20:                      tokenizer.ggml.merges arr[str,63683]   = ["\xc4\x8a \xc4\x8a", "\xc4\x8a \xc4\x8a\xc4\x8a", "\xc4\x8a\xc4\x8a \xc4\x8a", "\xc4\x8a \xc4...\nllama_model_loader: - kv  21:                tokenizer.ggml.bos_token_id u32              = 1\nllama_model_loader: - kv  22:                tokenizer.ggml.eos_token_id u32              = 7\nllama_model_loader: - kv  23:            tokenizer.ggml.padding_token_id u32              = 0\nllama_model_loader: - kv  24:               tokenizer.ggml.add_bos_token bool             = true\nllama_model_loader: - kv  25:               tokenizer.ggml.add_eos_token bool             = false\nllama_model_loader: - kv  26:               tokenizer.ggml.add_sep_token bool             = false\nllama_model_loader: - kv  27:                    tokenizer.chat_template str              = {{- bos_token -}}\\n{%- set preserve_th...\nllama_model_loader: - kv  28:                tokenizer.ggml.clean_spaces bool             = false\nllama_model_loader: - type  f32:   55 tensors\nllama_model_loader: - type  f16:   93 tensors\n', 776, 777, 'invalid continuation byte')
+exit code -1 after 6.0 min

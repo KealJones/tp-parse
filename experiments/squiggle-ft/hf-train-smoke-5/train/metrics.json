@@ -1,0 +1,278 @@
+{
+ "untouched-gemma3": {
+  "families": {
+   "bare_link": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_after": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_need": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_two": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 2,
+    "ok": 0.5,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.0,
+  "trained_ok": 0.03125,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.0,
+  "loops": 0.0,
+  "plans": 0.0,
+  "asks": 0.0,
+  "chat": 1.0,
+  "done_facts": null,
+  "messy": 0.0,
+  "clean": 0.0,
+  "messy_gap": 0.0,
+  "call_capped": 0.0,
+  "gen": {
+   "calls": 36,
+   "out_tokens": 2175,
+   "per_call": 60.416666666666664
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "omg yes",
+    "kind": "chat",
+    "output": "Okay, I understand the instructions. Let's begin!"
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "I am Squiggle and I don't have access to the movie library of today. Therefore, I cannot answer your question about the Black-And-White Film."
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "who committed last in jprichardson/node-fs-extra?",
+    "kind": "chat",
+    "output": "Okay, I'm ready to be Squiggle! Let's start with the information about JPRICHARDSON/NODE-FS-EXTRA."
+   }
+  ]
+ },
+ "lfm25": {
+  "families": {
+   "bare_link": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_after": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_need": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 1,
+    "ok": 1.0,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_two": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 2,
+    "ok": 1.0,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.0,
+  "trained_ok": 0.125,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.5687203791469194,
+  "loops": 0.03333333333333333,
+  "plans": 0.1111111111111111,
+  "asks": 0.0,
+  "chat": 0.0,
+  "done_facts": 1.0,
+  "messy": 0.0,
+  "clean": 0.0,
+  "messy_gap": 0.0,
+  "call_capped": 0.03333333333333333,
+  "gen": {
+   "calls": 210,
+   "out_tokens": 19778,
+   "per_call": 94.18095238095238
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "omg yes",
+    "kind": "chat",
+    "output": "<\nCheck: The user said \"yes\" after the initial confirmation; no prior context about which tool to use.\nNext: Use plan to structure steps before finalizing answers.\n</think>\n```tool_call\n{\"name\": \"plan\", \"arguments\": {\"goal\": \"Request confirmed: Yes, answer with details from the source.\", \"steps\": [\"Find the correct tools for the task (e.g., grep, read_file\").\"}}\n```"
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "<\nRequest: Which of the two films (Black-and-White Film, Flying Padre, Inside Job) is a Black-and-White?\nPieces: 1. The film with \"Black-and-White\". 2. Its title and source.\nKnow: No prior context; must confirm if they're referring to specific movies.\nDon't know: Which one (Flying Padre or Inside Job) the user meant, so need two steps.\nGoal: Find which movie is a Black-and-White film by using plan.\nNext: Call plan with \"Find\" and \"Confirm Film Title\".\n</think>\n```tool_call\n{\"name\": \"plan\", \"arguments\": {\"goal\": \"Identify which of the two films (Flying Padre or Inside Job) is a Black-and-White movie\", \"steps\": [\"Search for 'Black-and-Blue' in film databases\"]\n```"
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "who committed last in jprichardson/node-fs-extra?",
+    "kind": "chat",
+    "output": "<think>\nRequest: Who committed last in the repo \"jprichardson/node-fs-extra\"?\nPieces: 1. Which commit is from the latest email.\nKnow: The tool to find commits; need its name or source.\nDon't know: The repository path, but the user provided it.\nGoal: Identify the last commit message in \"jprichardson/node-fs-extra\".\nNext: Use find to discover tools for locating GitHub repos and their commits.\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"recent commits\"}}\n```"
+   }
+  ]
+ }
+}
