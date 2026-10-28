@@ -126,7 +126,9 @@ and Squiggle at the pinned commit, installs node, and runs `jobs/<script>`.
 | `squiggle-ft-teach-smoke` | `jobs/teach_smoke.sh` | l40sx1, 40 min | $0.60 (done) | 22/40 kept, every web episode failed (find used as web search; search API unreachable), fixed for smoke 2 |
 | `squiggle-ft-teach-smoke-2` | `jobs/teach_smoke.sh` | l40sx1, 40 min | $0.73 (done) | 20/40 kept; web search works now (12/18); 7 episodes lost to `done` without a plan (fixed in the per-call hints) |
 | `squiggle-ft-train-smoke` | `jobs/train_smoke.sh` | l4x1, 45 min | $0.03 (failed) | out of GPU memory in Gemma 3's first backward pass (262k-vocab logits); fixed with chunked loss + SDPA |
-| `squiggle-ft-train-smoke-2` | `jobs/train_smoke.sh` | l4x1, 45 min | ~$0.40 (cap $0.60) | training side on the 243 teacher-smoke examples: 3 bases × 1 epoch, small eval, GGUF + wllama check, no upload |
+| `squiggle-ft-train-smoke-2` | `jobs/train_smoke.sh` | l4x1, 45 min | $0.08 (done) | all three bases trained and evaluated; export died on a missing git (now a pinned llama.cpp tarball) |
+| `squiggle-ft-train-smoke-3` | `jobs/train_smoke.sh` (`BASES=gemma3,lfm25 EPOCHS=4`) | l4x1, 30 min | $0.11 (done) | loss 2.09 → 0.58 (gemma3), 1.96 → 0.42 (lfm25); Q8_0 + wllama 3.8.1 check ran on HF. Found: `copy_tokenizer` copied the base's weights over the trained ones, so every "trained" eval so far was the base (fixed) |
+| `squiggle-ft-train-smoke-4` | `jobs/train_smoke.sh` (`BASES=gemma3,lfm25 EPOCHS=4`) | l4x1, 30 min | ~$0.11 (cap $0.40) | the same with the weights fix and llama-simple/Q4_0 built: trained models' well-formed rate, samples, output length |
 | `squiggle-ft-teach` | `jobs/teach_smoke.sh` (`PLAN=targets`, `KV_FP8=0`, `CONCURRENCY=96`, `MINUTES=115`, `TAG=teach-v1`) | a100-large, 150 min | $0.19 (failed) | died loading data (datasets-server HTTP 429); the source slices are now committed in `data/sources/` |
 | `squiggle-ft-teach-2` | same as `squiggle-ft-teach` | a100-large, 150 min | ~$5.20 (cap $6.25) | the full teacher run on the 830 target episodes (A100: 80 GB, so ~2× the episodes in flight of an L40S) |
 | `squiggle-ft-train` | `jobs/train.sh` | l4x1, ≤180 min | ≤ $2.40 | train the three bases, eval, RESULTS.md, export + upload the winner |
@@ -139,7 +141,8 @@ Teacher data goes to the private dataset `kealjones/squiggle-ft-data/<tag>/` (no
   (app parser, gemmaMessages round trip, Gemma 3 / FunctionGemma / LFM2.5 templates, 4096/1024-token limits, quality
   bar); the step-wise CLI (`teach.mjs`) tested end to end on 5 episodes; `gold.py`'s 11 template episodes all pass;
   the teacher plumbing (format mapping, rejection and rewrite) with a stand-in model; GGUF export fixed and checked:
-  a trained Gemma 3 270M converted to Q8_0 (292 MB) loads and generates in wllama 3.8.1 in headless Chromium.
+  a Gemma 3 270M saved by train.py (it held the base weights, see train-smoke-3; same architecture) converted to Q8_0
+  (292 MB), and LFM2.5-350M (379 MB), load and generate in wllama 3.8.1 in headless Chromium.
 - **On HF so far:** about $1.83 in finished jobs (see the table); the full teacher run and the second training smoke
   are running.
 - **Next:** check the teacher run's keep rate per family, then the training run.
