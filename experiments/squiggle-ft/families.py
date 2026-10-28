@@ -322,7 +322,7 @@ def call_problems(result):
         if not asked:
             for n in computed_numbers_grounded(seg, reply)[:3]:
                 r.append(f"turn {k + 1}: stated a computed number ({n:g}) that no calculate result gave")
-        if "run_js" in used and fam in ("math", "need_math", "hermes_compute", "lookup_then_compute", "math_pair"):
+        if "run_js" in used and fam in ("math", "need_math", "lookup_then_compute", "math_pair"):   # hermes.check picks per request
             r.append(f"turn {k + 1}: computes via run_js (plain arithmetic goes through calculate)")
         if fam in ONE_LOOKUP and planned(seg):
             r.append(f"turn {k + 1}: made a plan for a one-lookup request")
@@ -409,7 +409,9 @@ def unsourced_facts(text, index, names_only=False):
         line = re.sub(r"^\s*(?:[-*+]|\d+[.)])\s+", "", line)          # list markers aren't numbers
         for n in NUMBER.findall(line):
             v = num(n.strip("$%").replace(",", ""))
+            dec = len(n.split(".")[1].rstrip("%")) if "." in n else 0
             if v is not None and not names_only and not any(v * k == x or (x and abs(v * k - x) / abs(x) < 0.01 and k > 1)
+                                                            or (k == 1 and round(x, dec) == v)     # 314.16 for 314.159265
                                                             for x in nums for k in (1, 1e3, 1e6, 1e9)):   # 1.68 million
                 bad.append(f"number {n}")
         for sent in re.split(r"(?<=[.!?:;])\s+", line):
