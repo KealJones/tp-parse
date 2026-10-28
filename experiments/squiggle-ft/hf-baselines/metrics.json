@@ -1,0 +1,278 @@
+{
+ "untouched-lfm25": {
+  "families": {
+   "bare_link": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_after": {
+    "n": 8,
+    "ok": 0.125,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_need": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 16,
+    "ok": 0.3125,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 30,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 23,
+    "ok": 0.6521739130434783,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 12,
+    "ok": 0.25,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_two": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 30,
+    "ok": 0.06666666666666667,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 16,
+    "ok": 0.5,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 16,
+    "ok": 0.125,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.0,
+  "trained_ok": 0.08723958333333334,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.0,
+  "loops": 0.0,
+  "plans": 0.0,
+  "asks": 0.0,
+  "chat": 0.875,
+  "done_facts": null,
+  "messy": 0.0,
+  "clean": 0.0,
+  "messy_gap": 0.0,
+  "call_capped": 0.0,
+  "gen": {
+   "calls": 369,
+   "out_tokens": 35488,
+   "per_call": 96.17344173441734
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "hmm interesting",
+    "kind": "chat",
+    "output": "It looks like today is a Wednesday! If there's anything specific you'd like to explore or if the tool I'm using (perhaps \"a planner\" or \"goal tracking\") needs some clarification, just let me know and we can dive in together. What would you like to do next?"
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "I don't have access to movie databases or content details like that information. Would you like me to help with something else related to movies, schedules, or other topics I can look up?"
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "What version is commander.js at right now?",
+    "kind": "chat",
+    "output": "The provided context does not contain information about the current version of commander.js or any related tool calls and results. Please ensure you have included all necessary documents, such as logs or configuration files. Once I have access to those materials, I will be able to determine what version is currently associated with commander.js using the specified `tool_call`."
+   }
+  ]
+ },
+ "untouched-functiongemma": {
+  "families": {
+   "bare_link": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_after": {
+    "n": 8,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_need": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 30,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 23,
+    "ok": 0.21739130434782608,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 12,
+    "ok": 0.25,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 16,
+    "ok": 0.0625,
+    "strict": 0.0
+   },
+   "repo_two": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 30,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 16,
+    "ok": 0.375,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 16,
+    "ok": 0.0625,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.0,
+  "trained_ok": 0.046875,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.0,
+  "loops": 0.006825938566552901,
+  "plans": 0.0,
+  "asks": 0.0,
+  "chat": 1.0,
+  "done_facts": null,
+  "messy": 0.0,
+  "clean": 0.0,
+  "messy_gap": 0.0,
+  "call_capped": 0.0,
+  "gen": {
+   "calls": 360,
+   "out_tokens": 26652,
+   "per_call": 74.03333333333333
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "hmm interesting",
+    "kind": "chat",
+    "output": "I apologize, but I cannot assist with this request. My current capabilities are limited to assisting Squiggle with planning and finding information using the available tools. I cannot generate or retrieve complex strategic advice or analyses about business strategies like \"interesting.\""
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "I cannot assist with finding movie trivia about specific films like \"Flying Padre\" or \"Inside Job.\" My current capabilities are limited to assisting with tool management tasks using the provided tools."
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "What version is commander.js at right now?",
+    "kind": "chat",
+    "output": "I apologize, but I cannot assist with retrieving current software versions or specifications for different platforms like \"Commander.js.\" My available tools are focused on planning and finding information related to specific applications and services."
+   }
+  ]
+ }
+}
