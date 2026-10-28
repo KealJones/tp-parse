@@ -153,9 +153,40 @@ Only user-side text was written: request templates, with eval-only templates for
 - `plan_follows_recipe` gave false rejections because it compared names and paths. It now compares only the generic
   words of the recipe's numbered steps with the plan (Jaccard ≥ 0.3). On the smoke, recipe_web goes from 0/3 to 2/3
   and recipe_skip stays at 2/3. v1 recipe_repo is unchanged (26/40).
-- chat_mid and personal_mid (train) now lead in with questions that teach-v1's teacher answered and grounded
-  (`data/sources/web_answerable.json`, 45 NQ rows). All 6 smoke failures came from turn 1, on NQ golds that had
-  drifted. The eval split still draws from the NQ pool.
+- chat_mid and personal_mid: the first turn (a lookup) only sets the scene. Its calls aren't training examples, and
+  its answer isn't held to the NQ gold. All 6 smoke failures came from NQ golds that had drifted (3.97 vs 3.99
+  degrees). It still has to look the question up and pass the quality bar.
+
+**After the coordinator's audit of the 50 kept smoke examples:**
+- **Every fact comes from the turn.** Every name, number and quoted string in a reply or `done` result must appear in
+  that turn's prompt or tool results (`families.unsourced_facts`; whole-word, case-insensitive).
+  - A name is a capitalised word that real text mostly writes in lowercase does not count as; the list is
+    `data/sources/common_words.txt`, built from dolly-15k by `make_common.py`. Sentence-initial words are skipped.
+  - Source labels (Wikipedia, git log, package.json) are allowed.
+  - Tolerances: dashed year ranges, "2026–27", plurals, and "1.68 million" for 1,683,000.
+  - Personal-advice turns check names only. Their quotes are wording to try and their numbers are suggestions.
+  - On the smoke it rejects only need_web-1 ("the Iroquois Confederacy"). On teach-v1 it rejects 7 of 404 kept,
+    all real catches: "August 1962" for Spider-Man from memory; "Michigan, USA" and "NHL" that no result had; candidate
+    names inside need questions.
+- **No source question twice.** make_sets draws through a filter:
+  - no question is used twice within a run, across families;
+  - a new training run never uses a question from the eval sources (2,702) or one of teach-v1's 245 kept row-drawn
+    episodes, which are reused in training. teach-v1's sets are rebuilt to find them, and every rebuilt gold matches.
+  - web_fact_retry's questions are kept for that family.
+  - Made-up and near-miss words repeat on purpose, in different sentences.
+  - The v1 plans (train, targets, round2) rebuild without the filter.
+- **Plan effects:** v2 now attempts 790. web_fact_retry gets 34: the other 34 are kept teach-v1 episodes. recipe_web
+  gets 36: "born first" pairs now also come from hotpot rows 2500–5499, and recipe_web draws before
+  lookup_then_compute. personal and personal_mid go to 45 + 30, the 75 train requests, none used twice.
+- **One rule for clone + one read:** cloning is setup, so clone + one read is one lookup and gets no plan. recipe_skip
+  is in ONE_LOOKUP; TEACHER.md and the teacher rules say so. Smoke recipe_skip-1 planned and is now rejected.
+- **Teacher hints:**
+  - repo_chain: plan in order, then read the defining file and answer from read_file, not grep.
+  - lookup_then_compute: fetch the Wikipedia page by its title first.
+  - Every number goes through calculate.
+  - List tasks run as run_js code.
+  - Check quotes a calculate or run_js result.
+  - A near-miss word is quoted as written and never silently corrected.
 
 **Chat template.** `template_check.py` compares the HF chat template with what `convert_hf_to_gguf.py` writes.
 - selftest runs it for every `--tokenizers` base.

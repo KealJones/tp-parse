@@ -326,6 +326,8 @@ def call_problems(result):
             r.append(f"turn {k + 1}: computes via run_js (plain arithmetic goes through calculate)")
         if fam in ONE_LOOKUP and planned(seg):
             r.append(f"turn {k + 1}: made a plan for a one-lookup request")
+        for where, f in reply_unsourced(seg, reply, (fam, k) in PERSONAL)[:3]:
+            r.append(f"turn {k + 1}: the {where} states a fact no prompt or tool result of the turn has: {f}")
         for d in done_ungrounded(seg, req)[:2]:
             r.append(f"turn {k + 1}: a done result carries nothing from this step's results or the request: {d!r}")
     return r
@@ -350,6 +352,100 @@ def done_ungrounded(seg, request=""):
             if concrete and not (concrete & (subtoks_set(seen) | subtoks_set(rq))):
                 bad.append(r[:60])
     return bad
+
+
+# ── every fact in a reply comes from the turn (AUDIT_V1 fix #1, after need_web-1 in the v2 smoke) ─────────────
+_COMMON = None
+SOURCE_LABELS = {"wikipedia", "github", "git", "log", "readme", "json", "package", "pyproject", "npm", "pypi", "squiggle", "markdown"}
+GENERIC_CAPS = {"url", "id", "api", "json", "html", "css", "pdf", "usb", "ok", "faq", "cli", "ui", "ai", "pr", "cpu", "gpu", "ram",
+                "utc", "csv", "sql", "http", "https", "ssh", "os", "app", "tv", "dm", "fyi", "asap", "etc", "eg", "ie", "tl", "dr"}
+QUOTE = re.compile(r"\"([^\"\n]{3,300})\"|“([^”\n]{3,300})”|`([^`\n]{2,200})`")
+WORD = re.compile(r"[^\W\d_][\w'’]*")
+
+
+def common_words():
+    global _COMMON
+    if _COMMON is None:
+        _COMMON = set((HERE / "data" / "sources" / "common_words.txt").read_text().split())
+    return _COMMON
+
+
+def fold(s):
+    """Lowercase ascii with JSON escapes decoded, for whole-word, case-insensitive matching."""
+    s = re.sub(r"\\u([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), str(s or ""))
+    s = re.sub(r"\\[ntr]", " ", s).replace('\\"', '"').replace("\\/", "/")
+    s = re.sub(r"[\u2010-\u2015\u2212]", "-", s).replace("\u00a0", " ")     # 1975–1979 keeps both years
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower().replace("’", "'")
+
+
+def source_index(texts):
+    """(words, numbers, flat text) of everything the model was shown."""
+    t = fold("\n".join(texts))
+    words = set(re.findall(r"[a-z0-9]+", t))
+    t = re.sub(r"(?<![\d-])(\d{2})(\d{2})-(\d{2})(?![\d-])",                           # the 2026-27 season: 2027 too
+               lambda m: m.group(0) + (f" {m.group(1)}{m.group(3)}" if m.group(3) > m.group(2) else ""), t)
+    nums = {num(n.strip("$%")) for n in NUMBER.findall(re.sub(r"(?<=\d),(?=\d{3})", "", t))} - {None}
+    return words, nums, " " + re.sub(r"[^a-z0-9]+", " ", t) + " "
+
+
+def unsourced_facts(text, index, names_only=False):
+    """Names (capitalised words that real text mostly writes in lowercase don't count), numbers and quoted strings
+    in text that appear nowhere in index (source_index of the prompt and the tool results), whole-word and
+    case-insensitive. A source's own label (Wikipedia, git log, package.json) is always allowed. names_only is for
+    personal advice, where a quote is wording to try ("I'm here if you want to talk") and a number is a suggestion
+    ("step outside for 10 minutes"), not a fact; a name there is still a claim."""
+    words, nums, flat = index
+    common, bad = common_words(), []
+    body = re.sub(r"https?://\S+", " ", text or "")
+    if names_only:
+        body = QUOTE.sub(" ", body)     # wording to try, not a claim
+    for m in ([] if names_only else QUOTE.finditer(body)):
+        q = next(g for g in m.groups() if g)
+        for piece in re.split(r"\[\s*(?:\.\.\.|…)\s*\]|\.\.\.|…", q):
+            pf = " " + re.sub(r"[^a-z0-9]+", " ", fold(piece)).strip() + " "
+            if len(pf.strip()) >= 3 and pf not in flat:
+                bad.append(f'quote "{piece.strip()[:50]}"')
+    for line in body.splitlines():
+        line = re.sub(r"^\s*(?:[-*+]|\d+[.)])\s+", "", line)          # list markers aren't numbers
+        for n in NUMBER.findall(line):
+            v = num(n.strip("$%").replace(",", ""))
+            if v is not None and not names_only and not any(v * k == x or (x and abs(v * k - x) / abs(x) < 0.01 and k > 1)
+                                                            for x in nums for k in (1, 1e3, 1e6, 1e9)):   # 1.68 million
+                bad.append(f"number {n}")
+        for sent in re.split(r"(?<=[.!?:;])\s+", line):
+          for j, w in enumerate(WORD.findall(sent)):
+            if not w[0].isupper() or len(w) < 2 or j == 0:          # sentence-initial words aren't judged
+                continue
+            base = re.sub(r"['’](s|re|ve|ll|d|m|t)?$", "", w).lower()
+            parts = [x for x in re.split(r"['’]", fold(base)) if x]
+            if (not parts or len(base) < 2 or base in common or fold(base).replace("'", "") in common or base in SOURCE_LABELS
+                    or base in GENERIC_CAPS):
+                continue
+            if not all(x in words or x.rstrip("s") in words or x + "s" in words or x[:-2] in words and x.endswith("es")
+                       for x in parts):
+                bad.append(f"name {w}")
+    return list(dict.fromkeys(bad))
+
+
+def turn_sources(seg, upto=None):
+    """What the model was shown in this turn: every prompt message except its own outputs from this turn (the first
+    call's prompt holds the history, earlier replies included)."""
+    texts = []
+    for j, x in enumerate(seg if upto is None else seg[:upto + 1]):
+        for m in x["messages"] or []:
+            if j == 0 or m["role"] != "assistant":
+                texts.append(m["content"] if isinstance(m["content"], str) else json.dumps(m["content"]))
+    return texts
+
+
+def reply_unsourced(seg, reply, personal=False):
+    """[(where, fact)] for the reply and every done result of the turn."""
+    out = [("reply", f) for f in unsourced_facts(reply, source_index(turn_sources(seg)), personal)] if seg else []
+    for j, x in enumerate(seg):
+        for c in x["parsed"]["calls"][:1]:
+            if c["name"] == "done":
+                out += [("done", f) for f in unsourced_facts(str(c["arguments"].get("result", "")), source_index(turn_sources(seg, j)))]
+    return out
 
 
 def subtoks(text):
@@ -1502,7 +1598,8 @@ def check_personal(res):
 
 
 # ── v2 families (CORPUS_V2 §2; trimmed plan). Only user-side text here: request templates and real data. ─────────
-V2_ONE_LOOKUP = {"web_fact_retry", "need_web", "math_pair", "personal_tool", "chat_mid", "personal_mid", "need_schedule"}
+V2_ONE_LOOKUP = {"web_fact_retry", "need_web", "math_pair", "personal_tool", "chat_mid", "personal_mid", "need_schedule",
+                 "recipe_skip"}    # recipe_skip: what's left after skipping the version step is clone + one git_log
 
 
 def web_answer_problems(res, k, answers, need_lookup=True):
@@ -1923,8 +2020,26 @@ def make_chat_mid(rng, row, i, split="train"):
     return _ep("chat_mid", i, ep.first, ep.gold, user=user, messy_=ep.meta["messy"])
 
 
+# chat_mid and personal_mid open with a lookup that only sets the scene: its calls aren't training examples
+# (build.examples skips turn 1), so its answer isn't held to the NQ gold (golds drift: 3.97 vs 3.99 degrees, all six
+# smoke failures). It still has to look the question up and pass the quality bar, so the history the taught turn sees
+# is a real, grounded exchange.
+LEAD_IN_FAMS = {"chat_mid", "personal_mid"}
+
+
+def lead_in_problems(res):
+    seg = (turn_calls(res) or [[]])[0]
+    rep = reply_of(res, 0)
+    r = []
+    if not (WEB & set(names(seg))):
+        r.append("turn 1: answered without looking it up")
+    if not rep.strip():
+        r.append("turn 1: no reply")
+    return not r, r
+
+
 def check_chat_mid(res):
-    ok0, r0 = web_answer_problems(res, 0, res["gold"]["answers"])
+    ok0, r0 = lead_in_problems(res)
     reasons = base_check(res) + r0
     if len(res.get("turns", [])) < 2:
         return {"ok": False, "strict": False, "reasons": reasons + ["the chat turn never ran"]}
@@ -1971,7 +2086,7 @@ def personal_turn_problems(res, k):
 
 
 def check_personal_mid(res):
-    ok0, r0 = web_answer_problems(res, 0, res["gold"]["answers"])
+    ok0, r0 = lead_in_problems(res)
     reasons = base_check(res) + r0
     if len(res.get("turns", [])) < 2:
         return {"ok": False, "strict": False, "reasons": reasons + ["the personal turn never ran"]}

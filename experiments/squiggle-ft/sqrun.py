@@ -176,7 +176,7 @@ class Runner:
                 if deadline and time.time() > deadline:
                     return
                 try:
-                    r = await asyncio.wait_for(self._episode(ep), 1800)
+                    r = await asyncio.wait_for(self._episode(ep), getattr(self, "episode_timeout", 1800))
                 except asyncio.TimeoutError:
                     r = {"id": ep.id, "family": ep.family, "first": ep.first, "gold": ep.gold, "meta": ep.meta, "turns": [], "calls": [], "error": "episode timed out"}
                 results.append(r)

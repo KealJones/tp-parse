@@ -7,5 +7,6 @@ nvidia-smi --query-gpu=name,memory.total --format=csv
 python build.py teach --plan ${PLAN:-train} --scale ${SCALE:-0.025} --minutes ${MINUTES:-15} --concurrency ${CONCURRENCY:-48} ${SHARD:+--shard $SHARD} --out $OUT/teach --work work
 python showcase.py $OUT/teach/teacher_results.jsonl.gz $OUT/TEACHER_EXAMPLES.md
 python hub.py up kealjones/squiggle-ft-data ${TAG:-teach-smoke} $OUT/teach/train_examples.jsonl.gz $OUT/teach/teacher_results.jsonl.gz
+[ "${SELFTEST:-1}" = 0 ] && exit 0          # a capped mini-smoke skips the tokenizer self-test (it runs locally)
 pip install -q -U "transformers>=5,<6"     # vLLM 0.11 needed 4.x; LFM2.5's tokenizer needs 5.x
 python selftest.py $OUT/teach/train_examples.jsonl.gz --tokenizers unsloth/gemma-3-270m-it,LiquidAI/LFM2.5-350M > $OUT/selftest.txt 2>&1; tail -12 $OUT/selftest.txt
