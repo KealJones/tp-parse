@@ -149,6 +149,14 @@ Only user-side text was written: request templates, with eval-only templates for
 - checker_tests, selftest (gold, worked, few-shots, and the 1,956 re-checked v1 calls) and harness_tests are all green.
 - The v2 smoke (squiggle-ft-teach-smoke-v2a) ran on ab248b4.
 
+**After the smoke (14/51 kept):**
+- `plan_follows_recipe` gave false rejections because it compared names and paths. It now compares only the generic
+  words of the recipe's numbered steps with the plan (Jaccard ≥ 0.3). On the smoke, recipe_web goes from 0/3 to 2/3
+  and recipe_skip stays at 2/3. v1 recipe_repo is unchanged (26/40).
+- chat_mid and personal_mid (train) now lead in with questions that teach-v1's teacher answered and grounded
+  (`data/sources/web_answerable.json`, 45 NQ rows). All 6 smoke failures came from turn 1, on NQ golds that had
+  drifted. The eval split still draws from the NQ pool.
+
 **Chat template.** `template_check.py` compares the HF chat template with what `convert_hf_to_gguf.py` writes.
 - selftest runs it for every `--tokenizers` base.
 - export runs it against the produced GGUF.
