@@ -128,6 +128,20 @@ def looked_up(messages):
     return names
 
 
+def is_looping(text, n=8, times=3):
+    """engine-wllama.js isLooping: some run of 8 words appears 3 times (the phone stops such a reply as a loop)."""
+    words = re.findall(r"[a-z0-9_']+", str(text).lower())
+    if len(words) < n * times:
+        return False
+    seen = {}
+    for i in range(len(words) - n + 1):
+        k = " ".join(words[i:i + n])
+        seen[k] = seen.get(k, 0) + 1
+        if seen[k] >= times:
+            return True
+    return False
+
+
 def thinking_problems(thinking, ckind):
     p = []
     t = thinking.strip()
@@ -157,6 +171,9 @@ def thinking_problems(thinking, ckind):
 def output_problems(output, messages, kind, plain=False):
     """Every rule that a single model output must pass. Returns (problems, call or None)."""
     ckind = call_kind(messages, kind, plain)
+    if is_looping(output):
+        return ["the same 8 words appear 3 times in this output, so the phone's anti-loop guard would cut it off; don't repeat "
+                "phrases (e.g. the plan steps) word for word in the thinking"], None
     thinking, after = split_output(output)
     if thinking is None:
         return ["output must start with <think> and close it with </think>"], None
@@ -198,6 +215,7 @@ def output_problems(output, messages, kind, plain=False):
 
 
 SOURCE = re.compile(r"https?://|wikipedia|\bsource|according to|\bfrom (the )?(page|article|repo|readme|package\.json|git log|log|commit)|"
+                    r"\((?:from|via|per|source:?|see) [^)]{3,}\)|\bfrom [A-Z][\w.'&-]+|"
                     r"[\w.-]+/[\w.-]+|\b[\w-]+\.(json|md|js|py|ts|toml)\b|\bran\b|\bcalculated\b|\bcomputed\b|\bsandbox\b", re.I)
 
 

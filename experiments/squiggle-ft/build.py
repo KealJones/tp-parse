@@ -179,8 +179,11 @@ def teach(args):
     plan = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "eval": EVAL_PLAN}[args.plan]
     src = load_sources(work, "eval" if args.plan == "eval" else "train")
     eps = make_sets(src, plan, seed=args.seed, scale=args.scale)
+    if args.shard:
+        i, n = map(int, args.shard.split("/"))
+        eps = eps[i::n]
     print(f"{len(eps)} episodes: {dict(collections.Counter(e.family for e in eps))}", flush=True)
-    teacher = VLLMTeacher(args.teacher, max_tokens=args.max_tokens, max_seqs=max(64, args.concurrency))
+    teacher = VLLMTeacher(args.teacher, max_tokens=args.max_tokens, max_seqs=max(64, args.concurrency), kv_fp8=args.kv_fp8)
     source = "teacher:" + args.teacher
     runner = Runner(teacher, args.squiggle, work, concurrency=args.concurrency, max_calls=40)
     t0 = time.time()
@@ -217,13 +220,15 @@ def teach(args):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["teach", "sets"])
-    ap.add_argument("--teacher", default="Qwen/Qwen3-30B-A3B-Thinking-2507-FP8")
+    ap.add_argument("--teacher", default=os.environ.get("TEACHER_MODEL", "Qwen/Qwen3-30B-A3B-Thinking-2507-FP8"))
     ap.add_argument("--plan", default="train", choices=["train", "targets", "eval"])
     ap.add_argument("--scale", type=float, default=1.0)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--minutes", type=float, default=120)
     ap.add_argument("--concurrency", type=int, default=48)
     ap.add_argument("--max-tokens", type=int, default=8192)
+    ap.add_argument("--shard", default="", help="i/n: run every n-th episode starting at i (split one run over several jobs)")
+    ap.add_argument("--kv-fp8", type=int, default=int(os.environ.get("KV_FP8", "1")), help="fp8 KV cache (1 on L40S; 0 on A100, whose 80 GB has room for bf16)")
     ap.add_argument("--work", default=str(HERE / "work"))
     ap.add_argument("--out", default="out")
     ap.add_argument("--squiggle", default=os.environ.get("SQUIGGLE_DIR", str(HERE / "squiggle")))

@@ -115,7 +115,7 @@ def from_visible(answer):
     return f"<think>\n{m.group(1).strip()}\n</think>\n{body}"
 
 
-def few_shot(path=HERE / "examples" / "gold.jsonl", ids=("gold-chat-0", "gold-web_fact-ff", "gold-web_compare-born", "gold-need_repo-mitt", "gold-repo_two-clsx")):
+def few_shot(path=HERE / "examples" / "gold.jsonl", ids=("gold-chat-0", "gold-web_fact-ff", "gold-web_compare-born", "gold-need_repo-mitt", "gold-recipe_repo-cors")):
     """Examples for the teacher, from gold.py's template episodes: the end of each prompt and the answer."""
     rows = {json.loads(l)["id"]: json.loads(l) for l in open(path)}
     parts = ["EXAMPLES (written from templates; your answers should read like these, adapted to each case):"]
@@ -186,6 +186,9 @@ class VLLMTeacher:
                  if req["kind"] == "chat" and not plain else
                  "Do only the current step: don't start lookups that belong to other steps. End it with done(result).\n"
                  if req["kind"] == "step" else "")
+        if ck == "request" and "## Recipe from a similar task" in msgs_phone[0]["content"]:
+            phase += ("The prompt has a \"Recipe from a similar task\": make your plan from its steps, filled in for this request "
+                      "(skip any step the prompt already answers), and say so in Know/Plan.\n")
         user = (f"Call {req['index'] + 1} of this episode. You are answering {HOW[ck]}.\n{phase}"
                 f"Tools the phone model has looked up: {', '.join(looked) if looked else 'none yet (use find to look one up)'}.\n"
                 f"Everything the phone model reads, rendered with its chat template:\n<phone_prompt>\n{rendered}\n</phone_prompt>\n"
