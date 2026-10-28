@@ -1,0 +1,21 @@
+{
+ "slug": "squiggle-ft-teach-smoke",
+ "flavor": "l40sx1",
+ "timeout": "40m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "python boot.py teach_smoke.sh",
+ "pip": [
+  "vllm==0.11.0",
+  "transformers>=4.57,<5",
+  "pyarrow"
+ ],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-teach-smoke",
+ "note": "open-weights teacher smoke (Qwen3-30B-A3B-Thinking-2507-FP8 on vLLM, ~40 episodes, 15 min of generation); expected ~$0.75, cap $1.20 (40 min of l40sx1 at $1.80/h)",
+ "job_id": "6ae165233fb22a235dd38fa7",
+ "url": "https://huggingface.co/jobs/kealjones/6ae165233fb22a235dd38fa7",
+ "started": "2026-10-28T02:59:47+00:00",
+ "sha": "e8b71b8f399c946bfbcf49ce17fb28ee899febc3"
+}
