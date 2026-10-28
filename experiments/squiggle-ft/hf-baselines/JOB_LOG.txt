@@ -1,0 +1,237 @@
+job 6ae1acf041e90535df770a3f on gpu: squiggle-ft-baselines at 396259f
+fetched experiments/squiggle-ft/jobs/boot.py
+Wed Oct 28 08:07:50 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L4                      On  |   00000000:31:00.0 Off |                    0 |
+| N/A   39C    P8             17W /   72W |       0MiB /  23034MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+debconf: delaying package configuration, since apt-utils is not installed
+boot: node v22.23.4, squiggle e9c27cabe7c15ae72242d6f62ea02710d57af535, tp-parse 396259f, setup took 13 s
++ python train.py --eval-only --no-untouched --eval-bases lfm25,functiongemma --eval-plan v1 --eval-minutes 20 --out /workspace/work/out --work work --hub-repo ''
+08:08:13 eval set: 293 episodes
+
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 7.16MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 3.50MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][A
+tokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 23.1MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 15.7MB/s]
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  709MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: █▍        |  102MB, 8.32MB/s  
+
+model.safetensors: reconstructing file:   2%|▏         | 15.2MB /  709MB, 1.16MB/s  [A
+model.safetensors: downloading bytes: ██▉       |  209MB, 18.0MB/s  
+
+model.safetensors: reconstructing file:  36%|███▋      |  258MB /  709MB, 21.9MB/s  [A
+model.safetensors: downloading bytes: █████▍    |  385MB, 32.0MB/s  
+
+model.safetensors: reconstructing file:  64%|██████▍   |  453MB /  709MB, 37.1MB/s  [A
+model.safetensors: downloading bytes: ███████▊  |  550MB, 42.2MB/s  
+
+model.safetensors: reconstructing file:  94%|█████████▍|  670MB /  709MB, 51.4MB/s  [A
+model.safetensors: downloading bytes: ██████████|  610MB, 47.8MB/s  
+model.safetensors: downloading bytes: ██████████|  610MB, 47.8MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  709MB /  709MB, 56.0MB/s  
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 6735.94it/s]
+
+
+generation_config.json:   0%|          | 0.00/134 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 134/134 [00:00<00:00, 377kB/s]
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+08:10:09 [untouched-lfm25] eval 293 episodes in 1.8 min; student {'calls': 369, 'too_long': 0, 'out_tokens': 35488}
+
+
+config.json:   0%|          | 0.00/1.35k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 1.35k/1.35k [00:00<00:00, 3.39MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/1.17M [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 1.17M/1.17M [00:00<00:00, 41.8MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 33.4MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 8.82MB,  877kB/s  
+tokenizer.json: downloading bytes: ██████████| 8.82MB,  877kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 33.4MB / 33.4MB, 3.32MB/s  
+
+
+added_tokens.json:   0%|          | 0.00/63.0 [00:00<?, ?B/s][A
+added_tokens.json: 100%|██████████| 63.0/63.0 [00:00<00:00, 123kB/s]
+
+
+special_tokens_map.json:   0%|          | 0.00/714 [00:00<?, ?B/s][A
+special_tokens_map.json: 100%|██████████| 714/714 [00:00<00:00, 2.02MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/13.9k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 13.9k/13.9k [00:00<00:00, 23.0MB/s]
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  536MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: ████████▏ |  441MB, 35.3MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  536MB /  536MB            [A
+model.safetensors: downloading bytes: ██████████|  471MB, 44.2MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 44.2MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  536MB /  536MB, 51.9MB/s  
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 5033.44it/s]
+
+
+generation_config.json:   0%|          | 0.00/205 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 205/205 [00:00<00:00, 1.25MB/s]
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+08:16:17 [untouched-functiongemma] eval 293 episodes in 6.1 min; student {'calls': 360, 'too_long': 0, 'out_tokens': 26652}
+08:16:17 # Squiggle small-model fine-tune: results
+
+## Strict score per task type (right answer and the habit)
+
+| type | habit | untouched-lfm25 | untouched-functiongemma |
+| --- | --- | --- | --- |
+| bare_link | read a bare link | 0% (0%) | 0% (0%) |
+| chat | plain chat stays plain | 0% (0%) | 0% (0%) |
+| chat_after | a task, then plain thanks | 0% (12%) | 0% (0%) |
+| hermes_compute | compute (Hermes requests) | 0% (0%) | 0% (0%) |
+| hermes_need | ask for missing input (Hermes requests) | 0% (0%) | 0% (0%) |
+| math | compute with run_js | 0% (31%) | 0% (0%) |
+| memory_repo | use memory, don't ask | 0% (0%) | 0% (0%) |
+| need_math (held out) | ask for a missing number (held out) | 0% (0%) | 0% (0%) |
+| need_repo | ask which repo | 0% (0%) | 0% (0%) |
+| past_chat | find an earlier chat | 0% (8%) | 0% (0%) |
+| recipe_compare (held out) | use a recipe on web lookups (held out) | 0% (65%) | 0% (22%) |
+| recipe_repo | use a recipe | 0% (0%) | 0% (0%) |
+| refs | follow 'it' to the last repo | 0% (25%) | 0% (25%) |
+| repo_fact | look in the repo | 0% (0%) | 0% (6%) |
+| repo_two | plan a two-part repo task | 0% (0%) | 0% (0%) |
+| repo_where | find a definition | 0% (0%) | 0% (0%) |
+| web_bridge (held out) | plan a two-hop lookup (held out) | 0% (7%) | 0% (0%) |
+| web_compare | plan + look up two things | 0% (50%) | 0% (38%) |
+| web_fact | look it up | 0% (12%) | 0% (6%) |
+
+(right answer only in brackets)
+
+## Habits
+
+| measure | untouched-lfm25 | untouched-functiongemma |
+| --- | --- | --- |
+| trained types, strict mean | 0% | 0% |
+| trained types, right answer | 9% | 5% |
+| held-out types, strict mean | 0% | 0% |
+| well-formed calls | 0% | 0% |
+| episodes looping / call-capped | 0% | 1% |
+| plans multi-step requests | 0% | 0% |
+| asks (need) when info is missing | 0% | 0% |
+| plain chat stays plain | 88% | 100% |
+| done results carry the answer | - | - |
+| clean requests, strict | 0% | 0% |
+| messy requests, strict | 0% | 0% |
+| episodes evaluated | 293 | 293 |
+
+## Output length
+
+Generated tokens per model call (thinking + call or reply). Seconds per call at ~15 tokens/s on a phone CPU.
+
+| model | calls | tokens per call | seconds per call |
+| --- | --- | --- | --- |
+| untouched-lfm25 | 369 | 96 | 6 |
+| untouched-functiongemma | 360 | 74 | 5 |
+
+## Sample generations
+
+The first model call of three eval episodes per model, raw (as the harness got it).
+
+**untouched-lfm25**, `chat-0` (chat): 'hmm interesting'
+
+````text
+It looks like today is a Wednesday! If there's anything specific you'd like to explore or if the tool I'm using (perhaps "a planner" or "goal tracking") needs some clarification, just let me know and we can dive in together. What would you like to do next?
+````
+
+**untouched-lfm25**, `web_compare-0` (chat): 'Which is a black-and-white film, Flying Padre or Inside Job?'
+
+````text
+I don't have access to movie databases or content details like that information. Would you like me to help with something else related to movies, schedules, or other topics I can look up?
+````
+
+**untouched-lfm25**, `repo_fact-0` (chat): 'What version is commander.js at right now?'
+
+````text
+The provided context does not contain information about the current version of commander.js or any related tool calls and results. Please ensure you have included all necessary documents, such as logs or configuration files. Once I have access to those materials, I will be able to determine what version is currently associated with commander.js using the specified `tool_call`.
+````
+
+**untouched-functiongemma**, `chat-0` (chat): 'hmm interesting'
+
+````text
+I apologize, but I cannot assist with this request. My current capabilities are limited to assisting Squiggle with planning and finding information using the available tools. I cannot generate or retrieve complex strategic advice or analyses about business strategies like "interesting."
+````
+
+**untouched-functiongemma**, `web_compare-0` (chat): 'Which is a black-and-white film, Flying Padre or Inside Job?'
+
+````text
+I cannot assist with finding movie trivia about specific films like "Flying Padre" or "Inside Job." My current capabilities are limited to assisting with tool management tasks using the provided tools.
+````
+
+**untouched-functiongemma**, `repo_fact-0` (chat): 'What version is commander.js at right now?'
+
+````text
+I apologize, but I cannot assist with retrieving current software versions or specifications for different platforms like "Commander.js." My available tools are focused on planning and finding information related to specific applications and services.
+````
+
+
+## Notes
+
+
+exit code 0 after 8.7 min
