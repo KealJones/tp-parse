@@ -10,6 +10,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import families as F
+import quality as Q
 import sources as S
 from sqrun import Episode, Runner, ScriptBackend
 
@@ -123,6 +124,93 @@ def need_repo_policy(repo):
     return act
 
 
+def page_text(req):
+    r = result(req, "fetch_url") or {}
+    if "partial" in r:
+        t = r["partial"]
+    else:
+        t = r.get("text", "")
+    return re.sub(r"\\n|\s+", " ", t)
+
+
+def sentence_with(text, needle, width=90):
+    """The words around the first place the page says `needle` (at most ~2*width characters)."""
+    i = text.find(needle)
+    if i < 0:
+        return None
+    a, b = max(0, i - width), min(len(text), i + len(needle) + width)
+    a = text.find(" ", a) + 1 if a else 0
+    b = text.rfind(" ", 0, b) if b < len(text) else b
+    return ("…" if a else "") + text[a:b].strip() + "…"
+
+
+def web_fact_policy(question, query, title_hint, answer):
+    def act(req):
+        last = last_user(req)
+        if not last.startswith("Result of "):
+            return out([f"Request: {question}", "Pieces: 1. the year it came out.",
+                        "Know: only the question; nothing in the prompt says when.",
+                        "Don't know: the release date; I'd be guessing, so I'll look it up on the web.",
+                        "Goal: Say when the first Fast and Furious film came out.",
+                        "Next: find only searches my tools, memory and past chats, so look up the web search tool."],
+                       "find", {"query": "search the web"})
+        if result(req, "find"):
+            return out(["Check: find gave me web_search and fetch_url.", f"Next: search the web for \"{query}\"."], "web_search", {"query": query})
+        if result(req, "web_search"):
+            res = result(req, "web_search").get("results", "")
+            m = re.search(r"\d+\. ([^\n]*" + re.escape(title_hint) + r"[^\n]*)\n\s+(https://\S+)", res)
+            return out([f"Check: result \"{m.group(1)}\" is the page for the first film; the snippets don't give the date clearly.", "Next: read that page."],
+                       "fetch_url", {"url": m.group(2)})
+        text = page_text(req)
+        text = text[text.find('"text":'):] if '"text":' in text else text
+        m = re.search(r"Release dates?\s*(?:\\n|\s)*([A-Z][a-z]+ \d{1,2}, " + re.escape(answer) + r"[^\\]{0,40})", text)
+        sent = ("Release dates: " + m.group(1).strip()) if m else sentence_with(text, answer).replace('"', "'")
+        return out([f"Check: this is the Wikipedia page for the first film, and it says: \"{sent}\"", "Next: answer with the date and cite the page."],
+                   reply=f"The first Fast and Furious film, The Fast and the Furious, came out on {(m.group(1).split(' (')[0]) if m else answer} (from its Wikipedia page).")
+    return act
+
+
+def born(text):
+    m = re.search(r"\b((?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, (\d{4}))", text)
+    return (m.group(1), int(m.group(2))) if m else (None, None)
+
+
+def web_compare_policy(a, b):
+    def act(req):
+        last = last_user(req)
+        first = first_user(req)
+        if "Every step is done" in first:
+            sysm = req["messages"][0]["content"]
+            ya = re.search(re.escape(a) + r": born [A-Za-z]+ \d+, (\d{4})", sysm)
+            yb = re.search(re.escape(b) + r": born [A-Za-z]+ \d+, (\d{4})", sysm)
+            older, younger = (a, b) if int(ya.group(1)) < int(yb.group(1)) else (b, a)
+            return out([f"Answer: step results give {a} born {ya.group(1)} and {b} born {yb.group(1)}; {older} was born first. Cite both Wikipedia pages."],
+                       reply=f"{older} was born first: {a} was born in {ya.group(1)} and {b} in {yb.group(1)} (from their Wikipedia pages).")
+        step = re.search(r"Work on step (\d+) now", first)
+        if not step:
+            return out([f"Request: Who was born first, {a} or {b}.", f"Pieces: 1. {a}'s birth date. 2. {b}'s birth date. 3. which is earlier.",
+                        "Know: only the two names.", "Don't know: both birth dates; I'd be guessing.",
+                        f"Goal: Say whether {a} or {b} was born first.",
+                        f"Plan: two separate lookups, so a plan: 1. find {a}'s birth date, 2. find {b}'s birth date; the reply compares them."],
+                       "plan", {"goal": f"Find who was born first: {a} or {b}", "steps": [f"Find {a}'s birth date", f"Find {b}'s birth date"]})
+        who = a if step.group(1) == "1" else b
+        url = "https://en.wikipedia.org/wiki/" + who.replace(" ", "_")
+        if not last.startswith("Result of "):
+            tools = Q.looked_up(req["messages"])
+            if "fetch_url" in tools:
+                return out([f"Step: {step.group(1)} of 2, {who}'s birth date; the reply needs the exact date.",
+                            "Know: fetch_url is already looked up, and Wikipedia has a page per person.",
+                            f"Next: read {who}'s Wikipedia page."], "fetch_url", {"url": url})
+            return out([f"Step: {step.group(1)} of 2, {who}'s birth date; the reply needs the exact date.",
+                        "Know: no web tools looked up yet.", "Next: look up the tool that reads web pages."], "find", {"query": "read a web page"})
+        if result(req, "find"):
+            return out(["Check: find gave me fetch_url.", f"Next: read {who}'s Wikipedia page."], "fetch_url", {"url": url})
+        date, year = born(page_text(req))
+        return out([f"Check: this is the Wikipedia page for {who}, and the opening gives the birth date {date}.", "Next: step done; record the date and the source."],
+                   "done", {"result": f"{who}: born {date} (Wikipedia: {who})"})
+    return act
+
+
 CHAT_REPLIES = {"hey whats up lol": ("A casual hello; nothing to look up, just a short friendly reply.", "Not much! Just here if you need anything. What's up with you?"),
                 "thanks, that worked": ("They're saying thanks; it worked. A short warm reply.", "Glad it worked! Shout if anything else comes up."),
                 "good night squiggle": ("A goodnight; plain chat, a short reply.", "Good night! Sleep well.")}
@@ -150,6 +238,11 @@ def episodes(facts):
         eps.append((Episode(id="gold-need_repo-mitt", family="need_repo", first="what's the latest commit on my repo", world=world,
                             gold={"kind": "latest_commit", "repo": repo, "subject": c["subject"], "oid": c["oid"]},
                             user=lambda turn, ep: (f"the mitt one, {repo}" if turn["n"] == 0 else None)), need_repo_policy(repo)))
+    eps.append((Episode(id="gold-web_fact-ff", family="web_fact", first="When did the first Fast and Furious come out?", gold={"answers": ["2001"]}),
+                web_fact_policy("When the first Fast and Furious film came out.", "The Fast and the Furious 2001 film release date", "Fast and the Furious", "2001")))
+    eps.append((Episode(id="gold-web_compare-born", family="web_compare", first="Who was born first, Susan Oliver or W. S. Van Dyke?",
+                        gold={"answer": "Woodbridge Strong Van Dyke II", "titles": ["Susan Oliver", "W. S. Van Dyke"], "type": "comparison"}),
+                web_compare_policy("Susan Oliver", "W. S. Van Dyke")))
     return eps
 
 

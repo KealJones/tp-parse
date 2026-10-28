@@ -77,7 +77,7 @@ looked them up, `done` results that carry facts, 2–6 plan steps, replies that 
 tools, and a plan that follows the recipe when the prompt has one.
 
 **Provenance.** Only teacher episodes train: every example carries `source: "teacher:<model>"` and train.py drops
-anything else. Claude-written text (`samples/`, the worked episodes in `TEACHER.md` / `examples/worked.jsonl`) and the
+anything else. Claude-written text (`samples/`, written before the quality bar existed and kept only as a record; the worked episodes in `TEACHER.md` / `examples/worked.jsonl`) and the
 template gold (`examples/gold.jsonl`) are format and checker tests only. (A plan to have Claude agents write episodes
 was stopped by Anthropic's safeguards against using Claude outputs to train models; `teach.py` / `TEACHER.md`, the
 step-wise CLI built for it, remain as a way to inspect and hand-test episodes.)
@@ -110,8 +110,9 @@ Locally (node 22, Python 3.11+, a Squiggle checkout):
 ```
 npm ci
 export SQUIGGLE_DIR=/path/to/squiggle          # at e9c27ca
-python samples.py                              # 20 hand-written episodes through the real harness -> samples/
-python selftest.py samples/samples.jsonl --tokenizers unsloth/gemma-3-270m-it,LiquidAI/LFM2.5-350M
+python gold.py                                 # template gold episodes through the real harness -> examples/gold.jsonl
+python selftest.py examples/gold.jsonl examples/worked.jsonl --tokenizers unsloth/gemma-3-270m-it,LiquidAI/LFM2.5-350M
+node teach.mjs families                        # the step-wise CLI (TEACHER.md): play the phone model by hand
 python build.py sets --plan train --scale 0.02 # list some episodes (no model)
 ```
 

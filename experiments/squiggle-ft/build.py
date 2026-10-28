@@ -114,7 +114,7 @@ def make_sets(src, plan, seed=0, scale=1.0):
 
 
 def compact(res, keep_calls):
-    out = {k: res.get(k) for k in ("id", "family", "first", "gold", "meta", "error", "seconds", "check")}
+    out = {k: res.get(k) for k in ("id", "family", "first", "gold", "meta", "error", "seconds", "check", "net", "source")}
     out["turns"] = [{k: t.get(k) for k in ("n", "session", "reply", "tools", "waiting", "calls")} | {"task": _task(t.get("task"))} for t in res.get("turns", [])]
     if keep_calls:
         out["calls"] = [{k: c.get(k) for k in ("kind", "messages", "output", "meta", "error")} for c in res.get("calls", [])]

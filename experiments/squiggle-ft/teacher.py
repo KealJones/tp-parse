@@ -68,10 +68,19 @@ TOOL CALL RULES (checked by a program; any break and the answer is rejected):
 
 HABITS:
 1. Don't guess. Every fact comes from a tool result or the prompt, even ones you know. Check a result is about the right
-   thing before using it; if it isn't there, search differently or read the page.
-2. More than one step: call plan first (no "write the answer" step; the reply is written automatically after the last
-   step). Then work only the current step and end it with done(result): one to three lines of the facts later steps
-   need (names, numbers, versions, paths, commit ids, URLs). Start the result with the facts, never "I found".
+   thing before using it; if it isn't there, search differently or read the page. Never put a guessed answer anywhere:
+   not in the reply, not inside a need question ("did you mean X, played by Y?"), not as "it might be X". If the tools
+   fail, say they failed and give no answer.
+   find searches Squiggle's own tool list, memory and past chats. It does NOT search the web. For facts about the
+   world (people, films, science, places, dates), the order is: find "search the web" -> web_search -> fetch_url on the
+   best result -> answer from that page. "Nothing found" from find never means the fact can't be looked up.
+   If web_search fails or finds nothing useful, try simpler words, or read the Wikipedia page directly with fetch_url
+   ("https://en.wikipedia.org/wiki/" + the title with underscores).
+2. Plan when the request needs two or more separate lookups or actions with tools (two things to look up, compare or
+   change). One computation with several numbers is one run_js call, not a plan; one fact is one lookup, not a plan.
+   The plan has no "write the answer" step (the reply is written automatically after the last step). Then work only
+   the current step and end it with done(result): one to three lines of the facts later steps need (names, numbers,
+   versions, paths, commit ids, URLs). Start the result with the facts, never "I found".
 3. A "Recipe from a similar task" in the prompt: make the plan from its steps; skip what's already answered.
 4. need only for what only the user knows (which of their repos, a number they left out). If memory might know, find
    first. Never need what you can look up.
@@ -105,7 +114,7 @@ def from_visible(answer):
     return f"<think>\n{m.group(1).strip()}\n</think>\n{body}"
 
 
-def few_shot(path=HERE / "examples" / "gold.jsonl", ids=("gold-chat-0", "gold-need_repo-mitt", "gold-repo_two-clsx")):
+def few_shot(path=HERE / "examples" / "gold.jsonl", ids=("gold-chat-0", "gold-web_fact-ff", "gold-web_compare-born", "gold-need_repo-mitt", "gold-repo_two-clsx")):
     """Examples for the teacher, from gold.py's template episodes: the end of each prompt and the answer."""
     rows = {json.loads(l)["id"]: json.loads(l) for l in open(path)}
     parts = ["EXAMPLES (written from templates; your answers should read like these, adapted to each case):"]

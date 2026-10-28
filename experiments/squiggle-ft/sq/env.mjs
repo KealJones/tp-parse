@@ -19,6 +19,7 @@ const RELAY_UA = 'Mozilla/5.0 (compatible; squiggle-relay)';   // what the real 
 const BLOCK2 = new Set(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'pre', 'table', 'figure']);
 const BLOCK1 = new Set(['div', 'section', 'article', 'header', 'footer', 'nav', 'aside', 'main', 'ul', 'ol', 'li', 'dl', 'dt', 'dd',
   'tr', 'form', 'fieldset', 'address', 'figcaption', 'caption', 'details', 'summary', 'hr', 'tbody', 'thead', 'tfoot', 'center']);
+const HIDDEN_CLASS = /(^|\s)(vector-dropdown-content|vector-menu-content-list|mw-portlet-lang|interlanguage-link|vector-sticky-header|mw-jump-link|vector-page-toolbar-container|vector-column-end|mw-editsection|navbox|vector-pinnable-header)(\s|$)/;
 function innerText(node) {
   const out = [];
   const walk = (n) => {
@@ -26,6 +27,11 @@ function innerText(node) {
     if (n.nodeType !== 1) return;
     const tag = String(n.tagName || '').toLowerCase();
     if (tag === 'br') { out.push('\n'); return; }
+    // No CSS in node: skip what a browser wouldn't show (display:none, and collapsed menus such as Wikipedia's
+    // dropdowns and language list), so innerText is close to what Chrome returns.
+    const cls = (n.getAttribute && n.getAttribute('class')) || '';
+    const style = (n.getAttribute && n.getAttribute('style')) || '';
+    if (/display:\s*none|visibility:\s*hidden/i.test(style) || HIDDEN_CLASS.test(cls)) return;
     const sep = BLOCK2.has(tag) ? '\n\n' : BLOCK1.has(tag) ? '\n' : '';
     if (sep) out.push(sep);
     for (const c of n.childNodes || []) walk(c);
@@ -89,13 +95,36 @@ globalThis.document = {
 // ── fetch: disk cache, the fake relay, offline mode ──────────────────────
 const realFetch = globalThis.__realFetch = globalThis.__realFetch || globalThis.fetch;
 const lastHit = new Map();
+// Politeness across every episode process at once: per host, one request every GAP ms, coordinated through a slot
+// file guarded by an atomic mkdir lock in the cache folder (many episodes run in parallel, each its own process).
+const GAP = { 'en.wikipedia.org': 350, 'api.duckduckgo.com': 500 };
 async function polite(host) {
-  const wait = 250 - (Date.now() - (lastHit.get(host) || 0));
+  const gap = GAP[host] || 250;
+  if (!W.netCache) {
+    const wait = gap - (Date.now() - (lastHit.get(host) || 0));
+    if (wait > 0) await new Promise(r => setTimeout(r, wait));
+    lastHit.set(host, Date.now());
+    return;
+  }
+  const lock = path.join(W.netCache, `.lock-${host}`), slot = path.join(W.netCache, `.slot-${host}`);
+  for (;;) {
+    try { fs.mkdirSync(lock); break; }
+    catch {
+      try { if (Date.now() - fs.statSync(lock).mtimeMs > 5000) fs.rmSync(lock, { recursive: true, force: true }); } catch {}
+      await new Promise(r => setTimeout(r, 15 + Math.random() * 30));
+    }
+  }
+  let at;
+  try {
+    const last = Number(fs.existsSync(slot) ? fs.readFileSync(slot, 'utf8') : 0) || 0;
+    at = Math.max(Date.now(), last + gap);
+    fs.writeFileSync(slot, String(at));
+  } finally { fs.rmSync(lock, { recursive: true, force: true }); }
+  const wait = at - Date.now();
   if (wait > 0) await new Promise(r => setTimeout(r, wait));
-  lastHit.set(host, Date.now());
 }
 const cachePath = (key) => W.netCache && path.join(W.netCache, crypto.createHash('sha1').update(key).digest('hex').slice(0, 24) + '.json');
-export const netStats = { hits: 0, misses: 0, errors: 0 };
+export const netStats = { hits: 0, misses: 0, errors: 0, failures: [] };
 // Web results the episode needed but couldn't fetch (no network from here): the teacher supplies them
 // (teach.py tool-result), and they go in the cache under the same key. W.noNet lists keys known to be missing,
 // so replays don't wait on the network again.
@@ -114,12 +143,20 @@ export async function cachedGet(url, headers = {}) {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 20000);
     try { r = await realFetch(url, { headers: { 'User-Agent': UA, ...headers }, redirect: 'follow', signal: ctrl.signal }); }
-    catch (e) { netStats.errors++; throw new TypeError('fetch failed: ' + (e && e.message)); }
-    finally { clearTimeout(timer); }
+    catch (e) {
+      clearTimeout(timer);
+      netStats.failures.push(`${new URL(url).host}: ${e && e.name === 'AbortError' ? 'timeout' : (e && e.message || e)}`.slice(0, 160));
+      if (attempt >= 2) { netStats.errors++; throw new TypeError('fetch failed: ' + (e && e.message)); }
+      await new Promise(res => setTimeout(res, 2000 * (attempt + 1)));
+      continue;
+    }
+    clearTimeout(timer);
     if (r.status !== 429 && r.status < 500) break;
-    // Rate-limited or a server error: back off twice, then report it missing (never cached).
-    if (attempt >= 2) { netStats.errors++; throw new TypeError(`fetch failed: HTTP ${r.status}`); }
-    await new Promise(res => setTimeout(res, 3000 * (attempt + 1)));
+    // Rate-limited or a server error: back off (honouring Retry-After) up to 5 times, then report it missing (never cached).
+    netStats.failures.push(`${new URL(url).host}: HTTP ${r.status}`);
+    if (attempt >= 4) { netStats.errors++; throw new TypeError(`fetch failed: HTTP ${r.status}`); }
+    const ra = Number(r.headers.get('retry-after')) || 0;
+    await new Promise(res => setTimeout(res, Math.min(30000, Math.max(ra * 1000, 2000 * 2 ** attempt)) + Math.random() * 1000));
   }
   const type = r.headers.get('content-type') || '';
   let body = '';
@@ -157,15 +194,23 @@ async function relaySearch(q, n) {
   ]);
   let answer = null;
   try { answer = d && d.status === 200 && instantAnswer ? instantAnswer(JSON.parse(d.body)) : null; } catch {}
+  const wikiUrl = (t) => 'https://en.wikipedia.org/wiki/' + encodeURIComponent(t.replace(/ /g, '_')).replace(/%2F/g, '/').replace(/%3A/g, ':').replace(/%2C/g, ',');
   let results = [];
+  let ok = false;
   try {
-    results = (JSON.parse(w.body).query.search || []).map(x => ({
-      title: x.title, url: 'https://en.wikipedia.org/wiki/' + encodeURIComponent(x.title.replace(/ /g, '_')).replace(/%2F/g, '/').replace(/%3A/g, ':').replace(/%2C/g, ','),
-      snippet: decode(x.snippet),
-    }));
+    results = (JSON.parse(w.body).query.search || []).map(x => ({ title: x.title, url: wikiUrl(x.title), snippet: decode(x.snippet) }));
+    ok = true;
   } catch {}
-  if (!w) noteMissing({ kind: 'search', key: 'search:' + query, query });
-  if (!w && !answer) return { status: 503, body: { error: 'Search is not reachable right now. Try again in a little while.' } };
+  if (!ok) {
+    // Wikipedia's REST search: a second door when the action API is busy.
+    const rest = await cachedGet(`https://en.wikipedia.org/w/rest.php/v1/search/page?limit=${Math.min(Math.max(n, 1), 10)}&q=${encodeURIComponent(query)}`).catch(() => null);
+    try {
+      results = (JSON.parse(rest.body).pages || []).map(x => ({ title: x.title, url: wikiUrl(x.key || x.title), snippet: decode(x.excerpt || x.description || '') }));
+      ok = true;
+    } catch {}
+  }
+  if (!ok) noteMissing({ kind: 'search', key: 'search:' + query, query });
+  if (!ok && !answer) return { status: 503, body: { error: 'Search is not reachable right now. Try again in a little while.' } };
   return { status: 200, body: { query, answer, results } };
 }
 
