@@ -1,0 +1,20 @@
+{
+ "slug": "squiggle-ft-baselines",
+ "flavor": "l4x1",
+ "timeout": "45m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "BASES=lfm25,functiongemma EVAL_MINUTES=20 python boot.py baselines.sh",
+ "pip": [
+  "transformers>=5,<6",
+  "pyarrow",
+  "gguf",
+  "sentencepiece",
+  "protobuf",
+  "playwright"
+ ],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-baselines",
+ "note": "eval only, no training: untouched LFM2.5-350M and FunctionGemma 270M as released, on the exact 293-episode eval set of squiggle-ft-train (EVAL_PLAN_V1, seed 123); expected ~$0.35, cap $0.60"
+}
