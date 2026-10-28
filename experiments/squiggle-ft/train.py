@@ -302,11 +302,13 @@ def main():
     ap.add_argument("--eval-only", action="store_true")
     ap.add_argument("--no-untouched", action="store_true")
     ap.add_argument("--export", action="store_true")
+    ap.add_argument("--budget-minutes", type=float, default=0, help="stop starting new bases when what's left can't fit one more (+15 min for export)")
     ap.add_argument("--hub-repo", default="kealjones/squiggle-small")
     ap.add_argument("--work", default=str(HERE / "work"))
     ap.add_argument("--out", default="out")
     ap.add_argument("--squiggle", default=os.environ.get("SQUIGGLE_DIR", str(HERE / "squiggle")))
     args = ap.parse_args()
+    t_main = time.time()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     import build
@@ -335,13 +337,23 @@ def main():
         if args.limit:
             examples = examples[:args.limit]
         log(f"{len(examples)} training examples: {dict(collections.Counter(e['family'] for e in examples))}")
-        for b in bases:
+        last_cost = None
+        for bi, b in enumerate(bases):
+            if args.budget_minutes and last_cost:
+                left = args.budget_minutes - (time.time() - t_main) / 60
+                if left < last_cost * 1.3 + (15 if args.export else 3):
+                    notes.append(f"- `{b}` skipped: {left:.0f} min left in the job's budget, the last base took {last_cost:.0f} min.")
+                    log(notes[-1])
+                    continue
+            t_b = time.time()
             md = str(Path("models") / b)
             mins = train(b, examples, md, epochs=args.epochs, lr=args.lr)
             notes.append(f"- `{b}` ({BASES[b]}): trained {args.epochs} epochs on {len(examples)} examples in {mins:.0f} min.")
             arms[b] = metrics(evaluate(md, eval_eps(), args.work, args.squiggle, b, out, args.eval_minutes))
             json.dump(arms, open(out / "metrics.json", "w"), indent=1)
             write_results(out, arms, notes)
+            nxt = bases[bi + 1] if bi + 1 < len(bases) else None
+            last_cost = (time.time() - t_b) / 60 * (2.2 if nxt == "lfm25" and b != "lfm25" else 1.0)   # LFM2.5 is ~3x the compute
     best, go = write_results(out, arms, notes)
     log(open(out / "RESULTS.md").read())
     if args.export and best and not best.startswith("untouched"):
