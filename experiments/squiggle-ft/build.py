@@ -65,10 +65,10 @@ def make_sets(src, plan, seed=0, scale=1.0):
     mem_facts = facts + [f for r, f in src["keal"].items() if r not in {x["repo"] for x in facts}]
     pools = {"nq": iter(nq), "comp": iter(comp), "bridge": iter(bridge), "gsm": iter(gsm), "titles": iter(titles),
              "compute": iter(src["compute"]), "need": iter(src["need"])}
-    # recipe_compare: two comparison questions of the same shape (same first three words)
+    # recipe_compare: two comparison questions of the same shape (same first two words)
     shape = collections.defaultdict(list)
     for r in comp[len(comp) // 2:]:
-        shape[" ".join(r["question"].lower().split()[:3])].append(r)
+        shape[" ".join(r["question"].lower().split()[:2])].append(r)
     pairs = [(g[i], g[i + 1]) for g in shape.values() for i in range(0, len(g) - 1, 2)]
     rng.shuffle(pairs)
     pools["pairs"] = iter(pairs)
