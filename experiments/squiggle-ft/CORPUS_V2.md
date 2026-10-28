@@ -130,12 +130,24 @@ Only user-side text was written: request templates, with eval-only templates for
 - `harness_tests.py`: scripted positive cases through the real harness. They're kept for repo_chain, recipe_skip and
   near_miss. recipe_web's recipe reaches the prompt.
 
-**Squiggle finding.** recipes.match only offers a recipe (score ≥ 0.6) when the request's first five content words
-overlap the recipe. With two-word names, "Who was born first, A or B?" scores 0.4, and so does "what's the latest
-commit of X?" against the version-and-commit recipe. So in the real app, these recipes never reach the prompt for
-such phrasings. recipe_web and recipe_skip therefore use phrasings that start with "find" (all 40 sampled score ≥ 0.6
-in the app's own matchSync) and carry no dictation noise. That's a Squiggle matching limitation to look at
-separately.
+**Recipe matching.**
+- At ab248b4, recipes.match scored plain phrasings like "Who was born first, A or B?" or "what's the latest commit of
+  X?" at 0.40–0.47, under the 0.6 bar, so the app never offered those recipes.
+- Squiggle main f09cac0 fixed this with slot-aware matching, and the pin moved there (below).
+- recipe_web and recipe_skip now use plain phrasings as well as "find …" ones. All 80 sampled requests (train and
+  eval) score ≥ 0.6 in the app's own matchSync.
+- Still below the bar, so kept out of these families:
+  - dictation noise and name-first word orders (0.4)
+  - names of three or more words (0.4)
+  - "what's" / "what is" before "latest commit" (0.573, against 0.763 for "whats")
+
+**Pin move to f09cac0 (after the smoke):**
+- tool_specs and LITE_SYSTEM are unchanged.
+- The only harness-relevant change is recipes.js.
+- Replaying the 115 kept v1 recipe_repo, memory_repo and past_chat episodes on both pins gives identical prompts once
+  timestamps are normalised.
+- checker_tests, selftest (gold, worked, few-shots, and the 1,956 re-checked v1 calls) and harness_tests are all green.
+- The v2 smoke (squiggle-ft-teach-smoke-v2a) ran on ab248b4.
 
 **Chat template.** `template_check.py` compares the HF chat template with what `convert_hf_to_gguf.py` writes.
 - selftest runs it for every `--tokenizers` base.
