@@ -32,10 +32,8 @@ WORK = Path(os.environ.get("SQFT_WORK", HERE / "work"))
 SQUIGGLE = os.environ.get("SQUIGGLE_DIR", str(HERE / "squiggle"))
 DEFAULT_OUT = Path(os.environ.get("SQFT_TEACH_OUT", HERE / "teach_out"))
 
-# Target episode counts per family for the Claude teachers (held-out families are never taught).
-TARGETS = {"web_fact": 90, "web_compare": 70, "math": 70, "hermes_compute": 40, "hermes_need": 40, "repo_fact": 80,
-           "repo_where": 70, "repo_two": 50, "recipe_repo": 40, "need_repo": 50, "memory_repo": 35, "past_chat": 40,
-           "refs": 40, "chat": 50, "chat_after": 30, "bare_link": 35}
+# Target episode counts per family (held-out families are never taught): build.TARGET_PLAN.
+from build import TARGET_PLAN as TARGETS
 
 
 class Pause(Exception):

@@ -140,10 +140,10 @@ def system_prompt():
 
 
 class VLLMTeacher:
-    def __init__(self, model=DEFAULT_MODEL, max_len=24576, gpu_mem=0.92, temperature=0.6, max_tokens=8192, retries=2, kv_fp8=True):
+    def __init__(self, model=DEFAULT_MODEL, max_len=24576, gpu_mem=0.92, temperature=0.6, max_tokens=8192, retries=2, kv_fp8=True, max_seqs=64):
         from vllm import AsyncEngineArgs, AsyncLLMEngine
         from transformers import AutoTokenizer
-        kw = dict(model=model, max_model_len=max_len, gpu_memory_utilization=gpu_mem, enable_prefix_caching=True, disable_log_stats=True, max_num_seqs=64)
+        kw = dict(model=model, max_model_len=max_len, gpu_memory_utilization=gpu_mem, enable_prefix_caching=True, disable_log_stats=True, max_num_seqs=max_seqs)
         if kv_fp8:
             kw["kv_cache_dtype"] = "fp8"
         self.engine = AsyncLLMEngine.from_engine_args(AsyncEngineArgs(**kw))
