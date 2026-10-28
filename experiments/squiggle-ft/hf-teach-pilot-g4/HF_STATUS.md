@@ -1,4 +1,8 @@
 # Hugging Face job: squiggle-ft-teach-pilot-g4
 
-Status: **running** on `a100-large` (started 2026-10-28T20:12:20+00:00, time limit 30m, so at most about $1.25)
+Status: **complete** after 6.9 min of work on `a100-large`, about $0.29 (plus a minute or two of startup)
 Job page: https://huggingface.co/jobs/kealjones/6ae2572441e90535df77b999
+
+Files copied here:
+- JOB_LOG.txt
+- job_status.json
