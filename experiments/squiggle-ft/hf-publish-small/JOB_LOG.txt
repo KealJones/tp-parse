@@ -1,0 +1,34 @@
+job 6ae1f65a3fb22a235dd3fe82 on cpu: squiggle-small-publish at 3b76308
+fetched experiments/squiggle-ft/jobs/publish_small.py
+files: ['.gitattributes', 'README.md', 'hf/chat_template.jinja', 'hf/config.json', 'hf/generation_config.json', 'hf/model.safetensors', 'hf/tokenizer.json', 'hf/tokenizer_config.json', 'squiggle-small-lfm25-Q4_0.gguf', 'squiggle-small-lfm25-Q8_0.gguf']
+
+
+README.md:   0%|          | 0.00/9.99k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 9.99k/9.99k [00:00<00:00, 25.4MB/s]
+README.md updated
+---
+license: other
+license_name: lfm1.0
+license_link: https://huggingface.co/LiquidAI/LFM2.5-350M/blob/main/LICENSE
+base_model: LiquidAI/LFM2.5-350M
+tags:
+- gguf
+- squiggle
+---
+
+Experimental v1. See the results below; not production quality.
+
+# squiggle-small (lfm25)
+
+Fine-tune of LiquidAI/LFM2.5-350M for Squiggle's phone harness (docs/harness.md, small-model format). Load in wllama 3.8.1 with n_ctx 4096.
+
+Files: squiggle-small-lfm25-Q8_0.gguf (379 MB), squiggle-small-lfm25-Q4_0.gguf (219 MB)
+
+llama.cpp (master) loads the Q8_0 file and generates: yes ('tal time =     418.03 ms /    33 tokens\nllama_perf_context_print:    graphs reused =         30\nllama_perf_context_print:   graph reallocs =          0    /     0        (same size) / (changed size)\n\n~llama_context:        CPU compute buffer size is   0.5403 MiB, matches expectation of   0.5403 MiB\n')
+
+wllama 3.8.1 in Chromium, squigg
+visibility: public
+anonymous HEAD https://huggingface.co/kealjones/squiggle-small/resolve/main/squiggle-small-lfm25-Q4_0.gguf -> 302 https://us.aws.cdn.hf.co/xet-bridge-us/6ae1a7301c763c40a1948d49/98ef768a413d86954c13fe7e38930c8ef8acb9468e60f4c97db0ae2b
+anonymous HEAD redirect target -> 200
+ANONYMOUS ACCESS OK
+exit code 0 after 0.1 min
