@@ -286,8 +286,8 @@ def nudged(result):
     return any("Finish your thought, then call a tool" in json.dumps(c.get("messages", "")) for c in result.get("calls", []))
 
 
-PLAIN = {("chat", 0), ("chat_after", 1)}       # (family, user turn) that are plain chat
-PERSONAL = {("personal", 0)}                    # (family, user turn) that are personal advice / empathy
+PLAIN = {("chat", 0), ("chat_after", 1), ("chat_mid", 1)}       # (family, user turn) that are plain chat
+PERSONAL = {("personal", 0), ("personal_mid", 1)}                    # (family, user turn) that are personal advice / empathy
 
 
 def plain_mode(fam, k):
@@ -1011,7 +1011,7 @@ RECIPE_ASKS = ["Clone {r} and tell me what version it's at and what the latest c
 
 
 def make_recipe_repo(rng, facts, i):
-    recs = gold_recipes()
+    recs = [r for r in gold_recipes() if r.get("kind", "repo") == "repo"]
     cands = [f for f in facts if (f.get("package") or {}).get("version") and f.get("commits")]
     if not recs or not cands:
         return None
@@ -1019,7 +1019,7 @@ def make_recipe_repo(rng, facts, i):
     others = [r for r in recs if r.get("repo") != b["repo"]]
     if not others:
         return None
-    rec = {k: v for k, v in rng.choice(others).items() if k not in ("from_episode", "repo")}
+    rec = {k: v for k, v in rng.choice(others).items() if k not in ("from_episode", "repo", "kind")}
     c = b["commits"][0]
     gold = {"parts": [{"kind": "version", "answers": [b["package"]["version"]]}, {"kind": "latest_commit", "subject": c["subject"], "oid": c["oid"]}],
             "repo": b["repo"], "recipe": rec["id"]}
@@ -1495,6 +1495,572 @@ def check_personal(res):
     return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
 
 
+# ── v2 families (CORPUS_V2 §2; trimmed plan). Only user-side text here: request templates and real data. ─────────
+V2_ONE_LOOKUP = {"web_fact_retry", "need_web", "math_pair", "personal_tool", "chat_mid", "personal_mid", "need_schedule"}
+
+
+def web_answer_problems(res, k, answers, need_lookup=True):
+    """web_fact's answer checks on turn k: (ok, reasons)."""
+    segs = turn_calls(res)
+    seg = segs[k] if len(segs) > k else []
+    rep = reply_of(res, k)
+    reasons = []
+    ok = answer_in(rep, answers) and not non_answer(rep) and not negated(rep, answers)
+    if not ok:
+        reasons.append(f"turn {k + 1}: wrong or missing answer")
+    elif hedged(rep):
+        reasons.append(f"turn {k + 1}: the answer is hedged or a list of candidates")
+    if need_lookup and not (WEB & set(names(seg))):
+        reasons.append(f"turn {k + 1}: answered without looking it up")
+    if ok:
+        reasons += [f"turn {k + 1}: {p}" for p in grounded_answer_problems(seg, answers, request_text(seg))]
+    return ok, reasons
+
+
+# 18. web_fact_retry: NQ questions whose first web_search result in teach-v1 didn't contain the answer
+#     (data/sources/web_retry.json). Habit: notice the first result isn't it (Check says so), look again, answer.
+_RETRY = None
+
+
+def retry_rows(split):
+    global _RETRY
+    if _RETRY is None:
+        p = HERE / "data" / "sources" / "web_retry.json"
+        _RETRY = json.loads(p.read_text()) if p.exists() else []
+    return [r for r in _RETRY if r["split"] == split]
+
+
+def make_web_fact_retry(rng, row, i, p_messy=0.4):
+    text, m = maybe_messy(rng, row["question"], p_messy)
+    return _ep("web_fact_retry", i, text, {"answers": row["answers"]}, messy_=m)
+
+
+REJECTS = re.compile(r"\b(not|n't|no |doesn'?t|isn'?t|wrong|unrelated|different|only|instead|nothing|none|missing|lacks?)\b", re.I)
+
+
+def check_web_fact_retry(res):
+    reasons = base_check(res)
+    ok, r2 = web_answer_problems(res, 0, res["gold"]["answers"])
+    reasons += r2
+    seg = turn_calls(res)[0] if res.get("turns") else []
+    lookups = [x for x in seg if x["parsed"]["calls"] and x["parsed"]["calls"][0]["name"] in WEB]
+    if len(lookups) < 2:
+        reasons.append("only one lookup (the first result didn't answer it: search again or read a page)")
+    # the Check right after the first lookup's result must say it isn't enough
+    first_after = None
+    seen_lookup = False
+    for x in seg:
+        if seen_lookup:
+            first_after = x
+            break
+        if x["parsed"]["calls"] and x["parsed"]["calls"][0]["name"] in WEB:
+            seen_lookup = True
+    chk = " ".join(check_lines(first_after)) if first_after else ""
+    if first_after is not None and not REJECTS.search(chk):
+        reasons.append("the Check after the first result doesn't say what was wrong or missing")
+    return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
+# 19. need_web: an NQ question with its subject left out ("when did it come out?"); the simulated user then gives
+#     the whole question. Habit: ask what they mean before searching; then look it up and answer.
+VAGUE = {"train": {"who": ["who sang that one?", "who played her in it", "wait who wrote it", "who's in it again"],
+                   "when": ["when did that come out?", "when was it", "um when did it start"],
+                   "where": ["where is it from?", "where was it filmed", "where's that"],
+                   "how many": ["how many are there?", "how many did they make"],
+                   "what": ["what's it called again?", "what was the name of it"]},
+         "eval": {"who": ["who did that", "who was it by"], "when": ["what year was it"], "where": ["where did that happen"],
+                  "how many": ["how many of them were there"], "what": ["what was that one"]}}
+CLARIFY = ["oh sorry, i meant: {q}", "{q}", "i mean {q}", "sorry, {q}"]
+
+
+def make_need_web(rng, row, i, split="train"):
+    q = row["question"].strip()
+    wh = next((w for w in ("how many", "who", "when", "where", "what") if q.lower().startswith(w)), None)
+    if not wh:
+        return None
+    vague = rng.choice(VAGUE[split][wh])
+    full = q[0].upper() + q[1:] + ("" if q.endswith("?") else "?")
+
+    def user(turn, ep):
+        if turn["n"] == 0:
+            return rng.choice(CLARIFY).format(q=full)
+        return None
+    return _ep("need_web", i, vague, {"answers": row["answer"], "question": full}, user=user)
+
+
+def check_need_web(res):
+    reasons = base_check(res)
+    segs = turn_calls(res)
+    first = segs[0] if segs else []
+    asked = asked_user(res, 0)
+    if not asked:
+        reasons.append("didn't ask what they meant (searched or answered without a subject)")
+    if WEB & set(names(first)):
+        reasons.append("searched before knowing what to search for")
+    guess = need_guesses(first, res["gold"]["answers"])
+    if guess:
+        reasons.append("the need question guesses the answer")
+    if len(res.get("turns", [])) < 2:
+        return {"ok": False, "strict": False, "reasons": reasons + ["no turn after the clarification"]}
+    ok, r2 = web_answer_problems(res, 1, res["gold"]["answers"])
+    reasons += r2
+    return {"ok": asked and ok, "strict": asked and ok and not reasons, "reasons": reasons}
+
+
+# 20. math_pair: one GSM8K train problem twice: complete (calculate, answer) and with one number (not the first: the
+#     held-out need_math removes the first) replaced by a vague word (ask for it; never assume it).
+def make_math_pair(rng, row, i, incomplete):
+    if not incomplete:
+        text, m = maybe_messy(rng, row["question"], 0.4)
+        return _ep("math_pair", i, text, {"answer": row["answer"], "variant": "complete"}, messy_=m)
+    nums = list(NUM_WORD.finditer(row["question"]))
+    if len(nums) < 2:
+        return None
+    mt = rng.choice(nums[1:])
+    value = mt.group(1)
+    vague = rng.choice(["some", "a few", "a number of", "several", "a certain number of"])
+    q2 = row["question"][:mt.start()] + vague + row["question"][mt.end():]
+    text, m = maybe_messy(rng, q2, 0.3)
+
+    def user(turn, ep):
+        if turn["n"] == 0 and (turn.get("asked") or turn.get("waiting")):
+            return rng.choice([f"it's {value}", f"{value}", f"oh sorry, {value}", f"um {value} i think"])
+        return None
+    return _ep("math_pair", i, text, {"answer": row["answer"], "missing": value, "variant": "incomplete"}, user=user, messy_=m)
+
+
+def check_math_pair(res):
+    if res["gold"].get("variant") == "complete":
+        c = check_math(res, -1)
+        if asked_user(res, 0):
+            c["reasons"].append("asked the user although the problem has every number")
+            c["strict"] = False
+        return c
+    return check_need_math(res)
+
+
+# 21. lookup_then_compute: two people from a HotpotQA "born first / older" comparison; "how many years apart were they
+#     born?" Sequential: look up both birth years, then one calculate. Gold-free: the years must come from results.
+LTC_ASKS = {"train": ["how many years apart were {a} and {b} born?", "what's the age gap between {a} and {b} in years",
+                      "how much older is {a} than {b}, in years?", "how many years were there between {a}'s and {b}'s births"],
+            "eval": ["by how many years do {a} and {b} differ in age", "{a} vs {b}, how many years apart in age"]}
+BORN_FIRST = re.compile(r"born (first|earlier|later)|older|younger", re.I)
+YEAR = re.compile(r"\b(1[0-9]{3}|20[0-2][0-9])\b")
+
+
+def make_lookup_then_compute(rng, row, i, split="train"):
+    if not BORN_FIRST.search(row["question"]) or len(row["titles"]) != 2:
+        return None
+    a, b = [re.sub(r"\s*\(.*?\)\s*", " ", t).strip() for t in row["titles"]]
+    text, m = maybe_messy(rng, rng.choice(LTC_ASKS[split]).format(a=a, b=b), 0.35, phrases=(a, b))
+    return _ep("lookup_then_compute", i, text, {"titles": [a, b]}, messy_=m)
+
+
+def birth_years(seg, name):
+    """4-digit years within 80 characters after 'born' in a non-error result that mentions this person."""
+    ys = set()
+    for _, body in good_results(seg):
+        if not answer_in(body, [name]):
+            continue
+        for m in re.finditer(r"\bborn\b(.{0,80})", body, re.I | re.S):
+            ys |= set(YEAR.findall(m.group(1)))
+        for m in re.finditer(r"\((?:[^()]{0,40}?)(1[0-9]{3}|20[0-2][0-9])\s*[–-]", body):     # "(17 March 1933 – ..."
+            ys.add(m.group(1))
+    return ys
+
+
+def check_lookup_then_compute(res):
+    reasons = base_check(res)
+    seg = turn_calls(res)[0] if res.get("turns") else []
+    a, b = res["gold"]["titles"]
+    ya, yb = birth_years(seg, a), birth_years(seg, b)
+    if not ya or not yb:
+        reasons.append("didn't find both birth years in a result about each person")
+    exprs = [str(x.get("expression", "")) for x in args_of(seg, "calculate")]
+    good = [(e, x, y) for e in exprs for x in ya for y in yb if x in e and y in e]
+    if not exprs:
+        reasons.append("no calculate call for the difference")
+    elif not good:
+        reasons.append("the calculate expression doesn't use both looked-up birth years")
+    rep = reply_of(res, 0)
+    res_vals = calc_results(seg)
+    ok = bool(good) and any(abs(v) == abs(int(x) - int(y)) for _, x, y in good for v in res_vals) and \
+        any(re.search(r"\b%d\b" % abs(int(x) - int(y)), rep) for _, x, y in good)
+    if not ok:
+        reasons.append("the reply doesn't give the calculated difference")
+    if not planned(seg):
+        reasons.append("no plan for a two-lookup task")
+    return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
+# 22. repo_chain: sequential within a repo. "what's on the line right after <name>'s definition in <repo>?": step 1
+#     finds the file and line (grep), step 2 reads the next line (read_file with that path and line).
+CHAIN_ASKS = {"train": ["in {r}, what's on the line right after {n} is defined?", "find where {n} is defined in {r} and tell me the next line",
+                        "what does the line after {n}'s definition say in {r}", "{r}: show me the line that follows the definition of {n}"],
+              "eval": ["what comes on the line after {n} is defined in {r}?", "in the {r} repo, read me the line after {n}'s definition"]}
+
+
+def make_repo_chain(rng, facts, i, repo_cache=None, split="train"):
+    if not repo_cache:
+        return None
+    for _ in range(10):
+        f = rng.choice([x for x in facts if x.get("defs")])
+        d = rng.choice(f["defs"])
+        p = Path(repo_cache) / f["repo"].replace("/", "__") / d["path"]
+        try:
+            lines = p.read_text(errors="replace").splitlines()
+        except OSError:
+            continue
+        nxt = lines[d["line"]].strip() if d["line"] < len(lines) else ""
+        if len(re.findall(r"[A-Za-z_]{2,}", nxt)) < 2 or len(nxt) > 160:
+            continue
+        text, m = maybe_messy(rng, rng.choice(CHAIN_ASKS[split]).format(r=f["repo"], n=d["name"]), 0.35, phrases=(f["repo"], d["name"]))
+        return _ep("repo_chain", i, text, {"repo": f["repo"], "name": d["name"], "path": d["path"], "line": d["line"] + 1, "text": nxt},
+                   world={"repos": world_repos(facts)}, messy_=m, repo=f["repo"])
+    return None
+
+
+def check_repo_chain(res):
+    reasons = base_check(res)
+    seg = turn_calls(res)[0] if res.get("turns") else []
+    g = res["gold"]
+    reads = args_of(seg, "read_file")
+    right = [a for a in reads if str(a.get("path", "")).rstrip().endswith("/" + g["path"]) or str(a.get("path", "")) == g["path"]]
+    if not right:
+        reasons.append("never read the file that defines it (step 2 must use step 1's path)")
+    elif not any((a.get("start_line") or 1) <= g["line"] <= (a.get("end_line") or 10 ** 6) for a in right):
+        reasons.append("read the file but not the line after the definition")
+    want = [t for t in re.findall(r"[A-Za-z_][A-Za-z_0-9]+", g["text"]) if len(t) > 1]
+    rep = reply_of(res, 0)
+    ok = bool(want) and sum(1 for t in want if t in rep) >= max(1, int(0.7 * len(want)))
+    if not ok:
+        reasons.append("the reply doesn't quote the line")
+    elif not any(sum(1 for t in want if t in body) >= max(1, int(0.7 * len(want))) for n, body in good_results(seg) if n == "read_file"):
+        reasons.append("the line appears in no read_file result of this turn")
+    if not planned(seg):
+        reasons.append("no plan for a two-step task")
+    return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
+# 23. messy_multi: two requests in one run-on message: a web fact (NQ) and a repo version. Habit: split, plan both,
+#     answer both (no part dropped after the first tool call).
+JOIN = {"train": ["{a} and also {b}", "{a}, oh and {b}", "{a} plus {b}", "two things: {a} and {b}", "{a}. also {b}",
+                  "{a} and then {b}", "ok so {a} and {b}", "{a}, and {b} while you're at it", "{a}; {b}"],
+        "eval": ["{a}... and um {b}", "first {a}, second {b}", "{a} + {b}"]}
+
+
+def make_messy_multi(rng, row, facts, i, split="train"):
+    cands = [f for f in facts if (f.get("package") or {}).get("version")]
+    if not cands:
+        return None
+    f = rng.choice(cands)
+    q = row["question"].strip().rstrip("?")
+    vq = rng.choice(["what version {r} is at", "whats the version of {r}", "which version {r} is on"]).format(r=f["repo"])
+    a, b = (q, vq) if rng.random() < 0.5 else (vq, q)
+    text, m = maybe_messy(rng, rng.choice(JOIN[split]).format(a=a, b=b), 0.5, phrases=(f["repo"],))
+    gold = {"answers": row["answer"], "repo": f["repo"], "version": f["package"]["version"]}
+    return _ep("messy_multi", i, text, gold, world={"repos": world_repos(facts)}, messy_=True, repo=f["repo"])
+
+
+def check_messy_multi(res):
+    reasons = base_check(res)
+    seg = turn_calls(res)[0] if res.get("turns") else []
+    g = res["gold"]
+    rep = reply_of(res, 0)
+    web_ok = answer_in(rep, g["answers"]) and not negated(rep, g["answers"])
+    ver_ok = check_repo_answer("version", {"answers": [g["version"]], "repo": g["repo"]}, rep)
+    if not web_ok:
+        reasons.append("the web part is missing or wrong")
+    if not ver_ok:
+        reasons.append("the version part is missing or wrong")
+    if web_ok:
+        reasons += grounded_answer_problems(seg, g["answers"], request_text(seg))
+    if ver_ok and not answer_grounded(seg, [g["version"]]):
+        reasons.append("the version appears in no tool result of this turn")
+    if not planned(seg):
+        reasons.append("no plan for a two-part request")
+    ok = web_ok and ver_ok
+    return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
+# 24. recipe_web: a recipe the app saved from a finished "born first" comparison (gold_recipes.json, family web)
+#     offered on another "born first" comparison. Habit: plan from the recipe, adapt the names.
+# Phrasings Squiggle's recipes.match scores >= STRONG (0.6) against the saved recipe: its lexical score reads the first
+# five content words, so two-word names push "born first" out unless "find" leads (checked with the app's matchSync;
+# "Who was born first, A or B?" scores 0.4 and the app wouldn't offer the recipe at all).
+RECIPE_WEB_ASKS = ["find who was born first, {a} or {b}", "can you find out who was born first: {a} or {b}",
+                   "find who was born first out of {a} and {b}"]
+
+
+def make_recipe_web(rng, row, i):
+    recs = [r for r in gold_recipes() if r.get("kind") == "web"]
+    if not recs or not re.search(r"born first", row["question"], re.I) or len(row["titles"]) != 2:
+        return None
+    a, b = [re.sub(r"\s*\(.*?\)\s*", " ", t).strip() for t in row["titles"]]
+    rec = {k: v for k, v in rng.choice(recs).items() if k not in ("from_episode", "repo", "kind")}
+    text, m = rng.choice(RECIPE_WEB_ASKS).format(a=a, b=b), False      # no dictation noise: it would hide the recipe (see above)
+    return _ep("recipe_web", i, text, {"answer": row["answer"], "titles": row["titles"], "type": row["type"], "recipe": rec["id"]},
+               world={"recipes": [rec]}, messy_=m)
+
+
+def check_recipe_web(res):
+    c = check_web_compare(res, 0)
+    seen = recipe_seen(res, 0)
+    follows = seen and plan_follows_recipe(res, 0)
+    if not seen:
+        c["reasons"].append("the recipe didn't reach the prompt (no strong match)")
+    elif not follows:
+        c["reasons"].append("the plan doesn't follow the recipe")
+    c["strict"] = c["strict"] and seen and follows
+    return c
+
+
+# 25. recipe_skip: the "version + latest commit" recipe offered on a request for only one of the two. Habit: use only
+#     the steps that fit (no version step, no version in the reply).
+SKIP_ASKS = ["find the latest commit of {r}", "find {r}'s latest commit", "find who made the latest commit in {r}"]   # match >= 0.6 (see RECIPE_WEB_ASKS)
+
+
+def make_recipe_skip(rng, facts, i):
+    recs = [r for r in gold_recipes() if r.get("kind", "repo") == "repo"]
+    cands = [f for f in facts if (f.get("package") or {}).get("version") and f.get("commits")]
+    if not recs or not cands:
+        return None
+    f = rng.choice(cands)
+    others = [r for r in recs if r.get("repo") != f["repo"]]
+    if not others:
+        return None
+    rec = {k: v for k, v in rng.choice(others).items() if k not in ("from_episode", "repo", "kind")}
+    tpl = rng.choice(SKIP_ASKS)
+    c = f["commits"][0]
+    kind = "latest_author" if "who" in tpl else "latest_commit"
+    gold = {"kind": kind, "repo": f["repo"], "version": f["package"]["version"], "commit_subject": c["subject"],
+            **({"answers": [c["author"]]} if kind == "latest_author" else {"subject": c["subject"], "oid": c["oid"]})}
+    text, m = tpl.format(r=f["repo"]), False
+    return _ep("recipe_skip", i, text, gold, world={"repos": world_repos(facts), "recipes": [rec]}, messy_=m, repo=f["repo"])
+
+
+def check_recipe_skip(res):
+    reasons = base_check(res)
+    seg = turn_calls(res)[0] if res.get("turns") else []
+    g = res["gold"]
+    rep = reply_of(res, 0)
+    ok = check_repo_answer(g["kind"], g, rep)
+    if not ok:
+        reasons.append("wrong or missing answer")
+    elif not answer_grounded(seg, repo_gold_values(g)):
+        reasons.append("the answer appears in no tool result of this turn")
+    if not recipe_seen(res, 0):
+        reasons.append("the recipe didn't reach the prompt (no strong match)")
+    steps = " ".join(str(s) for p in args_of(seg, "plan") for s in p.get("steps", []))
+    if re.search(r"\bversion\b|package\.json", steps, re.I) or any("package.json" in str(a.get("path", "")) for a in args_of(seg, "read_file")):
+        reasons.append("did the recipe's version step although only the commit was asked")
+    rest = rep.replace(g.get("commit_subject") or "\0", " ")      # a release commit's subject can be the version itself ("10.2.1")
+    if re.search(r"\b" + re.escape(g["version"]) + r"\b", rest) or re.search(r"\bversion\b", rest, re.I):
+        reasons.append("the reply gives the version, which wasn't asked")
+    return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
+# 26. near_miss: a real key term with a letter or two changed so it isn't a word (data/sources/near_miss.json, checked
+#     to have no search hits). Habit: say the word isn't known and ask or label the assumption ("did you mean
+#     cardigan?"), never silently swap in the real word. Train: everyday and non-git tech; eval: git/code.
+NEAR_ASKS = {"train": ["my {w} keeps acting up, what should I do?", "whats the best way to clean a {w}", "is it safe to leave a {w} on overnight",
+                       "how long does a {w} usually last", "can you help me pick a good {w}", "any tips for a {w} that stopped working"],
+             "eval": ["whats the best way to do a {w} on two git branches", "how do I undo a {w} in git", "is it ok to {w} on main",
+                      "my {w} failed halfway, now what"]}
+_NEAR = None
+ASK_OR_LABEL = re.compile(r"\?|\b(if you mean|if you meant|assuming you mean|assuming|did you mean|do you mean|you might mean|i'?m guessing)\b", re.I)
+
+
+def near_rows(split):
+    global _NEAR
+    if _NEAR is None:
+        p = HERE / "data" / "sources" / "near_miss.json"
+        _NEAR = json.loads(p.read_text()) if p.exists() else []
+    return [r for r in _NEAR if r["split"] == split]
+
+
+def make_near_miss(rng, row, i, split="train"):
+    text = rng.choice(NEAR_ASKS[split]).format(w=row["miss"])
+    text, m = maybe_messy(rng, text, 0.3, keep={row["miss"]})
+    return _ep("near_miss", i, text, {"miss": row["miss"], "real": row["real"]}, messy_=m)
+
+
+def check_near_miss(res):
+    reasons = base_check(res)
+    seg = turn_calls(res)[0] if res.get("turns") else []
+    g = res["gold"]
+    rep = reply_of(res, 0)
+    shown = " ".join([rep] + need_questions(seg))
+    named = re.search(r"\b" + re.escape(g["miss"]) + r"\b", shown, re.I) is not None
+    if not named:
+        reasons.append("never names the user's word (silently corrected or ignored)")
+    if not ASK_OR_LABEL.search(shown):
+        reasons.append("neither asks nor labels the assumption about the word")
+    if defines_as_fact(shown, [g["miss"]]):
+        reasons.append("defines the misspelled word as if it were real")
+    ok = named and bool(ASK_OR_LABEL.search(shown)) and not defines_as_fact(shown, [g["miss"]])
+    return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
+# 27. chat_mid: a plain-chat turn right after a looked-up answer in the same session.
+def make_chat_mid(rng, row, i, split="train"):
+    ep = make_web_fact(rng, row, i, p_messy=0.3)
+    follow = rng.choice(CHAT if split == "train" else CHAT_EVAL)
+
+    def user(turn, e):
+        return follow if turn["n"] == 0 else None
+    return _ep("chat_mid", i, ep.first, ep.gold, user=user, messy_=ep.meta["messy"])
+
+
+def check_chat_mid(res):
+    ok0, r0 = web_answer_problems(res, 0, res["gold"]["answers"])
+    reasons = base_check(res) + r0
+    if len(res.get("turns", [])) < 2:
+        return {"ok": False, "strict": False, "reasons": reasons + ["the chat turn never ran"]}
+    rc = check_chat_turn(res, 1)
+    reasons += rc
+    ok = ok0 and not rc
+    return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
+# 28. personal_mid: a personal request right after a looked-up answer in the same session.
+MID_BRIDGE = ["thanks. {p}", "ok thanks. totally different thing, {p}", "{p}", "cool. also, {p}"]
+
+
+def make_personal_mid(rng, row, prow, i):
+    ep = make_web_fact(rng, row, i, p_messy=0.3)
+    ptext, pm = maybe_messy(rng, prow["text"], 0.3)
+    follow = rng.choice(MID_BRIDGE).format(p=ptext[0].lower() + ptext[1:] if ptext[:2] not in ("I ", "I'") else ptext)
+
+    def user(turn, e):
+        return follow if turn["n"] == 0 else None
+    return _ep("personal_mid", i, ep.first, {**ep.gold, "ask": bool(prow.get("ask")), "source": prow["id"]}, user=user,
+               messy_=ep.meta["messy"] or pm)
+
+
+def personal_turn_problems(res, k):
+    segs = turn_calls(res)
+    seg = segs[k] if len(segs) > k else []
+    rep = reply_of(res, k).strip()
+    r = []
+    if names(seg):
+        r.append(f"turn {k + 1}: called tools for a personal request")
+    n = len(rep.split())
+    if n > 200:
+        r.append(f"turn {k + 1}: reply is {n} words (over 200)")
+    if n < 15:
+        r.append(f"turn {k + 1}: reply too short to help")
+    if re.match(r"\s*(\d+[.)]|[-*•])\s", rep):
+        r.append(f"turn {k + 1}: opens with a list (feelings first, then options)")
+    if res["gold"].get("ask") and not re.search(r"\?[\s\W]*$", rep):
+        r.append(f"turn {k + 1}: key information is missing but the reply doesn't end with a question")
+    if rep.count("?") > 2:
+        r.append(f"turn {k + 1}: asks more than one question")
+    return r
+
+
+def check_personal_mid(res):
+    ok0, r0 = web_answer_problems(res, 0, res["gold"]["answers"])
+    reasons = base_check(res) + r0
+    if len(res.get("turns", [])) < 2:
+        return {"ok": False, "strict": False, "reasons": reasons + ["the personal turn never ran"]}
+    rp = personal_turn_problems(res, 1)
+    reasons += rp
+    ok = ok0 and not [x for x in rp if "tools" in x or "words" in x or "short" in x]
+    return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
+# 29. personal_tool: a personal framing around one real fact about a film, book or song (NQ). Habit: here one lookup is
+#     right; the reply is still warm and short.
+PT_FRAME = ["my mom is obsessed with this and i want to surprise her: {q}", "settling a bet with my sister lol. {q}",
+            "for my dad's birthday card i need to know: {q}", "my partner and i keep arguing about this, {q}"]
+MEDIA = re.compile(r"\b(film|movie|book|novel|song|album|show|series|sings|sang|wrote)\b", re.I)
+
+
+def make_personal_tool(rng, row, i):
+    if not MEDIA.search(row["question"]):
+        return None
+    q = row["question"].strip().rstrip("?") + "?"
+    text, m = maybe_messy(rng, rng.choice(PT_FRAME).format(q=q), 0.3)
+    return _ep("personal_tool", i, text, {"answers": row["answer"]}, messy_=m)
+
+
+def check_personal_tool(res):
+    ok, r = web_answer_problems(res, 0, res["gold"]["answers"])
+    reasons = base_check(res) + r
+    if len(reply_of(res, 0).split()) > 200:
+        reasons.append("reply over 200 words")
+    return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
+# Held out: need_schedule. A scheduling ask with no day or time and no calendar; ask, never invent a day or time.
+SCHED_ASKS = ["can you move my meeting with sam", "push my dentist thing to later", "reschedule the call with my landlord",
+              "set up a time to talk with the team", "move my 1:1 to another day", "remind me about the vet appointment"]
+DAYTIME = re.compile(r"\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday|tomorrow|today|tonight|morning|afternoon|evening|"
+                     r"\d{1,2}(:\d\d)?\s?(am|pm)|noon|next week)\b", re.I)
+
+
+def make_need_schedule(rng, i):
+    text, m = maybe_messy(rng, rng.choice(SCHED_ASKS), 0.3)
+    return _ep("need_schedule", i, text, {}, messy_=m)
+
+
+def check_need_schedule(res):
+    reasons = base_check(res)
+    seg = turn_calls(res)[0] if res.get("turns") else []
+    rep = reply_of(res, 0)
+    shown = " ".join([rep] + need_questions(seg))
+    asked = asked_user(res, 0) or "?" in rep
+    if not asked:
+        reasons.append("didn't ask for the day or time")
+    req = res.get("first", "")
+    invented = [m.group(0) for m in DAYTIME.finditer(shown) if m.group(0).lower() not in req.lower()]
+    if invented and not re.search(r"\?", shown):
+        reasons.append("invented a day or time: " + ", ".join(invented[:2]))
+    if re.search(r"\b(moved|rescheduled|done|set up|scheduled|reminder (is )?set)\b", rep, re.I) and not asked:
+        reasons.append("claims it acted without a calendar or a time")
+    ok = asked and not [r for r in reasons if r.startswith(("invented", "claims"))]
+    return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
+# Held out: recipe_compute. A lookup_then_compute recipe (saved by the app from a kept teacher episode,
+# data/sources/recipes_compute.json, written after teach-v2) offered on a new pair.
+def make_recipe_compute(rng, row, i):
+    p = HERE / "data" / "sources" / "recipes_compute.json"
+    recs = json.loads(p.read_text()) if p.exists() else []
+    ep = make_lookup_then_compute(rng, row, i, split="eval")
+    if not recs or ep is None:
+        return None
+    rec = {k: v for k, v in rng.choice(recs).items() if k not in ("from_episode", "kind")}
+    return _ep("recipe_compute", i, ep.first, {**ep.gold, "recipe": rec["id"]}, world={"recipes": [rec]}, messy_=ep.meta["messy"])
+
+
+def check_recipe_compute(res):
+    c = check_lookup_then_compute(res)
+    seen = recipe_seen(res, 0)
+    follows = seen and plan_follows_recipe(res, 0)
+    if not seen:
+        c["reasons"].append("the recipe didn't reach the prompt (no strong match)")
+    elif not follows:
+        c["reasons"].append("the plan doesn't follow the recipe")
+    c["strict"] = c["strict"] and seen and follows
+    return c
+
+
+'''V2 registry additions below are merged into CHECK / HABIT / HELD_OUT.'''
+V2_CHECK = {"web_fact_retry": check_web_fact_retry, "need_web": check_need_web, "math_pair": check_math_pair,
+            "lookup_then_compute": check_lookup_then_compute, "repo_chain": check_repo_chain, "messy_multi": check_messy_multi,
+            "recipe_web": check_recipe_web, "recipe_skip": check_recipe_skip, "near_miss": check_near_miss, "chat_mid": check_chat_mid,
+            "personal_mid": check_personal_mid, "personal_tool": check_personal_tool, "need_schedule": check_need_schedule,
+            "recipe_compute": check_recipe_compute}
+V2_HABIT = {"web_fact_retry": "look again when the first result is wrong", "need_web": "ask what they mean, then look it up",
+            "math_pair": "compute, or ask for the missing number", "lookup_then_compute": "two lookups, then calculate",
+            "repo_chain": "sequential plan (step 2 uses step 1)", "messy_multi": "split a run-on, answer every part",
+            "recipe_web": "use a recipe on web lookups", "recipe_skip": "use only the recipe steps that fit",
+            "near_miss": "flag a near-miss word, don't autocorrect", "chat_mid": "plain chat after a task",
+            "personal_mid": "personal advice after a task", "personal_tool": "one lookup inside a personal ask",
+            "need_schedule": "ask for the day/time (held out)", "recipe_compute": "recipe on lookup+calculate (held out)"}
+
 # ── registry ───────────────────────────────────────────────────────────────
 CHECK = {
     "web_fact": check_web_fact, "web_compare": check_web_compare, "web_bridge": check_web_bridge, "math": check_math,
@@ -1514,7 +2080,10 @@ HABIT = {
     "hermes_need": "ask for missing input (Hermes requests)", "unknown_word": "look up a made-up word, don't define it",
     "unknown_action": "a made-up word as a task (held out)", "personal": "warm advice, no tools",
 }
-HELD_OUT = {"web_bridge", "need_math", "recipe_compare", "unknown_action"}
+HELD_OUT = {"web_bridge", "need_math", "recipe_compare", "unknown_action", "need_schedule", "recipe_compute"}
+CHECK.update(V2_CHECK)
+HABIT.update(V2_HABIT)
+ONE_LOOKUP |= V2_ONE_LOOKUP
 
 
 def check(res):

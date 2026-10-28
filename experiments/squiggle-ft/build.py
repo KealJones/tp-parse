@@ -31,29 +31,26 @@ EVAL_PLAN = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute": 12
              "repo_where": 16, "repo_two": 12, "recipe_repo": 12, "need_repo": 12, "memory_repo": 10, "past_chat": 12,
              "refs": 12, "chat": 16, "chat_after": 8, "bare_link": 12,
              "unknown_word": 16, "personal": 20,
+             # v2 families (eval templates/words/requests, disjoint from training)
+             "need_web": 12, "math_pair": 12, "lookup_then_compute": 10, "repo_chain": 10, "messy_multi": 10, "recipe_web": 10,
+             "recipe_skip": 10, "near_miss": 10, "chat_mid": 10, "personal_mid": 10,
              # held out: never in training
-             "web_bridge": 30, "need_math": 30, "recipe_compare": 24, "unknown_action": 16}
+             "web_bridge": 30, "need_math": 30, "recipe_compare": 24, "unknown_action": 16,
+             "need_schedule": 12, "recipe_compute": 12}
 # v2 (CORPUS_V2.md §4): new teacher episodes, attempted. Reused teach-v1 episodes come on top (re-checked with the v2
 # checker, leak-filtered, repo families capped at 25 each: train.py --reuse-cap). Families marked TODO have no maker yet
 # (make_sets skips them with a warning); counts are the plan the review asked for (thin cells >= 40).
-V2_PLAN = {
-    # look it up, verify
-    "web_fact": 140, "web_fact_retry": 40,            # TODO web_fact_retry
-    "web_compare": 60,
-    # ask for what's missing
-    "need_web": 50, "hermes_need": 40,                # TODO need_web
-    "math_pair": 120,                                 # TODO (60 problems, complete + one number removed)
-    # compute through calculate
-    "hermes_compute": 40, "lookup_then_compute": 40,  # TODO lookup_then_compute
-    # plan
-    "repo_chain": 40, "messy_multi": 40,              # TODO both
-    # recipes
-    "recipe_web": 40, "recipe_skip": 40,              # TODO both
-    # words
-    "unknown_word": 60, "near_miss": 50,              # TODO near_miss
-    # chat and personal
-    "personal": 70, "personal_mid": 40, "personal_tool": 15, "chat_mid": 50, "chat": 40,   # TODO personal_mid, personal_tool, chat_mid
+V2_PLAN = {   # the trimmed plan (CORPUS_V2 §4): 815 new episodes attempted
+    "web_fact": 100, "web_fact_retry": 40,
+    "need_web": 50, "hermes_need": 40, "math_pair": 80,          # math_pair: 40 problems x (complete, one number missing)
+    "hermes_compute": 40, "lookup_then_compute": 40,
+    "repo_chain": 40, "messy_multi": 40,
+    "recipe_web": 40, "recipe_skip": 40,
+    "unknown_word": 60, "near_miss": 50,
+    "personal": 70, "personal_mid": 40, "personal_tool": 15, "chat_mid": 50,
 }
+# The teacher smoke before the v2 round: 3 attempted per family (51), to read keep rates and rejection reasons.
+SMOKE_V2_PLAN = {k: 3 for k in V2_PLAN}
 # The eval plan squiggle-ft-train used (293 episodes at seed 123): baselines on other bases are run on exactly this set.
 EVAL_PLAN_V1 = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute": 12, "hermes_need": 12, "repo_fact": 16,
                 "repo_where": 16, "repo_two": 12, "recipe_repo": 12, "need_repo": 12, "memory_repo": 10, "past_chat": 12,
@@ -84,7 +81,8 @@ def load_sources(work, split):
     else:
         compute, need = compute[cut_c:], need[cut_n:]
     return {"nq": nq, "hotpot": hp, "gsm": gsm, "facts": list(facts.values()), "keal": keal, "compute": compute, "need": need,
-            "words": F.unknown_words(split), "personal": F.personal_rows(split), "split": split}
+            "words": F.unknown_words(split), "personal": F.personal_rows(split), "split": split, "retry": F.retry_rows(split),
+            "near": F.near_rows(split), "repo_cache": str(Path(work) / "repo-cache")}
 
 
 def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
@@ -104,6 +102,25 @@ def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
     personal = list(src.get("personal", [])); r2.shuffle(personal)
     pools["words"] = itertools.cycle(words) if words else iter(())       # a word can come back in another sentence
     pools["personal"] = iter(personal)
+    # v2 pools (own random stream, after the v1 draws, so v1 episode sets don't move)
+    r3 = random.Random(seed + 104729)
+    split = src.get("split", "train")
+    nq2 = list(nq); r3.shuffle(nq2)
+    born = [r for r in comp if F.BORN_FIRST.search(r["question"])]; r3.shuffle(born)
+    retry = list(src.get("retry", [])); r3.shuffle(retry)
+    near = list(src.get("near", [])); r3.shuffle(near)
+    gsm2 = list(src["gsm"]); r3.shuffle(gsm2)
+    pools.update({"nq2": itertools.cycle(nq2) if nq2 else iter(()), "born": itertools.cycle(born) if born else iter(()),
+                  "retry": iter(retry), "near": itertools.cycle(near) if near else iter(()),
+                  "personal2": itertools.cycle(personal) if personal else iter(()), "gsm2": iter(gsm2)})
+    media = [r for r in nq2 if F.MEDIA.search(r["question"])]
+    pools["media"] = itertools.cycle(media) if media else iter(())
+    pair_state = {}
+
+    def math_pair(i):
+        if i % 2 == 0:
+            pair_state["row"] = next(r for r in pools["gsm2"] if len(F.NUM_WORD.findall(r["question"])) >= 2)
+        return F.make_math_pair(r3, pair_state["row"], i, incomplete=i % 2 == 1)
     # recipe_compare: two comparison questions of the same shape (same first two words)
     shape = collections.defaultdict(list)
     for r in comp[len(comp) // 2:]:
@@ -136,6 +153,20 @@ def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
         "unknown_word": lambda i: F.make_unknown_word(rng, next(pools["words"]), i),
         "unknown_action": lambda i: F.make_unknown_action(rng, next(pools["words"]), i),
         "personal": lambda i: F.make_personal(rng, next(pools["personal"]), i),
+        "web_fact_retry": lambda i: F.make_web_fact_retry(r3, next(pools["retry"]), i),
+        "need_web": lambda i: F.make_need_web(r3, next(pools["nq2"]), i, split=split),
+        "math_pair": math_pair,
+        "lookup_then_compute": lambda i: F.make_lookup_then_compute(r3, next(pools["born"]), i, split=split),
+        "repo_chain": lambda i: F.make_repo_chain(r3, facts, i, repo_cache=src.get("repo_cache"), split=split),
+        "messy_multi": lambda i: F.make_messy_multi(r3, next(pools["nq2"]), facts, i, split=split),
+        "recipe_web": lambda i: F.make_recipe_web(r3, next(pools["born"]), i),
+        "recipe_skip": lambda i: F.make_recipe_skip(r3, facts, i),
+        "near_miss": lambda i: F.make_near_miss(r3, next(pools["near"]), i, split=split),
+        "chat_mid": lambda i: F.make_chat_mid(r3, next(pools["nq2"]), i, split=split),
+        "personal_mid": lambda i: F.make_personal_mid(r3, next(pools["nq2"]), next(pools["personal2"]), i),
+        "personal_tool": lambda i: F.make_personal_tool(r3, next(pools["media"]), i),
+        "need_schedule": lambda i: F.make_need_schedule(r3, i),
+        "recipe_compute": lambda i: F.make_recipe_compute(r3, next(pools["born"]), i),
     }
     eps = []
     for fam, n in plan.items():
@@ -163,7 +194,7 @@ def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
 
 
 def compact(res, keep_calls):
-    out = {k: res.get(k) for k in ("id", "family", "first", "gold", "meta", "error", "seconds", "check", "net", "source")}
+    out = {k: res.get(k) for k in ("id", "family", "first", "gold", "meta", "error", "seconds", "check", "net", "source", "recipes")}
     out["turns"] = [{k: t.get(k) for k in ("n", "session", "reply", "tools", "waiting", "calls")} | {"task": _task(t.get("task"))} for t in res.get("turns", [])]
     if keep_calls:
         out["calls"] = [{k: c.get(k) for k in ("kind", "messages", "output", "meta", "error")} for c in res.get("calls", [])]
@@ -242,7 +273,7 @@ def teach(args):
     work = Path(args.work)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    plan = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "eval": EVAL_PLAN}[args.plan]
+    plan = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "smoke_v2": SMOKE_V2_PLAN, "eval": EVAL_PLAN}[args.plan]
     src = load_sources(work, "eval" if args.plan == "eval" else "train")
     eps = make_sets(src, plan, seed=args.seed, scale=args.scale)
     if args.shard:
@@ -313,7 +344,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["teach", "sets"])
     ap.add_argument("--teacher", default=os.environ.get("TEACHER_MODEL", "Qwen/Qwen3-30B-A3B-Thinking-2507-FP8"))
-    ap.add_argument("--plan", default="train", choices=["train", "targets", "round2", "v2", "eval"])
+    ap.add_argument("--plan", default="train", choices=["train", "targets", "round2", "v2", "smoke_v2", "eval"])
     ap.add_argument("--scale", type=float, default=1.0)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--minutes", type=float, default=120)
@@ -329,7 +360,7 @@ def main():
         teach(args)
     else:
         src = load_sources(Path(args.work), "eval" if args.plan == "eval" else "train")
-        eps = make_sets(src, {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "eval": EVAL_PLAN}[args.plan], seed=args.seed, scale=args.scale)
+        eps = make_sets(src, {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "smoke_v2": SMOKE_V2_PLAN, "eval": EVAL_PLAN}[args.plan], seed=args.seed, scale=args.scale)
         for e in eps:
             print(json.dumps({"id": e.id, "family": e.family, "first": e.first, "gold": e.gold, "meta": e.meta}, ensure_ascii=False))
 

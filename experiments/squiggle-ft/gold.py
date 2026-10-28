@@ -314,9 +314,10 @@ def main():
             r["check"] = F.check(r)
             print(r["id"], "kept" if r["check"]["strict"] else f"NOT kept: {r['check']['reasons']}", r.get("error") or "")
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
-            if r["family"] == "repo_two" and r["check"]["strict"]:
+            if r["family"] in ("repo_two", "web_compare") and r["check"]["strict"]:
                 for rec in r.get("recipes") or []:
-                    recipes.append({**rec, "from_episode": r["id"], "repo": r["gold"]["repo"]})
+                    recipes.append({**rec, "from_episode": r["id"], "kind": "repo" if r["family"] == "repo_two" else "web",
+                                    **({"repo": r["gold"]["repo"]} if r["family"] == "repo_two" else {})})
     # Recipes the app saved from the finished gold plans (lite mode: built from the task log). recipe_repo episodes
     # start with one of these in memory, as if the similar task had been done in an earlier session.
     Path(a.out).with_name("gold_recipes.json").write_text(json.dumps(recipes, ensure_ascii=False, indent=1))
