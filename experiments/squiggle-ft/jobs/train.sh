@@ -1,9 +1,13 @@
-# Train the candidates on the teacher data, score them end to end, write RESULTS.md, export + upload the winner.
-# Usage (from jobs/boot.py): bash jobs/train.sh <out>   env: TAG (dataset folder), BASES, EPOCHS, EVAL_MINUTES
+# The real training run on the teacher data in kealjones/squiggle-ft-data/<TAG> (comma-separated tags allowed): all three
+# bases, full eval against the untouched Gemma 3 270M, RESULTS.md, and the winner exported (Q8_0 + Q4_0, checked in
+# wllama 3.8.1) to the private repo kealjones/squiggle-small. Usage: bash jobs/train.sh <out>
+#   env: TAG, BASES, EPOCHS, EVAL_MINUTES, LIMIT (minutes train.py may use)
 OUT=$1
 TAG=${TAG:-teach-v1}
 set -x
-python hub.py down kealjones/squiggle-ft-data $TAG/train_examples.jsonl.gz --to data_in
-python train.py --data data_in/$TAG/train_examples.jsonl.gz,samples/samples.jsonl --bases ${BASES:-gemma3,functiongemma,lfm25} \
-  --epochs ${EPOCHS:-2} --eval-minutes ${EVAL_MINUTES:-18} --out $OUT --work work --export --hub-repo kealjones/squiggle-small
+DATA=""
+for t in ${TAG//,/ }; do python hub.py down kealjones/squiggle-ft-data $t/train_examples.jsonl.gz --to data_in; DATA="$DATA,data_in/$t/train_examples.jsonl.gz"; done
+python selftest.py ${DATA//,/ } --tokenizers unsloth/gemma-3-270m-it,LiquidAI/LFM2.5-350M > $OUT/selftest.txt 2>&1; tail -12 $OUT/selftest.txt
+python train.py --data "${DATA#,}" --bases ${BASES:-gemma3,lfm25,functiongemma} \
+  --epochs ${EPOCHS:-3} --eval-minutes ${EVAL_MINUTES:-15} --budget-minutes ${LIMIT:-150} --out $OUT --work work --export --hub-repo kealjones/squiggle-small
 rm -rf $OUT/gguf/*.gguf

@@ -12,6 +12,7 @@ harness (sq/driver.mjs runs app/src unchanged). See TEACHER.md. `node teach.mjs 
   teach undo <id>                           take back your last output (e.g. after a double reply)
   teach show <id>                           the transcript so far;   teach drop <id> [reason]   give up on an episode
   teach families                            families, habits and target counts;   teach status --out DIR   progress
+  teach export [--dest F]                   kept examples -> data/claude_examples_<date>.jsonl.gz (for training)
 
 Episodes live in DIR/<id>/episode.json (spec, the outputs so far, the pending call). Each command replays the episode
 from the start with the stored outputs (tools are cached, so this is quick and gives the same results), so any number
@@ -357,6 +358,36 @@ def cmd_drop(a):
     print(f"dropped {a.id}")
 
 
+def cmd_export(a):
+    """Snapshot of every kept example (one per model call, deduplicated by episode) for training, gzipped."""
+    import datetime as dt
+    out = Path(a.out)
+    src = out / "kept_examples.jsonl"
+    rows, seen = [], set()
+    with locked(out / ".kept.lock"):
+        lines = open(src).read().splitlines() if src.exists() else []
+    eps = {}
+    for l in lines:
+        x = json.loads(l)
+        eps.setdefault(x["episode"], []).append(x)
+    for eid, xs in eps.items():
+        st = json.loads(episode_path(out, eid).read_text()).get("status") if episode_path(out, eid).exists() else None
+        if st != "kept":
+            continue
+        calls = {}
+        for y in xs:                                   # an episode is written once; keep the last copy per call anyway
+            calls[json.dumps(y["messages"])[-2000:] + y["output"]] = y
+        rows += list(calls.values())
+    dest = Path(a.dest or HERE / "data" / f"claude_examples_{dt.date.today().isoformat()}.jsonl.gz")
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    with gzip.open(dest, "wt") as f:
+        for x in rows:
+            f.write(json.dumps(x, ensure_ascii=False) + "\n")
+    import collections
+    print(f"{len(rows)} examples from {len(eps)} kept episodes -> {dest} ({dest.stat().st_size / 1e6:.1f} MB)")
+    print(dict(collections.Counter(x["family"] for x in rows)))
+
+
 def cmd_families(a):
     import build
     for f, n in TARGETS.items():
@@ -390,10 +421,11 @@ def main():
     s = sp.add_parser("show"); s.add_argument("id"); s.add_argument("--out", default=str(DEFAULT_OUT))
     s = sp.add_parser("drop"); s.add_argument("id"); s.add_argument("reason", nargs="?"); s.add_argument("--out", default=str(DEFAULT_OUT))
     sp.add_parser("families")
+    s = sp.add_parser("export"); s.add_argument("--out", default=str(DEFAULT_OUT)); s.add_argument("--dest")
     s = sp.add_parser("status"); s.add_argument("--out", default=str(DEFAULT_OUT))
     a = ap.parse_args()
     {"start": cmd_start, "next": cmd_next, "reply": cmd_reply, "tool-result": cmd_tool_result, "show": cmd_show,
-     "drop": cmd_drop, "undo": cmd_undo, "families": cmd_families, "status": cmd_status}[a.cmd](a)
+     "drop": cmd_drop, "undo": cmd_undo, "export": cmd_export, "families": cmd_families, "status": cmd_status}[a.cmd](a)
 
 
 if __name__ == "__main__":
