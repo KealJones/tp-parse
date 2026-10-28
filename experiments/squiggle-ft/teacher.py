@@ -143,6 +143,41 @@ HABITS:
 14. Several requests in one message: Pieces lists each one, the plan covers every one, and the reply answers all of
     them. A tool call for the first part never ends the turn early."""
 
+# A rejected lookup_then_compute / hermes_compute / math_pair episode is run once more from scratch, with the rules it
+# broke restated here. Each hint is a fixed sentence about a rule, chosen by the rejection reason; it never carries
+# anything from the episode (no numbers, names or answers).
+RETRY_HINTS = [
+    (r"no calculate call|did the maths in its head|isn't a calculate result|computed number|computes via run_js|plain arithmetic",
+     "Every computed number comes from a calculate call in this turn (one plain expression), never from your head and never run_js."),
+    (r"written before calculate", "Write a computed value only after the calculate result that contains it is in the prompt; not in Next:, a plan, or a query before that."),
+    (r"didn't compute it with run_js", "This request is a code or data task: write run_js code that console.logs the result, and answer from what it printed."),
+    (r"doesn't use both looked-up", "The calculate expression uses the two values you quoted from the results, nothing else."),
+    (r"birth years|about each person", "Look up each person on their own (fetch_url their Wikipedia page by title) and quote the line with the birth date for each, before computing."),
+    (r"doesn't give the calculated|doesn't carry the computed", "The reply states the value the calculate (or run_js) result gave, and cites it."),
+    (r"no plan for a two-lookup", "Two separate lookups and a computation need a plan: one step per lookup, then the calculation."),
+    (r"plan for a one-lookup", "One computation or one lookup is not a plan: call the tool directly."),
+    (r"asked the user although", "Every number the computation needs is in the request: compute it, don't ask."),
+    (r"didn't ask for the missing|need question contains a number|acted before asking",
+     "A number the computation needs is missing: ask for it with need first, without suggesting a value, and compute nothing before the answer."),
+    (r"Check line", "Every Check line quotes words from the result it follows (for calculate: Check: calculate gave \"...\")."),
+    (r"say where its facts came from|cites a source", "The reply cites the sources this turn actually read (the page, the calculation)."),
+    (r"states a fact no prompt", "Every name, number and quote in a reply or done result appears in a tool result or the prompt of this turn."),
+    (r"says it checked", "Don't say you checked, searched or found anything unless that tool result is in the prompt."),
+    (r"wrong or missing answer|hedged", "Take every number exactly as the request gives it. If one the computation needs is missing, ask for it; otherwise put the whole computation in calculate and answer with its result, plainly."),
+    (r"<think>|thinking needs|must start with|JSON|arguments", "Follow the answer format exactly: <visible_thinking> with the labelled lines, then one tool call or the reply."),
+    (r"context full|too long", "Keep results short (one page, grep, line ranges): the phone has 4096 tokens."),
+    (r"looped|stalled|stuck|too many model calls", "Move forward every call: never repeat a call that already returned a result."),
+]
+
+
+def retry_hint(reasons):
+    out = []
+    for pat, rule in RETRY_HINTS:
+        if any(re.search(pat, r, re.I) for r in reasons) and rule not in out:
+            out.append(rule)
+    return out
+
+
 HOW = {
     "request": "a NEW REQUEST. Labels: Request: / Pieces: / Know: / Don't know: / Goal: / Plan: or Next:",
     "step_start": "the START OF A STEP. Labels: Step: / Know: / Next:",
@@ -269,6 +304,9 @@ class VLLMTeacher:
                 f"Tools the phone model has looked up: {', '.join(looked) if looked else 'none yet (use find to look one up)'}.\n"
                 f"Everything the phone model reads, rendered with its chat template:\n<phone_prompt>\n{rendered}\n</phone_prompt>\n"
                 f"Write the phone model's output now, in the answer format.")
+        if req.get("hint"):
+            user += ("\nThis task is being run a second time: an earlier attempt at it broke these rules, so take extra care with "
+                     "them:\n" + "\n".join("- " + h for h in req["hint"]))
         msgs = [{"role": "system", "content": self.system}, {"role": "user", "content": user}]
         text, probs = None, ["no answer"]
         for attempt in range(self.retries + 1):

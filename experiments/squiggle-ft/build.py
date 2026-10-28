@@ -44,8 +44,8 @@ V2_PLAN = {   # the trimmed plan (CORPUS_V2 §4): 815 new episodes attempted
     "web_fact": 100, "web_fact_retry": 40,
     "need_web": 50, "hermes_need": 40, "math_pair": 80,          # math_pair: 40 problems x (complete, one number missing)
     "recipe_web": 40,           # before lookup_then_compute: both draw "born first" pairs, and recipe_web is pickier
-    "hermes_compute": 40, "lookup_then_compute": 40,
-    "repo_chain": 40, "messy_multi": 40,
+    "hermes_compute": 40, "lookup_then_compute": 40,          # + one retry each for a rejected compute episode
+    "repo_chain": 20, "messy_multi": 20,                      # cut after the mini-smoke (0/3 each); low yield accepted
     "recipe_skip": 40,
     "unknown_word": 60, "near_miss": 50,
     "personal": 45, "personal_mid": 30, "personal_tool": 15, "chat_mid": 50,   # 75 personal requests, none used twice
@@ -64,6 +64,7 @@ EVAL_PLAN_V1 = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute":
 ROUND2_PLAN = {"unknown_word": 60, "personal": 70}
 
 
+RETRY_FAMS = {"lookup_then_compute", "hermes_compute", "math_pair"}   # calculate is the point of v2: one retry each
 V1_PLANS = {"train", "targets", "round2"}     # rebuilt exactly as they ran: no dedupe, no exclusions
 
 
@@ -428,6 +429,8 @@ def teach(args):
     results = []
     fres = GzLines(out / "teacher_results.jsonl.gz")
     fex = GzLines(out / "train_examples.jsonl.gz")
+    fpend = GzLines(out / "judge_pending.jsonl.gz")     # kept A-or-B episodes waiting for the judge (a timeout keeps them)
+    retried = collections.Counter()
     n_ex = 0
     deferred = []
 
@@ -439,6 +442,8 @@ def teach(args):
         keep = r["check"]["strict"]
         if keep and judge_options(r):
             deferred.append(r)               # written after the judge has read it (below)
+            fpend.write(json.dumps(compact(r, True) | {"judge": "pending"}, ensure_ascii=False) + "\n")
+            fpend.flush()
         else:
             fres.write(json.dumps(compact(r, True), ensure_ascii=False) + "\n")
             if keep:
@@ -449,9 +454,20 @@ def teach(args):
         if len(results) % 5 == 0:
             k = sum(x["check"]["strict"] for x in results)
             print(f"[{(time.time() - t0) / 60:.1f} min] {len(results)}/{len(eps)} episodes, kept {k}, examples {n_ex}, teacher {teacher.stats}", flush=True)
-            report(results, out / "TEACHER_RESULTS.md", f"PARTIAL: {len(results)} of {len(eps)} episodes after "
-                   f"{(time.time() - t0) / 60:.0f} min ({len(deferred)} kept ones still wait for the judge and aren't in the files yet).")
+            report(results, out / "TEACHER_RESULTS.md", f"PARTIAL: {len(results)} of {len(eps)} episodes (retries included) after "
+                   f"{(time.time() - t0) / 60:.0f} min ({len(deferred)} kept ones wait for the judge, in judge_pending.jsonl.gz).")
+        # one retry from scratch for a rejected compute episode, with the broken rules restated (never an answer)
+        if (not keep and r["family"] in RETRY_FAMS and not (r.get("meta") or {}).get("attempt")
+                and "timed out" not in (r.get("error") or "")):
+            import dataclasses
+            from teacher import retry_hint
+            ep = by_id[r["id"]]
+            retried[r["family"]] += 1
+            return dataclasses.replace(ep, id=ep.id + "r", meta={**ep.meta, "attempt": 2, "retry_hint": retry_hint(r["check"]["reasons"]),
+                                                                 "retry_of": ep.id})
+    by_id = {e.id: e for e in eps}
     runner.run(eps, on_result=done, deadline=t0 + args.minutes * 60)
+    print(f"retried once: {dict(retried)}", flush=True)
     # The judge (same vLLM engine, already loaded): kept "A or B" episodes whose reply names more than one candidate.
     if deferred:
         import asyncio

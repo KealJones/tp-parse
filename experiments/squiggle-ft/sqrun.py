@@ -116,7 +116,7 @@ class Runner:
                 t = m.get("t")
                 if t == "gen":
                     req = {"episode": ep.id, "index": index, "kind": m["kind"], "messages": m["messages"], "max_tokens": m.get("max_tokens", 1024),
-                           "missing": m.get("missing") or [], "turn": len(result["turns"])}
+                           "missing": m.get("missing") or [], "turn": len(result["turns"]), "hint": ep.meta.get("retry_hint")}
                     result.setdefault("missing", []).extend(m.get("missing") or [])
                     index += 1
                     if index > self.max_calls:
@@ -172,6 +172,7 @@ class Runner:
         results = []
 
         async def one(ep):
+            follow = None
             async with sem:
                 if deadline and time.time() > deadline:
                     return
@@ -181,7 +182,9 @@ class Runner:
                     r = {"id": ep.id, "family": ep.family, "first": ep.first, "gold": ep.gold, "meta": ep.meta, "turns": [], "calls": [], "error": "episode timed out"}
                 results.append(r)
                 if on_result:
-                    on_result(r)
+                    follow = on_result(r)       # an Episode to run next (a retry), or None
+            if follow is not None:
+                await one(follow)
         await asyncio.gather(*(one(e) for e in episodes))
         batcher.cancel()
         return results
