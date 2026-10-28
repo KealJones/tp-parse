@@ -1,0 +1,21 @@
+{
+ "slug": "squiggle-ft-train-v2",
+ "flavor": "l4x1",
+ "timeout": "95m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "TAG=teach-topup-ltc DATA_LOCAL=data/rerendered/teach-v1.jsonl.gz,data/rerendered/teach-v2.jsonl.gz BASES=lfm25 EPOCHS=3 LIMIT=80 EVAL_MODELS=v1=kealjones/squiggle-small/hf HUB_PREFIX=v2 python boot.py train.sh",
+ "pip": [
+  "transformers>=5,<6",
+  "pyarrow",
+  "gguf",
+  "sentencepiece",
+  "protobuf",
+  "playwright"
+ ],
+ "upload_every": 120,
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-train-v2",
+ "note": "v2 training on Squiggle f54bbf7: lfm25 only, on teach-v1 + teach-v2 re-rendered (505 episodes) + the lookup_then_compute top-up (8), leak-filtered, repo families capped at 25; eval on the frozen eval set: untouched lfm25, the deployed v1 (kealjones/squiggle-small/hf) and v2; Q8_0 + Q4_0 export to kealjones/squiggle-small under v2/ (the deployed files untouched). Expected ~$0.80, hard cap $1.27 (95 min of l4x1)"
+}
