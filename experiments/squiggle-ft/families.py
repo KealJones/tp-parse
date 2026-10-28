@@ -8,8 +8,11 @@ check(result) returns {"ok": right answer, "strict": right answer AND the habit 
 Teacher episodes are kept only when strict; the eval reports both.
 """
 import json, random, re, unicodedata
+from pathlib import Path
 import quality as Q
 from sqrun import Episode
+
+HERE = Path(__file__).resolve().parent
 
 # ── text helpers ────────────────────────────────────────────────────────────
 STOP = set("a an the of in on at to for and or is was are were be by with from as it its this that which who whom what when where how did does do".split())
@@ -240,6 +243,12 @@ def nudged(result):
 
 
 PLAIN = {("chat", 0), ("chat_after", 1)}       # (family, user turn) that are plain chat
+PERSONAL = {("personal", 0)}                    # (family, user turn) that are personal advice / empathy
+
+
+def plain_mode(fam, k):
+    """What quality.py's `plain` argument is for turn k of a family: "personal", True (plain chat) or False."""
+    return "personal" if (fam, k) in PERSONAL else (fam, k) in PLAIN
 
 
 def call_problems(result):
@@ -247,14 +256,15 @@ def call_problems(result):
     r = []
     fam = result.get("family")
     for k, seg in enumerate(turn_calls(result)):
-        plain = (fam, k) in PLAIN
+        plain = plain_mode(fam, k)
         for j, x in enumerate(seg):
             probs, _ = Q.output_problems(x["out"], x["messages"] or [], x["kind"], plain)
             r += [f"turn {k + 1} call {j + 1} ({x['kind']}): {p}" for p in probs]
         used = set(names(seg))
         t = (result.get("turns") or [])[k] if k < len(result.get("turns") or []) else {}
         reply = t.get("reply") or ""
-        if used & (WEB | REPO_TOOLS) and not t.get("asked") and not Q.final_cites(reply):
+        searched_nothing = fam in UNKNOWN_FAMS and NOT_KNOWN.search(reply)     # nothing found is the finding; no page to cite
+        if used & (WEB | REPO_TOOLS) and not t.get("asked") and not Q.final_cites(reply) and not searched_nothing:
             r.append(f"turn {k + 1}: the reply doesn't say where its facts came from (page, repo, file)")
     return r
 
@@ -864,13 +874,152 @@ def check_web_bridge(res):
     return c
 
 
+# 16. unknown_word: a request built around a made-up word (data/sources/unknown_words.json: invented, checked to have
+#     no search hits), in a work/tech or a personal setting. Habit: look the word up, say plainly it isn't a known word,
+#     a guess only if it's labelled as one, and ask the one question (need, or at the end of the reply). Never present
+#     an invented meaning as fact. Held out: unknown_action, where the word is something to DO ("can you <word> my config").
+UNKNOWN_FAMS = {"unknown_word", "unknown_action"}
+UNKNOWN_ASK = {
+    "work": ["my coworker keeps {ing} the shared drive is that bad", "my manager says we have to {base} the backlog before friday, what does that involve",
+             "the new intern keeps {ing} the build server, should I be worried", "my team lead told me to stop {ing} my pull requests, what did I do wrong",
+             "someone in standup said our api is {ing} again, is that a problem", "is it normal for a sysadmin to {base} the logs every night",
+             "my boss wants me to {base} the quarterly report, how long should that take", "our client {ed} the whole project plan, what do I do now"],
+    "personal": ["my mom keeps trying to {base} me at dinner", "my roommate always {s} the fridge, how do I get him to stop",
+                 "my sister says I {base} too much when we talk on the phone, is that rude", "my friend keeps {ing} our group chat, what should I say",
+                 "my dad wants to {base} the garden this weekend, should I help", "my partner said I was {ing} again last night, what does that mean",
+                 "my kid came home saying everyone at school is {ing} now, should I be worried", "my neighbor {ed} our fence, is that a big deal"],
+}
+UNKNOWN_ACTION = ["can you {base} my config so it loads faster", "how do I {base} a git branch", "what's the fastest way to {base} a python list",
+                  "can you help me {base} my spreadsheet formulas", "is there a way to {base} my npm packages", "{base} my resume so it sounds more professional",
+                  "can you {base} this week's meeting notes for me", "how long does it take to {base} a sourdough starter"]
+NOT_KNOWN = re.compile(r"\b(not (a |an )?(real|known|standard|common|recognized|recognised|english|dictionary|actual) (word|term|verb)|"
+                       r"(isn'?t|is not|doesn'?t seem to be|does not seem to be|not) (a )?(real |known |standard |common )?(word|term)|"
+                       r"(could ?n[o']t|can'?t|did ?n[o']t|unable to) find (it|any|a|the|anything|that word|this word|a definition|a meaning|what)|"
+                       r"no (definition|meaning|results?|matches|hits|entry|record)|not familiar|unfamiliar|don'?t recogni[sz]e|made[- ]up|"
+                       r"not sure what .{0,30} means|don'?t know what .{0,30} means|unknown word|no idea what .{0,30} means)\b", re.I)
+GUESS = re.compile(r"\b(guess|maybe|might|may|perhaps|possibly|probably|could (mean|be)|sounds like|seems like|my best guess|if you mean|"
+                   r"not sure|unclear|don'?t know|no idea|assum\w*|i think|likely|if it means|in case)\b", re.I)
+DEFINES = re.compile(r"\b(means|meaning|refers to|is when|is the act|is a (term|word|slang|way|kind|type|form)|is slang|stands for|"
+                     r"describes|is basically|is just|is another word|involves|=)\b", re.I)
+_UNKNOWN = None
+
+
+def unknown_words(split):
+    global _UNKNOWN
+    if _UNKNOWN is None:
+        _UNKNOWN = json.loads((HERE / "data" / "sources" / "unknown_words.json").read_text())
+    return [w for w in _UNKNOWN if w["split"] == split]
+
+
+def make_unknown_word(rng, w, i, fam="unknown_word", p_messy=0.4):
+    ctx = rng.choice(["work", "personal"]) if fam == "unknown_word" else "action"
+    tpl = rng.choice(UNKNOWN_ASK[ctx] if fam == "unknown_word" else UNKNOWN_ACTION)
+    text = tpl.format(**w["forms"])
+    text, m = maybe_messy(rng, text, p_messy, keep=set(w["forms"].values()))
+    return _ep(fam, i, text, {"word": w["word"], "forms": sorted(set(w["forms"].values()))}, messy_=m, context=ctx)
+
+
+def make_unknown_action(rng, w, i):
+    return make_unknown_word(rng, w, i, fam="unknown_action")
+
+
+def defines_as_fact(text, forms):
+    """A sentence that says what the made-up word means, with no hedge (guess, maybe, not a known word...)."""
+    stems = {f.lower() for f in forms} | {f.lower()[:-1] for f in forms if f.endswith("e")}
+    for sent in re.split(r"(?<=[.!?])\s+|\n+", text or ""):
+        low = sent.lower()
+        if any(re.search(r"\b" + re.escape(x), low) for x in stems) and DEFINES.search(sent) and not GUESS.search(sent) \
+                and not NOT_KNOWN.search(sent) and not re.search(r"\b(not|n't|no)\b", low):
+            return True
+    return False
+
+
+def check_unknown_word(res):
+    reasons = base_check(res)
+    g = res["gold"]
+    forms = [f.lower() for f in g["forms"]]
+    segs = turn_calls(res)
+    seg = segs[0] if segs else []
+    queries = [str(a.get("query", "")).lower() for a in args_of(seg, "web_search")]
+    looked = any(any(f in q or f[:-1] in q for f in forms) for q in queries)
+    if not looked:
+        reasons.append("didn't look the word up with web_search" if not queries else "web_search didn't search for the word itself")
+    rep = reply_of(res, 0)
+    asked = asked_user(res, 0)
+    need_q = " ".join(str(a.get("what", "")) for a in args_of(seg, "need"))
+    done_r = " ".join(str(a.get("result", "")) for a in args_of(seg, "done"))
+    shown = " ".join([rep, need_q, done_r])
+    if defines_as_fact(shown, forms):
+        reasons.append("stated a meaning for the made-up word as if it were real")
+    if asked and (args_of(seg, "need")):
+        good_end = "?" in need_q or bool(re.search(r"\b(what|which|how|mean)\b", need_q, re.I))
+        if not good_end:
+            reasons.append("the need question doesn't ask what they mean")
+    else:
+        if not NOT_KNOWN.search(rep):
+            reasons.append("the reply doesn't say plainly that it isn't a known word")
+        if "?" not in rep:
+            reasons.append("the reply doesn't ask what they mean")
+    if len(rep.split()) > 150:
+        reasons.append("reply over 150 words")
+    ok = looked and not defines_as_fact(shown, forms) and (asked or (NOT_KNOWN.search(rep) and "?" in rep))
+    return {"ok": bool(ok), "strict": bool(ok) and not reasons, "reasons": reasons}
+
+
+def check_unknown_action(res):
+    return check_unknown_word(res)
+
+
+# 17. personal: advice and empathy with nothing to look up (real requests from OpenAssistant oasst2 and Dolly-15k,
+#     data/sources/personal.json). Habit: short thinking (Request / Need: feelings first, then options), no plan or tool,
+#     a warm, concise reply; when key information is missing (marked by hand), one question at the end.
+_PERSONAL = None
+
+
+def personal_rows(split):
+    global _PERSONAL
+    if _PERSONAL is None:
+        _PERSONAL = json.loads((HERE / "data" / "sources" / "personal.json").read_text())
+    return [r for r in _PERSONAL if r["split"] == split]
+
+
+def make_personal(rng, row, i, p_messy=0.35):
+    text, m = maybe_messy(rng, row["text"], p_messy)
+    # "ask": marked by hand in personal.json where the reply can't fit the person without one more fact (who the gift is
+    # for, what happened); those replies must end with a question.
+    return _ep("personal", i, text, {"ask": bool(row.get("ask")), "source": row["id"]}, messy_=m)
+
+
+def check_personal(res):
+    reasons = base_check(res)
+    segs = turn_calls(res)
+    seg = segs[0] if segs else []
+    rep = reply_of(res, 0).strip()
+    if names(seg):
+        reasons.append("called tools for a personal request")
+    n = len(rep.split())
+    if n > 200:
+        reasons.append(f"reply is {n} words (over 200)")
+    if n < 15:
+        reasons.append("reply too short to help")
+    if re.match(r"\s*(\d+[.)]|[-*\u2022])\s", rep):
+        reasons.append("opens with a list (feelings first, then options)")
+    if res["gold"].get("ask") and not re.search(r"\?[\s\W]*$", rep):
+        reasons.append("key information is missing but the reply doesn't end with a question")
+    if rep.count("?") > 2:
+        reasons.append("asks more than one question")
+    ok = bool(rep) and not names(seg) and 15 <= n <= 200
+    return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
 # ── registry ───────────────────────────────────────────────────────────────
 CHECK = {
     "web_fact": check_web_fact, "web_compare": check_web_compare, "web_bridge": check_web_bridge, "math": check_math,
     "need_math": check_need_math, "repo_fact": check_repo_fact, "repo_where": check_repo_where, "repo_two": check_repo_two,
     "recipe_repo": check_recipe_repo, "recipe_compare": check_recipe_compare, "need_repo": check_need_repo,
     "memory_repo": check_memory_repo, "past_chat": check_past_chat, "refs": check_refs, "chat": check_chat,
-    "chat_after": check_chat_after, "bare_link": check_bare_link,
+    "chat_after": check_chat_after, "bare_link": check_bare_link, "unknown_word": check_unknown_word,
+    "unknown_action": check_unknown_action, "personal": check_personal,
 }
 HABIT = {
     "web_fact": "look it up", "web_compare": "plan + look up two things", "web_bridge": "plan a two-hop lookup (held out)",
@@ -879,9 +1028,10 @@ HABIT = {
     "recipe_compare": "use a recipe on web lookups (held out)", "need_repo": "ask which repo", "memory_repo": "use memory, don't ask",
     "past_chat": "find an earlier chat", "refs": "follow 'it' to the last repo", "chat": "plain chat stays plain",
     "chat_after": "a task, then plain thanks", "bare_link": "read a bare link", "hermes_compute": "compute (Hermes requests)",
-    "hermes_need": "ask for missing input (Hermes requests)",
+    "hermes_need": "ask for missing input (Hermes requests)", "unknown_word": "look up a made-up word, don't define it",
+    "unknown_action": "a made-up word as a task (held out)", "personal": "warm advice, no tools",
 }
-HELD_OUT = {"web_bridge", "need_math", "recipe_compare"}
+HELD_OUT = {"web_bridge", "need_math", "recipe_compare", "unknown_action"}
 
 
 def check(res):

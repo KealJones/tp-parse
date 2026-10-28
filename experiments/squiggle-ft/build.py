@@ -10,7 +10,7 @@ Outputs (in --out):
   train_examples.jsonl.gz    {"messages", "output", "family", "kind", "episode"} per model call of kept episodes
   TEACHER_RESULTS.md         keep rate per family, why episodes were dropped, cost/time
 """
-import argparse, collections, gzip, json, os, random, sys, time
+import argparse, collections, gzip, itertools, json, os, random, sys, time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -30,8 +30,11 @@ TARGET_PLAN = {"web_fact": 90, "web_compare": 70, "math": 70, "hermes_compute": 
 EVAL_PLAN = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute": 12, "hermes_need": 12, "repo_fact": 16,
              "repo_where": 16, "repo_two": 12, "recipe_repo": 12, "need_repo": 12, "memory_repo": 10, "past_chat": 12,
              "refs": 12, "chat": 16, "chat_after": 8, "bare_link": 12,
+             "unknown_word": 16, "personal": 20,
              # held out: never in training
-             "web_bridge": 30, "need_math": 30, "recipe_compare": 24}
+             "web_bridge": 30, "need_math": 30, "recipe_compare": 24, "unknown_action": 16}
+# The second data round: the families added after teach-v1 (made-up words, personal advice).
+ROUND2_PLAN = {"unknown_word": 60, "personal": 70}
 
 
 def load_sources(work, split):
@@ -54,7 +57,8 @@ def load_sources(work, split):
         compute, need = compute[:cut_c], need[:cut_n]
     else:
         compute, need = compute[cut_c:], need[cut_n:]
-    return {"nq": nq, "hotpot": hp, "gsm": gsm, "facts": list(facts.values()), "keal": keal, "compute": compute, "need": need}
+    return {"nq": nq, "hotpot": hp, "gsm": gsm, "facts": list(facts.values()), "keal": keal, "compute": compute, "need": need,
+            "words": F.unknown_words(split), "personal": F.personal_rows(split)}
 
 
 def make_sets(src, plan, seed=0, scale=1.0):
@@ -69,6 +73,10 @@ def make_sets(src, plan, seed=0, scale=1.0):
     mem_facts = facts + [f for r, f in src["keal"].items() if r not in {x["repo"] for x in facts}]
     pools = {"nq": iter(nq), "comp": iter(comp), "bridge": iter(bridge), "gsm": iter(gsm), "titles": iter(titles),
              "compute": iter(src["compute"]), "need": iter(src["need"])}
+    words = list(src.get("words", [])); rng.shuffle(words)
+    personal = list(src.get("personal", [])); rng.shuffle(personal)
+    pools["words"] = itertools.cycle(words) if words else iter(())       # a word can come back in another sentence
+    pools["personal"] = iter(personal)
     # recipe_compare: two comparison questions of the same shape (same first two words)
     shape = collections.defaultdict(list)
     for r in comp[len(comp) // 2:]:
@@ -97,6 +105,9 @@ def make_sets(src, plan, seed=0, scale=1.0):
         "chat": lambda i: F.make_chat(rng, i),
         "hermes_compute": lambda i: hermes.make_compute(rng, next(pools["compute"]), i),
         "hermes_need": lambda i: hermes.make_need(rng, next(pools["need"]), i),
+        "unknown_word": lambda i: F.make_unknown_word(rng, next(pools["words"]), i),
+        "unknown_action": lambda i: F.make_unknown_action(rng, next(pools["words"]), i),
+        "personal": lambda i: F.make_personal(rng, next(pools["personal"]), i),
     }
     eps = []
     for fam, n in plan.items():
@@ -143,7 +154,7 @@ def examples(res, source=None):
         if c.get("kind") in ("chat", "step", "final") and c.get("output") and not c.get("error"):
             turn = turn_of[i] if i < len(turn_of) else k
             yield {"messages": c["messages"], "output": c["output"], "family": res["family"], "kind": c["kind"], "episode": res["id"],
-                   "turn": turn, "plain": (res["family"], turn) in F.PLAIN, "messy": res.get("meta", {}).get("messy", False),
+                   "turn": turn, "plain": F.plain_mode(res["family"], turn), "messy": res.get("meta", {}).get("messy", False),
                    **({"source": source} if source else {})}
 
 
@@ -176,7 +187,7 @@ def teach(args):
     work = Path(args.work)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    plan = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "eval": EVAL_PLAN}[args.plan]
+    plan = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "eval": EVAL_PLAN}[args.plan]
     src = load_sources(work, "eval" if args.plan == "eval" else "train")
     eps = make_sets(src, plan, seed=args.seed, scale=args.scale)
     if args.shard:
@@ -221,7 +232,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["teach", "sets"])
     ap.add_argument("--teacher", default=os.environ.get("TEACHER_MODEL", "Qwen/Qwen3-30B-A3B-Thinking-2507-FP8"))
-    ap.add_argument("--plan", default="train", choices=["train", "targets", "eval"])
+    ap.add_argument("--plan", default="train", choices=["train", "targets", "round2", "eval"])
     ap.add_argument("--scale", type=float, default=1.0)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--minutes", type=float, default=120)
@@ -237,7 +248,7 @@ def main():
         teach(args)
     else:
         src = load_sources(Path(args.work), "eval" if args.plan == "eval" else "train")
-        eps = make_sets(src, {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "eval": EVAL_PLAN}[args.plan], seed=args.seed, scale=args.scale)
+        eps = make_sets(src, {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "eval": EVAL_PLAN}[args.plan], seed=args.seed, scale=args.scale)
         for e in eps:
             print(json.dumps({"id": e.id, "family": e.family, "first": e.first, "gold": e.gold, "meta": e.meta}, ensure_ascii=False))
 

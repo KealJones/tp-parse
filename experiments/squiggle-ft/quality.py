@@ -12,6 +12,8 @@ An output that fails any rule is rejected; an episode with any rejected call is 
      right after a tool result                Check: / Next:
      final reply ("Every step is done")       Answer:
      plain chat                               one or two short lines, no labels, no tools
+     personal advice / empathy                Request: / Need: (what they need: feelings first, then options);
+                                              a warm reply under 200 words, no tools
 3. Habits: a real tool is only called once it is listed under "Tools you have looked up" (find first); done(result)
    carries facts, not narration; a plan has 2-6 short steps; the final reply cites its sources.
 """
@@ -27,19 +29,24 @@ LABELS = {
     "step_start": ["Step:", "Know:", "Next:"],
     "after_result": ["Check:", "Next:"],
     "final": ["Answer:"],
+    "personal": ["Request:", "Need:"],
 }
-MAX_WORDS = {"request": 260, "step_start": 180, "after_result": 180, "final": 160, "chat_plain": 40}
+MAX_WORDS = {"request": 260, "step_start": 180, "after_result": 180, "final": 160, "chat_plain": 40, "personal": 90}
+PERSONAL_REPLY_WORDS = 200
 
 
 def call_kind(messages, kind, plain=False):
-    """What the model is answering: a new request, the start of a step, a tool result, the final-reply prompt, or plain chat."""
-    if plain:
+    """What the model is answering: a new request, the start of a step, a tool result, the final-reply prompt, plain chat
+    (plain=True) or a personal advice / empathy request (plain="personal")."""
+    if plain and plain != "personal":
         return "chat_plain"
     if kind == "final":
         return "final"
     last = next((m for m in reversed(messages) if m["role"] == "user"), {"content": ""})["content"]
     if last.startswith("Result of "):
         return "after_result"
+    if plain == "personal":
+        return "personal"
     if kind == "step":
         return "step_start"
     return "request"
@@ -187,6 +194,8 @@ def output_problems(output, messages, kind, plain=False):
     if not blocks:
         if ckind == "chat_plain" and len(body) > 300:
             p.append("plain chat reply over 300 characters")
+        if ckind == "personal" and len(body.split()) > PERSONAL_REPLY_WORDS:
+            p.append(f"personal reply is {len(body.split())} words (keep it under {PERSONAL_REPLY_WORDS}: warm and concise)")
         return p, None
     if len(blocks) > 1:
         p.append("more than one tool call (one per reply)")
@@ -207,6 +216,11 @@ def output_problems(output, messages, kind, plain=False):
         p.append("the final reply can't call tools")
     if ckind == "chat_plain":
         p.append("plain chat gets a plain reply, no tools")
+    if ckind == "personal" and name != "need":
+        p.append("a personal advice request gets a warm reply, no tools (there is no fact to look up); if key information "
+                 "is missing, ask one question at the end of the reply")
+    if ckind == "personal" and name == "need":
+        p.append("for a personal request, ask your one question at the end of a warm reply instead of using need")
     if name not in HARNESS and name in SPECS and name not in looked_up(messages):
         p.append(f"'{name}' isn't under 'Tools you have looked up' yet: call find first")
     if kind == "chat" and name == "done":

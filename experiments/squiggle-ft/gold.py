@@ -215,6 +215,32 @@ def web_compare_policy(a, b):
     return act
 
 
+def unknown_word_policy(text, word, thing):
+    """A made-up word: look it up, find nothing, say so plainly and ask (no meaning stated as fact)."""
+    def act(req):
+        last = last_user(req)
+        if not last.startswith("Result of "):
+            return out([f"Request: Whether it's bad that their coworker keeps \"{word}\" {thing}.",
+                        f"Pieces: 1. what \"{word}\" means. 2. whether that's bad.",
+                        f"Know: only their message; I don't know the word \"{word}\".",
+                        "Don't know: what it means; it could be made up, misheard or office slang, so I'll look it up instead of guessing.",
+                        "Goal: Find out what the word means, then answer.",
+                        "Next: find only searches my tools, memory and past chats, so look up the web search tool."],
+                       "find", {"query": "search the web"})
+        if result(req, "find"):
+            return out(["Check: find gave me web_search and fetch_url.", f"Next: search the web for the word itself."],
+                       "web_search", {"query": f"{word} meaning"})
+        return out([f"Check: no result explains \"{word}\"; nothing on the web defines it, so it's not a known word.",
+                    "Next: say so plainly, don't invent a meaning, and ask what their coworker actually does."],
+                   reply=f"I searched the web for \"{word}\" and found nothing, so it doesn't seem to be a real word. It might be an "
+                         f"in-joke or slang at your office, but that's only a guess. What does your coworker actually do to {thing}?")
+    return act
+
+
+def personal_policy(request_line, need_line, reply):
+    return lambda req: out([f"Request: {request_line}", f"Need: {need_line}"], reply=reply)
+
+
 CHAT_REPLIES = {"hey whats up lol": ("A casual hello; nothing to look up, just a short friendly reply.", "Not much! Just here if you need anything. What's up with you?"),
                 "thanks, that worked": ("They're saying thanks; it worked. A short warm reply.", "Glad it worked! Shout if anything else comes up."),
                 "good night squiggle": ("A goodnight; plain chat, a short reply.", "Good night! Sleep well.")}
@@ -254,6 +280,20 @@ def episodes(facts):
     eps.append((Episode(id="gold-web_compare-born", family="web_compare", first="Who was born first, Susan Oliver or W. S. Van Dyke?",
                         gold={"answer": "Woodbridge Strong Van Dyke II", "titles": ["Susan Oliver", "W. S. Van Dyke"], "type": "comparison"}),
                 web_compare_policy("Susan Oliver", "W. S. Van Dyke")))
+    words = [w for w in F.unknown_words("train")]
+    if words:
+        w = words[0]
+        text = F.UNKNOWN_ASK["work"][0].format(**w["forms"])
+        eps.append((Episode(id="gold-unknown_word-0", family="unknown_word", first=text,
+                            gold={"word": w["word"], "forms": sorted(set(w["forms"].values()))}),
+                    unknown_word_policy(text, w["forms"]["ing"], "the shared drive")))
+    eps.append((Episode(id="gold-personal-0", family="personal", first="I need an idea for a birthday present for my father.",
+                        gold={"ask": True, "source": "dolly15k"}),
+                personal_policy("A birthday present idea for their dad.",
+                                "a few ideas that suit most dads, warmly; I don't know what he enjoys, so options first, then one question to narrow it down.",
+                                "That's a lovely thing to be planning! A few ideas that work for a lot of dads: something for a hobby he already "
+                                "loves, an experience you share (a game, a meal out, a day trip), or something personal like a framed photo "
+                                "or a short letter about what he means to you. What does he enjoy doing in his free time?")))
     return eps
 
 
