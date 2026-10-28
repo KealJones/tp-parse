@@ -1,0 +1,11 @@
+{
+ "slug": "squiggle-ft-train-smoke-2",
+ "flavor": "l4x1",
+ "timeout": "45m",
+ "files": ["experiments/squiggle-ft/jobs/boot.py"],
+ "cmd": "TAG=teach-smoke,teach-smoke-2 python boot.py train_smoke.sh",
+ "pip": ["transformers>=5,<6", "pyarrow", "gguf", "sentencepiece", "protobuf", "playwright"],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-train-smoke-2",
+ "note": "training-side smoke, second try (first: OOM in the loss, $0.03; now chunked + SDPA) on the 243 teacher-smoke examples: 1 epoch x 3 bases, small eval, GGUF export + wllama check, no upload; expected ~$0.40, cap $0.60 (45 min of l4x1)"
+}

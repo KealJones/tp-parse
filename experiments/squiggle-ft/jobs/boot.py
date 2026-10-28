@@ -53,7 +53,7 @@ v = next(x["version"] for x in vers if x["version"].startswith("v22."))
 get(f"https://nodejs.org/dist/{v}/node-{v}-linux-x64.tar.gz", "node.tgz")
 untar("node.tgz", "node")
 env = dict(os.environ, PATH=os.path.abspath("node/bin") + ":" + os.environ["PATH"], SQUIGGLE_DIR=os.path.abspath("squiggle"),
-           NODE_NO_WARNINGS="1", PYTHONUNBUFFERED="1", TOKENIZERS_PARALLELISM="false")
+           NODE_NO_WARNINGS="1", PYTHONUNBUFFERED="1", TOKENIZERS_PARALLELISM="false", PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True")
 subprocess.run(["npm", "ci", "--silent", "--no-audit", "--no-fund"], cwd="sqft", env=env, check=True)
 print(f"boot: node {v}, squiggle {SQUIGGLE_COMMIT}, tp-parse {sha[:7]}, setup took {time.time() - t0:.0f} s", flush=True)
 os.makedirs("out", exist_ok=True)
