@@ -1,0 +1,90 @@
+
+config.json:   0%|          | 0.00/1.37k [00:00<?, ?B/s][Aconfig.json: 100%|██████████| 1.37k/1.37k [00:00<00:00, 9.10MB/s]
+
+tokenizer_config.json:   0%|          | 0.00/1.16M [00:00<?, ?B/s][Atokenizer_config.json: 100%|██████████| 1.16M/1.16M [00:00<00:00, 41.9MB/s]
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 33.4MB            [Atokenizer.json: downloading bytes:           |  0.00B            tokenizer.json: downloading bytes: ██████████| 8.83MB,  878kB/s  tokenizer.json: downloading bytes: ██████████| 8.83MB,  878kB/s  
+tokenizer.json: reconstructing file: 100%|██████████| 33.4MB / 33.4MB, 3.32MB/s  
+
+added_tokens.json:   0%|          | 0.00/35.0 [00:00<?, ?B/s][Aadded_tokens.json: 100%|██████████| 35.0/35.0 [00:00<00:00, 250kB/s]
+
+special_tokens_map.json:   0%|          | 0.00/670 [00:00<?, ?B/s][Aspecial_tokens_map.json: 100%|██████████| 670/670 [00:00<00:00, 3.47MB/s]
+
+chat_template.jinja:   0%|          | 0.00/1.65k [00:00<?, ?B/s][Achat_template.jinja: 100%|██████████| 1.65k/1.65k [00:00<00:00, 15.3MB/s]
+
+Downloading bytes:           |  0.00B            [A
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s][A
+Reconstructing (incomplete total...):   0%|          |  0.00B / 4.69MB            [A
+Reconstructing (incomplete total...):   0%|          |  0.00B / 4.69MB            [AFetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 36.08it/s]
+
+Downloading bytes: ██████████| 3.26MB,   ???B/s  [A
+Download complete: ██████████| 3.26MB,   ???B/s  [A
+Reconstruction complete: 100%|██████████| 4.69MB / 4.69MB,   ???B/s               [AReconstruction complete: 100%|██████████| 4.69MB / 4.69MB,   ???B/s  
+Download complete: ██████████| 3.26MB,   ???B/s  
+Unknown separator token '<bos>' in TemplateProcessing<pair>
+  chat template, unsloth/gemma-3-270m-it: HF vs what convert_hf_to_gguf.py writes: identical
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][Aconfig.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 7.37MB/s]
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][Atokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 2.30MB/s]
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][Atokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 39.6MB/s]
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][Achat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 17.0MB/s]
+
+Downloading bytes:           |  0.00B            [A
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s][A
+Reconstructing (incomplete total...):   0%|          |  0.00B /   134B            [AFetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 177.85it/s]
+
+Download complete: ██████████|   134B            [A
+Reconstruction complete: 100%|██████████|   134B /   134B                         [ADownload complete: ██████████|   134B            
+Reconstruction complete: 100%|██████████|   134B /   134B            
+Unknown separator token '<|startoftext|>' in TemplateProcessing<pair>
+  chat template, LiquidAI/LFM2.5-350M: HF vs what convert_hf_to_gguf.py writes: identical
+  episode lookup_then_compute-12: not kept (no calculate call for the difference; the reply doesn't give the calculated difference; no plan for a two-lookup task)
+  episode lookup_then_compute-13: not kept (turn 1: a Check line doesn't refer to the result it follows: 'fetch_url gave Pelle Almqvist\'s birth date: "Born Per Almqvist 29 May 1978 (age '; didn't find both birth years in a result about each pe)
+  episode lookup_then_compute-22: not kept (no calculate call for the difference; the reply doesn't give the calculated difference)
+  episode lookup_then_compute-14: not kept (turn 1: the reply states a fact no prompt or tool result of the turn has: number 16; no calculate call for the difference; the reply doesn't give the calculated difference)
+  episode lookup_then_compute-11: not kept (turn 1: stated a computed number (35) that no calculate result gave; turn 1: the reply states a fact no prompt or tool result of the turn has: number 35; no calculate call for the difference; the repl)
+  episode lookup_then_compute-29: not kept (turn 1: stated a computed number (9) that no calculate result gave; no calculate call for the difference; the reply doesn't give the calculated difference)
+  episode lookup_then_compute-24: not kept (turn 1: stated a computed number (6) that no calculate result gave; turn 1: the reply states a fact no prompt or tool result of the turn has: number 6; no calculate call for the difference; the reply )
+  episode lookup_then_compute-20: not kept (turn 1: stated a computed number (19) that no calculate result gave; turn 1: the reply states a fact no prompt or tool result of the turn has: number 19; no calculate call for the difference; the repl)
+  episode lookup_then_compute-8: not kept (turn 1: the reply doesn't say where its facts came from (page, repo, file); didn't find both birth years in a result about each person; no calculate call for the difference; the reply doesn't give the)
+  episode lookup_then_compute-17: not kept (turn 1: stated a computed number (13) that no calculate result gave; turn 1: the reply states a fact no prompt or tool result of the turn has: number 13; no calculate call for the difference; the repl)
+  episode lookup_then_compute-10: not kept (turn 1: stated a computed number (21) that no calculate result gave; turn 1: the reply states a fact no prompt or tool result of the turn has: number 21; didn't find both birth years in a result about)
+  episode lookup_then_compute-26: not kept (turn 1: a Check line doesn't refer to the result it follows: 'The two birth years are 1881 (Bartók) and 1895 (Hindemith) from earlier tool res'; didn't find both birth years in a result about each per)
+  lookup_then_compute-26 (lookup_then_compute, step): unknown tool calculate
+  episode lookup_then_compute-6: not kept (no calculate call for the difference; the reply doesn't give the calculated difference)
+  episode lookup_then_compute-23: not kept (turn 1: a Check line doesn't refer to the result it follows: 'Dan Bejar born 1972 (from Wikipedia: Dan Bejar), Makoto Koshinaka born 1980 (fro'; no plan for a two-lookup task)
+  lookup_then_compute-23 (lookup_then_compute, chat): unknown tool calculate
+  episode lookup_then_compute-3: not kept (turn 1: a Check line doesn't refer to the result it follows: 'Chanda Rubin born 1976 (from web search), Maria Sharapova born 1987 (from web se'; no plan for a two-lookup task)
+  lookup_then_compute-3 (lookup_then_compute, chat): unknown tool calculate
+  episode lookup_then_compute-1: not kept (turn 1: the reply states a fact no prompt or tool result of the turn has: number 72; no calculate call for the difference; the reply doesn't give the calculated difference)
+  episode lookup_then_compute-18: not kept (turn 1: the reply states a fact no prompt or tool result of the turn has: number 769; no calculate call for the difference; the reply doesn't give the calculated difference)
+  episode lookup_then_compute-9: not kept (turn 1: a Check line doesn't refer to the result it follows: 'Michael McKean born 1947, Simon Neil born 1979 (from earlier steps).')
+  lookup_then_compute-9 (lookup_then_compute, step): unknown tool calculate
+  episode lookup_then_compute-7: not kept (turn 1: the reply states a fact no prompt or tool result of the turn has: number 67; no calculate call for the difference; the reply doesn't give the calculated difference)
+  episode lookup_then_compute-25: not kept (turn 1: a Check line doesn't refer to the result it follows: 'Birth years from step results: Penelope Fitzgerald born 1916, Václav Havel born ')
+  lookup_then_compute-25 (lookup_then_compute, step): unknown tool calculate
+  episode lookup_then_compute-2: not kept (turn 1: a Check line doesn't refer to the result it follows: 'Bertalan Farkas: "born August 2, 1949" (Wikipedia); Hans Schlegel: "Hans Wilhelm'; the calculate expression doesn't use both looked-up bir)
+  lookup_then_compute-2 (lookup_then_compute, chat): unknown tool calculate
+  episode lookup_then_compute-4: not kept (turn 1: a Check line doesn't refer to the result it follows: 'Step 1 says Herschell Gordon Lewis born 1926, step 2 says Richard Boleslawski bo')
+  lookup_then_compute-4 (lookup_then_compute, step): unknown tool calculate
+  episode lookup_then_compute-28: not kept (the calculate expression doesn't use both looked-up birth years; the reply doesn't give the calculated difference)
+  lookup_then_compute-28 (lookup_then_compute, step): unknown tool calculate
+  episode lookup_then_compute-21: not kept (turn 1: a Check line doesn't refer to the result it follows: 'Step 3 needs the difference between 1931 (Ted Kotcheff) and 1879 (Hampton Del Ru'; didn't find both birth years in a result about each per)
+  lookup_then_compute-21 (lookup_then_compute, step): unknown tool calculate
+  episode lookup_then_compute-19: not kept (didn't find both birth years in a result about each person; the calculate expression doesn't use both looked-up birth years; the reply doesn't give the calculated difference)
+  lookup_then_compute-19 (lookup_then_compute, step): unknown tool calculate
+  lookup_then_compute-15 (lookup_then_compute, step): unknown tool calculate
+  lookup_then_compute-0 (lookup_then_compute, step): unknown tool calculate
+  lookup_then_compute-5 (lookup_then_compute, step): unknown tool calculate
+  lookup_then_compute-16 (lookup_then_compute, step): unknown tool calculate
+  lookup_then_compute-27 (lookup_then_compute, step): unknown tool calculate
+
+2294 model calls checked, 47 with problems. 538 episodes, 513 pass their checker.
+  47 × unknown tool calculate
+  unsloth/gemma-3-270m-it: prompt tokens median 430, max 3956; output tokens median 97, max 290
+  LiquidAI/LFM2.5-350M: prompt tokens median 426, max 3882; output tokens median 90, max 285

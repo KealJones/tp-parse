@@ -1,0 +1,632 @@
+{
+ "untouched-lfm25": {
+  "families": {
+   "bare_link": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_after": {
+    "n": 8,
+    "ok": 0.125,
+    "strict": 0.0
+   },
+   "chat_mid": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_need": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "lookup_then_compute": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 16,
+    "ok": 0.3125,
+    "strict": 0.0
+   },
+   "math_pair": {
+    "n": 12,
+    "ok": 0.16666666666666666,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "messy_multi": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "near_miss": {
+    "n": 10,
+    "ok": 0.2,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 30,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_schedule": {
+    "n": 12,
+    "ok": 0.5833333333333334,
+    "strict": 0.0
+   },
+   "need_web": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "personal": {
+    "n": 20,
+    "ok": 0.8,
+    "strict": 0.0
+   },
+   "personal_mid": {
+    "n": 4,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 18,
+    "ok": 0.2222222222222222,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_skip": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_web": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_chain": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_two": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "unknown_action": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "unknown_word": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 30,
+    "ok": 0.03333333333333333,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 16,
+    "ok": 0.4375,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 16,
+    "ok": 0.125,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.0,
+  "trained_ok": 0.0773809523809524,
+  "held_ok": 0.16777777777777778,
+  "run_js_misuse": 0.0,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.0,
+  "loops": 0.0,
+  "plans": 0.0,
+  "asks": 0.0,
+  "chat": 0.875,
+  "done_facts": null,
+  "messy": 0.0,
+  "clean": 0.0,
+  "messy_gap": 0.0,
+  "call_capped": 0.0,
+  "gen": {
+   "calls": 532,
+   "out_tokens": 56680,
+   "per_call": 106.54135338345864
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "sup squiggle whats good",
+    "kind": "chat",
+    "output": "Sup Squiggle, today's the day! What's good for you? I'm ready to help with any queries or plans you might have\u2014whether it's brainstorming ideas, organizing tasks, or just having a chat about anything that comes up. Just let me know how I can assist!"
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "The tools provided are not relevant to answering the question about which movie has a black-and-white version of \"Flying Padre.\" I cannot access external databases, reviews, or information directly through these systems. You may want to check movie catalogs like Wikipedia, IMDb, or streaming platforms for details on both films' versions. Let me know if you'd help with something else!"
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "What version is commander.js at right now?",
+    "kind": "chat",
+    "output": "The current command version for Commander.js is **3.4.9**.\n\nWould you like me to look up any details about this version or assist with something else today? (Note: I don't have real-time access to system information, so I can't confirm if Commander.js has a specific release date.)"
+   }
+  ]
+ },
+ "v1": {
+  "families": {
+   "bare_link": {
+    "n": 12,
+    "ok": 0.75,
+    "strict": 0.5
+   },
+   "chat": {
+    "n": 16,
+    "ok": 0.8125,
+    "strict": 0.8125
+   },
+   "chat_after": {
+    "n": 8,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_mid": {
+    "n": 10,
+    "ok": 0.5,
+    "strict": 0.3
+   },
+   "hermes_compute": {
+    "n": 12,
+    "ok": 0.16666666666666666,
+    "strict": 0.08333333333333333
+   },
+   "hermes_need": {
+    "n": 12,
+    "ok": 0.4166666666666667,
+    "strict": 0.4166666666666667
+   },
+   "lookup_then_compute": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 16,
+    "ok": 0.0625,
+    "strict": 0.0
+   },
+   "math_pair": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 10,
+    "ok": 0.6,
+    "strict": 0.3
+   },
+   "messy_multi": {
+    "n": 10,
+    "ok": 0.1,
+    "strict": 0.1
+   },
+   "near_miss": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 30,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 12,
+    "ok": 0.4166666666666667,
+    "strict": 0.3333333333333333
+   },
+   "need_schedule": {
+    "n": 12,
+    "ok": 0.4166666666666667,
+    "strict": 0.3333333333333333
+   },
+   "need_web": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.0
+   },
+   "personal": {
+    "n": 20,
+    "ok": 0.05,
+    "strict": 0.0
+   },
+   "personal_mid": {
+    "n": 4,
+    "ok": 0.5,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 18,
+    "ok": 0.4444444444444444,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 12,
+    "ok": 0.6666666666666666,
+    "strict": 0.3333333333333333
+   },
+   "recipe_skip": {
+    "n": 10,
+    "ok": 0.4,
+    "strict": 0.0
+   },
+   "recipe_web": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 12,
+    "ok": 0.5,
+    "strict": 0.16666666666666666
+   },
+   "repo_chain": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 16,
+    "ok": 0.5625,
+    "strict": 0.3125
+   },
+   "repo_two": {
+    "n": 12,
+    "ok": 0.3333333333333333,
+    "strict": 0.08333333333333333
+   },
+   "repo_where": {
+    "n": 16,
+    "ok": 0.1875,
+    "strict": 0.125
+   },
+   "unknown_action": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "unknown_word": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 30,
+    "ok": 0.16666666666666666,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 16,
+    "ok": 0.25,
+    "strict": 0.0625
+   },
+   "web_fact": {
+    "n": 16,
+    "ok": 0.125,
+    "strict": 0.0625
+   }
+  },
+  "trained_strict": 0.1425595238095238,
+  "trained_ok": 0.26726190476190476,
+  "held_ok": 0.20555555555555557,
+  "run_js_misuse": 0.7125,
+  "held_strict": 0.06666666666666667,
+  "held_min": 0.0,
+  "format": 0.9805947580645161,
+  "loops": 0.05869074492099323,
+  "plans": 0.5227272727272727,
+  "asks": 0.3333333333333333,
+  "chat": 0.875,
+  "done_facts": 1.0,
+  "messy": 0.09929078014184398,
+  "clean": 0.10139860139860139,
+  "messy_gap": 0.0021078212567574167,
+  "call_capped": 0.04966139954853273,
+  "gen": {
+   "calls": 3943,
+   "out_tokens": 351934,
+   "per_call": 89.27803145611365
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "sup squiggle whats good",
+    "kind": "chat",
+    "output": "<think>\nRequest: What's the current opinion on \"good\" (typo \"Squiggle\" \u2192 \"Glad\").\nPieces: 1. The person or group who says \"good\".\nKnow: User corrected to \"glad\" after asking for a response; no prior context about Glad.\nDon't know: Which user is correct, and what's the default answer (e.g., they mean Elvis/Glad).\nGoal: Get the correct person from the user before looking up anything.\nNext: Use need to ask which user is right.\n</think>\n```tool_call\n{\"name\": \"need\", \"arguments\": {\"what\": \"Which of you are asking about 'good' (Squiggle)?\"}}\n```"
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "<think>\nRequest: Which of the two films is a black-and-white movie?\nPieces: 1. Whether \"Flying Padre\" and \"Inside Job\" are both black-and-white.\nKnow: Only the question; no prior context on these films.\nDon't know: Both film titles; guessing would be wrong.\nGoal: Determine which film is a black-and-white movie, given they're two distinct options.\nNext: Use find to get web search tools for checking film genres.\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"search the web\"}}\n```"
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "What version is commander.js at right now?",
+    "kind": "chat",
+    "output": "<think>\nRequest: What version is the Commander.js file (repo name \"commander\") at current?\nPieces: 1. The version number of the Commander.js repo.\nKnow: User said \"commander.js\" but no repo name; only they know which one it's in.\nDon't know: Which repo does commander.js belong to (e.g., owner/repo).\nGoal: Find the current version of the Command.js repo.\nNext: Use find to search for tools that can clone a GitHub repo and read files.\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"clone a github repo and read a file\"}}\n```"
+   }
+  ]
+ },
+ "lfm25": {
+  "families": {
+   "bare_link": {
+    "n": 12,
+    "ok": 0.6666666666666666,
+    "strict": 0.3333333333333333
+   },
+   "chat": {
+    "n": 16,
+    "ok": 0.875,
+    "strict": 0.875
+   },
+   "chat_after": {
+    "n": 8,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_mid": {
+    "n": 10,
+    "ok": 0.2,
+    "strict": 0.2
+   },
+   "hermes_compute": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.08333333333333333
+   },
+   "hermes_need": {
+    "n": 12,
+    "ok": 0.75,
+    "strict": 0.75
+   },
+   "lookup_then_compute": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 16,
+    "ok": 0.0625,
+    "strict": 0.0
+   },
+   "math_pair": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 10,
+    "ok": 0.4,
+    "strict": 0.4
+   },
+   "messy_multi": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "near_miss": {
+    "n": 10,
+    "ok": 0.3,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 30,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 12,
+    "ok": 0.25,
+    "strict": 0.0
+   },
+   "need_schedule": {
+    "n": 12,
+    "ok": 0.9166666666666666,
+    "strict": 0.5833333333333334
+   },
+   "need_web": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.08333333333333333
+   },
+   "past_chat": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "personal": {
+    "n": 20,
+    "ok": 0.7,
+    "strict": 0.7
+   },
+   "personal_mid": {
+    "n": 4,
+    "ok": 0.75,
+    "strict": 0.25
+   },
+   "recipe_compare": {
+    "n": 18,
+    "ok": 0.2222222222222222,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 12,
+    "ok": 0.5833333333333334,
+    "strict": 0.25
+   },
+   "recipe_skip": {
+    "n": 10,
+    "ok": 0.4,
+    "strict": 0.0
+   },
+   "recipe_web": {
+    "n": 3,
+    "ok": 0.6666666666666666,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 12,
+    "ok": 0.3333333333333333,
+    "strict": 0.08333333333333333
+   },
+   "repo_chain": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 16,
+    "ok": 0.3125,
+    "strict": 0.125
+   },
+   "repo_two": {
+    "n": 12,
+    "ok": 0.3333333333333333,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 16,
+    "ok": 0.125,
+    "strict": 0.0
+   },
+   "unknown_action": {
+    "n": 16,
+    "ok": 0.0625,
+    "strict": 0.0625
+   },
+   "unknown_word": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 30,
+    "ok": 0.03333333333333333,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 16,
+    "ok": 0.4375,
+    "strict": 0.0625
+   },
+   "web_fact": {
+    "n": 16,
+    "ok": 0.125,
+    "strict": 0.125
+   }
+  },
+  "trained_strict": 0.15431547619047617,
+  "trained_ok": 0.3013392857142857,
+  "held_ok": 0.24694444444444447,
+  "run_js_misuse": 0.0875,
+  "held_strict": 0.12916666666666668,
+  "held_min": 0.0,
+  "format": 0.9775390625,
+  "loops": 0.01805869074492099,
+  "plans": 0.4090909090909091,
+  "asks": 0.35185185185185186,
+  "chat": 0.8333333333333334,
+  "done_facts": 1.0,
+  "messy": 0.07801418439716312,
+  "clean": 0.14685314685314685,
+  "messy_gap": 0.06883896245598373,
+  "call_capped": 0.0,
+  "gen": {
+   "calls": 2048,
+   "out_tokens": 203465,
+   "per_call": 99.34814453125
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "sup squiggle whats good",
+    "kind": "chat",
+    "output": "<think>\nRequest: What's \"good\" for someone who says they're \"succinct\".\nPieces: 1. A positive word or phrase to describe the succinctness of their words.\nKnow: The user said \"succinct\"; no prior context on its meaning (only the question).\nDon't know: Whether \"succinct\" is a real term; it's not standard English.\nGoal: Clarify what they mean by \"succinct\".\nNext: Use need to ask for clarification since we don't know if the word exists or has a specific meaning.\n</think>\n```tool_call\n{\"name\": \"need\", \"arguments\": {\"what\": \"What does 'succinct' mean?\"}}\n```"
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "<think>\nRequest: Which of the two films (Black-and-White vs. Inside Job) is a black-and-white movie.\nPieces: 1. Black-and-white feature film title. 2. Color version title.\nKnow: Only the question; no prior context on both titles.\nDon't know: Both film identities; guessing would be wrong.\nGoal: Identify which one is black-and-white (only the film name).\nNext: Two separate lookups needed, so plan with two steps.\n</think>\n```tool_call\n{\"name\": \"plan\", \"arguments\": {\"goal\": \"Identify whether Flying Padre or Inside Job is a black-and-white movie\", \"steps\": [\"Find the title of the first film (Black-and-White)\"], [\"Find the title of the second film (Inside Job)\"]}}\n```"
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "What version is commander.js at right now?",
+    "kind": "chat",
+    "output": "<think>\nRequest: What version of commander.js is the current one?\nPieces: 1. The specific version number.\nKnow: The repo name \"commander.js\" (from user's message).\nDon't know: The actual version; it must be looked up from package.json or GitHub repos.\nGoal: Get the version for commander.js using find.\nNext: Call find to discover tools that can read file and get version info.\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"read a text document and find its version\"}}\n```"
+   }
+  ]
+ }
+}
