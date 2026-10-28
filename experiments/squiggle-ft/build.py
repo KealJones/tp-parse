@@ -23,6 +23,10 @@ from sqrun import Runner
 TRAIN_PLAN = {"web_fact": 200, "web_compare": 140, "math": 140, "hermes_compute": 90, "hermes_need": 70, "repo_fact": 150,
               "repo_where": 130, "repo_two": 70, "recipe_repo": 60, "need_repo": 80, "memory_repo": 50, "past_chat": 70,
               "refs": 70, "chat": 70, "chat_after": 40, "bare_link": 60}
+# What the teacher runs at full size: the targets in teach.py (830 episodes), every trained family.
+TARGET_PLAN = {"web_fact": 90, "web_compare": 70, "math": 70, "hermes_compute": 40, "hermes_need": 40, "repo_fact": 80,
+               "repo_where": 70, "repo_two": 50, "recipe_repo": 40, "need_repo": 50, "memory_repo": 35, "past_chat": 40,
+               "refs": 40, "chat": 50, "chat_after": 30, "bare_link": 35}
 EVAL_PLAN = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute": 12, "hermes_need": 12, "repo_fact": 16,
              "repo_where": 16, "repo_two": 12, "recipe_repo": 12, "need_repo": 12, "memory_repo": 10, "past_chat": 12,
              "refs": 12, "chat": 16, "chat_after": 8, "bare_link": 12,
@@ -172,11 +176,11 @@ def teach(args):
     work = Path(args.work)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    plan = TRAIN_PLAN if args.plan == "train" else EVAL_PLAN
-    src = load_sources(work, "train" if args.plan == "train" else "eval")
+    plan = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "eval": EVAL_PLAN}[args.plan]
+    src = load_sources(work, "eval" if args.plan == "eval" else "train")
     eps = make_sets(src, plan, seed=args.seed, scale=args.scale)
     print(f"{len(eps)} episodes: {dict(collections.Counter(e.family for e in eps))}", flush=True)
-    teacher = VLLMTeacher(args.teacher, max_tokens=args.max_tokens)
+    teacher = VLLMTeacher(args.teacher, max_tokens=args.max_tokens, max_seqs=max(64, args.concurrency))
     source = "teacher:" + args.teacher
     runner = Runner(teacher, args.squiggle, work, concurrency=args.concurrency, max_calls=40)
     t0 = time.time()
@@ -214,7 +218,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["teach", "sets"])
     ap.add_argument("--teacher", default="Qwen/Qwen3-30B-A3B-Thinking-2507-FP8")
-    ap.add_argument("--plan", default="train", choices=["train", "eval"])
+    ap.add_argument("--plan", default="train", choices=["train", "targets", "eval"])
     ap.add_argument("--scale", type=float, default=1.0)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--minutes", type=float, default=120)
@@ -227,8 +231,8 @@ def main():
     if args.cmd == "teach":
         teach(args)
     else:
-        src = load_sources(Path(args.work), "train" if args.plan == "train" else "eval")
-        eps = make_sets(src, TRAIN_PLAN if args.plan == "train" else EVAL_PLAN, seed=args.seed, scale=args.scale)
+        src = load_sources(Path(args.work), "eval" if args.plan == "eval" else "train")
+        eps = make_sets(src, {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "eval": EVAL_PLAN}[args.plan], seed=args.seed, scale=args.scale)
         for e in eps:
             print(json.dumps({"id": e.id, "family": e.family, "first": e.first, "gold": e.gold, "meta": e.meta}, ensure_ascii=False))
 

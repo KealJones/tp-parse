@@ -369,7 +369,7 @@ def check_web_compare(res, k=0):
 
 
 # 3. math: GSM8K, computed with run_js. Habit 1 (keep the maths in the calculator).
-def make_math(rng, row, i, p_messy=0.4):
+def make_math(rng, row, i, p_messy=0.45):
     text, m = maybe_messy(rng, row["question"], p_messy)
     return _ep("math", i, text, {"answer": row["answer"]}, messy_=m)
 
@@ -684,7 +684,7 @@ def make_past_chat(rng, row, i):
 
     def user(turn, ep):
         return (text, "later") if turn["n"] == 0 else None
-    return _ep("past_chat", i, first, {"answers": row["answer"]}, user=user, messy_=m)
+    return _ep("past_chat", i, first, {"answers": row["answer"]}, user=user, messy_=True)   # a reference to an earlier chat
 
 
 def check_past_chat(res):
@@ -795,7 +795,7 @@ def check_chat_after(res):
 def make_bare_link(rng, title, i):
     url = "https://en.wikipedia.org/wiki/" + title.replace(" ", "_")
     text = rng.choice(["{u}", "{u}", "{u} ?", "whats this {u}", "{u} tldr", "can u summarize {u}"]).format(u=url)
-    return _ep("bare_link", i, text, {"url": url, "title": title})
+    return _ep("bare_link", i, text, {"url": url, "title": title}, messy_=True)     # a bare link is Keal-style input
 
 
 def check_bare_link(res):
