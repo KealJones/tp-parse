@@ -6,7 +6,8 @@ OUT=$1
 TAG=${TAG:-teach-v1}
 set -x
 DATA=""
-for t in ${TAG//,/ }; do python hub.py down kealjones/squiggle-ft-data $t/train_examples.jsonl.gz --to data_in; DATA="$DATA,data_in/$t/train_examples.jsonl.gz"; done
+# The teacher's episode results, re-checked here with the current checker (train.py keeps only strict, teacher-sourced ones).
+for t in ${TAG//,/ }; do python hub.py down kealjones/squiggle-ft-data $t/teacher_results.jsonl.gz --to data_in; DATA="$DATA,data_in/$t/teacher_results.jsonl.gz"; done
 python selftest.py ${DATA//,/ } --tokenizers unsloth/gemma-3-270m-it,LiquidAI/LFM2.5-350M > $OUT/selftest.txt 2>&1; tail -12 $OUT/selftest.txt
 python train.py --data "${DATA#,}" --bases ${BASES:-gemma3,lfm25,functiongemma} \
   --epochs ${EPOCHS:-3} --eval-minutes ${EVAL_MINUTES:-15} --budget-minutes ${LIMIT:-150} --out $OUT --work work --export --hub-repo kealjones/squiggle-small
