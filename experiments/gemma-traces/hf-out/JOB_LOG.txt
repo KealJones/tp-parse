@@ -1,0 +1,271 @@
+job 6ae1a0c341e90535df770659 on gpu: gemma-traces at 58422b5
+fetched experiments/gemma-traces/run_traces.py
+fetched experiments/gemma-traces/prompts.jsonl
+[  0.0 min] skipping prompts that need an image: [19, 20]
+
+
+config.json:   0%|          | 0.00/5.14k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 5.14k/5.14k [00:00<00:00, 24.6MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/3.08k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 3.08k/3.08k [00:00<00:00, 8.23MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 32.2MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 8.75MB,  870kB/s  
+tokenizer.json: downloading bytes: ██████████| 8.75MB,  870kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 32.2MB / 32.2MB, 3.20MB/s  
+
+
+chat_template.jinja:   0%|          | 0.00/18.6k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 18.6k/18.6k [00:00<00:00, 65.0MB/s]
+[  0.1 min] gemma-4-E4B-it: 114 samples, prompt tokens 524-564; example prompt:
+<bos><|turn>system
+<|think|>
+You are a helpful assistant. You can use these tools:
+- list_files(path?): List files in the workspace.
+- read_file(path, start_line?, end_line?): Read lines of a text file from the workspace, with line numbers.
+- grep(pattern, path?, ignore_case?, skip?): Search files for a word or regular expression.
+- note(action, id?, text?): Your notepad for this chat.
+- write_file(path, content): Create or overwrite a text file in the workspace.
+- delete_file(path): Delete a file (or folder) in the workspace.
+- github_list_repos(): List the GitHub repos the user has given Squiggle access to.
+- git_clone(repo, branch?): Clone a GitHub repo into /repos/<name>.
+- git_status(repo): Show the current branch and changed files of a cloned repo.
+- git_branch(repo, name, from?): Switch to a branch, or start a new one.
+- git_commit(repo, message): Commit all changes in a repo on the current branch.
+- git_push(repo): Push the current branch to GitHub (never forced).
+- git_pull(repo): Fetch and fast-forward the current branch from GitHub.
+- git_log(repo, count?): Recent commits on the current branch.
+- github_open_pr(repo, title, body?, base?): Open a pull request from the current (pushed) branch.
+- fetch_url(url): Read a web page by its full URL.
+- web_search(query, count?): Search the web (DuckDuckGo).
+- remember(subject, relation, object, note?): Save a lasting fact about the user or their projects (preferences, decisions, names, how things work).
+- recall(query): Search saved memory facts.
+- forget(id): Delete a saved memory fact by id (when the user says it is wrong or outdated).
+- search_history(query): Search the user's past conversations (all sessions) for something discussed before.
+- run_js(code): Run JavaScript in an isolated sandbox (no access to the user's data or files).
+If a tool would help, say which tool you would call and with what arguments.<turn|>
+<|turn>user
+whats the capital of australia<turn|>
+<|turn>model
+
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 16.0GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:   2%|▏         |  252MB / 16.0GB, 9.66MB/s  [A
+model.safetensors: downloading bytes:           |  138MB, 11.0MB/s  
+
+model.safetensors: reconstructing file:   4%|▍         |  610MB / 16.0GB, 50.1MB/s  [A
+model.safetensors: downloading bytes: ▏         |  314MB, 26.5MB/s  
+model.safetensors: downloading bytes: ▋         | 1.13GB, 89.4MB/s  
+
+model.safetensors: reconstructing file:   7%|▋         | 1.07GB / 16.0GB, 90.5MB/s  [A
+model.safetensors: downloading bytes: █▎        | 2.01GB,  160MB/s  
+
+model.safetensors: reconstructing file:  17%|█▋        | 2.68GB / 16.0GB, 97.5MB/s  [A
+model.safetensors: downloading bytes: █▊        | 2.98GB,  227MB/s  
+model.safetensors: downloading bytes: ██▋       | 4.22GB,  312MB/s  
+
+model.safetensors: reconstructing file:  22%|██▏       | 3.49GB / 16.0GB,  235MB/s  [A
+
+model.safetensors: reconstructing file:  32%|███▏      | 5.10GB / 16.0GB,  235MB/s  [A
+model.safetensors: downloading bytes: ███▏      | 5.13GB,  177MB/s  
+
+model.safetensors: reconstructing file:  36%|███▌      | 5.77GB / 16.0GB,  241MB/s  [A
+model.safetensors: downloading bytes: ███▊      | 6.17GB,  247MB/s  
+
+model.safetensors: reconstructing file:  46%|████▌     | 7.38GB / 16.0GB,  235MB/s  [A
+model.safetensors: downloading bytes: ████▎     | 6.97GB,  149MB/s  
+model.safetensors: downloading bytes: █████▏    | 8.22GB,  226MB/s  
+
+model.safetensors: reconstructing file:  52%|█████▏    | 8.35GB / 16.0GB,  260MB/s  [A
+model.safetensors: downloading bytes: █████▌    | 8.98GB,  237MB/s  
+
+model.safetensors: reconstructing file:  57%|█████▋    | 9.12GB / 16.0GB,  250MB/s  [A
+model.safetensors: downloading bytes: ██████    | 9.61GB,  224MB/s  
+
+model.safetensors: reconstructing file:  60%|██████    | 9.67GB / 16.0GB,  247MB/s  [A
+model.safetensors: downloading bytes: ██████▎   | 10.1GB,  216MB/s  
+
+model.safetensors: reconstructing file:  63%|██████▎   | 10.0GB / 16.0GB,  244MB/s  [A
+model.safetensors: downloading bytes: ██████▌   | 10.5GB,  218MB/s  
+
+model.safetensors: reconstructing file:  66%|██████▌   | 10.5GB / 16.0GB,  241MB/s  [A
+model.safetensors: downloading bytes: ██████▊   | 10.8GB,  207MB/s  
+
+model.safetensors: reconstructing file:  69%|██████▉   | 11.0GB / 16.0GB,  239MB/s  [A
+model.safetensors: downloading bytes: ██████▉   | 11.1GB,  195MB/s  
+
+model.safetensors: reconstructing file:  71%|███████▏  | 11.4GB / 16.0GB,  236MB/s  [A
+model.safetensors: downloading bytes: ███████   | 11.4GB,  210MB/s  
+
+model.safetensors: reconstructing file:  75%|███████▍  | 12.0GB / 16.0GB,  235MB/s  [A
+model.safetensors: downloading bytes: ███████▎  | 11.7GB,  206MB/s  
+model.safetensors: downloading bytes: ███████▌  | 12.1GB,  200MB/s  
+
+model.safetensors: reconstructing file:  77%|███████▋  | 12.3GB / 16.0GB,  235MB/s  [A
+model.safetensors: downloading bytes: ███████▊  | 12.4GB,  200MB/s  
+
+model.safetensors: reconstructing file:  80%|████████  | 12.8GB / 16.0GB,  233MB/s  [A
+model.safetensors: downloading bytes: ███████▉  | 12.7GB,  187MB/s  
+
+model.safetensors: reconstructing file:  83%|████████▎ | 13.3GB / 16.0GB,  233MB/s  [A
+model.safetensors: downloading bytes: ████████▏ | 13.0GB,  180MB/s  
+
+model.safetensors: reconstructing file:  86%|████████▌ | 13.7GB / 16.0GB,  232MB/s  [A
+model.safetensors: downloading bytes: ████████▎ | 13.4GB,  200MB/s  
+
+model.safetensors: reconstructing file:  89%|████████▉ | 14.2GB / 16.0GB,  230MB/s  [A
+
+model.safetensors: reconstructing file:  92%|█████████▏| 14.7GB / 16.0GB,  230MB/s  [A
+
+model.safetensors: reconstructing file:  94%|█████████▍| 15.1GB / 16.0GB,  229MB/s  [A
+
+model.safetensors: reconstructing file:  98%|█████████▊| 15.6GB / 16.0GB,  229MB/s  [A
+
+model.safetensors: reconstructing file:  99%|█████████▉| 15.8GB / 16.0GB,  228MB/s  [A
+model.safetensors: downloading bytes: ██████████| 13.6GB,  202MB/s  
+model.safetensors: downloading bytes: ██████████| 13.6GB,  202MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 16.0GB / 16.0GB,  227MB/s  
+
+
+Loading weights:   0%|          | 0/2076 [00:00<?, ?it/s][A
+
+Loading weights:  36%|███▋      | 754/2076 [00:03<00:06, 207.43it/s][A
+
+Loading weights:  36%|███▋      | 754/2076 [00:17<00:06, 207.43it/s][A
+
+Loading weights:  36%|███▋      | 755/2076 [00:18<00:43, 30.17it/s] [A
+
+Loading weights:  38%|███▊      | 789/2076 [00:19<00:42, 30.40it/s][A
+
+Loading weights:  46%|████▌     | 945/2076 [00:20<00:26, 42.14it/s][A
+
+Loading weights:  51%|█████▏    | 1067/2076 [00:24<00:26, 38.54it/s][A
+
+Loading weights:  56%|█████▌    | 1153/2076 [00:27<00:24, 37.60it/s][A
+
+Loading weights:  59%|█████▉    | 1221/2076 [00:29<00:23, 36.30it/s][A
+
+Loading weights:  62%|██████▏   | 1277/2076 [00:31<00:23, 33.60it/s][A
+
+Loading weights:  64%|██████▎   | 1323/2076 [00:33<00:23, 32.04it/s][A
+
+Loading weights:  66%|██████▌   | 1363/2076 [00:34<00:22, 31.20it/s][A
+
+Loading weights:  67%|██████▋   | 1399/2076 [00:35<00:21, 30.96it/s][A
+
+Loading weights:  81%|████████  | 1673/2076 [00:36<00:05, 77.32it/s][A
+Loading weights: 100%|██████████| 2076/2076 [00:37<00:00, 55.63it/s]
+
+
+generation_config.json:   0%|          | 0.00/208 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 208/208 [00:00<00:00, 1.18MB/s]
+[  1.9 min] gemma-4-E4B-it: loaded in 106 s, 15.9 GB on the GPU
+[  6.4 min] gemma-4-E4B-it: batch 1 {'size': 29, 'seconds': 269.2, 'steps': 1649, 'ms_per_step': 163.2, 'tokens': 19332, 'capped': 0, 'peak_gb': 18.9}
+[ 11.3 min] gemma-4-E4B-it: batch 2 {'size': 29, 'seconds': 298.7, 'steps': 1788, 'ms_per_step': 167.1, 'tokens': 18035, 'capped': 0, 'peak_gb': 19.0}
+[ 16.7 min] gemma-4-E4B-it: batch 3 {'size': 29, 'seconds': 322.5, 'steps': 1913, 'ms_per_step': 168.6, 'tokens': 21057, 'capped': 0, 'peak_gb': 19.0}
+[ 21.7 min] gemma-4-E4B-it: batch 4 {'size': 27, 'seconds': 296.5, 'steps': 1870, 'ms_per_step': 158.6, 'tokens': 21549, 'capped': 0, 'peak_gb': 18.8}
+
+
+config.json:   0%|          | 0.00/4.95k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 4.95k/4.95k [00:00<00:00, 10.3MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/3.08k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 3.08k/3.08k [00:00<00:00, 19.4MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/18.6k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 18.6k/18.6k [00:00<00:00, 56.1MB/s]
+[ 21.7 min] gemma-4-E2B-it: 114 samples, prompt tokens 524-564; example prompt:
+<bos><|turn>system
+<|think|>
+You are a helpful assistant. You can use these tools:
+- list_files(path?): List files in the workspace.
+- read_file(path, start_line?, end_line?): Read lines of a text file from the workspace, with line numbers.
+- grep(pattern, path?, ignore_case?, skip?): Search files for a word or regular expression.
+- note(action, id?, text?): Your notepad for this chat.
+- write_file(path, content): Create or overwrite a text file in the workspace.
+- delete_file(path): Delete a file (or folder) in the workspace.
+- github_list_repos(): List the GitHub repos the user has given Squiggle access to.
+- git_clone(repo, branch?): Clone a GitHub repo into /repos/<name>.
+- git_status(repo): Show the current branch and changed files of a cloned repo.
+- git_branch(repo, name, from?): Switch to a branch, or start a new one.
+- git_commit(repo, message): Commit all changes in a repo on the current branch.
+- git_push(repo): Push the current branch to GitHub (never forced).
+- git_pull(repo): Fetch and fast-forward the current branch from GitHub.
+- git_log(repo, count?): Recent commits on the current branch.
+- github_open_pr(repo, title, body?, base?): Open a pull request from the current (pushed) branch.
+- fetch_url(url): Read a web page by its full URL.
+- web_search(query, count?): Search the web (DuckDuckGo).
+- remember(subject, relation, object, note?): Save a lasting fact about the user or their projects (preferences, decisions, names, how things work).
+- recall(query): Search saved memory facts.
+- forget(id): Delete a saved memory fact by id (when the user says it is wrong or outdated).
+- search_history(query): Search the user's past conversations (all sessions) for something discussed before.
+- run_js(code): Run JavaScript in an isolated sandbox (no access to the user's data or files).
+If a tool would help, say which tool you would call and with what arguments.<turn|>
+<|turn>user
+whats the capital of australia<turn|>
+<|turn>model
+
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 10.2GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: ▋         |  767MB, 62.0MB/s  
+
+model.safetensors: reconstructing file:   7%|▋         |  677MB / 10.2GB, 59.2MB/s  [A
+model.safetensors: downloading bytes: █▉        | 1.98GB,  167MB/s  
+
+model.safetensors: reconstructing file:  27%|██▋       | 2.75GB / 10.2GB,  130MB/s  [A
+model.safetensors: downloading bytes: ██▉       | 3.02GB,  251MB/s  
+model.safetensors: downloading bytes: ████      | 4.20GB,  325MB/s  
+
+model.safetensors: reconstructing file:  50%|████▉     | 5.10GB / 10.2GB,  312MB/s  [A
+model.safetensors: downloading bytes: █████▏    | 5.33GB,  355MB/s  
+
+model.safetensors: reconstructing file:  60%|██████    | 6.19GB / 10.2GB,  373MB/s  [A
+model.safetensors: downloading bytes: ██████    | 6.22GB,  387MB/s  
+model.safetensors: downloading bytes: ██████▉   | 7.11GB,  362MB/s  
+
+model.safetensors: reconstructing file:  69%|██████▉   | 7.12GB / 10.2GB,  329MB/s  [A
+model.safetensors: downloading bytes: ███████▋  | 7.89GB,  319MB/s  
+
+model.safetensors: reconstructing file:  76%|███████▌  | 7.74GB / 10.2GB,  304MB/s  [A
+model.safetensors: downloading bytes: ████████▎ | 8.48GB,  296MB/s  
+
+model.safetensors: reconstructing file:  82%|████████▏ | 8.41GB / 10.2GB,  285MB/s  [A
+
+model.safetensors: reconstructing file:  88%|████████▊ | 9.02GB / 10.2GB,  272MB/s  [A
+
+model.safetensors: reconstructing file:  92%|█████████▏| 9.42GB / 10.2GB,  268MB/s  [A
+
+model.safetensors: reconstructing file:  96%|█████████▋| 9.88GB / 10.2GB,  258MB/s  [A
+
+model.safetensors: reconstructing file:  99%|█████████▉| 10.2GB / 10.2GB,  252MB/s  [A
+model.safetensors: downloading bytes: ██████████| 8.66GB,  273MB/s  
+model.safetensors: downloading bytes: ██████████| 8.66GB,  273MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 10.2GB / 10.2GB,  251MB/s  
+
+
+Loading weights:   0%|          | 0/1951 [00:00<?, ?it/s][A
+
+Loading weights:  63%|██████▎   | 1223/1951 [00:01<00:00, 1221.47it/s][A
+Loading weights: 100%|██████████| 1951/1951 [00:01<00:00, 1602.16it/s]
+
+
+generation_config.json:   0%|          | 0.00/208 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 208/208 [00:00<00:00, 1.32MB/s]
+[ 22.2 min] gemma-4-E2B-it: loaded in 31 s, 10.2 GB on the GPU
+[ 25.8 min] gemma-4-E2B-it: batch 1 {'size': 114, 'seconds': 211.8, 'steps': 1814, 'ms_per_step': 116.7, 'tokens': 96351, 'capped': 0, 'peak_gb': 19.7}
+[ 25.8 min] done
+exit code 0 after 26.0 min

@@ -1,0 +1,76 @@
+{
+ "system": "You are a helpful assistant. You can use these tools:\n- list_files(path?): List files in the workspace.\n- read_file(path, start_line?, end_line?): Read lines of a text file from the workspace, with line numbers.\n- grep(pattern, path?, ignore_case?, skip?): Search files for a word or regular expression.\n- note(action, id?, text?): Your notepad for this chat.\n- write_file(path, content): Create or overwrite a text file in the workspace.\n- delete_file(path): Delete a file (or folder) in the workspace.\n- github_list_repos(): List the GitHub repos the user has given Squiggle access to.\n- git_clone(repo, branch?): Clone a GitHub repo into /repos/<name>.\n- git_status(repo): Show the current branch and changed files of a cloned repo.\n- git_branch(repo, name, from?): Switch to a branch, or start a new one.\n- git_commit(repo, message): Commit all changes in a repo on the current branch.\n- git_push(repo): Push the current branch to GitHub (never forced).\n- git_pull(repo): Fetch and fast-forward the current branch from GitHub.\n- git_log(repo, count?): Recent commits on the current branch.\n- github_open_pr(repo, title, body?, base?): Open a pull request from the current (pushed) branch.\n- fetch_url(url): Read a web page by its full URL.\n- web_search(query, count?): Search the web (DuckDuckGo).\n- remember(subject, relation, object, note?): Save a lasting fact about the user or their projects (preferences, decisions, names, how things work).\n- recall(query): Search saved memory facts.\n- forget(id): Delete a saved memory fact by id (when the user says it is wrong or outdated).\n- search_history(query): Search the user's past conversations (all sessions) for something discussed before.\n- run_js(code): Run JavaScript in an isolated sandbox (no access to the user's data or files).\nIf a tool would help, say which tool you would call and with what arguments.",
+ "runs": 3,
+ "max_new_tokens": 6144,
+ "prompts": 38,
+ "sampling": {
+  "temperature": 1.0,
+  "top_p": 0.95,
+  "top_k": 64
+ },
+ "models": [
+  {
+   "model": "google/gemma-4-E4B-it",
+   "samples": 114,
+   "batches": [
+    {
+     "size": 29,
+     "seconds": 269.2,
+     "steps": 1649,
+     "ms_per_step": 163.2,
+     "tokens": 19332,
+     "capped": 0,
+     "peak_gb": 18.9
+    },
+    {
+     "size": 29,
+     "seconds": 298.7,
+     "steps": 1788,
+     "ms_per_step": 167.1,
+     "tokens": 18035,
+     "capped": 0,
+     "peak_gb": 19.0
+    },
+    {
+     "size": 29,
+     "seconds": 322.5,
+     "steps": 1913,
+     "ms_per_step": 168.6,
+     "tokens": 21057,
+     "capped": 0,
+     "peak_gb": 19.0
+    },
+    {
+     "size": 27,
+     "seconds": 296.5,
+     "steps": 1870,
+     "ms_per_step": 158.6,
+     "tokens": 21549,
+     "capped": 0,
+     "peak_gb": 18.8
+    }
+   ],
+   "load_s": 106
+  },
+  {
+   "model": "google/gemma-4-E2B-it",
+   "samples": 114,
+   "batches": [
+    {
+     "size": 114,
+     "seconds": 211.8,
+     "steps": 1814,
+     "ms_per_step": 116.7,
+     "tokens": 96351,
+     "capped": 0,
+     "peak_gb": 19.7
+    }
+   ],
+   "load_s": 31
+  }
+ ],
+ "torch": "2.6.0+cu124",
+ "transformers": "5.21.0",
+ "gpu": "NVIDIA L4",
+ "total_min": 25.8
+}
