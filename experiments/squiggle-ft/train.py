@@ -459,7 +459,7 @@ def verdict(m, base_m, base_name="the untouched base"):
 
 def write_results(out, arms, notes):
     names = list(arms)
-    tuned = [k for k in names if not k.startswith("untouched")]
+    tuned = [k for k in names if not k.startswith("untouched") and k not in REFERENCE]
     best = max(tuned, key=lambda k: arms[k]["trained_strict"] + arms[k]["held_strict"]) if tuned else None
     base_key = f"untouched-{best}" if best and f"untouched-{best}" in arms else next((k for k in names if k.startswith("untouched")), None)
     go, checks = verdict(arms[best], arms.get(base_key), f"`{base_key}`") if best else (False, [])
@@ -467,6 +467,10 @@ def write_results(out, arms, notes):
     if best:
         L += [f"**Verdict: {'GO' if go else 'NO-GO (not yet)'}** for `{best}`.", ""]
         L += ["| check | pass | value |", "| --- | --- | --- |"] + [f"| {a} | {'yes' if b else 'no'} | {c} |" for a, b, c in checks] + [""]
+        for ref in [k for k in names if k in REFERENCE]:     # e.g. the deployed v1: does the new model beat it?
+            better, rchecks = verdict(arms[best], arms[ref], f"`{ref}`")
+            L += [f"**Against `{ref}`: {'better on every check' if better else 'not better on every check'}.**", "",
+                  "| check | pass | value |", "| --- | --- | --- |"] + [f"| {a} | {'yes' if b else 'no'} | {c} |" for a, b, c in rchecks] + [""]
     fams = sorted({f for a in arms.values() for f in a["families"]})
     L += ["## Strict score per task type (right answer and the habit)", "", "| type | habit | " + " | ".join(names) + " |", "| --- | --- |" + " --- |" * len(names)]
     for f in fams:
@@ -501,6 +505,10 @@ def write_results(out, arms, notes):
 LLAMA_CPP_COMMIT = "8ca4060b7e30e76baaa5670ee1ec1b760b7f8552"
 
 
+HUB_PREFIX = ""     # set from --hub-prefix: every upload goes under it
+REFERENCE = set()   # --eval-models labels: compared against, never the "best" arm
+
+
 def upload_weights(model_dir, hub_repo):
     """The trained model in transformers format, to <hub_repo>/hf/, so a failed GGUF export can be redone later."""
     if not (hub_repo and os.environ.get("HF_TOKEN")):
@@ -508,8 +516,8 @@ def upload_weights(model_dir, hub_repo):
     from huggingface_hub import HfApi
     api = HfApi(token=os.environ["HF_TOKEN"])
     api.create_repo(hub_repo, private=True, exist_ok=True)
-    api.upload_folder(folder_path=model_dir, path_in_repo="hf", repo_id=hub_repo)
-    log(f"uploaded {model_dir} to {hub_repo}/hf")
+    api.upload_folder(folder_path=model_dir, path_in_repo=HUB_PREFIX + "hf", repo_id=hub_repo)
+    log(f"uploaded {model_dir} to {hub_repo}/{HUB_PREFIX}hf")
     return True
 
 
@@ -566,8 +574,8 @@ def export(model_dir, base, out, hub_repo, results_md):
                 f"Load in wllama 3.8.1 with n_ctx 4096.\n\nFiles: " + ", ".join(f"{k} ({v / 1e6:.0f} MB)" for k, v in sizes.items()) + f"\n\n{check}\n\n" + Path(results_md).read_text())
         (work / "README.md").write_text(card)
         for f in files + [work / "README.md"]:
-            api.upload_file(path_or_fileobj=str(f), path_in_repo=f.name, repo_id=hub_repo)
-        log(f"uploaded to {hub_repo}")
+            api.upload_file(path_or_fileobj=str(f), path_in_repo=HUB_PREFIX + f.name, repo_id=hub_repo)
+        log(f"uploaded to {hub_repo}/{HUB_PREFIX}")
     return sizes, check
 
 
@@ -591,6 +599,8 @@ def main():
     ap.add_argument("--export", action="store_true")
     ap.add_argument("--budget-minutes", type=float, default=0, help="stop starting new bases when what's left can't fit one more (+15 min for export)")
     ap.add_argument("--hub-repo", default="kealjones/squiggle-small")
+    ap.add_argument("--hub-prefix", default="", help="folder inside --hub-repo for every upload (e.g. v2/), so a new model never replaces the deployed one")
+    ap.add_argument("--eval-models", default="", help="also evaluate trained models as they are: label=owner/repo[/subfolder],... (e.g. v1=kealjones/squiggle-small/hf)")
     ap.add_argument("--work", default=str(HERE / "work"))
     ap.add_argument("--out", default="out")
     ap.add_argument("--squiggle", default=os.environ.get("SQUIGGLE_DIR", str(HERE / "squiggle")))
@@ -598,11 +608,13 @@ def main():
     ap.add_argument("--results", default="", help="with --export-only: that run's RESULTS.md (for the model card)")
     args = ap.parse_args()
     t_main = time.time()
+    global HUB_PREFIX
+    HUB_PREFIX = args.hub_prefix.strip("/") + "/" if args.hub_prefix.strip("/") else ""
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     if args.export_only:
         from huggingface_hub import snapshot_download
-        md = str(Path(snapshot_download(args.hub_repo, allow_patterns=["hf/*"], token=os.environ.get("HF_TOKEN"))) / "hf")
+        md = str(Path(snapshot_download(args.hub_repo, allow_patterns=[HUB_PREFIX + "hf/*"], token=os.environ.get("HF_TOKEN"))) / (HUB_PREFIX + "hf"))
         res = out / "RESULTS.md"
         res.write_text(Path(args.results).read_text() if args.results else f"# {args.export_only}\n")
         sizes, check = export(md, args.export_only, out, args.hub_repo, res)
@@ -622,6 +634,15 @@ def main():
     for b in list(dict.fromkeys(untouched + [x for x in args.eval_bases.split(",") if x])):
         label = f"untouched-{b}"
         arms[label] = arm(evaluate(BASES[b], eval_eps(), args.work, args.squiggle, label, out, args.eval_minutes), label)
+        json.dump(arms, open(out / "metrics.json", "w"), indent=1)
+    for item in [x for x in args.eval_models.split(",") if x]:      # an already trained model, e.g. the deployed v1
+        label, ref = item.split("=", 1)
+        REFERENCE.add(label)
+        parts = ref.split("/")
+        from huggingface_hub import snapshot_download
+        sub = "/".join(parts[2:])
+        path = snapshot_download("/".join(parts[:2]), allow_patterns=[f"{sub}/*"] if sub else None, token=os.environ.get("HF_TOKEN"))
+        arms[label] = arm(evaluate(str(Path(path) / sub) if sub else path, eval_eps(), args.work, args.squiggle, label, out, args.eval_minutes), label)
         json.dump(arms, open(out / "metrics.json", "w"), indent=1)
     if not args.eval_only:
         import glob
@@ -673,6 +694,12 @@ def main():
             last_cost = (time.time() - t_b) / 60 * (2.2 if nxt == "lfm25" and b != "lfm25" else 1.0)   # LFM2.5 is ~3x the compute
     best, go = write_results(out, arms, notes)
     log(open(out / "RESULTS.md").read())
+    if args.export and not (best in bases and Path("models", best).exists()):
+        # the deployed v1 (or an untouched base) scored best: export the best trained base anyway, for comparison
+        trained = [b for b in bases if Path("models", b).exists()]
+        if best and trained:
+            log(f"best arm is {best}; exporting {trained[0]} anyway (under {HUB_PREFIX or 'the repo root'})")
+        best = trained[0] if trained else None
     if args.export and best and not best.startswith("untouched"):
         md = str(Path("models") / best)
         try:

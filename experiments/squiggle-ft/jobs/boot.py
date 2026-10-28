@@ -11,7 +11,7 @@ hf/runner.py fetches this one file into work/ and runs the job's cmd there. This
 """
 import json, os, subprocess, sys, tarfile, time, urllib.request
 
-SQUIGGLE_COMMIT = "f09cac071af115366e35cb011e57a5ec13d4966a"   # KealJones/squiggle main 2026-10-28: calculate (d9cbfea), slot-aware recipe matching (f09cac0); teach-v1 used e9c27ca
+SQUIGGLE_COMMIT = "f54bbf7c6be51681cc44e221a763ee2ec3a97890"   # KealJones/squiggle main 2026-10-28: small models get a quarter-window history and no injected facts/other chats (5c8f3f7), calculate knows pi and e (f54bbf7), Squiggle Small = SQ; teach-v2 ran on f09cac0, teach-v1 on e9c27ca
 t0 = time.time()
 os.environ['SQFT_T0'] = str(int(t0))   # job start, so scripts can budget the job's time limit
 

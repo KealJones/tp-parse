@@ -52,6 +52,9 @@ V2_PLAN = {   # the fitted plan (coordinator, after the cost estimate): 446 atte
 # The teacher smoke before the v2 round: 3 attempted per family (51), to read keep rates and rejection reasons.
 SMOKE_V2_PLAN = {k: 3 for k in V2_PLAN}
 # After the smoke: only the families that kept 0 of 3, to see whether the fixes make them yield before the full run.
+# After teach-v2: lookup_then_compute alone, with the plan fix (the calculation is the plan's last step) and a long
+# episode cap; its rows exclude everything teach-v2 drew.
+TOPUP_LTC_PLAN = {"lookup_then_compute": 30}
 MINI_V2_PLAN = {k: 3 for k in ["chat_mid", "personal_mid", "hermes_compute", "lookup_then_compute", "math_pair", "messy_multi",
                                "near_miss", "repo_chain"]}
 # The eval plan squiggle-ft-train used (293 episodes at seed 123): baselines on other bases are run on exactly this set.
@@ -117,7 +120,11 @@ def episodes_for(args):
         return make_sets(load_sources(work, "eval"), plan, seed=args.seed, scale=args.scale)
     if args.plan in V1_PLANS:
         return make_sets(load_sources(work, "train"), plan, seed=args.seed, scale=args.scale, dedupe=False)
-    return make_sets(load_sources(work, "train"), plan, seed=args.seed, scale=args.scale, exclude=exclude_keys(work))
+    exclude = exclude_keys(work)
+    src = load_sources(work, "train")
+    if args.plan == "topup_ltc":        # nothing teach-v2 already asked
+        exclude = exclude | {k for e in make_sets(src, V2_PLAN, seed=0, exclude=exclude) for k in e.meta.get("src", [])}
+    return make_sets(src, plan, seed=args.seed, scale=args.scale, exclude=exclude)
 
 
 def load_sources(work, split):
@@ -163,7 +170,7 @@ REPEATS_OK = {"words", "near"}   # a made-up or near-miss word comes back in a d
 
 
 PLANS = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "smoke_v2": SMOKE_V2_PLAN,
-         "mini_v2": MINI_V2_PLAN, "eval": EVAL_PLAN}
+         "mini_v2": MINI_V2_PLAN, "topup_ltc": TOPUP_LTC_PLAN, "eval": EVAL_PLAN}
 
 
 def make_sets(src, plan, seed=0, scale=1.0, date_shift=True, exclude=(), dedupe=True):
@@ -466,6 +473,12 @@ def teach(args):
                                                                  "retry_of": ep.id})
     by_id = {e.id: e for e in eps}
     picks = []
+    if getattr(args, "judge_pending", ""):     # an earlier run's kept A-or-B episodes that never got their judge
+        for rec in map(json.loads, gzip.open(args.judge_pending, "rt")):
+            rec.pop("judge", None)
+            deferred.append(rec)
+            results.append(rec)
+        print(f"judge: {len(deferred)} pending episodes from {args.judge_pending}", flush=True)
 
     async def run_judge():
         # The judge (same vLLM engine, same event loop): kept "A or B" episodes whose reply names more than one candidate.
@@ -506,6 +519,7 @@ def main():
     ap.add_argument("--scale", type=float, default=1.0)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--minutes", type=float, default=120)
+    ap.add_argument("--judge-pending", default="", help="judge_pending.jsonl.gz of an earlier run: read those kept episodes with the judge here")
     ap.add_argument("--episode-timeout", type=float, default=float(os.environ.get("EPISODE_TIMEOUT", "1800")),
                     help="seconds before one episode is given up (recorded as 'episode timed out'); keeps a small job inside its cap")
     ap.add_argument("--concurrency", type=int, default=48)

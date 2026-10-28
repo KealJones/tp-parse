@@ -324,6 +324,8 @@ def call_problems(result):
                 r.append(f"turn {k + 1}: stated a computed number ({n:g}) that no calculate result gave")
         if "run_js" in used and fam in ("math", "need_math", "lookup_then_compute", "math_pair"):   # hermes.check picks per request
             r.append(f"turn {k + 1}: computes via run_js (plain arithmetic goes through calculate)")
+        for expr in approx_constants(seg, req):
+            r.append(f"turn {k + 1}: approximates pi or e ({expr}) instead of using the constant (calculate knows pi and e)")
         if fam in ONE_LOOKUP and planned(seg):
             r.append(f"turn {k + 1}: made a plan for a one-lookup request")
         for where, f in reply_unsourced(seg, reply, (fam, k) in PERSONAL)[:3]:
@@ -331,6 +333,22 @@ def call_problems(result):
         for d in done_ungrounded(seg, req)[:2]:
             r.append(f"turn {k + 1}: a done result carries nothing from this step's results or the request: {d!r}")
     return r
+
+
+APPROX = re.compile(r"(?<![\d.])(3\.14\d*|2\.71\d*|22\s*/\s*7)(?![\d])")
+
+
+def approx_constants(seg, request=""):
+    """pi or e typed in as a rounded number (3.14, 3.14159, 2.718, 22/7) in a calculate expression or run_js code,
+    unless the user gave that number. The teacher did this while calculate's description didn't mention pi (v2:
+    3.14 * 10^2 = 314)."""
+    out = []
+    for name, key in (("calculate", "expression"), ("run_js", "code")):
+        for a in args_of(seg, name):
+            for m in APPROX.finditer(str(a.get(key, ""))):
+                if m.group(1).replace(" ", "") not in (request or "").replace(" ", ""):
+                    out.append(m.group(1))
+    return list(dict.fromkeys(out))
 
 
 def done_ungrounded(seg, request=""):

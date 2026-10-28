@@ -491,7 +491,7 @@
  },
  {
   "name": "calculate",
-  "description": "Calculate a math expression exactly: + - * / ^, parentheses, percentages (15% of 240), and sqrt, round(x, digits), min, max, abs, floor, ceil, pow, log, ln, exp. Use it for every sum, price, percentage or conversion; never do math in your head.",
+  "description": "Calculate a math expression exactly: + - * / ^, parentheses, percentages (15% of 240), pi and e, sqrt, round(x, digits), min, max, abs, floor, ceil, pow, log, ln, exp. Use it for every sum, price, percentage or conversion; never do math in your head.",
   "parameters": {
    "type": "object",
    "properties": {
