@@ -1,0 +1,115 @@
+{
+ "untouched-gemma3": {
+  "families": {
+   "bare_link": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_after": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_need": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_two": {
+    "n": 1,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 3,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 2,
+    "ok": 0.5,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 2,
+    "ok": 0.0,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.0,
+  "trained_ok": 0.03125,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.0,
+  "loops": 0.03333333333333333,
+  "plans": 0.0,
+  "asks": 0.0,
+  "chat": 1.0,
+  "done_facts": null,
+  "messy": 0.0,
+  "clean": 0.0,
+  "messy_gap": 0.0,
+  "call_capped": 0.0
+ }
+}

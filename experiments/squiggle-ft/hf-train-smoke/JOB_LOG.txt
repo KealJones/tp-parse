@@ -1,0 +1,124 @@
+job 6ae17ccc41e90535df76f19d on gpu: squiggle-ft-train-smoke at bc1b49a
+fetched experiments/squiggle-ft/jobs/boot.py
+Wed Oct 28 04:54:19 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L4                      On  |   00000000:31:00.0 Off |                    0 |
+| N/A   48C    P8             17W /   72W |       0MiB /  23034MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+debconf: delaying package configuration, since apt-utils is not installed
+boot: node v22.23.4, squiggle e9c27cabe7c15ae72242d6f62ea02710d57af535, tp-parse bc1b49a, setup took 54 s
++ DATA=
++ for t in ${TAG//,/ }
++ python hub.py down kealjones/squiggle-ft-data teach-smoke/train_examples.jsonl.gz --to data_in
+
+
+teach-smoke/train_examples.jsonl.gz: reconstructing file:   0%|          |  0.00B / 38.9kB            [A
+teach-smoke/train_examples.jsonl.gz: downloading bytes:           |  0.00B            
+teach-smoke/train_examples.jsonl.gz: downloading bytes: ██████████| 39.0kB, 3.88kB/s  
+teach-smoke/train_examples.jsonl.gz: downloading bytes: ██████████| 39.0kB, 3.88kB/s  
+
+teach-smoke/train_examples.jsonl.gz: reconstructing file: 100%|██████████| 38.9kB / 38.9kB, 3.88kB/s  
+/workspace/work/sqft/data_in/teach-smoke/train_examples.jsonl.gz
++ DATA=,data_in/teach-smoke/train_examples.jsonl.gz
++ for t in ${TAG//,/ }
++ python hub.py down kealjones/squiggle-ft-data teach-smoke-2/train_examples.jsonl.gz --to data_in
+
+
+teach-smoke-2/train_examples.jsonl.gz: reconstructing file:   0%|          |  0.00B / 41.0kB            [A
+teach-smoke-2/train_examples.jsonl.gz: downloading bytes:           |  0.00B            
+teach-smoke-2/train_examples.jsonl.gz: downloading bytes: ██████████| 41.0kB, 4.09kB/s  
+teach-smoke-2/train_examples.jsonl.gz: downloading bytes: ██████████| 41.0kB, 4.09kB/s  
+
+teach-smoke-2/train_examples.jsonl.gz: reconstructing file: 100%|██████████| 41.0kB / 41.0kB, 4.09kB/s  
+/workspace/work/sqft/data_in/teach-smoke-2/train_examples.jsonl.gz
++ DATA=,data_in/teach-smoke/train_examples.jsonl.gz,data_in/teach-smoke-2/train_examples.jsonl.gz
++ python selftest.py data_in/teach-smoke/train_examples.jsonl.gz data_in/teach-smoke-2/train_examples.jsonl.gz --tokenizers unsloth/gemma-3-270m-it,unsloth/functiongemma-270m-it,LiquidAI/LFM2.5-350M
++ tail -12 /workspace/work/out/selftest.txt
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 9.03MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 5.16MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][A
+tokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 51.1MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 17.2MB/s]
+
+243 model calls checked, 0 with problems.
+  unsloth/gemma-3-270m-it: prompt tokens median 451, max 3486; output tokens median 92, max 204
+  unsloth/functiongemma-270m-it: prompt tokens median 455, max 3490; output tokens median 92, max 204
+  LiquidAI/LFM2.5-350M: prompt tokens median 455, max 3301; output tokens median 86, max 196
++ python train.py --data data_in/teach-smoke/train_examples.jsonl.gz,data_in/teach-smoke-2/train_examples.jsonl.gz --bases gemma3,functiongemma,lfm25 --epochs 1 --eval-scale 0.1 --eval-minutes 6 --out /workspace/work/out/train --work work --export --hub-repo ''
+04:55:37 eval set: 30 episodes
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  536MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:  38%|███▊      |  201MB /  536MB            [A
+model.safetensors: downloading bytes: ████▍     |  236MB, 21.8MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 43.4MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 43.4MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  536MB /  536MB, 50.6MB/s  
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 5818.44it/s]
+
+
+generation_config.json:   0%|          | 0.00/233 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 233/233 [00:00<00:00, 1.52MB/s]
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+04:56:17 [untouched-gemma3] eval 30 episodes in 0.6 min; student {'calls': 37, 'too_long': 0, 'out_tokens': 2546}
+04:56:17 training data: ['data_in/teach-smoke/train_examples.jsonl.gz', 'data_in/teach-smoke-2/train_examples.jsonl.gz']
+04:56:17 243 training examples: {'hermes_need': 4, 'memory_repo': 11, 'repo_fact': 32, 'repo_where': 39, 'refs': 29, 'hermes_compute': 10, 'repo_two': 21, 'web_compare': 20, 'math': 21, 'need_repo': 32, 'bare_link': 12, 'web_fact': 8, 'chat': 4}
+04:56:19 [gemma3] 243 of 243 examples fit; target tokens 24766, all tokens 202616
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 2234.93it/s]
+04:56:20 [gemma3] 19 micro-batches/epoch, accum 3, 7 steps, warmup 5
+Traceback (most recent call last):
+  File "/workspace/work/sqft/train.py", line 398, in <module>
+    main()
+  File "/workspace/work/sqft/train.py", line 381, in main
+    mins = train(b, examples, md, epochs=args.epochs, lr=args.lr)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/sqft/train.py", line 139, in train
+    (loss / max(1, n_t) / accum).backward()
+  File "/opt/conda/lib/python3.11/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/opt/conda/lib/python3.11/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/opt/conda/lib/python3.11/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.21 GiB. GPU 0 has a total capacity of 22.03 GiB of which 3.28 GiB is free. Including non-PyTorch memory, this process has 18.75 GiB memory in use. Of the allocated memory 17.61 GiB is allocated by PyTorch, and 930.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
++ ls -la /workspace/work/out/train/gguf
++ rm -rf '/workspace/work/out/train/gguf/*.gguf'
+exit code 0 after 2.3 min
