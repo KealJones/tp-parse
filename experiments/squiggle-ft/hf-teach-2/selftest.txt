@@ -1,0 +1,14 @@
+
+config.json:   0%|          | 0.00/1.37k [00:00<?, ?B/s][Aconfig.json: 100%|██████████| 1.37k/1.37k [00:00<00:00, 8.45MB/s]
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][Aconfig.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 9.00MB/s]
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][Atokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 4.72MB/s]
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][Atokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 13.8MB/s]
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][Achat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 33.7MB/s]
+
+2839 model calls checked, 0 with problems.
+  unsloth/gemma-3-270m-it: prompt tokens median 436, max 4002; output tokens median 95, max 315
+  LiquidAI/LFM2.5-350M: prompt tokens median 435, max 3560; output tokens median 89, max 295

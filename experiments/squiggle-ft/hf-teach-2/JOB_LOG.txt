@@ -1,0 +1,448 @@
+job 6ae180a441e90535df76f412 on gpu: squiggle-ft-teach-2 at e778de4
+fetched experiments/squiggle-ft/jobs/boot.py
+Wed Oct 28 04:59:48 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          On  |   00000000:90:1C.0 Off |                    0 |
+| N/A   43C    P0             68W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+debconf: delaying package configuration, since apt-utils is not installed
+boot: node v22.23.4, squiggle e9c27cabe7c15ae72242d6f62ea02710d57af535, tp-parse e778de4, setup took 16 s
++ python -c 'import torch, vllm, transformers; print('\''torch'\'', torch.__version__, '\''vllm'\'', vllm.__version__, '\''transformers'\'', transformers.__version__)'
+torch 2.8.0+cu128 vllm 0.11.0 transformers 4.57.6
++ nvidia-smi --query-gpu=name,memory.total --format=csv
+name, memory.total [MiB]
+NVIDIA A100-SXM4-80GB, 81920 MiB
++ python build.py teach --plan targets --scale 1 --minutes 115 --concurrency 96 --out /workspace/work/out/teach --work work
+830 episodes: {'refs': 40, 'web_fact': 90, 'bare_link': 35, 'need_repo': 50, 'hermes_need': 40, 'memory_repo': 35, 'hermes_compute': 40, 'chat_after': 30, 'repo_fact': 80, 'web_compare': 70, 'math': 70, 'past_chat': 40, 'repo_two': 50, 'chat': 50, 'recipe_repo': 40, 'repo_where': 70}
+INFO 10-28 05:00:29 [__init__.py:216] Automatically detected platform cuda.
+
+
+config.json:   0%|          | 0.00/7.16k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 7.16k/7.16k [00:00<00:00, 55.6MB/s]
+INFO 10-28 05:00:41 [model.py:547] Resolved architecture: Qwen3MoeForCausalLM
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 10-28 05:00:41 [model.py:1510] Using max model len 24576
+INFO 10-28 05:00:41 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=2048.
+
+
+tokenizer_config.json:   0%|          | 0.00/10.8k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 10.8k/10.8k [00:00<00:00, 10.4MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 9.73MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 32.7MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/11.4M [00:00<?, ?B/s][A
+
+tokenizer.json: 100%|██████████| 11.4M/11.4M [00:01<00:00, 10.8MB/s][A
+tokenizer.json: 100%|██████████| 11.4M/11.4M [00:01<00:00, 10.2MB/s]
+
+
+generation_config.json:   0%|          | 0.00/239 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 239/239 [00:00<00:00, 2.59MB/s]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:00:45 [core.py:644] Waiting for init message from front-end.
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:00:45 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='Qwen/Qwen3-30B-A3B-Thinking-2507-FP8', speculative_config=None, tokenizer='Qwen/Qwen3-30B-A3B-Thinking-2507-FP8', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=24576, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=fp8, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=Qwen/Qwen3-30B-A3B-Thinking-2507-FP8, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":3,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output","vllm.mamba_mixer2","vllm.mamba_mixer","vllm.short_conv","vllm.linear_attention","vllm.plamo2_mamba_mixer","vllm.gdn_attention","vllm.sparse_attn_indexer"],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":[2,1],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":192,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:00:46 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+[1;36m(EngineCore_DP0 pid=1525)[0;0m WARNING 10-28 05:00:46 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:00:46 [gpu_model_runner.py:2602] Starting to load model Qwen/Qwen3-30B-A3B-Thinking-2507-FP8...
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:00:47 [gpu_model_runner.py:2634] Loading model from scratch...
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:00:47 [cuda.py:366] Using Flash Attention backend on V1 engine.
+[1;36m(EngineCore_DP0 pid=1525)[0;0m WARNING 10-28 05:00:47 [fp8.py:457] Failed to import DeepGemm kernels.
+[1;36m(EngineCore_DP0 pid=1525)[0;0m WARNING 10-28 05:00:47 [fp8.py:480] CutlassBlockScaledGroupedGemm not supported on the current platform.
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:00:47 [weight_utils.py:392] Using model weights format ['*.safetensors']
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00001-of-00004.safetensors:   0%|          | 0.00/10.0G [00:00<?, ?B/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:   0%|          | 0.00/10.0G [00:00<?, ?B/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00002-of-00004.safetensors:   0%|          | 0.00/10.0G [00:00<?, ?B/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00004-of-00004.safetensors:   0%|          | 0.00/1.17G [00:00<?, ?B/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:   0%|          | 1.49M/10.0G [00:01<2:21:56, 1.17MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:   1%|          | 68.6M/10.0G [00:02<05:11, 31.9MB/s]  [A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00001-of-00004.safetensors:   0%|          | 1.44M/10.0G [00:04<7:49:43, 355kB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00002-of-00004.safetensors:   0%|          | 1.44M/10.0G [00:04<8:12:31, 338kB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:   8%|▊         | 768M/10.0G [00:05<00:49, 187MB/s]  [A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00002-of-00004.safetensors:   2%|▏         | 203M/10.0G [00:05<03:25, 47.7MB/s]  [A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00001-of-00004.safetensors:   3%|▎         | 256M/10.0G [00:05<02:45, 58.8MB/s]  [A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00002-of-00004.safetensors:   8%|▊         | 768M/10.0G [00:07<00:58, 158MB/s] [A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00001-of-00004.safetensors:   6%|▋         | 634M/10.0G [00:07<01:24, 110MB/s] [A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00002-of-00004.safetensors:  10%|█         | 1.02G/10.0G [00:08<00:49, 182MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00004-of-00004.safetensors:  11%|█▏        | 134M/1.17G [00:08<01:03, 16.2MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00004-of-00004.safetensors:  60%|██████    | 706M/1.17G [00:09<00:04, 98.1MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:   9%|▉         | 940M/10.0G [00:09<01:35, 95.3MB/s][A
+model-00004-of-00004.safetensors: 100%|██████████| 1.17G/1.17G [00:10<00:00, 114MB/s]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00002-of-00004.safetensors:  13%|█▎        | 1.34G/10.0G [00:10<00:55, 157MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00002-of-00004.safetensors:  28%|██▊       | 2.82G/10.0G [00:11<00:17, 411MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00002-of-00004.safetensors:  41%|████      | 4.09G/10.0G [00:13<00:10, 543MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00002-of-00004.safetensors:  56%|█████▌    | 5.57G/10.0G [00:14<00:05, 749MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00002-of-00004.safetensors:  68%|██████▊   | 6.84G/10.0G [00:15<00:03, 826MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00001-of-00004.safetensors:  10%|█         | 1.04G/10.0G [00:16<02:19, 64.5MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00002-of-00004.safetensors:  89%|████████▉ | 8.92G/10.0G [00:16<00:00, 1.13GB/s][A
+model-00002-of-00004.safetensors: 100%|██████████| 10.0G/10.0G [00:17<00:00, 575MB/s] 
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00001-of-00004.safetensors:  18%|█▊        | 1.84G/10.0G [00:17<01:00, 135MB/s] [A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:  11%|█         | 1.07G/10.0G [00:18<03:22, 44.0MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00001-of-00004.safetensors:  35%|███▌      | 3.52G/10.0G [00:19<00:20, 315MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:  25%|██▍       | 2.48G/10.0G [00:19<00:45, 166MB/s] [A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00001-of-00004.safetensors:  49%|████▊     | 4.86G/10.0G [00:20<00:11, 435MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:  33%|███▎      | 3.29G/10.0G [00:20<00:28, 238MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00001-of-00004.safetensors:  61%|██████    | 6.07G/10.0G [00:21<00:07, 539MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:  46%|████▋     | 4.63G/10.0G [00:22<00:14, 380MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:  55%|█████▌    | 5.50G/10.0G [00:23<00:10, 441MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00001-of-00004.safetensors:  77%|███████▋  | 7.67G/10.0G [00:23<00:03, 642MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:  74%|███████▍  | 7.38G/10.0G [00:24<00:03, 672MB/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00001-of-00004.safetensors:  98%|█████████▊| 9.75G/10.0G [00:25<00:00, 837MB/s][A
+model-00001-of-00004.safetensors: 100%|██████████| 10.0G/10.0G [00:25<00:00, 392MB/s]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model-00003-of-00004.safetensors:  91%|█████████ | 9.12G/10.0G [00:26<00:01, 805MB/s][A
+model-00003-of-00004.safetensors: 100%|██████████| 10.0G/10.0G [00:26<00:00, 376MB/s]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:01:14 [weight_utils.py:413] Time spent downloading weights for Qwen/Qwen3-30B-A3B-Thinking-2507-FP8: 26.978936 seconds
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+model.safetensors.index.json:   0%|          | 0.00/3.57M [00:00<?, ?B/s][A
+model.safetensors.index.json: 100%|██████████| 3.57M/3.57M [00:00<00:00, 10.6MB/s]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m [A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:04<00:04,  2.42s/it]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m [A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:09<00:03,  3.21s/it]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m [A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:13<00:00,  3.69s/it]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m [A
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:13<00:00,  3.42s/it]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:01:29 [default_loader.py:267] Loading weights took 13.72 seconds
+[1;36m(EngineCore_DP0 pid=1525)[0;0m WARNING 10-28 05:01:29 [marlin_utils_fp8.py:80] Your GPU does not have native support for FP8 computation but FP8 quantization is being used. Weight-only FP8 compression will be used leveraging the Marlin kernel. This may degrade performance for compute-heavy workloads.
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:01:31 [gpu_model_runner.py:2653] Model loading took 29.5412 GiB and 43.471450 seconds
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:01:40 [backends.py:548] Using cache directory: /root/.cache/vllm/torch_compile_cache/2e1a0023be/rank_0_0/backbone for vLLM's torch.compile
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:01:40 [backends.py:559] Dynamo bytecode transform time: 9.45 s
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:01:45 [backends.py:197] Cache the graph for dynamic shape for later use
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:02:33 [backends.py:218] Compiling a graph for dynamic shape takes 51.69 s
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:02:35 [marlin_utils.py:353] You are running Marlin kernel with bf16 on GPUs before SM90. You can consider change to fp16 to achieve better performance if possible.
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:02:35 [monitor.py:34] torch.compile takes 61.14 s in total
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:02:36 [gpu_worker.py:298] Available KV cache memory: 42.63 GiB
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:02:37 [kv_cache_utils.py:1087] GPU KV cache size: 465,616 tokens
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:02:37 [kv_cache_utils.py:1091] Maximum concurrency for 24,576 tokens per request: 18.95x
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/27 [00:00<?, ?it/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  41%|████      | 11/27 [00:01<00:01, 10.22it/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  81%|████████▏ | 22/27 [00:02<00:00, 10.27it/s][A
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 27/27 [00:02<00:00, 10.30it/s]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+Capturing CUDA graphs (decode, FULL):   0%|          | 0/15 [00:00<?, ?it/s][A
+[1;36m(EngineCore_DP0 pid=1525)[0;0m 
+Capturing CUDA graphs (decode, FULL):  73%|███████▎  | 11/15 [00:01<00:00, 10.26it/s][A
+Capturing CUDA graphs (decode, FULL): 100%|██████████| 15/15 [00:01<00:00, 10.31it/s]
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:02:42 [gpu_model_runner.py:3480] Graph capturing finished in 5 secs, took 0.54 GiB
+[1;36m(EngineCore_DP0 pid=1525)[0;0m INFO 10-28 05:02:42 [core.py:210] init engine (profile, create kv cache, warmup model) took 70.99 seconds
+
+
+tokenizer_config.json:   0%|          | 0.00/1.16M [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 1.16M/1.16M [00:00<00:00, 55.2MB/s]
+
+
+tokenizer.model:   0%|          | 0.00/4.69M [00:00<?, ?B/s][A
+tokenizer.model: 100%|██████████| 4.69M/4.69M [00:00<00:00, 5.07MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/33.4M [00:00<?, ?B/s][A
+tokenizer.json: 100%|██████████| 33.4M/33.4M [00:00<00:00, 67.3MB/s]
+
+
+added_tokens.json:   0%|          | 0.00/35.0 [00:00<?, ?B/s][A
+added_tokens.json: 100%|██████████| 35.0/35.0 [00:00<00:00, 478kB/s]
+
+
+special_tokens_map.json:   0%|          | 0.00/670 [00:00<?, ?B/s][A
+special_tokens_map.json: 100%|██████████| 670/670 [00:00<00:00, 9.15MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/1.65k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 1.65k/1.65k [00:00<00:00, 24.4MB/s]
+[2.4 min] 10/830 episodes, kept 7, examples 13, teacher {'calls': 217, 'retries': 6, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 93679, 'answer_chars': 48785}
+[3.4 min] 20/830 episodes, kept 14, examples 37, teacher {'calls': 292, 'retries': 9, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 171559, 'answer_chars': 77448}
+[4.1 min] 30/830 episodes, kept 22, examples 61, teacher {'calls': 344, 'retries': 10, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 217551, 'answer_chars': 94767}
+[5.6 min] 40/830 episodes, kept 31, examples 95, teacher {'calls': 421, 'retries': 15, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 300689, 'answer_chars': 120947}
+[6.8 min] 50/830 episodes, kept 37, examples 116, teacher {'calls': 493, 'retries': 23, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 381243, 'answer_chars': 145277}
+[7.7 min] 60/830 episodes, kept 44, examples 157, teacher {'calls': 539, 'retries': 29, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 434444, 'answer_chars': 161731}
+[8.7 min] 70/830 episodes, kept 51, examples 189, teacher {'calls': 591, 'retries': 33, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 498948, 'answer_chars': 180054}
+[9.7 min] 80/830 episodes, kept 59, examples 231, teacher {'calls': 645, 'retries': 37, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 563380, 'answer_chars': 198057}
+[10.3 min] 90/830 episodes, kept 68, examples 284, teacher {'calls': 679, 'retries': 39, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 595433, 'answer_chars': 209323}
+[11.3 min] 100/830 episodes, kept 77, examples 317, teacher {'calls': 735, 'retries': 44, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 674425, 'answer_chars': 229981}
+[11.9 min] 110/830 episodes, kept 83, examples 352, teacher {'calls': 771, 'retries': 48, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 711647, 'answer_chars': 243184}
+[12.8 min] 120/830 episodes, kept 91, examples 387, teacher {'calls': 823, 'retries': 50, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 773296, 'answer_chars': 260574}
+[13.8 min] 130/830 episodes, kept 98, examples 424, teacher {'calls': 879, 'retries': 56, 'failed': 0, 'too_long': 0, 'unfinished': 0, 'gen_tokens': 834660, 'answer_chars': 279152}
+[14.8 min] 140/830 episodes, kept 105, examples 466, teacher {'calls': 951, 'retries': 63, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 907165, 'answer_chars': 303283}
+[15.9 min] 150/830 episodes, kept 111, examples 494, teacher {'calls': 1015, 'retries': 68, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 977187, 'answer_chars': 325295}
+[16.7 min] 160/830 episodes, kept 120, examples 531, teacher {'calls': 1060, 'retries': 74, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1031324, 'answer_chars': 340209}
+[17.4 min] 170/830 episodes, kept 128, examples 577, teacher {'calls': 1107, 'retries': 76, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1079340, 'answer_chars': 356962}
+[18.4 min] 180/830 episodes, kept 135, examples 608, teacher {'calls': 1165, 'retries': 80, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1141208, 'answer_chars': 375419}
+[19.5 min] 190/830 episodes, kept 140, examples 625, teacher {'calls': 1220, 'retries': 86, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1200347, 'answer_chars': 395086}
+[21.0 min] 200/830 episodes, kept 148, examples 671, teacher {'calls': 1285, 'retries': 101, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1290353, 'answer_chars': 417647}
+[21.7 min] 210/830 episodes, kept 153, examples 696, teacher {'calls': 1324, 'retries': 105, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1342935, 'answer_chars': 432167}
+[22.9 min] 220/830 episodes, kept 159, examples 724, teacher {'calls': 1381, 'retries': 112, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1411657, 'answer_chars': 451498}
+[23.5 min] 230/830 episodes, kept 166, examples 748, teacher {'calls': 1418, 'retries': 114, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1457918, 'answer_chars': 464352}
+[24.2 min] 240/830 episodes, kept 172, examples 789, teacher {'calls': 1462, 'retries': 119, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1502691, 'answer_chars': 479735}
+[24.8 min] 250/830 episodes, kept 178, examples 812, teacher {'calls': 1491, 'retries': 124, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1535132, 'answer_chars': 491209}
+[25.3 min] 260/830 episodes, kept 184, examples 848, teacher {'calls': 1524, 'retries': 124, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1567103, 'answer_chars': 502539}
+[26.3 min] 270/830 episodes, kept 189, examples 873, teacher {'calls': 1581, 'retries': 129, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1634688, 'answer_chars': 521641}
+[27.0 min] 280/830 episodes, kept 197, examples 911, teacher {'calls': 1627, 'retries': 130, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1677977, 'answer_chars': 536470}
+[27.8 min] 290/830 episodes, kept 204, examples 930, teacher {'calls': 1670, 'retries': 134, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1739939, 'answer_chars': 551567}
+[28.9 min] 300/830 episodes, kept 211, examples 970, teacher {'calls': 1728, 'retries': 145, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1820940, 'answer_chars': 574725}
+[30.0 min] 310/830 episodes, kept 217, examples 1007, teacher {'calls': 1795, 'retries': 147, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1885619, 'answer_chars': 599362}
+[30.7 min] 320/830 episodes, kept 224, examples 1033, teacher {'calls': 1843, 'retries': 151, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1934981, 'answer_chars': 613401}
+[31.5 min] 330/830 episodes, kept 232, examples 1061, teacher {'calls': 1887, 'retries': 157, 'failed': 0, 'too_long': 1, 'unfinished': 0, 'gen_tokens': 1981255, 'answer_chars': 626888}
+[32.1 min] 340/830 episodes, kept 241, examples 1121, teacher {'calls': 1936, 'retries': 159, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2030741, 'answer_chars': 644889}
+[32.8 min] 350/830 episodes, kept 244, examples 1134, teacher {'calls': 1977, 'retries': 162, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2072035, 'answer_chars': 658476}
+[33.8 min] 360/830 episodes, kept 253, examples 1170, teacher {'calls': 2036, 'retries': 165, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2126343, 'answer_chars': 678369}
+[34.9 min] 370/830 episodes, kept 262, examples 1239, teacher {'calls': 2099, 'retries': 171, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2192452, 'answer_chars': 700176}
+[35.9 min] 380/830 episodes, kept 270, examples 1272, teacher {'calls': 2153, 'retries': 175, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2242410, 'answer_chars': 717686}
+[36.8 min] 390/830 episodes, kept 274, examples 1289, teacher {'calls': 2199, 'retries': 181, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2299997, 'answer_chars': 734368}
+[38.2 min] 400/830 episodes, kept 280, examples 1329, teacher {'calls': 2272, 'retries': 192, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2399570, 'answer_chars': 760727}
+[38.7 min] 410/830 episodes, kept 286, examples 1355, teacher {'calls': 2309, 'retries': 192, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2430722, 'answer_chars': 772956}
+[40.0 min] 420/830 episodes, kept 290, examples 1374, teacher {'calls': 2377, 'retries': 199, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2506733, 'answer_chars': 796933}
+[41.5 min] 430/830 episodes, kept 298, examples 1411, teacher {'calls': 2464, 'retries': 205, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2606649, 'answer_chars': 828006}
+[42.6 min] 440/830 episodes, kept 307, examples 1469, teacher {'calls': 2525, 'retries': 213, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2680775, 'answer_chars': 848273}
+[43.3 min] 450/830 episodes, kept 313, examples 1504, teacher {'calls': 2566, 'retries': 217, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2720987, 'answer_chars': 861879}
+[43.9 min] 460/830 episodes, kept 317, examples 1526, teacher {'calls': 2595, 'retries': 218, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2752740, 'answer_chars': 871293}
+[44.4 min] 470/830 episodes, kept 325, examples 1569, teacher {'calls': 2633, 'retries': 221, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2790036, 'answer_chars': 884993}
+[45.2 min] 480/830 episodes, kept 333, examples 1605, teacher {'calls': 2675, 'retries': 224, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2831274, 'answer_chars': 898319}
+[46.4 min] 490/830 episodes, kept 340, examples 1651, teacher {'calls': 2746, 'retries': 227, 'failed': 0, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2907825, 'answer_chars': 924683}
+[47.4 min] 500/830 episodes, kept 345, examples 1674, teacher {'calls': 2801, 'retries': 230, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 2968239, 'answer_chars': 943235}
+[48.8 min] 510/830 episodes, kept 352, examples 1720, teacher {'calls': 2874, 'retries': 239, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3061353, 'answer_chars': 969931}
+[49.5 min] 520/830 episodes, kept 359, examples 1749, teacher {'calls': 2915, 'retries': 246, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3116272, 'answer_chars': 983937}
+[50.5 min] 530/830 episodes, kept 364, examples 1766, teacher {'calls': 2976, 'retries': 251, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3184153, 'answer_chars': 1004927}
+[51.1 min] 540/830 episodes, kept 372, examples 1794, teacher {'calls': 3020, 'retries': 253, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3227622, 'answer_chars': 1018860}
+[51.7 min] 550/830 episodes, kept 380, examples 1827, teacher {'calls': 3054, 'retries': 257, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3264017, 'answer_chars': 1030146}
+[52.3 min] 560/830 episodes, kept 388, examples 1863, teacher {'calls': 3091, 'retries': 260, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3300887, 'answer_chars': 1042211}
+[53.3 min] 570/830 episodes, kept 395, examples 1901, teacher {'calls': 3138, 'retries': 267, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3357424, 'answer_chars': 1059225}
+[53.7 min] 580/830 episodes, kept 400, examples 1915, teacher {'calls': 3166, 'retries': 268, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3383974, 'answer_chars': 1069471}
+[54.9 min] 590/830 episodes, kept 407, examples 1962, teacher {'calls': 3242, 'retries': 276, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3457571, 'answer_chars': 1094719}
+[55.8 min] 600/830 episodes, kept 414, examples 1990, teacher {'calls': 3298, 'retries': 281, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3513933, 'answer_chars': 1113078}
+[56.7 min] 610/830 episodes, kept 423, examples 2045, teacher {'calls': 3351, 'retries': 285, 'failed': 1, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3574674, 'answer_chars': 1131576}
+[57.8 min] 620/830 episodes, kept 428, examples 2067, teacher {'calls': 3424, 'retries': 290, 'failed': 2, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3647107, 'answer_chars': 1156427}
+[59.0 min] 630/830 episodes, kept 436, examples 2110, teacher {'calls': 3487, 'retries': 302, 'failed': 2, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3715394, 'answer_chars': 1177030}
+[60.2 min] 640/830 episodes, kept 442, examples 2141, teacher {'calls': 3549, 'retries': 313, 'failed': 3, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3795449, 'answer_chars': 1196140}
+[60.6 min] 650/830 episodes, kept 450, examples 2186, teacher {'calls': 3582, 'retries': 316, 'failed': 3, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3832227, 'answer_chars': 1207044}
+[61.5 min] 660/830 episodes, kept 458, examples 2220, teacher {'calls': 3632, 'retries': 318, 'failed': 3, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3881851, 'answer_chars': 1224745}
+[62.3 min] 670/830 episodes, kept 465, examples 2252, teacher {'calls': 3683, 'retries': 320, 'failed': 3, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3926537, 'answer_chars': 1241735}
+[62.8 min] 680/830 episodes, kept 471, examples 2276, teacher {'calls': 3715, 'retries': 322, 'failed': 3, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 3976883, 'answer_chars': 1252965}
+[63.8 min] 690/830 episodes, kept 480, examples 2335, teacher {'calls': 3774, 'retries': 326, 'failed': 3, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4028635, 'answer_chars': 1271009}
+[64.8 min] 700/830 episodes, kept 484, examples 2345, teacher {'calls': 3824, 'retries': 335, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4098421, 'answer_chars': 1289293}
+[65.4 min] 710/830 episodes, kept 493, examples 2391, teacher {'calls': 3859, 'retries': 338, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4137908, 'answer_chars': 1301962}
+[65.9 min] 720/830 episodes, kept 499, examples 2417, teacher {'calls': 3894, 'retries': 340, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4175632, 'answer_chars': 1313879}
+[66.7 min] 730/830 episodes, kept 505, examples 2444, teacher {'calls': 3939, 'retries': 342, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4220064, 'answer_chars': 1329640}
+[68.4 min] 740/830 episodes, kept 513, examples 2478, teacher {'calls': 4015, 'retries': 353, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4309200, 'answer_chars': 1357755}
+[69.2 min] 750/830 episodes, kept 523, examples 2543, teacher {'calls': 4052, 'retries': 356, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4358984, 'answer_chars': 1374879}
+[69.9 min] 760/830 episodes, kept 528, examples 2571, teacher {'calls': 4083, 'retries': 360, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4416316, 'answer_chars': 1388611}
+[70.6 min] 770/830 episodes, kept 533, examples 2606, teacher {'calls': 4101, 'retries': 364, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4450738, 'answer_chars': 1397526}
+[71.8 min] 780/830 episodes, kept 540, examples 2647, teacher {'calls': 4141, 'retries': 372, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4527763, 'answer_chars': 1413789}
+[72.8 min] 790/830 episodes, kept 547, examples 2688, teacher {'calls': 4169, 'retries': 382, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4599107, 'answer_chars': 1425912}
+[74.1 min] 800/830 episodes, kept 548, examples 2697, teacher {'calls': 4204, 'retries': 390, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4678859, 'answer_chars': 1440774}
+[75.1 min] 810/830 episodes, kept 550, examples 2714, teacher {'calls': 4221, 'retries': 394, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4720487, 'answer_chars': 1449003}
+[76.0 min] 820/830 episodes, kept 559, examples 2785, teacher {'calls': 4232, 'retries': 398, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4769997, 'answer_chars': 1456821}
+[78.0 min] 830/830 episodes, kept 565, examples 2839, teacher {'calls': 4248, 'retries': 401, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4819055, 'answer_chars': 1466302}
+# Teacher episodes (squiggle-ft)
+
+Teacher Qwen/Qwen3-30B-A3B-Thinking-2507-FP8 on gpu: 830 of 830 episodes in 78 min (deadline 115.0 min), 2839 training examples, 1029 generated tokens/s. Teacher stats: {'calls': 4248, 'retries': 401, 'failed': 4, 'too_long': 2, 'unfinished': 0, 'gen_tokens': 4819055, 'answer_chars': 1466302}.
+
+| family | habit | episodes | right answer | kept (strict) | examples |
+| --- | --- | --- | --- | --- | --- |
+| bare_link | read a bare link | 35 | 31 | 31 (89%) | 95 |
+| chat | plain chat stays plain | 50 | 50 | 50 (100%) | 50 |
+| chat_after | a task, then plain thanks | 30 | 11 | 11 (37%) | 52 |
+| hermes_compute | compute (Hermes requests) | 40 | 27 | 26 (65%) | 87 |
+| hermes_need | ask for missing input (Hermes requests) | 40 | 23 | 23 (57%) | 25 |
+| math | compute with run_js | 70 | 65 | 58 (83%) | 174 |
+| memory_repo | use memory, don't ask | 35 | 34 | 34 (97%) | 160 |
+| need_repo | ask which repo | 50 | 45 | 45 (90%) | 263 |
+| past_chat | find an earlier chat | 40 | 16 | 14 (35%) | 85 |
+| recipe_repo | use a recipe | 40 | 39 | 29 (72%) | 264 |
+| refs | follow 'it' to the last repo | 40 | 38 | 38 (95%) | 275 |
+| repo_fact | look in the repo | 80 | 63 | 54 (68%) | 294 |
+| repo_two | plan a two-part repo task | 50 | 38 | 19 (38%) | 204 |
+| repo_where | find a definition | 70 | 52 | 51 (73%) | 297 |
+| web_compare | plan + look up two things | 70 | 46 | 36 (51%) | 324 |
+| web_fact | look it up | 90 | 48 | 46 (51%) | 190 |
+| **all** | | 830 | 626 | 565 (68%) | 2839 |
+
+## Why episodes were dropped (top 40)
+
+- 42 × web_fact: wrong or missing answer
+- 29 × repo_two: no plan for a two-part task
+- 23 × web_compare: wrong or missing answer
+- 22 × past_chat: first chat got it wrong
+- 22 × past_chat: didn't recall the earlier answer
+- 19 × chat_after: wrong or missing answer
+- 19 × repo_fact: answered without looking at the repo
+- 17 × repo_fact: wrong or missing answer
+- 17 × repo_where: wrong or missing answer
+- 16 × web_compare: no plan for a multi-step question
+- 14 × hermes_need: didn't ask for the missing input
+- 12 × repo_two: missing part of the answer
+- 11 × past_chat: didn't search past chats (and the prompt didn't already have the answer)
+- 11 × recipe_repo: the plan doesn't follow the recipe
+- 11 × recipe_repo: no plan for a two-part task
+- 8 × hermes_compute: reply doesn't carry the computed value
+- 8 × math: did the maths in its head
+- 8 × web_compare: fewer than two lookups for a two-part question
+- 7 × web_fact: answered without looking it up
+- 7 × web_fact: asked the user instead of looking it up
+- 5 × hermes_compute: didn't compute it
+- 5 × math: wrong or missing answer
+- 5 × need_repo: wrong or missing answer after asking
+- 5 × repo_where: answered without looking at the repo
+- 5 × repo_where: turn 1: the reply doesn't say where its facts came from (page, repo, file)
+- 4 × bare_link: didn't read the link
+- 4 × hermes_need: acted before asking: web_search
+- 4 × repo_fact: turn 1: the reply doesn't say where its facts came from (page, repo, file)
+- 3 × hermes_need: turn 1: the reply doesn't say where its facts came from (page, repo, file)
+- 3 × hermes_need: acted before asking: web_search, fetch_url
+- 3 × need_repo: turn 2: the reply doesn't say where its facts came from (page, repo, file)
+- 3 × repo_where: context full
+- 3 × web_compare: turn 1: the reply doesn't say where its facts came from (page, repo, file)
+- 2 × chat_after: turn 1: the reply doesn't say where its facts came from (page, repo, file)
+- 2 × chat_after: answered without looking it up
+- 2 × hermes_need: acted before asking: run_js
+- 2 × hermes_need: acted before asking: run_js, run_js
+- 2 × past_chat: turn 1: the reply doesn't say where its facts came from (page, repo, file)
+- 2 × past_chat: error: episode timed out
+- 2 × past_chat: second chat never ran
+
++ python showcase.py /workspace/work/out/teach/teacher_results.jsonl.gz /workspace/work/out/TEACHER_EXAMPLES.md
+16 families written to /workspace/work/out/TEACHER_EXAMPLES.md
++ python hub.py up kealjones/squiggle-ft-data teach-v1 /workspace/work/out/teach/train_examples.jsonl.gz /workspace/work/out/teach/teacher_results.jsonl.gz
+
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+
+  ...h/train_examples.jsonl.gz: 100%|█████████▉|  956kB /  956kB            [A[A
+
+
+  ...h/train_examples.jsonl.gz: 100%|█████████▉|  956kB /  956kB            [A[A
+
+
+  ...h/train_examples.jsonl.gz: 100%|██████████|  956kB /  956kB            [A[A
+Processing Files (1 / 1)      : 100%|██████████|  956kB /  956kB, 91.8kB/s  
+
+New Data Upload               : 100%|██████████|  956kB /  956kB, 91.8kB/s  
+
+  ...h/train_examples.jsonl.gz: 100%|██████████|  956kB /  956kB            
+uploaded /workspace/work/out/teach/train_examples.jsonl.gz -> kealjones/squiggle-ft-data/teach-v1
+
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+
+  .../teacher_results.jsonl.gz:  62%|██████▏   | 1.05MB / 1.69MB            [A[A
+
+
+  .../teacher_results.jsonl.gz:  62%|██████▏   | 1.05MB / 1.69MB            [A[A
+
+
+  .../teacher_results.jsonl.gz: 100%|██████████| 1.69MB / 1.69MB            [A[A
+Processing Files (1 / 1)      : 100%|██████████| 1.69MB / 1.69MB,   ???B/s  
+
+New Data Upload               : 100%|██████████| 1.69MB / 1.69MB,   ???B/s  
+
+  .../teacher_results.jsonl.gz: 100%|██████████| 1.69MB / 1.69MB            
+uploaded /workspace/work/out/teach/teacher_results.jsonl.gz -> kealjones/squiggle-ft-data/teach-v1
++ pip install -q -U 'transformers>=5,<6'
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ python selftest.py /workspace/work/out/teach/train_examples.jsonl.gz --tokenizers unsloth/gemma-3-270m-it,LiquidAI/LFM2.5-350M
++ tail -12 /workspace/work/out/selftest.txt
+
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 9.00MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 4.72MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][A
+tokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 13.8MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 33.7MB/s]
+
+2839 model calls checked, 0 with problems.
+  unsloth/gemma-3-270m-it: prompt tokens median 436, max 4002; output tokens median 95, max 315
+  LiquidAI/LFM2.5-350M: prompt tokens median 435, max 3560; output tokens median 89, max 295
+exit code 0 after 84.1 min
