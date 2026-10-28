@@ -46,7 +46,8 @@ class ScriptBackend:
 
 
 class Runner:
-    def __init__(self, backend, squiggle_dir, work_dir, concurrency=24, offline=False, batch_wait=0.25, log=print):
+    def __init__(self, backend, squiggle_dir, work_dir, concurrency=24, offline=False, batch_wait=0.25, log=print, max_calls=40):
+        self.max_calls = max_calls   # model calls per episode before it is stopped (like the user pressing Stop)
         self.backend, self.squiggle = backend, str(Path(squiggle_dir).resolve())
         self.work = Path(work_dir)
         self.concurrency, self.offline, self.batch_wait, self.log = concurrency, offline, batch_wait, log
@@ -116,7 +117,11 @@ class Runner:
                 if t == "gen":
                     req = {"episode": ep.id, "index": index, "kind": m["kind"], "messages": m["messages"], "max_tokens": m.get("max_tokens", 1024)}
                     index += 1
-                    text = await self._ask(req)
+                    if index > self.max_calls:
+                        text = {"error": f"Stopped: more than {self.max_calls} model calls in one episode."}
+                        result["capped"] = True
+                    else:
+                        text = await self._ask(req)
                     meta = err = None
                     if isinstance(text, dict):
                         text, meta, err = text.get("text"), text.get("meta"), text.get("error")

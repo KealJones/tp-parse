@@ -1,0 +1,11 @@
+{
+ "slug": "squiggle-ft-smoke",
+ "flavor": "l4x1",
+ "timeout": "70m",
+ "files": ["experiments/squiggle-ft/jobs/boot.py"],
+ "cmd": "python boot.py smoke.sh",
+ "pip": ["vllm==0.11.0", "transformers>=4.57,<5", "pyarrow"],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-smoke",
+ "note": "squiggle-ft pipeline smoke test; expected ~$0.60, cap $0.93 (70 min of l4x1 at $0.80/h)"
+}
