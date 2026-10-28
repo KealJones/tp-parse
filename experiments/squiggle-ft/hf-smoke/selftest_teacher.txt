@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/workspace/work/sqft/selftest.py", line 143, in <module>
+    main()
+  File "/workspace/work/sqft/selftest.py", line 101, in main
+    for rec in read(path):
+  File "/workspace/work/sqft/selftest.py", line 31, in read
+    with op(path, "rt") as f:
+         ^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/gzip.py", line 58, in open
+    binary_file = GzipFile(filename, gz_mode, compresslevel)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/gzip.py", line 174, in __init__
+    fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/out/teach/train_examples.jsonl.gz'
