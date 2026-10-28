@@ -4,7 +4,7 @@ OUT=$1
 set -x
 python -c "import torch, vllm, transformers; print('torch', torch.__version__, 'vllm', vllm.__version__, 'transformers', transformers.__version__)"
 nvidia-smi --query-gpu=name,memory.total --format=csv
-python build.py teach --plan ${PLAN:-train} --scale ${SCALE:-0.025} --minutes ${MINUTES:-15} --concurrency ${CONCURRENCY:-48} ${SHARD:+--shard $SHARD} --out $OUT/teach --work work
+python build.py teach --plan ${PLAN:-train} --scale ${SCALE:-0.025} --minutes ${MINUTES:-15} --concurrency ${CONCURRENCY:-48} ${SHARD:+--shard $SHARD} ${JUDGE_PENDING:+--judge-pending $JUDGE_PENDING} --out $OUT/teach --work work
 python showcase.py $OUT/teach/teacher_results.jsonl.gz $OUT/TEACHER_EXAMPLES.md
 python hub.py up kealjones/squiggle-ft-data ${TAG:-teach-smoke} $OUT/teach/train_examples.jsonl.gz $OUT/teach/teacher_results.jsonl.gz
 [ "${SELFTEST:-1}" = 0 ] && exit 0          # a capped mini-smoke skips the tokenizer self-test (it runs locally)
