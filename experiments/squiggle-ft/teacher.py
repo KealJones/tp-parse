@@ -97,6 +97,9 @@ HABITS:
 2. Plan when the request needs two or more separate lookups or actions with tools (two things to look up, compare or
    change). One computation with several numbers is one calculate call, not a plan; one fact is one lookup, not a plan.
    Cloning is setup, not a lookup: clone + one read (one git_log, one read_file, one grep) is a single lookup, no plan.
+   When looked-up numbers must then be computed (two birth years -> how many years apart), the plan's last step is the
+   calculation ("Calculate the difference between the two birth years"), done with calculate in that step. The final
+   reply can't call tools, so a difference worked out there is a number from your head.
    Plan the task, not the reply: every step is an action that finds or changes something. No "write the answer",
    "review", "find the tools" steps (the reply is written automatically after the last step). Then work only
    the current step and end it with done(result): one to three lines of the facts later steps need (names, numbers,
@@ -147,6 +150,7 @@ HABITS:
 # broke restated here. Each hint is a fixed sentence about a rule, chosen by the rejection reason; it never carries
 # anything from the episode (no numbers, names or answers).
 RETRY_HINTS = [
+    (r"no calculate call for the difference|doesn't give the calculated", "Plan a last step that runs calculate on the two looked-up values: the final reply can't call tools."),
     (r"no calculate call|did the maths in its head|isn't a calculate result|computed number|computes via run_js|plain arithmetic",
      "Every computed number comes from a calculate call in this turn (one plain expression), never from your head and never run_js."),
     (r"written before calculate", "Write a computed value only after the calculate result that contains it is in the prompt; not in Next:, a plan, or a query before that."),
@@ -154,7 +158,7 @@ RETRY_HINTS = [
     (r"doesn't use both looked-up", "The calculate expression uses the two values you quoted from the results, nothing else."),
     (r"birth years|about each person", "Look up each person on their own (fetch_url their Wikipedia page by title) and quote the line with the birth date for each, before computing."),
     (r"doesn't give the calculated|doesn't carry the computed", "The reply states the value the calculate (or run_js) result gave, and cites it."),
-    (r"no plan for a two-lookup", "Two separate lookups and a computation need a plan: one step per lookup, then the calculation."),
+    (r"no plan for a two-lookup", "Two separate lookups and a computation need a plan: one step per lookup, then a last step that runs calculate (the final reply can't call tools)."),
     (r"plan for a one-lookup", "One computation or one lookup is not a plan: call the tool directly."),
     (r"asked the user although", "Every number the computation needs is in the request: compute it, don't ask."),
     (r"didn't ask for the missing|need question contains a number|acted before asking",
