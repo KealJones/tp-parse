@@ -1,0 +1,554 @@
+{
+ "untouched-gemma3": {
+  "families": {
+   "bare_link": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "chat_after": {
+    "n": 8,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_need": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 16,
+    "ok": 0.125,
+    "strict": 0.0
+   },
+   "memory_repo": {
+    "n": 10,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_math": {
+    "n": 30,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 23,
+    "ok": 0.043478260869565216,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_two": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 30,
+    "ok": 0.03333333333333333,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 16,
+    "ok": 0.5,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 16,
+    "ok": 0.0625,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.0,
+  "trained_ok": 0.04817708333333333,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.0,
+  "loops": 0.006825938566552901,
+  "plans": 0.0,
+  "asks": 0.0,
+  "chat": 0.9583333333333334,
+  "done_facts": null,
+  "messy": 0.0,
+  "clean": 0.0,
+  "messy_gap": 0.0,
+  "call_capped": 0.0,
+  "gen": {
+   "calls": 360,
+   "out_tokens": 18826,
+   "per_call": 52.294444444444444
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "hmm interesting",
+    "kind": "chat",
+    "output": "Okay, I've analyzed the information provided. Let's try to figure out what this tool is and how it can be used."
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "The answer is **Flying Padre**."
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "What version is commander.js at right now?",
+    "kind": "chat",
+    "output": "Commander.js is available in the latest stable release (version 15.x) on GitHub."
+   }
+  ]
+ },
+ "gemma3": {
+  "families": {
+   "bare_link": {
+    "n": 12,
+    "ok": 0.25,
+    "strict": 0.08333333333333333
+   },
+   "chat": {
+    "n": 16,
+    "ok": 0.4375,
+    "strict": 0.4375
+   },
+   "chat_after": {
+    "n": 8,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.0
+   },
+   "hermes_need": {
+    "n": 12,
+    "ok": 0.16666666666666666,
+    "strict": 0.16666666666666666
+   },
+   "math": {
+    "n": 16,
+    "ok": 0.125,
+    "strict": 0.125
+   },
+   "memory_repo": {
+    "n": 10,
+    "ok": 0.5,
+    "strict": 0.5
+   },
+   "need_math": {
+    "n": 30,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.08333333333333333
+   },
+   "past_chat": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.0
+   },
+   "recipe_compare": {
+    "n": 23,
+    "ok": 0.21739130434782608,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "refs": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.0
+   },
+   "repo_fact": {
+    "n": 16,
+    "ok": 0.3125,
+    "strict": 0.125
+   },
+   "repo_two": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "web_bridge": {
+    "n": 30,
+    "ok": 0.03333333333333333,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 16,
+    "ok": 0.4375,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 16,
+    "ok": 0.0625,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.09505208333333333,
+  "trained_ok": 0.16927083333333334,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.9092131809011432,
+  "loops": 0.05802047781569966,
+  "plans": 0.16129032258064516,
+  "asks": 0.14814814814814814,
+  "chat": 0.375,
+  "done_facts": null,
+  "messy": 0.034482758620689655,
+  "clean": 0.055900621118012424,
+  "messy_gap": 0.02141786249732277,
+  "call_capped": 0.0,
+  "gen": {
+   "calls": 1487,
+   "out_tokens": 179564,
+   "per_call": 120.75588433086752
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "hmm interesting",
+    "kind": "chat",
+    "output": "<think>\nA casual reply; no tools needed for this task.\n</think>\nNo tools required (only lookups and info gathering)."
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "<think>\nRequest: Which movie has no subtitles (black and white)?\nPieces: 1. The name of the only movie with no subtitles.\nKnow: Only \"Flying Parde\" exists in the prompt; nothing else is known about it.\nDon't know: Whether \"Inside Job\" was a film or TV show; must look up separately.\nGoal: Find which movie has no subtitles to answer the question directly.\nNext: Use find to get web_search tools first (since we don't have them yet).\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"Which is a black-and-white film, Flying Parde or Inside Job\"}}\n```"
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "What version is commander.js at right now?",
+    "kind": "chat",
+    "output": "<think>\nRequest for the current version of Commander.js; nothing to look up yet!\nPieces: 1. The current version number (e.g., \"c/m/s\" or similar).\nKnow: Only prompt gives the repo name and no tools looked up.\nDon't know: Tools available for cloning GitHub repos, reading package.json, etc.; must look them up.\nGoal: Report current version from prompt.\nNext: Use find to locate git_clone and read_file tool before using it.\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"clone a github repo and read a file\"}}\n```"
+   }
+  ]
+ },
+ "lfm25": {
+  "families": {
+   "bare_link": {
+    "n": 12,
+    "ok": 1.0,
+    "strict": 0.8333333333333334
+   },
+   "chat": {
+    "n": 16,
+    "ok": 0.8125,
+    "strict": 0.8125
+   },
+   "chat_after": {
+    "n": 8,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 12,
+    "ok": 0.3333333333333333,
+    "strict": 0.3333333333333333
+   },
+   "hermes_need": {
+    "n": 12,
+    "ok": 0.25,
+    "strict": 0.25
+   },
+   "math": {
+    "n": 16,
+    "ok": 0.0625,
+    "strict": 0.0625
+   },
+   "memory_repo": {
+    "n": 10,
+    "ok": 1.0,
+    "strict": 1.0
+   },
+   "need_math": {
+    "n": 30,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 12,
+    "ok": 0.5833333333333334,
+    "strict": 0.5
+   },
+   "past_chat": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.08333333333333333
+   },
+   "recipe_compare": {
+    "n": 23,
+    "ok": 0.4782608695652174,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 12,
+    "ok": 0.75,
+    "strict": 0.6666666666666666
+   },
+   "refs": {
+    "n": 12,
+    "ok": 0.4166666666666667,
+    "strict": 0.3333333333333333
+   },
+   "repo_fact": {
+    "n": 16,
+    "ok": 0.625,
+    "strict": 0.5
+   },
+   "repo_two": {
+    "n": 12,
+    "ok": 0.16666666666666666,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 16,
+    "ok": 0.1875,
+    "strict": 0.0625
+   },
+   "web_bridge": {
+    "n": 30,
+    "ok": 0.16666666666666666,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 16,
+    "ok": 0.625,
+    "strict": 0.25
+   },
+   "web_fact": {
+    "n": 16,
+    "ok": 0.0,
+    "strict": 0.0
+   }
+  },
+  "trained_strict": 0.35546875,
+  "trained_ok": 0.43098958333333337,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.9871582435791217,
+  "loops": 0.03754266211604096,
+  "plans": 0.5053763440860215,
+  "asks": 0.2962962962962963,
+  "chat": 0.9583333333333334,
+  "done_facts": 1.0,
+  "messy": 0.25862068965517243,
+  "clean": 0.18633540372670807,
+  "messy_gap": -0.07228528592846437,
+  "call_capped": 0.034129692832764506,
+  "gen": {
+   "calls": 2402,
+   "out_tokens": 217981,
+   "per_call": 90.74979184013323
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "hmm interesting",
+    "kind": "chat",
+    "output": "<think>\nA casual thank you; nothing to look up.\n</think>\nGlad that helped! How can I assist you?"
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "<think>\nRequest: Which of the two films is a black-and-white movie (Flying Padre or Inside Job)?\nPieces: 1. Character description: Black-and-white movie.\nKnow: Only the question; no prior context about these movies.\nDon't know: Both film titles and character descriptions; must look up separately.\nGoal: Identify which film is a black-and-white movie based on its title meaning \"premierned\" (Flying Padre) or \"inside job\" (Inside Job).\nNext: Use find to locate the web search tool since it's not yet confirmed available.\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"search the web\"}}\n```"
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "What version is commander.js at right now?",
+    "kind": "chat",
+    "output": "<think>\nRequest: What version is commander.js at right now?\nPieces: 1. The current version of the package named \"commander\".\nKnow: Only the repo name \"commander\" and no tools are available for it.\nDon't know: How to get the version (must look up via git log).\nGoal: Find the current version from the repo's package.json.\nNext: Use find to discover tools for cloning a GitHub repo and reading files.\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"clone a github repo and read a file\"}}\n```"
+   }
+  ]
+ },
+ "functiongemma": {
+  "families": {
+   "bare_link": {
+    "n": 12,
+    "ok": 0.3333333333333333,
+    "strict": 0.3333333333333333
+   },
+   "chat": {
+    "n": 16,
+    "ok": 0.8125,
+    "strict": 0.8125
+   },
+   "chat_after": {
+    "n": 8,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "hermes_compute": {
+    "n": 12,
+    "ok": 0.25,
+    "strict": 0.25
+   },
+   "hermes_need": {
+    "n": 12,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "math": {
+    "n": 16,
+    "ok": 0.1875,
+    "strict": 0.1875
+   },
+   "memory_repo": {
+    "n": 10,
+    "ok": 0.8,
+    "strict": 0.7
+   },
+   "need_math": {
+    "n": 30,
+    "ok": 0.0,
+    "strict": 0.0
+   },
+   "need_repo": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.0
+   },
+   "past_chat": {
+    "n": 12,
+    "ok": 0.08333333333333333,
+    "strict": 0.08333333333333333
+   },
+   "recipe_compare": {
+    "n": 23,
+    "ok": 0.391304347826087,
+    "strict": 0.0
+   },
+   "recipe_repo": {
+    "n": 12,
+    "ok": 0.3333333333333333,
+    "strict": 0.16666666666666666
+   },
+   "refs": {
+    "n": 12,
+    "ok": 0.6666666666666666,
+    "strict": 0.3333333333333333
+   },
+   "repo_fact": {
+    "n": 16,
+    "ok": 0.375,
+    "strict": 0.3125
+   },
+   "repo_two": {
+    "n": 12,
+    "ok": 0.16666666666666666,
+    "strict": 0.0
+   },
+   "repo_where": {
+    "n": 16,
+    "ok": 0.125,
+    "strict": 0.125
+   },
+   "web_bridge": {
+    "n": 30,
+    "ok": 0.1,
+    "strict": 0.0
+   },
+   "web_compare": {
+    "n": 16,
+    "ok": 0.3125,
+    "strict": 0.0
+   },
+   "web_fact": {
+    "n": 16,
+    "ok": 0.125,
+    "strict": 0.0625
+   }
+  },
+  "trained_strict": 0.21041666666666667,
+  "trained_ok": 0.2908854166666667,
+  "held_strict": 0.0,
+  "held_min": 0.0,
+  "format": 0.9459601259181531,
+  "loops": 0.030716723549488054,
+  "plans": 0.34408602150537637,
+  "asks": 0.037037037037037035,
+  "chat": 0.7083333333333334,
+  "done_facts": 1.0,
+  "messy": 0.15517241379310345,
+  "clean": 0.08695652173913043,
+  "messy_gap": -0.06821589205397302,
+  "call_capped": 0.010238907849829351,
+  "gen": {
+   "calls": 1903,
+   "out_tokens": 200056,
+   "per_call": 105.12664214398319
+  },
+  "samples": [
+   {
+    "id": "chat-0",
+    "request": "hmm interesting",
+    "kind": "chat",
+    "output": "<think>\nCasual acknowledgment; no tools needed for this fact.\n</think>\nInteresting! Not much to look up, but thanks you for the casual response. Let me know if you need anything else."
+   },
+   {
+    "id": "web_compare-0",
+    "request": "Which is a black-and-white film, Flying Padre or Inside Job?",
+    "kind": "chat",
+    "output": "<think>\nRequest: Which is a \"black-and-white film\"? which is a \"flying father of stutter movies\" and \"Inside job\"?\nPieces: 1. The movie with the same name (White/Blue).\nKnow: Only the question; nothing in the prompt gives this fact.\nDon't know: Both films are likely incorrect or have different names.\nGoal: Report both film titles as black-and-white, citing sources.\nNext: Find reliable web search tools to look up these facts.\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"search the web\"}}\n```"
+   },
+   {
+    "id": "repo_fact-0",
+    "request": "What version is commander.js at right now?",
+    "kind": "chat",
+    "output": "<think>\nRequest: What version of Commander.js is at right now.\nPieces: 1. the current version number.\nKnow: no tools looked up yet; must find package.json for this fact.\nDon't know: tools to clone repo and read file, but not yet confirmed available.\nGoal: Report the current version of Commander.js.\nNext: use find to check if \"clone a github repo\" is a valid tool before using it.\n</think>\n```tool_call\n{\"name\": \"find\", \"arguments\": {\"query\": \"clone a github repo\"}}\n```"
+   }
+  ]
+ }
+}

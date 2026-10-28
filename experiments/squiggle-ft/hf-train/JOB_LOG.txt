@@ -1,0 +1,1346 @@
+job 6ae194bb3fb22a235dd3b498 on gpu: squiggle-ft-train at d2dfb11
+fetched experiments/squiggle-ft/jobs/boot.py
+Wed Oct 28 06:23:58 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L4                      On  |   00000000:31:00.0 Off |                    0 |
+| N/A   32C    P8             16W /   72W |       0MiB /  23034MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+debconf: delaying package configuration, since apt-utils is not installed
+boot: node v22.23.4, squiggle e9c27cabe7c15ae72242d6f62ea02710d57af535, tp-parse d2dfb11, setup took 17 s
++ DATA=
++ for t in ${TAG//,/ }
++ python hub.py down kealjones/squiggle-ft-data teach-v1/teacher_results.jsonl.gz --to data_in
+
+
+teach-v1/teacher_results.jsonl.gz: reconstructing file:   0%|          |  0.00B / 1.69MB            [A
+teach-v1/teacher_results.jsonl.gz: downloading bytes:           |  0.00B            
+teach-v1/teacher_results.jsonl.gz: downloading bytes: ██████████| 1.69MB,  168kB/s  
+teach-v1/teacher_results.jsonl.gz: downloading bytes: ██████████| 1.69MB,  168kB/s  
+
+teach-v1/teacher_results.jsonl.gz: reconstructing file: 100%|██████████| 1.69MB / 1.69MB,  168kB/s  
+/workspace/work/sqft/data_in/teach-v1/teacher_results.jsonl.gz
++ DATA=,data_in/teach-v1/teacher_results.jsonl.gz
++ python selftest.py data_in/teach-v1/teacher_results.jsonl.gz --tokenizers unsloth/gemma-3-270m-it,LiquidAI/LFM2.5-350M
++ tail -12 /workspace/work/out/selftest.txt
+  episode web_compare-15: not kept (wrong or missing answer)
+  episode repo_two-1: not kept (no plan for a two-part task)
+  episode web_compare-5: not kept (wrong or missing answer)
+  episode web_compare-67: not kept (turn 1: the reply doesn't say where its facts came from (page, repo, file); context full; wrong or missing answer; no plan for a multi-step question)
+  episode repo_where-3: not kept (wrong or missing answer)
+  episode web_fact-8: not kept (wrong or missing answer)
+  episode past_chat-23: not kept (turn 1: the reply doesn't say where its facts came from (page, repo, file); first chat got it wrong; didn't recall the earlier answer)
+
+4142 model calls checked, 1 with problems. 830 episodes, 565 pass their checker.
+  1 × LiquidAI/LFM2.5-350M: prompt 4192 tokens > 4096
+  unsloth/gemma-3-270m-it: prompt tokens median 446, max 4002; output tokens median 96, max 315
+  LiquidAI/LFM2.5-350M: prompt tokens median 444, max 4192; output tokens median 90, max 295
++ python train.py --data data_in/teach-v1/teacher_results.jsonl.gz --bases gemma3,lfm25,functiongemma --epochs 3 --eval-minutes 20 --budget-minutes 165 --out /workspace/work/out --work work --export --hub-repo kealjones/squiggle-small
+06:24:44 eval set: 293 episodes
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  536MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: ██▊       |  149MB, 12.3MB/s  
+
+model.safetensors: reconstructing file:  63%|██████▎   |  335MB /  536MB            [A
+model.safetensors: downloading bytes: ████████▎ |  443MB, 39.1MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 40.8MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 40.8MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  536MB /  536MB, 48.3MB/s  
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 5644.90it/s]
+
+
+generation_config.json:   0%|          | 0.00/233 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 233/233 [00:00<00:00, 1.32MB/s]
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+06:27:30 [untouched-gemma3] eval 293 episodes in 2.6 min; student {'calls': 360, 'too_long': 0, 'out_tokens': 18826}
+06:27:30 training data: ['data_in/teach-v1/teacher_results.jsonl.gz']
+06:27:31 2839 training examples: {'memory_repo': 160, 'recipe_repo': 264, 'repo_two': 204, 'need_repo': 263, 'web_compare': 324, 'hermes_compute': 87, 'refs': 275, 'past_chat': 85, 'math': 174, 'repo_where': 297, 'repo_fact': 294, 'chat': 50, 'web_fact': 190, 'bare_link': 95, 'chat_after': 52, 'hermes_need': 25}
+06:27:35 [gemma3] 2839 of 2839 examples fit; target tokens 297077, all tokens 2145027
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 2074.06it/s]
+06:27:35 [gemma3] attention sdpa, gradient checkpointing True
+06:27:35 [gemma3] 288 micro-batches/epoch, accum 3, 288 steps, warmup 9
+06:28:32 [gemma3] epoch 1 step 20/288 loss 1.4937 lr 3.95e-05 (1.0 min)
+06:29:30 [gemma3] epoch 1 step 40/288 loss 0.7893 lr 3.81e-05 (1.9 min)
+06:30:30 [gemma3] epoch 1 step 60/288 loss 0.6847 lr 3.59e-05 (2.9 min)
+06:31:28 [gemma3] epoch 1 step 80/288 loss 0.5955 lr 3.29e-05 (3.9 min)
+06:32:15 [gemma3] epoch 1 done: mean loss 0.8293 (4.7 min)
+06:32:27 [gemma3] epoch 2 step 100/288 loss 0.5599 lr 2.92e-05 (4.9 min)
+06:33:27 [gemma3] epoch 2 step 120/288 loss 0.4325 lr 2.52e-05 (5.9 min)
+06:34:26 [gemma3] epoch 2 step 140/288 loss 0.4389 lr 2.09e-05 (6.8 min)
+06:35:26 [gemma3] epoch 2 step 160/288 loss 0.3974 lr 1.65e-05 (7.8 min)
+06:36:25 [gemma3] epoch 2 step 180/288 loss 0.3898 lr 1.23e-05 (8.8 min)
+06:37:01 [gemma3] epoch 2 done: mean loss 0.4266 (9.4 min)
+06:37:24 [gemma3] epoch 3 step 200/288 loss 0.3627 lr 8.53e-06 (9.8 min)
+06:38:25 [gemma3] epoch 3 step 220/288 loss 0.2691 lr 5.25e-06 (10.8 min)
+06:39:24 [gemma3] epoch 3 step 240/288 loss 0.2683 lr 2.68e-06 (11.8 min)
+06:40:22 [gemma3] epoch 3 step 260/288 loss 0.2952 lr 9.26e-07 (12.8 min)
+06:41:22 [gemma3] epoch 3 step 280/288 loss 0.3097 lr 7.61e-08 (13.8 min)
+06:41:46 [gemma3] epoch 3 done: mean loss 0.3001 (14.2 min)
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.00it/s]
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s][A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 4.69MB            [A
+Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 35.22it/s]
+
+
+Downloading bytes: ██████████| 3.26MB,   ???B/s  [A
+
+Download complete: ██████████| 3.26MB,   ???B/s  [A
+
+Reconstruction complete: 100%|██████████| 4.69MB / 4.69MB,   ???B/s               [A
+Download complete: ██████████| 3.26MB,   ???B/s  
+
+Reconstruction complete: 100%|██████████| 4.69MB / 4.69MB,   ???B/s  
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 3278.38it/s]
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1015) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=786) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=607) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+06:50:58 [gemma3] eval 293 episodes in 9.1 min; student {'calls': 1487, 'too_long': 0, 'out_tokens': 179564}
+06:51:02 [lfm25] 2839 of 2839 examples fit; target tokens 278034, all tokens 2120053
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  709MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:   0%|          |  232kB /  709MB            [A
+model.safetensors: downloading bytes:           | 52.0kB            
+
+model.safetensors: reconstructing file:   9%|▉         | 65.5MB /  709MB, 5.42MB/s  [A
+model.safetensors: downloading bytes: ██▊       |  202MB, 16.9MB/s  
+
+model.safetensors: reconstructing file:  58%|█████▊    |  411MB /  709MB, 34.5MB/s  [A
+model.safetensors: downloading bytes: █████▍    |  383MB, 31.5MB/s  
+
+model.safetensors: reconstructing file:  93%|█████████▎|  660MB /  709MB, 53.3MB/s  [A
+model.safetensors: downloading bytes: ████████  |  572MB, 46.0MB/s  
+model.safetensors: downloading bytes: ██████████|  610MB, 48.6MB/s  
+model.safetensors: downloading bytes: ██████████|  610MB, 48.6MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  709MB /  709MB, 57.4MB/s  
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1389.22it/s]
+
+
+generation_config.json:   0%|          | 0.00/134 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 134/134 [00:00<00:00, 912kB/s]
+06:51:08 [lfm25] <think> (id 64400) had an untrained embedding (1690 identical rows); started it from ['<', 'think', '>']
+06:51:08 [lfm25] </think> (id 64401) had an untrained embedding (1689 identical rows); started it from ['</', 'think', '>']
+06:51:08 [lfm25] attention sdpa, gradient checkpointing True
+06:51:08 [lfm25] 284 micro-batches/epoch, accum 3, 285 steps, warmup 9
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+06:52:01 [lfm25] epoch 1 step 20/285 loss 1.0569 lr 3.95e-05 (0.9 min)
+06:52:55 [lfm25] epoch 1 step 40/285 loss 0.6550 lr 3.81e-05 (1.8 min)
+06:53:50 [lfm25] epoch 1 step 60/285 loss 0.5935 lr 3.58e-05 (2.7 min)
+06:54:42 [lfm25] epoch 1 step 80/285 loss 0.5548 lr 3.27e-05 (3.6 min)
+06:55:21 [lfm25] epoch 1 done: mean loss 0.6859 (4.2 min)
+06:55:35 [lfm25] epoch 2 step 100/285 loss 0.4593 lr 2.90e-05 (4.5 min)
+06:56:28 [lfm25] epoch 2 step 120/285 loss 0.4196 lr 2.49e-05 (5.3 min)
+06:57:22 [lfm25] epoch 2 step 140/285 loss 0.3566 lr 2.06e-05 (6.2 min)
+06:58:15 [lfm25] epoch 2 step 160/285 loss 0.3272 lr 1.62e-05 (7.1 min)
+06:59:09 [lfm25] epoch 2 step 180/285 loss 0.3495 lr 1.20e-05 (8.0 min)
+06:59:35 [lfm25] epoch 2 done: mean loss 0.3660 (8.5 min)
+07:00:01 [lfm25] epoch 3 step 200/285 loss 0.2431 lr 8.16e-06 (8.9 min)
+07:00:54 [lfm25] epoch 3 step 220/285 loss 0.2132 lr 4.92e-06 (9.8 min)
+07:01:47 [lfm25] epoch 3 step 240/285 loss 0.1742 lr 2.41e-06 (10.7 min)
+07:02:41 [lfm25] epoch 3 step 260/285 loss 0.2241 lr 7.55e-07 (11.6 min)
+07:03:36 [lfm25] epoch 3 step 280/285 loss 0.2171 lr 3.04e-08 (12.5 min)
+07:03:48 [lfm25] epoch 3 done: mean loss 0.2128 (12.7 min)
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.08s/it][A
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.08s/it]
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s][A
+Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 1822.55it/s]
+
+
+Download complete:           |  0.00B            [A
+
+Reconstruction complete: |          |  0.00B /  0.00B                         [A
+Download complete:           |  0.00B            
+
+Reconstruction complete: |          |  0.00B /  0.00B            
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1593.87it/s]
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+07:16:29 [lfm25] eval 293 episodes in 12.6 min; student {'calls': 2402, 'too_long': 0, 'out_tokens': 217981}
+
+
+config.json:   0%|          | 0.00/1.35k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 1.35k/1.35k [00:00<00:00, 5.44MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/1.17M [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 1.17M/1.17M [00:00<00:00, 36.3MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 33.4MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 8.82MB,  878kB/s  
+tokenizer.json: downloading bytes: ██████████| 8.82MB,  878kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 33.4MB / 33.4MB, 3.32MB/s  
+
+
+added_tokens.json:   0%|          | 0.00/63.0 [00:00<?, ?B/s][A
+added_tokens.json: 100%|██████████| 63.0/63.0 [00:00<00:00, 478kB/s]
+
+
+special_tokens_map.json:   0%|          | 0.00/714 [00:00<?, ?B/s][A
+special_tokens_map.json: 100%|██████████| 714/714 [00:00<00:00, 3.33MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/13.9k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 13.9k/13.9k [00:00<00:00, 55.0MB/s]
+07:16:35 [functiongemma] 2839 of 2839 examples fit; target tokens 297077, all tokens 2156383
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  536MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: ███████▋  |  415MB, 32.2MB/s  
+
+model.safetensors: reconstructing file:  75%|███████▌  |  403MB /  536MB            [A
+model.safetensors: downloading bytes: ██████████|  471MB, 42.8MB/s  
+model.safetensors: downloading bytes: ██████████|  471MB, 42.8MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  536MB /  536MB, 50.3MB/s  
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 2110.65it/s]
+
+
+generation_config.json:   0%|          | 0.00/205 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 205/205 [00:00<00:00, 702kB/s]
+07:16:37 [functiongemma] attention sdpa, gradient checkpointing True
+07:16:37 [functiongemma] 290 micro-batches/epoch, accum 3, 291 steps, warmup 9
+07:17:36 [functiongemma] epoch 1 step 20/291 loss 1.7478 lr 3.95e-05 (1.0 min)
+07:18:34 [functiongemma] epoch 1 step 40/291 loss 0.7775 lr 3.82e-05 (2.0 min)
+07:19:33 [functiongemma] epoch 1 step 60/291 loss 0.7019 lr 3.59e-05 (2.9 min)
+07:20:34 [functiongemma] epoch 1 step 80/291 loss 0.6025 lr 3.30e-05 (4.0 min)
+07:21:23 [functiongemma] epoch 1 done: mean loss 0.8732 (4.8 min)
+07:21:32 [functiongemma] epoch 2 step 100/291 loss 0.5270 lr 2.94e-05 (4.9 min)
+07:22:32 [functiongemma] epoch 2 step 120/291 loss 0.4669 lr 2.54e-05 (5.9 min)
+07:23:32 [functiongemma] epoch 2 step 140/291 loss 0.4346 lr 2.12e-05 (6.9 min)
+07:24:31 [functiongemma] epoch 2 step 160/291 loss 0.3847 lr 1.69e-05 (7.9 min)
+07:25:29 [functiongemma] epoch 2 step 180/291 loss 0.3719 lr 1.27e-05 (8.9 min)
+07:26:11 [functiongemma] epoch 2 done: mean loss 0.4211 (9.6 min)
+07:26:29 [functiongemma] epoch 3 step 200/291 loss 0.3085 lr 8.90e-06 (9.9 min)
+07:27:29 [functiongemma] epoch 3 step 220/291 loss 0.2977 lr 5.59e-06 (10.9 min)
+07:28:29 [functiongemma] epoch 3 step 240/291 loss 0.2919 lr 2.96e-06 (11.9 min)
+07:29:27 [functiongemma] epoch 3 step 260/291 loss 0.2711 lr 1.11e-06 (12.8 min)
+07:30:26 [functiongemma] epoch 3 step 280/291 loss 0.2971 lr 1.41e-07 (13.8 min)
+07:30:58 [functiongemma] epoch 3 done: mean loss 0.2946 (14.4 min)
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.02it/s]
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s][A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 4.69MB            [A
+Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 19.11it/s]
+
+
+Downloading bytes: ██████████| 3.26MB,   ???B/s  [A
+
+Download complete: ██████████| 3.26MB,   ???B/s  [A
+
+Reconstruction complete: 100%|██████████| 4.69MB / 4.69MB,   ???B/s               [A
+Download complete: ██████████| 3.26MB,   ???B/s  
+
+Reconstruction complete: 100%|██████████| 4.69MB / 4.69MB,   ???B/s  
+
+
+Loading weights:   0%|          | 0/236 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 236/236 [00:00<00:00, 3181.28it/s]
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=997) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=469) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=927) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=843) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=952) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=915) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=594) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=622) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1006) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=1024) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+07:41:36 [functiongemma] eval 293 episodes in 10.6 min; student {'calls': 1903, 'too_long': 0, 'out_tokens': 200056}
+07:41:36 # Squiggle small-model fine-tune: results
+
+**Verdict: NO-GO (not yet)** for `lfm25`.
+
+| check | pass | value |
+| --- | --- | --- |
+| trained types, strict mean | no | 36% (bar 50%) |
+| held-out types, strict mean | no | 0% (bar 30%) |
+| no held-out type at 0% | no | lowest 0% |
+| well-formed model calls | yes | 98.7% (bar 95%) |
+| episodes that loop or hit the call cap | yes | 3.8% (bar ≤ 5%) |
+| plain chat stays plain | yes | 96% (bar 90%) |
+| messy within 10 points of clean | yes | clean 19%, messy 26% |
+| beats the untouched Gemma 3 270M | no | 36%/0% vs 0%/0% |
+
+## Strict score per task type (right answer and the habit)
+
+| type | habit | untouched-gemma3 | gemma3 | lfm25 | functiongemma |
+| --- | --- | --- | --- | --- | --- |
+| bare_link | read a bare link | 0% (0%) | 8% (25%) | 83% (100%) | 33% (33%) |
+| chat | plain chat stays plain | 0% (0%) | 44% (44%) | 81% (81%) | 81% (81%) |
+| chat_after | a task, then plain thanks | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| hermes_compute | compute (Hermes requests) | 0% (0%) | 0% (8%) | 33% (33%) | 25% (25%) |
+| hermes_need | ask for missing input (Hermes requests) | 0% (0%) | 17% (17%) | 25% (25%) | 0% (0%) |
+| math | compute with run_js | 0% (12%) | 12% (12%) | 6% (6%) | 19% (19%) |
+| memory_repo | use memory, don't ask | 0% (0%) | 50% (50%) | 100% (100%) | 70% (80%) |
+| need_math (held out) | ask for a missing number (held out) | 0% (0%) | 0% (0%) | 0% (0%) | 0% (0%) |
+| need_repo | ask which repo | 0% (0%) | 8% (8%) | 50% (58%) | 0% (8%) |
+| past_chat | find an earlier chat | 0% (8%) | 0% (8%) | 8% (8%) | 8% (8%) |
+| recipe_compare (held out) | use a recipe on web lookups (held out) | 0% (4%) | 0% (22%) | 0% (48%) | 0% (39%) |
+| recipe_repo | use a recipe | 0% (0%) | 0% (0%) | 67% (75%) | 17% (33%) |
+| refs | follow 'it' to the last repo | 0% (0%) | 0% (8%) | 33% (42%) | 33% (67%) |
+| repo_fact | look in the repo | 0% (0%) | 12% (31%) | 50% (62%) | 31% (38%) |
+| repo_two | plan a two-part repo task | 0% (0%) | 0% (8%) | 0% (17%) | 0% (17%) |
+| repo_where | find a definition | 0% (0%) | 0% (0%) | 6% (19%) | 12% (12%) |
+| web_bridge (held out) | plan a two-hop lookup (held out) | 0% (3%) | 0% (3%) | 0% (17%) | 0% (10%) |
+| web_compare | plan + look up two things | 0% (50%) | 0% (44%) | 25% (62%) | 0% (31%) |
+| web_fact | look it up | 0% (6%) | 0% (6%) | 0% (0%) | 6% (12%) |
+
+(right answer only in brackets)
+
+## Habits
+
+| measure | untouched-gemma3 | gemma3 | lfm25 | functiongemma |
+| --- | --- | --- | --- | --- |
+| trained types, strict mean | 0% | 10% | 36% | 21% |
+| trained types, right answer | 5% | 17% | 43% | 29% |
+| held-out types, strict mean | 0% | 0% | 0% | 0% |
+| well-formed calls | 0% | 91% | 99% | 95% |
+| episodes looping / call-capped | 1% | 6% | 4% | 3% |
+| plans multi-step requests | 0% | 16% | 51% | 34% |
+| asks (need) when info is missing | 0% | 15% | 30% | 4% |
+| plain chat stays plain | 96% | 38% | 96% | 71% |
+| done results carry the answer | - | - | 100% | 100% |
+| clean requests, strict | 0% | 6% | 19% | 9% |
+| messy requests, strict | 0% | 3% | 26% | 16% |
+| episodes evaluated | 293 | 293 | 293 | 293 |
+
+## Output length
+
+Generated tokens per model call (thinking + call or reply). Seconds per call at ~15 tokens/s on a phone CPU.
+
+| model | calls | tokens per call | seconds per call |
+| --- | --- | --- | --- |
+| untouched-gemma3 | 360 | 52 | 3 |
+| gemma3 | 1487 | 121 | 8 |
+| lfm25 | 2402 | 91 | 6 |
+| functiongemma | 1903 | 105 | 7 |
+
+## Sample generations
+
+The first model call of three eval episodes per model, raw (as the harness got it).
+
+**untouched-gemma3**, `chat-0` (chat): 'hmm interesting'
+
+````text
+Okay, I've analyzed the information provided. Let's try to figure out what this tool is and how it can be used.
+````
+
+**untouched-gemma3**, `web_compare-0` (chat): 'Which is a black-and-white film, Flying Padre or Inside Job?'
+
+````text
+The answer is **Flying Padre**.
+````
+
+**untouched-gemma3**, `repo_fact-0` (chat): 'What version is commander.js at right now?'
+
+````text
+Commander.js is available in the latest stable release (version 15.x) on GitHub.
+````
+
+**gemma3**, `chat-0` (chat): 'hmm interesting'
+
+````text
+<think>
+A casual reply; no tools needed for this task.
+</think>
+No tools required (only lookups and info gathering).
+````
+
+**gemma3**, `web_compare-0` (chat): 'Which is a black-and-white film, Flying Padre or Inside Job?'
+
+````text
+<think>
+Request: Which movie has no subtitles (black and white)?
+Pieces: 1. The name of the only movie with no subtitles.
+Know: Only "Flying Parde" exists in the prompt; nothing else is known about it.
+Don't know: Whether "Inside Job" was a film or TV show; must look up separately.
+Goal: Find which movie has no subtitles to answer the question directly.
+Next: Use find to get web_search tools first (since we don't have them yet).
+</think>
+```tool_call
+{"name": "find", "arguments": {"query": "Which is a black-and-white film, Flying Parde or Inside Job"}}
+```
+````
+
+**gemma3**, `repo_fact-0` (chat): 'What version is commander.js at right now?'
+
+````text
+<think>
+Request for the current version of Commander.js; nothing to look up yet!
+Pieces: 1. The current version number (e.g., "c/m/s" or similar).
+Know: Only prompt gives the repo name and no tools looked up.
+Don't know: Tools available for cloning GitHub repos, reading package.json, etc.; must look them up.
+Goal: Report current version from prompt.
+Next: Use find to locate git_clone and read_file tool before using it.
+</think>
+```tool_call
+{"name": "find", "arguments": {"query": "clone a github repo and read a file"}}
+```
+````
+
+**lfm25**, `chat-0` (chat): 'hmm interesting'
+
+````text
+<think>
+A casual thank you; nothing to look up.
+</think>
+Glad that helped! How can I assist you?
+````
+
+**lfm25**, `web_compare-0` (chat): 'Which is a black-and-white film, Flying Padre or Inside Job?'
+
+````text
+<think>
+Request: Which of the two films is a black-and-white movie (Flying Padre or Inside Job)?
+Pieces: 1. Character description: Black-and-white movie.
+Know: Only the question; no prior context about these movies.
+Don't know: Both film titles and character descriptions; must look up separately.
+Goal: Identify which film is a black-and-white movie based on its title meaning "premierned" (Flying Padre) or "inside job" (Inside Job).
+Next: Use find to locate the web search tool since it's not yet confirmed available.
+</think>
+```tool_call
+{"name": "find", "arguments": {"query": "search the web"}}
+```
+````
+
+**lfm25**, `repo_fact-0` (chat): 'What version is commander.js at right now?'
+
+````text
+<think>
+Request: What version is commander.js at right now?
+Pieces: 1. The current version of the package named "commander".
+Know: Only the repo name "commander" and no tools are available for it.
+Don't know: How to get the version (must look up via git log).
+Goal: Find the current version from the repo's package.json.
+Next: Use find to discover tools for cloning a GitHub repo and reading files.
+</think>
+```tool_call
+{"name": "find", "arguments": {"query": "clone a github repo and read a file"}}
+```
+````
+
+**functiongemma**, `chat-0` (chat): 'hmm interesting'
+
+````text
+<think>
+Casual acknowledgment; no tools needed for this fact.
+</think>
+Interesting! Not much to look up, but thanks you for the casual response. Let me know if you need anything else.
+````
+
+**functiongemma**, `web_compare-0` (chat): 'Which is a black-and-white film, Flying Padre or Inside Job?'
+
+````text
+<think>
+Request: Which is a "black-and-white film"? which is a "flying father of stutter movies" and "Inside job"?
+Pieces: 1. The movie with the same name (White/Blue).
+Know: Only the question; nothing in the prompt gives this fact.
+Don't know: Both films are likely incorrect or have different names.
+Goal: Report both film titles as black-and-white, citing sources.
+Next: Find reliable web search tools to look up these facts.
+</think>
+```tool_call
+{"name": "find", "arguments": {"query": "search the web"}}
+```
+````
+
+**functiongemma**, `repo_fact-0` (chat): 'What version is commander.js at right now?'
+
+````text
+<think>
+Request: What version of Commander.js is at right now.
+Pieces: 1. the current version number.
+Know: no tools looked up yet; must find package.json for this fact.
+Don't know: tools to clone repo and read file, but not yet confirmed available.
+Goal: Report the current version of Commander.js.
+Next: use find to check if "clone a github repo" is a valid tool before using it.
+</think>
+```tool_call
+{"name": "find", "arguments": {"query": "clone a github repo"}}
+```
+````
+
+
+## Notes
+
+- `gemma3` (unsloth/gemma-3-270m-it): trained 3 epochs on 2839 examples in 14 min.
+- `lfm25` (LiquidAI/LFM2.5-350M): trained 3 epochs on 2839 examples in 13 min.
+- `functiongemma` (unsloth/functiongemma-270m-it): trained 3 epochs on 2839 examples in 14 min.
+
+07:41:44 uploaded models/lfm25 to kealjones/squiggle-small/hf
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s][A
+Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 1933.16it/s]
+
+
+Download complete:           |  0.00B            [A
+
+Reconstruction complete: |          |  0.00B /  0.00B                         [AWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+INFO:hf-to-gguf:Loading model: lfm25
+INFO:hf-to-gguf:Model architecture: Lfm2ForCausalLM
+INFO:hf-to-gguf:gguf: indexing model part 'model.safetensors'
+INFO:gguf.gguf_writer:gguf: This GGUF file is for Little Endian only
+INFO:hf-to-gguf:Exporting model...
+INFO:hf-to-gguf:token_embd.weight,                torch.float32 --> Q8_0, shape = {1024, 65536}
+INFO:hf-to-gguf:token_embd_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.0.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.0.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.0.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.0.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.0.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.0.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.0.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.0.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.1.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.1.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.1.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.1.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.1.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.1.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.1.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.1.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.10.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.10.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.10.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.10.attn_k.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.10.attn_output.weight,        torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.10.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.10.attn_q.weight,             torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.10.attn_v.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.11.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.11.shortconv.in_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.11.shortconv.out_proj.weight, torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.11.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.11.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.11.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.11.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.11.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.12.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.12.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.12.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.12.attn_k.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.12.attn_output.weight,        torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.12.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.12.attn_q.weight,             torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.12.attn_v.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.13.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.13.shortconv.in_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.13.shortconv.out_proj.weight, torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.13.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.13.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.13.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.13.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.13.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.14.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.14.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.14.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.14.attn_k.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.14.attn_output.weight,        torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.14.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.14.attn_q.weight,             torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.14.attn_v.weight,             torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.15.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.15.shortconv.in_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.15.shortconv.out_proj.weight, torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.15.ffn_gate.weight,           torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.15.ffn_down.weight,           torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.15.ffn_up.weight,             torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.15.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.15.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.2.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.2.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.2.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.2.attn_k.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.2.attn_output.weight,         torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.2.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.2.attn_q.weight,              torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.2.attn_v.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.3.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.3.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.3.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.3.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.3.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.3.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.3.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.3.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.4.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.4.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.4.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.4.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.4.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.4.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.4.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.4.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.5.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.5.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.5.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.5.attn_k.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.5.attn_output.weight,         torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.5.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.5.attn_q.weight,              torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.5.attn_v.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.6.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.6.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.6.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.6.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.6.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.6.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.6.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.6.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.7.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.7.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.7.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.7.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.7.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.7.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.7.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.7.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.8.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.8.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.8.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.8.attn_k.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.8.attn_output.weight,         torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.8.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.8.attn_q.weight,              torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.8.attn_v.weight,              torch.float32 --> Q8_0, shape = {1024, 512}
+INFO:hf-to-gguf:blk.9.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.9.shortconv.in_proj.weight,   torch.float32 --> Q8_0, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.9.shortconv.out_proj.weight,  torch.float32 --> Q8_0, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.9.ffn_gate.weight,            torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.9.ffn_down.weight,            torch.float32 --> Q8_0, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.9.ffn_up.weight,              torch.float32 --> Q8_0, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.9.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.9.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:Set meta model
+INFO:hf-to-gguf:Set model parameters
+INFO:hf-to-gguf:gguf: context length = 128000
+INFO:hf-to-gguf:gguf: embedding length = 1024
+INFO:hf-to-gguf:gguf: feed forward length = 6656
+INFO:hf-to-gguf:gguf: head count = 16
+INFO:hf-to-gguf:gguf: key-value head count = [0, 0, 8, 0, 0, 8, 0, 0, 8, 0, 8, 0, 8, 0, 8, 0]
+WARNING:hf-to-gguf:Unknown RoPE type: default
+INFO:hf-to-gguf:gguf: rope scaling type = NONE
+INFO:hf-to-gguf:gguf: rope theta = 1000000.0
+INFO:hf-to-gguf:gguf: rms norm epsilon = 1e-05
+INFO:hf-to-gguf:gguf: file type = 7
+WARNING:gguf.gguf_writer:Duplicated key name 'lfm2.attention.layer_norm_rms_epsilon', overwriting it with new value 1e-05 of type FLOAT32
+WARNING:gguf.gguf_writer:Duplicated key name 'lfm2.feed_forward_length', overwriting it with new value 4608 of type UINT32
+INFO:hf-to-gguf:Set model quantization version
+INFO:hf-to-gguf:Set model tokenizer
+WARNING:gguf.vocab:Unknown separator token '<|startoftext|>' in TemplateProcessing<pair>
+INFO:gguf.vocab:Adding 63683 merge(s).
+INFO:gguf.vocab:Setting special token type bos to 1
+INFO:gguf.vocab:Setting special token type eos to 7
+INFO:gguf.vocab:Setting special token type pad to 0
+INFO:gguf.vocab:Setting add_bos_token to True
+INFO:gguf.vocab:Setting add_eos_token to False
+INFO:gguf.vocab:Setting add_sep_token to False
+INFO:gguf.vocab:Setting chat_template to {{- bos_token -}}
+{%- set preserve_thinking = preserve_thinking | default(keep_past_thinking | default(false)) -%}
+
+{%- macro format_arg_value(arg_value) -%}
+    {%- if arg_value is string -%}
+        {{- "'" + (arg_value | replace("\\", "\\\\") | replace("'", "\\'") | replace("\n", "\\n") | replace("\r", "\\r")) + "'" -}}
+    {%- elif arg_value is mapping or arg_value is iterable -%}
+        {{- arg_value | tojson -}}
+    {%- else -%}
+        {{- arg_value | string -}}
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro parse_content(content) -%}
+    {%- if content is string -%}
+        {{- content -}}
+    {%- elif content is mapping -%}
+        {{- content | tojson -}}
+    {%- elif content is iterable -%}
+        {%- set _ns = namespace(result="") -%}
+        {%- for item in content -%}
+            {%- if item is string -%}
+                {%- set _ns.result = _ns.result + item -%}
+            {%- elif item is mapping and item.get("type") == "image" -%}
+                {%- set _ns.result = _ns.result + "<image>" -%}
+            {%- elif item is mapping and item.get("type") == "text" -%}
+                {%- set _ns.result = _ns.result + ((item.get("text") or "") | string) -%}
+            {%- else -%}
+                {%- set _ns.result = _ns.result + (item | tojson) -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {{- _ns.result -}}
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro render_tool_calls(tool_calls) -%}
+    {%- set tool_calls_ns = namespace(tool_calls=[]) -%}
+    {%- for tool_call in tool_calls -%}
+        {%- set func = tool_call["function"] if "function" in tool_call else tool_call -%}
+        {%- set func_name = func["name"] -%}
+        {%- set func_args = func.get("arguments") -%}
+        {%- set args_ns = namespace(arg_strings=[]) -%}
+        {%- if func_args is mapping -%}
+            {%- for arg_name, arg_value in func_args.items() -%}
+                {%- set args_ns.arg_strings = args_ns.arg_strings + [arg_name + "=" + format_arg_value(arg_value)] -%}
+            {%- endfor -%}
+        {%- elif func_args is string and (func_args | trim) not in ["", "{}", "null"] -%}
+            {{- raise_exception("Tool call arguments must be a mapping, got a JSON-encoded string: parse arguments with json.loads() before applying the chat template") -}}
+        {%- endif -%}
+        {%- set tool_calls_ns.tool_calls = tool_calls_ns.tool_calls + [func_name + "(" + (args_ns.arg_strings | join(", ")) + ")"] -%}
+    {%- endfor -%}
+    {{- "<|tool_call_start|>[" + (tool_calls_ns.tool_calls | join(", ")) + "]<|tool_call_end|>" -}}
+{%- endmacro -%}
+
+{%- set ns = namespace(system_prompt="", last_assistant_index=-1) -%}
+{%- if messages and messages[0]["role"] == "system" -%}
+    {%- if messages[0].get("content") -%}
+        {%- set ns.system_prompt = parse_content(messages[0]["content"]) -%}
+    {%- endif -%}
+    {%- set messages = messages[1:] -%}
+{%- endif -%}
+{%- if tools -%}
+    {%- set ns.system_prompt = ns.system_prompt + ("\n" if ns.system_prompt else "") + "List of tools: [" -%}
+    {%- for tool in tools -%}
+        {%- if tool is not string -%}
+            {%- set tool = tool | tojson -%}
+        {%- endif -%}
+        {%- set ns.system_prompt = ns.system_prompt + tool -%}
+        {%- if not loop.last -%}
+            {%- set ns.system_prompt = ns.system_prompt + ", " -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- set ns.system_prompt = ns.system_prompt + "]" -%}
+{%- endif -%}
+{%- if ns.system_prompt -%}
+    {{- "<|im_start|>system\n" + ns.system_prompt + "<|im_end|>\n" -}}
+{%- endif -%}
+{%- for message in messages -%}
+    {%- if message["role"] == "assistant" -%}
+        {%- set ns.last_assistant_index = loop.index0 -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- for message in messages -%}
+    {{- "<|im_start|>" + message.role + "\n" -}}
+    {%- if message.role == "assistant" -%}
+        {%- generation -%}
+        {%- set keep_thinking = preserve_thinking or loop.index0 == ns.last_assistant_index -%}
+        {%- set thinking = message.thinking or message.reasoning or message.reasoning_content -%}
+        {%- set thinking = thinking if thinking is string else "" -%}
+        {%- if thinking and keep_thinking -%}
+            {{- "<think>" + thinking + "</think>" -}}
+        {%- endif -%}
+        {%- set _cfm_tag = "CONTINUE_FINAL_MESSAGE_TAG " -%}
+        {%- set _has_cfm = false -%}
+        {%- set content = "" -%}
+        {%- if message.get("content") -%}
+            {%- set content = parse_content(message.content) -%}
+        {%- endif -%}
+        {%- if not keep_thinking and "</think>" in content -%}
+            {%- set content = content.split("</think>")[-1] | trim -%}
+        {%- endif -%}
+        {%- if content.endswith(_cfm_tag) -%}
+            {%- set _has_cfm = true -%}
+            {%- set _trunc_len = (content | length) - (_cfm_tag | length) -%}
+            {%- set content = content[:_trunc_len] -%}
+        {%- endif -%}
+        {{- content -}}
+        {%- if message.tool_calls -%}
+            {{- render_tool_calls(message.tool_calls) -}}
+        {%- endif -%}
+        {%- if _has_cfm -%}
+            {{- _cfm_tag -}}
+        {%- endif -%}
+        {{- "<|im_end|>\n" -}}
+        {%- endgeneration -%}
+    {%- else %}
+        {%- if message.get("content") -%}
+            {{- parse_content(message["content"]) -}}
+        {%- endif -%}
+        {{- "<|im_end|>\n" -}}
+    {%- endif %}
+{%- endfor -%}
+{%- if add_generation_prompt -%}
+    {{- "<|im_start|>assistant\n" -}}
+{%- endif -%}
+
+INFO:gguf.vocab:Setting clean_spaces to False
+INFO:gguf.gguf_writer:Writing the following files:
+INFO:gguf.gguf_writer:/workspace/work/out/gguf/squiggle-small-lfm25-Q8_0.gguf: n_tensors = 148, total_size = 376.8M
+
+
+Writing:   0%|          | 0.00/377M [00:00<?, ?byte/s][A
+
+Writing:  47%|████▋     | 176M/377M [00:01<00:01, 172Mbyte/s][A
+
+Writing:  94%|█████████▍| 354M/377M [00:02<00:00, 173Mbyte/s][A
+Writing: 100%|██████████| 377M/377M [00:02<00:00, 172Mbyte/s]
+INFO:hf-to-gguf:Model successfully exported to /workspace/work/out/gguf/squiggle-small-lfm25-Q8_0.gguf
+CMAKE_BUILD_TYPE=Release
+CMake Warning at cmake/build-info.cmake:14 (message):
+  Git not found.  Build info will not be accurate.
+Call Stack (most recent call first):
+  CMakeLists.txt:151 (include)
+
+
+CMake Warning at vendor/cpp-httplib/CMakeLists.txt:154 (message):
+  OpenSSL not found, HTTPS support disabled
+
+
+CMake Warning at common/CMakeLists.txt:33 (message):
+  Git repository not found; to enable automatic generation of build info,
+  make sure Git is installed and the project is a Git repository.
+
+
+INFO:hf-to-gguf:Loading model: lfm25
+INFO:hf-to-gguf:Model architecture: Lfm2ForCausalLM
+INFO:hf-to-gguf:gguf: indexing model part 'model.safetensors'
+INFO:gguf.gguf_writer:gguf: This GGUF file is for Little Endian only
+INFO:hf-to-gguf:Exporting model...
+INFO:hf-to-gguf:token_embd.weight,                torch.float32 --> F16, shape = {1024, 65536}
+INFO:hf-to-gguf:token_embd_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.0.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.0.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.0.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.0.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.0.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.0.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.0.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.0.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.1.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.1.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.1.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.1.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.1.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.1.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.1.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.1.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.10.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.10.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.10.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.10.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.10.attn_k.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.10.attn_output.weight,        torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.10.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.10.attn_q.weight,             torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.10.attn_v.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.11.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.11.shortconv.in_proj.weight,  torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.11.shortconv.out_proj.weight, torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.11.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.11.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.11.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.11.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.11.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.12.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.12.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.12.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.12.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.12.attn_k.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.12.attn_output.weight,        torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.12.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.12.attn_q.weight,             torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.12.attn_v.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.13.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.13.shortconv.in_proj.weight,  torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.13.shortconv.out_proj.weight, torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.13.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.13.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.13.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.13.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.13.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.14.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.14.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.14.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.14.attn_k_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.14.attn_k.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.14.attn_output.weight,        torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.14.attn_q_norm.weight,        torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.14.attn_q.weight,             torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.14.attn_v.weight,             torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.15.shortconv.conv.weight,     torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.15.shortconv.in_proj.weight,  torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.15.shortconv.out_proj.weight, torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.15.ffn_gate.weight,           torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.15.ffn_down.weight,           torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.15.ffn_up.weight,             torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.15.ffn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.15.attn_norm.weight,          torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.2.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.2.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.2.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.2.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.2.attn_k.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.2.attn_output.weight,         torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.2.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.2.attn_q.weight,              torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.2.attn_v.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.3.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.3.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.3.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.3.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.3.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.3.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.3.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.3.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.4.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.4.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.4.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.4.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.4.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.4.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.4.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.4.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.5.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.5.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.5.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.5.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.5.attn_k.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.5.attn_output.weight,         torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.5.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.5.attn_q.weight,              torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.5.attn_v.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.6.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.6.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.6.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.6.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.6.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.6.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.6.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.6.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.7.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.7.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.7.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.7.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.7.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.7.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.7.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.7.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.8.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.8.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.8.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.8.attn_k_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.8.attn_k.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.8.attn_output.weight,         torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.8.attn_q_norm.weight,         torch.float32 --> F32, shape = {64}
+INFO:hf-to-gguf:blk.8.attn_q.weight,              torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.8.attn_v.weight,              torch.float32 --> F16, shape = {1024, 512}
+INFO:hf-to-gguf:blk.9.shortconv.conv.weight,      torch.float32 --> F32, shape = {3, 1024}
+INFO:hf-to-gguf:blk.9.shortconv.in_proj.weight,   torch.float32 --> F16, shape = {1024, 3072}
+INFO:hf-to-gguf:blk.9.shortconv.out_proj.weight,  torch.float32 --> F16, shape = {1024, 1024}
+INFO:hf-to-gguf:blk.9.ffn_gate.weight,            torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.9.ffn_down.weight,            torch.float32 --> F16, shape = {4608, 1024}
+INFO:hf-to-gguf:blk.9.ffn_up.weight,              torch.float32 --> F16, shape = {1024, 4608}
+INFO:hf-to-gguf:blk.9.ffn_norm.weight,            torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:blk.9.attn_norm.weight,           torch.float32 --> F32, shape = {1024}
+INFO:hf-to-gguf:Set meta model
+INFO:hf-to-gguf:Set model parameters
+INFO:hf-to-gguf:gguf: context length = 128000
+INFO:hf-to-gguf:gguf: embedding length = 1024
+INFO:hf-to-gguf:gguf: feed forward length = 6656
+INFO:hf-to-gguf:gguf: head count = 16
+INFO:hf-to-gguf:gguf: key-value head count = [0, 0, 8, 0, 0, 8, 0, 0, 8, 0, 8, 0, 8, 0, 8, 0]
+WARNING:hf-to-gguf:Unknown RoPE type: default
+INFO:hf-to-gguf:gguf: rope scaling type = NONE
+INFO:hf-to-gguf:gguf: rope theta = 1000000.0
+INFO:hf-to-gguf:gguf: rms norm epsilon = 1e-05
+INFO:hf-to-gguf:gguf: file type = 1
+WARNING:gguf.gguf_writer:Duplicated key name 'lfm2.attention.layer_norm_rms_epsilon', overwriting it with new value 1e-05 of type FLOAT32
+WARNING:gguf.gguf_writer:Duplicated key name 'lfm2.feed_forward_length', overwriting it with new value 4608 of type UINT32
+INFO:hf-to-gguf:Set model quantization version
+INFO:hf-to-gguf:Set model tokenizer
+WARNING:gguf.vocab:Unknown separator token '<|startoftext|>' in TemplateProcessing<pair>
+INFO:gguf.vocab:Adding 63683 merge(s).
+INFO:gguf.vocab:Setting special token type bos to 1
+INFO:gguf.vocab:Setting special token type eos to 7
+INFO:gguf.vocab:Setting special token type pad to 0
+INFO:gguf.vocab:Setting add_bos_token to True
+INFO:gguf.vocab:Setting add_eos_token to False
+INFO:gguf.vocab:Setting add_sep_token to False
+INFO:gguf.vocab:Setting chat_template to {{- bos_token -}}
+{%- set preserve_thinking = preserve_thinking | default(keep_past_thinking | default(false)) -%}
+
+{%- macro format_arg_value(arg_value) -%}
+    {%- if arg_value is string -%}
+        {{- "'" + (arg_value | replace("\\", "\\\\") | replace("'", "\\'") | replace("\n", "\\n") | replace("\r", "\\r")) + "'" -}}
+    {%- elif arg_value is mapping or arg_value is iterable -%}
+        {{- arg_value | tojson -}}
+    {%- else -%}
+        {{- arg_value | string -}}
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro parse_content(content) -%}
+    {%- if content is string -%}
+        {{- content -}}
+    {%- elif content is mapping -%}
+        {{- content | tojson -}}
+    {%- elif content is iterable -%}
+        {%- set _ns = namespace(result="") -%}
+        {%- for item in content -%}
+            {%- if item is string -%}
+                {%- set _ns.result = _ns.result + item -%}
+            {%- elif item is mapping and item.get("type") == "image" -%}
+                {%- set _ns.result = _ns.result + "<image>" -%}
+            {%- elif item is mapping and item.get("type") == "text" -%}
+                {%- set _ns.result = _ns.result + ((item.get("text") or "") | string) -%}
+            {%- else -%}
+                {%- set _ns.result = _ns.result + (item | tojson) -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {{- _ns.result -}}
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro render_tool_calls(tool_calls) -%}
+    {%- set tool_calls_ns = namespace(tool_calls=[]) -%}
+    {%- for tool_call in tool_calls -%}
+        {%- set func = tool_call["function"] if "function" in tool_call else tool_call -%}
+        {%- set func_name = func["name"] -%}
+        {%- set func_args = func.get("arguments") -%}
+        {%- set args_ns = namespace(arg_strings=[]) -%}
+        {%- if func_args is mapping -%}
+            {%- for arg_name, arg_value in func_args.items() -%}
+                {%- set args_ns.arg_strings = args_ns.arg_strings + [arg_name + "=" + format_arg_value(arg_value)] -%}
+            {%- endfor -%}
+        {%- elif func_args is string and (func_args | trim) not in ["", "{}", "null"] -%}
+            {{- raise_exception("Tool call arguments must be a mapping, got a JSON-encoded string: parse arguments with json.loads() before applying the chat template") -}}
+        {%- endif -%}
+        {%- set tool_calls_ns.tool_calls = tool_calls_ns.tool_calls + [func_name + "(" + (args_ns.arg_strings | join(", ")) + ")"] -%}
+    {%- endfor -%}
+    {{- "<|tool_call_start|>[" + (tool_calls_ns.tool_calls | join(", ")) + "]<|tool_call_end|>" -}}
+{%- endmacro -%}
+
+{%- set ns = namespace(system_prompt="", last_assistant_index=-1) -%}
+{%- if messages and messages[0]["role"] == "system" -%}
+    {%- if messages[0].get("content") -%}
+        {%- set ns.system_prompt = parse_content(messages[0]["content"]) -%}
+    {%- endif -%}
+    {%- set messages = messages[1:] -%}
+{%- endif -%}
+{%- if tools -%}
+    {%- set ns.system_prompt = ns.system_prompt + ("\n" if ns.system_prompt else "") + "List of tools: [" -%}
+    {%- for tool in tools -%}
+        {%- if tool is not string -%}
+            {%- set tool = tool | tojson -%}
+        {%- endif -%}
+        {%- set ns.system_prompt = ns.system_prompt + tool -%}
+        {%- if not loop.last -%}
+            {%- set ns.system_prompt = ns.system_prompt + ", " -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- set ns.system_prompt = ns.system_prompt + "]" -%}
+{%- endif -%}
+{%- if ns.system_prompt -%}
+    {{- "<|im_start|>system\n" + ns.system_prompt + "<|im_end|>\n" -}}
+{%- endif -%}
+{%- for message in messages -%}
+    {%- if message["role"] == "assistant" -%}
+        {%- set ns.last_assistant_index = loop.index0 -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- for message in messages -%}
+    {{- "<|im_start|>" + message.role + "\n" -}}
+    {%- if message.role == "assistant" -%}
+        {%- generation -%}
+        {%- set keep_thinking = preserve_thinking or loop.index0 == ns.last_assistant_index -%}
+        {%- set thinking = message.thinking or message.reasoning or message.reasoning_content -%}
+        {%- set thinking = thinking if thinking is string else "" -%}
+        {%- if thinking and keep_thinking -%}
+            {{- "<think>" + thinking + "</think>" -}}
+        {%- endif -%}
+        {%- set _cfm_tag = "CONTINUE_FINAL_MESSAGE_TAG " -%}
+        {%- set _has_cfm = false -%}
+        {%- set content = "" -%}
+        {%- if message.get("content") -%}
+            {%- set content = parse_content(message.content) -%}
+        {%- endif -%}
+        {%- if not keep_thinking and "</think>" in content -%}
+            {%- set content = content.split("</think>")[-1] | trim -%}
+        {%- endif -%}
+        {%- if content.endswith(_cfm_tag) -%}
+            {%- set _has_cfm = true -%}
+            {%- set _trunc_len = (content | length) - (_cfm_tag | length) -%}
+            {%- set content = content[:_trunc_len] -%}
+        {%- endif -%}
+        {{- content -}}
+        {%- if message.tool_calls -%}
+            {{- render_tool_calls(message.tool_calls) -}}
+        {%- endif -%}
+        {%- if _has_cfm -%}
+            {{- _cfm_tag -}}
+        {%- endif -%}
+        {{- "<|im_end|>\n" -}}
+        {%- endgeneration -%}
+    {%- else %}
+        {%- if message.get("content") -%}
+            {{- parse_content(message["content"]) -}}
+        {%- endif -%}
+        {{- "<|im_end|>\n" -}}
+    {%- endif %}
+{%- endfor -%}
+{%- if add_generation_prompt -%}
+    {{- "<|im_start|>assistant\n" -}}
+{%- endif -%}
+
+INFO:gguf.vocab:Setting clean_spaces to False
+INFO:gguf.gguf_writer:Writing the following files:
+INFO:gguf.gguf_writer:/workspace/work/out/gguf/f16.gguf: n_tensors = 148, total_size = 709.1M
+
+
+Writing:   0%|          | 0.00/709M [00:00<?, ?byte/s][A
+
+Writing:  68%|██████▊   | 484M/709M [00:01<00:00, 474Mbyte/s][A
+Writing: 100%|██████████| 709M/709M [00:01<00:00, 467Mbyte/s]
+INFO:hf-to-gguf:Model successfully exported to /workspace/work/out/gguf/f16.gguf
+version: 0.7.0-dev (build 0, commit unknown)
+built with GNU 11.4.0 for Linux x86_64
+llama_quantize: quantizing '/workspace/work/out/gguf/f16.gguf' to '/workspace/work/out/gguf/squiggle-small-lfm25-Q4_0.gguf' as Q4_0
+llama_model_loader: loaded meta data with 29 key-value pairs and 148 tensors from /workspace/work/out/gguf/f16.gguf (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = lfm2
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Lfm25
+llama_model_loader: - kv   3:                         general.size_label str              = 354M
+llama_model_loader: - kv   4:                           lfm2.block_count u32              = 16
+llama_model_loader: - kv   5:                        lfm2.context_length u32              = 128000
+llama_model_loader: - kv   6:                      lfm2.embedding_length u32              = 1024
+llama_model_loader: - kv   7:                   lfm2.feed_forward_length u32              = 4608
+llama_model_loader: - kv   8:                  lfm2.attention.head_count u32              = 16
+llama_model_loader: - kv   9:               lfm2.attention.head_count_kv arr[i32,16]      = [0, 0, 8, 0, 0, 8, 0, 0, 8, 0, 8, 0, ...
+llama_model_loader: - kv  10:                        lfm2.rope.freq_base f32              = 1000000.000000
+runner error: UnicodeDecodeError('utf-8', b'llama_model_loader: - kv  11:      lfm2.attention.layer_norm_rms_epsilon f32              = 0.000010\nllama_model_loader: - kv  12:                          general.file_type u32              = 1\nllama_model_loader: - kv  13:                            lfm2.vocab_size u32              = 65536\nllama_model_loader: - kv  14:                     lfm2.shortconv.l_cache u32              = 3\nllama_model_loader: - kv  15:               general.quantization_version u32              = 2\nllama_model_loader: - kv  16:                       tokenizer.ggml.model str              = gpt2\nllama_model_loader: - kv  17:                         tokenizer.ggml.pre str              = lfm2\nllama_model_loader: - kv  18:                      tokenizer.ggml.tokens arr[str,65536]   = ["<|pad|>", "<|startoftext|>", "<|end...\nllama_model_loader: - kv  19:                  tokenizer.ggml.token_type arr[i32,65536]   = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...\nllama_model_loader: - kv  20:                      tokenizer.ggml.merges arr[str,63683]   = ["\xc4\x8a \xc4\x8a", "\xc4\x8a \xc4\x8a\xc4\x8a", "\xc4\x8a\xc4\x8a \xc4\x8a", "\xc4\x8a \xc4...\nllama_model_loader: - kv  21:                tokenizer.ggml.bos_token_id u32              = 1\nllama_model_loader: - kv  22:                tokenizer.ggml.eos_token_id u32              = 7\nllama_model_loader: - kv  23:            tokenizer.ggml.padding_token_id u32              = 0\nllama_model_loader: - kv  24:               tokenizer.ggml.add_bos_token bool             = true\nllama_model_loader: - kv  25:               tokenizer.ggml.add_eos_token bool             = false\nllama_model_loader: - kv  26:               tokenizer.ggml.add_sep_token bool             = false\nllama_model_loader: - kv  27:                    tokenizer.chat_template str              = {{- bos_token -}}\\n{%- set preserve_th...\nllama_model_loader: - kv  28:                tokenizer.ggml.clean_spaces bool             = false\nllama_model_loader: - type  f32:   55 tensors\nllama_model_loader: - type  f16:   93 tensors\n', 1069, 1070, 'invalid continuation byte')
+exit code -1 after 79.7 min
