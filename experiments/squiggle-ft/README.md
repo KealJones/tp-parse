@@ -43,8 +43,8 @@ renders them; training uses each base model's own template.
 | repo_fact / repo_where / repo_two | clone, read, grep, log; plan two-part tasks | facts read out of 18 real public repos |
 | need_repo | ask which repo instead of guessing | the same repos; the simulated user answers |
 | memory_repo | use memory, don't ask | true facts about Keal's repos (squiggle, tp-parse) |
-| past_chat | find an earlier chat | a web_fact answered in one chat, asked about in a new chat |
-| recipe_repo | use the recipe saved from the first task | two similar repo tasks in two chats |
+| past_chat | find an earlier chat (or use it when smart context already retrieved it) | a web_fact answered in one chat, asked about in a new chat |
+| recipe_repo | use the recipe in the prompt | a recipe the app itself saved (recipes.fromTask) from a gold task on another repo; requests the app's recipes.match offers it for |
 | refs | follow "it" to the repo from the last turn | two turns, same chat |
 | chat, chat_after | plain chat stays plain | casual openers; a task followed by "thanks" |
 | bare_link | a message that is just a link | Wikipedia pages named in HotpotQA |
@@ -123,10 +123,12 @@ and Squiggle at the pinned commit, installs node, and runs `jobs/<script>`.
 | --- | --- | --- | --- | --- |
 | `squiggle-ft-smoke` | (retired `smoke.sh`) | l4x1, 70 min | $0.07 (done) | failed early: no C compiler for vLLM; the harness and untouched eval ran |
 | `squiggle-ft-smoke-2` | (retired `smoke.sh`) | l4x1, 70 min | $0.21 (done) | training, eval and baseline all ran on GPU; the Qwen3-4B-Instruct teacher never wrote `<think>` (0/44 kept); GGUF conversion failed (tokenizer, since fixed) |
-| `squiggle-ft-teach-smoke` | `jobs/teach_smoke.sh` | l40sx1, 40 min | ~$0.75 (cap $1.20) | ~40 episodes across all families with the thinking teacher; keep rate, drop reasons, tokens/s, readable episodes |
+| `squiggle-ft-teach-smoke` | `jobs/teach_smoke.sh` | l40sx1, 40 min | $0.60 (done) | 22/40 kept, every web episode failed (find used as web search; search API unreachable), fixed for smoke 2 |
 | `squiggle-ft-teach-smoke-2` | `jobs/teach_smoke.sh` | l40sx1, 40 min | $0.73 (done) | 20/40 kept; web search works now (12/18); 7 episodes lost to `done` without a plan (fixed in the per-call hints) |
-| `squiggle-ft-train-smoke` | `jobs/train_smoke.sh` | l4x1, 45 min | ~$0.40 (cap $0.60) | training side on the 243 teacher-smoke examples: 3 bases × 1 epoch, small eval, GGUF + wllama check, no upload |
-| `squiggle-ft-teach` | `jobs/teach_smoke.sh` (`PLAN=targets`, `KV_FP8=0`, `CONCURRENCY=96`, `MINUTES=115`, `TAG=teach-v1`) | a100-large, 150 min | ≤ $6.25 | the full teacher run on the 830 target episodes (A100: 80 GB, so ~2× the episodes in flight of an L40S) |
+| `squiggle-ft-train-smoke` | `jobs/train_smoke.sh` | l4x1, 45 min | $0.03 (failed) | out of GPU memory in Gemma 3's first backward pass (262k-vocab logits); fixed with chunked loss + SDPA |
+| `squiggle-ft-train-smoke-2` | `jobs/train_smoke.sh` | l4x1, 45 min | ~$0.40 (cap $0.60) | training side on the 243 teacher-smoke examples: 3 bases × 1 epoch, small eval, GGUF + wllama check, no upload |
+| `squiggle-ft-teach` | `jobs/teach_smoke.sh` (`PLAN=targets`, `KV_FP8=0`, `CONCURRENCY=96`, `MINUTES=115`, `TAG=teach-v1`) | a100-large, 150 min | $0.19 (failed) | died loading data (datasets-server HTTP 429); the source slices are now committed in `data/sources/` |
+| `squiggle-ft-teach-2` | same as `squiggle-ft-teach` | a100-large, 150 min | ~$5.20 (cap $6.25) | the full teacher run on the 830 target episodes (A100: 80 GB, so ~2× the episodes in flight of an L40S) |
 | `squiggle-ft-train` | `jobs/train.sh` | l4x1, ≤180 min | ≤ $2.40 | train the three bases, eval, RESULTS.md, export + upload the winner |
 
 Teacher data goes to the private dataset `kealjones/squiggle-ft-data/<tag>/` (not git); the training job downloads it.
@@ -135,8 +137,9 @@ Teacher data goes to the private dataset `kealjones/squiggle-ft-data/<tag>/` (no
 
 - **Built and checked locally:** the node harness runs Squiggle's real loop; `quality.py` + checkers; `selftest.py`
   (app parser, gemmaMessages round trip, Gemma 3 / FunctionGemma / LFM2.5 templates, 4096/1024-token limits, quality
-  bar); the step-wise CLI (`teach.mjs`) tested end to end on 5 episodes; `gold.py`'s 6 template episodes all pass;
+  bar); the step-wise CLI (`teach.mjs`) tested end to end on 5 episodes; `gold.py`'s 11 template episodes all pass;
   the teacher plumbing (format mapping, rejection and rewrite) with a stand-in model; GGUF export fixed and checked:
   a trained Gemma 3 270M converted to Q8_0 (292 MB) loads and generates in wllama 3.8.1 in headless Chromium.
-- **On HF so far:** smoke and smoke-2 ($0.28 in all), see the table.
-- **Next:** the teacher smoke, then (if it looks right) the full teacher run and the training run.
+- **On HF so far:** about $1.83 in finished jobs (see the table); the full teacher run and the second training smoke
+  are running.
+- **Next:** check the teacher run's keep rate per family, then the training run.
