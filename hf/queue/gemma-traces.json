@@ -1,0 +1,17 @@
+{
+ "slug": "gemma-traces",
+ "flavor": "l4x1",
+ "timeout": "90m",
+ "files": [
+  "experiments/gemma-traces/run_traces.py",
+  "experiments/gemma-traces/prompts.jsonl"
+ ],
+ "cmd": "PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python run_traces.py --models google/gemma-4-E4B-it,google/gemma-4-E2B-it --runs 3 --max-new-tokens 6144 --bs gemma-4-E4B-it=29,gemma-4-E2B-it=114 --skip-after 40 --stop-after 70 --out out",
+ "pip": [
+  "transformers==5.21.0",
+  "accelerate"
+ ],
+ "outdir": "out",
+ "out": "experiments/gemma-traces/hf-out",
+ "note": "Gemma 4 thinking traces: 38 text prompts x 3 samples, thinking on, card sampling (t=1.0, top_p 0.95, top_k 64), Squiggle's real tool list in the system prompt. E4B first (batches of 29), then E2B (one batch of 114) only if E4B is done by minute 40; no new batch after minute 70. Expected ~$0.40 (about 30 min), cap $1.20 (90 min of l4x1)"
+}
