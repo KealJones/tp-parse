@@ -110,8 +110,11 @@ async function main() {
   for (const f of world.facts || []) memory.add({ s: f.s, p: f.p, o: f.o, note: f.note });
 
   const ctx = (spec.settings && spec.settings.contextSize) || 4096;
-  await engine.load('G3', ctx, { fast: false });
-  Object.assign(agent.settings, { model: 'G3', contextSize: ctx, fastDecode: false, contextMode: 'smart', semantic: false, learn: false, tools: null }, spec.agentSettings || {});
+  // The phone model the data is for: Squiggle Small (f54bbf7+: the fine-tuned build with tools). On older pins the
+  // small model was G3 with tools; from 338638b on G3 is plain chat (engine.chatOnly), so it can't stand in.
+  const M = engine.MODELS.SQ ? 'SQ' : 'G3';
+  await engine.load(M, ctx, { fast: false });
+  Object.assign(agent.settings, { model: M, contextSize: ctx, fastDecode: false, contextMode: 'smart', semantic: false, learn: false, tools: null }, spec.agentSettings || {});
 
   const chats = new Map();
   const chat = (key = 'main') => {

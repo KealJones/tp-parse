@@ -308,6 +308,22 @@ def v2_cases():
         expect(not {r["miss"] for r in F.near_rows("train")} & {r["miss"] for r in F.near_rows("eval")}, "near-miss words split")
 
 
+def constant_cases():
+    """pi and e go in as constants (f54bbf7: calculate's description says it knows them)."""
+    r = synth("math_pair", "A circle has a radius of 10 feet. What is its area?", {"answer": "314.159", "variant": "complete"},
+              [{"user": "A circle has a radius of 10 feet. What is its area?", "calls": [
+                  (out(REQ, "calculate", {"expression": "3.14 * 10^2"}), "calculate", {"expression": "3.14 * 10^2", "result": 314}),
+                  (out(['Check: calculate gave "314".', "Next: answer."], reply="About 314 square feet (calculated)."), None, None)],
+                "reply": "About 314 square feet (calculated)."}])
+    rejected(r, "pi typed in as 3.14", "approximates pi")
+    for bad in ["22/7 * 7^2", "2.71828 ^ 2", "3.14159 * 4"]:
+        seg = [{"parsed": {"calls": [{"name": "calculate", "arguments": {"expression": bad}}]}, "messages": []}]
+        expect(F.approx_constants(seg) != [], f"approx constant caught: {bad!r}")
+    for ok, req in [("pi * 10^2", ""), ("e ^ 2", ""), ("3.14 * 10^2", "use 3.14 for pi"), ("13.145 + 2", "")]:
+        seg = [{"parsed": {"calls": [{"name": "calculate", "arguments": {"expression": ok}}]}, "messages": []}]
+        expect(F.approx_constants(seg, req) == [], f"constant ok: {ok!r} (request {req!r})")
+
+
 def grounding_cases(by):
     """Every name, number and quote in a reply or done result comes from the turn (coordinator's audit of the v2
     smoke: need_web-1 named "the Iroquois Confederacy", which no prompt or result had, and passed on its gold)."""
@@ -344,5 +360,6 @@ if __name__ == "__main__":
     if by:
         episode_cases(by)
     grounding_cases(by or {})
+    constant_cases()
     print(f"\n{len(FAILS)} failing" if FAILS else "\nall checker tests pass")
     sys.exit(1 if FAILS else 0)
