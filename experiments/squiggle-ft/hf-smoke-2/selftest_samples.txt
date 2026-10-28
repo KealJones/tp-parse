@@ -1,0 +1,28 @@
+
+config.json:   0%|          | 0.00/1.37k [00:00<?, ?B/s][Aconfig.json: 100%|██████████| 1.37k/1.37k [00:00<00:00, 10.1MB/s]
+
+config.json:   0%|          | 0.00/1.35k [00:00<?, ?B/s][Aconfig.json: 100%|██████████| 1.35k/1.35k [00:00<00:00, 11.0MB/s]
+
+tokenizer_config.json:   0%|          | 0.00/1.17M [00:00<?, ?B/s][Atokenizer_config.json: 100%|██████████| 1.17M/1.17M [00:00<00:00, 41.7MB/s]
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 33.4MB            [Atokenizer.json: downloading bytes:           |  0.00B            tokenizer.json: downloading bytes: ██████████| 8.82MB,  876kB/s  tokenizer.json: downloading bytes: ██████████| 8.82MB,  876kB/s  
+tokenizer.json: reconstructing file: 100%|██████████| 33.4MB / 33.4MB, 3.32MB/s  
+
+added_tokens.json:   0%|          | 0.00/63.0 [00:00<?, ?B/s][Aadded_tokens.json: 100%|██████████| 63.0/63.0 [00:00<00:00, 421kB/s]
+
+special_tokens_map.json:   0%|          | 0.00/714 [00:00<?, ?B/s][Aspecial_tokens_map.json: 100%|██████████| 714/714 [00:00<00:00, 2.64MB/s]
+
+chat_template.jinja:   0%|          | 0.00/13.9k [00:00<?, ?B/s][Achat_template.jinja: 100%|██████████| 13.9k/13.9k [00:00<00:00, 65.2MB/s]
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][Aconfig.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 4.67MB/s]
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][Atokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 2.91MB/s]
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][Atokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 71.2MB/s]
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][Achat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 31.5MB/s]
+
+82 model calls checked, 0 with problems. 20 episodes, 20 pass their checker.
+  unsloth/gemma-3-270m-it: prompt tokens median 417, max 3350; output tokens median 64, max 142
+  unsloth/functiongemma-270m-it: prompt tokens median 421, max 3354; output tokens median 64, max 142
+  LiquidAI/LFM2.5-350M: prompt tokens median 417, max 3465; output tokens median 58, max 128
