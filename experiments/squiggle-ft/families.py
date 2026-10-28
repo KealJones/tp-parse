@@ -223,6 +223,8 @@ def base_check(result, need_tools=True):
     r = []
     if result.get("error"):
         r.append("error: " + result["error"][:200])
+    if result.get("capped"):
+        r.append("too many model calls (stopped)")
     segs = turn_calls(result)
     for s in segs:
         r += format_problems(s)
