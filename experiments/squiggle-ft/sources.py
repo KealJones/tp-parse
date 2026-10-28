@@ -21,20 +21,29 @@ TRAIN_REPOS = ["KealJones/squiggle", "KealJones/tp-parse", "sindresorhus/slugify
 EVAL_REPOS = ["lukeed/dequal", "developit/dlv", "tj/commander.js", "jprichardson/node-fs-extra", "simonw/sqlite-utils"]
 
 
-def _get(url, tries=4):
+def _get(url, tries=6):
+    headers = {"User-Agent": UA}
+    if os.environ.get("HF_TOKEN"):
+        headers["Authorization"] = "Bearer " + os.environ["HF_TOKEN"]
     for i in range(tries):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, timeout=60) as r:
                 return json.loads(r.read())
         except Exception as e:
             if i == tries - 1:
                 raise
-            time.sleep(2 + 3 * i)
+            ra = getattr(e, "headers", None) and e.headers.get("Retry-After")
+            time.sleep(min(60, float(ra) if ra and str(ra).isdigit() else 3 * 2 ** i))
 
 
 def rows(dataset, config, split, n, offset=0, cache=None):
-    """Up to n rows via the datasets-server API (100 per request), cached as JSON."""
+    """Up to n rows via the datasets-server API (100 per request), cached as JSON. The slices this experiment uses are
+    committed (trimmed) in data/sources/, so jobs don't depend on the API."""
+    committed = HERE / "data" / "sources" / Path(cache).name if cache else None
+    if cache and not Path(cache).exists() and committed and committed.exists():
+        Path(cache).parent.mkdir(parents=True, exist_ok=True)
+        Path(cache).write_text(committed.read_text())
     if cache and Path(cache).exists():
         got = json.loads(Path(cache).read_text())
         if len(got) >= n:
@@ -80,7 +89,7 @@ def hermes_rows(work):
     path = Path(work) / "data" / "hermes.parquet"
     if not path.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
-        req = urllib.request.Request(HERMES_URL, headers={"User-Agent": UA})
+        req = urllib.request.Request(HERMES_URL, headers={"User-Agent": UA, **({"Authorization": "Bearer " + os.environ["HF_TOKEN"]} if os.environ.get("HF_TOKEN") else {})})
         with urllib.request.urlopen(req, timeout=600) as r, open(str(path) + ".part", "wb") as f:
             while True:
                 b = r.read(1 << 20)
