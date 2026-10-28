@@ -1,5 +1,9 @@
 # Teacher instructions: play Squiggle's phone model
 
+> **Not training data.** The worked episodes below were written by Claude while building the CLI. They are format
+> and checker tests only; train.py only trains on episodes from the open-weights teacher (`source: "teacher:…"`).
+> The same rules are what the open-weights teacher gets (teacher.py).
+
 You are writing training examples for a tiny model (about 270M parameters) that runs Squiggle on a phone. You play
 that model inside Squiggle's real harness: the CLI shows you exactly what the phone model reads, you write exactly what
 it should write, and the harness runs the real tools and builds the next prompt. Every call you write in an episode

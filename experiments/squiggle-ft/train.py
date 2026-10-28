@@ -69,6 +69,19 @@ def batches(items, budget, rng):
 
 
 # ── training ────────────────────────────────────────────────────────────────
+def copy_tokenizer(base, out_dir):
+    """The base model's own tokenizer files, unchanged (the tokenizer isn't trained). transformers 5 re-saves Gemma's
+    tokenizer without tokenizer.model, which llama.cpp's converter then rejects."""
+    from huggingface_hub import snapshot_download
+    snap = snapshot_download(BASES[base], allow_patterns=["tokenizer*", "special_tokens_map.json", "added_tokens.json",
+                                                          "chat_template.jinja", "generation_config.json"])
+    Path(out_dir).mkdir(parents=True, exist_ok=True)
+    for f in Path(snap).iterdir():
+        if f.is_file():
+            shutil.copy(f, Path(out_dir) / f.name)
+
+
+
 def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=12288, per_step=32, seed=0):
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -135,7 +148,7 @@ def train(base, examples, out_dir, epochs=2, lr=4e-5, budget=12288, per_step=32,
     model.config.use_cache = True
     Path(out_dir).mkdir(parents=True, exist_ok=True)
     model.save_pretrained(out_dir, safe_serialization=True)
-    tok.save_pretrained(out_dir)
+    copy_tokenizer(base, out_dir)
     del model, opt
     gc.collect()
     if dev == "cuda":
@@ -253,16 +266,18 @@ def export(model_dir, base, out, hub_repo, results_md):
     """GGUF (Q8_0 and Q4_0) with llama.cpp's converter, a llama.cpp load-and-generate check, upload to a private repo."""
     work = Path(out) / "gguf"
     work.mkdir(parents=True, exist_ok=True)
-    lc = Path("llama.cpp")
+    lc = Path(os.environ.get("LLAMA_CPP_DIR", "llama.cpp"))
     if not lc.exists():
-        subprocess.run(["python", "-c", "import urllib.request as u; u.urlretrieve('https://codeload.github.com/ggml-org/llama.cpp/tar.gz/refs/heads/master', 'lc.tgz')"], check=True)
-        subprocess.run("mkdir -p llama.cpp && tar xzf lc.tgz -C llama.cpp --strip-components=1", shell=True, check=True)
+        if subprocess.run(["git", "clone", "-q", "--depth", "1", "https://github.com/ggml-org/llama.cpp", str(lc)]).returncode != 0:
+            subprocess.run([sys.executable, "-c", "import urllib.request as u; u.urlretrieve('https://codeload.github.com/ggml-org/llama.cpp/tar.gz/refs/heads/master', 'lc.tgz')"], check=True)
+            subprocess.run(f"mkdir -p {lc} && tar xzf lc.tgz -C {lc} --strip-components=1", shell=True, check=True)
+    copy_tokenizer(base, model_dir)            # models trained before this fix
     subprocess.run([sys.executable, "-m", "pip", "install", "-q", "gguf", "sentencepiece", "protobuf"], check=False)
     env = dict(os.environ, PYTHONPATH=str(lc / "gguf-py"))
     f8 = work / f"squiggle-small-{base}-Q8_0.gguf"
     subprocess.run([sys.executable, str(lc / "convert_hf_to_gguf.py"), model_dir, "--outtype", "q8_0", "--outfile", str(f8)], check=True, env=env)
     files = [f8]
-    built = subprocess.run("cd llama.cpp && cmake -B build -DGGML_CUDA=OFF -DLLAMA_CURL=OFF -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_SERVER=OFF >/dev/null "
+    built = subprocess.run(f"cd {lc} && cmake -B build -DGGML_CUDA=OFF -DLLAMA_CURL=OFF -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_SERVER=OFF >/dev/null "
                            "&& cmake --build build -j 8 --target llama-quantize llama-simple >/dev/null", shell=True).returncode == 0
     check = "llama.cpp build failed: no Q4_0 and no load check"
     if built:
@@ -328,14 +343,23 @@ def main():
         arms["untouched-gemma3"] = metrics(evaluate(BASES["gemma3"], eval_eps(), args.work, args.squiggle, "untouched-gemma3", out, args.eval_minutes))
         json.dump(arms, open(out / "metrics.json", "w"), indent=1)
     if not args.eval_only:
+        import glob
         examples = []
-        for p in args.data.split(","):
+        paths = [g for p in args.data.split(",") if p for g in (sorted(glob.glob(p)) or [p])]
+        log(f"training data: {paths}")
+        for p in paths:
             for rec in read_jsonl(p):
-                if "calls" in rec and "turns" in rec:          # an episode result (e.g. samples.jsonl): its calls
+                if "calls" in rec and "turns" in rec:          # an episode result: its calls, if it passes now
                     if F.check(rec)["strict"]:
-                        examples += list(build.examples(rec))
+                        examples += list(build.examples(rec, rec.get("source")))
                 else:
                     examples.append(rec)
+        # Only teacher episodes train (source "teacher:<open-weights model>"). Claude-written text (samples, worked
+        # examples, CLI test episodes) and template gold are format/checker tests only.
+        bad = [e for e in examples if not str(e.get("source", "")).startswith("teacher:")]
+        examples = [e for e in examples if str(e.get("source", "")).startswith("teacher:")]
+        if bad:
+            log(f"dropped {len(bad)} examples that aren't from the open-weights teacher")
         held = [e for e in examples if e.get("family") in F.HELD_OUT]
         examples = [e for e in examples if e.get("family") not in F.HELD_OUT]      # held-out types never train
         if held:

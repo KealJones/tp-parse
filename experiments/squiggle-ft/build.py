@@ -2,7 +2,7 @@
 on tasks made from real data; only episodes that pass the end-to-end checker (families.py, "strict") are kept, and every
 model call in a kept episode becomes one training example (the exact prompt the phone model would get + the output).
 
-  python build.py teach --teacher Qwen/Qwen3-4B-Instruct-2507 --plan train --out out [--scale 0.1] [--minutes 120]
+  python build.py teach --teacher Qwen/Qwen3-30B-A3B-Thinking-2507-FP8 --plan train --out out [--scale 0.1] [--minutes 120]
   python build.py sets --plan eval                       # just write the episode list (no model)
 
 Outputs (in --out):
@@ -129,7 +129,7 @@ def _task(t):
     return {"goal": t.get("goal"), "steps": [{k: s.get(k) for k in ("text", "status", "result")} for s in t.get("steps", [])], "status": t.get("status")}
 
 
-def examples(res):
+def examples(res, source=None):
     """One training example per model call: the prompt as the phone model gets it, and the output."""
     calls, k, turn_of = res.get("calls", []), 0, []
     for t in res.get("turns", []):
@@ -139,7 +139,8 @@ def examples(res):
         if c.get("kind") in ("chat", "step", "final") and c.get("output") and not c.get("error"):
             turn = turn_of[i] if i < len(turn_of) else k
             yield {"messages": c["messages"], "output": c["output"], "family": res["family"], "kind": c["kind"], "episode": res["id"],
-                   "turn": turn, "plain": (res["family"], turn) in F.PLAIN, "messy": res.get("meta", {}).get("messy", False)}
+                   "turn": turn, "plain": (res["family"], turn) in F.PLAIN, "messy": res.get("meta", {}).get("messy", False),
+                   **({"source": source} if source else {})}
 
 
 def report(results, path, extra=""):
@@ -167,7 +168,7 @@ def report(results, path, extra=""):
 
 
 def teach(args):
-    from backends import VLLMTeacher, CtxCheck
+    from teacher import VLLMTeacher
     work = Path(args.work)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -175,9 +176,9 @@ def teach(args):
     src = load_sources(work, "train" if args.plan == "train" else "eval")
     eps = make_sets(src, plan, seed=args.seed, scale=args.scale)
     print(f"{len(eps)} episodes: {dict(collections.Counter(e.family for e in eps))}", flush=True)
-    kw = {"enable_thinking": False} if "Qwen3-" in args.teacher and "2507" not in args.teacher else {}
-    teacher = VLLMTeacher(args.teacher, ctx=CtxCheck(), template_kwargs=kw, max_tokens=args.max_tokens)
-    runner = Runner(teacher, args.squiggle, work, concurrency=args.concurrency)
+    teacher = VLLMTeacher(args.teacher, max_tokens=args.max_tokens)
+    source = "teacher:" + args.teacher
+    runner = Runner(teacher, args.squiggle, work, concurrency=args.concurrency, max_calls=40)
     t0 = time.time()
     results = []
     fres = gzip.open(out / "teacher_results.jsonl.gz", "wt")
@@ -187,36 +188,38 @@ def teach(args):
     def done(r):
         nonlocal n_ex
         r["check"] = F.check(r)
+        r["source"] = source
         results.append(r)
         keep = r["check"]["strict"]
-        fres.write(json.dumps(compact(r, keep), ensure_ascii=False) + "\n")
+        fres.write(json.dumps(compact(r, True), ensure_ascii=False) + "\n")
         if keep:
-            for x in examples(r):
+            for x in examples(r, source):
                 fex.write(json.dumps(x, ensure_ascii=False) + "\n")
                 n_ex += 1
-        if len(results) % 25 == 0:
+        if len(results) % 10 == 0:
             k = sum(x["check"]["strict"] for x in results)
             print(f"[{(time.time() - t0) / 60:.1f} min] {len(results)}/{len(eps)} episodes, kept {k}, examples {n_ex}, teacher {teacher.stats}", flush=True)
             fres.flush(); fex.flush()
     runner.run(eps, on_result=done, deadline=t0 + args.minutes * 60)
     fres.close(); fex.close()
     mins = (time.time() - t0) / 60
+    tps = teacher.stats["gen_tokens"] / max(1, mins * 60)
     report(results, out / "TEACHER_RESULTS.md",
            f"Teacher {args.teacher} on {os.environ.get('ACCELERATOR', 'local')}: {len(results)} of {len(eps)} episodes in {mins:.0f} min "
-           f"(deadline {args.minutes} min), {n_ex} training examples. Teacher stats: {teacher.stats}.")
+           f"(deadline {args.minutes} min), {n_ex} training examples, {tps:.0f} generated tokens/s. Teacher stats: {teacher.stats}.")
     print(open(out / "TEACHER_RESULTS.md").read())
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["teach", "sets"])
-    ap.add_argument("--teacher", default="Qwen/Qwen3-4B-Instruct-2507")
+    ap.add_argument("--teacher", default="Qwen/Qwen3-30B-A3B-Thinking-2507-FP8")
     ap.add_argument("--plan", default="train", choices=["train", "eval"])
     ap.add_argument("--scale", type=float, default=1.0)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--minutes", type=float, default=120)
     ap.add_argument("--concurrency", type=int, default=48)
-    ap.add_argument("--max-tokens", type=int, default=900)
+    ap.add_argument("--max-tokens", type=int, default=8192)
     ap.add_argument("--work", default=str(HERE / "work"))
     ap.add_argument("--out", default="out")
     ap.add_argument("--squiggle", default=os.environ.get("SQUIGGLE_DIR", str(HERE / "squiggle")))

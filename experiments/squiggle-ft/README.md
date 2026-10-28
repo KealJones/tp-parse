@@ -59,12 +59,28 @@ words like "get hub"), never inside a name.
 kept only if the reply carries what the sandbox computed) and requests missing an input (→ need, kept only if the
 teacher also asks first). The rest of the corpus is not used.
 
-### Teacher episodes (build.py)
+### Teacher episodes (teacher.py, build.py teach)
 
-A bigger model (Qwen3-4B-Instruct-2507 on vLLM) plays the phone model inside the harness, with real tools. It gets the
-exact prompt plus a teacher-only note (backends.TEACHER_NOTE: thinking style, one call per reply, plan/done/need rules)
-that never reaches the training data. Episodes are kept only when the family's checker passes **strict** (right
-answer end to end and the habit, well-formed calls, no loops, no stuck steps, prompt within the phone's 4096 tokens).
+An open-weights thinking model, **Qwen3-30B-A3B-Thinking-2507** (FP8, Apache-2.0, on vLLM in a Hugging Face Job),
+plays the phone model inside the harness with real tools, one model call at a time. For each call it gets the rules
+(the same as TEACHER.md: format, labelled thinking, habits) plus few-shot episodes written by `gold.py`'s templates,
+and the phone model's whole prompt rendered with Gemma 3's chat template. Its own reasoning stays private; its visible
+answer is the phone model's output (thinking in `<visible_thinking>`, mapped mechanically to `<think>`). Answers that
+fail the quality bar (`quality.py`) go back to it with the list of problems; it rewrites them (at most twice), nothing
+is edited on our side. Episodes are kept only when the family's checker passes **strict**.
+
+**Quality bar** (`quality.py`, enforced on every call by the checker and `selftest.py`): labelled thinking in order
+(new request: Request / Pieces / Know / Don't know / Goal / Plan or Next; start of a step: Step / Know / Next; after a
+tool result: Check / Next; final reply: Answer; plain chat: one or two lines), exactly one ```` ```tool_call ```` block
+at the end that the app's parser reads, a tool that exists with schema-valid arguments, real tools only after `find`
+looked them up, `done` results that carry facts, 2–6 plan steps, replies that cite their sources after web or repo
+tools, and a plan that follows the recipe when the prompt has one.
+
+**Provenance.** Only teacher episodes train: every example carries `source: "teacher:<model>"` and train.py drops
+anything else. Claude-written text (`samples/`, the worked episodes in `TEACHER.md` / `examples/worked.jsonl`) and the
+template gold (`examples/gold.jsonl`) are format and checker tests only. (A plan to have Claude agents write episodes
+was stopped by Anthropic's safeguards against using Claude outputs to train models; `teach.py` / `TEACHER.md`, the
+step-wise CLI built for it, remain as a way to inspect and hand-test episodes.)
 
 ### Training and eval (train.py)
 
@@ -104,11 +120,20 @@ and Squiggle at the pinned commit, installs node, and runs `jobs/<script>`.
 
 | job | script | flavor / limit | expected cost | what it does |
 | --- | --- | --- | --- | --- |
-| `squiggle-ft-smoke` | `jobs/smoke.sh` | l4x1, 70 min | ~$0.60 (cap $0.93) | self-test, ~50 teacher episodes, 1 short epoch on each base, tiny eval, GGUF conversion (no upload) |
+| `squiggle-ft-smoke` | (retired `smoke.sh`) | l4x1, 70 min | $0.07 (done) | failed early: no C compiler for vLLM; the harness and untouched eval ran |
+| `squiggle-ft-smoke-2` | (retired `smoke.sh`) | l4x1, 70 min | $0.21 (done) | training, eval and baseline all ran on GPU; the Qwen3-4B-Instruct teacher never wrote `<think>` (0/44 kept); GGUF conversion failed (tokenizer, since fixed) |
+| `squiggle-ft-teach-smoke` | `jobs/teach_smoke.sh` | l40sx1, 40 min | ~$0.75 (cap $1.20) | ~40 episodes across all families with the thinking teacher; keep rate, drop reasons, tokens/s, readable episodes |
+| `squiggle-ft-teach` | `jobs/teach_smoke.sh` with `SCALE`, `MINUTES`, `TAG=teach-v1` | l40sx1, ≤150 min | ≤ $4.50 | the full teacher run, only if the smoke's keep rate and episodes look right |
+| `squiggle-ft-train` | `jobs/train.sh` | l4x1, ≤180 min | ≤ $2.40 | train the three bases, eval, RESULTS.md, export + upload the winner |
+
+Teacher data goes to the private dataset `kealjones/squiggle-ft-data/<tag>/` (not git); the training job downloads it.
 
 ## Status
 
-- Built and checked locally: the node harness runs Squiggle's real loop; the 20 samples (`samples/SAMPLES.md`) all
-  pass their checkers and the self-test (app parser, gemmaMessages round trip, Gemma 3 / FunctionGemma / LFM2.5
-  templates, 4096/1024-token limits).
-- Next: smoke job on HF.
+- **Built and checked locally:** the node harness runs Squiggle's real loop; `quality.py` + checkers; `selftest.py`
+  (app parser, gemmaMessages round trip, Gemma 3 / FunctionGemma / LFM2.5 templates, 4096/1024-token limits, quality
+  bar); the step-wise CLI (`teach.mjs`) tested end to end on 5 episodes; `gold.py`'s 6 template episodes all pass;
+  the teacher plumbing (format mapping, rejection and rewrite) with a stand-in model; GGUF export fixed and checked:
+  a trained Gemma 3 270M converted to Q8_0 (292 MB) loads and generates in wllama 3.8.1 in headless Chromium.
+- **On HF so far:** smoke and smoke-2 ($0.28 in all), see the table.
+- **Next:** the teacher smoke, then (if it looks right) the full teacher run and the training run.
