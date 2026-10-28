@@ -113,6 +113,12 @@ def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
     pools.update({"nq2": itertools.cycle(nq2) if nq2 else iter(()), "born": itertools.cycle(born) if born else iter(()),
                   "retry": iter(retry), "near": itertools.cycle(near) if near else iter(()),
                   "personal2": itertools.cycle(personal) if personal else iter(()), "gsm2": iter(gsm2)})
+    # chat_mid / personal_mid lead in with a question teach-v1's teacher answered and grounded (web_answerable.json):
+    # their habit is the second turn, and NQ golds that drifted (3.97 vs 3.99 degrees) shouldn't sink them.
+    p_ans = Path(__file__).resolve().parent / "data" / "sources" / "web_answerable.json"
+    answerable = [r for r in (json.loads(p_ans.read_text()) if p_ans.exists() else []) if r["split"] == split]
+    r3.shuffle(answerable)
+    pools["answerable"] = itertools.cycle(answerable) if answerable else pools["nq2"]
     media = [r for r in nq2 if F.MEDIA.search(r["question"])]
     pools["media"] = itertools.cycle(media) if media else iter(())
     pair_state = {}
@@ -162,8 +168,8 @@ def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
         "recipe_web": lambda i: F.make_recipe_web(r3, next(pools["born"]), i),
         "recipe_skip": lambda i: F.make_recipe_skip(r3, facts, i),
         "near_miss": lambda i: F.make_near_miss(r3, next(pools["near"]), i, split=split),
-        "chat_mid": lambda i: F.make_chat_mid(r3, next(pools["nq2"]), i, split=split),
-        "personal_mid": lambda i: F.make_personal_mid(r3, next(pools["nq2"]), next(pools["personal2"]), i),
+        "chat_mid": lambda i: F.make_chat_mid(r3, next(pools["answerable"] if split == "train" else pools["nq2"]), i, split=split),
+        "personal_mid": lambda i: F.make_personal_mid(r3, next(pools["answerable"] if split == "train" else pools["nq2"]), next(pools["personal2"]), i),
         "personal_tool": lambda i: F.make_personal_tool(r3, next(pools["media"]), i),
         "need_schedule": lambda i: F.make_need_schedule(r3, i),
         "recipe_compute": lambda i: F.make_recipe_compute(r3, next(pools["born"]), i),
