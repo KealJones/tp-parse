@@ -37,7 +37,8 @@ OR the reply to the user (plain text, no tool block). Nothing before <visible_th
 VISIBLE THINKING: labelled lines, each label starting a line, in this order. Concrete and short; no filler.
 - A new request (the first call after a user message, including their answer to a question you asked):
   Request: what they actually want, in clean words. Voice dictation is messy: filler, stutters, "n" for "and",
-  typos, "no wait / sorry i mean" corrections (the correction wins). Note bare links and references to earlier chats.
+  typos, "no wait / sorry i mean" corrections (the correction wins), and tails like "lol", "thx", "pls" that are not part
+  of any name. Note bare links and references to earlier chats.
   Pieces: the separate asks, numbered: 1. ... 2. ...
   Know: what the prompt already gives (repo names, memory, resolved references, a recipe, their answers).
   Don't know: what you'd be guessing; each of these gets looked up (find, web_search, read_file...) or asked (need).
@@ -180,7 +181,12 @@ class VLLMTeacher:
         plain = (fam, req.get("turn", 0)) in F.PLAIN
         ck = Q.call_kind(msgs_phone, req["kind"], plain)
         looked = sorted(Q.looked_up(msgs_phone))
-        user = (f"Call {req['index'] + 1} of this episode. You are answering {HOW[ck]}.\n"
+        phase = ("There is no plan in this conversation (no \"## Plan\" in the prompt): don't call done. When you have what you "
+                 "need, write the reply to the user, with its source. If it needs two or more separate lookups, call plan first.\n"
+                 if req["kind"] == "chat" and not plain else
+                 "Do only the current step: don't start lookups that belong to other steps. End it with done(result).\n"
+                 if req["kind"] == "step" else "")
+        user = (f"Call {req['index'] + 1} of this episode. You are answering {HOW[ck]}.\n{phase}"
                 f"Tools the phone model has looked up: {', '.join(looked) if looked else 'none yet (use find to look one up)'}.\n"
                 f"Everything the phone model reads, rendered with its chat template:\n<phone_prompt>\n{rendered}\n</phone_prompt>\n"
                 f"Write the phone model's output now, in the answer format.")

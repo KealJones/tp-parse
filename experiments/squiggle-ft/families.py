@@ -56,6 +56,16 @@ def answer_in(reply, answers):
     return False
 
 
+NON_ANSWER = re.compile(r"\b(could ?n[o']t (be )?(find|found|confirm|determine|tell)|can ?n[o']t (find|confirm|compare|determine|tell|say)|"
+                        r"cannot (find|confirm|compare|determine|tell|say)|unable to|not sure|no information|was not found|wasn't found|"
+                        r"could not be found|not (be )?found|i don'?t know|unknown)\b", re.I)
+
+
+def non_answer(reply):
+    """A reply that says it couldn't find or decide something isn't an answer, even if it names the right thing."""
+    return bool(NON_ANSWER.search(reply or ""))
+
+
 def yes_no(reply):
     t = toks(reply)[:12]
     y = any(w in ("yes", "yep", "yeah", "both") for w in t)
@@ -65,7 +75,7 @@ def yes_no(reply):
 
 # ── voice-dictated, rambling requests (habit 5) ─────────────────────────────
 FILL = ["um ", "uh ", "so ", "ok so ", "hey ", "like ", "okay um ", "so basically ", "quick one ", ""]
-TAIL = ["", "", " thanks", " thx", " lol", " if you can", " please", " real quick", " ok"]
+TAIL = ["", "", " thanks", " thx", " lol", " please", " pls"]   # never words that could read as part of a name
 MISHEAR = [("github", "get hub"), ("readme", "read me"), ("json", "jason"), ("npm", "n p m"), ("javascript", "java script")]
 # Keal's texting habits and common dictation slips, on everyday words only (never on names, numbers or paths).
 SLANG = {"and": "n", "you": "u", "your": "ur", "please": "pls", "thanks": "thx", "about": "abt", "because": "cuz",
@@ -317,7 +327,7 @@ def make_web_fact(rng, row, i, p_messy=0.45):
 def check_web_fact(res):
     seg = turn_calls(res)[0] if res.get("turns") else []
     reasons = base_check(res)
-    ok = answer_in(reply_of(res, 0), res["gold"]["answers"])
+    ok = answer_in(reply_of(res, 0), res["gold"]["answers"]) and not non_answer(reply_of(res, 0))
     if not ok:
         reasons.append("wrong or missing answer")
     looked = bool(WEB & set(names(seg)))
@@ -356,6 +366,7 @@ def check_web_compare(res, k=0):
         ok = yes_no(rep) == gold.lower()
     else:
         ok = answer_in(rep, [gold] + same_entity(gold, res["gold"].get("titles", [])))
+    ok = ok and not non_answer(rep)
     if not ok:
         reasons.append("wrong or missing answer")
     n = names(seg)
@@ -455,6 +466,8 @@ def repo_questions(f):
 
 
 def check_repo_answer(kind, gold, reply):
+    if non_answer(reply):
+        return False
     if kind == "version" or kind == "latest_author":
         return answer_in(reply, gold["answers"])
     if kind == "license":
@@ -691,8 +704,8 @@ def check_past_chat(res):
     reasons = base_check(res)
     if len(res.get("turns", [])) < 2:
         return {"ok": False, "strict": False, "reasons": reasons + ["second chat never ran"]}
-    first_ok = answer_in(reply_of(res, 0), res["gold"]["answers"])
-    ok = answer_in(reply_of(res, 1), res["gold"]["answers"])
+    first_ok = answer_in(reply_of(res, 0), res["gold"]["answers"]) and not non_answer(reply_of(res, 0))
+    ok = answer_in(reply_of(res, 1), res["gold"]["answers"]) and not non_answer(reply_of(res, 1))
     segs = turn_calls(res)
     n1 = names(segs[1])
     used_memory = bool({"find", "search_history"} & set(n1))

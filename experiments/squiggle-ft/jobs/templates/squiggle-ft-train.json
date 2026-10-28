@@ -1,0 +1,11 @@
+{
+ "slug": "squiggle-ft-train",
+ "flavor": "l4x1",
+ "timeout": "180m",
+ "files": ["experiments/squiggle-ft/jobs/boot.py"],
+ "cmd": "TAG=teach-v1 EPOCHS=2 LIMIT=165 python boot.py train.sh",
+ "pip": ["transformers>=5,<6", "pyarrow", "gguf", "sentencepiece", "protobuf", "playwright"],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-train",
+ "note": "train gemma3/lfm25/functiongemma on the teacher data, eval vs untouched Gemma 3 270M, export + upload the winner; cap $2.40 (180 min of l4x1 at $0.80/h)"
+}
