@@ -1,0 +1,11 @@
+{
+ "slug": "squiggle-ft-teach",
+ "flavor": "a100-large",
+ "timeout": "150m",
+ "files": ["experiments/squiggle-ft/jobs/boot.py"],
+ "cmd": "PLAN=targets SCALE=1 MINUTES=125 CONCURRENCY=128 TAG=teach-v1 python boot.py teach_smoke.sh",
+ "pip": ["vllm==0.11.0", "transformers>=4.57,<5", "pyarrow"],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-teach",
+ "note": "full teacher run: 830 episodes (TARGET_PLAN), Qwen3-30B-A3B-Thinking-2507-FP8 on vLLM; ~80 GB lets ~4x the episodes run at once vs l40sx1; cap $6.25 (150 min of a100-large at $2.50/h)"
+}
