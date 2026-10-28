@@ -19,8 +19,9 @@ try {
   const messages = await (await fetch('/prompt.json')).json();
   const stream = await w.createChatCompletion({ messages, stream: true, max_tokens: 300, temperature: 0.7, top_k: 64, top_p: 0.95, penalty_repeat: 1.15 });
   let out = '', n = 0; const t1 = performance.now();
-  for await (const c of stream) { const p = c?.choices?.[0]?.delta?.content; if (p) { out += p; n++; } }
-  window.__result = { ok: true, loadMs: loaded, genMs: performance.now() - t1, chunks: n, text: out };
+  let reasoning = '', keys = new Set();
+  for await (const c of stream) { const d = c?.choices?.[0]?.delta || {}; Object.keys(d).forEach(k => keys.add(k)); const p = d.content; if (p) { out += p; n++; } if (d.reasoning_content) reasoning += d.reasoning_content; }
+  window.__result = { ok: true, loadMs: loaded, genMs: performance.now() - t1, chunks: n, text: out, reasoning, deltaKeys: [...keys] };  // the app reads delta.content only
 } catch (e) { window.__result = { ok: false, error: String(e && e.stack || e) }; }
 </script>"""
 
