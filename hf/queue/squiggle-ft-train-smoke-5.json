@@ -1,0 +1,20 @@
+{
+ "slug": "squiggle-ft-train-smoke-5",
+ "flavor": "l4x1",
+ "timeout": "25m",
+ "files": [
+  "experiments/squiggle-ft/jobs/boot.py"
+ ],
+ "cmd": "TAG=teach-smoke,teach-smoke-2 BASES=lfm25 EPOCHS=4 python boot.py train_smoke.sh",
+ "pip": [
+  "transformers>=5,<6",
+  "pyarrow",
+  "gguf",
+  "sentencepiece",
+  "protobuf",
+  "playwright"
+ ],
+ "outdir": "out",
+ "out": "experiments/squiggle-ft/hf-train-smoke-5",
+ "note": "training smoke 5, LFM2.5 only: in smoke 4 ($0.18) gemma3 learned the format (193/193 calls start with <think>, 87% well-formed after 32 steps) but LFM2.5 started 1 of 195 calls with <think>: its <think>/</think> embeddings are untrained, identical to 1,690 reserved rows. They now start from the mean of their text pieces. Expected ~$0.12, cap $0.35"
+}
