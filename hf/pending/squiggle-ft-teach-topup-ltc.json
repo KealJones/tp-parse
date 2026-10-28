@@ -17,5 +17,9 @@
  "upload_every": 120,
  "outdir": "out",
  "out": "experiments/squiggle-ft/hf-teach-topup-ltc",
- "note": "lookup_then_compute top-up on Squiggle f54bbf7: 30 episodes with the plan fix (the calculation is the plan's last step), episodes capped at 20 min, concurrency 32, no retries; plus the judge for teach-v2's 3 pending recipe_web episodes; hard cap $1.08 (26 min of a100-large)"
+ "note": "lookup_then_compute top-up on Squiggle f54bbf7: 30 episodes with the plan fix (the calculation is the plan's last step), episodes capped at 20 min, concurrency 32, no retries; plus the judge for teach-v2's 3 pending recipe_web episodes; hard cap $1.08 (26 min of a100-large)",
+ "job_id": "6ae20a0841e90535df774ff6",
+ "url": "https://huggingface.co/jobs/kealjones/6ae20a0841e90535df774ff6",
+ "started": "2026-10-28T14:43:20+00:00",
+ "sha": "ac0e5c9498e04f22b6d844246f94f7efa42221c9"
 }
