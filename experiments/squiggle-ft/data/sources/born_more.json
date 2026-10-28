@@ -1,0 +1,574 @@
+[
+{
+"id": "5a7b215f55429931da12c9e3",
+"question": "Who was born first Cid Corman or Elswyth Thane?",
+"answer": "Helen Elswyth Thane Ricker Beebe",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Cid Corman",
+"Elswyth Thane"
+]
+},
+{
+"id": "5a79c1185542994bb9457065",
+"question": "Was Kanako Momota or Mark Hollis born first?",
+"answer": "Mark David Hollis",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Kanako Momota",
+"Mark Hollis (musician)"
+]
+},
+{
+"id": "5a75eb125542994ccc918659",
+"question": "Which Muslim scholar was born first, Kamāl al-Dīn al-Fārisī or M. A. Muqtedar Khan?",
+"answer": "Kamal al-Din Hasan ibn Ali ibn Hasan al-Farisi",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Kamāl al-Dīn al-Fārisī",
+"M. A. Muqtedar Khan"
+]
+},
+{
+"id": "5a79cd665542994bb94570bf",
+"question": "Who was born first, Teru or Mike Shinoda?",
+"answer": "Teruhiko",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Mike Shinoda",
+"Teru (singer)"
+]
+},
+{
+"id": "5a7ae38c5542992d025e6721",
+"question": "Who was older when they died, Teinosuke Kinugasa or Don O. Newland",
+"answer": "Teinosuke Kinugasa",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Don O. Newland",
+"Teinosuke Kinugasa"
+]
+},
+{
+"id": "5a730a6b5542992359bc3210",
+"question": "Who is older Craig Nicholls or Norman Blake ?",
+"answer": "Norman Blake",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Craig Nicholls",
+"Norman Blake (Scottish musician)"
+]
+},
+{
+"id": "5a7ab1b055429927d897bef4",
+"question": "Which singer is younger, Terri Nunn or Sonya Scarlet? ",
+"answer": "Sonya Scarlet",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Sonya Scarlet",
+"Terri Nunn"
+]
+},
+{
+"id": "5a7c66d555429935c91b518f",
+"question": "Who was born first Václav Havel or Penelope Fitzgerald?",
+"answer": "Penelope Fitzgerald",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Penelope Fitzgerald",
+"Václav Havel"
+]
+},
+{
+"id": "5a74760b55429974ef308c03",
+"question": "Which composer was born first out of Gaspare Spontini and Wolfgang Amadeus Mozart?",
+"answer": "Gaspare Luigi Pacifico Spontini",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Gaspare Spontini",
+"Wolfgang Amadeus Mozart"
+]
+},
+{
+"id": "5a7785af55429949eeb29ec2",
+"question": "Who is older, James Kerwin or Paul Verhoeven?",
+"answer": "Paul Verhoeven",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"James Kerwin",
+"Paul Verhoeven"
+]
+},
+{
+"id": "5a7c6b86554299683c1c62ff",
+"question": "Who is older, Hampton Del Ruth or Ted Kotcheff?",
+"answer": "Hampton Del Ruth",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Hampton Del Ruth",
+"Ted Kotcheff"
+]
+},
+{
+"id": "5a7db1a15542995ed0d16660",
+"question": "Who was born first out of Arnel Pineda and Trace Cyrus?",
+"answer": "Arnel Campaner Pineda",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Arnel Pineda",
+"Trace Cyrus"
+]
+},
+{
+"id": "5a78d16455429974737f78bb",
+"question": "Between two scientists Ernst Messerschmid and Philippe Perrin, who is older?",
+"answer": "Ernst Willi Messerschmid",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Ernst Messerschmid",
+"Philippe Perrin"
+]
+},
+{
+"id": "5a77f2af5542995d83181333",
+"question": "Who was born first, Grigory Margulis or Leonid Levin?",
+"answer": "Gregori Aleksandrovich Margulis",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Grigory Margulis",
+"Leonid Levin"
+]
+},
+{
+"id": "5a7323ad5542994cef4bc476",
+"question": "Which musician is older, Chantal Claret or Max Green?",
+"answer": "Chantal Claret",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Chantal Claret",
+"Max Green (musician)"
+]
+},
+{
+"id": "5a7df6e65542995f4f402353",
+"question": "Which American musician and songwriter was born earlier, Adam Duritz or Cherie Currie?",
+"answer": "Cherie Ann Currie",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Adam Duritz",
+"Cherie Currie"
+]
+},
+{
+"id": "5a7e035d5542997cc2c474f6",
+"question": "Which auhor is younger, Nevil Shute or Grace Metalious?",
+"answer": "Grace Metalious",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Grace Metalious",
+"Nevil Shute"
+]
+},
+{
+"id": "5a7a2dac5542990198eaf0b6",
+"question": "Who is younger, Keisuke Kuwata or Moya Brennan?",
+"answer": "Keisuke Kuwata",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Keisuke Kuwata",
+"Moya Brennan"
+]
+},
+{
+"id": "5a78c69e55429974737f787c",
+"question": "Who was born first, Ronnie Radke or Dave Brockie?",
+"answer": "Dave Brockie",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Dave Brockie",
+"Ronnie Radke"
+]
+},
+{
+"id": "5a7d2b535542995f4f402224",
+"question": "Which school is older, Dartmouth College or Cornell University?",
+"answer": "Dartmouth College",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Cornell University",
+"Dartmouth College"
+]
+},
+{
+"id": "5a7744e45542993569682d37",
+"question": "Who was born first, Juan Rulfo or John le Carré?",
+"answer": "Juan Rulfo",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"John le Carré",
+"Juan Rulfo"
+]
+},
+{
+"id": "5a7542425542996c70cfaecc",
+"question": "Who was born first, Karen Joy Fowler or Bruce Chatwin?",
+"answer": "Bruce Chatwin",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Bruce Chatwin",
+"Karen Joy Fowler"
+]
+},
+{
+"id": "5a7bcd68554299294a54aaf0",
+"question": "Who was born first, Mark Steven Johnson or Robert Thornby?",
+"answer": "Robert Thornby",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Mark Steven Johnson",
+"Robert Thornby"
+]
+},
+{
+"id": "5a7622d75542994ccc9186f1",
+"question": "Who was born earlier, Garry Marshall or Leni Riefenstahl?",
+"answer": "\"Leni\" Riefenstahl",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Garry Marshall",
+"Leni Riefenstahl"
+]
+},
+{
+"id": "5a7bacf35542997c3ec9724b",
+"question": "Who was born first, Jorge Amado or James Leo Herlihy?",
+"answer": "Jorge Leal Amado de Faria",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"James Leo Herlihy",
+"Jorge Amado"
+]
+},
+{
+"id": "5a7df1095542990b8f503afe",
+"question": "Who was born first out of  Thomas Carr and Joyce Wieland?",
+"answer": "Thomas Carr",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Joyce Wieland",
+"Thomas Carr (director)"
+]
+},
+{
+"id": "5a74a62b55429916b01641a0",
+"question": "Which astronaut, Jean-François Clervoy or Ulrich Walter, was born first?",
+"answer": "Prof. Dr. Ulrich Hans Walter",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Jean-François Clervoy",
+"Ulrich Walter"
+]
+},
+{
+"id": "5a714bb35542994082a3e78f",
+"question": "Which composer was born later, Gaetano Donizetti or William Walton?",
+"answer": "William Turner Walton",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Gaetano Donizetti",
+"William Walton"
+]
+},
+{
+"id": "5a77863555429949eeb29ec6",
+"question": "Who was born first Iain Pears or Richard Llewellyn ?",
+"answer": "Richard Dafydd Vivian Llewellyn",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Iain Pears",
+"Richard Llewellyn"
+]
+},
+{
+"id": "5a77d12755429967ab1052b8",
+"question": "Who was born first, Jaap Speyer or Bruce Conner?",
+"answer": "Jaap Speyer",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Bruce Conner",
+"Jaap Speyer"
+]
+},
+{
+"id": "5a77a7565542995d83181249",
+"question": "Between the two film makers Fabián Bielinsky and Murdock MacQuarrie, who was born earlier?",
+"answer": "Murdock MacQuarrie",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Fabián Bielinsky",
+"Murdock MacQuarrie"
+]
+},
+{
+"id": "5a79e3555542994bb945712f",
+"question": "Who was born first, Sarah Jacobson or Arthur Hiller?",
+"answer": "Arthur Hiller",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Arthur Hiller",
+"Sarah Jacobson"
+]
+},
+{
+"id": "5a74702555429929fddd8428",
+"question": "Who is older out of Bob Saget, the American comedian, and Indian director S. Shankar?",
+"answer": "Robert Lane \"Bob\" Saget",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Bob Saget",
+"S. Shankar"
+]
+},
+{
+"id": "5a734db15542994cef4bc523",
+"question": "Which musician was born first, Constantine Orbelian or Lili Chookasian?",
+"answer": "Lili Chookasian",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Constantine Orbelian",
+"Lili Chookasian"
+]
+},
+{
+"id": "5a7148d25542994082a3e766",
+"question": "Which of these artists is older, Warrel Dane or Roy Khan?",
+"answer": "Warrel Dane",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Roy Khan",
+"Warrel Dane"
+]
+},
+{
+"id": "5a7b8d4955429927d897bfeb",
+"question": "Who was born first, Gene Mayer or Serena Williams?",
+"answer": "Gene Mayer",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Gene Mayer",
+"Serena Williams"
+]
+},
+{
+"id": "5a79f04d5542996c55b2dca7",
+"question": "Which long-established US university is older: University of California, Berkeley or Syracuse University?",
+"answer": "University of California, Berkeley",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Syracuse University",
+"University of California, Berkeley"
+]
+},
+{
+"id": "5a77919d5542995d831811dd",
+"question": "Who was born first, Marino Girolami or Daniel Myrick?",
+"answer": "Marino Girolami",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Daniel Myrick",
+"Marino Girolami"
+]
+},
+{
+"id": "5a758ba75542992db9473677",
+"question": "Who was born first Garo Yepremian or Michael Casey ?",
+"answer": "\"Garo\" Yepremian",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Garo Yepremian",
+"Michael Casey (poet)"
+]
+},
+{
+"id": "5a749e1855429979e28829c3",
+"question": "Which tennis player is older, Emilio Sánchez or Andrei Olhovskiy?",
+"answer": "Emilio Ángel Sánchez Vicario",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Andrei Olhovskiy",
+"Emilio Sánchez"
+]
+},
+{
+"id": "5a7b2c9155429927d897bf51",
+"question": "Who was born first, Little Feat's Lowell George, or Ian Hunter from Mott the Hoople?",
+"answer": "Ian Hunter",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Ian Hunter (singer)",
+"Lowell George"
+]
+},
+{
+"id": "5a7da9ae5542995f4f4022b1",
+"question": "What is older, Downfall or Dark Tower?",
+"answer": "Downfall",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Dark Tower (game)",
+"Downfall (game)"
+]
+},
+{
+"id": "5a7c34905542996dd594b8d5",
+"question": "Who was born first, Ana Kasparian or Andre Agassi?",
+"answer": "Andre Kirk Agassi",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Ana Kasparian",
+"Andre Agassi"
+]
+},
+{
+"id": "5a7cf59b55429909bec768c7",
+"question": " Who was born first Burton Cummings or Sharleen Spiteri?",
+"answer": "Burton Lorne Cummings",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Burton Cummings",
+"Sharleen Spiteri"
+]
+},
+{
+"id": "5a74a26a55429979e28829d6",
+"question": "Which composer was born earlier, Paul Hindemith or Béla Bartók?",
+"answer": "Béla Viktor János Bartók",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Béla Bartók",
+"Paul Hindemith"
+]
+},
+{
+"id": "5a77bdcb5542997042120b0b",
+"question": "Who was born first,  Morgan Llywelyn or Robert Jordan?",
+"answer": "Morgan Llywelyn",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Morgan Llywelyn",
+"Robert Jordan"
+]
+},
+{
+"id": "5a78e3b955429974737f78f1",
+"question": "Who was born first, Javier Frana or Sherwood Stewart?",
+"answer": "Sherwood Stewart",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Javier Frana",
+"Sherwood Stewart"
+]
+},
+{
+"id": "5a7736d85542994aec3b722b",
+"question": "Which film director is younger, Manoel de Oliveira or Alfonso Cuarón?",
+"answer": "Alfonso Cuarón",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Alfonso Cuarón",
+"Manoel de Oliveira"
+]
+},
+{
+"id": "5a7c43c65542990527d5547e",
+"question": "Is Mary Pierce or Gustavo Kuerten the older tennis player?",
+"answer": "Mary Pierce",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Gustavo Kuerten",
+"Mary Pierce"
+]
+},
+{
+"id": "5a7ce100554299683c1c63b5",
+"question": "Who is younger, Terry Glaze or Hayley Williams?",
+"answer": "Hayley Williams",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Hayley Williams",
+"Terry Glaze"
+]
+},
+{
+"id": "5a77afcd5542997042120adf",
+"question": "Who is older Carrie Akre or Shifty Shellshock?",
+"answer": "Carrie Akre",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Carrie Akre",
+"Shifty Shellshock"
+]
+},
+{
+"id": "5a79bed05542994bb9457053",
+"question": "Who is younger, Dan Bejar and Makoto Koshinaka?",
+"answer": "Makoto, born July 15, 1980",
+"type": "comparison",
+"level": "hard",
+"titles": [
+"Dan Bejar",
+"Makoto Koshinaka"
+]
+}
+]

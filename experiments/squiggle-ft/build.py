@@ -67,7 +67,28 @@ ROUND2_PLAN = {"unknown_word": 60, "personal": 70}
 V1_PLANS = {"train", "targets", "round2"}     # rebuilt exactly as they ran: no dedupe, no exclusions
 
 
+BORN_MORE = HERE / "data" / "sources" / "born_more.json"          # cached so a job doesn't download 3,000 rows for ~30
+EXCLUDE = HERE / "data" / "sources" / "exclude_keys.json"         # cached: rebuilding it downloads the eval sources
+
+
+def born_more(work):
+    if BORN_MORE.exists():
+        return json.loads(BORN_MORE.read_text())
+    rows = [r for r in S.hotpot(work, 3000, "validation", 2500) if r["type"] == "comparison" and F.BORN_FIRST.search(r["question"])]
+    BORN_MORE.write_text(json.dumps(rows, ensure_ascii=False, indent=0))
+    return rows
+
+
 def exclude_keys(work):
+    if EXCLUDE.exists():
+        d = json.loads(EXCLUDE.read_text())
+        print(f"excluded source questions: {d['note']} (cached in {EXCLUDE.name})", file=sys.stderr)
+        return set(d["keys"])
+    keys = compute_exclude_keys(work)
+    return keys
+
+
+def compute_exclude_keys(work):
     """Source questions a new training run may not use: every question of the eval sources, and the questions of
     teach-v1's kept episodes (they are reused in v2 training). teach-v1's sets are rebuilt (TARGET_PLAN, seed 0, no
     dedupe; every row-drawn episode's gold matches the stored one) to learn which row each episode used."""
@@ -83,7 +104,9 @@ def exclude_keys(work):
             if r is not None and e.meta.get("src") and json.dumps(r["gold"], sort_keys=True) == json.dumps(e.gold, sort_keys=True):
                 keys.update(e.meta["src"])
                 n_v1 += 1
-    print(f"excluded source questions: {n_eval} from the eval sources, those of {n_v1} kept teach-v1 episodes", file=sys.stderr)
+    note = f"{n_eval} from the eval sources, those of {n_v1} kept teach-v1 episodes"
+    print(f"excluded source questions: {note}", file=sys.stderr)
+    EXCLUDE.write_text(json.dumps({"note": note, "keys": sorted(keys)}, ensure_ascii=False, indent=0))
     return keys
 
 
@@ -102,7 +125,7 @@ def load_sources(work, split):
     if split == "train":
         nq = S.nq_open(work, 1500, "validation", 0)
         hp = S.hotpot(work, 2500, "validation", 0)
-        hp_more = S.hotpot(work, 3000, "validation", 2500)    # rows 2500-5499: more "born first" pairs (eval starts at 6000)
+        hp_more = born_more(work)       # hotpot rows 2500-5499: more "born first" pairs (eval starts at 6000)
         gsm = S.gsm8k(work, 800, "train", 0)
         repos = S.TRAIN_REPOS
     else:
