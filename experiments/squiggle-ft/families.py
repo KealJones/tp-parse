@@ -40,6 +40,7 @@ def answer_in(reply, answers):
     rt = toks(reply)
     rset = set(rt)
     rnums = {num(t) for t in rt if num(t) is not None}
+    rn = None
     for a in answers if isinstance(answers, (list, tuple)) else [answers]:
         at = [t for t in toks(a) if t not in STOP] or toks(a)
         if not at:
@@ -51,6 +52,11 @@ def answer_in(reply, answers):
                 if n not in rnums:
                     good = False
                     break
+            elif "/" in t or "." in t:            # a path or file: anywhere inside a longer path counts ("/repos/x/src/a.py")
+                rn = norm(reply) if rn is None else rn
+                if not re.search(r"(?<![\w.])" + re.escape(t) + r"(?![\w])", rn):
+                    good = False
+                    break
             elif t not in rset and not any(r.startswith(t) and len(t) >= 5 for r in rset):
                 good = False
                 break
@@ -59,14 +65,41 @@ def answer_in(reply, answers):
     return False
 
 
-NON_ANSWER = re.compile(r"\b(could ?n[o']t (be )?(find|found|confirm|determine|tell)|can ?n[o']t (find|confirm|compare|determine|tell|say)|"
-                        r"cannot (find|confirm|compare|determine|tell|say)|unable to|not sure|no information|was not found|wasn't found|"
-                        r"could not be found|not (be )?found|i don'?t know|unknown)\b", re.I)
+NON_ANSWER = re.compile(r"\b(could ?n[o']t (be )?(find|found|confirm|determine|tell|verify|locate)|can ?n[o']t (find|confirm|compare|determine|tell|say|verify)|"
+                        r"cannot (find|confirm|compare|determine|tell|say|verify)|unable to|not sure|no (information|relevant results?|results?|data|match(es)?)|"
+                        r"was not found|wasn't found|could not be found|not (be )?found|i don'?t know|unknown|"
+                        r"not (a |an )?(confirmed|verified|recognized|recognised|listed|mentioned|stated|shown|given|available|clear)|unverified|unconfirmed|"
+                        r"(doesn'?t|does not|didn'?t|did not) (say|mention|list|state|show|give|confirm|specify)|(is|was|remains) unclear|"
+                        r"neither (source|page|result|lookup|search)\b|no (clear|definitive|direct) answer)\b", re.I)
+# A hedged answer is a guess, not an answer: the habit is to look again or say it couldn't be verified.
+HEDGE = re.compile(r"\b(probably|likely|most likely|i believe|i think|i guess|presumably|possibly|perhaps|might be|may be|"
+                   r"seems to be|appears to be|should be|i assume|assuming|my (best )?guess|if i recall|as far as i know|afaik)\b", re.I)
+# A list of candidates ("either A or B", "A or possibly B") isn't an answer either.
+CANDIDATES = re.compile(r"\b(either\b.{1,80}\bor\b|or (possibly|maybe|perhaps|alternatively)\b|one of (the following|these|them)\b|"
+                        r"sources (differ|disagree|conflict)|conflicting (sources|results|information))", re.I)
 
 
 def non_answer(reply):
     """A reply that says it couldn't find or decide something isn't an answer, even if it names the right thing."""
     return bool(NON_ANSWER.search(reply or ""))
+
+
+def hedged(reply):
+    return bool(HEDGE.search(reply or "")) or bool(CANDIDATES.search(reply or ""))
+
+
+def negated(reply, answers):
+    """The gold answer appears right after a negation ("not X", "isn't X", "rather than X")."""
+    r = norm(reply)
+    for a in answers if isinstance(answers, (list, tuple)) else [answers]:
+        at = [t for t in toks(a) if t not in STOP]
+        if not at:
+            continue
+        head = re.escape(at[0])
+        # norm() turns "isn't" into "isn t"
+        if re.search(r"\b(not|never|(isn|wasn|aren|weren|doesn|didn) t|rather than|instead of|other than|excluding|except)\s+(\w+\s+){0,2}" + head + r"\b", r):
+            return True
+    return False
 
 
 def yes_no(reply):
@@ -86,9 +119,10 @@ SLANG = {"and": "n", "you": "u", "your": "ur", "please": "pls", "thanks": "thx",
          "which": "wich", "defined": "defind", "license": "lisence", "commit": "comit", "people": "ppl", "with": "w/"}
 
 
-def messy(rng, text, swap=None, keep=()):
+def messy(rng, text, swap=None, keep=(), phrases=()):
     """Spoken-style rewrite that keeps every fact. swap=(right, wrong): a false start corrected in place.
-    Fillers and stutters never go inside a name (between two capitalised words)."""
+    Fillers and stutters never go inside a name (between two capitalised words) or inside a phrase in `phrases`
+    (an alias like "my agent project": AUDIT_V1 problem 7, "my um agent project"). `keep`: words SLANG leaves alone."""
     s = text.strip()
     if swap and rng.random() < 0.6:
         right, wrong = swap
@@ -97,12 +131,22 @@ def messy(rng, text, swap=None, keep=()):
     s = s.rstrip("?.!")
     w = s.split()
     cap = lambda x: bool(re.match(r"[A-Z0-9\[\(\"']", x))
-    safe = [i for i in range(1, len(w)) if not (cap(w[i - 1]) and cap(w[i])) and not cap(w[i])]
+
+    def inside(ws, i):
+        """Inserting between ws[i-1] and ws[i] would split a protected phrase."""
+        low = [x.lower().strip(",.?!") for x in ws]
+        for ph in phrases:
+            pw = ph.lower().split()
+            for st in range(0, len(low) - len(pw) + 1):
+                if low[st:st + len(pw)] == pw and st < i < st + len(pw):
+                    return True
+        return False
+    safe = [i for i in range(1, len(w)) if not (cap(w[i - 1]) and cap(w[i])) and not cap(w[i]) and not inside(w, i)]
     safe_st = [i for i in safe if not any(re.search(r"\d", x) for x in w[max(0, i - 2):i])]
     if len(w) > 5 and safe_st and rng.random() < 0.35:           # a stutter / restart (never repeats a number)
         i = rng.choice(safe_st)
         w = w[:i] + w[max(0, i - 2):i] + w[i:]
-        safe = [j for j in range(1, len(w)) if not (cap(w[j - 1]) and cap(w[j])) and not cap(w[j])]
+        safe = [j for j in range(1, len(w)) if not (cap(w[j - 1]) and cap(w[j])) and not cap(w[j]) and not inside(w, j)]
     if len(w) > 6 and safe and rng.random() < 0.3:               # a filler in the middle
         i = rng.choice(safe)
         w = w[:i] + [rng.choice(["like", "um", "you know", "uh"])] + w[i:]
@@ -263,10 +307,74 @@ def call_problems(result):
         used = set(names(seg))
         t = (result.get("turns") or [])[k] if k < len(result.get("turns") or []) else {}
         reply = t.get("reply") or ""
+        asked = bool(t.get("asked")) or bool(t.get("waiting"))
         searched_nothing = fam in UNKNOWN_FAMS and NOT_KNOWN.search(reply)     # nothing found is the finding; no page to cite
-        if used & (WEB | REPO_TOOLS) and not t.get("asked") and not Q.final_cites(reply) and not searched_nothing:
-            r.append(f"turn {k + 1}: the reply doesn't say where its facts came from (page, repo, file)")
+        if used & (WEB | REPO_TOOLS | COMPUTE) and not asked and not searched_nothing:
+            if not Q.final_cites(reply):
+                r.append(f"turn {k + 1}: the reply doesn't say where its facts came from (page, repo, file)")
+            elif not cited_source_called(reply, seg):
+                r.append(f"turn {k + 1}: the reply cites a source this turn never used")
+        if not plain and narrated_without_tools(seg, reply):
+            r.append(f"turn {k + 1}: says it checked / confirmed / found something, but no tool result was seen")
+        req = request_text(seg)
+        for line in check_refers_to_result(seg, req)[:2]:
+            r.append(f"turn {k + 1}: a Check line doesn't refer to the result it follows: {line!r}")
+        if not asked:
+            for n in computed_numbers_grounded(seg, reply)[:3]:
+                r.append(f"turn {k + 1}: stated a computed number ({n:g}) that no calculate result gave")
+        if "run_js" in used and fam in ("math", "need_math", "hermes_compute", "lookup_then_compute", "math_pair"):
+            r.append(f"turn {k + 1}: computes via run_js (plain arithmetic goes through calculate)")
+        if fam in ONE_LOOKUP and planned(seg):
+            r.append(f"turn {k + 1}: made a plan for a one-lookup request")
+        for d in done_ungrounded(seg, req)[:2]:
+            r.append(f"turn {k + 1}: a done result carries nothing from this step's results or the request: {d!r}")
     return r
+
+
+def done_ungrounded(seg, request=""):
+    """done results whose concrete tokens (numbers, paths, capitalised or quoted words) are all absent from the tool
+    results this step saw and from the request: narration with a capital letter ("The repo is Cloned")."""
+    bad = []
+    rq = set(toks(request))
+    for x in seg:
+        for c in x["parsed"]["calls"][:1]:
+            if c["name"] != "done":
+                continue
+            r = str(c["arguments"].get("result", ""))
+            seen = set()
+            for m in x["messages"] or []:
+                if m["role"] == "user" and m["content"].startswith("Result of "):
+                    seen |= set(toks(m["content"]))
+            concrete = subtoks(" ".join(re.findall(r"\d[\d.,]*|/[\w./-]+|[A-Za-z][\w.-]*/[\w.-]+|\"[^\"]+\"|'[^']+'|[\w.-]+\.\w{1,4}\b|(?<![.!?]\s)(?<!^)[A-Z][a-z]+|[0-9a-f]{7,40}", r)))
+            concrete -= STOP
+            if concrete and not (concrete & (subtoks_set(seen) | subtoks_set(rq))):
+                bad.append(r[:60])
+    return bad
+
+
+def subtoks(text):
+    """Tokens plus their pieces split on / - . : so a path, a date or a hash matches however it was joined."""
+    return subtoks_set(set(toks(text)))
+
+
+def subtoks_set(tokens):
+    out = set()
+    for t in tokens:
+        out.add(t)
+        out |= {p for p in re.split(r"[/.:-]", t) if len(p) >= 3}
+    return out
+
+
+def grounded_answer_problems(seg, answers, request="", early=True):
+    """Why a right-looking answer still isn't earned: the gold isn't in any tool result of the turn, or (early) it
+    appeared in the model's own text before a result had it (a guess that got confirmed, or head knowledge). early is
+    off when the "answer" is a place to look (the manifest for a "doesn't depend on" answer) rather than a fact."""
+    p = []
+    if not answer_grounded(seg, answers):
+        p.append("the answer appears in no tool result of this turn (unverified claim)")
+    elif early and guessed_early(seg, answers, request):
+        p.append("the answer was written (thinking, query or path) before any tool result contained it")
+    return p
 
 
 def base_check(result, need_tools=True):
@@ -304,18 +412,243 @@ def plan_follows_recipe(res, k):
     return bool(rw) and len(rw & pw) / len(rw | pw) >= 0.3
 
 
+# ── grounding: facts must come from this turn's tool results ────────────────
+# AUDIT_V1 problem 1: the v1 checkers only asked whether some tool was called, never whether the answer came from a
+# result. These helpers read the results back out of the prompts the model saw (results_of) and tie the answer, the
+# citation, the Check lines and every computed number to them.
+RESULT_RE = re.compile(r"Result of ([a-z_]+):\n(\{.*?\})(?=\n\nResult of |\Z)", re.S)
+
+
+def turn_results(seg):
+    """[(tool, json text, is_error)] for every tool result the model saw in this turn, in order, deduplicated."""
+    out, seen = [], set()
+    for x in seg:
+        for m in x["messages"] or []:
+            if m["role"] != "user":
+                continue
+            for name, blk in RESULT_RE.findall(m["content"]):
+                if blk in seen:
+                    continue
+                seen.add(blk)
+                err = False
+                try:
+                    d = json.loads(blk)
+                    err = isinstance(d, dict) and "error" in d and not d.get("result") and not d.get("content") and not d.get("results")
+                except Exception:
+                    pass
+                out.append((name, blk, err))
+    return out
+
+
+def good_results(seg):
+    return [(n, unescape(b)) for n, b, e in turn_results(seg) if not e]
+
+
+def unescape(blob):
+    """JSON escapes as plain text, so numbers and words next to a \\t or \\n in a result are seen as such."""
+    return re.sub(r"\\[ntr]", " ", blob).replace('\\"', '"')
+
+
+def request_text(seg):
+    """The user's own words in this turn (the request and their answers), never tool results."""
+    parts = []
+    for x in seg:
+        for m in x["messages"] or []:
+            if m["role"] == "user" and not m["content"].startswith("Result of "):
+                parts.append(m["content"].split("\n\nWork on step")[0].split("\n\nEvery step is done")[0])
+    return "\n".join(dict.fromkeys(parts))
+
+
+def answer_grounded(seg, answers):
+    """Some gold answer appears in a (non-error) tool result of this turn."""
+    return any(answer_in(b, answers) for _, b in good_results(seg))
+
+
+def guessed_early(seg, answers, request=""):
+    """The gold answer (its words that aren't already in the request) shows up in the model's own text (thinking, a
+    query, a path) before any tool result that contains it: a guess that was then confirmed, or head knowledge."""
+    rq = set(toks(request)) | STOP
+    seen_in_result = False
+    for x in seg:
+        if not seen_in_result:
+            for m in x["messages"] or []:
+                if m["role"] == "user" and m["content"].startswith("Result of ") and answer_in(unescape(m["content"]), answers):
+                    seen_in_result = True
+        if seen_in_result:
+            return False
+        own = x["out"]
+        for a in answers if isinstance(answers, (list, tuple)) else [answers]:
+            at = [t for t in toks(a) if t not in rq and (len(t) >= 3 or num(t) is not None)]
+            if at and answer_in(own, [" ".join(at)]):
+                return True
+    return False
+
+
+def cited_source_called(reply, seg):
+    """The reply cites a page, file, repo, log, search or calculator that this turn actually used (the citation's shape
+    alone, quality.final_cites, accepted "from memory" and "and/or")."""
+    r = norm(reply)
+    calls = [c for x in seg for c in x["parsed"]["calls"][:1]]
+    used = {c["name"] for c in calls}
+    args = " ".join(json.dumps(c["arguments"]) for c in calls)
+    results = " ".join(b for _, b in good_results(seg))
+    # 1. a URL, path or owner/name the model passed to a tool, or a file it read
+    for tok in re.findall(r"https?://\S+|/repos/\S+|/home/\S+|[A-Za-z][\w.-]*/[A-Za-z][\w.-]*|[\w-]+\.(?:json|md|js|py|ts|toml|txt)", reply or ""):
+        t = tok.rstrip(".,;:)")
+        if t.lower() in args.lower() or t.lower() in results.lower():
+            return True
+    # 2. a page title the search or fetch returned
+    titles = re.findall(r"\\n\d+\. ([^\\\n]{3,80})\\n", results) + re.findall(r'"title":"([^"]{3,80})"', results)
+    if any(norm(t.split(" - Wikipedia")[0]) and norm(t.split(" - Wikipedia")[0]) in r for t in titles):
+        return True
+    # 3. the kind of source, matching a tool that ran
+    kinds = [("git log", {"git_log"}), ("commit", {"git_log"}), ("package.json", {"read_file", "grep"}), ("pyproject", {"read_file", "grep"}),
+             ("readme", {"read_file", "grep"}), ("wikipedia", WEB), ("web search", {"web_search"}), ("search result", {"web_search"}),
+             ("the page", {"fetch_url"}), ("that page", {"fetch_url"}), ("its page", {"fetch_url"}), ("the article", {"fetch_url"}),
+             ("calculat", {"calculate"}), ("the repo", REPO_TOOLS), ("the file", {"read_file", "grep"}), ("grep", {"grep"}),
+             ("past chat", {"find", "search_history"}), ("earlier chat", {"find", "search_history"}), ("memory", {"find"})]
+    return any(k in r and used & tools for k, tools in kinds)
+
+
+def check_lines(x):
+    return re.findall(r"(?m)^Check:[ \t]+(.*)$", x["parsed"]["thinking"])
+
+
+def check_refers_to_result(seg, request=""):
+    """Every Check line brings something from the result it follows: a quoted span of it, or a word that is in the
+    result and not in the request (AUDIT_V1 problem 8: 125/1,814 Check lines restated the request)."""
+    bad = []
+    rq = set(toks(request)) | STOP
+    for x in seg:
+        last = next((m for m in reversed(x["messages"] or []) if m["role"] == "user"), None)
+        if not last or not last["content"].startswith("Result of "):
+            continue
+        res = last["content"]
+        rtoks = set(toks(res)) - rq
+        for line in check_lines(x):
+            quoted = [q for q in re.findall(r"[\"“]([^\"”]{6,})[\"”]", line) if norm(q) in norm(res)]
+            fresh = [t for t in toks(line) if t in rtoks and len(t) >= 3]
+            if not quoted and not fresh:
+                bad.append(line[:80])
+    return bad
+
+
+NARRATED = re.compile(r"\b(i |we )?(checked|confirmed|verified|searched|looked (it |this |that )?up|found|according to|a quick (check|search))\b", re.I)
+
+
+def narrated_without_tools(seg, reply):
+    """"I checked / confirmed / found" in the thinking or reply of a turn that saw no tool result (gemma-traces lesson 2)."""
+    if good_results(seg):
+        return False
+    text = " ".join(x["parsed"]["thinking"] for x in seg) + " " + (reply or "")
+    return bool(NARRATED.search(text))
+
+
+def planned(seg):
+    return "plan" in names(seg)
+
+
+ARITH = re.compile(r"\b(total|totals|sum|altogether|in all|combined|difference|apart|more than|less than|fewer than|times as|percent|average|"
+                   r"left over|remaining|remainder|earns?|spent|spends?|saves?|pays?|paid|profit|years? (older|younger|apart)|"
+                   r"ratio|half of|double|twice|triple|minus|plus|divided|multiplied|equals?|comes to|adds up|works out)\b|[%$€£=×÷]|\d\s*[+*]\s*\d", re.I)
+NUMBER = re.compile(r"(?<![\w.])[-+]?\$?\d[\d,]*(?:\.\d+)?%?(?![\w])")
+REFNUM = re.compile(r"\b(line|lines|page|pages|step|steps|result|results|version|v|chapter|section|no|number|#|issue|pr|id|commit|build)\s*$", re.I)
+
+
+def numbers_in(text, skip_refs=False):
+    out = set()
+    for mm in NUMBER.finditer(text or ""):
+        m = mm.group(0)
+        if skip_refs and (REFNUM.search(text[max(0, mm.start() - 12):mm.start()]) or re.match(r"[-/.]\d", text[mm.end():mm.end() + 2] or "")):
+            continue
+        n = num(m.rstrip("%"))
+        if n is not None:
+            out.add(round(n, 6))
+            if m.endswith("%"):
+                out.add(round(n / 100, 6))
+    return out
+
+
+def calc_results(seg):
+    out = set()
+    for name, blk in good_results(seg):
+        if name != "calculate":
+            continue
+        try:
+            d = json.loads(blk)
+        except Exception:
+            continue
+        if isinstance(d.get("result"), (int, float)):
+            v = float(d["result"])
+            out |= {round(v, 6), round(v, 2), round(v, 1), round(v, 0)}
+    return out
+
+
+def computed_numbers_grounded(seg, reply):
+    """CORPUS_V2 §2h: a number in the reply or a done result that isn't copied from the request or a tool result, and
+    sits in a sentence with arithmetic wording, must equal a calculate result of this turn. Returns the offending
+    numbers."""
+    seen = numbers_in(request_text(seg)) | set().union(*(numbers_in(b) for _, b in good_results(seg))) if seg else set()
+    calc = calc_results(seg)
+    said = [reply or ""] + [str(a.get("result", "")) for a in args_of(seg, "done")]
+    bad = []
+    for text in said:
+        for sent in re.split(r"(?<=[.!?])\s+|\n+", text):
+            if not ARITH.search(sent):
+                continue
+            for n in numbers_in(sent, skip_refs=True):
+                if n in seen or n in calc or any(abs(n - c) < 1e-6 for c in calc):
+                    continue
+                if 1800 <= n <= 2100 and not re.search(r"\b(apart|difference|older|younger|years)\b", sent, re.I):
+                    continue                          # a year, not a computation
+                if n in (0, 1, 2) and str(int(n)) not in sent:     # "half", "twice" are words, not stated numbers
+                    continue
+                bad.append(n)
+    return sorted(set(bad))
+
+
+def need_questions(seg):
+    return [str(a.get("what", "")) for a in args_of(seg, "need")]
+
+
+def need_new_numbers(seg, request=""):
+    """Numbers in a need question that the request didn't contain: a value the model assumed and is asking to confirm."""
+    had = numbers_in(request)
+    return sorted(n for q in need_questions(seg) for n in numbers_in(q) if n not in had)
+
+
+def need_guesses(seg, candidates, allow_after=("github_list_repos",)):
+    """A need question that names a candidate answer (a repo, a number, an entity) is a guess dressed as a question
+    (TEACHER.md habit 1: never put a guessed answer inside a need question). Allowed once a tool listed the candidates."""
+    listed = False
+    for x in seg:
+        for c in x["parsed"]["calls"][:1]:
+            if c["name"] in allow_after:
+                listed = True
+            if c["name"] == "need" and not listed:
+                q = norm(str(c["arguments"].get("what", "")))
+                for cand in candidates:
+                    ct = [t for t in toks(cand) if t not in STOP]
+                    if ct and all(t in q.split() for t in ct):
+                        return cand
+    return None
+
+
 # ── families ────────────────────────────────────────────────────────────────
 WEB = {"web_search", "fetch_url"}
 REPO_TOOLS = {"git_clone", "git_log", "read_file", "grep", "list_files", "git_status", "github_list_repos"}
+COMPUTE = {"calculate"}
+ONE_LOOKUP = {"web_fact", "chat_after", "repo_fact", "repo_where", "bare_link", "memory_repo", "need_repo", "refs", "past_chat",
+              "math", "need_math", "hermes_compute", "hermes_need", "unknown_word", "unknown_action", "need_web", "near_miss"}
 
 
 def _ep(fam, i, first, gold, world=None, user=None, rng=None, messy_=False, **meta):
     return Episode(id=f"{fam}-{i}", family=fam, first=first, world=world or {}, gold=gold, user=user, meta={"messy": messy_, **meta})
 
 
-def maybe_messy(rng, text, p, swap=None, keep=()):
+def maybe_messy(rng, text, p, swap=None, keep=(), phrases=()):
     if rng.random() < p:
-        return messy(rng, text, swap, keep), True
+        return messy(rng, text, swap, keep, phrases), True
     return text, False
 
 
@@ -338,14 +671,19 @@ def make_web_fact(rng, row, i, p_messy=0.45):
 def check_web_fact(res):
     seg = turn_calls(res)[0] if res.get("turns") else []
     reasons = base_check(res)
-    ok = answer_in(reply_of(res, 0), res["gold"]["answers"]) and not non_answer(reply_of(res, 0))
+    rep = reply_of(res, 0)
+    ok = answer_in(rep, res["gold"]["answers"]) and not non_answer(rep) and not negated(rep, res["gold"]["answers"])
     if not ok:
         reasons.append("wrong or missing answer")
+    elif hedged(rep):
+        reasons.append("the answer is hedged or a list of candidates (look again or say it couldn't be verified)")
     looked = bool(WEB & set(names(seg)))
     if not looked:
         reasons.append("answered without looking it up")
     if "need" in names(seg):
         reasons.append("asked the user instead of looking it up")
+    if ok:
+        reasons += grounded_answer_problems(seg, res["gold"]["answers"], res.get("first", ""))
     return {"ok": ok, "strict": ok and looked and not reasons, "reasons": reasons}
 
 
@@ -367,19 +705,55 @@ def same_entity(answer, titles):
     return out
 
 
+def first_mention(reply, names_):
+    """Character position of the earliest mention of any of these names in the reply (content words), or None."""
+    r = norm(reply)
+    best = None
+    for n in names_:
+        nt = [t for t in toks(n) if t not in STOP] or toks(n)
+        if not nt:
+            continue
+        pos = [m.start() for t in nt[:2] for m in [re.search(r"\b" + re.escape(t) + r"\b", r)] if m]
+        if len(pos) == len(nt[:2]):
+            best = min(pos) if best is None else min(best, min(pos))
+    return best
+
+
+def picked(reply, gold, titles):
+    """For an "A or B" question: the reply picks the gold if the gold is the first candidate it names, not under a
+    negation, and no other candidate is named before it (AUDIT_V1 problem 2: naming both used to pass)."""
+    gold_names = [gold] + same_entity(gold, titles)
+    others = [t for t in titles if not same_entity(gold, [t]) and norm(t) not in norm(gold)]
+    gp, op = first_mention(reply, gold_names), first_mention(reply, others)
+    if gp is None or negated(reply, gold_names):
+        return False
+    return op is None or gp < op
+
+
 def check_web_compare(res, k=0):
     segs = turn_calls(res)
     seg = segs[k] if len(segs) > k else []
     reasons = base_check(res)
     gold = res["gold"]["answer"]
     rep = reply_of(res, k)
+    titles = res["gold"].get("titles", [])
     if gold.lower() in ("yes", "no"):
         ok = yes_no(rep) == gold.lower()
     else:
-        ok = answer_in(rep, [gold] + same_entity(gold, res["gold"].get("titles", [])))
+        ok = answer_in(rep, [gold] + same_entity(gold, titles))
+        if same_entity(gold, titles):                 # an "A or B" question: which one did the reply pick?
+            ok = ok and picked(rep, gold, titles)
     ok = ok and not non_answer(rep)
     if not ok:
         reasons.append("wrong or missing answer")
+    elif hedged(rep):
+        reasons.append("the answer is hedged or a list of candidates")
+    if ok and gold.lower() not in ("yes", "no"):
+        reasons += grounded_answer_problems(seg, [gold] + same_entity(gold, titles), res.get("first", ""))
+    # Each compared entity must have been looked at: its page title in some result of this turn.
+    missing = [t for t in titles if not answer_in(" ".join(b for _, b in good_results(seg)), [re.sub(r"\s*\(.*?\)\s*", " ", t)])]
+    if ok and missing:
+        reasons.append("compared without a result about: " + ", ".join(missing[:2]))
     n = names(seg)
     searches = sum(1 for x in n if x in WEB)
     if searches < 2:
@@ -390,7 +764,7 @@ def check_web_compare(res, k=0):
     return {"ok": ok, "strict": ok and not reasons, "reasons": reasons, "planned": planned}
 
 
-# 3. math: GSM8K, computed with run_js. Habit 1 (keep the maths in the calculator).
+# 3. math: GSM8K, computed with calculate (CORPUS_V2 §2h: never in the head, never run_js). Habit 1.
 def make_math(rng, row, i, p_messy=0.45):
     text, m = maybe_messy(rng, row["question"], p_messy)
     return _ep("math", i, text, {"answer": row["answer"]}, messy_=m)
@@ -398,14 +772,22 @@ def make_math(rng, row, i, p_messy=0.45):
 
 def check_math(res, k=-1):
     segs = turn_calls(res)
-    seg = [x for s in segs for x in s]
+    seg = segs[k] if segs else []
     reasons = base_check(res)
-    ok = answer_in(reply_of(res, k), [res["gold"]["answer"]])
+    rep = reply_of(res, k)
+    ok = answer_in(rep, [res["gold"]["answer"]]) and not non_answer(rep)
     if not ok:
         reasons.append("wrong or missing answer")
-    ran = "run_js" in names(seg)
+    elif hedged(rep):
+        reasons.append("the answer is hedged")
+    ran = bool(COMPUTE & set(names(seg)))
     if not ran:
-        reasons.append("did the maths in its head")
+        reasons.append("did the maths in its head (no calculate call)")
+    g = num(res["gold"]["answer"])
+    if ok and ran and g is not None and not any(abs(g - c) < 1e-6 for c in calc_results(seg)):
+        reasons.append("the answer isn't a calculate result of this turn (computed in its head or copied)")
+    if ok and guessed_early(seg, [res["gold"]["answer"]], request_text(seg)):
+        reasons.append("the answer was written before calculate returned it")
     return {"ok": ok, "strict": ok and ran and not reasons, "reasons": reasons}
 
 
@@ -437,6 +819,10 @@ def check_need_math(res):
     asked = asked_user(res, 0)
     if not asked:
         reasons.append("didn't ask for the missing number")
+    if need_new_numbers(first, res.get("first", "")):
+        reasons.append("the need question contains a number the request didn't have (an assumed value inside the question)")
+    if COMPUTE & set(names(first)) or "run_js" in names(first):
+        reasons.append("computed before asking for the missing number")
     c = check_math(res, -1) if len(res.get("turns", [])) > 1 else {"ok": False, "reasons": ["no answer after asking"]}
     ok = asked and c["ok"]
     reasons += [r for r in c["reasons"] if r not in reasons]
@@ -482,8 +868,8 @@ def check_repo_answer(kind, gold, reply):
     if kind == "version" or kind == "latest_author":
         return answer_in(reply, gold["answers"])
     if kind == "license":
-        lic = gold["license"].split("-")[0]
-        return lic.lower() in norm(reply)
+        lic = gold["license"].split("-")[0]          # the SPDX id as a whole word: "commit" is not "MIT" (AUDIT_V1 problem 3)
+        return bool(re.search(r"(?<![\w-])" + re.escape(lic) + r"(?![\w-])", reply or "", re.I))
     if kind == "latest_commit":
         st = [t for t in toks(gold["subject"]) if t not in STOP]
         rs = set(toks(reply))
@@ -492,8 +878,9 @@ def check_repo_answer(kind, gold, reply):
     if kind == "depends":
         return yes_no(reply) == gold["yesno"]
     if kind == "where":
+        # The whole path, as given or under /repos/<name>/: a different file with the same basename and parent fails.
         p = gold["path"]
-        return p in reply or (p.count("/") >= 1 and p.split("/")[-1] in reply and p.split("/")[-2] in reply) or (p.count("/") == 0 and p in reply)
+        return bool(re.search(r"(?<![\w./-])(?:/repos/[\w.-]+/)?" + re.escape(p) + r"(?![\w/-])", reply or ""))
     return False
 
 
@@ -517,21 +904,47 @@ def check_repo_fact(res, k=0):
     seg = segs[k] if len(segs) > k else []
     reasons = base_check(res)
     g = res["gold"]
-    ok = check_repo_answer(g["kind"], g, reply_of(res, k))
+    rep = reply_of(res, k)
+    ok = check_repo_answer(g["kind"], g, rep)
     if not ok:
         reasons.append("wrong or missing answer")
+    elif hedged(rep):
+        reasons.append("the answer is hedged (read the file or log, don't guess)")
     looked = bool(REPO_TOOLS & set(names(seg)))
     if not looked:
         reasons.append("answered without looking at the repo")
+    if ok:
+        reasons += grounded_answer_problems(seg, repo_gold_values(g), res.get("first", "") if k == 0 else "", early=g["kind"] != "depends")
     return {"ok": ok, "strict": ok and looked and not reasons, "reasons": reasons}
 
 
-def make_repo_where(rng, facts, i, p_messy=0.45):
+def repo_gold_values(g):
+    """What a repo answer must have read: the version, author, licence id, commit id or subject, or the path."""
+    k = g["kind"]
+    if k in ("version", "latest_author"):
+        return list(g["answers"])
+    if k == "license":
+        return [g["license"].split("-")[0]]
+    if k == "latest_commit":
+        return [g["oid"][:7], g["subject"]]
+    if k == "where":
+        return [g["path"], g["path"].split("/")[-1]]
+    if k == "depends":
+        return [g["dep"]] if g.get("yesno") == "yes" else ["package.json", "pyproject.toml"]   # "no" is grounded by having read the manifest
+    return []
+
+
+WHERE_ASKS = {"train": ["Where is {n} defined in {r}?", "in {r}, which file has {n}?", "can you find where {n} is defined in the {r} repo",
+                        "where does {r} define {n}?", "find the {n} definition in {r} for me", "which file in {r} defines {n}",
+                        "what file is {n} in, in {r}", "locate {n} in {r}", "{r}: where's {n} defined"],
+              "eval": ["point me to where {n} lives in {r}", "in which file of {r} is {n} declared", "where would i find {n} inside {r}"]}
+
+
+def make_repo_where(rng, facts, i, p_messy=0.45, split="train"):
     f = rng.choice([x for x in facts if x.get("defs")])
     d = rng.choice(f["defs"])
     r = repo_ref(rng, f)
-    tpl = rng.choice(["Where is {n} defined in {r}?", "in {r}, which file has {n}?", "can you find where {n} is defined in the {r} repo",
-                      "where does {r} define {n}?", "find the {n} definition in {r} for me"])
+    tpl = rng.choice(WHERE_ASKS[split])
     text, m = maybe_messy(rng, tpl.format(n=d["name"], r=r), p_messy)
     return _ep("repo_where", i, text, {"kind": "where", "repo": f["repo"], "path": d["path"], "line": d["line"], "name": d["name"]},
                world={"repos": world_repos(facts)}, messy_=m, repo=f["repo"])
@@ -567,10 +980,13 @@ def check_repo_two(res, k=0, gold=None):
     ok = all(parts)
     if not ok:
         reasons.append("missing part of the answer")
-    planned = "plan" in names(seg)
-    if not planned:
+    else:
+        for p in g["parts"]:
+            reasons += [f"{p['kind']}: {x}" for x in grounded_answer_problems(seg, repo_gold_values(p), res.get("first", ""))]
+    planned_ = "plan" in names(seg)
+    if not planned_:
         reasons.append("no plan for a two-part task")
-    return {"ok": ok, "strict": ok and planned and not reasons, "reasons": reasons, "planned": planned}
+    return {"ok": ok, "strict": ok and planned_ and not reasons, "reasons": reasons, "planned": planned_}
 
 
 # 7. recipe: a similar task was done in an earlier session, so memory holds the recipe the app saved from it (real
@@ -656,14 +1072,24 @@ def check_recipe_compare(res):
 
 
 # 8. need_repo: "my repo" with several repos and nothing saying which. Habit 4.
-def make_need_repo(rng, facts, i, p_messy=0.5):
+NEED_REPO_ASKS = {
+    "train": ["What's the latest commit on my repo?", "can you check the newest commit in the repo", "what changed last in my project?",
+              "who made the last commit on my repo", "whats the most recent commit message on the repo", "what was the last thing pushed to my repo",
+              "can u look at the top commit in my project", "who touched my repo last", "latest commit on the project pls",
+              "what did the last commit to my repo do", "whos the most recent committer on my repo", "check the last commit for me on the repo"],
+    "eval": ["what's the newest commit in my repository", "who was the last person to commit to my project", "tell me the most recent commit on the repo",
+             "what got committed last to my repo", "who committed most recently to my repo"],
+}
+
+
+def make_need_repo(rng, facts, i, p_messy=0.5, split="train"):
     f = rng.choice([x for x in facts if x.get("commits")])
-    tpl = rng.choice(["What's the latest commit on my repo?", "can you check the newest commit in the repo", "what changed last in my project?",
-                      "who made the last commit on my repo", "whats the most recent commit message on the repo"])
+    tpl = rng.choice(NEED_REPO_ASKS[split])
     kind = "latest_author" if "who" in tpl else "latest_commit"
     text, m = maybe_messy(rng, tpl, p_messy)
     c = f["commits"][0]
-    gold = {"kind": kind, "repo": f["repo"], **({"answers": [c["author"]]} if kind == "latest_author" else {"subject": c["subject"], "oid": c["oid"]})}
+    gold = {"kind": kind, "repo": f["repo"], "repos": [x["repo"] for x in facts],    # repos: what the need question must not guess
+            **({"answers": [c["author"]]} if kind == "latest_author" else {"subject": c["subject"], "oid": c["oid"]})}
 
     def user(turn, ep):
         if turn["n"] == 0:
@@ -682,9 +1108,16 @@ def check_need_repo(res):
         reasons.append("guessed which repo instead of asking")
     if set(n0) & {"git_clone", "git_log"}:
         reasons.append("cloned a repo before knowing which")
+    guess = need_guesses(first, list(res["gold"].get("repos") or []) + [res["gold"]["repo"]])
+    if guess:
+        reasons.append(f"the need question names a repo it was never told ({guess}): a guess inside a question")
     ok = bool(asked) and len(res.get("turns", [])) > 1 and check_repo_answer(res["gold"]["kind"], res["gold"], reply_of(res, -1))
     if not ok:
         reasons.append("wrong or missing answer after asking")
+    elif len(segs) > 1:
+        reasons += grounded_answer_problems(segs[1], repo_gold_values(res["gold"]), res.get("first", ""))
+        if not REPO_TOOLS & set(names(segs[1])):
+            reasons.append("answered after asking without looking at the repo")
     return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
 
 
@@ -694,19 +1127,25 @@ KEAL_FACTS = [
     {"s": "Keal", "p": "runs fine-tune experiments in", "o": "the repo KealJones/tp-parse"},
     {"s": "squiggle", "p": "is deployed on", "o": "Cloudflare Workers (the relay) and GitHub Pages"},
 ]
-MEM_ASK = {"KealJones/squiggle": ["my agent project", "the squiggle repo", "my browser agent"],
-           "KealJones/tp-parse": ["my fine-tune experiments repo", "the repo where I run my experiments", "my experiments repo"]}
+MEM_ASK = {"train": {"KealJones/squiggle": ["my agent project", "the squiggle repo", "my browser agent"],
+                     "KealJones/tp-parse": ["my fine-tune experiments repo", "the repo where I run my experiments", "my experiments repo"]},
+           # eval: aliases that only memory can resolve, never seen in training
+           "eval": {"KealJones/squiggle": ["the thing i deploy on cloudflare", "my phone assistant repo"],
+                    "KealJones/tp-parse": ["my training-run repo", "the repo with my hf jobs"]}}
+MEM_TPL = {"train": {"latest_commit": ["What's the latest commit in {w}?", "what did I last commit to {w}", "check the newest commit on {w}"],
+                     "version": ["What version is {w} at?", "what's the version number of {w} right now"]},
+           "eval": {"latest_commit": ["whats the most recent commit on {w}", "last commit to {w}?"],
+                    "version": ["which version is {w} on now"]}}
 
 
-def make_memory_repo(rng, facts, i, p_messy=0.5):
-    repo = rng.choice(list(MEM_ASK))
+def make_memory_repo(rng, facts, i, p_messy=0.5, split="train"):
+    repo = rng.choice(list(MEM_ASK[split]))
     f = next(x for x in facts if x["repo"] == repo)
     c = f["commits"][0]
-    what = rng.choice(MEM_ASK[repo])
+    what = rng.choice(MEM_ASK[split][repo])
     kind = rng.choice(["latest_commit", "version"]) if (f.get("package") or {}).get("version") else "latest_commit"
-    tpl = {"latest_commit": rng.choice(["What's the latest commit in {w}?", "what did I last commit to {w}", "check the newest commit on {w}"]),
-           "version": rng.choice(["What version is {w} at?", "what's the version number of {w} right now"])}[kind]
-    text, m = maybe_messy(rng, tpl.format(w=what), p_messy)
+    tpl = rng.choice(MEM_TPL[split][kind])
+    text, m = maybe_messy(rng, tpl.format(w=what), p_messy, keep=set(what.split()), phrases=[what])   # never filler inside the alias
     gold = {"kind": kind, "repo": repo, **({"subject": c["subject"], "oid": c["oid"]} if kind == "latest_commit" else {"answers": [f["package"]["version"]]})}
     return _ep("memory_repo", i, text, gold, world={"repos": world_repos(facts), "facts": KEAL_FACTS}, messy_=m, repo=repo)
 
@@ -730,7 +1169,7 @@ def make_past_chat(rng, row, i):
 
     def user(turn, ep):
         return (text, "later") if turn["n"] == 0 else None
-    return _ep("past_chat", i, first, {"answers": row["answer"]}, user=user, messy_=True)   # a reference to an earlier chat
+    return _ep("past_chat", i, first, {"answers": row["answer"]}, user=user, messy_=m)   # messy only when rewritten (audit 7)
 
 
 def check_past_chat(res):
@@ -747,23 +1186,39 @@ def check_past_chat(res):
     used_memory = bool({"find", "search_history"} & set(n1)) or retrieved
     if not first_ok:
         reasons.append("first chat got it wrong")
+    elif not WEB & set(names(segs[0])):
+        reasons.append("first chat answered without looking it up")
+    else:
+        reasons += [f"first chat: {x}" for x in grounded_answer_problems(segs[0], res["gold"]["answers"], res.get("first", ""))]
     if not ok:
         reasons.append("didn't recall the earlier answer")
+    elif not retrieved and not answer_grounded(segs[1], res["gold"]["answers"]):
+        reasons.append("the recalled answer is in no find / search_history result and wasn't retrieved into the prompt")
     if not used_memory:
         reasons.append("didn't search past chats (and the prompt didn't already have the answer)")
     return {"ok": ok, "strict": ok and first_ok and used_memory and not reasons, "reasons": reasons}
 
 
 # 11. refs: a follow-up that says "it"/"that one" about the repo from the turn before. Habits 1, 5.
-def make_refs(rng, facts, i):
+REFS_FIRST = {"train": ["What version is {r} at?", "what's the current version of {r}", "which version of {r} is current", "version of {r}?"],
+              "eval": ["can you tell me what version {r} is on", "whats {r} at version-wise"]}
+REFS_FOLLOW = {
+    "train": {"latest_commit": ["and what was the last commit on it?", "cool. whats the latest commit there", "and the most recent commit on that one?",
+                                "ok and the newest commit in it", "what changed last in that repo"],
+              "latest_author": ["who made the last commit on it?", "and who committed to it last", "who was the last to push to that one"],
+              "license": ["what license is it under?", "and the license on that one?", "is it MIT or something else"]},
+    "eval": {"latest_commit": ["thanks. and its most recent commit?", "k what was committed to it last"],
+             "latest_author": ["and who last touched it?"],
+             "license": ["which license does that one have"]},
+}
+
+
+def make_refs(rng, facts, i, split="train"):
     f = rng.choice([x for x in facts if x.get("commits") and (x.get("package") or {}).get("version")])
     qs = {k: (t, g) for k, t, g in repo_questions(f)}
-    first = rng.choice(["What version is {r} at?", "what's the current version of {r}"]).format(r=f["repo"])
+    first = rng.choice(REFS_FIRST[split]).format(r=f["repo"])
     k2 = rng.choice([k for k in ("latest_commit", "latest_author", "license") if k in qs])
-    follow = {"latest_commit": ["and what was the last commit on it?", "cool. whats the latest commit there", "and the most recent commit on that one?"],
-              "latest_author": ["who made the last commit on it?", "and who committed to it last"],
-              "license": ["what license is it under?", "and the license on that one?"]}[k2]
-    text = rng.choice(follow)
+    text = rng.choice(REFS_FOLLOW[split][k2])
 
     def user(turn, ep):
         return text if turn["n"] == 0 else None
@@ -781,14 +1236,25 @@ def check_refs(res):
     segs = turn_calls(res)
     if not ok1:
         reasons.append("first answer wrong")
+    elif not REPO_TOOLS & set(names(segs[0])):
+        reasons.append("first answer given without looking at the repo")
+    else:
+        reasons += [f"first: {x}" for x in grounded_answer_problems(segs[0], repo_gold_values(g["first"]), res.get("first", ""))]
     if not ok:
         reasons.append("follow-up wrong")
+    elif not REPO_TOOLS & set(names(segs[1])):
+        # Earlier results aren't in the follow-up's prompt (AUDIT_V1: 11/11 licence follow-ups answered from nothing).
+        reasons.append("follow-up answered without looking at the repo again")
+    else:
+        reasons += [f"follow-up: {x}" for x in grounded_answer_problems(segs[1], repo_gold_values(g["second"]))]
     if asked_user(res, 1):
         reasons.append("asked which repo although it was just discussed")
     return {"ok": ok, "strict": ok and ok1 and not reasons, "reasons": reasons}
 
 
 # 12. chat: plain chat stays plain. Habit 6. (Casual openers; no facts in them.)
+# Split by train/eval so the eval never scores a string the model trained on (AUDIT_V1 problem 5: 8/16 eval chat inputs
+# were in training). The eval list is phrased differently on purpose (longer, typos, emoji-free, other moods).
 CHAT = ["hey whats up lol", "hi!", "good morning", "thanks, that worked", "lol nice", "ok cool", "how's it going?", "yo",
         "thank you so much", "haha that's funny", "you're pretty helpful", "night!", "sup", "ugh mondays", "brb",
         "hey squiggle", "ok im back", "that's awesome", "nvm i figured it out", "cool cool cool", "hello there",
@@ -797,10 +1263,15 @@ CHAT = ["hey whats up lol", "hi!", "good morning", "thanks, that worked", "lol n
         "morning! coffee time", "i'm so tired today", "lmao", "ok", "gotcha, thanks", "great job", "hmm interesting",
         "that makes sense", "wow", "never mind", "cheers", "appreciate it", "hey so um nothing really just saying hi",
         "are you there?", "hi again", "ok thanks bye", "you're the best", "have a good one"]
+CHAT_EVAL = ["yooo its friday finally", "ok that was perfect thanks a bunch", "ha ok fair enough", "evening squiggle", "ugh long day",
+             "k", "sweet", "oh nice ok", "hey hey", "alright talk later", "lol ok ok", "thx again u r great", "hows your morning going",
+             "good afternoon!", "well that was easy", "huh neat", "ok noted", "lmaooo", "ty!!", "sup squiggle whats good",
+             "back again hi", "ok gotta run bye", "oh wow ok", "i'm sleepy", "happy friday", "oof", "nice one", "hey :)",
+             "thanks mate", "ok good to know"]
 
 
-def make_chat(rng, i, text=None):
-    t = text or rng.choice(CHAT)
+def make_chat(rng, i, text=None, split="train"):
+    t = text or rng.choice(CHAT if split == "train" else CHAT_EVAL)
     return _ep("chat", i, t, {})
 
 
@@ -824,9 +1295,10 @@ def check_chat(res):
 
 
 # 13. chat_after: a task, then "thanks". Habit 6 in context.
-def make_chat_after(rng, row, i):
+def make_chat_after(rng, row, i, split="train"):
     ep = make_web_fact(rng, row, i, p_messy=0.3)
-    follow = rng.choice(["cool thanks", "nice, thank you!", "ok perfect", "lol ok", "awesome thx", "great, that's what i needed"])
+    follow = rng.choice(["cool thanks", "nice, thank you!", "ok perfect", "lol ok", "awesome thx", "great, that's what i needed"] if split == "train"
+                        else ["perfect ty", "ok cool thanks a lot", "got it, cheers", "ah ok makes sense", "nice thx!!"])
 
     def user(turn, e):
         return follow if turn["n"] == 0 else None
@@ -844,7 +1316,7 @@ def check_chat_after(res):
 def make_bare_link(rng, title, i):
     url = "https://en.wikipedia.org/wiki/" + title.replace(" ", "_")
     text = rng.choice(["{u}", "{u}", "{u} ?", "whats this {u}", "{u} tldr", "can u summarize {u}"]).format(u=url)
-    return _ep("bare_link", i, text, {"url": url, "title": title}, messy_=True)     # a bare link is Keal-style input
+    return _ep("bare_link", i, text, {"url": url, "title": title}, messy_=False)    # not a dictation rewrite (audit 7)
 
 
 def check_bare_link(res):
@@ -860,8 +1332,19 @@ def check_bare_link(res):
         reasons.append("didn't read the link")
     if len(rep) < 40 or not about:
         reasons.append("reply isn't about the page")
+    # Grounded: most of the reply's content words (5+ letters, not the title, not boilerplate) are on the page.
+    page = " ".join(b for n, b in good_results(seg) if n == "fetch_url")
+    pt = set(toks(page))
+    content = [w for w in set(toks(rep)) if len(w) >= 5 and w not in STOP and w not in words and w not in BOILER]
+    share = sum(1 for w in content if w in pt) / len(content) if content else 0.0
+    if fetched and (not content or share < 0.6):
+        reasons.append(f"the summary isn't from the page ({share:.0%} of its content words appear in the fetched text)")
     ok = fetched and len(rep) >= 40 and about
     return {"ok": ok, "strict": ok and not reasons, "reasons": reasons}
+
+
+BOILER = {"wikipedia", "article", "summary", "summarize", "overview", "section", "sections", "introduction", "history", "references",
+          "about", "describes", "covers", "explains", "discusses", "according", "page", "link"}
 
 
 # 15. web_bridge (held out): a two-hop bridge question. Habits 1, 2.
@@ -1023,11 +1506,11 @@ CHECK = {
 }
 HABIT = {
     "web_fact": "look it up", "web_compare": "plan + look up two things", "web_bridge": "plan a two-hop lookup (held out)",
-    "math": "compute with run_js", "need_math": "ask for a missing number (held out)", "repo_fact": "look in the repo",
+    "math": "compute with calculate", "need_math": "ask for a missing number (held out)", "repo_fact": "look in the repo",
     "repo_where": "find a definition", "repo_two": "plan a two-part repo task", "recipe_repo": "use a recipe",
     "recipe_compare": "use a recipe on web lookups (held out)", "need_repo": "ask which repo", "memory_repo": "use memory, don't ask",
     "past_chat": "find an earlier chat", "refs": "follow 'it' to the last repo", "chat": "plain chat stays plain",
-    "chat_after": "a task, then plain thanks", "bare_link": "read a bare link", "hermes_compute": "compute (Hermes requests)",
+    "chat_after": "a task, then plain thanks", "bare_link": "read a bare link", "hermes_compute": "compute with calculate (Hermes requests)",
     "hermes_need": "ask for missing input (Hermes requests)", "unknown_word": "look up a made-up word, don't define it",
     "unknown_action": "a made-up word as a task (held out)", "personal": "warm advice, no tools",
 }

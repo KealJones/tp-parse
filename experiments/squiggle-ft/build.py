@@ -10,7 +10,7 @@ Outputs (in --out):
   train_examples.jsonl.gz    {"messages", "output", "family", "kind", "episode"} per model call of kept episodes
   TEACHER_RESULTS.md         keep rate per family, why episodes were dropped, cost/time
 """
-import argparse, collections, gzip, itertools, json, os, random, sys, time
+import argparse, collections, gzip, itertools, json, os, random, re, sys, time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -33,6 +33,27 @@ EVAL_PLAN = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute": 12
              "unknown_word": 16, "personal": 20,
              # held out: never in training
              "web_bridge": 30, "need_math": 30, "recipe_compare": 24, "unknown_action": 16}
+# v2 (CORPUS_V2.md §4): new teacher episodes, attempted. Reused teach-v1 episodes come on top (re-checked with the v2
+# checker, leak-filtered, repo families capped at 25 each: train.py --reuse-cap). Families marked TODO have no maker yet
+# (make_sets skips them with a warning); counts are the plan the review asked for (thin cells >= 40).
+V2_PLAN = {
+    # look it up, verify
+    "web_fact": 140, "web_fact_retry": 40,            # TODO web_fact_retry
+    "web_compare": 60,
+    # ask for what's missing
+    "need_web": 50, "hermes_need": 40,                # TODO need_web
+    "math_pair": 120,                                 # TODO (60 problems, complete + one number removed)
+    # compute through calculate
+    "hermes_compute": 40, "lookup_then_compute": 40,  # TODO lookup_then_compute
+    # plan
+    "repo_chain": 40, "messy_multi": 40,              # TODO both
+    # recipes
+    "recipe_web": 40, "recipe_skip": 40,              # TODO both
+    # words
+    "unknown_word": 60, "near_miss": 50,              # TODO near_miss
+    # chat and personal
+    "personal": 70, "personal_mid": 40, "personal_tool": 15, "chat_mid": 50, "chat": 40,   # TODO personal_mid, personal_tool, chat_mid
+}
 # The eval plan squiggle-ft-train used (293 episodes at seed 123): baselines on other bases are run on exactly this set.
 EVAL_PLAN_V1 = {"web_fact": 16, "web_compare": 16, "math": 16, "hermes_compute": 12, "hermes_need": 12, "repo_fact": 16,
                 "repo_where": 16, "repo_two": 12, "recipe_repo": 12, "need_repo": 12, "memory_repo": 10, "past_chat": 12,
@@ -63,10 +84,10 @@ def load_sources(work, split):
     else:
         compute, need = compute[cut_c:], need[cut_n:]
     return {"nq": nq, "hotpot": hp, "gsm": gsm, "facts": list(facts.values()), "keal": keal, "compute": compute, "need": need,
-            "words": F.unknown_words(split), "personal": F.personal_rows(split)}
+            "words": F.unknown_words(split), "personal": F.personal_rows(split), "split": split}
 
 
-def make_sets(src, plan, seed=0, scale=1.0):
+def make_sets(src, plan, seed=0, scale=1.0, date_shift=True):
     rng = random.Random(seed)
     nq = [r for r in src["nq"] if F.timeless(r["question"])]; rng.shuffle(nq)
     comp = [r for r in src["hotpot"] if r["type"] == "comparison"]
@@ -91,9 +112,10 @@ def make_sets(src, plan, seed=0, scale=1.0):
     rng.shuffle(pairs)
     pools["pairs"] = iter(pairs)
 
+    split = src.get("split", "train")     # templated families draw eval-only templates, aliases and chat lines
     makers = {
         "web_fact": lambda i: F.make_web_fact(rng, next(pools["nq"]), i),
-        "chat_after": lambda i: F.make_chat_after(rng, next(pools["nq"]), i),
+        "chat_after": lambda i: F.make_chat_after(rng, next(pools["nq"]), i, split=split),
         "past_chat": lambda i: F.make_past_chat(rng, next(pools["nq"]), i),
         "web_compare": lambda i: F.make_web_compare(rng, next(pools["comp"]), i),
         "web_bridge": lambda i: F.make_web_bridge(rng, next(pools["bridge"]), i),
@@ -102,13 +124,13 @@ def make_sets(src, plan, seed=0, scale=1.0):
         "need_math": lambda i: F.make_need_math(rng, next(pools["gsm"]), i),
         "bare_link": lambda i: F.make_bare_link(rng, next(pools["titles"]), i),
         "repo_fact": lambda i: F.make_repo_fact(rng, facts, i),
-        "repo_where": lambda i: F.make_repo_where(rng, facts, i),
+        "repo_where": lambda i: F.make_repo_where(rng, facts, i, split=split),
         "repo_two": lambda i: F.make_repo_two(rng, facts, i),
         "recipe_repo": lambda i: F.make_recipe_repo(rng, facts, i),
-        "need_repo": lambda i: F.make_need_repo(rng, facts, i),
-        "memory_repo": lambda i: F.make_memory_repo(rng, mem_facts, i),
-        "refs": lambda i: F.make_refs(rng, facts, i),
-        "chat": lambda i: F.make_chat(rng, i),
+        "need_repo": lambda i: F.make_need_repo(rng, facts, i, split=split),
+        "memory_repo": lambda i: F.make_memory_repo(rng, mem_facts, i, split=split),
+        "refs": lambda i: F.make_refs(rng, facts, i, split=split),
+        "chat": lambda i: F.make_chat(rng, i, split=split),
         "hermes_compute": lambda i: hermes.make_compute(rng, next(pools["compute"]), i),
         "hermes_need": lambda i: hermes.make_need(rng, next(pools["need"]), i),
         "unknown_word": lambda i: F.make_unknown_word(rng, next(pools["words"]), i),
@@ -117,6 +139,9 @@ def make_sets(src, plan, seed=0, scale=1.0):
     }
     eps = []
     for fam, n in plan.items():
+        if fam not in makers:
+            print(f"make_sets: no maker for {fam} yet, skipped ({n} planned)", file=sys.stderr)
+            continue
         want = max(1, round(n * scale))
         got = tries = 0
         while got < want and tries < want * 5:
@@ -131,6 +156,9 @@ def make_sets(src, plan, seed=0, scale=1.0):
             eps.append(e)
             got += 1
     rng.shuffle(eps)
+    if date_shift:      # each episode's "today" is a different day within two years of the real date (audit 7)
+        for e in eps:
+            e.meta["date_shift"] = random.Random(f"{seed}/{e.id}").randint(-730, 730)
     return eps
 
 
@@ -160,7 +188,7 @@ def examples(res, source=None):
         if c.get("kind") in ("chat", "step", "final") and c.get("output") and not c.get("error"):
             turn = turn_of[i] if i < len(turn_of) else k
             yield {"messages": c["messages"], "output": c["output"], "family": res["family"], "kind": c["kind"], "episode": res["id"],
-                   "turn": turn, "plain": F.plain_mode(res["family"], turn), "messy": res.get("meta", {}).get("messy", False),
+                   "turn": turn, "plain": F.plain_mode(res["family"], turn), "messy": res.get("meta", {}).get("messy", False), "repo": (res.get("meta") or {}).get("repo") or (res.get("gold") or {}).get("repo"),
                    **({"source": source} if source else {})}
 
 
@@ -188,12 +216,33 @@ def report(results, path, extra=""):
     Path(path).write_text("\n".join(lines) + "\n")
 
 
+JUDGE_FAMS = {"web_compare", "recipe_compare", "lookup_then_compute", "recipe_web"}
+
+
+def judge_turn(r):
+    return 1 if r["family"] == "recipe_compare" else 0
+
+
+def judge_options(r):
+    """The candidates to ask the judge about, or None when the pick isn't ambiguous: an "A or B" gold (not yes/no) and a
+    reply that names both candidates."""
+    if r["family"] not in JUDGE_FAMS:
+        return None
+    gold = (r["gold"].get("second") or r["gold"]) if r["family"] == "recipe_compare" else r["gold"]
+    titles = [re.sub(r"\s*\(.*?\)\s*", " ", t).strip() for t in (gold.get("titles") or [])]
+    if len(titles) < 2 or str(gold.get("answer", "")).lower() in ("yes", "no"):
+        return None
+    rep = F.norm(F.reply_of(r, judge_turn(r)))
+    named = [t for t in titles if F.first_mention(F.reply_of(r, judge_turn(r)), [t]) is not None]
+    return titles if len(named) >= 2 and rep else None
+
+
 def teach(args):
     from teacher import VLLMTeacher
     work = Path(args.work)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    plan = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "eval": EVAL_PLAN}[args.plan]
+    plan = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "eval": EVAL_PLAN}[args.plan]
     src = load_sources(work, "eval" if args.plan == "eval" else "train")
     eps = make_sets(src, plan, seed=args.seed, scale=args.scale)
     if args.shard:
@@ -208,6 +257,7 @@ def teach(args):
     fres = gzip.open(out / "teacher_results.jsonl.gz", "wt")
     fex = gzip.open(out / "train_examples.jsonl.gz", "wt")
     n_ex = 0
+    deferred = []
 
     def done(r):
         nonlocal n_ex
@@ -215,6 +265,9 @@ def teach(args):
         r["source"] = source
         results.append(r)
         keep = r["check"]["strict"]
+        if keep and judge_options(r):
+            deferred.append(r)               # written after the judge has read it (below)
+            return
         fres.write(json.dumps(compact(r, True), ensure_ascii=False) + "\n")
         if keep:
             for x in examples(r, source):
@@ -225,6 +278,28 @@ def teach(args):
             print(f"[{(time.time() - t0) / 60:.1f} min] {len(results)}/{len(eps)} episodes, kept {k}, examples {n_ex}, teacher {teacher.stats}", flush=True)
             fres.flush(); fex.flush()
     runner.run(eps, on_result=done, deadline=t0 + args.minutes * 60)
+    # The judge (same vLLM engine, already loaded): kept "A or B" episodes whose reply names more than one candidate.
+    if deferred:
+        import asyncio
+
+        async def run_judge():
+            return await asyncio.gather(*(teacher.judge(r["first"], F.reply_of(r, judge_turn(r)), judge_options(r)) for r in deferred))
+        picks = asyncio.run(run_judge())
+        dropped = 0
+        for r, pick in zip(deferred, picks):
+            gold = (r["gold"].get("second") or r["gold"]) if r["family"] == "recipe_compare" else r["gold"]
+            ok = pick is not None and pick != "neither" and bool(F.same_entity(gold["answer"], [pick]) or F.norm(pick) in F.norm(gold["answer"]))
+            r["check"]["judge"] = pick
+            if not ok:
+                r["check"]["strict"] = False
+                r["check"]["reasons"].append(f"judge: the reply picks {pick!r}, not the gold")
+                dropped += 1
+            fres.write(json.dumps(compact(r, True), ensure_ascii=False) + "\n")
+            if r["check"]["strict"]:
+                for x in examples(r, source):
+                    fex.write(json.dumps(x, ensure_ascii=False) + "\n")
+                    n_ex += 1
+        print(f"judge: {len(deferred)} ambiguous picks read, {dropped} dropped", flush=True)
     fres.close(); fex.close()
     mins = (time.time() - t0) / 60
     tps = teacher.stats["gen_tokens"] / max(1, mins * 60)
@@ -238,7 +313,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["teach", "sets"])
     ap.add_argument("--teacher", default=os.environ.get("TEACHER_MODEL", "Qwen/Qwen3-30B-A3B-Thinking-2507-FP8"))
-    ap.add_argument("--plan", default="train", choices=["train", "targets", "round2", "eval"])
+    ap.add_argument("--plan", default="train", choices=["train", "targets", "round2", "v2", "eval"])
     ap.add_argument("--scale", type=float, default=1.0)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--minutes", type=float, default=120)
@@ -254,7 +329,7 @@ def main():
         teach(args)
     else:
         src = load_sources(Path(args.work), "eval" if args.plan == "eval" else "train")
-        eps = make_sets(src, {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "eval": EVAL_PLAN}[args.plan], seed=args.seed, scale=args.scale)
+        eps = make_sets(src, {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "eval": EVAL_PLAN}[args.plan], seed=args.seed, scale=args.scale)
         for e in eps:
             print(json.dumps({"id": e.id, "family": e.family, "first": e.first, "gold": e.gold, "meta": e.meta}, ensure_ascii=False))
 
