@@ -169,7 +169,12 @@ def row_key(row):
 REPEATS_OK = {"words", "near"}   # a made-up or near-miss word comes back in a different sentence on purpose
 
 
-PLANS = {"train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "smoke_v2": SMOKE_V2_PLAN,
+# Teacher pilot: Gemma 4 26B A4B (Apache-2.0) in place of Qwen, on the families that matter now (no personal ones),
+# 6 each, to compare keep rate and format against teach-v2's Qwen numbers before choosing the next round's teacher.
+PILOT_G4_PLAN = {k: 6 for k in ["web_fact_retry", "need_web", "math_pair", "lookup_then_compute", "repo_chain", "messy_multi",
+                                 "near_miss", "recipe_web"]}
+
+PLANS = {"pilot_g4": PILOT_G4_PLAN, "train": TRAIN_PLAN, "targets": TARGET_PLAN, "round2": ROUND2_PLAN, "v2": V2_PLAN, "smoke_v2": SMOKE_V2_PLAN,
          "mini_v2": MINI_V2_PLAN, "topup_ltc": TOPUP_LTC_PLAN, "eval": EVAL_PLAN}
 
 

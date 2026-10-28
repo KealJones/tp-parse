@@ -1,4 +1,4 @@
-"""The open-weights teacher: a thinking model (default Qwen/Qwen3-30B-A3B-Thinking-2507-FP8, Apache-2.0) plays Squiggle's
+"""The open-weights teacher: a thinking model (default Qwen/Qwen3-30B-A3B-Thinking-2507-FP8; or google/gemma-4-26B-A4B-it, both Apache-2.0) plays Squiggle's
 phone model inside the real harness, one model call at a time, under the same quality bar and checker as everything else.
 
 For each call it gets TEACHER_SYSTEM (the rules from TEACHER.md, adapted, plus few-shot episodes written by gold.py's
@@ -196,6 +196,18 @@ def to_visible(text):
     return re.sub(r"^<think>\n?", "<visible_thinking>\n", text.replace("</think>", "</visible_thinking>", 1), count=1)
 
 
+def gemma4_answer(text, stats=None):
+    """The answer part of a Gemma 4 thinking-mode output: after <channel|>, without trailing control tokens. None when
+    the thinking never closed (ran past the token limit)."""
+    if "<channel|>" not in text:
+        if stats is not None:
+            stats["unfinished"] += 1
+        return None
+    ans = text.split("<channel|>", 1)[1]
+    ans = re.split(r"<turn\|>|<end_of_turn>|<eos>", ans)[0]
+    return re.sub(r"<\|[a-z_]+\|?>|<[a-z_]+\|>", "", ans).strip()   # Gemma control tokens only, never <visible_thinking>
+
+
 def from_visible(answer):
     m = re.match(r"^\s*<visible_thinking>\s*\n?(.*?)\n?\s*</visible_thinking>[ \t]*\n?(.*)$", answer, re.S)
     if not m:
@@ -242,6 +254,12 @@ class VLLMTeacher:
         from vllm import AsyncEngineArgs, AsyncLLMEngine
         from transformers import AutoTokenizer
         kw = dict(model=model, max_model_len=max_len, gpu_memory_utilization=gpu_mem, enable_prefix_caching=True, disable_log_stats=True, max_num_seqs=max_seqs)
+        # Gemma 4 (Apache-2.0) thinks in <|channel>thought … <channel|> instead of <think> … </think>, is multimodal
+        # (no images here), and Google's recommended sampling is temperature 1.0, top_k 64.
+        self.gemma4 = "gemma-4" in model.lower()
+        if self.gemma4:
+            kw["limit_mm_per_prompt"] = {"image": 0, "audio": 0, "video": 0}
+            temperature = 1.0
         if kv_fp8:
             kw["kv_cache_dtype"] = "fp8"
         self.engine = AsyncLLMEngine.from_engine_args(AsyncEngineArgs(**kw))
@@ -253,14 +271,20 @@ class VLLMTeacher:
 
     async def _gen(self, msgs):
         from vllm import SamplingParams
-        prompt = self.tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
-        sp = SamplingParams(temperature=self.temperature, top_p=0.95, top_k=20, max_tokens=self.max_tokens)
+        if self.gemma4:
+            prompt = self.tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True, enable_thinking=True)
+            sp = SamplingParams(temperature=self.temperature, top_p=0.95, top_k=64, max_tokens=self.max_tokens, skip_special_tokens=False)
+        else:
+            prompt = self.tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+            sp = SamplingParams(temperature=self.temperature, top_p=0.95, top_k=20, max_tokens=self.max_tokens)
         final = None
         async for o in self.engine.generate(prompt, sp, request_id=uuid.uuid4().hex):
             final = o
         o = final.outputs[0]
         self.stats["gen_tokens"] += len(o.token_ids)
         text = o.text
+        if self.gemma4:
+            return gemma4_answer(text, self.stats)
         if "</think>" not in text:
             self.stats["unfinished"] += 1
             return None
