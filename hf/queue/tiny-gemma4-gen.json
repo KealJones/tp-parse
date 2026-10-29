@@ -1,0 +1,17 @@
+{
+ "slug": "tiny-gemma4-gen",
+ "flavor": "a100-large",
+ "timeout": "40m",
+ "files": [
+  "experiments/tiny-gemma4/gen.py"
+ ],
+ "cmd": "VLLM_USE_FLASHINFER_SAMPLER=0 MINUTES=28 python gen.py out",
+ "pip": [
+  "vllm==0.30.0",
+  "datasets"
+ ],
+ "upload_every": 300,
+ "outdir": "out",
+ "out": "experiments/tiny-gemma4/hf-gen",
+ "note": "On-policy healing data: Gemma 4 E2B-it answers ~10.7K questions itself (3.2K Hermes function-calling requests with Gemma-native tool declarations; 7.5K SmolTalk problem-solving prompts: numina-cot, metamathqa, self-oss-instruct, magpie-ultra), thinking on for ~35%, up to 1024 tokens, unfinished answers dropped. Questions only, never the datasets' answers. Hard cap $1.67 (40 min a100-large)."
+}
