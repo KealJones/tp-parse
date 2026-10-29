@@ -1,0 +1,24 @@
+{
+ "slug": "tiny-gemma4-stage1",
+ "flavor": "l4x1",
+ "timeout": "75m",
+ "files": [
+  "experiments/tiny-gemma4/stage1.py",
+  "experiments/squiggle-ft/hf-teach-pilot-g4b/teach/teacher_results.jsonl.gz"
+ ],
+ "cmd": "python stage1.py out",
+ "pip": [
+  "transformers==5.21.0",
+  "datasets",
+  "tokenizers",
+  "huggingface_hub"
+ ],
+ "upload_every": 180,
+ "outdir": "out",
+ "out": "experiments/tiny-gemma4/hf-stage1",
+ "note": "Tiny Gemma 4 stage 1: prune Gemma 4 E2B-it (vocab ~80K from public text, skip least-changing layers keeping KV-source layers, FFN channel pruning) and measure bits per byte before any healing, vs LFM2.5-350M and Qwen3-0.6B. Hard cap $1 (75 min of l4x1).",
+ "job_id": "6ae2fc7641e90535df787435",
+ "url": "https://huggingface.co/jobs/kealjones/6ae2fc7641e90535df787435",
+ "started": "2026-10-29T07:57:42+00:00",
+ "sha": "c1ee72d8f4b782a8d8ca74b7838784feab318aff"
+}
