@@ -1,0 +1,366 @@
+{
+ "layer_sensitivity": {
+  "1": {
+   "web": 1.6308,
+   "agent_replies": 0.8204
+  },
+  "2": {
+   "web": -0.0525,
+   "agent_replies": -0.0564
+  },
+  "3": {
+   "web": 1.6463,
+   "agent_replies": 1.3215
+  },
+  "4": {
+   "web": 0.5517,
+   "agent_replies": 0.4093
+  },
+  "5": {
+   "web": 0.2021,
+   "agent_replies": 0.0284
+  },
+  "6": {
+   "web": 0.0256,
+   "agent_replies": -0.1076
+  },
+  "7": {
+   "web": 0.1674,
+   "agent_replies": -0.1981
+  },
+  "8": {
+   "web": -0.033,
+   "agent_replies": 0.127
+  },
+  "9": {
+   "web": -0.0138,
+   "agent_replies": -0.0118
+  },
+  "10": {
+   "web": 0.1472,
+   "agent_replies": 0.0336
+  },
+  "11": {
+   "web": -0.1947,
+   "agent_replies": 0.067
+  },
+  "12": {
+   "web": -0.1849,
+   "agent_replies": -0.0215
+  },
+  "15": {
+   "web": 0.1432,
+   "agent_replies": 0.1771
+  },
+  "16": {
+   "web": -0.0291,
+   "agent_replies": 0.0964
+  },
+  "17": {
+   "web": -0.0125,
+   "agent_replies": 0.0301
+  },
+  "18": {
+   "web": -0.0149,
+   "agent_replies": 0.0504
+  },
+  "19": {
+   "web": 0.0735,
+   "agent_replies": 0.1087
+  },
+  "20": {
+   "web": 0.2795,
+   "agent_replies": 0.3364
+  },
+  "21": {
+   "web": 0.1019,
+   "agent_replies": 0.116
+  },
+  "22": {
+   "web": 0.1142,
+   "agent_replies": 0.1077
+  },
+  "23": {
+   "web": 0.5309,
+   "agent_replies": 0.4274
+  },
+  "24": {
+   "web": 0.1356,
+   "agent_replies": 0.1806
+  },
+  "25": {
+   "web": 0.254,
+   "agent_replies": 0.0972
+  },
+  "26": {
+   "web": 0.0345,
+   "agent_replies": 0.0377
+  },
+  "27": {
+   "web": 0.0412,
+   "agent_replies": 0.0388
+  },
+  "28": {
+   "web": 0.0275,
+   "agent_replies": 0.0963
+  },
+  "29": {
+   "web": 0.068,
+   "agent_replies": 0.0107
+  },
+  "30": {
+   "web": 0.0335,
+   "agent_replies": 0.075
+  },
+  "31": {
+   "web": 0.0361,
+   "agent_replies": 0.0376
+  },
+  "32": {
+   "web": 0.0353,
+   "agent_replies": 0.0076
+  },
+  "33": {
+   "web": 0.3337,
+   "agent_replies": 0.4643
+  }
+ },
+ "candidates": {
+  "ffn0.5": {
+   "layers": 35,
+   "dropped": [],
+   "hidden": 1536,
+   "ffn": 0.5,
+   "params_body": 1098538240,
+   "params_total": 1938186752,
+   "web": 1.631,
+   "code": 1.6919,
+   "agent_replies": 1.8565,
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "model\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\n"
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "model\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\n"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "model\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\n"
+    },
+    {
+     "prompt": "What is 17 times 23? Think step by step, then answer.",
+     "reply": "model\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\n"
+    }
+   ]
+  },
+  "h1280_ffn0.5": {
+   "layers": 35,
+   "dropped": [],
+   "hidden": 1280,
+   "ffn": 0.5,
+   "params_body": 915451136,
+   "params_total": 1734620416,
+   "web": 1.7026,
+   "code": 1.8465,
+   "agent_replies": 1.9105,
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "user\nWhat is the capital of France? Answer in one sentence.\nmodel\nuser\nWhat is the capital of France? Answer in one sentence.\nmodel\nuser\nWhat is the capital of France? Answer in one sentence."
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "user\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\n"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "user\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\nuser\n"
+    },
+    {
+     "prompt": "What is 17 times 23? Think step by step, then answer.",
+     "reply": "user\nWhat is 17 times 23? Think step by step, then answer. model user.\nuser\nWhat is 17 times 23? model user.\nuser\nWhat is 17 times"
+    }
+   ]
+  },
+  "h1024_ffn0.5": {
+   "layers": 35,
+   "dropped": [],
+   "hidden": 1024,
+   "ffn": 0.5,
+   "params_body": 732364032,
+   "params_total": 1531054080,
+   "web": 2.1165,
+   "code": 2.4202,
+   "agent_replies": 2.4257,
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "What is the answer of the system.\n\nWhat is the answer of the system.\n\nWhat is the answer of the system.\n\nWhat is the answer of the system.\n\nWhat is the answer of system.\n\nWhat is the answer"
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "Python function is a to reverse.\n\nThe Python function is to reverse.\n\nThe Python function is to reverse.\n\nThe Python function is to reverse.\n\nThe Python function is to reverse.\n\nThe Python function is to reverse.\n\n"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "user is a a a to a to a to a to a to a to to a to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to"
+    },
+    {
+     "prompt": "What is 17 times 23? Think step by step, then answer.",
+     "reply": "What is a 17 times 23?\n\nThe model is a 17 times.\n\nThe model is a 17 times.\n\nThe model is a 17 times.\n\nThe model is a 1"
+    }
+   ]
+  },
+  "h1024_ffn0.42_drop4": {
+   "layers": 31,
+   "dropped": [
+    2,
+    6,
+    11,
+    12
+   ],
+   "hidden": 1024,
+   "ffn": 0.42,
+   "params_body": 595490048,
+   "params_total": 1312263168,
+   "web": 2.4645,
+   "code": 3.709,
+   "agent_replies": 3.1782,
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    },
+    {
+     "prompt": "What is 17 times 23? Think step by step, then answer.",
+     "reply": " 1 1 1 1 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. "
+    }
+   ]
+  },
+  "h1024_ffn0.35_drop6": {
+   "layers": 29,
+   "dropped": [
+    2,
+    6,
+    7,
+    9,
+    11,
+    12
+   ],
+   "hidden": 1024,
+   "ffn": 0.35,
+   "params_body": 499171072,
+   "params_total": 1174985728,
+   "web": 3.094,
+   "code": 5.1932,
+   "agent_replies": 4.3062,
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "  a ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?"
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": ", a ? ? ? ? ? ? ? ? ? ? ? ? : A. A  A.  :  A.  A.   . ?  A.   . A. A. A. A. A"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": ",  You are, and the way. You are. You are. You are. You are. You are. You are a. You are a. You are a. You are a. You are a. You are a."
+    },
+    {
+     "prompt": "What is 17 times 23? Think step by step, then answer.",
+     "reply": "       ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?"
+    }
+   ]
+  },
+  "h768_ffn0.42": {
+   "layers": 35,
+   "dropped": [],
+   "hidden": 768,
+   "ffn": 0.42,
+   "params_body": 486930688,
+   "params_total": 1265141504,
+   "web": 2.6379,
+   "code": 3.6176,
+   "agent_replies": 3.4336,
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "what is the system of the current. to the following of the system. to the current. to the following of the system. to the current. to the following of system. to the system. to the following of system. to the"
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "the component of the function. for the string. of the component.. for the system. of the component.. for the string. of the component... for the system. of the component.. for the system. of"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "the user is in the current. (the user is in the system.. of the two. (the user is in the system.. of the two. (the user is in the system.. of the two. (user"
+    },
+    {
+     "prompt": "What is 17 times 23? Think step by step, then answer.",
+     "reply": "the time of 2, is a. (the time of 2, is. (the time of 2, is. (the time of 2, is. (the time of 2, is. (the time"
+    }
+   ]
+  }
+ },
+ "notes": [],
+ "data": {
+  "web": 200,
+  "code": 40,
+  "agent_replies": 54,
+  "calibration": 130
+ },
+ "teacher": {
+  "web": 1.4723,
+  "code": 1.0782,
+  "agent_replies": 1.6118
+ },
+ "teacher_small": {
+  "web": 1.4842,
+  "agent_replies": 1.572
+ },
+ "layer_order": [
+  12,
+  11,
+  2,
+  6,
+  7,
+  9,
+  17,
+  18,
+  32,
+  16,
+  26,
+  31,
+  29,
+  27,
+  8,
+  30,
+  28,
+  10,
+  19,
+  21,
+  22,
+  5,
+  24,
+  15,
+  25,
+  20,
+  33,
+  23,
+  4,
+  1,
+  3
+ ],
+ "hidden_importance_top_share": 0.75
+}
