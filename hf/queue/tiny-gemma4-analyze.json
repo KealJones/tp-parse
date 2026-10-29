@@ -1,0 +1,24 @@
+{
+ "slug": "tiny-gemma4-analyze",
+ "flavor": "l4x1",
+ "timeout": "50m",
+ "files": [
+  "experiments/tiny-gemma4/analyze.py",
+  "experiments/tiny-gemma4/stage1.py",
+  "experiments/tiny-gemma4/surgery.py",
+  "experiments/tiny-gemma4/hf-stage1/kept_ids.json",
+  "experiments/tiny-gemma4/hf-stage1/tokenizer_pruned.json",
+  "experiments/squiggle-ft/hf-teach-pilot-g4b/teach/teacher_results.jsonl.gz"
+ ],
+ "cmd": "python analyze.py out",
+ "pip": [
+  "transformers==5.21.0",
+  "datasets",
+  "tokenizers",
+  "huggingface_hub"
+ ],
+ "upload_every": 180,
+ "outdir": "out",
+ "out": "experiments/tiny-gemma4/hf-analyze",
+ "note": "Stage 1b (Minitron-style): direct per-layer removal sensitivity, hidden/FFN channel importance, and physically cut width-heavy candidates (hidden 1536->1280/1024/768, FFN 35-50%, 0-6 least-harmful layers) measured before healing with chat samples; Squiggle text scored on Gemma's replies from held-out episodes. Hard cap $0.67 (50 min l4x1)."
+}
