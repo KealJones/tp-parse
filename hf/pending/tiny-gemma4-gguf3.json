@@ -19,5 +19,9 @@
  "upload_every": 600,
  "outdir": "out",
  "out": "experiments/tiny-gemma4/hf-gguf3",
- "note": "GGUF of the bigger heal (heal 3: 47M tokens, now answers 'Paris' and stops, and makes native Gemma 4 tool calls). Same build as v2 (FFN padded to 2592, 4-bit per-layer embeddings). CPU only, ~$0.03."
+ "note": "GGUF of the bigger heal (heal 3: 47M tokens, now answers 'Paris' and stops, and makes native Gemma 4 tool calls). Same build as v2 (FFN padded to 2592, 4-bit per-layer embeddings). CPU only, ~$0.03.",
+ "job_id": "6ae386cdad9610e5cb3149d4",
+ "url": "https://huggingface.co/jobs/kealjones/6ae386cdad9610e5cb3149d4",
+ "started": "2026-10-29T17:47:57+00:00",
+ "sha": "d3f4741bf14c4d83f43f6cfd438dbc3644225ebc"
 }
