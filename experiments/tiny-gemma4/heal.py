@@ -95,16 +95,19 @@ def math_stream():
                 yield r["text"]
 
 
-def gen_texts():
-    """On-policy conversations from gen.py: questions from Hermes/SmolTalk, answers written by E2B itself."""
+def gen_texts(tools=None):
+    """On-policy conversations from gen.py: questions from Hermes/SmolTalk, answers written by E2B itself.
+    tools=True: only the Hermes ones (E2B's native tool calls), False: everything else, None: all."""
     from huggingface_hub import hf_hub_download
     rows = []
     for g in GEN.split(","):                                   # several runs: "repo:a.jsonl.gz,repo:b.jsonl.gz"
         repo, path = g.strip().split(":", 1)
         f = hf_hub_download(repo, path, repo_type="dataset", token=os.environ.get("HF_TOKEN"))
         rows += [json.loads(l) for l in gzip.open(f, "rt")]
+    if tools is not None:
+        rows = [r for r in rows if (r.get("source") == "hermes") == tools]
     random.Random(4).shuffle(rows)
-    log(f"on-policy conversations: {len(rows)}")
+    log(f"on-policy conversations{'' if tools is None else (' with tools' if tools else ' without tools')}: {len(rows)}")
     return [r["text"] for r in rows]
 
 
@@ -368,8 +371,10 @@ def main():
     sources = {"web": web_stream(200), "code": code_stream(), "agent": cycle(train_agent)}
     if MIX.get("chat"):
         sources["chat"] = chat_stream(template)
+    if MIX.get("gentools") and GEN:                            # tool calls get their own share of the mix
+        sources["gentools"] = cycle(gen_texts(True))
     if MIX.get("gen") and GEN:
-        sources["gen"] = cycle(gen_texts())
+        sources["gen"] = cycle(gen_texts(False if MIX.get("gentools") else None))
     if MIX.get("math"):
         sources["math"] = math_stream()
     if MIX.get("smoltalk"):
