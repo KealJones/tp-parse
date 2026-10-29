@@ -19,5 +19,9 @@
  "upload_every": 240,
  "outdir": "out",
  "out": "experiments/tiny-gemma4/hf-heal-probe",
- "note": "Heal probe (Keal: experiments under $2 are fine): Gemma 4 E2B-it cut to 80K vocab, layers 28-33 dropped, FFN 42% (~1.5B total), distilled from the uncut model for ~18 min on FineWeb-Edu/code/Squiggle text. Measures how fast bits per byte recovers. Hard cap $1.25 (30 min a100-large)."
+ "note": "Heal probe (Keal: experiments under $2 are fine): Gemma 4 E2B-it cut to 80K vocab, layers 28-33 dropped, FFN 42% (~1.5B total), distilled from the uncut model for ~18 min on FineWeb-Edu/code/Squiggle text. Measures how fast bits per byte recovers. Hard cap $1.25 (30 min a100-large).",
+ "job_id": "6ae2fffa3fb22a235dd555d5",
+ "url": "https://huggingface.co/jobs/kealjones/6ae2fffa3fb22a235dd555d5",
+ "started": "2026-10-29T08:12:42+00:00",
+ "sha": "7b9720efd834993e56dcae7a3ef94b4adde34a55"
 }
