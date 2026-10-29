@@ -101,3 +101,11 @@ Most of the remaining "total" is per-layer embeddings (80K × layers × 256 ≈ 
 Shrinking or dropping them is the next lever after the body.
 
 **Heal 1** (`hf-heal1/`): hidden 1024, FFN 42%, layers 2/6/11/12 removed (0.60B body), distillation only.
+Result (a100-large, 68.8 min, $2.87, 16M tokens, KD only): web bpb 2.58 → **1.34** (teacher 1.49), Gemma replies from
+held-out episodes 3.13 → **1.14** (teacher 1.61: the student learns Squiggle's format, which E2B-it never saw).
+Greedy chat samples went from blank lines to chat-shaped answers that drift and loop ("The capital of France is
+**Gemma de France…", "The sky is a blue and the sky is a blue."): 85% raw web teaches text, not answering.
+Checkpoint: `kealjones/tp-parse-runs` → `tiny-gemma4-heal1/6ae32a7041e90535df78a3ff/ckpt/` (bf16, 2.6 GB).
+
+**Heal 2** (`hf-heal2-chat/`): continue from heal 1 with 35% OpenAssistant oasst1 chat contexts (human-written,
+Apache-2.0; distillation targets come from the teacher), lr 1e-4, ~22 min.
