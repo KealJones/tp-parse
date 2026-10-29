@@ -1,0 +1,23 @@
+{
+ "slug": "tiny-gemma4-heal-probe",
+ "flavor": "a100-large",
+ "timeout": "30m",
+ "files": [
+  "experiments/tiny-gemma4/heal.py",
+  "experiments/tiny-gemma4/surgery.py",
+  "experiments/tiny-gemma4/hf-stage1/kept_ids.json",
+  "experiments/tiny-gemma4/hf-stage1/tokenizer_pruned.json",
+  "experiments/squiggle-ft/hf-teach-pilot-g4b/teach/teacher_results.jsonl.gz"
+ ],
+ "cmd": "KEEP_LAYERS=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,34 FFN=0.42 MINUTES=21 BATCH=4 SEQ=1024 LR=2e-4 EVAL_EVERY=150 CKPT_MIN=100 python heal.py out",
+ "pip": [
+  "transformers==5.21.0",
+  "datasets",
+  "tokenizers",
+  "huggingface_hub"
+ ],
+ "upload_every": 240,
+ "outdir": "out",
+ "out": "experiments/tiny-gemma4/hf-heal-probe",
+ "note": "Heal probe (Keal: experiments under $2 are fine): Gemma 4 E2B-it cut to 80K vocab, layers 28-33 dropped, FFN 42% (~1.5B total), distilled from the uncut model for ~18 min on FineWeb-Edu/code/Squiggle text. Measures how fast bits per byte recovers. Hard cap $1.25 (30 min a100-large)."
+}
