@@ -9,7 +9,7 @@ Questions only (never the datasets' own answers):
     (code), smol-magpie-ultra (general): the first user turn.
 Every word of every answer is Gemma's (Apache-2.0). Thinking is on for a share of prompts (THINK_SHARE).
 
-    python gen.py OUT_DIR        env: MODEL, N_SMOL, MAX_TOKENS, THINK_SHARE, MINUTES
+    python gen.py OUT_DIR        env: MODEL, N_SMOL, MAX_TOKENS, THINK_SHARE, MINUTES, SEED, HERMES
 Writes OUT_DIR/gen.jsonl.gz: {"source", "thinking", "text"} where text is the full conversation in Gemma's
 chat format (tools, user turn, E2B's answer, end of turn), without the leading <bos>.
 """
@@ -22,6 +22,8 @@ N_SMOL = json.loads(os.environ.get("N_SMOL", '{"numina-cot-100k": 2500, "metamat
 MAX_TOKENS = int(os.environ.get("MAX_TOKENS", 1024))
 THINK_SHARE = float(os.environ.get("THINK_SHARE", 0.35))
 MINUTES = float(os.environ.get("MINUTES", 25))
+SEED = int(os.environ.get("SEED", 0))                         # a new seed draws different SmolTalk questions
+HERMES = os.environ.get("HERMES", "1") != "0"                 # 0: skip Hermes (already answered in a run before)
 T0 = time.time()
 
 
@@ -31,9 +33,9 @@ def log(*a):
 
 def prompts(tok):
     from datasets import load_dataset
-    rng = random.Random(0)
+    rng = random.Random(SEED)
     out, seen = [], set()
-    for cfg in ("func_calling_singleturn", "glaive_func_calling"):
+    for cfg in (("func_calling_singleturn", "glaive_func_calling") if HERMES else ()):
         for r in load_dataset("NousResearch/hermes-function-calling-v1", cfg, split="train"):
             user = next((m["value"] for m in r["conversations"] if m["from"] == "human"), None)
             if not user or user in seen:
@@ -45,7 +47,7 @@ def prompts(tok):
                 continue
             out.append({"source": "hermes", "messages": [{"role": "user", "content": user}], "tools": tools or None})
     need = dict(N_SMOL)
-    for r in load_dataset("HuggingFaceTB/smoltalk", "all", split="train", streaming=True).shuffle(seed=0, buffer_size=5000):
+    for r in load_dataset("HuggingFaceTB/smoltalk", "all", split="train", streaming=True).shuffle(seed=SEED, buffer_size=5000):
         src = r.get("source")
         if need.get(src, 0) <= 0:
             if not any(v > 0 for v in need.values()):

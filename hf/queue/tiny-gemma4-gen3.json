@@ -1,0 +1,17 @@
+{
+ "slug": "tiny-gemma4-gen3",
+ "flavor": "a100-large",
+ "timeout": "35m",
+ "files": [
+  "experiments/tiny-gemma4/gen.py"
+ ],
+ "cmd": "(command -v gcc || (apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gcc g++ >/dev/null)) && VLLM_USE_FLASHINFER_SAMPLER=0 MINUTES=27 SEED=1 HERMES=0 MAX_TOKENS=2048 N_SMOL='{\"numina-cot-100k\": 6000, \"metamathqa-50k\": 3000, \"self-oss-instruct\": 4500, \"smol-magpie-ultra\": 3500}' python gen.py out",
+ "pip": [
+  "vllm==0.30.0",
+  "datasets"
+ ],
+ "upload_every": 300,
+ "outdir": "out",
+ "out": "experiments/tiny-gemma4/hf-gen3",
+ "note": "More on-policy healing data. gen2 kept 6,395 of 10,686 answers (4,291 hit the 1,024-token cap, mostly long maths/code reasoning) ~ 4M tokens, too little for a ~100 min H200 heal without looping over it ~10x. New SmolTalk questions (seed 1, no Hermes: those were all answered), cap 2,048 tokens. Hard cap $1.46."
+}
