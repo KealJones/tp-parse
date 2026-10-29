@@ -77,3 +77,27 @@ Next, if continuing: (1) fix the eval (episode-level hold-out, chat samples, KD-
 student (drop more of 25–33 plus FFN ~35%, body ~0.4B); (3) only then a longer heal on an H200.
 Also compare against simply fine-tuning Qwen3-0.6B, which already runs at 9.3 tok/s on the iPhone and scores
 far better than E2B-it on raw-text bpb.
+
+### Stage 1b: direct importance, Minitron-style (2026-10-29, l4x1, 10.7 min, ~$0.15) — `hf-analyze/`
+
+Per-layer removal (bpb change on web / Gemma replies, one layer at a time) disagrees with stage 1's angular-distance
+proxy. Harmless or slightly helpful to remove: **12, 11, 2, 6, 7, 9** (12 and 11 lower web bpb by ~0.19).
+Costly: **1 (+1.6), 3 (+1.6), 4 (+0.55), 23 (+0.53), 33 (+0.33)**. Layers 25–32 cost little one at a time;
+stage 1's "skip 6" also removed 33, which is part of why it collapsed. Top 1024 of 1536 hidden channels carry 75%
+of the activation mass.
+
+Width-heavy candidates, physically cut, before healing (teacher web 1.47 / code 1.08 / Gemma replies 1.61):
+
+| candidate | body | total | web | code | replies |
+|---|---|---|---|---|---|
+| FFN 50% | 1.10B | 1.94B | 1.63 | 1.69 | 1.86 |
+| hidden 1280, FFN 50% | 0.92B | 1.73B | 1.70 | 1.85 | 1.91 |
+| hidden 1024, FFN 50% | 0.73B | 1.53B | 2.12 | 2.42 | 2.43 |
+| hidden 1024, FFN 42%, drop 2/6/11/12 | 0.60B | 1.31B | 2.46 | 3.71 | 3.18 |
+| hidden 1024, FFN 35%, drop 6 | 0.50B | 1.17B | 3.09 | 5.19 | 4.31 |
+| hidden 768, FFN 42% | 0.49B | 1.27B | 2.64 | 3.62 | 3.43 |
+
+Most of the remaining "total" is per-layer embeddings (80K × layers × 256 ≈ 0.6–0.7B): cheap lookups, but memory.
+Shrinking or dropping them is the next lever after the body.
+
+**Heal 1** (`hf-heal1/`): hidden 1024, FFN 42%, layers 2/6/11/12 removed (0.60B body), distillation only.
