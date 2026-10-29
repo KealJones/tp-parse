@@ -1,0 +1,445 @@
+{
+ "model": "google/gemma-4-E2B-it",
+ "vocab_target": 80000,
+ "configs": {
+  "full": {
+   "web": 1.4232,
+   "code": 1.0256,
+   "agent": 1.5879,
+   "skip": [],
+   "ffn_keep": 1.0,
+   "params": {
+    "body": 1877104128,
+    "embedding": 402653184,
+    "ple": 2348810240,
+    "total": 4628567552
+   },
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "Here are several ways to write a Python function that reverses a string, ranging from the most Pythonic (idiomatic) to more manual approaches.\n\n### 1. The Pythonic Way (Slicing) - Recommended\n\nThis is"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "The sky appears blue because of a phenomenon called Rayleigh scattering, where shorter wavelengths of sunlight (blue and violet) are scattered more effectively by the Earth's atmosphere than longer wavelengths (like red and orange). This scattered blue light reaches our eyes"
+    }
+   ]
+  },
+  "vocab": {
+   "web": 1.4451,
+   "code": 1.0504,
+   "agent": 1.5912,
+   "skip": [],
+   "ffn_keep": 1.0,
+   "params": {
+    "body": 1877104128,
+    "embedding": 122875392,
+    "ple": 716773120,
+    "total": 2716752640
+   },
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "Here are several ways to write a Python function that reverses a string, ranging from the most Pythonic (idiomatic) to more manual approaches.\n\n### 1. The Pythonic Way (Slicing) - Recommended\n\nThis is"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "The sky appears blue because of a phenomenon called Rayleigh scattering, where shorter wavelengths of sunlight (blue and violet) are scattered more effectively by the Earth's atmosphere than longer wavelengths (like red and orange). This scattered blue light reaches our eyes"
+    }
+   ]
+  },
+  "vocab+skip6": {
+   "web": 2.2661,
+   "code": 3.2503,
+   "agent": 3.4132,
+   "skip": [
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+   ],
+   "ffn_keep": 1.0,
+   "params": {
+    "body": 1486199552,
+    "embedding": 122875392,
+    "ple": 593897728,
+    "total": 2202972672
+   },
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": " forceps the capital of France is steeped in rich history and vibrant culture."
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": " there are several ways to reverse a sparked in amni. here are the most common and idi beginner to more advanced approaches.\n\n### 1. Using slicing graphene ( pith Circus!Kad!\n\nThis is the ** cleanest, most concise,"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "The sky is blue because of a phenomenon called Rayleigh scattering, where sunlight interacts with the denser, more prevalent</b></b></b>** **of the bluish wavelengths of scattered by the abundant</b> **of the abundant</b> **of the abundant** **of"
+    }
+   ]
+  },
+  "vocab+skip10": {
+   "web": 2.9147,
+   "code": 4.1247,
+   "agent": 4.0018,
+   "skip": [
+    5,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+   ],
+   "ffn_keep": 1.0,
+   "params": {
+    "body": 1257315840,
+    "embedding": 122875392,
+    "ple": 511980800,
+    "total": 1892172032
+   },
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "The Baud meridian is the most likely candidate for the Kaf Bohr.\n\n*(This is a somewhat unrelated and potentially complex answer, as there is no single, definitive \" Chips and slogan\" that would naturally lead to the \" Cement and slogan\""
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": " there are several ways to \" Bayer Buddhism\" or \"reb Bells\" in a different context. You might be trying to:\n\n1. **actually perform a specific action that is often associated with these ideas.\n\n\n 2."
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "Here are two different ways to explain why the sky is often considered or actually is blue, depending on the specific context you might have in mind:\n\n** mund windmills and the typical/modern approach:\n\n1. **As a standard or"
+    }
+   ]
+  },
+  "vocab+skip14": {
+   "web": 3.8587,
+   "code": 4.8949,
+   "agent": 5.7746,
+   "skip": [
+    5,
+    6,
+    7,
+    17,
+    18,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+   ],
+   "ffn_keep": 1.0,
+   "params": {
+    "body": 1055956992,
+    "embedding": 122875392,
+    "ple": 430063872,
+    "total": 1608896256
+   },
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "You have alot."
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "You have several possible ways to accomplishthis.\n\nIf you have any other suggestions, you can probably finally glaciers\u3002"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "You have alot of you.\n\n"
+    }
+   ]
+  },
+  "vocab+skip17": {
+   "web": 6.596,
+   "code": 8.7348,
+   "agent": 9.3051,
+   "skip": [
+    5,
+    6,
+    7,
+    8,
+    17,
+    18,
+    21,
+    22,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+   ],
+   "ffn_keep": 1.0,
+   "params": {
+    "body": 891175424,
+    "embedding": 122875392,
+    "ple": 368626176,
+    "total": 1382676992
+   },
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": " hearty bovine therebung would because you you you gotta you you gotta you you gotta you you gotta you you gotta you you gotta you                               \n** You There You gotta you you you gotta you you you gotta you you you gotta yououtube Then"
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "This is Plyshirelahnga Then You gotta You You You gotta You You gotta you you you you you you you you it you you you gotta you you you you"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": " heartyiflower Then, you probably probably might probably Then Tobago Then you Then you Then you Then you Then you Then you Then yououtube Then Then\n\n** hearty That That that that that that that that that that that that that that that that that"
+    }
+   ]
+  },
+  "vocab+ffn0.66": {
+   "web": 1.5137,
+   "code": 1.2949,
+   "agent": 1.4214,
+   "skip": [],
+   "ffn_keep": 0.66,
+   "params": {
+    "body": 1347678033,
+    "embedding": 122875392,
+    "ple": 716773120,
+    "total": 2187326545
+   },
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "The capital of France is Paris."
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "Here's a Python function that reverses a string.\n\n```python\ndef reverse_string(s):\n    # Reverse the string\n    # Return the reversed string\n    # Return the reversed string\n    # Return the reversed"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "The sky is blue because of the color blue."
+    }
+   ]
+  },
+  "vocab+ffn0.42": {
+   "web": 1.6973,
+   "code": 1.532,
+   "agent": 1.5606,
+   "skip": [],
+   "ffn_keep": 0.42,
+   "params": {
+    "body": 973965573,
+    "embedding": 122875392,
+    "ple": 716773120,
+    "total": 1813614085
+   },
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "model\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\n"
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "model\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\n"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "model\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\nmodel\n"
+    }
+   ]
+  },
+  "vocab+skip17+ffn0.42": {
+   "web": 7.1737,
+   "code": 10.2043,
+   "agent": 9.8859,
+   "skip": [
+    5,
+    6,
+    7,
+    8,
+    17,
+    18,
+    21,
+    22,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+   ],
+   "ffn_keep": 0.42,
+   "params": {
+    "body": 480657899,
+    "embedding": 122875392,
+    "ple": 368626176,
+    "total": 972159467
+   },
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": " swirling screaming voiciBou bungal not bungal not noretag nore nor Prius PriusAdditionallyjango Priusutomutomutomutom actually actually Sikhs etc etc etc etc etc etcgle\n\n\n meantime\n\n meanwhile, you you you; you; etc etc etc etc etc"
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "ThisLightning\n gymnastKanKanKanKanKanKanKan Kart therein ital ital italcg ital ital etc etc etc etc etc[]jjjjIdahoIdaho=======KirsqliteKirKirCeCeCeCeCeetcCeCeCe etcCeCeCeigat"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "ThisLightning Carls amat Sikhs Sikhs Sikhs amat amat amat amat amat amat also Gymn Gymnthen finally finally Sikhs etc etc etc etc etc etc etc etcmh etc etc etc etcetc etc etc etcting etc etc etc etcting etc etc etcentuChicago"
+    }
+   ]
+  },
+  "vocab+skip10+ffn0.66": {
+   "web": 2.9936,
+   "code": 3.8198,
+   "agent": 3.8482,
+   "skip": [
+    5,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
+   ],
+   "ffn_keep": 0.66,
+   "params": {
+    "body": 910782396,
+    "embedding": 122875392,
+    "ple": 511980800,
+    "total": 1545638588
+   },
+   "samples": [
+    {
+     "prompt": "What is the capital of France? Answer in one sentence.",
+     "reply": "The capital of Muc Meadows is the capital of Fram Loom.\n\nThis is the only one.\n\nThe capital of Franch is the capital of the whole.\n\nThe capital of the Franch is the capital of the whole.\n\nThe capital of"
+    },
+    {
+     "prompt": "Write a Python function that reverses a string.",
+     "reply": "This is a fascinating and frankly, the following is a great way to the following is a great way to the following is a great way to the following is a great way to the following is a great way to the following is a great way"
+    },
+    {
+     "prompt": "Explain why the sky is blue in two sentences.",
+     "reply": "The skies are blue in two sentences.\n\nThis is a fascinating and perhaps you might be referring to the following:\n\nIf you would like to the following:\n\nThe sky is blue in two sentences.\n\nThis is a fascinating and perhaps"
+    }
+   ]
+  }
+ },
+ "notes": [],
+ "data": {
+  "web": 200,
+  "code": 60,
+  "agent": 80,
+  "calibration": 128,
+  "count_docs": 46000
+ },
+ "vocab": {
+  "kept": 79997,
+  "top_n": 58020,
+  "counted_tokens": 24118631,
+  "distinct_seen": 118262,
+  "must_keep_from_squiggle": 7056,
+  "count_coverage": 0.992045,
+  "min_count_kept": 14,
+  "tokens_web": {
+   "full": 103255,
+   "pruned": 104240,
+   "ratio": 1.0095
+  },
+  "tokens_code": {
+   "full": 43870,
+   "pruned": 44257,
+   "ratio": 1.0088
+  },
+  "tokens_agent": {
+   "full": 46207,
+   "pruned": 46256,
+   "ratio": 1.0011
+  }
+ },
+ "protected_layers": [
+  0,
+  13,
+  14,
+  34
+ ],
+ "layer_scores": [
+  0.4945,
+  0.3058,
+  0.2642,
+  0.4018,
+  0.1892,
+  0.1272,
+  0.1367,
+  0.1539,
+  0.1682,
+  0.1953,
+  0.369,
+  0.3513,
+  0.3937,
+  0.4983,
+  0.492,
+  0.4504,
+  0.1709,
+  0.1478,
+  0.1415,
+  0.2404,
+  0.3283,
+  0.1595,
+  0.1687,
+  0.3918,
+  0.1992,
+  0.1182,
+  0.1,
+  0.0877,
+  0.0771,
+  0.0589,
+  0.042,
+  0.0421,
+  0.0561,
+  0.0805,
+  0.1209
+ ],
+ "baselines": {
+  "LiquidAI/LFM2.5-350M": {
+   "web": 1.3117,
+   "params": 354483968,
+   "code": 1.513,
+   "agent": 2.0651
+  },
+  "Qwen/Qwen3-0.6B": {
+   "web": 0.9215,
+   "params": 596049920,
+   "code": 0.5572,
+   "agent": 1.0665
+  }
+ }
+}
