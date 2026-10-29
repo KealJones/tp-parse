@@ -127,6 +127,41 @@ repetition. Checkpoint: `kealjones/tp-parse-runs` → `tiny-gemma4-heal2-chat/6a
   converter to accept the cut config and the 80K tokenizer). Samples should use a repetition penalty when judging
   quality, as the app does.
 
+### Heal 3: E2B's own answers (2026-10-29, h200, 78 min, ~$6.55) — `hf-heal3b/`
+
+On-policy data first (`gen.py`, Gemma 4 E2B-it on vLLM answering questions only, never the datasets' answers):
+gen2 (a100, 15 min, ~$0.61) answered 10,686 prompts (Hermes function-calling requests with their tools in
+Gemma's native format + SmolTalk maths/code/general) and kept 6,395; 40% hit the 1,024-token cap. gen3 (a100,
+28.5 min, ~$1.19) answered 17,000 new SmolTalk questions with a 2,048 cap and kept 14,126. Together ~20.5k
+conversations (2,668 with tool calls), ~20M tokens. (gen1 failed on a missing C compiler; heal3 died in 18 s on
+an old `brotli` the Hub client now needs, so the job pins `brotli>=1.2.0`.)
+
+Heal 3 resumed heal 2: distillation only, lr 1e-4, batch 12 × 1024, mix 38% E2B answers, 10% E2B tool calls,
+15% FineMath, 10% Squiggle episodes, 13% web, 7% code, 7% oasst1. 3,841 steps, 47.2M tokens.
+
+| | web bpb | agent replies bpb |
+|---|---|---|
+| teacher (E2B-it) | 1.49 | 1.61 |
+| heal 2 (start) | 1.34 | 1.11 |
+| heal 3 | 1.33 | 1.10 |
+
+bpb barely moved, but behaviour changed a lot:
+
+| prompt | heal 2 | heal 3 |
+|---|---|---|
+| capital of France (greedy) | "The capital of France is **** France** (or ** France**)…" | "The capital of France is **Paris** (or **Parisian**).<turn\|>" — stops |
+| weather in Phoenix, `get_weather` tool | "I am **not a large language model…" | `<\|tool_call>call:get_weather{city:<\|"\|>Phoenix<\|"\|>}<tool_call\|>` — a correct native call |
+| 17 × 23 | "Please provide the answer…" | "**1. Set up the equation** … 17 × (20 + 3) = …" |
+| reverse a string | broken signature | "Here are a few ways… 1. Using `reversed()`" |
+
+Still wrong in places (the sky "reflects light from the sun"; greedy decoding repeats `<|tool_response>`
+after a call, which the runtime should stop on). Checkpoint: `kealjones/tp-parse-runs` →
+`tiny-gemma4-heal3b/6ae371135ddcdc083026213d/ckpt/`. GGUF: `kealjones/tiny-gemma4-test`,
+`tiny-gemma4-heal3-Q4_0.gguf`.
+
+Spend for the $10 bigger-heal stretch: gen1 ~$0.16, gen2 ~$0.61, gen3 ~$1.19, GGUF builds ~$0.06, heal3 crash
+~$0.05, heal 3 ~$6.55 = **~$8.62**.
+
 ### Later: vision (Keal, 2026-10-29)
 
 The cut keeps only Gemma 4's text model: E2B's vision and audio encoders were never copied, and the GGUF has no
