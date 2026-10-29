@@ -19,5 +19,9 @@
  "upload_every": 240,
  "outdir": "out",
  "out": "experiments/tiny-gemma4/hf-heal-probe2",
- "note": "Retry of the heal probe: the real E2B config keys per-layer overrides as zero-padded strings ('04'), so layers 4 and 9 lost head_dim 512 and the student config failed to build. Same probe otherwise. Hard cap $1.25."
+ "note": "Retry of the heal probe: the real E2B config keys per-layer overrides as zero-padded strings ('04'), so layers 4 and 9 lost head_dim 512 and the student config failed to build. Same probe otherwise. Hard cap $1.25.",
+ "job_id": "6ae3018c3fb22a235dd557a6",
+ "url": "https://huggingface.co/jobs/kealjones/6ae3018c3fb22a235dd557a6",
+ "started": "2026-10-29T08:19:24+00:00",
+ "sha": "a02236d9f1cbfc6a075c330cc87a12ad3c4efefb"
 }
