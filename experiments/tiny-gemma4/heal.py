@@ -26,7 +26,9 @@ LR = float(os.environ.get("LR", 2e-4))
 BATCH = int(os.environ.get("BATCH", 8))
 SEQ = int(os.environ.get("SEQ", 1024))
 EVAL_EVERY = int(os.environ.get("EVAL_EVERY", 400))
-MIX = json.loads(os.environ.get("MIX", '{"web": 0.80, "code": 0.08, "agent": 0.12}'))
+MIX = json.loads(os.environ.get("MIX", '{"web": 0.85, "code": 0.10, "agent": 0.05}'))
+CE_W = float(os.environ.get("CE_W", 0.0))                  # plain next-token loss weight (0 = distillation only)
+HIDDEN = int(os.environ.get("HIDDEN", 0))                   # keep this many hidden dims (0 = all)
 AGENT_FILE = os.environ.get("AGENT_FILE", "teacher_results.jsonl.gz")
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 T0 = time.time()
@@ -59,17 +61,22 @@ def code_stream():
                 yield r["content"]
 
 
-def agent_texts():
-    out = []
+def agent_texts(held=20):
+    """Teacher episodes split by EPISODE (calls in one episode share long prompts). Returns (held-out replies,
+    training texts). Held-out text is Gemma's replies only, so shared harness prompts can't be memorised."""
+    eps = []
     if os.path.exists(AGENT_FILE):
-        for line in gzip.open(AGENT_FILE, "rt"):
-            r = json.loads(line)
-            for c in r.get("calls") or []:
-                t = "\n\n".join(str(m.get("content", "")) for m in c.get("messages") or [] if m.get("content")) + "\n\n" + str(c.get("output") or "")
-                if len(t) > 200:
-                    out.append(t)
-    random.Random(0).shuffle(out)
-    return out
+        eps = [json.loads(l) for l in gzip.open(AGENT_FILE, "rt")]
+    random.Random(0).shuffle(eps)
+    held_replies = [str(c.get("output") or "") for e in eps[:held] for c in e.get("calls") or [] if len(str(c.get("output") or "")) > 80]
+    train = []
+    for e in eps[held:]:
+        for c in e.get("calls") or []:
+            t = "\n\n".join(str(m.get("content", "")) for m in c.get("messages") or [] if m.get("content")) + "\n\n" + str(c.get("output") or "")
+            if len(t) > 200:
+                train.append(t)
+    random.Random(1).shuffle(train)
+    return held_replies, train
 
 
 class Packer:
@@ -174,8 +181,7 @@ def main():
     log("keep layers", keep_layers)
 
     # FFN channel scores on a little calibration text (teacher ids).
-    agent = agent_texts()
-    held_agent, train_agent = agent[:60], agent[60:]
+    held_agent, train_agent = agent_texts()
     web_eval = []
     ws = web_stream(0)
     for _ in range(80):
@@ -183,7 +189,13 @@ def main():
     cal = web_eval[:40] + [a[:3000] for a in train_agent[:20]]
     t_enc = lambda s: [new2old[i].item() for i in encode(s)]
     sums = [None] * L
+    hid = torch.zeros(teacher.config.hidden_size, device=DEV)
     hooks = []
+    for l in teacher.layers:
+        for n in ("input_layernorm", "pre_feedforward_layernorm"):
+            def acc(mod, a, o):
+                hid.add_(o.float().abs().reshape(-1, o.shape[-1]).mean(0))   # returns None: output unchanged
+            hooks.append(getattr(l, n).register_forward_hook(acc))
     for i, l in enumerate(teacher.layers):
         def pre(mod, a, i=i):
             v = a[0].float().abs().reshape(-1, a[0].shape[-1]).sum(0)
@@ -196,26 +208,49 @@ def main():
         h.remove()
     ch = [s * l.mlp.down_proj.weight.float().norm(dim=0) for s, l in zip(sums, teacher.layers)]
 
-    student = cut(teacher, keep_layers, FFN, ch, kept).to(DEV).float()
+    hk = hid.topk(HIDDEN).indices.sort().values.tolist() if HIDDEN else None
+    student = cut(teacher, keep_layers, FFN, ch, kept, hk).to(DEV).float()
     student.train()
     s_head = student.embed_tokens.weight                                     # tied
     n_params = sum(p.numel() for p in student.parameters())
-    log(f"student {n_params / 1e6:.0f}M params ({len(keep_layers)} layers, ffn {FFN}, vocab {len(kept)})")
+    n_body = sum(p.numel() for n, p in student.named_parameters() if not n.startswith("embed_tokens"))
+    log(f"student {n_params / 1e6:.0f}M params, body {n_body / 1e6:.0f}M ({len(keep_layers)} layers, hidden {student.config.hidden_size}, ffn {FFN}, vocab {len(kept)})")
     try:
         student.gradient_checkpointing_enable()
     except Exception as e:
         log("no gradient checkpointing:", e)
     opt = torch.optim.AdamW(student.parameters(), lr=LR, betas=(0.9, 0.95), weight_decay=0.0, fused=DEV == "cuda")
 
-    evals = {"web": web_eval[40:], "agent": [a[:3000] for a in held_agent]}
+    evals = {"web": web_eval[40:], "agent_replies": [a[:3000] for a in held_agent[:80]]}
+    chat = lambda p: tok.apply_chat_template([{"role": "user", "content": p}], tokenize=False, add_generation_prompt=True)
+    stop = {ptok.token_to_id(t) for t in ("<eos>", "<end_of_turn>", "<turn|>") if ptok.token_to_id(t) is not None}
+    PROMPTS = ["What is the capital of France? Answer in one sentence.", "Write a Python function that reverses a string.",
+               "Explain why the sky is blue in two sentences.", "What is 17 times 23? Think step by step, then answer."]
+
+    @torch.no_grad()
+    def chat_samples(n=40):
+        student.eval()
+        out = []
+        for p in PROMPTS:
+            ids = ptok.encode(chat(p), add_special_tokens=False).ids; gen = []
+            for _ in range(n):
+                with torch.autocast(DEV, dtype=torch.bfloat16, enabled=DEV == "cuda"):
+                    h = student(input_ids=torch.tensor([ids + gen], device=DEV)).last_hidden_state[0, -1]
+                j = int((h.float() @ s_head.float().T).argmax()); gen.append(j)
+                if j in stop:
+                    break
+            out.append({"prompt": p, "reply": ptok.decode(gen, skip_special_tokens=True)})
+        student.train()
+        return out
     t_head_k = t_head[kept_t]
 
     def evaluate(tag):
         r = {"step": step, "min": round((time.time() - T0) / 60, 1), "tag": tag}
         for k, docs in evals.items():
             r[f"student_{k}"] = round(bpb(student, s_head, encode, bos, docs, cap), 4)
+        r["samples"] = chat_samples()
         open(os.path.join(OUT, "metrics.jsonl"), "a").write(json.dumps(r) + "\n")
-        log("eval", r)
+        log("eval", {k: v for k, v in r.items() if k != "samples"}, "|", " / ".join(repr(x["reply"][:70]) for x in r["samples"][:2]))
         return r
 
     step = 0
@@ -255,7 +290,7 @@ def main():
         sp = F.log_softmax(sl, -1)
         kd = F.kl_div(sp.reshape(-1, sp.shape[-1]), tp.reshape(-1, tp.shape[-1]), log_target=True, reduction="batchmean")
         ce = F.nll_loss(sp.reshape(-1, sp.shape[-1]), tgt.reshape(-1))
-        loss = kd + 0.1 * ce
+        loss = kd + CE_W * ce
         # Warmup then cosine to 10% over the time budget.
         frac = min(1.0, (time.time() - T0) / (MINUTES * 60))
         lr = LR * min(1.0, (step + 1) / warm) * (0.1 + 0.9 * 0.5 * (1 + math.cos(math.pi * frac)))
