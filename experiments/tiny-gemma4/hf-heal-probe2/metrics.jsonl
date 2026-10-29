@@ -1,0 +1,10 @@
+{"teacher": {"teacher_web": 1.4858, "teacher_agent": 1.5806}}
+{"step": 0, "min": 1.2, "tag": "cut, before healing", "student_web": 2.6642, "student_agent": 2.8403}
+{"step": 150, "min": 4.0, "tag": "training", "student_web": 1.4655, "student_agent": 0.8763}
+{"step": 300, "min": 6.8, "tag": "training", "student_web": 1.3863, "student_agent": 0.6808}
+{"step": 450, "min": 9.6, "tag": "training", "student_web": 1.338, "student_agent": 0.6147}
+{"step": 600, "min": 12.4, "tag": "training", "student_web": 1.3103, "student_agent": 0.5896}
+{"step": 750, "min": 15.1, "tag": "training", "student_web": 1.2682, "student_agent": 0.5603}
+{"step": 900, "min": 17.9, "tag": "training", "student_web": 1.2484, "student_agent": 0.5559}
+{"step": 1050, "min": 20.7, "tag": "training", "student_web": 1.2352, "student_agent": 0.5435}
+{"step": 1062, "min": 21.0, "tag": "end", "student_web": 1.2402, "student_agent": 0.5438}
