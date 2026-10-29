@@ -1,0 +1,23 @@
+{
+ "slug": "tiny-gemma4-heal3",
+ "flavor": "h200",
+ "timeout": "90m",
+ "files": [
+  "experiments/tiny-gemma4/heal.py",
+  "experiments/tiny-gemma4/surgery.py",
+  "experiments/tiny-gemma4/hf-stage1/kept_ids.json",
+  "experiments/tiny-gemma4/hf-stage1/tokenizer_pruned.json",
+  "experiments/squiggle-ft/hf-teach-pilot-g4b/teach/teacher_results.jsonl.gz"
+ ],
+ "cmd": "RESUME=kealjones/tp-parse-runs:tiny-gemma4-heal2-chat/6ae33bbe41e90535df78b7d7/ckpt GEN=kealjones/tp-parse-runs:tiny-gemma4-gen2/6ae3513241e90535df78da62/gen.jsonl.gz,kealjones/tp-parse-runs:tiny-gemma4-gen3/6ae35cc05ddcdc08302611bb/gen.jsonl.gz KEEP_LAYERS=0,1,3,4,5,7,8,9,10,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34 FFN=0.42 HIDDEN=1024 MIX='{\"gen\": 0.38, \"gentools\": 0.1, \"math\": 0.15, \"agent\": 0.1, \"web\": 0.13, \"code\": 0.07, \"chat\": 0.07}' MINUTES=78 BATCH=12 SEQ=1024 LR=1e-4 CE_W=0 EVAL_EVERY=600 CKPT_MIN=30 python heal.py out",
+ "pip": [
+  "transformers==5.21.0",
+  "datasets",
+  "tokenizers",
+  "huggingface_hub"
+ ],
+ "upload_every": 600,
+ "outdir": "out",
+ "out": "experiments/tiny-gemma4/hf-heal3",
+ "note": "The bigger heal (Keal: $10 incl. generation). Resume heal 2; distillation only. 48% E2B's own answers (gen2+gen3: ~20.5k conversations, ~20M tokens; Hermes tool calls split out at 10% so the student learns Gemma 4's native tool-call format), 15% FineMath, 10% Squiggle episodes, 13% web, 7% code, 7% oasst1. Checkpoints every 30 min. Hard cap $7.50 (spent so far ~$2.02)."
+}
