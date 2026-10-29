@@ -13,5 +13,9 @@
  "upload_every": 300,
  "outdir": "out",
  "out": "experiments/tiny-gemma4/hf-gen3",
- "note": "More on-policy healing data. gen2 kept 6,395 of 10,686 answers (4,291 hit the 1,024-token cap, mostly long maths/code reasoning) ~ 4M tokens, too little for a ~100 min H200 heal without looping over it ~10x. New SmolTalk questions (seed 1, no Hermes: those were all answered), cap 2,048 tokens. Hard cap $1.46."
+ "note": "More on-policy healing data. gen2 kept 6,395 of 10,686 answers (4,291 hit the 1,024-token cap, mostly long maths/code reasoning) ~ 4M tokens, too little for a ~100 min H200 heal without looping over it ~10x. New SmolTalk questions (seed 1, no Hermes: those were all answered), cap 2,048 tokens. Hard cap $1.46.",
+ "job_id": "6ae35cc05ddcdc08302611bb",
+ "url": "https://huggingface.co/jobs/kealjones/6ae35cc05ddcdc08302611bb",
+ "started": "2026-10-29T14:48:32+00:00",
+ "sha": "3bc87a804bf8ef52ac4f8f52d772f91c780e242d"
 }
