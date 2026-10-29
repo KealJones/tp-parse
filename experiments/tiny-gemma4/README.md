@@ -109,3 +109,20 @@ Checkpoint: `kealjones/tp-parse-runs` → `tiny-gemma4-heal1/6ae32a7041e90535df7
 
 **Heal 2** (`hf-heal2-chat/`): continue from heal 1 with 35% OpenAssistant oasst1 chat contexts (human-written,
 Apache-2.0; distillation targets come from the teacher), lr 1e-4, ~22 min.
+Result (a100-large, 22.8 min, $0.95, 4.9M tokens): web 1.34 → 1.34, Gemma replies 1.14 → 1.11. Greedy samples now
+answer like an assistant ("The capital of France is **Paris…", "Here is a Python function that reverses a string.
+```python def reverse_string…", "Here is a breakdown of why the sky is blue…") but still drift into wrong facts and
+repetition. Checkpoint: `kealjones/tp-parse-runs` → `tiny-gemma4-heal2-chat/6ae33bbe41e90535df78b7d7/ckpt/`.
+
+### Where it stands (2026-10-29 morning)
+
+- A 0.60B-body Gemma 4 (1.31B total, 80K vocab, hidden 1024, FFN 42%, 31 of 35 layers) heals well on text
+  (bpb below the chat-tuned teacher's) after ~21M tokens, and has started answering in chat form, but is far
+  from coherent. Minitron-scale heals use billions of tokens; this was ~0.02B.
+- Spend for this stretch (Keal's $5): analysis $0.15, heal 1 $2.87, heal 2 $0.95 = **$3.97**. Earlier tonight:
+  stage 1 $0.10, probes $2.36.
+- Next options: (1) a longer heal on an H200 (~3× A100 throughput per the earlier estimate) with ~30% chat
+  contexts, ~$5 per hour → ~300–400M tokens; (2) drop or shrink the per-layer embeddings (most of the 0.7B
+  non-body parameters) to cut phone memory; (3) GGUF export of the checkpoint and a phone test (needs llama.cpp's
+  converter to accept the cut config and the 80K tokenizer). Samples should use a repetition penalty when judging
+  quality, as the app does.
