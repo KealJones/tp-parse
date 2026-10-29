@@ -508,11 +508,19 @@ def write_md():
 
 
 if __name__ == "__main__":
+    code = 0
     try:
         main()
+    except BaseException:
+        import traceback
+        traceback.print_exc()
+        code = 1
     finally:
         save()
         try:
             write_md()
         except Exception as e:
             print("write_md failed", e)
+    # Exit hard: streaming-dataset threads can keep a crashed job alive until its time limit.
+    sys.stdout.flush(); sys.stderr.flush()
+    os._exit(code)
