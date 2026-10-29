@@ -1,0 +1,22 @@
+{
+ "slug": "tiny-gemma4-gguf",
+ "flavor": "cpu-upgrade",
+ "timeout": "60m",
+ "files": [
+  "experiments/tiny-gemma4/gguf_job.sh",
+  "experiments/tiny-gemma4/to_gguf.py"
+ ],
+ "cmd": "CKPT=kealjones/tp-parse-runs:tiny-gemma4-heal2-chat/6ae33bbe41e90535df78b7d7/ckpt REPO=kealjones/tiny-gemma4-test NAME=tiny-gemma4-heal2 bash gguf_job.sh out",
+ "pip": [
+  "transformers==5.21.0",
+  "safetensors",
+  "sentencepiece",
+  "protobuf",
+  "huggingface_hub",
+  "tokenizers"
+ ],
+ "upload_every": 600,
+ "outdir": "out",
+ "out": "experiments/tiny-gemma4/hf-gguf",
+ "note": "Keal: put the barely-healed tiny Gemma 4 (heal 2) on the phone to check it loads and its memory footprint. Package the checkpoint as Gemma4ForCausalLM, convert with llama.cpp b11364 (wllama 3.8.1's build), quantize Q4_0, smoke-test with llama-simple, upload to the public kealjones/tiny-gemma4-test. CPU only, ~$0.03."
+}
