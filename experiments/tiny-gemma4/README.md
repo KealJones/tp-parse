@@ -126,3 +126,12 @@ repetition. Checkpoint: `kealjones/tp-parse-runs` → `tiny-gemma4-heal2-chat/6a
   non-body parameters) to cut phone memory; (3) GGUF export of the checkpoint and a phone test (needs llama.cpp's
   converter to accept the cut config and the 80K tokenizer). Samples should use a repetition penalty when judging
   quality, as the app does.
+
+### Later: vision (Keal, 2026-10-29)
+
+The cut keeps only Gemma 4's text model: E2B's vision and audio encoders were never copied, and the GGUF has no
+image projector, so tiny Gemma 4 is text-only (Squiggle's OCR still reads text in photos). E2B's vision encoder
+can't simply be reattached either: its projector feeds the language model at E2B's width (1536) and the cut
+model is 1024 wide. To bring vision back: slice the projector's output to the kept hidden channels (the same
+`hidden_keep` indices as `surgery.cut`), then heal on image–text pairs with E2B as the teacher, and export the
+encoder + projector as a llama.cpp mmproj file for wllama. Its own project; on the list for after the text heals.
