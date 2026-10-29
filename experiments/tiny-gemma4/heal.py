@@ -29,6 +29,7 @@ EVAL_EVERY = int(os.environ.get("EVAL_EVERY", 400))
 MIX = json.loads(os.environ.get("MIX", '{"web": 0.85, "code": 0.10, "agent": 0.05}'))
 CE_W = float(os.environ.get("CE_W", 0.0))                  # plain next-token loss weight (0 = distillation only)
 HIDDEN = int(os.environ.get("HIDDEN", 0))                   # keep this many hidden dims (0 = all)
+RESUME = os.environ.get("RESUME", "")                      # "repo_id:path/to/ckpt" in a dataset repo: continue from it
 AGENT_FILE = os.environ.get("AGENT_FILE", "teacher_results.jsonl.gz")
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 T0 = time.time()
@@ -51,6 +52,23 @@ def web_stream(skip):
     for i, r in enumerate(ds):
         if i >= skip and r["text"].strip():
             yield r["text"]
+
+
+def chat_stream(template):
+    """OpenAssistant (oasst1, human-written, Apache-2.0) English prompt/reply pairs in Gemma's chat format.
+    Distillation only uses them as contexts: the targets are the teacher's own predictions on the reply."""
+    from datasets import load_dataset
+    rows = [r for r in load_dataset("OpenAssistant/oasst1", split="train") if r["lang"] == "en" and not r["synthetic"] and not r["deleted"]]
+    by_id = {r["message_id"]: r for r in rows}
+    pairs = []
+    for r in rows:
+        if r["role"] == "assistant" and r["parent_id"] in by_id and by_id[r["parent_id"]]["role"] == "prompter":
+            pairs.append(template(by_id[r["parent_id"]]["text"], r["text"]))
+    random.Random(2).shuffle(pairs)
+    log(f"chat pairs: {len(pairs)}")
+    while True:
+        for p in pairs:
+            yield p
 
 
 def code_stream():
@@ -209,7 +227,17 @@ def main():
     ch = [s * l.mlp.down_proj.weight.float().norm(dim=0) for s, l in zip(sums, teacher.layers)]
 
     hk = hid.topk(HIDDEN).indices.sort().values.tolist() if HIDDEN else None
-    student = cut(teacher, keep_layers, FFN, ch, kept, hk).to(DEV).float()
+    if RESUME:
+        from huggingface_hub import snapshot_download
+        from transformers.models.gemma4.modeling_gemma4 import Gemma4TextModel
+        repo, path = RESUME.split(":", 1)
+        d = snapshot_download(repo, repo_type="dataset", allow_patterns=[f"{path}/*"], token=os.environ.get("HF_TOKEN"))
+        student = Gemma4TextModel.from_pretrained(os.path.join(d, path), dtype=torch.float32).to(DEV)
+        info = json.load(open(os.path.join(d, path, "ckpt_info.json")))
+        keep_layers = info.get("keep_layers", keep_layers)
+        log("resumed from", RESUME, info)
+    else:
+        student = cut(teacher, keep_layers, FFN, ch, kept, hk).to(DEV).float()
     student.train()
     s_head = student.embed_tokens.weight                                     # tied
     n_params = sum(p.numel() for p in student.parameters())
@@ -271,7 +299,11 @@ def main():
     open(os.path.join(OUT, "metrics.jsonl"), "a").write(json.dumps({"teacher": base}) + "\n")
     first = evaluate("cut, before healing")
 
-    packer = Packer(encode, bos, {"web": web_stream(200), "code": code_stream(), "agent": cycle(train_agent)})
+    template = lambda q, a: tok.apply_chat_template([{"role": "user", "content": q}, {"role": "assistant", "content": a}], tokenize=False).removeprefix(tok.bos_token)
+    sources = {"web": web_stream(200), "code": code_stream(), "agent": cycle(train_agent)}
+    if MIX.get("chat"):
+        sources["chat"] = chat_stream(template)
+    packer = Packer(encode, bos, sources)
     deadline = T0 + MINUTES * 60
     last_ckpt = time.time()
     warm = 100
