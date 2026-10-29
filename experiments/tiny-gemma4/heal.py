@@ -283,4 +283,13 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # Exit hard either way: streaming-dataset threads kept a crashed job alive until its time limit (and billed it).
+    code = 0
+    try:
+        main()
+    except BaseException:
+        import traceback
+        traceback.print_exc()
+        code = 1
+    sys.stdout.flush(); sys.stderr.flush()
+    os._exit(code)

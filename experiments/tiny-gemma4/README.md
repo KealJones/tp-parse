@@ -43,3 +43,37 @@ Bits per byte (lower is better), no healing:
 - The scorer matches transformers' own loss exactly (checked on a tiny random Gemma 4).
 - Qwen3-0.6B models raw text far better than E2B-it (partly because E2B-it is chat-tuned).
 - `surgery.py` physically cuts layers/FFN/vocab; verified identical to the simulated cuts on a tiny model.
+
+### Heal probe (2026-10-29, a100-large, ~21 min training, `hf-heal-probe2/`)
+
+Student: 80K vocab, layers 28–33 dropped (29 kept), FFN 42% → **1.50B params**. Distilled from uncut E2B-it
+(KL over the kept vocab + 0.1 × next-token loss), batch 4 × 1024, lr 2e-4, ~4K tokens/s → **4.3M tokens**.
+Checkpoint (bf16, 3 GB) is in the private results repo `kealjones/tp-parse-runs` under
+`tiny-gemma4-heal-probe2/6ae3018c3fb22a235dd557a6/ckpt/` (too big for git).
+
+| | web bpb | Squiggle bpb |
+|---|---|---|
+| teacher (E2B-it, 80K vocab) | 1.49 | 1.58 |
+| student, cut, before healing | 2.66 | 2.84 |
+| step 150 (0.6M tokens) | 1.47 | 0.88 |
+| step 600 (2.5M tokens) | 1.31 | 0.59 |
+| end, step 1062 (4.3M tokens) | 1.24 | 0.54 |
+
+Read with care:
+- **Squiggle bpb is contaminated**: teacher episodes share long, near-identical harness prompts, and the training
+  mix cycled the other ~150 episodes many times, so the student memorised the harness text. Hold out whole
+  episodes and strip shared system prompts before using this number.
+- **Student < teacher on web** means it is learning raw web text (the 0.1 next-token term) rather than staying
+  faithful to the chat-tuned teacher. No chat samples were taken, so it's unknown how much instruction-following
+  survived. Next time: KD only (or much smaller CE weight) and greedy chat samples at every eval.
+- Real signal: un-healed garbage (2.66) recovers past the teacher's raw-text level within ~0.6M tokens.
+- 1.5B total (body ~0.8B) is still too slow for the phone target; the body needs to come down to ~0.2–0.4B.
+
+Cost: stage 1 $0.10; probe 1 $1.25 (crashed at 2 min on zero-padded per-layer config keys, then hung on
+streaming threads until the 30-min limit; both fixed: `surgery.py` key parsing, hard `os._exit` in both
+scripts); probe 2 $1.11. Total **$2.46**.
+
+Next, if continuing: (1) fix the eval (episode-level hold-out, chat samples, KD-only); (2) try a smaller
+student (drop more of 25–33 plus FFN ~35%, body ~0.4B); (3) only then a longer heal on an H200.
+Also compare against simply fine-tuning Qwen3-0.6B, which already runs at 9.3 tok/s on the iPhone and scores
+far better than E2B-it on raw-text bpb.
