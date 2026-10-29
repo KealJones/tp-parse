@@ -1,0 +1,204 @@
+job 6ae2fc7641e90535df787435 on gpu: tiny-gemma4-stage1 at c1ee72d
+fetched experiments/tiny-gemma4/stage1.py
+fetched experiments/squiggle-ft/hf-teach-pilot-g4b/teach/teacher_results.jsonl.gz
+
+
+config.json:   0%|          | 0.00/4.95k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 4.95k/4.95k [00:00<00:00, 24.6MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/3.08k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 3.08k/3.08k [00:00<00:00, 22.4MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 32.2MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 8.75MB,  871kB/s  
+tokenizer.json: downloading bytes: ██████████| 8.75MB,  871kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 32.2MB / 32.2MB, 3.20MB/s  
+
+
+chat_template.jinja:   0%|          | 0.00/18.6k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 18.6k/18.6k [00:00<00:00, 28.8MB/s]
+
+
+README.md:   0%|          | 0.00/26.4k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 26.4k/26.4k [00:00<00:00, 87.4MB/s]
+
+
+Resolving data files:   0%|          | 0/2410 [00:00<?, ?it/s][A
+Resolving data files: 100%|██████████| 2410/2410 [00:00<00:00, 35013.92it/s]
+[  0.2 min] HuggingFaceFW/fineweb-edu: 40296 docs
+
+
+README.md:   0%|          | 0.00/401 [00:00<?, ?B/s][A
+README.md: 100%|██████████| 401/401 [00:00<00:00, 1.42MB/s]
+Repo card metadata block was not found. Setting CardData to empty.
+[  0.2 min] codeparrot/codeparrot-clean-valid: 6076 docs
+[  0.2 min] agent texts: 211
+[  0.4 min] vocab {'kept': 79997, 'top_n': 58020, 'counted_tokens': 24118631, 'distinct_seen': 118262, 'must_keep_from_squiggle': 7056, 'count_coverage': 0.992045, 'min_count_kept': 14}
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 10.2GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:   2%|▏         |  256MB / 10.2GB, 4.86MB/s  [A
+model.safetensors: downloading bytes: ▏         |  143MB, 10.9MB/s  
+model.safetensors: downloading bytes: ▎         |  305MB, 25.5MB/s  
+
+model.safetensors: reconstructing file:   6%|▌         |  610MB / 10.2GB, 50.3MB/s  [A
+model.safetensors: downloading bytes: █         | 1.09GB, 85.8MB/s  
+
+model.safetensors: reconstructing file:  14%|█▍        | 1.48GB / 10.2GB, 93.8MB/s  [A
+model.safetensors: downloading bytes: ██        | 2.06GB,  161MB/s  
+
+model.safetensors: reconstructing file:  25%|██▍       | 2.55GB / 10.2GB,  204MB/s  [A
+model.safetensors: downloading bytes: ███       | 3.17GB,  243MB/s  
+
+model.safetensors: reconstructing file:  41%|████      | 4.16GB / 10.2GB,  296MB/s  [A
+model.safetensors: downloading bytes: ████▎     | 4.37GB,  324MB/s  
+model.safetensors: downloading bytes: █████▍    | 5.53GB,  395MB/s  
+
+model.safetensors: reconstructing file:  60%|██████    | 6.18GB / 10.2GB,  337MB/s  [A
+model.safetensors: downloading bytes: ██████▍   | 6.65GB,  294MB/s  
+model.safetensors: downloading bytes: ███████▏  | 7.40GB,  324MB/s  
+
+model.safetensors: reconstructing file:  69%|██████▊   | 7.03GB / 10.2GB,  290MB/s  [A
+model.safetensors: downloading bytes: ███████▉  | 8.14GB,  281MB/s  
+
+model.safetensors: reconstructing file:  75%|███████▍  | 7.66GB / 10.2GB,  275MB/s  [A
+model.safetensors: downloading bytes: ████████▍ | 8.65GB,  259MB/s  
+
+model.safetensors: reconstructing file:  82%|████████▏ | 8.40GB / 10.2GB,  263MB/s  [A
+
+model.safetensors: reconstructing file:  88%|████████▊ | 9.01GB / 10.2GB,  254MB/s  [A
+
+model.safetensors: reconstructing file:  92%|█████████▏| 9.41GB / 10.2GB,  250MB/s  [A
+
+model.safetensors: reconstructing file:  96%|█████████▋| 9.87GB / 10.2GB,  245MB/s  [A
+
+model.safetensors: reconstructing file:  99%|█████████▉| 10.2GB / 10.2GB,  241MB/s  [A
+model.safetensors: downloading bytes: ██████████| 8.66GB,  258MB/s  
+model.safetensors: downloading bytes: ██████████| 8.66GB,  258MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 10.2GB / 10.2GB,  240MB/s  
+
+
+Loading weights:   0%|          | 0/1951 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 1951/1951 [00:00<00:00, 5155.48it/s]
+
+
+generation_config.json:   0%|          | 0.00/208 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 208/208 [00:00<00:00, 1.39MB/s]
+[  1.0 min] loaded; protected layers [0, 13, 14, 34]
+[  1.8 min] full {'web': 1.4232, 'code': 1.0256, 'agent': 1.5879, 'skip': [], 'ffn_keep': 1.0} total 4629M
+[  2.4 min] vocab {'web': 1.4451, 'code': 1.0504, 'agent': 1.5912, 'skip': [], 'ffn_keep': 1.0} total 2717M
+[  2.5 min] layer scores (least change first) [(30, 0.042), (31, 0.042), (32, 0.056), (29, 0.059), (28, 0.077), (33, 0.081), (27, 0.088), (26, 0.1), (25, 0.118), (5, 0.127), (6, 0.137), (18, 0.142), (17, 0.148), (7, 0.154), (21, 0.16), (8, 0.168), (22, 0.169), (16, 0.171), (4, 0.189), (9, 0.195)]
+[  3.3 min] vocab+skip6 {'web': 2.2661, 'code': 3.2503, 'agent': 3.4132, 'skip': [28, 29, 30, 31, 32, 33], 'ffn_keep': 1.0} total 2203M
+[  3.8 min] vocab+skip10 {'web': 2.9147, 'code': 4.1247, 'agent': 4.0018, 'skip': [5, 25, 26, 27, 28, 29, 30, 31, 32, 33], 'ffn_keep': 1.0} total 1892M
+[  4.1 min] vocab+skip14 {'web': 3.8587, 'code': 4.8949, 'agent': 5.7746, 'skip': [5, 6, 7, 17, 18, 25, 26, 27, 28, 29, 30, 31, 32, 33], 'ffn_keep': 1.0} total 1609M
+[  4.5 min] vocab+skip17 {'web': 6.596, 'code': 8.7348, 'agent': 9.3051, 'skip': [5, 6, 7, 8, 17, 18, 21, 22, 25, 26, 27, 28, 29, 30, 31, 32, 33], 'ffn_keep': 1.0} total 1383M
+[  5.1 min] vocab+ffn0.66 {'web': 1.5137, 'code': 1.2949, 'agent': 1.4214, 'skip': [], 'ffn_keep': 0.66} total 2187M
+[  5.8 min] vocab+ffn0.42 {'web': 1.6973, 'code': 1.532, 'agent': 1.5606, 'skip': [], 'ffn_keep': 0.42} total 1814M
+[  6.2 min] vocab+skip17+ffn0.42 {'web': 7.1737, 'code': 10.2043, 'agent': 9.8859, 'skip': [5, 6, 7, 8, 17, 18, 21, 22, 25, 26, 27, 28, 29, 30, 31, 32, 33], 'ffn_keep': 0.42} total 972M
+[  6.7 min] vocab+skip10+ffn0.66 {'web': 2.9936, 'code': 3.8198, 'agent': 3.8482, 'skip': [5, 25, 26, 27, 28, 29, 30, 31, 32, 33], 'ffn_keep': 0.66} total 1546M
+
+
+config.json:   0%|          | 0.00/1.28k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 8.46MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/595 [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 595/595 [00:00<00:00, 2.42MB/s]
+
+
+tokenizer.json:   0%|          | 0.00/4.73M [00:00<?, ?B/s][A
+tokenizer.json: 100%|██████████| 4.73M/4.73M [00:00<00:00, 20.3MB/s]
+
+
+chat_template.jinja:   0%|          | 0.00/5.49k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 5.49k/5.49k [00:00<00:00, 13.6MB/s]
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B /  709MB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: █████▏    |  370MB, 34.4MB/s  
+
+model.safetensors: reconstructing file:  64%|██████▍   |  453MB /  709MB, 38.7MB/s  [A
+model.safetensors: downloading bytes: ██████████|  610MB, 55.3MB/s  
+model.safetensors: downloading bytes: ██████████|  610MB, 55.3MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████|  709MB /  709MB, 64.6MB/s  
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 8966.07it/s]
+
+
+generation_config.json:   0%|          | 0.00/134 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 134/134 [00:00<00:00, 782kB/s]
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 5228.70it/s]
+
+
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 5456.15it/s]
+[  6.9 min] baseline LiquidAI/LFM2.5-350M {'web': 1.3117, 'params': 354483968, 'code': 1.513, 'agent': 2.0651}
+
+
+config.json:   0%|          | 0.00/726 [00:00<?, ?B/s][A
+config.json: 100%|██████████| 726/726 [00:00<00:00, 4.47MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/9.73k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 9.73k/9.73k [00:00<00:00, 26.1MB/s]
+
+
+vocab.json:   0%|          | 0.00/2.78M [00:00<?, ?B/s][A
+vocab.json: 100%|██████████| 2.78M/2.78M [00:00<00:00, 50.4MB/s]
+
+
+merges.txt:   0%|          | 0.00/1.67M [00:00<?, ?B/s][A
+merges.txt: 100%|██████████| 1.67M/1.67M [00:00<00:00, 46.0MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 11.4MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  339kB/s  
+tokenizer.json: downloading bytes: ██████████| 3.40MB,  339kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 11.4MB / 11.4MB, 1.14MB/s  
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 1.50GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes: ██████    |  906MB, 75.8MB/s  
+
+model.safetensors: reconstructing file:   4%|▍         | 66.9MB / 1.50GB, 1.65MB/s  [A
+model.safetensors: downloading bytes: ██████████| 1.26GB,  117MB/s  
+model.safetensors: downloading bytes: ██████████| 1.26GB,  117MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 1.50GB / 1.50GB,  141MB/s  
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5163.19it/s]
+
+
+generation_config.json:   0%|          | 0.00/239 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 239/239 [00:00<00:00, 1.01MB/s]
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5092.26it/s]
+
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 311/311 [00:00<00:00, 5409.99it/s]
+[  7.2 min] baseline Qwen/Qwen3-0.6B {'web': 0.9215, 'params': 596049920, 'code': 0.5572, 'agent': 1.0665}
+[  7.2 min] done
+exit code 0 after 7.6 min
