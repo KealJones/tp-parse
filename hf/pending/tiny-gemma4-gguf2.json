@@ -18,5 +18,9 @@
  "upload_every": 600,
  "outdir": "out",
  "out": "experiments/tiny-gemma4/hf-gguf2",
- "note": "Rebuild of the heal-2 GGUF: FFN padded 2580->2592 with zero channels (exact) so ffn_down quantizes to Q4_0 instead of staying F16 (270 MB, slow), and the per-layer embedding table at Q4_0 instead of Q6_K. Expect ~0.78 GB instead of 1.13 GB. CPU only, ~$0.03."
+ "note": "Rebuild of the heal-2 GGUF: FFN padded 2580->2592 with zero channels (exact) so ffn_down quantizes to Q4_0 instead of staying F16 (270 MB, slow), and the per-layer embedding table at Q4_0 instead of Q6_K. Expect ~0.78 GB instead of 1.13 GB. CPU only, ~$0.03.",
+ "job_id": "6ae3557541e90535df78e12f",
+ "url": "https://huggingface.co/jobs/kealjones/6ae3557541e90535df78e12f",
+ "started": "2026-10-29T14:17:26+00:00",
+ "sha": "a05d211358f1456a62941b301c8b4694c9ccdb53"
 }
