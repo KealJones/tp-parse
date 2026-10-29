@@ -1,4 +1,10 @@
 # Hugging Face job: tiny-gemma4-gen3
 
-Status: **running** on `a100-large` (started 2026-10-29T14:48:32+00:00, time limit 35m, so at most about $1.46)
+Status: **complete** after 28.5 min of work on `a100-large`, about $1.19 (plus a minute or two of startup)
 Job page: https://huggingface.co/jobs/kealjones/6ae35cc05ddcdc08302611bb
+
+Files copied here:
+- JOB_LOG.txt
+- gen.jsonl.gz
+- gen_summary.json
+- job_status.json

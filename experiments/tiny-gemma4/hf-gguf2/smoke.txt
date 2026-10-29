@@ -1,0 +1,8 @@
+llama_perf_context_print:        load time =    2087.87 ms
+llama_perf_context_print: prompt eval time =     121.74 ms /     6 tokens (   20.29 ms per token,    49.28 tokens per second)
+llama_perf_context_print:        eval time =    3328.00 ms /    39 runs   (   85.33 ms per token,    11.72 tokens per second)
+llama_perf_context_print:       total time =    5446.24 ms /    45 tokens
+llama_perf_context_print:    graphs reused =         38
+
+~llama_context:        CPU compute buffer size is   1.9310 MiB, matches expectation of   1.9310 MiB
+
