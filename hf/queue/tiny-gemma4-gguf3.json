@@ -1,0 +1,23 @@
+{
+ "slug": "tiny-gemma4-gguf3",
+ "flavor": "cpu-upgrade",
+ "timeout": "60m",
+ "files": [
+  "experiments/tiny-gemma4/gguf_job.sh",
+  "experiments/tiny-gemma4/to_gguf.py"
+ ],
+ "cmd": "CKPT=kealjones/tp-parse-runs:tiny-gemma4-heal3b/6ae371135ddcdc083026213d/ckpt REPO=kealjones/tiny-gemma4-test NAME=tiny-gemma4-heal3 bash gguf_job.sh out",
+ "pip": [
+  "transformers==5.21.0",
+  "safetensors",
+  "sentencepiece",
+  "protobuf",
+  "huggingface_hub",
+  "tokenizers",
+  "brotli>=1.2.0"
+ ],
+ "upload_every": 600,
+ "outdir": "out",
+ "out": "experiments/tiny-gemma4/hf-gguf3",
+ "note": "GGUF of the bigger heal (heal 3: 47M tokens, now answers 'Paris' and stops, and makes native Gemma 4 tool calls). Same build as v2 (FFN padded to 2592, 4-bit per-layer embeddings). CPU only, ~$0.03."
+}
