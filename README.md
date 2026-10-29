@@ -152,3 +152,9 @@ Code: MIT, © 2026 Keal Jones.
 The word list in `src/words.ts` and the glosses in `src/glosses.ts` come from [lipu Linku](https://linku.la/) (the `sona` repository) and is licensed CC BY-SA 4.0.
 
 This is a fresh implementation written from the toki pona grammar. It doesn't include code from matthewdeanmartin/tokipona.parser, which has no licence.
+
+## Language model experiments
+
+The ML experiments that used to live in `experiments/` (Squiggle's phone models, tiny Gemma 4, the toki pona
+transfer studies) and their Hugging Face / Kaggle job bridges moved to
+[KealJones/lm-experiments](https://github.com/KealJones/lm-experiments) on 2026-10-29, history included.
