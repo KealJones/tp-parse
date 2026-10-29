@@ -29,7 +29,8 @@ EVAL_EVERY = int(os.environ.get("EVAL_EVERY", 400))
 MIX = json.loads(os.environ.get("MIX", '{"web": 0.85, "code": 0.10, "agent": 0.05}'))
 CE_W = float(os.environ.get("CE_W", 0.0))                  # plain next-token loss weight (0 = distillation only)
 HIDDEN = int(os.environ.get("HIDDEN", 0))                   # keep this many hidden dims (0 = all)
-RESUME = os.environ.get("RESUME", "")                      # "repo_id:path/to/ckpt" in a dataset repo: continue from it
+RESUME = os.environ.get("RESUME", "")
+GEN = os.environ.get("GEN", "")                            # "repo_id:path/gen.jsonl.gz": E2B's own answers (gen.py)                      # "repo_id:path/to/ckpt" in a dataset repo: continue from it
 AGENT_FILE = os.environ.get("AGENT_FILE", "teacher_results.jsonl.gz")
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 T0 = time.time()
@@ -83,6 +84,26 @@ def smoltalk_stream(tok):
                 yield tok.apply_chat_template(msgs, tokenize=False).removeprefix(tok.bos_token)
             except Exception:
                 continue
+
+
+def math_stream():
+    """FineMath 4+ (ODC-By): maths and step-by-step reasoning text."""
+    from datasets import load_dataset
+    while True:
+        for r in load_dataset("HuggingFaceTB/finemath", "finemath-4plus", split="train", streaming=True):
+            if r["text"].strip():
+                yield r["text"]
+
+
+def gen_texts():
+    """On-policy conversations from gen.py: questions from Hermes/SmolTalk, answers written by E2B itself."""
+    from huggingface_hub import hf_hub_download
+    repo, path = GEN.split(":", 1)
+    f = hf_hub_download(repo, path, repo_type="dataset", token=os.environ.get("HF_TOKEN"))
+    rows = [json.loads(l) for l in gzip.open(f, "rt")]
+    random.Random(4).shuffle(rows)
+    log(f"on-policy conversations: {len(rows)}")
+    return [r["text"] for r in rows]
 
 
 def math_stream():
@@ -273,10 +294,15 @@ def main():
     opt = torch.optim.AdamW(student.parameters(), lr=LR, betas=(0.9, 0.95), weight_decay=0.0, fused=DEV == "cuda")
 
     evals = {"web": web_eval[40:], "agent_replies": [a[:3000] for a in held_agent[:80]]}
-    chat = lambda p: tok.apply_chat_template([{"role": "user", "content": p}], tokenize=False, add_generation_prompt=True)
     stop = {ptok.token_to_id(t) for t in ("<eos>", "<end_of_turn>", "<turn|>") if ptok.token_to_id(t) is not None}
     PROMPTS = ["What is the capital of France? Answer in one sentence.", "Write a Python function that reverses a string.",
-               "Explain why the sky is blue in two sentences.", "What is 17 times 23? Think step by step, then answer."]
+               "Explain why the sky is blue in two sentences.", "What is 17 times 23? Think step by step, then answer.",
+               "What's the weather like in Phoenix right now?"]
+    WEATHER = [{"type": "function", "function": {"name": "get_weather", "description": "Current weather for a city.",
+               "parameters": {"type": "object", "properties": {"city": {"type": "string", "description": "City name"}}, "required": ["city"]}}}]
+    def chat(p):
+        kw = {"tools": WEATHER} if "weather" in p else {}
+        return tok.apply_chat_template([{"role": "user", "content": p}], tokenize=False, add_generation_prompt=True, **kw)
 
     @torch.no_grad()
     def chat_samples(n=48):
@@ -304,7 +330,7 @@ def main():
                     gen.append(j)
                     if j in stop:
                         break
-                out.append({"mode": mode, "prompt": p, "reply": ptok.decode(gen, skip_special_tokens=True)})
+                out.append({"mode": mode, "prompt": p, "reply": ptok.decode(gen, skip_special_tokens=False)})
         student.train()
         return out
     t_head_k = t_head[kept_t]
@@ -340,6 +366,10 @@ def main():
     sources = {"web": web_stream(200), "code": code_stream(), "agent": cycle(train_agent)}
     if MIX.get("chat"):
         sources["chat"] = chat_stream(template)
+    if MIX.get("gen") and GEN:
+        sources["gen"] = cycle(gen_texts())
+    if MIX.get("math"):
+        sources["math"] = math_stream()
     if MIX.get("smoltalk"):
         sources["smoltalk"] = smoltalk_stream(tok)
     if MIX.get("math"):
