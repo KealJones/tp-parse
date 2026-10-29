@@ -19,5 +19,9 @@
  "upload_every": 600,
  "outdir": "out",
  "out": "experiments/tiny-gemma4/hf-heal2-chat",
- "note": "Continue heal 1's checkpoint (0.60B body) with chat contexts: 35% OpenAssistant oasst1 English prompt/reply pairs in Gemma's chat format (human-written, Apache-2.0; targets are the teacher's own predictions), 45% FineWeb-Edu, 15% Squiggle episodes, 5% code. Distillation only, lr 1e-4. Heal 1 could write in chat form but looped. Hard cap $1.25 (30 min a100-large)."
+ "note": "Continue heal 1's checkpoint (0.60B body) with chat contexts: 35% OpenAssistant oasst1 English prompt/reply pairs in Gemma's chat format (human-written, Apache-2.0; targets are the teacher's own predictions), 45% FineWeb-Edu, 15% Squiggle episodes, 5% code. Distillation only, lr 1e-4. Heal 1 could write in chat form but looped. Hard cap $1.25 (30 min a100-large).",
+ "job_id": "6ae33bbe41e90535df78b7d7",
+ "url": "https://huggingface.co/jobs/kealjones/6ae33bbe41e90535df78b7d7",
+ "started": "2026-10-29T12:27:42+00:00",
+ "sha": "920e2b59160f17edb9821f695e61d26384e547c5"
 }
