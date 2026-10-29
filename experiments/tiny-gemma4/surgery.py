@@ -19,8 +19,8 @@ def cut(text_model, keep_layers, ffn_frac=1.0, channel_scores=None, keep_ids=Non
     # index, so they're renumbered to the kept layers' new positions.
     from transformers import Gemma4TextConfig
     d = cfg.to_dict()
-    plc = d.get("per_layer_config") or {}
-    d["per_layer_config"] = {str(j): plc[str(i)] for j, i in enumerate(keep_layers) if str(i) in plc} or None
+    plc = {int(k): v for k, v in (d.get("per_layer_config") or {}).items()}   # keys may be zero-padded ("04")
+    d["per_layer_config"] = {str(j): plc[i] for j, i in enumerate(keep_layers) if i in plc} or None
     d["num_hidden_layers"] = len(keep_layers)
     d["layer_types"] = [cfg.layer_types[i] for i in keep_layers]
     d["num_kv_shared_layers"] = sum(1 for i in keep_layers if i >= first_shared)
