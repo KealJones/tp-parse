@@ -71,6 +71,29 @@ def chat_stream(template):
             yield p
 
 
+def smoltalk_stream(tok):
+    """SmolTalk (Apache-2.0) multi-turn conversations in Gemma's chat format: contexts for distillation."""
+    from datasets import load_dataset
+    while True:
+        for r in load_dataset("HuggingFaceTB/smoltalk", "all", split="train", streaming=True).shuffle(seed=3, buffer_size=2000):
+            msgs = [m for m in r["messages"] if m.get("role") in ("user", "assistant", "system") and m.get("content")]
+            if len(msgs) < 2:
+                continue
+            try:
+                yield tok.apply_chat_template(msgs, tokenize=False).removeprefix(tok.bos_token)
+            except Exception:
+                continue
+
+
+def math_stream():
+    """FineMath 4+ (ODC-By): maths and step-by-step reasoning text."""
+    from datasets import load_dataset
+    while True:
+        for r in load_dataset("HuggingFaceTB/finemath", "finemath-4plus", split="train", streaming=True):
+            if r["text"].strip():
+                yield r["text"]
+
+
 def code_stream():
     from datasets import load_dataset
     while True:
@@ -256,18 +279,32 @@ def main():
                "Explain why the sky is blue in two sentences.", "What is 17 times 23? Think step by step, then answer."]
 
     @torch.no_grad()
-    def chat_samples(n=40):
+    def chat_samples(n=48):
+        """Greedy (worst case for loops) and the app's own settings (temperature 0.7, top-k 64, repeat penalty 1.15)."""
         student.eval()
         out = []
-        for p in PROMPTS:
-            ids = ptok.encode(chat(p), add_special_tokens=False).ids; gen = []
-            for _ in range(n):
-                with torch.autocast(DEV, dtype=torch.bfloat16, enabled=DEV == "cuda"):
-                    h = student(input_ids=torch.tensor([ids + gen], device=DEV)).last_hidden_state[0, -1]
-                j = int((h.float() @ s_head.float().T).argmax()); gen.append(j)
-                if j in stop:
-                    break
-            out.append({"prompt": p, "reply": ptok.decode(gen, skip_special_tokens=True)})
+        g = torch.Generator(device=DEV).manual_seed(0)
+        for mode in ("greedy", "app"):
+            for p in PROMPTS:
+                ids = ptok.encode(chat(p), add_special_tokens=False).ids; gen = []
+                for _ in range(n):
+                    with torch.autocast(DEV, dtype=torch.bfloat16, enabled=DEV == "cuda"):
+                        h = student(input_ids=torch.tensor([ids + gen], device=DEV)).last_hidden_state[0, -1]
+                    lg = (h.float() @ s_head.float().T)
+                    if mode == "greedy":
+                        j = int(lg.argmax())
+                    else:
+                        if gen:
+                            prev = torch.tensor(sorted(set(gen)), device=DEV)
+                            v = lg[prev]
+                            lg[prev] = torch.where(v > 0, v / 1.15, v * 1.15)
+                        top = lg.topk(64)
+                        pr = torch.softmax(top.values / 0.7, -1)
+                        j = int(top.indices[torch.multinomial(pr, 1, generator=g)])
+                    gen.append(j)
+                    if j in stop:
+                        break
+                out.append({"mode": mode, "prompt": p, "reply": ptok.decode(gen, skip_special_tokens=True)})
         student.train()
         return out
     t_head_k = t_head[kept_t]
@@ -303,6 +340,10 @@ def main():
     sources = {"web": web_stream(200), "code": code_stream(), "agent": cycle(train_agent)}
     if MIX.get("chat"):
         sources["chat"] = chat_stream(template)
+    if MIX.get("smoltalk"):
+        sources["smoltalk"] = smoltalk_stream(tok)
+    if MIX.get("math"):
+        sources["math"] = math_stream()
     packer = Packer(encode, bos, sources)
     deadline = T0 + MINUTES * 60
     last_ckpt = time.time()
