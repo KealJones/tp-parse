@@ -21,7 +21,8 @@ python llama.cpp/convert_hf_to_gguf.py pkg --outtype f16 --outfile f16.gguf 2>&1
 
 cmake -S llama.cpp -B build -DLLAMA_CURL=OFF -DGGML_NATIVE=OFF -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_SERVER=OFF >/dev/null
 cmake --build build --target llama-quantize llama-simple -j "$(nproc)" 2>&1 | tail -3
-./build/bin/llama-quantize f16.gguf "$OUT/$NAME-Q4_0.gguf" Q4_0 2>&1 | tail -5
+# The per-layer embedding table is half the model and only looked up, never multiplied: 4-bit is enough.
+./build/bin/llama-quantize --tensor-type per_layer_token_embd=q4_0 f16.gguf "$OUT/$NAME-Q4_0.gguf" Q4_0 2>&1 | tail -5
 ls -la "$OUT"
 
 # Smoke test: llama.cpp loads it and writes something (raw prompt, greedy).

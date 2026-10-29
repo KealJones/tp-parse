@@ -14,10 +14,26 @@ os.makedirs(out, exist_ok=True)
 
 from safetensors.torch import load_file, save_file
 sd = load_file(os.path.join(ckpt, "model.safetensors"))
+cfg = json.load(open(os.path.join(ckpt, "config.json")))
+
+# llama.cpp quantizes in blocks of 32 along each row, so a pruned FFN width that isn't a multiple of 32
+# (2580) leaves every ffn_down at F16: big and slow. Pad the FFN with zero channels instead: a zero gate/up
+# row feeds a zero into a zero down column, so the outputs are exactly the same.
+import torch
+I = cfg["intermediate_size"]
+Ip = -(-I // 32) * 32
+if Ip != I:
+    for k in list(sd):
+        w = sd[k]
+        if k.endswith(("mlp.gate_proj.weight", "mlp.up_proj.weight")) and w.shape[0] % 32:
+            sd[k] = torch.cat([w, w.new_zeros(-(-w.shape[0] // 32) * 32 - w.shape[0], w.shape[1])], 0)
+        elif k.endswith("mlp.down_proj.weight") and w.shape[1] % 32:
+            sd[k] = torch.cat([w, w.new_zeros(w.shape[0], -(-w.shape[1] // 32) * 32 - w.shape[1])], 1)
+    cfg["intermediate_size"] = Ip
+    print("FFN padded", I, "->", Ip)
 save_file({("model." + k if not k.startswith("model.") else k): v.contiguous() for k, v in sd.items()},
           os.path.join(out, "model.safetensors"), metadata={"format": "pt"})
 
-cfg = json.load(open(os.path.join(ckpt, "config.json")))
 cfg["architectures"] = ["Gemma4ForCausalLM"]
 cfg["model_type"] = "gemma4_text"
 cfg["tie_word_embeddings"] = True

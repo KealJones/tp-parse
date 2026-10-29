@@ -1,0 +1,22 @@
+{
+ "slug": "tiny-gemma4-gguf2",
+ "flavor": "cpu-upgrade",
+ "timeout": "60m",
+ "files": [
+  "experiments/tiny-gemma4/gguf_job.sh",
+  "experiments/tiny-gemma4/to_gguf.py"
+ ],
+ "cmd": "CKPT=kealjones/tp-parse-runs:tiny-gemma4-heal2-chat/6ae33bbe41e90535df78b7d7/ckpt REPO=kealjones/tiny-gemma4-test NAME=tiny-gemma4-heal2-v2 bash gguf_job.sh out",
+ "pip": [
+  "transformers==5.21.0",
+  "safetensors",
+  "sentencepiece",
+  "protobuf",
+  "huggingface_hub",
+  "tokenizers"
+ ],
+ "upload_every": 600,
+ "outdir": "out",
+ "out": "experiments/tiny-gemma4/hf-gguf2",
+ "note": "Rebuild of the heal-2 GGUF: FFN padded 2580->2592 with zero channels (exact) so ffn_down quantizes to Q4_0 instead of staying F16 (270 MB, slow), and the per-layer embedding table at Q4_0 instead of Q6_K. Expect ~0.78 GB instead of 1.13 GB. CPU only, ~$0.03."
+}
