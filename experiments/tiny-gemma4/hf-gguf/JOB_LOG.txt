@@ -1,0 +1,343 @@
+job 6ae34ed43fb22a235dd5ba72 on cpu: tiny-gemma4-gguf at 0c27263
+fetched experiments/tiny-gemma4/gguf_job.sh
+fetched experiments/tiny-gemma4/to_gguf.py
+debconf: delaying package configuration, since apt-utils is not installed
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s][A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 2.62GB            [A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 2.63GB            [A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 2.63GB            [A
+
+Reconstructing (incomplete total...):   0%|          | 2.38kB / 2.63GB            [A
+
+Downloading bytes: ▎         | 77.1MB,   ???B/s  [A
+
+Reconstructing (incomplete total...):   3%|▎         | 73.0MB / 2.63GB,   ???B/s  [A
+
+Downloading bytes: █▊        |  476MB, 75.7MB/s  [A
+
+Reconstructing (incomplete total...):  26%|██▌       |  681MB / 2.63GB, 55.3MB/s  [A
+
+Downloading bytes: ██▉       |  785MB,  262MB/s  [A
+
+Downloading bytes: ████      | 1.08GB,  281MB/s  [A
+
+Reconstructing (incomplete total...):  46%|████▌     | 1.21GB / 2.63GB,  269MB/s  [A
+
+Downloading bytes: ███████▌  | 1.99GB,  285MB/s  [A
+
+Reconstructing (incomplete total...):  59%|█████▉    | 1.56GB / 2.63GB,  306MB/s  [A
+
+Fetching 4 files: 100%|██████████| 4/4 [00:06<00:00,  1.59s/it][A
+Fetching 4 files: 100%|██████████| 4/4 [00:06<00:00,  1.59s/it]
+
+
+Downloading bytes: ██████████| 2.28GB,  507MB/s  [A
+
+Download complete: ██████████| 2.28GB,  507MB/s  [A
+
+Reconstruction complete: 100%|██████████| 2.63GB / 2.63GB,  299MB/s               [A
+Download complete: ██████████| 2.28GB,  507MB/s  
+
+Reconstruction complete: 100%|██████████| 2.63GB / 2.63GB,  299MB/s  
+
+
+config.json:   0%|          | 0.00/4.95k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 4.95k/4.95k [00:00<00:00, 6.49MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/3.08k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 3.08k/3.08k [00:00<00:00, 5.66MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 32.2MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 8.75MB,   ???B/s  
+tokenizer.json: downloading bytes: ██████████| 8.75MB,   ???B/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 32.2MB / 32.2MB, 3.19MB/s  
+
+
+chat_template.jinja:   0%|          | 0.00/18.6k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 18.6k/18.6k [00:00<00:00, 36.8MB/s]
+
+
+generation_config.json:   0%|          | 0.00/208 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 208/208 [00:00<00:00, 488kB/s]
+packaged pkg {'hidden_size': 1024, 'num_hidden_layers': 31, 'num_kv_shared_layers': 20, 'intermediate_size': 2580, 'vocab_size': 79997}
+Note: switching to '46ca246de9bb1c35269722a6240d37d9dfd79cad'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+{%- if add_generation_prompt -%}
+    {%- if ns.prev_message_type != 'tool_response' and ns.prev_message_type != 'tool_call' -%}
+        {{- '<|turn>model\n' -}}
+    {%- elif ns.prev_message_type == 'tool_response' and enable_thinking -%}
+        {{- '<|channel>thought\n' -}}
+    {%- endif -%}
+{%- endif -%}
+
+INFO:gguf.gguf_writer:Writing the following files:
+INFO:gguf.gguf_writer:f16.gguf: n_tensors = 473, total_size = 2.6G
+
+
+Writing:   0%|          | 0.00/2.62G [00:00<?, ?byte/s][A
+
+Writing:  55%|█████▍    | 1.43G/2.62G [00:04<00:03, 314Mbyte/s][A
+
+Writing:  67%|██████▋   | 1.76G/2.62G [00:07<00:04, 207Mbyte/s][A
+
+Writing:  74%|███████▍  | 1.95G/2.62G [00:09<00:03, 185Mbyte/s][A
+
+Writing:  80%|████████  | 2.11G/2.62G [00:10<00:02, 174Mbyte/s][A
+
+Writing:  86%|████████▌ | 2.26G/2.62G [00:11<00:02, 168Mbyte/s][A
+
+Writing:  92%|█████████▏| 2.41G/2.62G [00:12<00:01, 156Mbyte/s][A
+
+Writing:  97%|█████████▋| 2.55G/2.62G [00:14<00:00, 132Mbyte/s][A
+Writing: 100%|██████████| 2.62G/2.62G [00:15<00:00, 171Mbyte/s]
+INFO:hf-to-gguf:Model successfully exported to f16.gguf
+CMAKE_BUILD_TYPE=Release
+CMake Warning at vendor/cpp-httplib/CMakeLists.txt:154 (message):
+  OpenSSL not found, HTTPS support disabled
+
+
+[100%] Building CXX object examples/simple/CMakeFiles/llama-simple.dir/simple.cpp.o
+[100%] Linking CXX executable ../../bin/llama-simple
+[100%] Built target llama-simple
+llama_model_quantize_impl: quant size  =  1076.61 MiB (6.88 BPW)
+llama_model_quantize_impl: WARNING: 31 of 473 tensor(s) required fallback quantization
+
+llama_quantize: quantize time = 12253.76 ms
+llama_quantize:    total time = 12253.76 ms
+total 1107872
+drwxr-xr-x. 2 root root         41 Oct 29 13:53 .
+drwxr-xr-x. 6 root root        142 Oct 29 13:51 ..
+-rw-r--r--. 1 root root 1134460576 Oct 29 13:53 tiny-gemma4-heal2-Q4_0.gguf
+llama_perf_context_print:        load time =     762.28 ms
+llama_perf_context_print: prompt eval time =      70.90 ms /     6 tokens (   11.82 ms per token,    84.62 tokens per second)
+llama_perf_context_print:        eval time =     105.72 ms /     3 runs   (   35.24 ms per token,    28.38 tokens per second)
+llama_perf_context_print:       total time =     869.97 ms /     9 tokens
+llama_perf_context_print:    graphs reused =          2
+
+~llama_context:        CPU compute buffer size is   1.9310 MiB, matches expectation of   1.9310 MiB
+
+gguf_job.sh: line 30: {name}-Q4_0.gguf: command not found
+
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:   2%|▏         | 25.3MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:   2%|▏         | 25.3MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:   6%|▌         | 67.1MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:   7%|▋         | 79.2MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  12%|█▏        |  134MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  12%|█▏        |  134MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  12%|█▏        |  134MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  12%|█▏        |  134MB / 1.13GB            [A[A
+Processing Files (0 / 1)      :  12%|█▏        |  134MB / 1.13GB, 12.7MB/s  
+
+New Data Upload               :  67%|██████▋   |  134MB /  201MB, 12.7MB/s  [A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  12%|█▏        |  134MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  16%|█▌        |  184MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  18%|█▊        |  201MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  21%|██        |  233MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  24%|██▎       |  268MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  27%|██▋       |  310MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  30%|██▉       |  335MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  30%|██▉       |  335MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  30%|███       |  344MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  35%|███▌      |  402MB / 1.13GB            [A[A
+Processing Files (0 / 1)      :  35%|███▌      |  402MB / 1.13GB, 36.3MB/s  
+
+New Data Upload               :  86%|████████▌ |  402MB /  470MB, 36.3MB/s  [A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  36%|███▌      |  408MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  41%|████      |  466MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  41%|████▏     |  470MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  47%|████▋     |  532MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  48%|████▊     |  543MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  53%|█████▎    |  604MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  53%|█████▎    |  604MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  59%|█████▉    |  668MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  60%|██████    |  682MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  65%|██████▌   |  738MB / 1.13GB            [A[A
+Processing Files (0 / 1)      :  65%|██████▌   |  738MB / 1.13GB, 63.2MB/s  
+
+New Data Upload               :  92%|█████████▏|  738MB /  805MB, 63.2MB/s  [A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  66%|██████▋   |  754MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  71%|███████   |  805MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  74%|███████▍  |  837MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  77%|███████▋  |  872MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  82%|████████▏ |  931MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  83%|████████▎ |  942MB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  89%|████████▊ | 1.01GB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  90%|████████▉ | 1.02GB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  95%|█████████▍| 1.07GB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf:  96%|█████████▌| 1.09GB / 1.13GB            [A[A
+Processing Files (0 / 1)      :  96%|█████████▌| 1.09GB / 1.13GB, 88.6MB/s  
+
+New Data Upload               :  96%|█████████▌| 1.09GB / 1.13GB, 88.6MB/s  [A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            [A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            [A[A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            [A[A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            [A[A
+Processing Files (0 / 1)      : 100%|█████████▉| 1.13GB / 1.13GB, 84.5MB/s  
+
+New Data Upload               : 100%|██████████| 1.13GB / 1.13GB, 84.5MB/s  [A
+
+
+
+Validating                    :           |   0%            [A[A[A
+
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            [A[A
+
+
+
+Validating                    : ██████████| 100%            [A[A[A
+Processing Files (0 / 1)      : 100%|█████████▉| 1.13GB / 1.13GB, 84.3MB/s  
+
+New Data Upload               : 100%|██████████| 1.13GB / 1.13GB, 84.3MB/s  
+
+Validating                    : ██████████| 100%            
+
+  ...ny-gemma4-heal2-Q4_0.gguf: 100%|█████████▉| 1.13GB / 1.13GB            
+uploaded https://huggingface.co/kealjones/tiny-gemma4-test/resolve/main/tiny-gemma4-heal2-Q4_0.gguf 1134460576
+exit code 0 after 4.6 min
