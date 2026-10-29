@@ -98,9 +98,11 @@ def math_stream():
 def gen_texts():
     """On-policy conversations from gen.py: questions from Hermes/SmolTalk, answers written by E2B itself."""
     from huggingface_hub import hf_hub_download
-    repo, path = GEN.split(":", 1)
-    f = hf_hub_download(repo, path, repo_type="dataset", token=os.environ.get("HF_TOKEN"))
-    rows = [json.loads(l) for l in gzip.open(f, "rt")]
+    rows = []
+    for g in GEN.split(","):                                   # several runs: "repo:a.jsonl.gz,repo:b.jsonl.gz"
+        repo, path = g.strip().split(":", 1)
+        f = hf_hub_download(repo, path, repo_type="dataset", token=os.environ.get("HF_TOKEN"))
+        rows += [json.loads(l) for l in gzip.open(f, "rt")]
     random.Random(4).shuffle(rows)
     log(f"on-policy conversations: {len(rows)}")
     return [r["text"] for r in rows]
