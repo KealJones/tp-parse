@@ -13,5 +13,9 @@
  "upload_every": 300,
  "outdir": "out",
  "out": "experiments/tiny-gemma4/hf-gen2",
- "note": "Retry of tiny-gemma4-gen: vLLM's compiler step needs gcc, which the pytorch runtime image lacks (squiggle-ft's boot.py installs it; gen.py runs without boot.py). Same job otherwise. Hard cap $1.67."
+ "note": "Retry of tiny-gemma4-gen: vLLM's compiler step needs gcc, which the pytorch runtime image lacks (squiggle-ft's boot.py installs it; gen.py runs without boot.py). Same job otherwise. Hard cap $1.67.",
+ "job_id": "6ae3513241e90535df78da62",
+ "url": "https://huggingface.co/jobs/kealjones/6ae3513241e90535df78da62",
+ "started": "2026-10-29T13:59:14+00:00",
+ "sha": "42f2ee916dadc0fe0116ab0fc44c6a76495a1026"
 }
