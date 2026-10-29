@@ -19,5 +19,9 @@
  "upload_every": 900,
  "outdir": "out",
  "out": "experiments/tiny-gemma4/hf-heal1",
- "note": "First real heal: Gemma 4 E2B-it cut Minitron-style to 80K vocab, hidden 1024, FFN 42%, layers 2/6/11/12 removed (measured harmless in stage 1b) -> ~0.60B body, 1.31B total. Distillation only (KL to the uncut model over the kept vocab), ~65 min on FineWeb-Edu 85% / code 10% / Squiggle episodes 5%; held-out web and Gemma-reply bpb plus chat samples every 300 steps; checkpoint every 30 min. Hard cap $3.33 (80 min a100-large)."
+ "note": "First real heal: Gemma 4 E2B-it cut Minitron-style to 80K vocab, hidden 1024, FFN 42%, layers 2/6/11/12 removed (measured harmless in stage 1b) -> ~0.60B body, 1.31B total. Distillation only (KL to the uncut model over the kept vocab), ~65 min on FineWeb-Edu 85% / code 10% / Squiggle episodes 5%; held-out web and Gemma-reply bpb plus chat samples every 300 steps; checkpoint every 30 min. Hard cap $3.33 (80 min a100-large).",
+ "job_id": "6ae32a7041e90535df78a3ff",
+ "url": "https://huggingface.co/jobs/kealjones/6ae32a7041e90535df78a3ff",
+ "started": "2026-10-29T11:13:52+00:00",
+ "sha": "c3af3c8e8afd37ca3f77fd0f4e65e3e241283f5c"
 }
