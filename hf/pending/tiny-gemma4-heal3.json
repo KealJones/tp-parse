@@ -19,5 +19,9 @@
  "upload_every": 600,
  "outdir": "out",
  "out": "experiments/tiny-gemma4/hf-heal3",
- "note": "The bigger heal (Keal: $10 incl. generation). Resume heal 2; distillation only. 48% E2B's own answers (gen2+gen3: ~20.5k conversations, ~20M tokens; Hermes tool calls split out at 10% so the student learns Gemma 4's native tool-call format), 15% FineMath, 10% Squiggle episodes, 13% web, 7% code, 7% oasst1. Checkpoints every 30 min. Hard cap $7.50 (spent so far ~$2.02)."
+ "note": "The bigger heal (Keal: $10 incl. generation). Resume heal 2; distillation only. 48% E2B's own answers (gen2+gen3: ~20.5k conversations, ~20M tokens; Hermes tool calls split out at 10% so the student learns Gemma 4's native tool-call format), 15% FineMath, 10% Squiggle episodes, 13% web, 7% code, 7% oasst1. Checkpoints every 30 min. Hard cap $7.50 (spent so far ~$2.02).",
+ "job_id": "6ae365595ddcdc0830261792",
+ "url": "https://huggingface.co/jobs/kealjones/6ae365595ddcdc0830261792",
+ "started": "2026-10-29T15:25:13+00:00",
+ "sha": "7bbb20fe4fbd84ca0ff8d12a9aa1a1df41ed528d"
 }
