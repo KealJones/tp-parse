@@ -1,0 +1,436 @@
+job 6ae371135ddcdc083026213d on gpu: tiny-gemma4-heal3b at 275c659
+fetched experiments/tiny-gemma4/heal.py
+fetched experiments/tiny-gemma4/surgery.py
+fetched experiments/tiny-gemma4/hf-stage1/kept_ids.json
+fetched experiments/tiny-gemma4/hf-stage1/tokenizer_pruned.json
+fetched experiments/squiggle-ft/hf-teach-pilot-g4b/teach/teacher_results.jsonl.gz
+
+
+config.json:   0%|          | 0.00/4.95k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 4.95k/4.95k [00:00<00:00, 16.2MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/3.08k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 3.08k/3.08k [00:00<00:00, 14.3MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 32.2MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 8.75MB,  854kB/s  
+tokenizer.json: downloading bytes: ██████████| 8.75MB,  854kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 32.2MB / 32.2MB, 3.14MB/s  
+
+
+chat_template.jinja:   0%|          | 0.00/18.6k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 18.6k/18.6k [00:00<00:00, 49.5MB/s]
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 10.2GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+model.safetensors: downloading bytes:           | 53.5MB, 3.64MB/s  
+
+model.safetensors: reconstructing file:   0%|          |  302kB / 10.2GB, 12.9kB/s  [A
+model.safetensors: downloading bytes: ▏         |  239MB, 20.8MB/s  
+
+model.safetensors: reconstructing file:   5%|▍         |  470MB / 10.2GB, 41.1MB/s  [A
+model.safetensors: downloading bytes: ▋         |  763MB, 59.7MB/s  
+
+model.safetensors: reconstructing file:   8%|▊         |  805MB / 10.2GB, 54.2MB/s  [A
+model.safetensors: downloading bytes: █▊        | 1.81GB,  144MB/s  
+
+model.safetensors: reconstructing file:  21%|██        | 2.15GB / 10.2GB,  147MB/s  [A
+model.safetensors: downloading bytes: ███       | 3.09GB,  241MB/s  
+
+model.safetensors: reconstructing file:  35%|███▌      | 3.62GB / 10.2GB,  271MB/s  [A
+model.safetensors: downloading bytes: ████▍     | 4.51GB,  339MB/s  
+
+model.safetensors: reconstructing file:  46%|████▋     | 4.76GB / 10.2GB,  367MB/s  [A
+model.safetensors: downloading bytes: █████▋    | 5.88GB,  421MB/s  
+
+model.safetensors: reconstructing file:  60%|██████    | 6.18GB / 10.2GB,  360MB/s  [A
+model.safetensors: downloading bytes: ███████▏  | 7.35GB,  508MB/s  
+
+model.safetensors: reconstructing file:  79%|███████▉  | 8.14GB / 10.2GB,  549MB/s  [A
+model.safetensors: downloading bytes: ████████▍ | 8.61GB,  569MB/s  
+
+model.safetensors: reconstructing file: 100%|█████████▉| 10.2GB / 10.2GB,  690MB/s  [A
+model.safetensors: downloading bytes: ██████████| 8.66GB,  557MB/s  
+model.safetensors: downloading bytes: ██████████| 8.66GB,  557MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 10.2GB / 10.2GB,  686MB/s  
+
+
+Loading weights:   0%|          | 0/1951 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 1951/1951 [00:00<00:00, 9906.31it/s]
+
+
+generation_config.json:   0%|          | 0.00/208 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 208/208 [00:00<00:00, 1.71MB/s]
+[   0.3 min] keep layers [0, 1, 3, 4, 5, 7, 8, 9, 10, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
+
+
+README.md:   0%|          | 0.00/26.4k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 26.4k/26.4k [00:00<00:00, 47.3MB/s]
+
+
+Resolving data files:   0%|          | 0/2410 [00:00<?, ?it/s][A
+Resolving data files: 100%|██████████| 2410/2410 [00:00<00:00, 44765.89it/s]
+
+
+Downloading bytes:           |  0.00B            [A
+
+Reconstructing (incomplete total...): |          |  0.00B /  0.00B            [A
+
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s][A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 2.62GB            [A
+
+Reconstructing (incomplete total...):   0%|          |  0.00B / 2.62GB            [A
+
+Reconstructing (incomplete total...):   0%|          |   191B / 2.62GB            [A
+
+Reconstructing (incomplete total...):   0%|          | 2.57kB / 2.63GB            [A
+
+Downloading bytes:           | 6.35MB            [A
+
+Reconstructing (incomplete total...):   0%|          | 5.93MB / 2.63GB            [A
+
+Downloading bytes: █▊        |  481MB, 4.58MB/s  [A
+
+Downloading bytes: ███▌      |  944MB,  243MB/s  [A
+
+Reconstructing (incomplete total...):  21%|██        |  547MB / 2.63GB, 3.99MB/s  [A
+
+Downloading bytes: █████▏    | 1.36GB,  335MB/s  [A
+
+Reconstructing (incomplete total...):  52%|█████▏    | 1.38GB / 2.63GB,  168MB/s  [A
+
+Downloading bytes: ████████▋ | 2.28GB,  288MB/s  [A
+
+Reconstructing (incomplete total...): 100%|██████████| 2.63GB / 2.63GB,  321MB/s  [A
+
+Fetching 4 files: 100%|██████████| 4/4 [00:06<00:00,  1.71s/it][A
+Fetching 4 files: 100%|██████████| 4/4 [00:06<00:00,  1.71s/it]
+
+
+Downloading bytes: ██████████| 2.28GB,  476MB/s  [A
+
+Download complete: ██████████| 2.28GB,  476MB/s  [A
+
+Reconstruction complete: 100%|██████████| 2.63GB / 2.63GB,  546MB/s               [A
+
+Loading weights:   0%|          | 0/472 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 472/472 [00:00<00:00, 962.21it/s]
+[   0.6 min] resumed from kealjones/tp-parse-runs:tiny-gemma4-heal2-chat/6ae33bbe41e90535df78b7d7/ckpt {'tag': 'final step 1205', 'tokens': 4935680, 'keep_layers': [0, 1, 3, 4, 5, 7, 8, 9, 10, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34], 'ffn': 0.42}
+[   0.6 min] student 1312M params, body 595M (31 layers, hidden 1024, ffn 0.42, vocab 79997)
+[   0.7 min] teacher {'teacher_web': 1.4859, 'teacher_agent_replies': 1.6121}
+
+
+Reconstruction complete: 100%|██████████| 2.63GB / 2.63GB,  546MB/s  [A
+
+Download complete: ██████████| 2.28GB,  476MB/s  [A[   0.9 min] eval {'step': 0, 'min': 0.7, 'tag': 'cut, before healing', 'student_web': 1.3409, 'student_agent_replies': 1.1081} | 'The capital of France is **** France** (or ** France**).\n\nHere is the ' / 'Here is a Python function that reverses a string.\n\n```python\ndef rever'
+
+
+tiny-gemma4-gen2/6ae3513241e90535df78da6(…): reconstructing file:   0%|          |  0.00B / 4.20MB            [A
+tiny-gemma4-gen2/6ae3513241e90535df78da6(…): downloading bytes:           |  0.00B            
+tiny-gemma4-gen2/6ae3513241e90535df78da6(…): downloading bytes: ▊         |  344kB            
+
+tiny-gemma4-gen2/6ae3513241e90535df78da6(…): reconstructing file:  42%|████▏     | 1.76MB / 4.20MB            [A
+tiny-gemma4-gen2/6ae3513241e90535df78da6(…): downloading bytes: ██████████| 4.20MB,  404kB/s  
+tiny-gemma4-gen2/6ae3513241e90535df78da6(…): downloading bytes: ██████████| 4.20MB,  404kB/s  
+
+tiny-gemma4-gen2/6ae3513241e90535df78da6(…): reconstructing file: 100%|██████████| 4.20MB / 4.20MB,  404kB/s  
+
+
+tiny-gemma4-gen3/6ae35cc05ddcdc08302611b(…): reconstructing file:   0%|          |  0.00B / 16.0MB            [A
+tiny-gemma4-gen3/6ae35cc05ddcdc08302611b(…): downloading bytes:           |  0.00B            
+
+tiny-gemma4-gen3/6ae35cc05ddcdc08302611b(…): reconstructing file:   9%|▊         | 1.39MB / 16.0MB            [A
+tiny-gemma4-gen3/6ae35cc05ddcdc08302611b(…): downloading bytes: ██████▌   | 10.6MB, 93.8kB/s  
+tiny-gemma4-gen3/6ae35cc05ddcdc08302611b(…): downloading bytes: ██████████| 16.0MB, 1.53MB/s  
+tiny-gemma4-gen3/6ae35cc05ddcdc08302611b(…): downloading bytes: ██████████| 16.0MB, 1.53MB/s  
+
+tiny-gemma4-gen3/6ae35cc05ddcdc08302611b(…): reconstructing file: 100%|██████████| 16.0MB / 16.0MB, 1.54MB/s  
+[   1.0 min] on-policy conversations with tools: 2668
+[   1.0 min] on-policy conversations without tools: 17853
+
+
+README.md:   0%|          | 0.00/401 [00:00<?, ?B/s][A
+README.md: 100%|██████████| 401/401 [00:00<00:00, 2.84MB/s]
+Repo card metadata block was not found. Setting CardData to empty.
+
+
+Resolving data files:   0%|          | 0/2410 [00:00<?, ?it/s][A
+Resolving data files: 100%|██████████| 2410/2410 [00:00<00:00, 45302.17it/s]
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+
+
+README.md:   0%|          | 0.00/12.4k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 12.4k/12.4k [00:00<00:00, 25.7MB/s]
+
+
+Resolving data files:   0%|          | 0/128 [00:00<?, ?it/s][A
+Resolving data files: 100%|██████████| 128/128 [00:00<00:00, 36378.30it/s]
+
+
+Resolving data files:   0%|          | 0/64 [00:00<?, ?it/s][A
+Resolving data files: 100%|██████████| 64/64 [00:00<00:00, 41650.19it/s]
+
+
+README.md:   0%|          | 0.00/10.2k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 10.2k/10.2k [00:00<00:00, 22.0MB/s]
+
+
+data/train-00000-of-00001-b42a775f407cee(…): reconstructing file:   0%|          |  0.00B / 39.5MB            [A
+data/train-00000-of-00001-b42a775f407cee(…): downloading bytes:           |  0.00B            
+
+data/train-00000-of-00001-b42a775f407cee(…): reconstructing file: 100%|██████████| 39.5MB / 39.5MB,  545kB/s  [A
+data/train-00000-of-00001-b42a775f407cee(…): downloading bytes: █████████▋| 38.5MB, 3.65MB/s  
+data/train-00000-of-00001-b42a775f407cee(…): downloading bytes: ██████████| 38.5MB, 3.65MB/s  
+data/train-00000-of-00001-b42a775f407cee(…): downloading bytes: ██████████| 38.5MB, 3.65MB/s  
+
+data/train-00000-of-00001-b42a775f407cee(…): reconstructing file: 100%|██████████| 39.5MB / 39.5MB, 3.83MB/s  
+
+
+data/validation-00000-of-00001-134b8fd0c(…): reconstructing file:   0%|          |  0.00B / 2.08MB            [A
+data/validation-00000-of-00001-134b8fd0c(…): downloading bytes:           |  0.00B            
+data/validation-00000-of-00001-134b8fd0c(…): downloading bytes: ██████████| 2.02MB,  197kB/s  
+data/validation-00000-of-00001-134b8fd0c(…): downloading bytes: ██████████| 2.02MB,  197kB/s  
+
+data/validation-00000-of-00001-134b8fd0c(…): reconstructing file: 100%|██████████| 2.08MB / 2.08MB,  203kB/s  
+
+
+Generating train split:   0%|          | 0/84437 [00:00<?, ? examples/s][A
+Generating train split: 100%|██████████| 84437/84437 [00:00<00:00, 458267.86 examples/s]
+
+
+Generating validation split:   0%|          | 0/4401 [00:00<?, ? examples/s][A
+Generating validation split: 100%|██████████| 4401/4401 [00:00<00:00, 306767.68 examples/s]
+
+Download complete: ██████████| 2.28GB,  476MB/s  
+
+Reconstruction complete: 100%|██████████| 2.63GB / 2.63GB,  546MB/s  
+[   1.4 min] chat pairs: 23436
+[   1.7 min] step 20 kd 1.4098 ce 3.723 lr 2.00e-05 tokens 0.2M
+[   2.1 min] step 40 kd 1.1735 ce 2.670 lr 3.99e-05 tokens 0.5M
+[   2.5 min] step 60 kd 1.3191 ce 3.474 lr 5.99e-05 tokens 0.7M
+[   2.9 min] step 80 kd 1.4231 ce 4.537 lr 7.98e-05 tokens 1.0M
+[   3.3 min] step 100 kd 1.3663 ce 3.575 lr 9.96e-05 tokens 1.2M
+[   3.7 min] step 120 kd 1.2855 ce 3.118 lr 9.95e-05 tokens 1.5M
+[   4.1 min] step 140 kd 1.0424 ce 3.237 lr 9.94e-05 tokens 1.7M
+[   4.4 min] step 160 kd 0.9341 ce 2.254 lr 9.93e-05 tokens 2.0M
+[   4.8 min] step 180 kd 1.1391 ce 3.034 lr 9.92e-05 tokens 2.2M
+[   5.2 min] step 200 kd 0.9913 ce 2.615 lr 9.90e-05 tokens 2.5M
+[   5.6 min] step 220 kd 0.8160 ce 2.673 lr 9.89e-05 tokens 2.7M
+[   6.0 min] step 240 kd 1.2273 ce 4.568 lr 9.87e-05 tokens 2.9M
+[   6.4 min] step 260 kd 0.7522 ce 2.518 lr 9.85e-05 tokens 3.2M
+[   6.8 min] step 280 kd 1.0931 ce 2.891 lr 9.83e-05 tokens 3.4M
+[   7.2 min] step 300 kd 1.1723 ce 2.847 lr 9.81e-05 tokens 3.7M
+[   7.6 min] step 320 kd 1.0037 ce 2.245 lr 9.79e-05 tokens 3.9M
+[   8.0 min] step 340 kd 1.1736 ce 3.087 lr 9.77e-05 tokens 4.2M
+[   8.4 min] step 360 kd 0.8767 ce 2.572 lr 9.75e-05 tokens 4.4M
+[   8.7 min] step 380 kd 1.1705 ce 3.464 lr 9.72e-05 tokens 4.7M
+[   9.1 min] step 400 kd 1.0368 ce 3.318 lr 9.70e-05 tokens 4.9M
+[   9.5 min] step 420 kd 1.0668 ce 3.868 lr 9.67e-05 tokens 5.2M
+[   9.9 min] step 440 kd 1.2616 ce 2.793 lr 9.65e-05 tokens 5.4M
+[  10.3 min] step 460 kd 1.0016 ce 2.297 lr 9.62e-05 tokens 5.7M
+[  10.7 min] step 480 kd 0.9524 ce 2.342 lr 9.59e-05 tokens 5.9M
+[  11.1 min] step 500 kd 0.8322 ce 2.458 lr 9.56e-05 tokens 6.1M
+[  11.5 min] step 520 kd 1.0325 ce 2.329 lr 9.53e-05 tokens 6.4M
+[  11.9 min] step 540 kd 1.2138 ce 3.553 lr 9.50e-05 tokens 6.6M
+[  12.3 min] step 560 kd 1.3181 ce 3.014 lr 9.46e-05 tokens 6.9M
+[  12.7 min] step 580 kd 0.9030 ce 2.304 lr 9.43e-05 tokens 7.1M
+[  13.0 min] step 600 kd 0.9775 ce 2.619 lr 9.39e-05 tokens 7.4M
+[  13.3 min] eval {'step': 600, 'min': 13.0, 'tag': 'training', 'student_web': 1.379, 'student_agent_replies': 1.1696} | 'The capital of France is **Paris, France** (or **Parisian**).\n\nHere is' / 'Here is a complete Python function that reverses a string.\n\n### Python'
+[  13.7 min] step 620 kd 0.9130 ce 2.769 lr 9.33e-05 tokens 7.6M
+[  14.1 min] step 640 kd 0.9760 ce 2.893 lr 9.30e-05 tokens 7.9M
+[  14.5 min] step 660 kd 0.9617 ce 2.804 lr 9.26e-05 tokens 8.1M
+[  14.9 min] step 680 kd 0.8429 ce 3.016 lr 9.22e-05 tokens 8.4M
+[  15.3 min] step 700 kd 0.5999 ce 1.504 lr 9.18e-05 tokens 8.6M
+[  15.6 min] step 720 kd 0.9267 ce 2.489 lr 9.14e-05 tokens 8.8M
+[  16.0 min] step 740 kd 1.0433 ce 2.694 lr 9.09e-05 tokens 9.1M
+[  16.4 min] step 760 kd 1.0783 ce 2.522 lr 9.05e-05 tokens 9.3M
+[  16.8 min] step 780 kd 0.9715 ce 2.797 lr 9.01e-05 tokens 9.6M
+[  17.2 min] step 800 kd 1.0404 ce 3.184 lr 8.96e-05 tokens 9.8M
+[  17.6 min] step 820 kd 1.0928 ce 3.330 lr 8.92e-05 tokens 10.1M
+[  18.0 min] step 840 kd 1.0075 ce 3.126 lr 8.87e-05 tokens 10.3M
+[  18.4 min] step 860 kd 1.1098 ce 2.755 lr 8.82e-05 tokens 10.6M
+[  18.8 min] step 880 kd 1.2907 ce 3.635 lr 8.78e-05 tokens 10.8M
+[  19.2 min] step 900 kd 0.6323 ce 2.264 lr 8.73e-05 tokens 11.1M
+[  19.5 min] step 920 kd 0.9596 ce 3.159 lr 8.68e-05 tokens 11.3M
+[  19.9 min] step 940 kd 0.7155 ce 2.589 lr 8.63e-05 tokens 11.6M
+[  20.3 min] step 960 kd 0.7842 ce 2.265 lr 8.58e-05 tokens 11.8M
+[  20.7 min] step 980 kd 0.9430 ce 2.453 lr 8.52e-05 tokens 12.0M
+[  21.1 min] step 1000 kd 0.9674 ce 2.542 lr 8.47e-05 tokens 12.3M
+[  21.5 min] step 1020 kd 0.9051 ce 3.887 lr 8.42e-05 tokens 12.5M
+[  21.9 min] step 1040 kd 1.0176 ce 2.717 lr 8.36e-05 tokens 12.8M
+[  22.3 min] step 1060 kd 1.1568 ce 3.008 lr 8.31e-05 tokens 13.0M
+[  22.7 min] step 1080 kd 1.1544 ce 3.245 lr 8.25e-05 tokens 13.3M
+[  23.1 min] step 1100 kd 0.9675 ce 3.080 lr 8.20e-05 tokens 13.5M
+[  23.5 min] step 1120 kd 0.9212 ce 2.315 lr 8.14e-05 tokens 13.8M
+[  23.8 min] step 1140 kd 1.1703 ce 2.918 lr 8.08e-05 tokens 14.0M
+[  24.2 min] step 1160 kd 0.8147 ce 2.640 lr 8.02e-05 tokens 14.3M
+[  24.6 min] step 1180 kd 1.0126 ce 2.983 lr 7.96e-05 tokens 14.5M
+[  25.0 min] step 1200 kd 1.0907 ce 3.301 lr 7.90e-05 tokens 14.7M
+[  25.3 min] eval {'step': 1200, 'min': 25.0, 'tag': 'training', 'student_web': 1.3682, 'student_agent_replies': 1.1217} | 'The capital of France is **Paris** (or **Parisian**).\n\nHere is the cap' / 'Here is a Python function that reverses a string.\n\n```python\ndef rever'
+[  25.7 min] step 1220 kd 0.9862 ce 2.967 lr 7.80e-05 tokens 15.0M
+[  26.1 min] step 1240 kd 0.7005 ce 3.192 lr 7.74e-05 tokens 15.2M
+[  26.5 min] step 1260 kd 0.8103 ce 2.901 lr 7.67e-05 tokens 15.5M
+[  26.9 min] step 1280 kd 0.8948 ce 2.588 lr 7.61e-05 tokens 15.7M
+[  27.3 min] step 1300 kd 0.7986 ce 2.758 lr 7.55e-05 tokens 16.0M
+[  27.7 min] step 1320 kd 0.9767 ce 2.948 lr 7.49e-05 tokens 16.2M
+[  28.1 min] step 1340 kd 0.8465 ce 2.810 lr 7.42e-05 tokens 16.5M
+[  28.4 min] step 1360 kd 0.8577 ce 2.546 lr 7.36e-05 tokens 16.7M
+[  28.8 min] step 1380 kd 1.0164 ce 2.976 lr 7.29e-05 tokens 17.0M
+[  29.2 min] step 1400 kd 0.7261 ce 2.231 lr 7.23e-05 tokens 17.2M
+[  29.6 min] step 1420 kd 0.7854 ce 3.196 lr 7.16e-05 tokens 17.4M
+[  30.0 min] step 1440 kd 1.0014 ce 2.586 lr 7.10e-05 tokens 17.7M
+[  30.4 min] step 1460 kd 0.9731 ce 2.869 lr 7.03e-05 tokens 17.9M
+[  30.8 min] step 1480 kd 0.9854 ce 2.889 lr 6.96e-05 tokens 18.2M
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.08s/it][A
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.08s/it]
+[  31.1 min] checkpoint step 1492
+[  31.2 min] step 1500 kd 0.9177 ce 3.117 lr 6.89e-05 tokens 18.4M
+[  31.6 min] step 1520 kd 0.9410 ce 2.501 lr 6.82e-05 tokens 18.7M
+[  32.0 min] step 1540 kd 0.7528 ce 2.364 lr 6.75e-05 tokens 18.9M
+[  32.4 min] step 1560 kd 0.8429 ce 2.480 lr 6.69e-05 tokens 19.2M
+[  32.8 min] step 1580 kd 0.8166 ce 2.041 lr 6.62e-05 tokens 19.4M
+[  33.2 min] step 1600 kd 1.0468 ce 3.142 lr 6.55e-05 tokens 19.7M
+[  33.6 min] step 1620 kd 0.6655 ce 2.531 lr 6.48e-05 tokens 19.9M
+[  34.0 min] step 1640 kd 0.9504 ce 2.276 lr 6.41e-05 tokens 20.2M
+[  34.3 min] step 1660 kd 0.8156 ce 2.246 lr 6.34e-05 tokens 20.4M
+[  34.7 min] step 1680 kd 0.9694 ce 2.851 lr 6.27e-05 tokens 20.6M
+[  35.1 min] step 1700 kd 0.8399 ce 2.636 lr 6.20e-05 tokens 20.9M
+[  35.5 min] step 1720 kd 1.0191 ce 3.292 lr 6.13e-05 tokens 21.1M
+[  35.9 min] step 1740 kd 0.8273 ce 2.704 lr 6.06e-05 tokens 21.4M
+[  36.3 min] step 1760 kd 0.7621 ce 3.087 lr 5.99e-05 tokens 21.6M
+[  36.7 min] step 1780 kd 0.7400 ce 1.766 lr 5.92e-05 tokens 21.9M
+[  37.1 min] step 1800 kd 0.8961 ce 2.397 lr 5.85e-05 tokens 22.1M
+[  37.3 min] eval {'step': 1800, 'min': 37.1, 'tag': 'training', 'student_web': 1.3547, 'student_agent_replies': 1.1248} | 'The capital of France is **Paris** (or **Parisian**).\n\nHere is a break' / 'Here is a Python function that reverses a string.\n\nThe most efficient '
+[  37.7 min] step 1820 kd 1.0560 ce 3.657 lr 5.73e-05 tokens 22.4M
+[  38.1 min] step 1840 kd 0.7510 ce 2.551 lr 5.66e-05 tokens 22.6M
+[  38.5 min] step 1860 kd 0.9586 ce 3.165 lr 5.59e-05 tokens 22.9M
+[  38.9 min] step 1880 kd 0.9488 ce 2.701 lr 5.52e-05 tokens 23.1M
+[  39.3 min] step 1900 kd 0.9870 ce 3.487 lr 5.45e-05 tokens 23.3M
+[  39.7 min] step 1920 kd 0.7457 ce 1.920 lr 5.38e-05 tokens 23.6M
+[  40.1 min] step 1940 kd 0.7037 ce 3.245 lr 5.31e-05 tokens 23.8M
+[  40.5 min] step 1960 kd 1.0369 ce 2.965 lr 5.24e-05 tokens 24.1M
+[  40.9 min] step 1980 kd 0.7900 ce 2.685 lr 5.17e-05 tokens 24.3M
+[  41.2 min] step 2000 kd 1.1780 ce 3.069 lr 5.10e-05 tokens 24.6M
+[  41.6 min] step 2020 kd 0.9537 ce 2.762 lr 5.03e-05 tokens 24.8M
+[  42.0 min] step 2040 kd 0.8950 ce 2.221 lr 4.96e-05 tokens 25.1M
+[  42.4 min] step 2060 kd 0.8695 ce 2.687 lr 4.89e-05 tokens 25.3M
+[  42.8 min] step 2080 kd 1.0772 ce 2.869 lr 4.82e-05 tokens 25.6M
+[  43.2 min] step 2100 kd 0.8230 ce 2.595 lr 4.75e-05 tokens 25.8M
+[  43.6 min] step 2120 kd 0.6470 ce 2.510 lr 4.68e-05 tokens 26.1M
+[  44.0 min] step 2140 kd 0.8478 ce 2.455 lr 4.61e-05 tokens 26.3M
+[  44.4 min] step 2160 kd 0.6546 ce 2.354 lr 4.54e-05 tokens 26.5M
+[  44.8 min] step 2180 kd 1.0177 ce 2.563 lr 4.47e-05 tokens 26.8M
+[  45.1 min] step 2200 kd 0.6306 ce 2.058 lr 4.40e-05 tokens 27.0M
+[  45.5 min] step 2220 kd 0.8515 ce 2.737 lr 4.33e-05 tokens 27.3M
+[  45.9 min] step 2240 kd 0.8829 ce 2.576 lr 4.26e-05 tokens 27.5M
+[  46.3 min] step 2260 kd 0.7469 ce 2.503 lr 4.19e-05 tokens 27.8M
+[  46.7 min] step 2280 kd 0.7406 ce 1.938 lr 4.13e-05 tokens 28.0M
+[  47.1 min] step 2300 kd 1.0502 ce 2.682 lr 4.06e-05 tokens 28.3M
+[  47.5 min] step 2320 kd 0.6497 ce 2.450 lr 3.99e-05 tokens 28.5M
+[  47.9 min] step 2340 kd 0.7913 ce 2.719 lr 3.93e-05 tokens 28.8M
+[  48.3 min] step 2360 kd 0.9315 ce 3.441 lr 3.86e-05 tokens 29.0M
+[  48.7 min] step 2380 kd 0.0732 ce 0.064 lr 3.79e-05 tokens 29.2M
+[  49.1 min] step 2400 kd 0.9005 ce 3.403 lr 3.73e-05 tokens 29.5M
+[  49.3 min] eval {'step': 2400, 'min': 49.1, 'tag': 'training', 'student_web': 1.3371, 'student_agent_replies': 1.109} | 'The capital of France is **Paris** (or **Parisian**).<turn|>' / 'Here is a Python function that reverses a string.\n\nThis function takes'
+[  49.7 min] step 2420 kd 0.9712 ce 3.543 lr 3.62e-05 tokens 29.7M
+[  50.1 min] step 2440 kd 0.7718 ce 2.310 lr 3.56e-05 tokens 30.0M
+[  50.5 min] step 2460 kd 1.0265 ce 3.237 lr 3.50e-05 tokens 30.2M
+[  50.9 min] step 2480 kd 0.7445 ce 2.009 lr 3.43e-05 tokens 30.5M
+[  51.2 min] step 2500 kd 0.8615 ce 3.641 lr 3.37e-05 tokens 30.7M
+[  51.6 min] step 2520 kd 1.0514 ce 2.627 lr 3.31e-05 tokens 31.0M
+[  52.0 min] step 2540 kd 0.9740 ce 2.846 lr 3.25e-05 tokens 31.2M
+[  52.4 min] step 2560 kd 0.8024 ce 2.227 lr 3.19e-05 tokens 31.5M
+[  52.8 min] step 2580 kd 0.7902 ce 3.056 lr 3.13e-05 tokens 31.7M
+[  53.2 min] step 2600 kd 0.9307 ce 3.370 lr 3.07e-05 tokens 31.9M
+[  53.6 min] step 2620 kd 0.8244 ce 2.441 lr 3.01e-05 tokens 32.2M
+[  54.0 min] step 2640 kd 0.7713 ce 2.955 lr 2.95e-05 tokens 32.4M
+[  54.4 min] step 2660 kd 0.9054 ce 3.072 lr 2.89e-05 tokens 32.7M
+[  54.8 min] step 2680 kd 0.8411 ce 3.440 lr 2.83e-05 tokens 32.9M
+[  55.1 min] step 2700 kd 0.7047 ce 2.921 lr 2.78e-05 tokens 33.2M
+[  55.5 min] step 2720 kd 0.9513 ce 3.886 lr 2.72e-05 tokens 33.4M
+[  55.9 min] step 2740 kd 0.9282 ce 2.692 lr 2.67e-05 tokens 33.7M
+[  56.3 min] step 2760 kd 0.8576 ce 2.846 lr 2.61e-05 tokens 33.9M
+[  56.7 min] step 2780 kd 0.6065 ce 2.651 lr 2.56e-05 tokens 34.2M
+[  57.1 min] step 2800 kd 0.7690 ce 2.478 lr 2.51e-05 tokens 34.4M
+[  57.5 min] step 2820 kd 0.6311 ce 3.153 lr 2.45e-05 tokens 34.7M
+[  57.9 min] step 2840 kd 0.6999 ce 3.006 lr 2.40e-05 tokens 34.9M
+[  58.3 min] step 2860 kd 0.9489 ce 2.732 lr 2.35e-05 tokens 35.1M
+[  58.7 min] step 2880 kd 0.8395 ce 3.402 lr 2.30e-05 tokens 35.4M
+[  59.0 min] step 2900 kd 0.8734 ce 2.393 lr 2.25e-05 tokens 35.6M
+[  59.4 min] step 2920 kd 0.9472 ce 2.437 lr 2.20e-05 tokens 35.9M
+[  59.8 min] step 2940 kd 0.7287 ce 2.375 lr 2.15e-05 tokens 36.1M
+[  60.2 min] step 2960 kd 0.7038 ce 2.809 lr 2.11e-05 tokens 36.4M
+[  60.6 min] step 2980 kd 0.9189 ce 3.351 lr 2.06e-05 tokens 36.6M
+[  61.0 min] step 3000 kd 0.7455 ce 2.775 lr 2.02e-05 tokens 36.9M
+[  61.2 min] eval {'step': 3000, 'min': 61.0, 'tag': 'training', 'student_web': 1.3305, 'student_agent_replies': 1.0913} | 'The capital of France is **Paris** (or **Parisian**).<turn|>' / 'Here are a few ways to write a Python function that reverses a string,'
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.17s/it][A
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.17s/it]
+[  61.3 min] checkpoint step 3000
+[  61.7 min] step 3020 kd 0.8622 ce 2.368 lr 1.94e-05 tokens 37.1M
+[  62.1 min] step 3040 kd 0.8070 ce 3.130 lr 1.90e-05 tokens 37.4M
+[  62.5 min] step 3060 kd 0.9370 ce 3.805 lr 1.85e-05 tokens 37.6M
+[  62.9 min] step 3080 kd 0.9154 ce 3.612 lr 1.81e-05 tokens 37.8M
+[  63.2 min] step 3100 kd 0.9112 ce 3.382 lr 1.77e-05 tokens 38.1M
+[  63.6 min] step 3120 kd 1.0370 ce 2.865 lr 1.73e-05 tokens 38.3M
+[  64.0 min] step 3140 kd 0.9346 ce 3.511 lr 1.70e-05 tokens 38.6M
+[  64.4 min] step 3160 kd 0.5485 ce 2.464 lr 1.66e-05 tokens 38.8M
+[  64.8 min] step 3180 kd 0.8720 ce 3.124 lr 1.62e-05 tokens 39.1M
+[  65.2 min] step 3200 kd 0.8304 ce 2.485 lr 1.59e-05 tokens 39.3M
+[  65.6 min] step 3220 kd 0.6413 ce 2.285 lr 1.55e-05 tokens 39.6M
+[  66.0 min] step 3240 kd 0.8864 ce 2.878 lr 1.52e-05 tokens 39.8M
+[  66.4 min] step 3260 kd 0.7981 ce 2.659 lr 1.49e-05 tokens 40.1M
+[  66.8 min] step 3280 kd 0.7683 ce 2.952 lr 1.45e-05 tokens 40.3M
+[  67.2 min] step 3300 kd 1.0667 ce 3.029 lr 1.42e-05 tokens 40.6M
+[  67.5 min] step 3320 kd 1.0135 ce 3.653 lr 1.39e-05 tokens 40.8M
+[  67.9 min] step 3340 kd 0.7511 ce 3.192 lr 1.37e-05 tokens 41.0M
+[  68.3 min] step 3360 kd 0.7590 ce 3.304 lr 1.34e-05 tokens 41.3M
+[  68.7 min] step 3380 kd 1.0856 ce 3.671 lr 1.31e-05 tokens 41.5M
+[  69.1 min] step 3400 kd 0.8115 ce 2.768 lr 1.29e-05 tokens 41.8M
+[  69.5 min] step 3420 kd 0.6806 ce 2.936 lr 1.26e-05 tokens 42.0M
+[  69.9 min] step 3440 kd 0.7682 ce 2.472 lr 1.24e-05 tokens 42.3M
+[  70.3 min] step 3460 kd 0.6495 ce 2.121 lr 1.22e-05 tokens 42.5M
+[  70.7 min] step 3480 kd 0.8657 ce 2.822 lr 1.20e-05 tokens 42.8M
+[  71.1 min] step 3500 kd 0.6015 ce 2.276 lr 1.18e-05 tokens 43.0M
+[  71.4 min] step 3520 kd 0.6183 ce 2.795 lr 1.16e-05 tokens 43.3M
+[  71.8 min] step 3540 kd 0.9726 ce 2.598 lr 1.14e-05 tokens 43.5M
+[  72.2 min] step 3560 kd 0.8271 ce 2.596 lr 1.12e-05 tokens 43.7M
+[  72.6 min] step 3580 kd 0.9845 ce 3.532 lr 1.11e-05 tokens 44.0M
+[  73.0 min] step 3600 kd 0.8711 ce 2.702 lr 1.09e-05 tokens 44.2M
+[  73.3 min] eval {'step': 3600, 'min': 73.0, 'tag': 'training', 'student_web': 1.3293, 'student_agent_replies': 1.1062} | 'The capital of France is **Paris** (or **Parisian**).<turn|>' / 'Here are a few ways to write a Python function that reverses a string,'
+[  73.7 min] step 3620 kd 0.7623 ce 2.563 lr 1.07e-05 tokens 44.5M
+[  74.1 min] step 3640 kd 0.9424 ce 3.066 lr 1.06e-05 tokens 44.7M
+[  74.5 min] step 3660 kd 0.7879 ce 2.658 lr 1.05e-05 tokens 45.0M
+[  74.9 min] step 3680 kd 0.6607 ce 2.199 lr 1.04e-05 tokens 45.2M
+[  75.3 min] step 3700 kd 0.6044 ce 2.761 lr 1.03e-05 tokens 45.5M
+[  75.6 min] step 3720 kd 0.9280 ce 3.222 lr 1.02e-05 tokens 45.7M
+[  76.0 min] step 3740 kd 0.7822 ce 2.787 lr 1.01e-05 tokens 46.0M
+[  76.4 min] step 3760 kd 1.0122 ce 3.045 lr 1.01e-05 tokens 46.2M
+[  76.8 min] step 3780 kd 1.0486 ce 3.624 lr 1.01e-05 tokens 46.4M
+[  77.2 min] step 3800 kd 1.0815 ce 4.236 lr 1.00e-05 tokens 46.7M
+[  77.6 min] step 3820 kd 0.9723 ce 3.977 lr 1.00e-05 tokens 46.9M
+[  78.0 min] step 3840 kd 0.8016 ce 2.551 lr 1.00e-05 tokens 47.2M
+[  78.3 min] eval {'step': 3841, 'min': 78.0, 'tag': 'end', 'student_web': 1.3261, 'student_agent_replies': 1.1006} | 'The capital of France is **Paris** (or **Parisian**).<turn|>' / 'Here are a few ways to write a Python function that reverses a string,'
+
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.10s/it][A
+Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.10s/it]
+[  78.3 min] checkpoint final step 3841
+[  78.3 min] done {'teacher': {'teacher_web': 1.4859, 'teacher_agent_replies': 1.6121}, 'before': {'step': 0, 'min': 0.7, 'tag': 'cut, before healing', 'student_web': 1.3409, 'student_agent_replies': 1.1081, 'samples': [{'mode': 'greedy', 'prompt': 'What is the capital of France? Answer in one sentence.', 'reply': 'The capital of France is **** France** (or ** France**).\n\nHere is the capital of France:\n\n** France is a country in the **20th century, known for its **** France** (or ** France'}, {'mode': 'greedy', 'prompt': 'Write a Python function that reverses a string.', 'reply': 'Here is a Python function that reverses a string.\n\n```python\ndef reverse_string(string_data: list[str, str]] -> list[str, str]:\n    """\n    Re reverses a string data structure.'}, {'mode': 'greedy', 'prompt': 'Explain why the sky is blue in two sentences.', 'reply': 'Here is a breakdown of why the sky is blue in two sentences.\n\n**The sky is blue in two sentences.\n**The sky is blue in two sentences.\n**The sky is blue in two sentences.\n**The sky'}, {'mode': 'greedy', 'prompt': 'What is 17 times 23? Think step by step, then answer.', 'reply': 'Please provide the answer to the question.\n\n**17 times 23 is the **first and last times** of the **17 times 23** equation.\n\n**23 times 17 is the **second'}, {'mode': 'greedy', 'prompt': "What's the weather like in Phoenix right now?", 'reply': "I am **not a large language model, and I don't have the real-time weather data.\n\nHere is the weather like in Phoenix right now, and I can't give you the exact weather.\n\n**Please tell"}, {'mode': 'app', 'prompt': 'What is the capital of France? Answer in one sentence.', 'reply': "The capital of France is **** France's largest city** and it is located in the southern part of the country.\n\nHere is a summary of the capital of France:\n\n**French capital is **** Paris** (or **"}, {'mode': 'app', 'prompt': 'Write a Python function that reverses a string.', 'reply': 'Here is a Python function that reverses a string in reverse.\n\n### Example:\n```python\ndef reverse_string(s):\n    """\n    Reverses a string using the reverse of the original string.\n    """\n'}, {'mode': 'app', 'prompt': 'Explain why the sky is blue in two sentences.', 'reply': 'Here is a breakdown of why the sky is blue in two sentences.\n\n**The sky is blue in two sentences, and it is **two sentences.**\n\n**The sky is blue in two sentences, and it is **three sentences.**'}, {'mode': 'app', 'prompt': 'What is 17 times 23? Think step by step, then answer.', 'reply': "Please provide the answer to the question.\n\n**17 times 23 is a very simple and easy-to-understand number, but it's **very important** for understanding the concept of **the first step** in the"}, {'mode': 'app', 'prompt': "What's the weather like in Phoenix right now?", 'reply': 'I am **not a large language model, but I can process and generate text based on the current weather.\n\nHere is the weather like in Phoenix right now:\n\n**2024-01-01:\n*'}]}, 'after': {'step': 3841, 'min': 78.0, 'tag': 'end', 'student_web': 1.3261, 'student_agent_replies': 1.1006, 'samples': [{'mode': 'greedy', 'prompt': 'What is the capital of France? Answer in one sentence.', 'reply': 'The capital of France is **Paris** (or **Parisian**).<turn|>'}, {'mode': 'greedy', 'prompt': 'Write a Python function that reverses a string.', 'reply': 'Here are a few ways to write a Python function that reverses a string, ranging from the most common and efficient to a more concise one.\n\n### 1. Using the `str.reverse()` method (Most Pythonic)\n\nThis'}, {'mode': 'greedy', 'prompt': 'Explain why the sky is blue in two sentences.', 'reply': 'Here are two sentences explaining why the sky is blue:\n\n**Why the sky is blue in two sentences: **"The sky is blue in two sentences."****\n\n**Explanation of the difference between the two sentences (and why they'}, {'mode': 'greedy', 'prompt': 'What is 17 times 23? Think step by step, then answer.', 'reply': "Here's how to solve the problem:\n\n**1. Set up the equation**\n\nYou have 17 times 23.\n$$17 \\times 23 = 17 \\times (20 +"}, {'mode': 'greedy', 'prompt': "What's the weather like in Phoenix right now?", 'reply': '<|tool_call>call:get_weather{city:<|"|>Phoenix<|"|>}<tool_call|><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response><|tool_response>'}, {'mode': 'app', 'prompt': 'What is the capital of France? Answer in one sentence.', 'reply': 'The capital of France is **Paris** (or sometimes called the capital of France) in the context of its history and culture.<turn|>'}, {'mode': 'app', 'prompt': 'Write a Python function that reverses a string.', 'reply': 'Here are a few ways to write a Python function that reverses a string, ranging from the most idiomatic and concise to more modern approaches.\n\n### 1. Using the `reversed()` method (Most Concise)\n\nThis is the cleanest'}, {'mode': 'app', 'prompt': 'Explain why the sky is blue in two sentences.', 'reply': 'Here are two sentences explaining why the sky is blue:\n\n**Why the sky is blue in two sentences (or a more formal one):**\n\n* **The sky is blue because it reflects light from the sun.**\n* **Blue'}, {'mode': 'app', 'prompt': 'What is 17 times 23? Think step by step, then answer.', 'reply': "Here's how to solve the problem:\n\n**1. Find 17 times 23.**\n\n* $17 \\times 23 = 17 \\times (20 + 3) = 3"}, {'mode': 'app', 'prompt': "What's the weather like in Phoenix right now?", 'reply': '<|tool_call>call:get_weather{city:<|"|>Phoenix<|"|>}<tool_call|><|tool_response><eos>'}]}, 'steps': 3841, 'tokens': 47198208, 'student_params': 1312263168, 'keep_layers': [0, 1, 3, 4, 5, 7, 8, 9, 10, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34], 'ffn': 0.42, 'vocab': 79997}
+exit code 0 after 78.7 min
