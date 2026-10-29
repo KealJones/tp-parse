@@ -1,0 +1,139 @@
+job 6ae3277941e90535df78a18a on gpu: tiny-gemma4-analyze at 6d84f23
+fetched experiments/tiny-gemma4/analyze.py
+fetched experiments/tiny-gemma4/stage1.py
+fetched experiments/tiny-gemma4/surgery.py
+fetched experiments/tiny-gemma4/hf-stage1/kept_ids.json
+fetched experiments/tiny-gemma4/hf-stage1/tokenizer_pruned.json
+fetched experiments/squiggle-ft/hf-teach-pilot-g4b/teach/teacher_results.jsonl.gz
+
+
+config.json:   0%|          | 0.00/4.95k [00:00<?, ?B/s][A
+config.json: 100%|██████████| 4.95k/4.95k [00:00<00:00, 25.1MB/s]
+
+
+tokenizer_config.json:   0%|          | 0.00/3.08k [00:00<?, ?B/s][A
+tokenizer_config.json: 100%|██████████| 3.08k/3.08k [00:00<00:00, 12.1MB/s]
+
+
+tokenizer.json: reconstructing file:   0%|          |  0.00B / 32.2MB            [A
+tokenizer.json: downloading bytes:           |  0.00B            
+tokenizer.json: downloading bytes: ██████████| 8.75MB,  871kB/s  
+tokenizer.json: downloading bytes: ██████████| 8.75MB,  871kB/s  
+
+tokenizer.json: reconstructing file: 100%|██████████| 32.2MB / 32.2MB, 3.20MB/s  
+
+
+chat_template.jinja:   0%|          | 0.00/18.6k [00:00<?, ?B/s][A
+chat_template.jinja: 100%|██████████| 18.6k/18.6k [00:00<00:00, 54.5MB/s]
+
+
+README.md:   0%|          | 0.00/26.4k [00:00<?, ?B/s][A
+README.md: 100%|██████████| 26.4k/26.4k [00:00<00:00, 57.3MB/s]
+
+
+Resolving data files:   0%|          | 0/2410 [00:00<?, ?it/s][A
+Resolving data files: 100%|██████████| 2410/2410 [00:00<00:00, 33701.99it/s]
+[  0.2 min] HuggingFaceFW/fineweb-edu: 360 docs
+
+
+README.md:   0%|          | 0.00/401 [00:00<?, ?B/s][A
+README.md: 100%|██████████| 401/401 [00:00<00:00, 1.52MB/s]
+Repo card metadata block was not found. Setting CardData to empty.
+[  0.2 min] codeparrot/codeparrot-clean-valid: 50 docs
+[  0.2 min] data {'web': 200, 'code': 40, 'agent_replies': 54, 'calibration': 130}
+
+
+model.safetensors: reconstructing file:   0%|          |  0.00B / 10.2GB            [A
+model.safetensors: downloading bytes:           |  0.00B            
+
+model.safetensors: reconstructing file:   3%|▎         |  286MB / 10.2GB, 12.4MB/s  [A
+model.safetensors: downloading bytes: ▏         |  159MB, 12.3MB/s  
+model.safetensors: downloading bytes: ▍         |  438MB, 28.8MB/s  
+
+model.safetensors: reconstructing file:  10%|█         | 1.07GB / 10.2GB, 55.2MB/s  [A
+model.safetensors: downloading bytes: █▏        | 1.20GB, 98.6MB/s  
+
+model.safetensors: reconstructing file:  22%|██▏       | 2.21GB / 10.2GB,  176MB/s  [A
+model.safetensors: downloading bytes: ██▎       | 2.31GB,  183MB/s  
+
+model.safetensors: reconstructing file:  33%|███▎      | 3.42GB / 10.2GB,  255MB/s  [A
+model.safetensors: downloading bytes: ███▎      | 3.40GB,  260MB/s  
+model.safetensors: downloading bytes: ████▌     | 4.62GB,  341MB/s  
+
+model.safetensors: reconstructing file:  50%|████▉     | 5.10GB / 10.2GB,  308MB/s  [A
+model.safetensors: downloading bytes: █████▌    | 5.68GB,  300MB/s  
+
+model.safetensors: reconstructing file:  60%|██████    | 6.19GB / 10.2GB,  289MB/s  [A
+model.safetensors: downloading bytes: ██████▎   | 6.53GB,  249MB/s  
+model.safetensors: downloading bytes: ███████   | 7.21GB,  289MB/s  
+
+model.safetensors: reconstructing file:  66%|██████▌   | 6.72GB / 10.2GB,  272MB/s  [A
+model.safetensors: downloading bytes: ███████▋  | 7.84GB,  261MB/s  
+
+model.safetensors: reconstructing file:  73%|███████▎  | 7.49GB / 10.2GB,  260MB/s  [A
+model.safetensors: downloading bytes: ████████▏ | 8.37GB,  245MB/s  
+
+model.safetensors: reconstructing file:  79%|███████▉  | 8.14GB / 10.2GB,  250MB/s  [A
+
+model.safetensors: reconstructing file:  85%|████████▌ | 8.76GB / 10.2GB,  242MB/s  [A
+
+model.safetensors: reconstructing file:  92%|█████████▏| 9.42GB / 10.2GB,  238MB/s  [A
+
+model.safetensors: reconstructing file:  96%|█████████▋| 9.88GB / 10.2GB,  234MB/s  [A
+model.safetensors: downloading bytes: ████████▍ | 8.66GB,  230MB/s  
+
+model.safetensors: reconstructing file:  99%|█████████▉| 10.1GB / 10.2GB,  230MB/s  [A
+model.safetensors: downloading bytes: ██████████| 8.66GB,  230MB/s  
+model.safetensors: downloading bytes: ██████████| 8.66GB,  230MB/s  
+
+model.safetensors: reconstructing file: 100%|██████████| 10.2GB / 10.2GB,  230MB/s  
+
+
+Loading weights:   0%|          | 0/1951 [00:00<?, ?it/s][A
+Loading weights: 100%|██████████| 1951/1951 [00:00<00:00, 5189.02it/s]
+
+
+generation_config.json:   0%|          | 0.00/208 [00:00<?, ?B/s][A
+generation_config.json: 100%|██████████| 208/208 [00:00<00:00, 974kB/s]
+[  1.4 min] teacher {'web': 1.4723, 'code': 1.0782, 'agent_replies': 1.6118} {'web': 1.4842, 'agent_replies': 1.572}
+[  1.5 min] drop layer 1 {'web': 1.6308, 'agent_replies': 0.8204}
+[  1.7 min] drop layer 2 {'web': -0.0525, 'agent_replies': -0.0564}
+[  1.8 min] drop layer 3 {'web': 1.6463, 'agent_replies': 1.3215}
+[  1.9 min] drop layer 4 {'web': 0.5517, 'agent_replies': 0.4093}
+[  2.1 min] drop layer 5 {'web': 0.2021, 'agent_replies': 0.0284}
+[  2.2 min] drop layer 6 {'web': 0.0256, 'agent_replies': -0.1076}
+[  2.3 min] drop layer 7 {'web': 0.1674, 'agent_replies': -0.1981}
+[  2.4 min] drop layer 8 {'web': -0.033, 'agent_replies': 0.127}
+[  2.6 min] drop layer 9 {'web': -0.0138, 'agent_replies': -0.0118}
+[  2.7 min] drop layer 10 {'web': 0.1472, 'agent_replies': 0.0336}
+[  2.8 min] drop layer 11 {'web': -0.1947, 'agent_replies': 0.067}
+[  3.0 min] drop layer 12 {'web': -0.1849, 'agent_replies': -0.0215}
+[  3.1 min] drop layer 15 {'web': 0.1432, 'agent_replies': 0.1771}
+[  3.2 min] drop layer 16 {'web': -0.0291, 'agent_replies': 0.0964}
+[  3.4 min] drop layer 17 {'web': -0.0125, 'agent_replies': 0.0301}
+[  3.5 min] drop layer 18 {'web': -0.0149, 'agent_replies': 0.0504}
+[  3.6 min] drop layer 19 {'web': 0.0735, 'agent_replies': 0.1087}
+[  3.8 min] drop layer 20 {'web': 0.2795, 'agent_replies': 0.3364}
+[  3.9 min] drop layer 21 {'web': 0.1019, 'agent_replies': 0.116}
+[  4.0 min] drop layer 22 {'web': 0.1142, 'agent_replies': 0.1077}
+[  4.2 min] drop layer 23 {'web': 0.5309, 'agent_replies': 0.4274}
+[  4.3 min] drop layer 24 {'web': 0.1356, 'agent_replies': 0.1806}
+[  4.4 min] drop layer 25 {'web': 0.254, 'agent_replies': 0.0972}
+[  4.6 min] drop layer 26 {'web': 0.0345, 'agent_replies': 0.0377}
+[  4.7 min] drop layer 27 {'web': 0.0412, 'agent_replies': 0.0388}
+[  4.8 min] drop layer 28 {'web': 0.0275, 'agent_replies': 0.0963}
+[  4.9 min] drop layer 29 {'web': 0.068, 'agent_replies': 0.0107}
+[  5.1 min] drop layer 30 {'web': 0.0335, 'agent_replies': 0.075}
+[  5.2 min] drop layer 31 {'web': 0.0361, 'agent_replies': 0.0376}
+[  5.3 min] drop layer 32 {'web': 0.0353, 'agent_replies': 0.0076}
+[  5.5 min] drop layer 33 {'web': 0.3337, 'agent_replies': 0.4643}
+[  5.5 min] least harmful to drop [(12, -0.206), (11, -0.128), (2, -0.109), (6, -0.082), (7, -0.031), (9, -0.026), (17, 0.018), (18, 0.036), (32, 0.043), (16, 0.067), (26, 0.072), (31, 0.074)]
+[  5.8 min] hidden importance: top 1024 of 1536 carry 0.75
+[  6.7 min] ffn0.5 {'layers': 35, 'hidden': 1536, 'ffn': 0.5, 'params_body': 1098538240, 'params_total': 1938186752, 'web': 1.631, 'code': 1.6919, 'agent_replies': 1.8565}
+[  7.6 min] h1280_ffn0.5 {'layers': 35, 'hidden': 1280, 'ffn': 0.5, 'params_body': 915451136, 'params_total': 1734620416, 'web': 1.7026, 'code': 1.8465, 'agent_replies': 1.9105}
+[  8.3 min] h1024_ffn0.5 {'layers': 35, 'hidden': 1024, 'ffn': 0.5, 'params_body': 732364032, 'params_total': 1531054080, 'web': 2.1165, 'code': 2.4202, 'agent_replies': 2.4257}
+[  9.0 min] h1024_ffn0.42_drop4 {'layers': 31, 'hidden': 1024, 'ffn': 0.42, 'params_body': 595490048, 'params_total': 1312263168, 'web': 2.4645, 'code': 3.709, 'agent_replies': 3.1782}
+[  9.6 min] h1024_ffn0.35_drop6 {'layers': 29, 'hidden': 1024, 'ffn': 0.35, 'params_body': 499171072, 'params_total': 1174985728, 'web': 3.094, 'code': 5.1932, 'agent_replies': 4.3062}
+[ 10.3 min] h768_ffn0.42 {'layers': 35, 'hidden': 768, 'ffn': 0.42, 'params_body': 486930688, 'params_total': 1265141504, 'web': 2.6379, 'code': 3.6176, 'agent_replies': 3.4336}
+[ 10.3 min] done
+exit code 0 after 10.7 min
