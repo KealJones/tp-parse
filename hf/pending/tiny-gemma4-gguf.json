@@ -18,5 +18,9 @@
  "upload_every": 600,
  "outdir": "out",
  "out": "experiments/tiny-gemma4/hf-gguf",
- "note": "Keal: put the barely-healed tiny Gemma 4 (heal 2) on the phone to check it loads and its memory footprint. Package the checkpoint as Gemma4ForCausalLM, convert with llama.cpp b11364 (wllama 3.8.1's build), quantize Q4_0, smoke-test with llama-simple, upload to the public kealjones/tiny-gemma4-test. CPU only, ~$0.03."
+ "note": "Keal: put the barely-healed tiny Gemma 4 (heal 2) on the phone to check it loads and its memory footprint. Package the checkpoint as Gemma4ForCausalLM, convert with llama.cpp b11364 (wllama 3.8.1's build), quantize Q4_0, smoke-test with llama-simple, upload to the public kealjones/tiny-gemma4-test. CPU only, ~$0.03.",
+ "job_id": "6ae34ed43fb22a235dd5ba72",
+ "url": "https://huggingface.co/jobs/kealjones/6ae34ed43fb22a235dd5ba72",
+ "started": "2026-10-29T13:49:08+00:00",
+ "sha": "0c27263ee0716da03b5719954bb71fbb9b0d77ed"
 }
