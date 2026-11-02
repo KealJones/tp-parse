@@ -1,6 +1,6 @@
 # tp-parse
 
-**Try it in your browser: https://kealjones.github.io/tp-parse/**
+**Try it in your browser: https://kealjones.com/tp-parse/**
 
 A forgiving parser and validator for toki pona, written in TypeScript with no dependencies. Give it text, and it returns a parse tree for every sentence plus a list of problems, each with a code, a severity, a plain-English message, and the exact character range. It never throws on bad input.
 
