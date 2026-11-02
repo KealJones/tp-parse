@@ -21,6 +21,8 @@ npm run cli -- "jan pona mi li moku e kili. jan moku e telo."
 2 sentence(s), 1 error(s), 0 warning(s)
 ```
 
+Add `--json` for machine-readable output, `--stats` for a summary, or `-h` for all the options. `npm run check` type-checks the project.
+
 ### As a library
 
 ```ts
@@ -124,10 +126,15 @@ gloss('soweli li moku e pan.'); // "fuzzy creature li eat e grains."
 
 `scripts/build-demo.sh` bundles the parser (about 20 KB) into a single self-contained page that runs entirely in the browser: `docs/index.html` is the full page served by GitHub Pages, and `demo/index.html` is the same page without its document wrapper. The bundle exposes a global `TP` with the same API.
 
+## Relay
+
+`relay/` is a small Cloudflare Worker (`tp-relay`) that works as a CORS proxy for public pages. It is locked: every request needs an `x-relay-key` header matching its `RELAY_KEY` secret. `.github/workflows/relay-deploy.yml` deploys it using the `CLOUDFLARE_API_TOKEN` and `RELAY_KEY` secrets (and optionally `CLOUDFLARE_ACCOUNT_ID`) in a GitHub environment named `CLOUDFLARE`. See [relay/README.md](relay/README.md). The parser itself doesn't need it.
+
 ## Project layout
 
 ```
 src/
+  index.ts      public API
   parse.ts      parser and validator
   tokenize.ts   tokens and sentence splitting
   lexicon.ts    particles, prepositions, preverbs, phonotactics
@@ -138,9 +145,11 @@ test/           unit tests (npm test)
 src/meaning.ts  meaning coverage, back-translation comparison, glossing
 src/glosses.ts  generated English glosses (from lipu Linku)
 pipeline/       LLM translation pipeline and pilot data
+relay/          Cloudflare Worker CORS proxy
 scripts/        corpus report, word-list, gloss and demo builders
 demo/           browser page source (template.html)
 docs/           built page served by GitHub Pages
+.github/        workflows (relay deploy)
 ```
 
 To refresh the word list from Linku: clone https://github.com/lipu-linku/sona and run `python3 scripts/build-words.py path/to/sona`.
@@ -149,7 +158,7 @@ To refresh the word list from Linku: clone https://github.com/lipu-linku/sona an
 
 Code: MIT, © 2026 Keal Jones.
 
-The word list in `src/words.ts` and the glosses in `src/glosses.ts` come from [lipu Linku](https://linku.la/) (the `sona` repository) and is licensed CC BY-SA 4.0.
+The word list in `src/words.ts` and the glosses in `src/glosses.ts` come from [lipu Linku](https://linku.la/) (the `sona` repository) and are licensed CC BY-SA 4.0.
 
 This is a fresh implementation written from the toki pona grammar. It doesn't include code from matthewdeanmartin/tokipona.parser, which has no licence.
 
